@@ -1,0 +1,35 @@
+﻿<div class="row">
+    <div class="col-lg-2">
+        <table ng-table="table" class="table table-condensed" show-filter="true">
+            <tbody ng-repeat="group in $groups">
+                <tr class="ng-table-group">
+                    <td colspan="{{$columns.length}}">
+                        <a ng-click="group.$hideRows = !group.$hideRows">
+                            <div>
+                                <i class="fa fa-fw" ng-class="{ 'fa-chevron-right': group.$hideRows, 'fa-chevron-down': !group.$hideRows }"></i>
+                                <strong>{{ group.value }}</strong>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                <tr ng-hide="group.$hideRows"
+                    ng-repeat="display in group.data"
+                    ng-class="{'warning': (display.status <= 0), 'success': (display.status === 2), 'danger': (display.status === 1)}">
+                    <td>
+                        <a ng-click="display.updateStatus()"><i class="fa fa-refresh text-muted" ng-class="{'fa-spin': (display.status === -1)}"></i></a>
+                    </td>
+                    <td data-title="'Name'" sortable="'name'" filter="{'name': 'text'}">
+                        <a ui-sref="displays.details({id:display.id})">
+                            <div>
+                                <strong>{{display.name}}</strong>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-10">
+        <div ui-view="details"></div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿body {
+    font-size: 24px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 64px;
+}
+
+h2 {
+    margin-bottom: 5px;
+    font-size: 40px;
+}
+
+.page-container {
+    width: 1920px;
+    max-width: 1920px;
+    height: 1080px;
+    max-height: 1080px;
+    padding: 10px;
+    overflow: hidden;
+    background-color: rgba(15,33,54,0.05);
+}
+
+.page-header {
+    margin: 0px;
+    height: 220px;
+    max-height: 220px;
+}
+
+.page-content {
+    max-height: 850px;
+    height: 850px;
+}
+
+.page-footer {
+}
+
+.wappen {
+    width: 170px;
+    height: 200px;
+    background-image: url('../img/rlp_wappen_lg.png');
+}
+
+.panel {
+    margin-bottom: 10px;
+}
+
+.panel-body {
+    padding: 5px;
+}
+
+.panel-termin {
+    max-height: 80px;
+    overflow: hidden;
+    background-color: rgba(215, 217, 219, 0.5);
+}
+
+    .panel-termin div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .panel-termin.active.public {
+        background-color: rgba(171, 221, 136, 1);
+    }
+
+    .panel-termin.active.notpublic {
+        background-color: rgba(217, 140, 140, 1);
+    }

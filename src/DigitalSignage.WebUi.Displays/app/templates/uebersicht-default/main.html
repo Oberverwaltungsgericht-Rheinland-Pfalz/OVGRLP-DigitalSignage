@@ -1,0 +1,36 @@
+﻿<!-- page header -->
+<div class="page-header">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1>{{display.title}}</h1>
+            <h2>{{dateTime | date:'fullDate'}}</h2>
+            <h2>{{dateTime | date:'shortTime'}} Uhr</h2>
+        </div>
+        <div class="col-lg-4">
+            <div class="wappen pull-right"></div>
+        </div>
+    </div>
+</div>
+<!-- page-content -->
+<div class="page-content" ng-init="init(9, 3000)" ng-controller="TermineController">
+    <div class="panel panel-default panel-termin animation-slideup"
+         ng-repeat="termin in termine track by termin.id"
+         ng-class="{active : (termin.status == 'Läuft'), public : (termin.oeffentlich == 'ja'), notpublic : (termin.oeffentlich == 'nein')}">
+        <div class="panel-body">
+            <div class="col-lg-1">
+                {{termin.uhrzeitAktuell}} Uhr<br />
+                {{termin.status}}
+            </div>
+            <div class="col-lg-3">
+                <strong>{{termin.az}}</strong><br />
+                {{termin.gericht}}
+            </div>
+            <div class="col-lg-6">
+                {{termin.parteienAktivKurz}} ./. {{termin.parteienPassivKurz}}
+            </div>
+            <div class="col-lg-2 text-right">
+                {{termin.sitzungssaal}}
+            </div>
+        </div>
+    </div>
+</div>

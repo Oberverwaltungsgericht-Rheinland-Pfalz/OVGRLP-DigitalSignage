@@ -1,0 +1,19 @@
+{
+  "name": "DigitalSignage.WebUi.Displays",
+  "version": "0.0.1",
+  "authors": [
+    "Tobias Grotheer"
+  ],
+  "private": true,
+  "dependencies": {
+    "angular": "~1.3.3",
+    "bootstrap": "~3.3.1",
+    "restangular": "~1.4.0",
+    "ui-router": "~0.2.12",
+    "ng-table": "~0.3.3",
+    "fontawesome": "~4.2.0",
+    "angular-ui-bootstrap": "~0.12.0",
+    "angular-bootstrap": "~0.12.0",
+    "angular-utils-ui-breadcrumbs": "~0.2.0"
+  }
+}

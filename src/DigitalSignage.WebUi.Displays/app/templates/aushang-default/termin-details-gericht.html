@@ -1,0 +1,14 @@
+﻿<div class="detail-termin-gericht">
+    <div class="row">
+        <div class="col-md-5">
+            <h2>Sozialgericht Koblenz</h2>
+            <h3>{{detailTermin.kammer}}. Kammer</h3>
+        </div>
+        <div class="col-md-2 text-right">
+            <p>Besetzung:</p>
+        </div>
+        <div class="col-md-5">
+            <p ng-repeat="richter in detailTermin.besetzung">{{richter}}</p>
+        </div>
+    </div>
+</div>

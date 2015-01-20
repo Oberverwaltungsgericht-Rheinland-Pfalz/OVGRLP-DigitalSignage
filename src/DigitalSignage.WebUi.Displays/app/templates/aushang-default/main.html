@@ -1,0 +1,44 @@
+﻿<div ng-controller="TermineController" ng-init="init(6, 3000, 10000)">
+    <!-- öffentlich, nicht öffentlich -->
+    <ng-include src="'app/templates/aushang-default/main-oeffentlich.html'" />
+
+    <!-- Saal und Datum -->
+    <ng-include src="'app/templates/aushang-default/main-saal.html'" />
+
+    <!-- Termine und weitere Termine -->
+    <div ng-show="termine.length > 0">
+
+        <!-- Termin Details-->
+        <div class="panel panel-default panel-termin-details">
+            <div class="panel-termin-details-inner fade-move-animation" ng-repeat="detailTermin in detailTermine track by detailTermin.id">
+
+                <!-- Gericht & Besetzung -->
+                <ng-include src="'app/templates/aushang-default/termin-details-gericht.html'" />
+
+                <!-- Terminkopf -->
+                <ng-include src="'app/templates/aushang-default/termin-details-kopf.html'" />
+
+                <!-- Rubrum -->
+                <ng-include src="'app/templates/aushang-default/termin-details-rubrum.html'" />
+                
+                <!-- Gegenstand -->
+                <ng-include src="'app/templates/aushang-default/termin-details-gegenstand.html'" />
+
+                <!-- weitere laufende Termine -->
+                <div class="detail-termine-weitere text-right">
+                    {{(detailTermine.length - 1)}}&nbsp;{{(detailTermine.length - 1) > 1 ? 'weitere laufend >>' : 'weiteres laufend >>'}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Weitere Termine -->
+        <ng-include src="'app/templates/aushang-default/termine-weitere.html'" />
+    </div>
+
+    <!-- keine Verhandlungstermine -->
+    <div ng-hide="termine.length > 0" class="text-center panel-no-termine">
+        <h2>Zurzeit keine Verhandlungstermine</h2>
+    </div>
+</div>
+
+

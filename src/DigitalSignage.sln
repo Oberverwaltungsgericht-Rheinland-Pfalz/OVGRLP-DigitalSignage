@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Web
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.Infrastructure", "DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj", "{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.WebApi", "DigitalSignage.WebApi\DigitalSignage.WebApi.csproj", "{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DigitalSignage.WebUi.Displays", "http://localhost:53863", "{7E45B96D-0D18-4B1F-A43D-9113518C6FEC}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_53863"
+		Debug.AspNetCompiler.PhysicalPath = "DigitalSignage.WebUi.Displays\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53863\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_53863"
+		Release.AspNetCompiler.PhysicalPath = "DigitalSignage.WebUi.Displays\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53863\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "DigitalSignage.WebUi.Displays\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DigitalSignage.WebUi.Manager", "http://localhost:58743", "{2DBB5A88-B7F3-40AE-A203-1D2BABBA4796}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_58743"
+		Debug.AspNetCompiler.PhysicalPath = "DigitalSignage.WebUi.Manager\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58743\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_58743"
+		Release.AspNetCompiler.PhysicalPath = "DigitalSignage.WebUi.Manager\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58743\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "DigitalSignage.WebUi.Manager\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E45B96D-0D18-4B1F-A43D-9113518C6FEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E45B96D-0D18-4B1F-A43D-9113518C6FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E45B96D-0D18-4B1F-A43D-9113518C6FEC}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E45B96D-0D18-4B1F-A43D-9113518C6FEC}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{2DBB5A88-B7F3-40AE-A203-1D2BABBA4796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DBB5A88-B7F3-40AE-A203-1D2BABBA4796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DBB5A88-B7F3-40AE-A203-1D2BABBA4796}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DBB5A88-B7F3-40AE-A203-1D2BABBA4796}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
