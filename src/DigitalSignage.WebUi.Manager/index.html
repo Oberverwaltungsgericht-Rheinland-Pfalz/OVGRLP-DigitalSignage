@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+<head>
+    <!-- Title -->
+    <title>Digital Signage - Anzeigen</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Component Styles -->
+    <link href="components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" /><!-- Bootstrap -->
+    <link href="components/fontawesome/css/font-awesome.min.css" rel="stylesheet" /><!-- Font Awesome -->
+    <link href="components/ng-table/ng-table.min.css" rel="stylesheet" /><!-- ngTable -->
+    <!-- Custom Styles -->
+    <link href="assets/css/default.css" rel="stylesheet" /><!-- Default -->
+    <!-- Components Scripts -->
+    <script src="components/jquery/dist/jquery.min.js"></script><!-- jQuery -->
+    <script src="components/angular/angular.min.js"></script><!-- Angular Core -->
+    <script src="components/ui-router/release/angular-ui-router.min.js"></script><!-- AngularUI Router -->
+    <script src="components/bootstrap/dist/js/bootstrap.min.js"></script><!-- Bootstrap -->
+    <script src="components/lodash/dist/lodash.compat.min.js"></script><!-- Lodash -->
+    <script src="components/restangular/dist/restangular.min.js"></script><!-- Restangular -->
+    <script src="components/ng-table/ng-table.min.js"></script><!-- ngTable -->
+    <script src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script><!-- Bootstrap UI -->
+    <script src="components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js"></script><!-- Breadcrumbs UI -->
+    <!-- App Scripts -->
+    <script src="app/app.js"></script><!-- app -->
+    <script src="app/displays/displays.js"></script><!-- app.displays -->
+    <script src="app/terms/terms.js"></script><!-- app.terms -->
+</head>
+<body>
+    <!-- navbar -->
+    <div ng-include="'app/shell/navbar.html'"></div>
+
+    <!-- breadcrumb -->
+    <ui-breadcrumbs displayname-property="data.displayName"
+                    abstract-proxy-property="data.proxy"
+                    template-url="components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
+
+    <!-- content -->
+    <div class="container-fluid">
+        <div ui-view="main"></div>
+    </div>
+</body>
+</html>

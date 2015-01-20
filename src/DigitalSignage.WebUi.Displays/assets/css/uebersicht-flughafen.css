@@ -1,0 +1,7 @@
+﻿.panel-termin.active.public {
+    background-color: rgba(215, 217, 219, 0.5);
+}
+
+.panel-termin.active.notpublic {
+    background-color: rgba(215, 217, 219, 0.5);
+}

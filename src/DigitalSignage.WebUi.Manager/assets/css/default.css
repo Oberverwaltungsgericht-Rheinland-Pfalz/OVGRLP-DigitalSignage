@@ -1,0 +1,55 @@
+﻿body {
+    padding-top: 50px;
+    font-size: 14px;
+    font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a {
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 0px;
+    line-height: 1.2em;
+}
+
+h1 {
+    font-size: 2.3em;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-bottom: 8px;
+}
+
+h3 {
+    font-size: 1.4em;
+    margin-bottom: 5px;
+}
+
+h4 {
+    font-size: 1.2em;
+}
+
+h5 {
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
+table.terms {
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+}
+
+    table.terms td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+        table.terms td div {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }

@@ -1,0 +1,165 @@
+﻿body {
+    font-size: 18px;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    line-height: 1.20;
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 2.4em;
+}
+
+h2 {
+    margin-bottom: 5px;
+    font-size: 1.8em;
+}
+
+h3 {
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.page-container {
+    width: 1280px;
+    max-width: 1280px;
+    height: 1024px;
+    max-height: 1024px;
+    overflow: hidden;
+    background-color: rgb(240,240,240);
+}
+
+.panel-room-date {
+    margin: 0px;
+    padding: 5px;
+    height: 70px;
+    max-height: 200px;
+    color: rgb(240,240,240);
+    background-color: rgb(51,51,51);
+}
+
+.panel-public-notpublic {
+    margin: 0px;
+    padding: 5px;
+}
+
+    .panel-public-notpublic h1 {
+        margin: 5px;
+        letter-spacing: 0.2em;
+    }
+
+    .panel-public-notpublic.public {
+        background-color: rgba(171, 221, 136, 1);
+    }
+
+    .panel-public-notpublic.notpublic {
+        background-color: rgba(217, 140, 140, 1);
+    }
+
+.page-content {
+    max-height: 794px;
+    height: 794px;
+}
+
+.page-footer {
+}
+
+.termine-list {
+    margin: 5px;
+    height: 410px;
+    max-height: 410px;
+    overflow: hidden;
+}
+
+.wappen {
+    width: 127px;
+    height: 150px;
+    background-image: url('../img/rlp_wappen_md.png');
+}
+
+.panel {
+    margin-bottom: 5px;
+}
+
+.panel-body {
+    padding: 4px;
+}
+
+.panel-termin-details {
+    margin: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    height: 450px;
+    max-height: 450px;
+    overflow: hidden;
+}
+
+.panel-termin-details-inner {
+    float: left;
+    height: 430px;
+    margin-bottom: 20px;
+    width: 1248px;
+    overflow: hidden;
+}
+
+.panel-termin {
+    max-height: 60px;
+    overflow: hidden;
+    background-color: rgba(215, 217, 219, 0.5);
+}
+
+    .panel-termin div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .panel-termin.active.public {
+        background-color: rgba(171, 221, 136, 1);
+    }
+
+    .panel-termin.active.notpublic {
+        background-color: rgba(217, 140, 140, 1);
+    }
+
+.panel-no-termine {
+    padding-top: 400px;
+}
+
+.detail-termin-gericht {
+    padding-bottom: 15px;
+    height: 35%;
+    overflow: hidden;
+}
+
+.detail-termin-terminkopf {
+    padding-bottom: 10px;
+    height: 10%;
+}
+
+.detail-termin-rubrum {
+    padding-bottom: 0px;
+    height: 40%;
+}
+
+    .detail-termin-rubrum .row {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+.detail-termin-gegenstand {
+    height: 15%;
+}
+
+.detail-termine-weitere {
+    margin-top: -35px;
+}

@@ -1,0 +1,20 @@
+﻿<div class="termine-list">
+    <h3>Weitere Termine:</h3>
+    <div class="panel panel-default panel-termin slideup"
+         ng-repeat="termin in termine track by termin.id"
+         ng-class="{active : (termin.status == 'Läuft'), public : (termin.oeffentlich == 'ja'), notpublic : (termin.oeffentlich == 'nein')}">
+        <div class="panel-body">
+            <div class="col-lg-2">
+                {{termin.uhrzeitAktuell}} Uhr<br />
+                {{termin.status}}
+            </div>
+            <div class="col-lg-3">
+                <strong>{{termin.az}}</strong><br />
+                {{termin.gericht}}
+            </div>
+            <div class="col-lg-7">
+                {{termin.parteienAktivKurz}} ./. {{termin.parteienPassivKurz}}
+            </div>
+        </div>
+    </div>
+</div>
