@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Web
+# Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.Infrastructure", "DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj", "{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}"
@@ -51,6 +51,27 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DigitalSignage.WebUi.Manage
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DigitalSignage.WebUi.Infoscreen", "http://localhost:60129", "{256C84F6-BECD-48AD-98DE-9BF41C6D8015}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60129"
+		Debug.AspNetCompiler.PhysicalPath = "DigitalSignage.WebUi.Infoscreen\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60129\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60129"
+		Release.AspNetCompiler.PhysicalPath = "DigitalSignage.WebUi.Infoscreen\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60129\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "DigitalSignage.WebUi.Infoscreen\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +94,10 @@ Global
 		{2DBB5A88-B7F3-40AE-A203-1D2BABBA4796}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DBB5A88-B7F3-40AE-A203-1D2BABBA4796}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{2DBB5A88-B7F3-40AE-A203-1D2BABBA4796}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{256C84F6-BECD-48AD-98DE-9BF41C6D8015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{256C84F6-BECD-48AD-98DE-9BF41C6D8015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{256C84F6-BECD-48AD-98DE-9BF41C6D8015}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{256C84F6-BECD-48AD-98DE-9BF41C6D8015}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
