@@ -1,9 +1,57 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="infoscreen.app" ng-controller="InfoscreenMainController">
 <head>
-    <title></title>
+    <!-- Title -->
+    <title>{{title}}</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, hight=device-height, initial-scale=1">
+
+    <!-- Component Styles -->
+    <link href="components/angular-material/angular-material.min.css" rel="stylesheet" /><!-- Angular Material -->
+    <!-- Components Scripts -->
+    <script src="components/hammerjs/hammer.min.js"></script><!-- Hammer.JS -->
+    <script src="components/angular/angular.min.js"></script><!-- Angular.JS -->
+    <script src="components/angular-animate/angular-animate.min.js"></script><!-- Angular Animate -->
+    <script src="components/angular-aria/angular-aria.min.js"></script><!-- Angular Aria -->
+    <script src="components/angular-material/angular-material.min.js"></script><!-- Angular Material -->
+    <!-- App Scripts -->
+    <script src="app/app.js"></script>
 </head>
 <body>
-    <h1>Testseite</h1>
+    <md-toolbar>
+        <h1 class="md-toolbar-tools">
+            {{title}}
+        </h1>
+    </md-toolbar>
+
+    <md-content layout="row" layout-margin layout-padding>
+
+        <div flex="20">
+            Filter
+        </div>
+
+        <div flex class="md-whiteframe-z1" layout-fill>
+            <md-content>
+                <md-list>
+                    <md-item ng-repeat="term in terms">
+                        <md-item-content>
+                            <div class="md-tile-content">
+                                <h3>{{term.uhrzeit}} - {{term.aktenzeichen}}</h3>
+                                <h4>{{term.gericht}} - {{term.saal}}</h4>
+                                <p>
+                                    {{term.kurzrubrum}}
+                                </p>
+                            </div>
+                        </md-item-content>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-item>
+                </md-list>
+            </md-content>
+        </div>
+
+    </md-content>
 </body>
 </html>
