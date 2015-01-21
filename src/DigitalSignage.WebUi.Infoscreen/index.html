@@ -17,6 +17,8 @@
     <script src="components/angular-animate/angular-animate.min.js"></script><!-- Angular Animate -->
     <script src="components/angular-aria/angular-aria.min.js"></script><!-- Angular Aria -->
     <script src="components/angular-material/angular-material.min.js"></script><!-- Angular Material -->
+    <script src="components/lodash/dist/lodash.min.js"></script><!-- Lodash -->
+    <script src="components/restangular/dist/restangular.min.js"></script><!-- Restangular -->
     <!-- App Scripts -->
     <script src="app/app.js"></script>
 </head>
@@ -42,10 +44,10 @@
                 <md-item ng-repeat="term in terms">
                     <md-item-content>
                         <div class="md-tile-content">
-                            <h3>{{term.uhrzeit}} - {{term.aktenzeichen}}</h3>
-                            <h4>{{term.gericht}} - {{term.saal}}</h4>
+                            <h3>{{term.uhrzeitAktuell}} - {{term.az}}</h3>
+                            <h4>{{term.gericht}} - {{term.sitzungssaal}}</h4>
                             <p>
-                                {{term.kurzrubrum}}
+                                {{term.parteienAktivKurz}} ./. {{term.parteienPassivKurz}}
                             </p>
                         </div>
                     </md-item-content>
