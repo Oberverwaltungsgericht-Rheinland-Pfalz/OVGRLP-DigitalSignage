@@ -8,6 +8,60 @@
     app.controller('InfoscreenMainController', function ($scope) {
         $scope.title = 'Digital Signage - Infoscreen';
 
+        $scope.filterGroups = [
+            {
+                title: 'Gericht',
+                filters: [
+                    {
+                        title: 'Oberverwaltungsgericht Rheinland-Pfalz'
+                    },
+                    {
+                        title: 'Verwaltungsgericht Koblenz'
+                    },
+                    {
+                        title: 'Sozialgerich Koblenz'
+                    },
+                    {
+                        title: 'Arbeitsgericht Koblenz'
+                    }
+                ]
+            },
+            {
+                title: 'Status',
+                filters: [
+                    {
+                        title: 'Läuft'
+                    },
+                    {
+                        title: 'Abgeschlossen'
+                    },
+                    {
+                        title: 'Verschoben'
+                    },
+                    {
+                        title: 'Aufgehoben'
+                    }
+                ]
+            },
+            {
+                title: 'Uhrzeit',
+                filters: [
+                    {
+                        title: 'vor 9:00 Uhr'
+                    },
+                    {
+                        title: '9:00 Uhr bis 11:00 Uhr'
+                    },
+                    {
+                        title: '11:00 Uhr bis 13:00 Uhr'
+                    },
+                    {
+                        title: 'nach 13:00 Uhr'
+                    }
+                ]
+            }
+        ];
+
         $scope.terms = [
             {
                 uhrzeit: '09:30 Uhr',

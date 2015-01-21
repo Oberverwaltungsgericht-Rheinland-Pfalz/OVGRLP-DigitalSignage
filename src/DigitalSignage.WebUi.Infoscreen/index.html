@@ -29,27 +29,29 @@
 
     <md-content layout="row" layout-margin layout-padding>
 
-        <div flex="20">
-            Filter
+        <div flex="25">
+            <div ng-repeat="group in filterGroups">
+                <h3>{{group.title}}</h3>
+                <md-checkbox ng-repeat="filter in group.filters">{{filter.title}}</md-checkbox>
+                <md-divider></md-divider>
+            </div>
         </div>
 
         <div flex class="md-whiteframe-z1" layout-fill>
-            <md-content>
-                <md-list>
-                    <md-item ng-repeat="term in terms">
-                        <md-item-content>
-                            <div class="md-tile-content">
-                                <h3>{{term.uhrzeit}} - {{term.aktenzeichen}}</h3>
-                                <h4>{{term.gericht}} - {{term.saal}}</h4>
-                                <p>
-                                    {{term.kurzrubrum}}
-                                </p>
-                            </div>
-                        </md-item-content>
-                        <md-divider ng-if="!$last"></md-divider>
-                    </md-item>
-                </md-list>
-            </md-content>
+            <md-list>
+                <md-item ng-repeat="term in terms">
+                    <md-item-content>
+                        <div class="md-tile-content">
+                            <h3>{{term.uhrzeit}} - {{term.aktenzeichen}}</h3>
+                            <h4>{{term.gericht}} - {{term.saal}}</h4>
+                            <p>
+                                {{term.kurzrubrum}}
+                            </p>
+                        </div>
+                    </md-item-content>
+                    <md-divider ng-if="!$last"></md-divider>
+                </md-item>
+            </md-list>
         </div>
 
     </md-content>
