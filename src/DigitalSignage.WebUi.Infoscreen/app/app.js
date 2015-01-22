@@ -15,66 +15,82 @@
 
         $scope.terms = [];
 
-        $scope.filterGroups = [
+        $scope.filters = [];
+
+        $scope.filters.gericht = [
             {
-                title: 'Gericht',
-                filters: [
-                    {
-                        title: 'Oberverwaltungsgericht Rheinland-Pfalz'
-                    },
-                    {
-                        title: 'Verwaltungsgericht Koblenz'
-                    },
-                    {
-                        title: 'Sozialgerich Koblenz'
-                    },
-                    {
-                        title: 'Arbeitsgericht Koblenz'
-                    }
-                ]
+                active: false,
+                title: 'Oberverwaltungsgericht Rheinland-Pfalz',
+                expression: { gericht: 'Oberverwaltungsgericht Rheinland-Pfalz' }
             },
             {
-                title: 'Status',
-                filters: [
-                    {
-                        title: 'Läuft'
-                    },
-                    {
-                        title: 'Abgeschlossen'
-                    },
-                    {
-                        title: 'Verschoben'
-                    },
-                    {
-                        title: 'Aufgehoben'
-                    }
-                ]
+                active: false,
+                title: 'Verwaltungsgericht Koblenz',
+                expression: { gericht: 'Verwaltungsgericht Koblenz' }
             },
             {
-                title: 'Uhrzeit',
-                filters: [
-                    {
-                        title: 'vor 9:00 Uhr'
-                    },
-                    {
-                        title: '9:00 Uhr bis 11:00 Uhr'
-                    },
-                    {
-                        title: '11:00 Uhr bis 13:00 Uhr'
-                    },
-                    {
-                        title: 'nach 13:00 Uhr'
-                    }
-                ]
+                active: false,
+                title: 'Sozialgericht Koblenz',
+                expression: { gericht: 'Sozialgericht Koblenz' }
+            },
+            {
+                active: false,
+                title: 'Arbeitsgericht Koblenz',
+                expression: { gericht: 'Arbeitsgericht Koblenz' }
             }
         ];
 
-        Termine.getList().then(function (data) {
-            $scope.terms = data;
-        });
+        $scope.filters.status = [
+            {
+                active: false,
+                title: 'Läuft',
+                expression: { status: 'Läuft' }
+            },
+            {
+                active: false,
+                title: 'Abgeschlossen',
+                expression: { status: 'Abgeschlossen' }
+            },
+            {
+                active: false,
+                title: 'Verschoben',
+                expression: { status: 'Verschoben' }
+            },
+            {
+                active: false,
+                title: 'Aufgeboben',
+                expression: { status: 'Aufgehoben' }
+            },
+        ];
+
+        $scope.updateData = function () {
+            Termine.getList().then(function (data) {
+                $scope.terms = data;
+            });
+        };
+
+        $scope.updateData();
     });
 
     app.factory('Termine', function (Restangular) {
         return Restangular.service('daten/verfahren');
+    });
+
+    app.filter('multifilter', function () {
+        return function (items, options) {
+            var activeFilter = _.where(options, { active: true });
+
+            var resultItems = [];
+
+            if (activeFilter.length > 0) {
+                _.each(activeFilter, function (filter) {
+                    resultItems = resultItems.concat(_.where(items, filter.expression));
+                });
+            } else {
+                resultItems = items;
+            }
+
+            return _.uniq(resultItems);
+        }
     });
 })();
