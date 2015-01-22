@@ -32,16 +32,20 @@
     <md-content layout="row" layout-margin layout-padding>
 
         <div flex="25">
-            <div ng-repeat="group in filterGroups">
-                <h3>{{group.title}}</h3>
-                <md-checkbox ng-repeat="filter in group.filters">{{filter.title}}</md-checkbox>
+            <div>
+                <h3>Gericht</h3>
+                <md-checkbox ng-repeat="filter in filters.gericht" ng-model="filter.active">{{filter.title}}</md-checkbox>
                 <md-divider></md-divider>
+            </div>
+            <div>
+                <h3>Status</h3>
+                <md-checkbox ng-repeat="filter in filters.status" ng-model="filter.active">{{filter.title}}</md-checkbox>
             </div>
         </div>
 
         <div flex class="md-whiteframe-z1" layout-fill>
             <md-list>
-                <md-item ng-repeat="term in terms">
+                <md-item ng-repeat="term in terms | multifilter:filters.gericht | multifilter:filters.status | orderBy:'uhrzeitAktuell':reverse">
                     <md-item-content>
                         <div class="md-tile-content">
                             <h3>{{term.uhrzeitAktuell}} - {{term.az}}</h3>
