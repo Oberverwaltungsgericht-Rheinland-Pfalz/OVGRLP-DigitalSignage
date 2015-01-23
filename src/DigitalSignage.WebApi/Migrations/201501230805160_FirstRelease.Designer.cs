@@ -6,14 +6,14 @@ namespace DigitalSignage.WebApi.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class VerfahrenParteienAdded : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
+    public sealed partial class FirstRelease : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(VerfahrenParteienAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstRelease));
         
         string IMigrationMetadata.Id
         {
-            get { return "201411171240456_VerfahrenParteienAdded"; }
+            get { return "201501230805160_FirstRelease"; }
         }
         
         string IMigrationMetadata.Source
