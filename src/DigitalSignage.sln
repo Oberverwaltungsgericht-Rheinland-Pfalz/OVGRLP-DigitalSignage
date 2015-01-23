@@ -27,6 +27,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DigitalSignage.WebUi.Displa
 		Release.AspNetCompiler.Debug = "False"
 		SlnRelativePath = "DigitalSignage.WebUi.Displays\"
 		DefaultWebSiteLanguage = "Visual C#"
+		StartServerOnDebug = "true"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DigitalSignage.WebUi.Manager", "http://localhost:58743", "{2DBB5A88-B7F3-40AE-A203-1D2BABBA4796}"

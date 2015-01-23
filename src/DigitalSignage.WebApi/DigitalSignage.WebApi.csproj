@@ -131,57 +131,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201411171026282_BasicsAdded.cs" />
-    <Compile Include="Migrations\201411171026282_BasicsAdded.Designer.cs">
-      <DependentUpon>201411171026282_BasicsAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411171037207_StammdatenAdded.cs" />
-    <Compile Include="Migrations\201411171037207_StammdatenAdded.Designer.cs">
-      <DependentUpon>201411171037207_StammdatenAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411171045431_VerfahrenAdded.cs" />
-    <Compile Include="Migrations\201411171045431_VerfahrenAdded.Designer.cs">
-      <DependentUpon>201411171045431_VerfahrenAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411171103373_VerfahrenAddedToStammdaten.cs" />
-    <Compile Include="Migrations\201411171103373_VerfahrenAddedToStammdaten.Designer.cs">
-      <DependentUpon>201411171103373_VerfahrenAddedToStammdaten.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411171233428_VerfahrenBesetzungAdded.cs" />
-    <Compile Include="Migrations\201411171233428_VerfahrenBesetzungAdded.Designer.cs">
-      <DependentUpon>201411171233428_VerfahrenBesetzungAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411171240456_VerfahrenParteienAdded.cs" />
-    <Compile Include="Migrations\201411171240456_VerfahrenParteienAdded.Designer.cs">
-      <DependentUpon>201411171240456_VerfahrenParteienAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411171249295_VerfahrenProzBevsAdded.cs" />
-    <Compile Include="Migrations\201411171249295_VerfahrenProzBevsAdded.Designer.cs">
-      <DependentUpon>201411171249295_VerfahrenProzBevsAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411180625345_DisplaysAdded.cs" />
-    <Compile Include="Migrations\201411180625345_DisplaysAdded.Designer.cs">
-      <DependentUpon>201411180625345_DisplaysAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411180738285_DisplayChanges.cs" />
-    <Compile Include="Migrations\201411180738285_DisplayChanges.Designer.cs">
-      <DependentUpon>201411180738285_DisplayChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411200923192_VerfahrenStammdatenAdded.cs" />
-    <Compile Include="Migrations\201411200923192_VerfahrenStammdatenAdded.Designer.cs">
-      <DependentUpon>201411200923192_VerfahrenStammdatenAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411240828167_DisplaySettingsChanged.cs" />
-    <Compile Include="Migrations\201411240828167_DisplaySettingsChanged.Designer.cs">
-      <DependentUpon>201411240828167_DisplaySettingsChanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411240830183_DisplaySettingsTitleAdded.cs" />
-    <Compile Include="Migrations\201411240830183_DisplaySettingsTitleAdded.Designer.cs">
-      <DependentUpon>201411240830183_DisplaySettingsTitleAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201411261310431_DisplayStylesAndTemplateAdded.cs" />
-    <Compile Include="Migrations\201411261310431_DisplayStylesAndTemplateAdded.Designer.cs">
-      <DependentUpon>201411261310431_DisplayStylesAndTemplateAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201501230805160_FirstRelease.cs" />
+    <Compile Include="Migrations\201501230805160_FirstRelease.Designer.cs">
+      <DependentUpon>201501230805160_FirstRelease.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -203,47 +155,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201411171026282_BasicsAdded.resx">
-      <DependentUpon>201411171026282_BasicsAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411171037207_StammdatenAdded.resx">
-      <DependentUpon>201411171037207_StammdatenAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411171045431_VerfahrenAdded.resx">
-      <DependentUpon>201411171045431_VerfahrenAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411171103373_VerfahrenAddedToStammdaten.resx">
-      <DependentUpon>201411171103373_VerfahrenAddedToStammdaten.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411171233428_VerfahrenBesetzungAdded.resx">
-      <DependentUpon>201411171233428_VerfahrenBesetzungAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411171240456_VerfahrenParteienAdded.resx">
-      <DependentUpon>201411171240456_VerfahrenParteienAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411171249295_VerfahrenProzBevsAdded.resx">
-      <DependentUpon>201411171249295_VerfahrenProzBevsAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411180625345_DisplaysAdded.resx">
-      <DependentUpon>201411180625345_DisplaysAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411180738285_DisplayChanges.resx">
-      <DependentUpon>201411180738285_DisplayChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411200923192_VerfahrenStammdatenAdded.resx">
-      <DependentUpon>201411200923192_VerfahrenStammdatenAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411240828167_DisplaySettingsChanged.resx">
-      <DependentUpon>201411240828167_DisplaySettingsChanged.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411240830183_DisplaySettingsTitleAdded.resx">
-      <DependentUpon>201411240830183_DisplaySettingsTitleAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411261310431_DisplayStylesAndTemplateAdded.resx">
-      <DependentUpon>201411261310431_DisplayStylesAndTemplateAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201501230805160_FirstRelease.resx">
+      <DependentUpon>201501230805160_FirstRelease.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -260,8 +175,6 @@
           <DevelopmentServerPort>52208</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:52208</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:52208</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
