@@ -4,8 +4,7 @@
         'ngAnimate',
         // 3rd Party Modules
         'ui.router',
-        'restangular',
-        'ngFlowtype'
+        'restangular'
     ]);
 
     angular.module('app.data', []);
