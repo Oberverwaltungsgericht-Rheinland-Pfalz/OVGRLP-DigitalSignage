@@ -7,12 +7,12 @@
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, hight=device-height, initial-scale=1">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 
     <!-- Component Styles -->
-    <link href="components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" /><!-- Bootstrap -->
     <link href="components/fontawesome/css/font-awesome.min.css" rel="stylesheet" /><!-- Font Awesome -->
     <link href="components/slick-carousel/slick/slick.css" rel="stylesheet" /><!-- Slick-Carousel -->
+    <link href="components/angular-material/angular-material.min.css" rel="stylesheet" /><!-- Angular Material -->
     <!-- Custom Styles -->
     <link ng-repeat="style in styles" ng-href="assets/css/{{style}}.css" rel="stylesheet" /><!-- Styles -->
     <!-- Components Scripts -->
@@ -20,8 +20,9 @@
     <script src="components/angular/angular.min.js"></script><!-- Angular Core -->
     <script src="components/angular-i18n/angular-locale_de-de.js"></script><!-- Angular i18n -->
     <script src="components/angular-animate/angular-animate.min.js"></script><!-- Angular Animate -->
+    <script src="components/angular-aria/angular-aria.min.js"></script><!-- Angular Aria -->
+    <script src="components/angular-material/angular-material.min.js"></script><!-- Angular Material -->
     <script src="components/ui-router/release/angular-ui-router.min.js"></script><!-- AngularUI Router -->
-    <script src="components/bootstrap/dist/js/bootstrap.min.js"></script><!-- Bootstrap -->
     <script src="components/lodash/lodash.min.js"></script><!-- Lodash -->
     <script src="components/restangular/dist/restangular.min.js"></script><!-- Restangular -->
     <script src="components/underscore/underscore-min.js"></script><!-- Underscore -->
@@ -30,6 +31,6 @@
     <script src="app/app.js"></script><!-- app -->
 </head>
 <body>
-    <div class="page-container" ui-view></div>
+    <div ui-view></div>
 </body>
 </html>
