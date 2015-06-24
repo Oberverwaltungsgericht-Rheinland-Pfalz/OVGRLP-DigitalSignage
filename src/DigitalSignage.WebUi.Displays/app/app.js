@@ -2,6 +2,7 @@
     var app = angular.module('app', [
         //Angular
         'ngAnimate',
+        'ngMaterial',
         // 3rd Party Modules
         'ui.router',
         'restangular'
@@ -14,15 +15,15 @@
             return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function (txt) {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             }) : '';
-      }
-  });
+        }
+    });
 
     app.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
         $stateProvider
             .state('index', {
                 url: '/',
                 templateUrl: 'app/index.html'
-            }).state('content', {
+            }).state('display', {
                 url: '/{id}',
                 templateUrl: 'app/display.html',
                 controller: 'DisplayController'
@@ -68,21 +69,10 @@
             function ($scope, $stateParams, $timeout, $interval, $filter, Restangular) {
                 var TermineSrv = Restangular.service('termine', Restangular.one('settings/displays', $stateParams.id));
 
-                var stock = [];
-                var scrollMode = false;
-                var scrollOffset = 0;
-                
-                $scope.termine = [];
-                $scope.detailTermine = [];
-
-                $scope.maxItems = 9;
                 $scope.updateInterval = 15 * 1000;
-                $scope.stepDelay = 3 * 1000;
-                $scope.stepDetailTermine = 10 * 1000;
+                $scope.termine = [];
 
-                $scope.isActiveTermin = function (termin) {
-                    return ($scope.detailTermine[$scope.currentTermin] == termin);
-                };
+                $scope.detailTermin = null;
 
                 initialize = function () {
                     updateData();
@@ -90,75 +80,34 @@
                     $interval(function () {
                         updateData();
                     }, $scope.updateInterval);
-
-                    $interval(function () {
-                        if ($scope.detailTermine.length > 1) {
-                            var term = angular.copy($scope.detailTermine.shift());
-                            $scope.detailTermine.push(term);
-                        }
-                    }, $scope.stepDetailTermine);
-
-                    $interval(function () {
-                        if (scrollMode) {
-                            doStep();
-                        }
-                    }, $scope.stepDelay);
                 };
 
                 updateData = function () {
                     TermineSrv.getList().then(function (data) {
-                        var tmpData = $filter('orderBy')(data, '+uhrzeitAktuell');
-                        if (tmpData.length > $scope.maxItems) {
-                            scrollMode = true;
+                        $scope.termine = $filter('orderBy')(data, '+uhrzeitAktuell');
 
-                            var dupData = tmpData.concat(tmpData);
-                            offset = 0;
-
-                            if ($scope.termine.length > 0) {
-                                var offset = dupData.indexOf(_.find(dupData, function (item) {
-                                    return item.id == $scope.termine[0].id;
-                                }));
-                            }
-
-                            $scope.termine = dupData.slice(offset, offset + $scope.maxItems);
-                            stock = dupData.slice(offset + $scope.maxItems).concat(dupData.slice(0));
-                        } else {
-                            $scope.termine = tmpData;
-
-                            scrollMode = false;
-                            scrollOffset = 0;
-                            stock = [];
-                        }
-
-                        updateDetailTermine(tmpData);
+                        updateDetailTermin($scope.termine);
                     });
                 };
 
-                updateDetailTermine = function (termine) {
-                    var tmpData = _.filter(termine, function(termin) {
-                        return termin.status == 'Läuft';
+                updateDetailTermin = function (termine) {
+                    var tmpData = _.filter(termine, function (termin) {
+                        if (termin.status == 'Läuft')
+                            return true;
                     });
 
-                    if (tmpData.length <= 1) {
-                        tmpData.push(_.find(termine, function (termin) {
-                            return (termin.status != 'Abgeschlossen' && termin.status != 'Aufgehoben');
-                        }));
+                    if (tmpData.length < 1) {
+                        tmpData = _.filter(termine, function (termin) {
+                            if (termin.status != 'Abgeschlossen' && termin.status != 'Aufgehoben')
+                                return true;
+                        });
                     }
 
-                    if (tmpData.length > 1) {
-                        if ($scope.detailTermine[0]) {
-                            var currentIndex = tmpData.indexOf(_.find(tmpData, function (item) {
-                                return item.id == $scope.detailTermine[0].id;
-                            }));
-
-                            if (currentIndex > -1) {
-                                tmpData = tmpData.slice(currentIndex).concat(tmpData.slice(0, currentIndex));
-                            }
-                        }
+                    if (tmpData.length >= 1) {
+                        $scope.detailTermin = tmpData[0];
+                    } else {
+                        $scope.detailTermin = null;
                     }
-
-                    $scope.detailTermine = tmpData;
-                    console.log($scope.detailTermine);
                 };
 
                 arrayToString = function (data) {
@@ -169,19 +118,7 @@
                     return outStr;
                 };
 
-                doStep = function () {
-                    $scope.termine.shift();
-                    $scope.termine.push(stock.shift());
-                };
-
                 initialize();
-
-                $scope.init = function (maxItems, stepDelay, updateInterval, stepDetailTermine) {
-                    $scope.maxItems = maxItems;
-                    $scope.stepDelay = stepDelay;
-                    $scope.updateInterval = updateInterval;
-                    $scope.stepDetailTermine = stepDetailTermine;
-                }
             }]);
 
     app.controller(
@@ -198,4 +135,46 @@
                     });
                 };
             }]);
+
+    app.directive('dsScrollContent', ['$interval', function ($interval) {
+        return {
+            restrict: 'E',
+            scope: {
+                step: '@',
+                speed: '@',
+                stepDuration: '@',
+                watchData: '='
+            },
+            link: function (scope, element, attrs) {
+                var timeoutId;
+
+                scope.$watch('watchData', function (newValue, newValue) {
+                    var parent = element.parent();
+                    var child = element.children();
+
+                    if (parent[0].offsetHeight < child[0].offsetHeight) {
+                        if (angular.isDefined(timeoutId)) {
+                            return;
+                        };
+
+                        timeoutId = $interval(function () {
+                            var mTop = parseFloat(child.css('margin-top'));
+                            var newValue = mTop - scope.step;
+
+                            if ((newValue + 2 * scope.step) < (parent[0].offsetHeight - child[0].offsetHeight))
+                                newValue = 0;
+
+                            child.animate({ marginTop: newValue }, scope.stepDuration);
+                        }, scope.speed);
+                    } else {
+                        if (angular.isDefined(timeoutId)) {
+                            $interval.cancel(timeoutId);
+                        };
+                        child.animate({ marginTop: 0}, scope.stepDuration);
+                    }
+                });
+            }
+        }
+    }]);
+
 })();
