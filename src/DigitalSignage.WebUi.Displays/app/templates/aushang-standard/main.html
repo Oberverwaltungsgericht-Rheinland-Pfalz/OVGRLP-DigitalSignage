@@ -74,7 +74,7 @@
                 <ds-scroll-content step="40" step-duration="300" speed="4000" watch-data="termine">
                     <md-list>
                         <md-list-item ng-repeat="termin in termine track by termin.id" layout="row" layout-align="start start">
-                            <div flex="10">
+                            <div flex="15">
                                 <p>{{termin.uhrzeitAktuell}} Uhr</p>
                                 <p>{{termin.status}}</p>
                             </div>
@@ -82,7 +82,7 @@
                                 <strong>{{termin.az}}</strong><br />
                                 {{termin.gericht}}
                             </div>
-                            <div flex="60">
+                            <div flex="55">
                                 {{termin.parteienAktivKurz}} ./. {{termin.parteienPassivKurz}}
                             </div>
                             <md-divider></md-divider>
