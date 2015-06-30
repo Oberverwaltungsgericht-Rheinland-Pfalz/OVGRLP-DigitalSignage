@@ -1,41 +1,36 @@
 ﻿(function () {
     var app = angular.module('app.displays');
 
-    app.controller('DisplayController', ['$scope', 'display', function ($scope, display) {
-        console.log(display);
-        $scope.display = display;
-    }]);
+    app.controller('DisplaysController', function ($scope, Displays) {
+        var columnDefs = [
+            { headerName: 'Gruppe', field: 'group'},
+            { headerName: 'Name', field: 'name'},
+            { headerName: 'Titel', field: 'title'},
+            { headerName: 'Status', field: 'status' },
+            { headerName: '', template: '<a ui-sref="displays.details({id:data.id})">Details</a>' }
 
-    app.controller('DisplaysController', ['$scope', '$filter', 'Displays', 'ngTableParams', function ($scope, $filter, Displays, ngTableParams) {
-        $scope.title = 'Saalanzeigen';
+        ];
 
-        $scope.table = new ngTableParams({
-            page: 1,
-            count: 50,
-            sorting: {
-                name: 'asc'
-            }
-        }, {
-            counts: [],
-            groupBy: 'group',
-            total: 0,
-            getData: function ($defer, params) {
-                Displays.getList().then(function (data) {
-                    var filteredData = params.filter() ? $filter('filter')(data, params.filter()) : data;
-                    var orderedData = params.sorting() ? $filter('orderBy')(filteredData, params.orderBy()) : filteredData;
+        $scope.gridOptions = {
+            angularCompileRows: true,            columnDefs: columnDefs,
+            rowData: null
+        };
 
-                    orderedData.forEach(function (display) {
-                        display.updateStatus();
-                    });
+        Displays.getList().then(function (data) {
+            data.forEach(function (display) {
+                display.updateStatus();
+            });
 
-                    params.total(orderedData.length);
-                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                });
-            }
+            $scope.gridOptions.rowData = data;
+            $scope.gridOptions.api.onNewRows();
         });
-    }]);
+    });
 
-    app.factory('Displays', ['Restangular', function (Restangular) {
+    app.controller('DisplayController', function ($scope, $stateParams, Displays) {
+        $scope.display = Displays.one($stateParams.id).get().$object;
+    });
+
+    app.factory('Displays', function (Restangular) {
         Restangular.extendModel('settings/displays', function (model) {
             model.status = 0;
 
@@ -50,5 +45,5 @@
         });
 
         return Restangular.service('settings/displays');
-    }]);
+    });
 })();

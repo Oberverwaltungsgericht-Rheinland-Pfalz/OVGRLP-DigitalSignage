@@ -5,11 +5,11 @@
         'app.terms',
 
         // 3rd Party Modules
+        'ngMaterial',
         'ui.router',
         'restangular',
-        'ngTable',
-        'ui.bootstrap',
-        'angularUtils.directives.uiBreadcrumbs'
+        'angularUtils.directives.uiBreadcrumbs',
+        'angularGrid'
     ]);
 
     angular.module('app.displays', []);
@@ -20,26 +20,40 @@
         $rootScope.$stateParams = $stateParams;
     }]);
 
-    app.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
+    app.config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, RestangularProvider) {
         $stateProvider
             .state('displays', {
                 url: '/displays',
-                views: {
-                    'main@': {
-                        templateUrl: 'app/displays/index.html',
-                        controller: 'DisplaysController'
-                    }
-                }, data: {
+                templateUrl: 'app/displays/index.html',
+                controller: 'DisplaysController',
+                data: {
+                    pageTitle: 'Anzeigen'
+                }
+            })
+            .state('displays.details', {
+                url: '/:id',
+                templateUrl: 'app/displays/details.html',
+                controller: 'DisplayController'
+            }).state('terms', {
+                url: '/terms',
+                templateUrl: 'app/terms/index.html',
+                controller: 'TermsController',
+                data: {
+                    pageTitle: 'Sitzungen'
+                }
+            });
+            /*
+            .state('displays', {
+                url: '/displays',
+                templateUrl: 'app/displays/index.html',
+                controller: 'DisplaysController',
+                data: {
                     displayName: 'Anzeigen'
                 }
             }).state('displays.details', {
                 url: '/:id',
-                views: {
-                    'details': {
-                        templateUrl: 'app/displays/details.html',
-                        controller: 'DisplayController'
-                    }
-                },
+                templateUrl: 'app/displays/details.html',
+                controller: 'DisplayController',
                 data: {
                     displayName: '{{display.name}}'
                 },
@@ -55,23 +69,15 @@
                 }
             }).state('terms.list', {
                 url: '/terms',
-                views: {
-                    'main@': {
-                        templateUrl: 'app/terms/index.html',
-                        controller: 'TermsController'
-                    }
-                },
+                templateUrl: 'app/terms/index.html',
+                controller: 'TermsController',
                 data: {
                     displayName: 'Termine'
                 }
             }).state('terms.details', {
                 url: '/:id',
-                views: {
-                    'main@': {
-                        templateUrl: 'app/terms/details.html',
-                        controller: 'TermController'
-                    }
-                },
+                templateUrl: 'app/terms/details.html',
+                controller: 'TermController',
                 data: {
                     displayName: '{{term.az}}'
                 },
@@ -81,9 +87,14 @@
                     }
                 }
             });
+            */
 
         $urlRouterProvider.otherwise('/displays');
 
         RestangularProvider.setBaseUrl('http://localhost:52208');
+
+        $mdThemingProvider.theme('default')
+            .primaryPalette('brown')
+            .accentPalette('red');
     });
 })();
