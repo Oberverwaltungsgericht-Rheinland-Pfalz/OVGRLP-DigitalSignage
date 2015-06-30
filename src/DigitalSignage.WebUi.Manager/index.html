@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
 <head>
     <!-- Title -->
-    <title>Digital Signage - Anzeigen</title>
+    <title>Digital Signage - {{$state.current.data.pageTitle}}</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -10,38 +10,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Component Styles -->
-    <link href="components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" /><!-- Bootstrap -->
     <link href="components/fontawesome/css/font-awesome.min.css" rel="stylesheet" /><!-- Font Awesome -->
-    <link href="components/ng-table/ng-table.min.css" rel="stylesheet" /><!-- ngTable -->
+    <link href="components/angular-material/angular-material.min.css" rel="stylesheet" /><!-- Angular Material -->
+    <link href="components/ag-grid/dist/angular-grid.min.css" rel="stylesheet" /><!-- Angular Grid -->
+    <link href="components/ag-grid/dist/theme-fresh.min.css" rel="stylesheet" /><!-- Angular Grid Fresh-->
     <!-- Custom Styles -->
     <link href="assets/css/default.css" rel="stylesheet" /><!-- Default -->
+
     <!-- Components Scripts -->
-    <script src="components/jquery/dist/jquery.min.js"></script><!-- jQuery -->
     <script src="components/angular/angular.min.js"></script><!-- Angular Core -->
+    <script src="components/angular-aria/angular-aria.min.js"></script>
+    <script src="components/angular-animate/angular-animate.min.js"></script>
+    <script src="components/angular-material/angular-material.min.js"></script><!-- Angular Material -->
     <script src="components/ui-router/release/angular-ui-router.min.js"></script><!-- AngularUI Router -->
-    <script src="components/bootstrap/dist/js/bootstrap.min.js"></script><!-- Bootstrap -->
-    <script src="components/lodash/dist/lodash.compat.min.js"></script><!-- Lodash -->
+    <script src="components/lodash/lodash.min.js"></script><!-- Lodash -->
     <script src="components/restangular/dist/restangular.min.js"></script><!-- Restangular -->
-    <script src="components/ng-table/ng-table.min.js"></script><!-- ngTable -->
-    <script src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script><!-- Bootstrap UI -->
     <script src="components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js"></script><!-- Breadcrumbs UI -->
+    <script src="components/ag-grid/dist/angular-grid.min.js"></script><!-- Angular Grid -->
     <!-- App Scripts -->
     <script src="app/app.js"></script><!-- app -->
     <script src="app/displays/displays.js"></script><!-- app.displays -->
     <script src="app/terms/terms.js"></script><!-- app.terms -->
 </head>
-<body>
-    <!-- navbar -->
-    <div ng-include="'app/shell/navbar.html'"></div>
+<body layout="column">
+    <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+            <h1>Saalanzeige - Manager</h1>
+        </div>
+    </md-toolbar>
 
-    <!-- breadcrumb -->
-    <ui-breadcrumbs displayname-property="data.displayName"
-                    abstract-proxy-property="data.proxy"
-                    template-url="components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
-
-    <!-- content -->
-    <div class="container-fluid">
-        <div ui-view="main"></div>
+    <div layout="row" flex>
+        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
+            <md-list>
+                <md-list-item>
+                    <md-button ng-class="{active: $state.includes('displays')}" ui-sref="displays"><i class="fa fa-desktop"></i> Anzeigen</md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button ng-class="{active: $state.includes('terms')}" ui-sref="terms"><i class="fa fa-calendar"></i> Sitzungen</md-button>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+        <md-conent layout="column" flex class="md-padding">
+            <!-- breadcrumb -->
+            <!--
+            <ui-breadcrumbs displayname-property="data.displayName"
+                            abstract-proxy-property="data.proxy"
+                            template-url="components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.tpl.html"></ui-breadcrumbs>
+            -->
+            <h2>{{$state.current.data.pageTitle}}</h2>
+            <div ui-view flex></div>
+        </md-conent>
     </div>
 </body>
 </html>

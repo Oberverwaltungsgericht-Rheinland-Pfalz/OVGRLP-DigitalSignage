@@ -1,5 +1,4 @@
 ﻿body {
-    padding-top: 50px;
     font-size: 14px;
     font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -53,3 +52,12 @@ table.terms {
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
+.ds-displays {
+    height: 300px;
+}
+
+.ds-display-details {
+    height: 1024px;
+    width: 768px;
+}

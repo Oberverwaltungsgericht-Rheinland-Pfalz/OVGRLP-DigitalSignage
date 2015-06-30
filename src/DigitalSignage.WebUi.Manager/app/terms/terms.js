@@ -1,7 +1,8 @@
 ﻿(function () {
     var app = angular.module('app.terms');
 
-    app.controller('TermsController', ['$scope', '$stateParams', '$filter', 'Terms', 'ngTableParams', function($scope, $stateParams, $filter, Terms, ngTableParams) {
+    app.controller('TermsController', ['$scope', '$stateParams', '$filter', 'Terms', function($scope, $stateParams, $filter, Terms) {
+        /*
         $scope.table = new ngTableParams({
             page: 1,
             count: 15,
@@ -25,6 +26,7 @@
         $scope.reload = function () {
             $scope.table.reload();
         };
+        */
     }]);
 
     app.controller('TermController', ['$scope', 'term', function ($scope, term) {
