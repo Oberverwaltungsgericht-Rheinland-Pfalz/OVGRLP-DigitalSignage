@@ -1,0 +1,14 @@
+{
+  "name": "DigitalSignage.WebUi.RoomControl",
+  "version": "0.0.0",
+  "authors": [
+    "Tobias Grotheer <tobias.grotheer@ovg.mjv.rlp.de>"
+  ],
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.1",
+    "angular-material": "~0.10.0",
+    "restangular": "~1.5.1",
+    "ui-router": "~0.2.15"
+  }
+}

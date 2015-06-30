@@ -1,0 +1,39 @@
+﻿<div layout="column" layout-fill>
+    <md-toolbar flex>
+        <h2>Saalsteuerung</h2>
+    </md-toolbar>
+    <md-content flex>
+        <div class="md-whiteframe-z1" layout="row" layout-align="start start" ng-repeat="termin in termine">
+            <div flex="15" class="md-padding">
+                <h3>{{termin.az}}</h3>
+                <p>{{termin.art}}</p>
+                <p>{{termin.uhrzeitPlan}} Uhr</p>
+            </div>
+            <div flex="25" class="md-padding">
+                <h3>Aktivpartei(en):</h3>
+                <p ng-repeat="partei in termin.parteienAktiv">{{partei}}</p>
+            </div>
+            <div flex="25" class="md-padding">
+                <h3>Passivpartei(en):</h3>
+                <p ng-repeat="partei in termin.parteienPassiv">{{partei}}</p>
+            </div>
+            <div flex="15" class="md-padding">
+                <h3>Status:</h3>
+                <md-select placeholder="Status" ng-model="termin.status">
+                    <md-select-label style="width:100%">{{ termin.status ? termin.status : 'Status ändern' }}</md-select-label>
+                    <md-option value="Abgeschlossen">Abgeschlossen</md-option>
+                    <md-option value="Läuft">Läuft</md-option>
+                </md-select>
+            </div>
+            <div flex class="md-padding">
+                <h3>{{termin.oeffentlich == 'ja' ? 'öffentlich' : 'nicht öffentlich'}}</h3>
+                <md-switch class="md-secondary" ng-model="termin.oeffentlich" ng-true-value="'ja'" ng-false-value="'nein'"></md-switch>
+            </div>
+        </div>
+    </md-content>
+    <!--
+    <md-toolbar>
+        <h3>Footer</h3>
+    </md-toolbar>
+    -->
+</div>
