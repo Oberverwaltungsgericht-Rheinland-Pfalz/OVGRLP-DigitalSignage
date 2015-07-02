@@ -72,6 +72,13 @@
 
         $scope.save = function () {
 
+            $scope.termine.forEach(function (termin) {
+                Restangular.one('daten/verfahren', termin.id).customPUT(termin).then(function () {
+                    
+                }, function () {
+                    //TODO: Fehler melden
+                });
+            });
 
             $mdToast.show($mdToast.simple()
                 .content('Gespeichert!')
