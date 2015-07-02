@@ -1,1 +1,16 @@
-﻿
+﻿<div layout="column">
+    <!-- Toolbar -->
+    <md-toolbar layout="row">
+        <h1 layout-align-gt-sm="center" class="md-toolbar-tools">
+            Saalsteuerung
+        </h1>
+    </md-toolbar>
+
+    <!-- Content -->
+    <div flex class="content-wrapper">
+        <p ng-repeat="display in displays">
+            <md-button ui-sref="room.terms({ id: display.id })">{{display.title}}</md-button>
+        </p>
+    </div>
+
+</div>
