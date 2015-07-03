@@ -95,6 +95,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DigitalSignage.WebUi.RoomCo
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.DisplayControl", "DigitalSignage.DisplayControl\DigitalSignage.DisplayControl.csproj", "{BFB078B2-087D-4432-BC3D-A01AC9221EDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,10 @@ Global
 		{C534EEEC-185A-494F-8939-30A7326416D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C534EEEC-185A-494F-8939-30A7326416D7}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{C534EEEC-185A-494F-8939-30A7326416D7}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{BFB078B2-087D-4432-BC3D-A01AC9221EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB078B2-087D-4432-BC3D-A01AC9221EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB078B2-087D-4432-BC3D-A01AC9221EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB078B2-087D-4432-BC3D-A01AC9221EDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
