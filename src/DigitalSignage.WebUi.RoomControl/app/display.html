@@ -1,1 +1,22 @@
-﻿
+﻿<div layout="column" class="ds-fill-parent">
+    <!-- Toolbar -->
+    <md-toolbar layout="row" class="md-whiteframe-z2 md-hue-1">
+        <md-button ng-click="refresh()" flex>
+            <md-icon aria-label="Refresh" md-svg-icon="refresh"></md-icon> Aktualisieren
+        </md-button>
+        <md-button ng-click="poweron()" flex ng-show="display.status < 1">
+            <md-icon aria-label="PowerOn" md-svg-icon="power"></md-icon> Anschalten
+        </md-button>
+        <md-button ng-click="shutdown()" flex ng-hide="display.status < 1">
+            <md-icon aria-label="Shutdown" md-svg-icon="power"></md-icon> Ausschalten
+        </md-button>
+        <md-button ng-click="restart()" flex ng-hide="display.status < 1">
+            <md-icon aria-label="Reboot" md-svg-icon="restart"></md-icon> Neu starten
+        </md-button>
+    </md-toolbar>
+
+    <!-- Vorschau -->
+    <div class="ds-fill-parent md-padding">
+        <img class="ds-fill-width md-whiteframe-z2" ng-src="{{screenshot}}" />
+    </div>
+</div>

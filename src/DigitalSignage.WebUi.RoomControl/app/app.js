@@ -33,20 +33,7 @@
             });
 
         $urlRouterProvider.otherwise('/');
-
-        RestangularProvider.setBaseUrl('http://localhost:52208');
-
-        $mdThemingProvider.theme('default')
-            .primaryPalette('indigo')
-            .accentPalette('red');
-
-        $mdIconProvider
-            .icon('menu', 'assets/icons/ic_menu_black_48px.svg')
-            .icon('save', 'assets/icons/ic_save_black_48px.svg')
-            .icon('terms', 'assets/icons/ic_event_note_black_48px.svg')
-            .icon('display', 'assets/icons/ic_dvr_black_48px.svg');
     });
-
 
     app.controller('RoomsController', function ($scope, Restangular) {
         $scope.displays = [];
@@ -60,10 +47,12 @@
 
     app.controller('RoomController', function ($scope, $stateParams, Restangular) {
         $scope.baseDisplay = Restangular.one('settings/displays', $stateParams.id);
-        $scope.display = $scope.baseDisplay.get().$object;
+        $scope.baseDisplay.get().then(function (data) {
+            $scope.display = data;
+        });
     });
 
-    app.controller('RoomTermsController', function ($scope, $filter, $stateParams, $mdToast, Restangular) {
+    app.controller('RoomTermsController', function ($scope, $filter, $mdToast, Restangular) {
         $scope.termine = [];
 
         $scope.baseDisplay.getList('termine').then(function (data) {
@@ -74,7 +63,7 @@
 
             $scope.termine.forEach(function (termin) {
                 Restangular.one('daten/verfahren', termin.id).customPUT(termin).then(function () {
-                    
+
                 }, function () {
                     //TODO: Fehler melden
                 });
@@ -86,19 +75,55 @@
                 .hideDelay(4000)
             );
         };
-
-        /*
-        var TermineSrv = Restangular.service('termine', Restangular.one('settings/displays', $stateParams.id));
-        TermineSrv = Restangular.service('termine', $scope.display);
-
-        TermineSrv.getList().then(function (data) {
-            $scope.termine = $filter('orderBy')(data, '+uhrzeitAktuell');
-        });
-        */
     });
 
-    app.controller('RoomDisplayController', function ($scope, $stateParams) {
-        $scope.id = $stateParams.id;
+    app.controller('RoomDisplayController', function ($scope, $http) {
+        $scope.$watch('display', function (newData, oldData) {
+            update();
+        });
+
+        $scope.poweron = function () {
+            if ($scope.display && $scope.display.controlUrl) {
+                $scope.display.customGET('start').then(function (data) {
+                });
+            };
+        };
+
+        $scope.restart = function () {
+            if ($scope.display && $scope.display.controlUrl) {
+                $http.get($scope.display.controlUrl + '/api/restart');
+            };
+        };
+
+        $scope.shutdown = function () {
+            if ($scope.display && $scope.display.controlUrl) {
+                $http.get($scope.display.controlUrl + '/api/shutdown');
+            };
+        };
+
+        $scope.refresh = function () {
+            if ($scope.display && $scope.display.controlUrl) {
+                update();
+            };
+        };
+
+        update = function () {
+            if ($scope.display && $scope.display.controlUrl) {
+
+                $scope.display.status = -1;
+                $scope.display.customGET('status').then(function (data) {
+                    $scope.display.status = data.result;
+
+                    console.log($scope.display);
+
+                    if ($scope.display.status < 1) {
+                        $scope.screenshot = '';
+                    } else {
+                        $scope.screenshot = $scope.display.controlUrl + '/api/screenshot?dt=' + new Date().getTime();
+                    };
+                });
+            };
+        };
     });
 
     /*
