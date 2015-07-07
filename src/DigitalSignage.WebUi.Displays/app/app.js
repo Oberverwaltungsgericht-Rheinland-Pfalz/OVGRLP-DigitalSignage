@@ -30,8 +30,6 @@
             });
 
         $urlRouterProvider.otherwise('/');
-
-        RestangularProvider.setBaseUrl('http://10.10.79.121:52208');
     });
 
     app.controller(
