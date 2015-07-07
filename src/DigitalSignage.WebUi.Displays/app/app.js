@@ -84,7 +84,18 @@
 
                 updateData = function () {
                     TermineSrv.getList().then(function (data) {
+                        var now = moment();
+                        
                         $scope.termine = $filter('orderBy')(data, '+uhrzeitAktuell');
+
+                        $scope.termine.forEach(function (term) {
+                            var termDat = moment(term.datum + ' ' + term.uhrzeitAktuell, 'DD.MM.YYYY HH:mm');
+                            if (termDat.isValid()) {
+                                term.beginnt = termDat.diff(now, 'minutes');
+                            } else {
+                                term.beginnt = -1;
+                            };
+                        });
 
                         updateDetailTermin($scope.termine);
                     });
