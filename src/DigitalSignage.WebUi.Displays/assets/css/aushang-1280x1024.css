@@ -104,10 +104,18 @@ p {
         letter-spacing: 0.2em;
     }
 
+    .ds-public-notpublic h3 {
+        font-style: italic;
+    }
+
     .ds-public-notpublic.public {
         background-color: rgba(171, 221, 136, 1);
     }
 
     .ds-public-notpublic.notpublic {
         background-color: rgba(217, 140, 140, 1);
+    }
+
+    .ds-public-notpublic.notrunning {
+        background-color: rgb(215, 215, 215);
     }
