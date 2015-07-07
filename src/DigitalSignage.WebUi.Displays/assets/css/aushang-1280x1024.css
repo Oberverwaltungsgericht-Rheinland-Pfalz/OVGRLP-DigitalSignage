@@ -1,5 +1,7 @@
 ﻿body {
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 500;
+    background-image: url('../img/rlp_background_1280x1024.png');
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -53,7 +55,7 @@ p {
 .ds-current-next {
     height: 416px;
     margin-bottom: 10px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.6);
     padding: 5px;
 }
 
@@ -64,12 +66,12 @@ p {
 
 .ds-further {
     height: 410px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 .ds-further md-toolbar {
     color: rgb(51,51,51);
-    background-color: rgb(204,204,204);
+    background-color: rgba(204,204,204, 0.75);
 }
 
 .ds-further-content {
