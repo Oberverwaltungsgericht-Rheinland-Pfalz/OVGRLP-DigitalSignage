@@ -5,11 +5,11 @@
                     notpublic : (detailTermin.oeffentlich == 'nein' && detailTermin.status == 'Läuft'), 
                     notrunning : (detailTermin.status != 'Läuft')}">
         <h2>
-            {{(detailTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : ''}}
-            {{(detailTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : ''}}
+            {{(detailTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;'}}
+            {{(detailTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;'}}
         </h2>
         <h3>
-            <span ng-show="detailTermin != null">{{detailTermin.status == '' ? 'beginnt in ' + detailTermin.beginnt + ' Minuten' : detailTermin.status}}</span>
+            <span ng-show="detailTermin != null">{{detailTermin.status == '' ? (detailTermin.beginnt > 0 ? 'beginnt in ' + detailTermin.beginnt + ' Minuten' : 'beginnt demnächst') : detailTermin.status}}</span>
             <span ng-show="detailTermin == null && termine.length > 0">keine weiteren Termine</span>
         </h3>
     </div>
