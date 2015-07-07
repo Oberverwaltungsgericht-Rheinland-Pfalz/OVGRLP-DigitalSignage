@@ -104,6 +104,10 @@ p {
         letter-spacing: 0.2em;
     }
 
+    .ds-public-notpublic h2 {
+        margin-top: 15px;
+    }
+
     .ds-public-notpublic h3 {
         font-style: italic;
     }

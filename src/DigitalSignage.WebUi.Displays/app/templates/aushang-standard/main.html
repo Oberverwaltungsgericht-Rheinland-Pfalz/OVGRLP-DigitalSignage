@@ -4,14 +4,16 @@
          ng-class="{public : (detailTermin.oeffentlich == 'ja' && detailTermin.status == 'Läuft'),
                     notpublic : (detailTermin.oeffentlich == 'nein' && detailTermin.status == 'Läuft'), 
                     notrunning : (detailTermin.status != 'Läuft')}">
-        <h2>
-            {{(detailTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : ''}}
-            {{(detailTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : ''}}
+        <h2 ng-show="detailTermin.status == 'Läuft'">
+            {{(detailTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;'}}
+            {{(detailTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;'}}
         </h2>
-        <h3>
-            <span ng-show="detailTermin != null">{{detailTermin.status == '' ? 'beginnt in ' + detailTermin.beginnt + ' Minuten' : detailTermin.status}}</span>
-            <span ng-show="detailTermin == null && termine.length > 0">keine weiteren Termine</span>
-        </h3>
+        <h2 ng-show="detailTermin.status == '' or detailTermine.status == 'Verschoben'">
+            Nächste Sitzung:
+        </h2>
+        <h2 ng-show="detailTermin.status == 'Unterbrochen'">
+            Sitzung unterbrochen
+        </h2>
     </div>
 
     <div class="md-whiteframe-z1 ds-room-date" layout="row">
