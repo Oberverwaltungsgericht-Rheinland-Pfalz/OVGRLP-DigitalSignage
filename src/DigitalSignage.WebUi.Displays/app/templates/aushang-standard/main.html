@@ -23,18 +23,14 @@
             <div ng-show="detailTermin != null">
                 <div layout="row">
                     <div flex="50">
-                        <h2>Verwaltungsgericht Mainz</h2>
-                        <h3>1. Kammer</h3>
+                        <h2>{{detailTermin.gericht}}</h2>
+                        <h3>{{detailTermin.kammer}}. Kammer</h3>
                     </div>
                     <div flex="10">
                         Besetzung:
                     </div>
                     <div flex="40">
-                        <p>Vorsitzender Richter am Verwaltungsgericht Müller</p>
-                        <p>Richter am Verwaltungsgericht Meier</p>
-                        <p>Richter am Verwaltungsgericht Meier</p>
-                        <p>ehrenamtliche Richterin Schulze</p>
-                        <p>ehrenamtlicher Richter Mustermann</p>
+                        <p ng-repeat="richter in detailTermin.besetzung">{{richter}}</p>
                     </div>
                 </div>
 
@@ -50,15 +46,15 @@
 
                 <div layout="row">
                     <div flex="45">
-                        <p><strong>Samvel DURGARYAN</strong></p>
-                        <p>Proz.-Bev.: Rechtsanwältin Brigitte Nowall</p>
+                        <p style="font-weight:bold" ng-repeat="partei in detailTermin.parteienAktiv">{{partei}}</p>
+                        <p ng-repeat="pb in detailTermin.prozBevAktiv">{{pb}}</p>
                     </div>
                     <div flex="10">
                         gegen
                     </div>
                     <div flex="45">
-                        <!-- Passivparteien -->
-                        <p><strong>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge, - Außenstelle Trier -</strong></p>
+                        <p style="font-weight:bold" ng-repeat="partei in detailTermin.parteienPassiv">{{partei}}</p>
+                        <p ng-repeat="pb in detailTermin.prozBevPassiv">{{pb}}</p>
                     </div>
                 </div>
             </div>
