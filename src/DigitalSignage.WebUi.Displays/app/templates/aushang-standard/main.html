@@ -1,13 +1,19 @@
 ﻿<div ng-controller="TermineController" layout="column">
-    <div class="ds-public-notpublic ds-text-center" 
+
+    <div class="ds-public-notpublic ds-text-center"
          ng-class="{public : (detailTermin.oeffentlich == 'ja' && detailTermin.status == 'Läuft'),
-                    notpublic : (detailTermin.oeffentlich == 'nein' && detailTermin.status == 'Läuft')}">
-        <h1>
-            {{(detailTermin.oeffentlich == 'ja' && detailTermin.status == 'Läuft') ? 'Öffentliche Sitzung' : ''}}
-            {{(detailTermin.oeffentlich == 'nein' && detailTermin.status == 'Läuft') ? 'Nicht öffentliche Sitzung' : ''}}
-            {{(detailTermin.status != 'Läuft') ? '&nbsp;' : ''}}
-        </h1>
+                    notpublic : (detailTermin.oeffentlich == 'nein' && detailTermin.status == 'Läuft'), 
+                    notrunning : (detailTermin.status != 'Läuft')}">
+        <h2>
+            {{(detailTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : ''}}
+            {{(detailTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : ''}}
+        </h2>
+        <h3>
+            <span ng-show="detailTermin != null">{{detailTermin.status == '' ? 'beginnt in ' + detailTermin.beginnt + ' Minuten' : detailTermin.status}}</span>
+            <span ng-show="detailTermin == null && termine.length > 0">keine weiteren Termine</span>
+        </h3>
     </div>
+
     <div class="md-whiteframe-z1 ds-room-date" layout="row">
         <div flex="70">
             <h1>{{display.title}}</h1>
