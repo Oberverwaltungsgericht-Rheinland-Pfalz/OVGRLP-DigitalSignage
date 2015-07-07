@@ -18,7 +18,13 @@
         </div>
     </div>
 
-    <div class="ds-content">
+    <div class="ds-content" ng-hide="termine.length > 0">
+        <div class="md-whiteframe-z1 ds-no-terms">
+            Zurzeit keine Verhandlungstermine
+        </div>
+    </div>
+
+    <div class="ds-content" ng-show="termine.length > 0">
         <div class="md-whiteframe-z1 ds-current-next">
             <div ng-show="detailTermin != null">
                 <div layout="row">
