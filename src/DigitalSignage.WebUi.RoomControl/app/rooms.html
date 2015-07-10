@@ -8,9 +8,13 @@
 
     <!-- Content -->
     <div flex class="content-wrapper">
-        <p ng-repeat="display in displays">
-            <md-button ui-sref="room.terms({ id: display.id })">{{display.title}}</md-button>
-        </p>
+        <div ng-show="loading" style="height:50px;padding:25px;">
+            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        </div>
+        <div ng-hide="loading">
+            <p ng-repeat="display in displays">
+                <md-button ui-sref="room.terms({ id: display.id })">{{display.title}}</md-button>
+            </p>
+        </div>
     </div>
-
 </div>
