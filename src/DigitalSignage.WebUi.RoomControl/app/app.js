@@ -134,18 +134,21 @@
 
         update = function () {
             if ($scope.display && $scope.display.controlUrl) {
+                $scope.loading = true;
 
                 $scope.display.status = -1;
                 $scope.display.customGET('status').then(function (data) {
                     $scope.display.status = data.result;
 
-                    console.log($scope.display);
-
                     if ($scope.display.status < 1) {
-                        $scope.screenshot = '';
+                        $scope.screenshot = '../assets/img/offline-display.png';
                     } else {
                         $scope.screenshot = $scope.display.controlUrl + '/api/screenshot?dt=' + new Date().getTime();
                     };
+
+                    $scope.loading = false;
+                }, function (error) {
+                    $scope.loading = false;
                 });
             };
         };
