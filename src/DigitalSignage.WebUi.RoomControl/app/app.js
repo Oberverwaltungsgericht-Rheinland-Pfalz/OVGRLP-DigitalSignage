@@ -35,13 +35,26 @@
         $urlRouterProvider.otherwise('/');
     });
 
-    app.controller('RoomsController', function ($scope, Restangular) {
+    app.controller('RoomsController', function ($scope, $mdDialog, Restangular) {
         $scope.displays = [];
 
         var baseDisplays = Restangular.all('settings/displays');
 
+        $scope.loading = true;
+
         baseDisplays.getList().then(function (data) {
             $scope.displays = data;
+            $scope.loading = false;
+        }, function (error) {
+            $scope.loading = false;
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.body))
+                .title('Fehler')
+                .content('Beim abrufen der Daten ist ein Fehler aufgetreten.')
+                .ariaLabel('Fehler Dialog')
+                .ok('OK')
+            );
         });
     });
 
@@ -54,9 +67,21 @@
 
     app.controller('RoomTermsController', function ($scope, $filter, $mdToast, Restangular) {
         $scope.termine = [];
-
+        $scope.loading = true;
+        
         $scope.baseDisplay.getList('termine').then(function (data) {
             $scope.termine = data;
+            $scope.loading = false;
+        }, function (error) {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.body))
+                .title('Fehler')
+                .content('Beim abrufen der Daten ist ein Fehler aufgetreten.')
+                .ariaLabel('Fehler Dialog')
+                .ok('OK')
+            );
+            $scope.loading = false;
         });
 
         $scope.save = function () {
