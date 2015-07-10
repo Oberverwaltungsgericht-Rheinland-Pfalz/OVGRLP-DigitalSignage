@@ -17,6 +17,11 @@
 
     <!-- Vorschau -->
     <div class="ds-fill-parent md-padding">
-        <img class="ds-fill-width md-whiteframe-z2" ng-src="{{screenshot}}" />
+        <div ng-show="loading" style="height:50px;padding:25px;">
+            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        </div>
+        <div class="ds-fill-parent" ng-hide="loading">
+            <img class="md-whiteframe-z2" ng-src="{{screenshot}}" />
+        </div>
     </div>
 </div>
