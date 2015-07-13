@@ -20,20 +20,17 @@
         $rootScope.$stateParams = $stateParams;
     }]);
 
-    app.config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, RestangularProvider) {
+    app.config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider, RestangularProvider) {
         $stateProvider
             .state('displays', {
                 url: '/displays',
                 templateUrl: 'app/displays/index.html',
-                controller: 'DisplaysController',
-                data: {
-                    pageTitle: 'Anzeigen'
-                }
+                controller: 'DisplaysController'
             })
             .state('displays.details', {
                 url: '/:id',
                 templateUrl: 'app/displays/details.html',
-                controller: 'DisplayController'
+                controller: 'DisplayDetailsController'
             }).state('terms', {
                 url: '/terms',
                 templateUrl: 'app/terms/index.html',
@@ -42,53 +39,7 @@
                     pageTitle: 'Sitzungen'
                 }
             });
-            /*
-            .state('displays', {
-                url: '/displays',
-                templateUrl: 'app/displays/index.html',
-                controller: 'DisplaysController',
-                data: {
-                    displayName: 'Anzeigen'
-                }
-            }).state('displays.details', {
-                url: '/:id',
-                templateUrl: 'app/displays/details.html',
-                controller: 'DisplayController',
-                data: {
-                    displayName: '{{display.name}}'
-                },
-                resolve: {
-                    display: function ($stateParams, Displays) {
-                        return Displays.one($stateParams.id).get();
-                    }
-                }
-            }).state('terms', {
-                abstract: true,
-                data: {
-                    proxy: 'terms.list'
-                }
-            }).state('terms.list', {
-                url: '/terms',
-                templateUrl: 'app/terms/index.html',
-                controller: 'TermsController',
-                data: {
-                    displayName: 'Termine'
-                }
-            }).state('terms.details', {
-                url: '/:id',
-                templateUrl: 'app/terms/details.html',
-                controller: 'TermController',
-                data: {
-                    displayName: '{{term.az}}'
-                },
-                resolve: {
-                    term: function ($stateParams, Terms) {
-                        return Terms.one($stateParams.id).get();
-                    }
-                }
-            });
-            */
-
+ 
         $urlRouterProvider.otherwise('/displays');
 
         RestangularProvider.setBaseUrl('http://localhost:52208');
@@ -96,5 +47,14 @@
         $mdThemingProvider.theme('default')
             .primaryPalette('brown')
             .accentPalette('red');
-    });
+
+        $mdIconProvider
+            .icon('menu', 'assets/icons/ic_menu_black_48px.svg')
+            .icon('save', 'assets/icons/ic_save_black_48px.svg')
+            .icon('terms', 'assets/icons/ic_event_note_black_48px.svg')
+            .icon('display', 'assets/icons/ic_dvr_black_48px.svg')
+            .icon('power', 'assets/icons/ic_power_settings_new_black_48px.svg')
+            .icon('restart', 'assets/icons/ic_replay_black_48px.svg')
+            .icon('refresh', 'assets/icons/ic_refresh_black_48px.svg');
+            });
 })();

@@ -1,6 +1,19 @@
-﻿body {
+﻿html, body {
     font-size: 14px;
     font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.ds-fill-parent {
+    width: 100%;
+    height: 100%;
+}
+
+.ds-full-width {
+    width: 100%;
+}
+
+.ds-display-screenshot {
+    width: 100%;
 }
 
 a {
@@ -54,10 +67,5 @@ table.terms {
         }
 
 .ds-displays {
-    height: 300px;
-}
-
-.ds-display-details {
-    height: 1024px;
-    width: 768px;
+    height: 250px;
 }
