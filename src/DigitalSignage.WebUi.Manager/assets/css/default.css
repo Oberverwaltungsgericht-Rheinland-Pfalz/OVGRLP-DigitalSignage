@@ -69,3 +69,7 @@ table.terms {
 .ds-displays {
     height: 250px;
 }
+
+.ds-terms {
+    height: 100%;
+}
