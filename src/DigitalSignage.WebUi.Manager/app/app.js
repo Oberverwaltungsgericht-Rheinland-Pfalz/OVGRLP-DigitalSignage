@@ -34,10 +34,11 @@
             }).state('terms', {
                 url: '/terms',
                 templateUrl: 'app/terms/index.html',
-                controller: 'TermsController',
-                data: {
-                    pageTitle: 'Sitzungen'
-                }
+                controller: 'TermsController'
+            }).state('term', {
+                url: '/terms/:id',
+                templateUrl: 'app/terms/details.html',
+                controller: 'TermDetailsController'
             });
  
         $urlRouterProvider.otherwise('/displays');
