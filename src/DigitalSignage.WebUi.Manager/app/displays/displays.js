@@ -26,13 +26,13 @@
 
         $scope.getStateImg = function (id) {
             if (id == -1) {
-                return "../assets/img/display-undefined-icon.png";
+                return "assets/img/display-undefined-icon.png";
             } else if (id == 0) {
-                return "../assets/img/display-offline-icon.png";
+                return "assets/img/display-offline-icon.png";
             } else if (id == 1) {
-                return "../assets/img/display-online-icon.png";
+                return "assets/img/display-online-icon.png";
             } else {
-                return "../assets/img/display-unknown-icon.png";
+                return "assets/img/display-unknown-icon.png";
             }
         };
 
@@ -93,7 +93,7 @@
                     $scope.display.status = data.result;
 
                     if ($scope.display.status < 1) {
-                        $scope.screenshot = '../assets/img/offline-display.png';
+                        $scope.screenshot = 'assets/img/offline-display.png';
                     } else {
                         $scope.screenshot = $scope.display.controlUrl + '/api/screenshot?dt=' + new Date().getTime();
                     };
