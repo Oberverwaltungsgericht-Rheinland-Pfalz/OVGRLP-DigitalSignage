@@ -1,0 +1,115 @@
+﻿<div ng-controller="TermineController" layout="column">
+
+    <div class="ds-public-notpublic ds-text-center"
+         ng-class="{public : (detailTermin.oeffentlich == 'ja' && detailTermin.status == 'Läuft'),
+                    notpublic : (detailTermin.oeffentlich == 'nein' && detailTermin.status == 'Läuft'), 
+                    notrunning : (detailTermin.status != 'Läuft')}">
+        <h2 ng-show="detailTermin.status == 'Läuft'">
+            {{(detailTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;'}}
+            {{(detailTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;'}}
+        </h2>
+        <h2 ng-show="detailTermin.status == '' || detailTermin.status == 'Verschoben'">
+            Nächste Sitzung:
+        </h2>
+        <h2 ng-show="detailTermin.status == 'Unterbrochen'">
+            Sitzung unterbrochen
+        </h2>
+    </div>
+
+    <div class="md-whiteframe-z1 ds-room-date" layout="row">
+        <div flex="70">
+            <h1>{{display.title}}</h1>
+        </div>
+        <div flex>
+            <h3 class="ds-text-right">{{dateTime | date:'fullDate'}}</h3>
+            <h3 class="ds-text-right">{{dateTime | date:'shortTime'}} Uhr</h3>
+        </div>
+    </div>
+
+    <div class="ds-content" ng-hide="termine.length > 0">
+        <div class="md-whiteframe-z1 ds-no-terms">
+            Zurzeit keine Verhandlungstermine
+        </div>
+    </div>
+
+    <div class="ds-content" ng-show="termine.length > 0">
+        <div class="md-whiteframe-z1 ds-current-next">
+            <div ng-show="detailTermin != null">
+                <div layout="row">
+                    <div flex="50">
+                        <h2>{{detailTermin.gericht}}</h2>
+                        <h3>{{detailTermin.kammer}}. Kammer</h3>
+                    </div>
+                    <div flex="10">
+                        Besetzung:
+                    </div>
+                    <div flex="40">
+                        <p ng-repeat="richter in detailTermin.besetzung">{{richter}}</p>
+                    </div>
+                </div>
+
+                <md-divider></md-divider>
+
+                <div layout="row">
+                    <div flex="15"><h3>{{detailTermin.uhrzeitAktuell}} Uhr</h3></div>
+                    <div flex="55"><h3>{{detailTermin.art | capitalize}}</h3></div>
+                    <div flex="30" class="ds-text-right"><h3>{{detailTermin.az}}</h3></div>
+                </div>
+
+                <md-divider></md-divider>
+
+                <div layout="row">
+                    <div flex="45">
+                        <p style="font-weight:bold" ng-repeat="partei in detailTermin.parteienAktiv">{{partei}}</p>
+                        <p ng-repeat="pb in detailTermin.prozBevAktiv">{{pb}}</p>
+                    </div>
+                    <div flex="10">
+                        gegen
+                    </div>
+                    <div flex="45">
+                        <p style="font-weight:bold" ng-repeat="partei in detailTermin.parteienPassiv">{{partei}}</p>
+                        <p ng-repeat="pb in detailTermin.prozBevPassiv">{{pb}}</p>
+                    </div>
+                </div>
+
+                <div layout="row" style="margin-top:10px">
+                    <div flex="10">wegen</div>
+                    <div flex><strong>{{detailTermin.gegenstand}}</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md-whiteframe-z1 ds-further">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h3>Weitere Termine</h3>
+                </div>
+            </md-toolbar>
+            <div class="ds-further-content">
+                <ds-scroll-content step="40" step-duration="300" speed="4000" watch-data="termine">
+                    <md-list>
+                        <md-list-item ng-repeat="termin in termine track by termin.id" layout="row" layout-align="start start">
+                            <div flex="15">
+                                <p>{{termin.uhrzeitAktuell}} Uhr</p>
+                                <p>{{termin.status}}</p>
+                            </div>
+                            <div flex="30">
+                                <strong>{{termin.az}}</strong><br />
+                                {{termin.gericht}}
+                            </div>
+                            <div flex="55">
+                                {{termin.parteienAktivKurz}} ./. {{termin.parteienPassivKurz}}
+                            </div>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </ds-scroll-content>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+  <p>Weitere Informationen</p>
+  <p>TODO: Video</p>
+</div>
