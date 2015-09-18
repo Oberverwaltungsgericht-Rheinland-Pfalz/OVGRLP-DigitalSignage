@@ -32,15 +32,43 @@ namespace DigitalSignage.WebApi.Controllers.Settings
 
     [Route("{id}", Name = "GetDisplayById")]
     [HttpGet]
-    [ResponseType(typeof(Display))]
+    //[ResponseType(typeof(Display))]
     public async Task<IHttpActionResult> GetDisplay(int id)
     {
       var display = await context.Displays.FindAsync(id);
 
+      await context.Entry(display).Collection(d => d.Notes).LoadAsync();
+
       if (display == null)
         return NotFound();
 
-      return Ok(display);
+      var notes = "";
+      foreach(Note note in display.Notes)
+      {
+        bool active = true;
+
+        if (note.Start.HasValue && note.Start.Value > DateTime.Now)
+          active = false;
+
+        if (note.End.HasValue && note.End.Value < DateTime.Now)
+          active = false;
+
+        if (active)
+          notes = notes += note.Content;
+      }
+
+      var displayDto = new
+      {
+        Id = display.Id,
+        Description = display.Description,
+        Name = display.Name,
+        Title = display.Title,
+        Template = display.Template,
+        Styles = display.Styles,
+        Notes = notes
+      };
+
+      return Ok(displayDto);
     }
 
     [Route("{id}/termine")]

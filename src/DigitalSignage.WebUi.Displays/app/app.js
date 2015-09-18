@@ -1,189 +1,189 @@
 ﻿(function () {
-    var app = angular.module('app', [
-        //Angular
-        'ngAnimate',
-        'ngMaterial',
-        // 3rd Party Modules
-        'ui.router',
-        'restangular'
-    ]);
+  //var app = angular.module('app', [
+  //    //Angular
+  //    'ngAnimate',
+  //    'ngMaterial',
+  //    // 3rd Party Modules
+  //    'ui.router',
+  //    'restangular'
+  //]);
 
-    angular.module('app.data', []);
+  angular.module('app.data', []);
 
-    app.filter('capitalize', function () {
-        return function (input, all) {
-            return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function (txt) {
-                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            }) : '';
-        }
-    });
+  //app.filter('capitalize', function () {
+  //  return function (input, all) {
+  //    return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function (txt) {
+  //      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  //    }) : '';
+  //  }
+  //});
 
-    app.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
-        $stateProvider
-            .state('index', {
-                url: '/',
-                templateUrl: 'app/index.html'
-            }).state('display', {
-                url: '/{id}',
-                templateUrl: 'app/display.html',
-                controller: 'DisplayController'
-            });
+  //app.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
+  //  $stateProvider
+  //      .state('index', {
+  //        url: '/',
+  //        templateUrl: 'app/index.html'
+  //      }).state('display', {
+  //        url: '/{id}',
+  //        templateUrl: 'app/display.html',
+  //        controller: 'DisplayController'
+  //      });
 
-        $urlRouterProvider.otherwise('/');
-    });
+  //  $urlRouterProvider.otherwise('/');
+  //});
 
-    app.controller(
-        'DisplayController',
-        ['$scope', '$stateParams', '$interval', 'Restangular',
-            function ($scope, $stateParams, $interval, Restangular) {
-                var DisplaysSrv = Restangular.service('settings/displays');
+  //app.controller(
+  //    'DisplayController',
+  //    ['$scope', '$stateParams', '$interval', 'Restangular',
+  //        function ($scope, $stateParams, $interval, Restangular) {
+  //          var DisplaysSrv = Restangular.service('settings/displays');
 
-                $scope.display;
-                $scope.dateTime = new Date();
+  //          $scope.display;
+  //          $scope.dateTime = new Date();
 
-                loadDisplay = function () {
-                    DisplaysSrv.one($stateParams.id).get().then(function (display) {
-                        $scope.display = display;
-                        $scope.layout = 'app/templates/' + display.template + '/main.html';
+  //          loadDisplay = function () {
+  //            DisplaysSrv.one($stateParams.id).get().then(function (display) {
+  //              $scope.display = display;
+  //              $scope.layout = 'app/templates/' + display.template + '/main.html';
 
-                        $scope.$parent.loadStyles($scope.display.styles);
-                    });
-                };
+  //              $scope.$parent.loadStyles($scope.display.styles);
+  //            });
+  //          };
 
-                $interval(function () {
-                    $scope.dateTime = new Date();
-                }, 1000 * 60);
+  //          $interval(function () {
+  //            $scope.dateTime = new Date();
+  //          }, 1000 * 60);
 
-                loadDisplay();
+  //          loadDisplay();
 
-                $interval(function () {
-                    loadDisplay();
-                }, 1000 * 60 * 10);
-            }]);
+  //          $interval(function () {
+  //            loadDisplay();
+  //          }, 1000 * 60 * 10);
+  //        }]);
 
-    app.controller(
-        'TermineController',
-        ['$scope', '$stateParams', '$timeout', '$interval', '$filter', 'Restangular',
-            function ($scope, $stateParams, $timeout, $interval, $filter, Restangular) {
-                var TermineSrv = Restangular.service('termine', Restangular.one('settings/displays', $stateParams.id));
+  //app.controller(
+  //    'TermineController',
+  //    ['$scope', '$stateParams', '$timeout', '$interval', '$filter', 'Restangular',
+  //        function ($scope, $stateParams, $timeout, $interval, $filter, Restangular) {
+  //          var TermineSrv = Restangular.service('termine', Restangular.one('settings/displays', $stateParams.id));
 
-                $scope.updateInterval = 15 * 1000;
-                $scope.termine = [];
+  //          $scope.updateInterval = 15 * 1000;
+  //          $scope.termine = [];
 
-                $scope.detailTermin = null;
+  //          $scope.detailTermin = null;
 
-                initialize = function () {
-                    updateData();
+  //          initialize = function () {
+  //            updateData();
 
-                    $interval(function () {
-                        updateData();
-                    }, $scope.updateInterval);
-                };
+  //            $interval(function () {
+  //              updateData();
+  //            }, $scope.updateInterval);
+  //          };
 
-                updateData = function () {
-                    TermineSrv.getList().then(function (data) {
-                        var now = moment();
-                        
-                        $scope.termine = $filter('orderBy')(data, '+uhrzeitAktuell');
+  //          updateData = function () {
+  //            TermineSrv.getList().then(function (data) {
+  //              var now = moment();
 
-                        $scope.termine.forEach(function (term) {
-                            var termDat = moment(term.datum + ' ' + term.uhrzeitAktuell, 'DD.MM.YYYY HH:mm');
-                            if (termDat.isValid()) {
-                                term.beginnt = termDat.diff(now, 'minutes');
-                            } else {
-                                term.beginnt = -1;
-                            };
-                        });
+  //              $scope.termine = $filter('orderBy')(data, '+uhrzeitAktuell');
 
-                        updateDetailTermin($scope.termine);
-                    });
-                };
+  //              $scope.termine.forEach(function (term) {
+  //                var termDat = moment(term.datum + ' ' + term.uhrzeitAktuell, 'DD.MM.YYYY HH:mm');
+  //                if (termDat.isValid()) {
+  //                  term.beginnt = termDat.diff(now, 'minutes');
+  //                } else {
+  //                  term.beginnt = -1;
+  //                };
+  //              });
 
-                updateDetailTermin = function (termine) {
-                    var tmpData = _.filter(termine, function (termin) {
-                        if (termin.status == 'Läuft')
-                            return true;
-                    });
+  //              updateDetailTermin($scope.termine);
+  //            });
+  //          };
 
-                    if (tmpData.length < 1) {
-                        tmpData = _.filter(termine, function (termin) {
-                            if (termin.status != 'Abgeschlossen' && termin.status != 'Aufgehoben')
-                                return true;
-                        });
-                    }
+  //          updateDetailTermin = function (termine) {
+  //            var tmpData = _.filter(termine, function (termin) {
+  //              if (termin.status == 'Läuft')
+  //                return true;
+  //            });
 
-                    if (tmpData.length >= 1) {
-                        $scope.detailTermin = tmpData[0];
-                    } else {
-                        $scope.detailTermin = null;
-                    }
-                };
+  //            if (tmpData.length < 1) {
+  //              tmpData = _.filter(termine, function (termin) {
+  //                if (termin.status != 'Abgeschlossen' && termin.status != 'Aufgehoben')
+  //                  return true;
+  //              });
+  //            }
 
-                arrayToString = function (data) {
-                    var outStr = '';
-                    data.forEach(function (item) {
-                        outStr = outStr + item.uhrzeitAktuell + ' ';
-                    });
-                    return outStr;
-                };
+  //            if (tmpData.length >= 1) {
+  //              $scope.detailTermin = tmpData[0];
+  //            } else {
+  //              $scope.detailTermin = null;
+  //            }
+  //          };
 
-                initialize();
-            }]);
+  //          arrayToString = function (data) {
+  //            var outStr = '';
+  //            data.forEach(function (item) {
+  //              outStr = outStr + item.uhrzeitAktuell + ' ';
+  //            });
+  //            return outStr;
+  //          };
 
-    app.controller(
-        'MainController',
-        ['$scope',
-            function ($scope) {
-                $scope.styles = [];
+  //          initialize();
+  //        }]);
 
-                $scope.loadStyles = function (styles) {
-                    $scope.styles = [];
-                    $scope.styles.push('default');
-                    styles.split(',').forEach(function (style) {
-                        $scope.styles.push(style.trim());
-                    });
-                };
-            }]);
+  //app.controller(
+  //    'MainController',
+  //    ['$scope',
+  //        function ($scope) {
+  //          $scope.styles = [];
 
-    app.directive('dsScrollContent', ['$interval', function ($interval) {
-        return {
-            restrict: 'E',
-            scope: {
-                step: '@',
-                speed: '@',
-                stepDuration: '@',
-                watchData: '='
-            },
-            link: function (scope, element, attrs) {
-                var timeoutId;
+  //          $scope.loadStyles = function (styles) {
+  //            $scope.styles = [];
+  //            $scope.styles.push('default');
+  //            styles.split(',').forEach(function (style) {
+  //              $scope.styles.push(style.trim());
+  //            });
+  //          };
+  //        }]);
 
-                scope.$watch('watchData', function (newValue, newValue) {
-                    var parent = element.parent();
-                    var child = element.children();
+  //app.directive('dsScrollContent', ['$interval', function ($interval) {
+  //  return {
+  //    restrict: 'E',
+  //    scope: {
+  //      step: '@',
+  //      speed: '@',
+  //      stepDuration: '@',
+  //      watchData: '='
+  //    },
+  //    link: function (scope, element, attrs) {
+  //      var timeoutId;
 
-                    if (parent[0].offsetHeight < child[0].offsetHeight) {
-                        if (angular.isDefined(timeoutId)) {
-                            return;
-                        };
+  //      scope.$watch('watchData', function (newValue, newValue) {
+  //        var parent = element.parent();
+  //        var child = element.children();
 
-                        timeoutId = $interval(function () {
-                            var mTop = parseFloat(child.css('margin-top'));
-                            var newValue = mTop - scope.step;
+  //        if (parent[0].offsetHeight < child[0].offsetHeight) {
+  //          if (angular.isDefined(timeoutId)) {
+  //            return;
+  //          };
 
-                            if ((newValue + 2 * scope.step) < (parent[0].offsetHeight - child[0].offsetHeight))
-                                newValue = 0;
+  //          timeoutId = $interval(function () {
+  //            var mTop = parseFloat(child.css('margin-top'));
+  //            var newValue = mTop - scope.step;
 
-                            child.animate({ marginTop: newValue }, scope.stepDuration);
-                        }, scope.speed);
-                    } else {
-                        if (angular.isDefined(timeoutId)) {
-                            $interval.cancel(timeoutId);
-                        };
-                        child.animate({ marginTop: 0}, scope.stepDuration);
-                    }
-                });
-            }
-        }
-    }]);
+  //            if ((newValue + 2 * scope.step) < (parent[0].offsetHeight - child[0].offsetHeight))
+  //              newValue = 0;
+
+  //            child.animate({ marginTop: newValue }, scope.stepDuration);
+  //          }, scope.speed);
+  //        } else {
+  //          if (angular.isDefined(timeoutId)) {
+  //            $interval.cancel(timeoutId);
+  //          };
+  //          child.animate({ marginTop: 0 }, scope.stepDuration);
+  //        }
+  //      });
+  //    }
+  //  }
+  //}]);
 
 })();

@@ -112,6 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Migrations\201501230805160_FirstRelease.sql" />
+    <Content Include="Migrations\201509180714072_NotesAdded.sql" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +138,10 @@
     <Compile Include="Migrations\201501230805160_FirstRelease.Designer.cs">
       <DependentUpon>201501230805160_FirstRelease.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509180714072_NotesAdded.cs" />
+    <Compile Include="Migrations\201509180714072_NotesAdded.Designer.cs">
+      <DependentUpon>201509180714072_NotesAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DisplayManagementService.cs" />
@@ -158,6 +164,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501230805160_FirstRelease.resx">
       <DependentUpon>201501230805160_FirstRelease.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509180714072_NotesAdded.resx">
+      <DependentUpon>201509180714072_NotesAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
