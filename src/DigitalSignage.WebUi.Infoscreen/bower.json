@@ -11,6 +11,6 @@
     "restangular": "~1.4.0"
   },
   "resolutions": {
-    "angular": "1.4.5"
+    "angular": "1.4.6"
   }
 }

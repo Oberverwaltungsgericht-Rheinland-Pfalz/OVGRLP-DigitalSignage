@@ -65,6 +65,8 @@ namespace DigitalSignage.WebApi.Controllers.Settings
         Title = display.Title,
         Template = display.Template,
         Styles = display.Styles,
+        ControlUrl = display.ControlUrl,
+        Group = display.Group,
         Notes = notes
       };
 
