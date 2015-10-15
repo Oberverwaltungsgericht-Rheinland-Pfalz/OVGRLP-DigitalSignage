@@ -1,27 +1,27 @@
 ﻿<div layout="column" class="ds-fill-parent">
     <!-- Toolbar -->
     <md-toolbar layout="row" class="md-whiteframe-z2 md-hue-1">
-        <md-button ng-click="refresh()" flex>
+        <md-button ng-click="vm.refresh()" flex>
             <md-icon aria-label="Refresh" md-svg-icon="refresh"></md-icon> Aktualisieren
         </md-button>
-        <md-button ng-click="poweron()" flex ng-show="display.status < 1">
+        <md-button ng-click="vm.poweron()" flex ng-show="vm.display.status < 1">
             <md-icon aria-label="PowerOn" md-svg-icon="power"></md-icon> Anschalten
         </md-button>
-        <md-button ng-click="shutdown()" flex ng-hide="display.status < 1">
+        <md-button ng-click="vm.shutdown()" flex ng-hide="vm.display.status < 1">
             <md-icon aria-label="Shutdown" md-svg-icon="power"></md-icon> Ausschalten
         </md-button>
-        <md-button ng-click="restart()" flex ng-hide="display.status < 1">
+        <md-button ng-click="vm.restart()" flex ng-hide="vm.display.status < 1">
             <md-icon aria-label="Reboot" md-svg-icon="restart"></md-icon> Neu starten
         </md-button>
     </md-toolbar>
 
     <!-- Vorschau -->
     <div class="ds-fill-parent md-padding">
-        <div ng-show="loading" style="height:50px;padding:25px;">
+        <div ng-show="vm.loading" style="height:50px;padding:25px;">
             <md-progress-linear md-mode="indeterminate"></md-progress-linear>
         </div>
-        <div class="ds-fill-parent" ng-hide="loading">
-            <img class="md-whiteframe-z2" ng-src="{{screenshot}}" />
+        <div class="ds-fill-parent" ng-hide="vm.loading">
+            <img class="md-whiteframe-z2" ng-src="{{vm.screenshot}}" />
         </div>
     </div>
 </div>
