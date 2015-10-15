@@ -1,7 +1,7 @@
 ﻿<div layout="column" class="ds-fill-parent">
     <!-- Toolbar -->
     <md-toolbar layout="row" class="md-whiteframe-z2 md-hue-1">
-        <md-button ng-click="save()">
+        <md-button ng-click="vm.save()">
             <md-icon aria-label="Save" md-svg-icon="save"></md-icon> Speichern
         </md-button>
         <span flex></span>
@@ -11,14 +11,14 @@
     </md-toolbar>
     <!-- Termine -->
     <md-content class="ds-termine-content">
-        <div ng-show="loading" style="height:50px;padding:25px;">
+        <div ng-show="vm.loading" style="height:50px;padding:25px;">
             <md-progress-linear md-mode="indeterminate"></md-progress-linear>
         </div>
-        <div ng-hide="loading || termine.length > 0" style="text-align:center">
+        <div ng-hide="vm.loading || vm.termine.length > 0" style="text-align:center">
             <h3>Zurzeit keine Verhandlungstermine</h3>
         </div>
         <div ng-hide="loading">
-            <div class="md-whiteframe-z1 ds-termin-box" layout="row" layout-align="start start" ng-repeat="termin in termine">
+            <div class="md-whiteframe-z1 ds-termin-box" layout="row" layout-align="start start" ng-repeat="termin in vm.termine">
                 <div flex="15" class="md-padding">
                     <h3>{{termin.az}}</h3>
                     <p>{{termin.art}}</p>

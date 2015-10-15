@@ -1,11 +1,11 @@
 ﻿<div layout="column" class="ds-fill-parent">
   <!-- Toolbar -->
   <md-toolbar layout="row" class="md-whiteframe-z3">
-    <md-button ng-click="openNavbar()"  hide-gt-md>
+    <md-button ng-click="vm.openNavbar()"  hide-gt-md>
       Menü
     </md-button>
     <h1 layout-align-gt-sm="center" class="md-toolbar-tools">
-      {{display.title}}
+      {{vm.display.title}}
     </h1>
   </md-toolbar>
 
@@ -13,6 +13,13 @@
     <!-- Navigation -->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="navbar" md-is-locked-open="$mdMedia('gt-md')">
       <md-list class="ds-menu-list">
+        <md-item>
+          <md-item-content>
+            <md-button ui-sref="rooms">
+              <md-icon md-svg-icon="home"></md-icon> Home
+            </md-button>
+          </md-item-content>
+        </md-item>
         <md-item>
           <md-item-content>
             <md-button ui-sref="room.terms">
