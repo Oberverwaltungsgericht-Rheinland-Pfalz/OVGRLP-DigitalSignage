@@ -12,7 +12,6 @@
 
     var columnDefs = [
       { headerName: '', width: 30, suppressSizeToFit: true, template: '<img ng-src="{{getStateImg(data.status)}}" alt="{{getStateText(data.status)}}"></img>' },
-      { headerName: 'Gruppe', field: 'group' },
       { headerName: 'Name', field: 'name' },
       { headerName: 'Titel', field: 'title' },
       { headerName: '', template: '<a ui-sref="displays.details({id:data.id})">Details</a>' }
@@ -26,6 +25,8 @@
       angularCompileRows: true,
       columnDefs: columnDefs,
       rowData: null,
+      groupKeys: ['group'],
+      groupUseEntireRow: true,
       ready: function (api) {
         api.sizeColumnsToFit();
       }
