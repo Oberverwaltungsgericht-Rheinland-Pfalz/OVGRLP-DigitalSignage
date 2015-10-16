@@ -1,32 +1,32 @@
 ﻿<div layout="column">
-    <!-- Toolbar -->
-    <md-toolbar layout="column" class="md-tall md-whiteframe-z2 md-hue-1">
-        <div class="md-toolbar-tools">
-            <h2>{{display.name}}</h2>
-        </div>
-        <div layout="row" class="md-toolbar-tools">
-            <md-button ng-click="refresh()" flex>
-                <md-icon aria-label="Refresh" md-svg-icon="refresh"></md-icon> Aktualisieren
-            </md-button>
-            <md-button ng-click="poweron()" flex ng-show="display.status < 1">
-                <md-icon aria-label="PowerOn" md-svg-icon="power"></md-icon> Anschalten
-            </md-button>
-            <md-button ng-click="shutdown()" flex ng-hide="display.status < 1">
-                <md-icon aria-label="Shutdown" md-svg-icon="power"></md-icon> Ausschalten
-            </md-button>
-            <md-button ng-click="restart()" flex ng-hide="display.status < 1">
-                <md-icon aria-label="Reboot" md-svg-icon="restart"></md-icon> Neu starten
-            </md-button>
-        </div>
-    </md-toolbar>
-
-    <!-- Vorschau -->
-    <div>
-        <div ng-show="loading" style="height:50px;padding:25px;">
-            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
-        </div>
-        <div ng-hide="loading">
-            <img class="ds-display-screenshot" ng-src="{{screenshot}}" />
-        </div>
+  <!-- Toolbar -->
+  <md-toolbar layout="column" class="md-tall md-whiteframe-z2 md-hue-1">
+    <div class="md-toolbar-tools">
+      <h2>{{display.name}}</h2>
     </div>
+    <div layout="row" class="md-toolbar-tools">
+      <md-button ng-click="refresh()" flex>
+        <md-icon aria-label="Refresh" md-svg-icon="refresh"></md-icon> Aktualisieren
+      </md-button>
+      <md-button ng-click="poweron()" flex ng-show="display.status < 1">
+        <md-icon aria-label="PowerOn" md-svg-icon="power"></md-icon> Anschalten
+      </md-button>
+      <md-button ng-click="shutdown()" flex ng-hide="display.status < 1">
+        <md-icon aria-label="Shutdown" md-svg-icon="power"></md-icon> Ausschalten
+      </md-button>
+      <md-button ng-click="restart()" flex ng-hide="display.status < 1">
+        <md-icon aria-label="Reboot" md-svg-icon="restart"></md-icon> Neu starten
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <!-- Vorschau -->
+  <div>
+    <div ng-show="loading" style="height:50px;padding:25px;">
+      <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+    </div>
+    <div ng-hide="loading">
+      <img class="ds-display-screenshot" ng-src="{{screenshot}}" />
+    </div>
+  </div>
 </div>

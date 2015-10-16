@@ -1,61 +1,60 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
 <head>
-    <!-- Title -->
-    <title>Digital Signage - Manager</title>
+  <!-- Title -->
+  <title>Digital Signage - Manager</title>
 
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 
-    <!-- Component Styles -->
-    <link href="components/fontawesome/css/font-awesome.min.css" rel="stylesheet" /><!-- Font Awesome -->
-    <link href="components/angular-material/angular-material.min.css" rel="stylesheet" /><!-- Angular Material -->
-    <link href="components/ag-grid/dist/angular-grid.min.css" rel="stylesheet" /><!-- Angular Grid -->
-    <link href="components/ag-grid/dist/theme-fresh.min.css" rel="stylesheet" /><!-- Angular Grid Fresh-->
-    <!-- Custom Styles -->
-    <link href="assets/css/default.css" rel="stylesheet" /><!-- Default -->
-
-    <!-- Components Scripts -->
-    <script src="components/angular/angular.min.js"></script><!-- Angular Core -->
-    <script src="components/angular-aria/angular-aria.min.js"></script>
-    <script src="components/angular-animate/angular-animate.min.js"></script>
-    <script src="components/angular-material/angular-material.min.js"></script><!-- Angular Material -->
-    <script src="components/ui-router/release/angular-ui-router.min.js"></script><!-- AngularUI Router -->
-    <script src="components/lodash/lodash.min.js"></script><!-- Lodash -->
-    <script src="components/restangular/dist/restangular.min.js"></script><!-- Restangular -->
-    <script src="components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js"></script><!-- Breadcrumbs UI -->
-    <script src="components/ag-grid/dist/angular-grid.min.js"></script><!-- Angular Grid -->
-    <!-- App Scripts -->
-    <script src="app/app.js"></script><!-- app -->
-    <script src="app/app.config.js"></script><!-- app -->
-    <script src="app/displays/displays.js"></script><!-- app.displays -->
-    <script src="app/terms/terms.js"></script><!-- app.terms -->
+  <!-- Component Styles -->
+  <link href="components/fontawesome/css/font-awesome.min.css" rel="stylesheet" /><!-- Font Awesome -->
+  <link href="components/angular-material/angular-material.min.css" rel="stylesheet" /><!-- Angular Material -->
+  <link href="components/ag-grid/dist/angular-grid.min.css" rel="stylesheet" /><!-- Angular Grid -->
+  <link href="components/ag-grid/dist/theme-fresh.min.css" rel="stylesheet" /><!-- Angular Grid Fresh-->
+  <!-- Custom Styles -->
+  <link href="assets/css/default.css" rel="stylesheet" /><!-- Default -->
+  <!-- Components Scripts -->
+  <script src="components/angular/angular.min.js"></script><!-- Angular Core -->
+  <script src="components/angular-aria/angular-aria.min.js"></script>
+  <script src="components/angular-animate/angular-animate.min.js"></script>
+  <script src="components/angular-material/angular-material.min.js"></script><!-- Angular Material -->
+  <script src="components/ui-router/release/angular-ui-router.min.js"></script><!-- AngularUI Router -->
+  <script src="components/lodash/lodash.min.js"></script><!-- Lodash -->
+  <script src="components/restangular/dist/restangular.min.js"></script><!-- Restangular -->
+  <script src="components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js"></script><!-- Breadcrumbs UI -->
+  <script src="components/ag-grid/dist/angular-grid.min.js"></script><!-- Angular Grid -->
+  <!-- App Scripts -->
+  <script src="app/app.js"></script><!-- app -->
+  <script src="app/app.config.js"></script><!-- app -->
+  <script src="app/displays/displays.js"></script><!-- app.displays -->
+  <script src="app/terms/terms.js"></script><!-- app.terms -->
 </head>
 <body>
-    <div class="ds-fill-parent" layout="column">
-        <md-toolbar layout="row">
-            <div class="md-toolbar-tools">
-                <h1>Saalanzeige - Manager</h1>
-            </div>
-        </md-toolbar>
+  <div class="ds-fill-parent" layout="column">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h1>Saalanzeige - Manager</h1>
+      </div>
+    </md-toolbar>
 
-        <div layout="row" flex>
-            <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
-                <md-list>
-                    <md-list-item>
-                        <md-button ng-class="{active: $state.includes('displays')}" ui-sref="displays"><i class="fa fa-desktop"></i> Anzeigen</md-button>
-                    </md-list-item>
-                    <md-list-item>
-                        <md-button ng-class="{active: $state.includes('terms')}" ui-sref="terms"><i class="fa fa-calendar"></i> Sitzungen</md-button>
-                    </md-list-item>
-                </md-list>
-            </md-sidenav>
-            <div layout="column" flex class="md-padding">
-                <div ui-view flex></div>
-            </div>
-        </div>
+    <div layout="row" flex>
+      <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
+        <md-list>
+          <md-list-item>
+            <md-button ng-class="{active: $state.includes('displays')}" ui-sref="displays"><i class="fa fa-desktop"></i> Anzeigen</md-button>
+          </md-list-item>
+          <md-list-item>
+            <md-button ng-class="{active: $state.includes('terms')}" ui-sref="terms"><i class="fa fa-calendar"></i> Sitzungen</md-button>
+          </md-list-item>
+        </md-list>
+      </md-sidenav>
+      <div layout="column" flex class="md-padding">
+        <div ui-view flex></div>
+      </div>
     </div>
+  </div>
 </body>
 </html>
