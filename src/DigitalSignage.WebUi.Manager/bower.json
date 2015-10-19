@@ -6,12 +6,13 @@
   ],
   "private": true,
   "dependencies": {
+    "ag-grid": "~1.10.1",
     "angular": "~1.4.1",
-    "restangular": "~1.5.1",
-    "ui-router": "~0.2.15",
-    "fontawesome": "~4.3.0",
-    "angular-utils-ui-breadcrumbs": "~0.2.1",
     "angular-material": "~0.10.0",
-    "ag-grid": "~1.10.1"
+    "angular-utils-ui-breadcrumbs": "~0.2.1",
+    "breeze-client": "~1.5.4",
+    "fontawesome": "~4.3.0",
+    "restangular": "~1.5.1",
+    "ui-router": "~0.2.15"
   }
 }

@@ -5,12 +5,12 @@
     .module('app.terms')
     .controller('TermController', TermController);
 
-  TermController.$inject = ['$state', '$stateParams', '$mdToast', '$mdDialog', 'Restangular'];
+  TermController.$inject = ['$state', '$stateParams', '$mdToast', '$mdDialog', 'dataService'];
 
-  function TermController($state, $stateParams, $mdToast, $mdDialog, Restangular) {
+  function TermController($state, $stateParams, $mdToast, $mdDialog, dataService) {
     var vm = this;
 
-    var baseTerm = Restangular.one('daten/verfahren', $stateParams.id);
+    //var baseTerm = Restangular.one('daten/verfahren', $stateParams.id);
 
     vm.newRichter = newRichter;
     vm.newAktivPartei = newAktivPartei;
@@ -32,13 +32,14 @@
     };
 
     function loadTerm() {
-      baseTerm.get().then(function (term) {
-        vm.term = term;
+      dataService.getVerfahren($stateParams.id).then(function (term) {
+        vm.term = term.results[0];
       });
     };
 
     function newRichter() {
-      vm.term.besetzung.push('');
+      dataService.addNewRichter(vm.term);
+      //vm.term.Besetzung.push({ Richter:'' });
     };
 
     function newAktivPartei() {
@@ -74,27 +75,28 @@
     };
 
     function reset() {
-      loadTerm();
+      dataService.rejectChanges();
     };
 
     function save() {
-      vm.term.put().then(function () {
-        $mdToast.show($mdToast.simple()
-          .parent(angular.element(document.body))
-          .content('Gespeichert!')
-          .position('bottom right')
-          .hideDelay(4000)
-        );
-      }, function (error) {
-        $mdDialog.show(
-          $mdDialog.alert()
+      dataService.saveChanges()
+        .catch(function (err) {
+          $mdDialog.show(
+            $mdDialog.alert()
+              .parent(angular.element(document.body))
+              .title('Fehler')
+              .content('Beim Speichern der Daten ist ein Fehler aufgetreten.')
+              .ariaLabel('Fehler Dialog')
+              .ok('OK')
+          );
+        }).then(function () {
+          $mdToast.show($mdToast.simple()
             .parent(angular.element(document.body))
-            .title('Fehler')
-            .content('Beim Speichern der Daten ist ein Fehler aufgetreten.')
-            .ariaLabel('Fehler Dialog')
-            .ok('OK')
-         );
-      });
+            .content('Gespeichert!')
+            .position('bottom right')
+            .hideDelay(4000)
+          );
+        });
     };
 
     function deleteTerm() {
