@@ -10,8 +10,9 @@
       restrict: 'E',
       templateUrl: 'app/terms/parteien.directive.html',
       scope: {
+        parteien: '=',
         title: '@',
-        parteien: '='
+        entityName: '@'
       },
       controller: ParteienController,
       controllerAs: 'vm',
@@ -20,14 +21,16 @@
     
     return directive;
 
-    function ParteienController($scope) {
+    ParteienController.$inject = ['$scope', 'dataService'];
+
+    function ParteienController($scope, dataService) {
       var vm = this;
 
-      console.log(vm.parteien);
-      console.log($scope.parteien);
+      vm.addNewItem = addNewItem;
 
-      //vm.title = $scope.title;
-      //vm.parteien = $scope.parteien;
+      function addNewItem() {
+        vm.parteien.push(dataService.createNewEntity(vm.entityName));
+      }
     }
   }
 })();
