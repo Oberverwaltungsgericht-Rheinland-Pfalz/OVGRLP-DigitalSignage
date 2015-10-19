@@ -78,6 +78,8 @@
 
   <div layout="row">
     <div flex="45" layout="column" class="md-whiteframe-z3 md-margin">
+      <ds-parteien title="Aktivpartei(en)" parteien="vm.term.ParteienAktiv"></ds-parteien>
+      <!--
       <md-toolbar class="md-whiteframe-z2 md-hue-3">
         <div class="md-toolbar-tools" layout="row">
           <h3>Aktivpartei(en)</h3>
@@ -90,9 +92,10 @@
       <md-content class="md-padding">
         <md-input-container ng-repeat="partei in vm.term.ParteienAktiv track by $index" md-no-float>
           <md-icon md-svg-src="person"></md-icon>
-          <input ng-model="partei" type="text" playeholder="Name" />
+          <input ng-model="partei.Partei" type="text" playeholder="Name" />
         </md-input-container>
       </md-content>
+      -->
     </div>
 
     <div flex="50" layout="column" class="md-whiteframe-z3 md-margin">

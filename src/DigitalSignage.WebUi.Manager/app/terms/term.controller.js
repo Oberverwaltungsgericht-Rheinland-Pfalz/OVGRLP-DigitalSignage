@@ -38,12 +38,11 @@
     };
 
     function newRichter() {
-      dataService.addNewRichter(vm.term);
-      //vm.term.Besetzung.push({ Richter:'' });
+      vm.term.Besetzung.push(dataService.createNewEntity('Besetzung'));
     };
 
     function newAktivPartei() {
-      vm.term.parteienAktiv.push('');
+      vm.term.ParteienAktiv.push(dataService.createNewEntity('ParteienAktiv'));
     };
 
     function newProzBevAktiv() {

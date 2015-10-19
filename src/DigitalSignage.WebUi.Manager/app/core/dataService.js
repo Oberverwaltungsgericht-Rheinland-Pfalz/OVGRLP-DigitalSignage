@@ -18,7 +18,7 @@
       saveChanges : saveChanges,
       rejectChanges : rejectChanges,
       hasChanges: hasChanges,
-      addNewRichter: addNewRichter,
+      createNewEntity: createNewEntity,
       metaDataFetched : false
     };
 
@@ -28,7 +28,7 @@
       var query = breeze.EntityQuery
         .from('Verfahren')
         .where('VerfahrensId', '==', id)
-        .expand('Besetzung');
+        .expand('Besetzung, ParteienAktiv');
 
       var promise = manager.executeQuery(query)
         .catch(function (err) {
@@ -54,9 +54,8 @@
       return manager.hasChanges();
     }
 
-    function addNewRichter(verfahren) {
-      var richter = manager.createEntity('Besetzung');
-      verfahren.Besetzung.push(richter);
+    function createNewEntity(entityName) {
+      return manager.createEntity(entityName);
     }
   }
 })();

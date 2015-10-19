@@ -1,0 +1,15 @@
+﻿<md-toolbar class="md-whiteframe-z2 md-hue-3">
+  <div class="md-toolbar-tools" layout="row">
+    <h3>{{vm.title}}</h3>
+    <span flex></span>
+    <md-button ng-click="vm.newAktivPartei()">
+      <md-icon aria-label="NewAktivPartei" md-svg-icon="personadd"></md-icon> Neu
+    </md-button>
+  </div>
+</md-toolbar>
+<md-content class="md-padding">
+  <md-input-container ng-repeat="partei in vm.parteien track by $index" md-no-float>
+    <md-icon md-svg-src="person"></md-icon>
+    <input ng-model="partei.Partei" type="text" playeholder="Name" />
+  </md-input-container>
+</md-content>
