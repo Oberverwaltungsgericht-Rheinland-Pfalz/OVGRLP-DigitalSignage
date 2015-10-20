@@ -27,9 +27,16 @@
       var vm = this;
 
       vm.addNewItem = addNewItem;
+      vm.deleteItem = deleteItem;
 
       function addNewItem() {
         vm.items.push(dataService.createNewEntity(vm.entityName));
+      }
+
+      function deleteItem(item) {
+        var i = vm.items.indexOf(item);
+        item.entityAspect.setDeleted();
+        vm.items.splice(i, 1);
       }
     }
   }

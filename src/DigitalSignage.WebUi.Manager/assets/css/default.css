@@ -73,3 +73,10 @@ table.terms {
 .ds-terms {
   height: 100%;
 }
+
+.md-button.md-fab.ds-xxmini {
+    line-height: 28px;
+    width: 28px;
+    height: 28px;
+    min-height: 28px;
+}
