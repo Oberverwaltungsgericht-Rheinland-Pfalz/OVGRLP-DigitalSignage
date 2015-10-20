@@ -28,6 +28,30 @@ namespace DigitalSignage.WebApi.Controllers
       return contextProvider.Context.Verfahren;
     }
 
+    [HttpGet]
+    public IQueryable<object> VerfahrenList()
+    {
+      var query = from v in contextProvider.Context.Verfahren
+                    .Include("Stammdaten")
+                    .Include("ParteienAktiv")
+                    .Include("ParteienPassiv")
+                  select new
+                  {
+                    VerfahrensId = v.VerfahrensId,
+                    Az = v.Az,
+                    Status = v.Status,
+                    UhrzeitPlan = v.UhrzeitPlan,
+                    UhrzeitAktuell = v.UhrzeitAktuell,
+                    Gericht = v.Stammdaten.Gerichtsname,
+                    Datum = v.Stammdaten.Datum,
+                    Sitzungssaal = v.Sitzungssaal,
+                    ParteienAktiv = v.ParteienAktiv,
+                    ParteienPassiv = v.ParteienPassiv
+                  };
+
+      return query.AsQueryable();
+    }
+
     // ~/breeze/EurekaDaten/SaveChanges
     [HttpPost]
     public SaveResult SaveChanges(JObject saveBundle)
