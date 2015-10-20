@@ -28,6 +28,7 @@ namespace DigitalSignage.WebApi.Controllers
       return contextProvider.Context.Verfahren;
     }
 
+    // ~/breeze/EurekaDaten/VerfahrenList
     [HttpGet]
     public IQueryable<object> VerfahrenList()
     {
@@ -50,6 +51,13 @@ namespace DigitalSignage.WebApi.Controllers
                   };
 
       return query.AsQueryable();
+    }
+
+    // ~/breeze/Displays
+    [HttpGet]
+    public IQueryable<object> Displays()
+    {
+      return contextProvider.Context.Displays;
     }
 
     // ~/breeze/EurekaDaten/SaveChanges
