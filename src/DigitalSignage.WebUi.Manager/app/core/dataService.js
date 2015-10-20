@@ -28,7 +28,7 @@
       var query = breeze.EntityQuery
         .from('Verfahren')
         .where('VerfahrensId', '==', id)
-        .expand('Besetzung, ParteienAktiv');
+        .expand('Besetzung, ParteienAktiv, ProzBevAktiv, ParteienPassiv, ProzBevPassiv, ParteienBeigeladen, ProzBevBeigeladen, ParteienZeugen, ParteienSV');
 
       var promise = manager.executeQuery(query)
         .catch(function (err) {

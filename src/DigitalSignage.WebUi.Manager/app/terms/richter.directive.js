@@ -3,27 +3,27 @@
 
   angular
     .module('app.terms')
-    .directive('dsParteien', dsParteien);
+    .directive('dsRichter', dsRichter);
 
-  function dsParteien() {
+  function dsRichter() {
     var directive = {
       restrict: 'E',
-      templateUrl: 'app/terms/parteien.directive.html',
+      templateUrl: 'app/terms/richter.directive.html',
       scope: {
         items: '=',
         title: '@',
         entityName: '@'
       },
-      controller: ParteienController,
+      controller: RichterController,
       controllerAs: 'vm',
       bindToController: true
     };
     
     return directive;
 
-    ParteienController.$inject = ['dataService'];
+    RichterController.$inject = ['dataService'];
 
-    function ParteienController(dataService) {
+    function RichterController(dataService) {
       var vm = this;
 
       vm.addNewItem = addNewItem;
