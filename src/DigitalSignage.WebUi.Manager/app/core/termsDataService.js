@@ -3,11 +3,11 @@
 
   angular
     .module('app.core')
-    .factory('dataService', dataService);
+    .factory('termsDataService', termsDataService);
 
-  dataService.$inject = ['$q', 'breeze'];
+  termsDataService.$inject = ['$q', 'breeze'];
 
-  function dataService($q, breeze) {
+  function termsDataService($q, breeze) {
     //breeze.NamingConvention.camelCase.setAsDefault();
 
     var serviceName = 'http://localhost:52208/breeze/EurekaDaten';

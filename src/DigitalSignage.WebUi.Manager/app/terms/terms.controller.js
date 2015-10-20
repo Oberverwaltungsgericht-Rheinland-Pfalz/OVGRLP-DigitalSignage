@@ -5,9 +5,9 @@
     .module('app.terms')
     .controller('TermsController', TermsController);
 
-  TermsController.$inject = ['$stateParams', '$filter', 'dataService'];
+  TermsController.$inject = ['$stateParams', '$filter', 'termsDataService'];
 
-  function TermsController($stateParams, $filter, dataService) {
+  function TermsController($stateParams, $filter, termsDataService) {
     var vm = this;
 
     var defaultSort = [
@@ -43,7 +43,7 @@
     activate();
 
     function activate() {
-      dataService.getVerfahrenList().then(function (data) {
+      termsDataService.getVerfahrenList().then(function (data) {
         vm.gridOptions.rowData = data.results;
         vm.gridOptions.api.onNewRows();
         vm.gridOptions.api.expandAll();
