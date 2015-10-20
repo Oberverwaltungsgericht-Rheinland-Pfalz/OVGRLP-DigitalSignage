@@ -8,9 +8,11 @@
   </div>
 </md-toolbar>
 <md-content class="md-padding">
-  <md-input-container ng-repeat="item in vm.items track by $index" md-no-float>
-    <md-icon md-svg-src="person"></md-icon>
-    <input ng-model="item.PB" type="text" playeholder="Name" />
-  </md-input-container>
-  
+  <div ng-repeat="item in vm.items track by $index" layout="row">
+    <md-input-container md-no-float flex>
+      <md-icon md-svg-src="person"></md-icon>
+      <input ng-model="item.PB" type="text" playeholder="Name" />
+    </md-input-container>
+    <md-button class="md-fab ds-xxmini" ng-click="vm.deleteItem(item)">x</md-button>
+  </div>
 </md-content>
