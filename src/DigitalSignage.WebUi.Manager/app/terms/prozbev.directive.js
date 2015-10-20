@@ -1,0 +1,36 @@
+﻿(function () {
+  'use strict';
+
+  angular
+    .module('app.terms')
+    .directive('dsProzbev', dsProzbev);
+
+  function dsProzbev() {
+    var directive = {
+      restrict: 'E',
+      templateUrl: 'app/terms/prozbev.directive.html',
+      scope: {
+        items: '=',
+        title: '@',
+        entityName: '@'
+      },
+      controller: ProzbevController,
+      controllerAs: 'vm',
+      bindToController: true
+    };
+    
+    return directive;
+
+    ProzbevController.$inject = ['dataService'];
+
+    function ProzbevController(dataService) {
+      var vm = this;
+
+      vm.addNewItem = addNewItem;
+
+      function addNewItem() {
+        vm.items.push(dataService.createNewEntity(vm.entityName));
+      }
+    }
+  }
+})();

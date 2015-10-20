@@ -2,7 +2,7 @@
   <!-- Toolbar -->
   <md-toolbar layout="column" class="md-tall md-whiteframe-z2 md-hue-1">
     <div class="md-toolbar-tools">
-      <h2>{{vm.term.az}}</h2>
+      <h2>{{vm.term.Az}}</h2>
     </div>
     <div layout="row" class="md-toolbar-tools">
       <md-button ng-click="vm.save()" flex>
@@ -22,209 +22,83 @@
     <div flex="30" layout="column" class="md-padding md-whiteframe-z3 md-margin">
       <md-input-container>
         <label>Sitzungssaal</label>
-        <input ng-model="vm.term.sitzungssaal" />
+        <input ng-model="vm.term.Sitzungssaal" />
       </md-input-container>
       <md-input-container>
         <label>Öffentlich</label>
-        <input ng-model="vm.term.oeffentlich" />
+        <input ng-model="vm.term.Oeffentlich" />
       </md-input-container>
       <md-input-container>
         <label>Uhrzeit (Aktuell)</label>
-        <input ng-model="vm.term.uhrzeitAktuell" />
+        <input ng-model="vm.term.UhrzeitAktuell" />
       </md-input-container>
       <md-input-container>
         <label>Uhrzeit (Plan)</label>
-        <input ng-model="vm.term.uhrzeitPlan" />
+        <input ng-model="vm.term.UhrzeitPlan" />
       </md-input-container>
     </div>
 
     <div flex="30" layout="column" class="md-padding md-whiteframe-z3 md-margin">
       <md-input-container>
         <label>Gegenstand</label>
-        <input ng-model="vm.term.gegenstand" />
+        <input ng-model="vm.term.Gegenstand" />
       </md-input-container>
       <md-input-container>
         <label>Art</label>
-        <input ng-model="vm.term.art" />
+        <input ng-model="vm.term.Art" />
       </md-input-container>
       <md-input-container>
         <label>Status</label>
-        <input ng-model="vm.term.status" />
+        <input ng-model="vm.term.Status" />
       </md-input-container>
       <md-input-container>
         <label>Aktenzeichen</label>
-        <input ng-model="vm.term.az" />
+        <input ng-model="vm.term.Az" />
       </md-input-container>
     </div>
 
     <div flex="35" layout="column" class="md-whiteframe-z3 md-margin">
-      <md-toolbar class="md-whiteframe-z2 md-hue-3">
-        <div class="md-toolbar-tools" layout="row">
-          <h3>Besetzung</h3>
-          <span flex></span>
-          <md-button ng-click="vm.newRichter()">
-            <md-icon aria-label="NewRichter" md-svg-icon="personadd"></md-icon> Neu
-          </md-button>
-        </div>
-      </md-toolbar>
-      <md-content class="md-padding">
-        <md-input-container ng-repeat="richter in vm.term.besetzung track by $index" md-no-float>
-          <md-icon md-svg-src="person"></md-icon>
-          <input ng-model="richter" type="text" playeholder="Name" />
-        </md-input-container>
-      </md-content>
+      <ds-richter title="Besetzung" items="vm.term.Besetzung" entity-name="Besetzung"></ds-richter>
     </div>
   </div>
 
   <div layout="row">
     <div flex="45" layout="column" class="md-whiteframe-z3 md-margin">
-      <md-toolbar class="md-whiteframe-z2 md-hue-3">
-        <div class="md-toolbar-tools" layout="row">
-          <h3>Aktivpartei(en)</h3>
-          <span flex></span>
-          <md-button ng-click="vm.newAktivPartei()">
-            <md-icon aria-label="NewAktivPartei" md-svg-icon="personadd"></md-icon> Neu
-          </md-button>
-        </div>
-      </md-toolbar>
-      <md-content class="md-padding">
-        <md-input-container ng-repeat="partei in vm.term.parteienAktiv track by $index" md-no-float>
-          <md-icon md-svg-src="person"></md-icon>
-          <input ng-model="partei" type="text" playeholder="Name" />
-        </md-input-container>
-      </md-content>
+      <ds-parteien title="Aktivpartei(en)" items="vm.term.ParteienAktiv" entity-name="ParteienAktiv"></ds-parteien>
     </div>
 
     <div flex="50" layout="column" class="md-whiteframe-z3 md-margin">
-      <md-toolbar class="md-whiteframe-z2 md-hue-3">
-        <div class="md-toolbar-tools" layout="row">
-          <h3>Proz.Bev. (Aktiv)</h3>
-          <span flex></span>
-          <md-button ng-click="vm.newProzBevAktiv()">
-            <md-icon aria-label="NewProzBevAktiv" md-svg-icon="personadd"></md-icon> Neu
-          </md-button>
-        </div>
-      </md-toolbar>
-      <md-content class="md-padding">
-        <md-input-container ng-repeat="pb in vm.term.prozBevAktiv track by $index" md-no-float>
-          <md-icon md-svg-src="person"></md-icon>
-          <input ng-model="pb" type="text" playeholder="Name" />
-        </md-input-container>
-      </md-content>
+      <ds-prozbev title="Proz.Bev. (Aktiv)" items="vm.term.ProzBevAktiv" entity-name="ProzBevAktiv"></ds-prozbev>
     </div>
   </div>
 
   <div layout="row">
     <div flex="45" layout="column" class="md-whiteframe-z3 md-margin">
-      <md-toolbar class="md-whiteframe-z2 md-hue-3">
-        <div class="md-toolbar-tools" layout="row">
-          <h3>Passivpartei(en)</h3>
-          <span flex></span>
-          <md-button ng-click="vm.newPassivPartei()">
-            <md-icon aria-label="NewPassivPartei" md-svg-icon="personadd"></md-icon> Neu
-          </md-button>
-        </div>
-      </md-toolbar>
-      <md-content class="md-padding">
-        <md-input-container ng-repeat="partei in vm.term.parteienPassiv track by $index" md-no-float>
-          <md-icon md-svg-src="person"></md-icon>
-          <input ng-model="partei" type="text" playeholder="Name" />
-        </md-input-container>
-      </md-content>
+      <ds-parteien title="Passivpartei(en)" items="vm.term.ParteienPassiv" entity-name="ParteienPassiv"></ds-parteien>
     </div>
 
     <div flex="50" layout="column" class="md-whiteframe-z3 md-margin">
-      <md-toolbar class="md-whiteframe-z2 md-hue-3">
-        <div class="md-toolbar-tools" layout="row">
-          <h3>Proz.Bev. (Passiv)</h3>
-          <span flex></span>
-          <md-button ng-click="vm.newProzBevPassiv()">
-            <md-icon aria-label="NewProzBevPassiv" md-svg-icon="personadd"></md-icon> Neu
-          </md-button>
-        </div>
-      </md-toolbar>
-      <md-content class="md-padding">
-        <md-input-container ng-repeat="pb in vm.term.prozBevPassiv track by $index" md-no-float>
-          <md-icon md-svg-src="person"></md-icon>
-          <input ng-model="pb" type="text" playeholder="Name" />
-        </md-input-container>
-      </md-content>
+      <ds-prozbev title="Proz.Bev. (Passiv)" items="vm.term.ProzBevPassiv" entity-name="ProzBevPassiv"></ds-prozbev>
     </div>
   </div>
 
   <div layout="row">
     <div flex="45" layout="column" class="md-whiteframe-z3 md-margin">
-      <md-toolbar class="md-whiteframe-z2 md-hue-3">
-        <div class="md-toolbar-tools" layout="row">
-          <h3>Beigeladen</h3>
-          <span flex></span>
-          <md-button ng-click="vm.newBeigeladenPartei()">
-            <md-icon aria-label="NewBeigeladenPartei" md-svg-icon="personadd"></md-icon> Neu
-          </md-button>
-        </div>
-      </md-toolbar>
-      <md-content class="md-padding">
-        <md-input-container ng-repeat="partei in vm.term.parteienBeigeladen track by $index" md-no-float>
-          <md-icon md-svg-src="person"></md-icon>
-          <input ng-model="partei" type="text" playeholder="Name" />
-        </md-input-container>
-      </md-content>
+      <ds-parteien title="Beigeladen" items="vm.term.ParteienBeigeladen" entity-name="ParteienBeigeladen"></ds-parteien>
     </div>
 
     <div flex="50" layout="column" class="md-whiteframe-z3 md-margin">
-      <md-toolbar class="md-whiteframe-z2 md-hue-3">
-        <div class="md-toolbar-tools" layout="row">
-          <h3>Proz.Bev. (Beigeladen)</h3>
-          <span flex></span>
-          <md-button ng-click="vm.newProzBevBeigeladen()">
-            <md-icon aria-label="NewProzBevBeigeladen" md-svg-icon="personadd"></md-icon> Neu
-          </md-button>
-        </div>
-      </md-toolbar>
-      <md-content class="md-padding">
-        <md-input-container ng-repeat="pb in vm.term.prozBevBeigeladen track by $index" md-no-float>
-          <md-icon md-svg-src="person"></md-icon>
-          <input ng-model="pb" type="text" playeholder="Name" />
-        </md-input-container>
-      </md-content>
+      <ds-prozbev title="Proz.Bev. (Beigeladen)" items="vm.term.ProzBevBeigeladen" entity-name="ProzBevBeigeladen"></ds-prozbev>
     </div>
   </div>
 
   <div layout="row">
     <div flex="45" layout="column" class="md-whiteframe-z3 md-margin">
-      <md-toolbar class="md-whiteframe-z2 md-hue-3">
-        <div class="md-toolbar-tools" layout="row">
-          <h3>Zeugen</h3>
-          <span flex></span>
-          <md-button ng-click="vm.newZeugenPartei()">
-            <md-icon aria-label="NewZeugenPartei" md-svg-icon="personadd"></md-icon> Neu
-          </md-button>
-        </div>
-      </md-toolbar>
-      <md-content class="md-padding">
-        <md-input-container ng-repeat="partei in vm.term.parteienZeugen track by $index" md-no-float>
-          <md-icon md-svg-src="person"></md-icon>
-          <input ng-model="partei" type="text" playeholder="Name" />
-        </md-input-container>
-      </md-content>
+      <ds-parteien title="Zeugen" items="vm.term.ParteienZeugen" entity-name="ParteienZeugen"></ds-parteien>
     </div>
 
     <div flex="50" layout="column" class="md-whiteframe-z3 md-margin">
-      <md-toolbar class="md-whiteframe-z2 md-hue-3">
-        <div class="md-toolbar-tools" layout="row">
-          <h3>Sachverständige</h3>
-          <span flex></span>
-          <md-button ng-click="vm.newSvPartei()">
-            <md-icon aria-label="NewSvPartei" md-svg-icon="personadd"></md-icon> Neu
-          </md-button>
-        </div>
-      </md-toolbar>
-      <md-content class="md-padding">
-        <md-input-container ng-repeat="partei in vm.term.parteienSv track by $index" md-no-float>
-          <md-icon md-svg-src="person"></md-icon>
-          <input ng-model="partei" type="text" playeholder="Name" />
-        </md-input-container>
-      </md-content>
+      <ds-parteien title="Sachverständige" items="vm.term.ParteienSV" entity-name="ParteienSV"></ds-parteien>
     </div>
   </div>
 
