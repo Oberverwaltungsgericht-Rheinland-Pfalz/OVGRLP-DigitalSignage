@@ -5,19 +5,18 @@
     .module('app.displays')
     .controller('DisplaysController', DisplaysController);
 
-  DisplaysController.$inject = ['Restangular'];
+  DisplaysController.$inject = ['settingsDataService'];
 
-  function DisplaysController(Restangular) {
+  function DisplaysController(settingsDataService) {
     var vm = this;
 
     var columnDefs = [
-      { headerName: '', width: 30, suppressSizeToFit: true, template: '<img ng-src="{{getStateImg(data.status)}}" alt="{{getStateText(data.status)}}"></img>' },
-      { headerName: 'Name', field: 'name' },
-      { headerName: 'Titel', field: 'title' },
-      { headerName: '', template: '<a ui-sref="displays.details({id:data.id})">Details</a>' }
+      { headerName: '', width: 30, suppressSizeToFit: true, template: '<img ng-src="{{vm.getStateImg(data.Status)}}" alt="{{vm.getStateText(data.Status)}}"></img>' },
+      { headerName: 'Name', field: 'Name' },
+      { headerName: 'Titel', field: 'Title' },
+      { headerName: '', width: 70, suppressSizeToFit: true, template: '<a ui-sref="displays.details({id:data.Id})">Details</a>' }, 
+      { headerName: '', width: 110, suppressSizeToFit: true, template: '<a href="" ng-click="data.update()">Aktualisieren</a>'}
     ];
-
-    var baseDisplays = Restangular.all('settings/displays');
 
     vm.getStateText = getStateText;
     vm.getStateImg = getStateImg;
@@ -25,7 +24,7 @@
       angularCompileRows: true,
       columnDefs: columnDefs,
       rowData: null,
-      groupKeys: ['group'],
+      groupKeys: ['Group'],
       groupUseEntireRow: true,
       ready: function (api) {
         api.sizeColumnsToFit();
@@ -35,13 +34,10 @@
     activate();
 
     function activate() {
-      baseDisplays.getList().then(function (data) {
-        vm.gridOptions.rowData = data;
+      settingsDataService.getDisplayList().then(function(data) {
+        vm.gridOptions.rowData = data.results;
         vm.gridOptions.rowData.forEach(function (display) {
-          display.status = -1;
-          display.customGET('status').then(function (data) {
-            display.status = data.result;
-          });
+          display.update();
         });
         vm.gridOptions.api.onNewRows();
       });

@@ -3,16 +3,20 @@ using Breeze.ContextProvider.EF6;
 using Breeze.WebApi2;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.WebApi.Data;
+using DigitalSignage.WebApi.Services;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace DigitalSignage.WebApi.Controllers
 {
   [BreezeController]
+  [RoutePrefix("breeze/EurekaDaten")]
   public class EurekaDatenController : ApiController
   {
     private readonly EFContextProvider<DigitalSignageDbContext> contextProvider = new EFContextProvider<DigitalSignageDbContext>();
+    private readonly DisplayManagementService displayManagementService = new DisplayManagementService();
 
     // ~/breeze/EurekaDaten/Metadata
     [HttpGet]
@@ -53,11 +57,24 @@ namespace DigitalSignage.WebApi.Controllers
       return query.AsQueryable();
     }
 
-    // ~/breeze/Displays
+    // ~/breeze/EurekaDaten/Displays
     [HttpGet]
     public IQueryable<object> Displays()
     {
       return contextProvider.Context.Displays;
+    }
+
+    // ~/breeze/EurekaDaten/DisplayStatus
+    [HttpGet]
+    [Route("Display/{id}/Status")]
+    public async Task<IHttpActionResult> DisplayStatus(int id)
+    {
+      var display = await contextProvider.Context.Displays.FindAsync(id);
+
+      if (display == null)
+        return NotFound();
+
+      return Ok((int)displayManagementService.GetDisplayStatus(display));
     }
 
     // ~/breeze/EurekaDaten/SaveChanges
