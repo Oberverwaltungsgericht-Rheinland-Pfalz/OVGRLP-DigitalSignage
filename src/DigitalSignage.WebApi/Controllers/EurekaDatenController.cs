@@ -5,9 +5,11 @@ using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.WebApi.Data;
 using DigitalSignage.WebApi.Services;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace DigitalSignage.WebApi.Controllers
 {
@@ -66,7 +68,7 @@ namespace DigitalSignage.WebApi.Controllers
 
     // ~/breeze/EurekaDaten/DisplayStatus
     [HttpGet]
-    [Route("Display/{id}/Status")]
+    [Route("Display/{id}/status")]
     public async Task<IHttpActionResult> DisplayStatus(int id)
     {
       var display = await contextProvider.Context.Displays.FindAsync(id);
@@ -75,6 +77,28 @@ namespace DigitalSignage.WebApi.Controllers
         return NotFound();
 
       return Ok((int)displayManagementService.GetDisplayStatus(display));
+    }
+
+    [Route("Display/{id}/poweron")]
+    [HttpGet]
+    [ResponseType(typeof(void))]
+    public async Task<IHttpActionResult> DisplayPowerOn(int id)
+    {
+      var display = await contextProvider.Context.Displays.FindAsync(id);
+
+      if (display == null)
+        return NotFound();
+
+      try
+      {
+        displayManagementService.StartDisplay(display);
+      }
+      catch(Exception ex)
+      {
+        return InternalServerError(ex);
+      }
+
+      return Ok();
     }
 
     // ~/breeze/EurekaDaten/SaveChanges

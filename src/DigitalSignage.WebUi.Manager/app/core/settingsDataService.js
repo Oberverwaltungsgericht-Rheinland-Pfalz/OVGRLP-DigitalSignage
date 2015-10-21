@@ -58,12 +58,13 @@
 
       display.Status = -1;
       display.Screenshot = "";
+      display.poweron = poweron;
       display.update = update;
       display.restart = restart;
       display.shutdown = shutdown;
 
       function update() {
-        $http.get(serviceName + '/Display/' + display.Id + '/Status')
+        $http.get(serviceName + '/Display/' + display.Id + '/status')
           .then(function (data) {
             display.Status = data.data;
           }, function (err) {
@@ -83,6 +84,10 @@
           $http.get(display.ControlUrl + '/api/restart');
         }
       };
+
+      function poweron() {
+        return $http.get(serviceName + '/Display/' + display.Id + '/poweron');
+      }
     }
 
   }

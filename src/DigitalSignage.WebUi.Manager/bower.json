@@ -12,7 +12,6 @@
     "angular-utils-ui-breadcrumbs": "~0.2.1",
     "breeze-client": "~1.5.4",
     "fontawesome": "~4.3.0",
-    "restangular": "~1.5.1",
     "ui-router": "~0.2.15"
   }
 }

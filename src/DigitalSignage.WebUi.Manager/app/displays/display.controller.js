@@ -30,12 +30,14 @@
     };
 
     function poweron() {
-      /*
-      if (vm.display && vm.display.controlUrl) {
-        vm.display.customGET('start').then(function (data) {
-        });
-      };
-      */
+      if (vm.display) {
+        vm.display.poweron()
+          .then(function (data) {
+            console.log(data);
+          }, function (err) {
+            console.log(err);
+          });
+      }
     };
 
     function restart() {

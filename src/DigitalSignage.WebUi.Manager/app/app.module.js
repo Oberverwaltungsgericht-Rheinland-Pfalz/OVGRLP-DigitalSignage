@@ -8,7 +8,6 @@
       'app.terms',
       'ngMaterial',
       'ui.router',
-      'restangular',
       'angularUtils.directives.uiBreadcrumbs',
       'angularGrid'
     ]);
