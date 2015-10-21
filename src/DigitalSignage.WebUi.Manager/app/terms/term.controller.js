@@ -5,22 +5,11 @@
     .module('app.terms')
     .controller('TermController', TermController);
 
-  TermController.$inject = ['$state', '$stateParams', '$mdToast', '$mdDialog', 'dataService'];
+  TermController.$inject = ['$state', '$stateParams', '$mdToast', '$mdDialog', 'termsDataService'];
 
-  function TermController($state, $stateParams, $mdToast, $mdDialog, dataService) {
+  function TermController($state, $stateParams, $mdToast, $mdDialog, termsDataService) {
     var vm = this;
 
-    //var baseTerm = Restangular.one('daten/verfahren', $stateParams.id);
-
-    vm.newRichter = newRichter;
-    vm.newAktivPartei = newAktivPartei;
-    vm.newProzBevAktiv = newProzBevAktiv;
-    vm.newPassivPartei = newPassivPartei;
-    vm.newProzBevPassiv = newProzBevPassiv;
-    vm.newBeigeladenPartei = newBeigeladenPartei;
-    vm.newProzBevBeigeladen = newProzBevBeigeladen;
-    vm.newSvPartei = newSvPartei;
-    vm.newZeugenPartei = newZeugenPartei;
     vm.reset = reset;
     vm.save = save;
     vm.delete = deleteTerm;
@@ -32,53 +21,17 @@
     };
 
     function loadTerm() {
-      dataService.getVerfahren($stateParams.id).then(function (term) {
+      termsDataService.getVerfahren($stateParams.id).then(function (term) {
         vm.term = term.results[0];
       });
     };
 
-    function newRichter() {
-      vm.term.Besetzung.push(dataService.createNewEntity('Besetzung'));
-    };
-
-    function newAktivPartei() {
-      vm.term.ParteienAktiv.push(dataService.createNewEntity('ParteienAktiv'));
-    };
-
-    function newProzBevAktiv() {
-      vm.term.prozBevAktiv.push('');
-    };
-
-    function newPassivPartei() {
-      vm.term.parteienPassiv.push('');
-    };
-
-    function newProzBevPassiv() {
-      vm.term.prozBevPassiv.push('');
-    };
-
-    function newBeigeladenPartei() {
-      vm.term.parteienBeigeladen.push('');
-    };
-
-    function newProzBevBeigeladen() {
-      vm.term.prozBevBeigeladen.push('');
-    };
-
-    function newSvPartei() {
-      vm.term.parteienSv.push('');
-    };
-
-    function newZeugenPartei() {
-      vm.term.parteienZeugen.push('');
-    };
-
     function reset() {
-      dataService.rejectChanges();
+      termsDataService.rejectChanges();
     };
 
     function save() {
-      dataService.saveChanges()
+      termsDataService.saveChanges()
         .catch(function (err) {
           $mdDialog.show(
             $mdDialog.alert()

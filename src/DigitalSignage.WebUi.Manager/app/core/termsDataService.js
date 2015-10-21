@@ -3,17 +3,18 @@
 
   angular
     .module('app.core')
-    .factory('dataService', dataService);
+    .factory('termsDataService', termsDataService);
 
-  dataService.$inject = ['$q', 'breeze'];
+  termsDataService.$inject = ['$q', 'breeze'];
 
-  function dataService($q, breeze) {
+  function termsDataService($q, breeze) {
     //breeze.NamingConvention.camelCase.setAsDefault();
 
     var serviceName = 'http://localhost:52208/breeze/EurekaDaten';
     var manager = new breeze.EntityManager(serviceName);
 
     var service = {
+      getVerfahrenList : getVerfahrenList,
       getVerfahren : getVerfahren,
       saveChanges : saveChanges,
       rejectChanges : rejectChanges,
@@ -23,6 +24,20 @@
     };
 
     return service;
+
+    function getVerfahrenList() {
+      var query = breeze.EntityQuery
+        .from('VerfahrenList');
+
+      var promise = manager.executeQuery(query)
+        .catch(function (err) {
+          console.log(err);
+        }).finally(function () {
+          service.metaDataFetched = true;
+        });
+
+      return promise;
+    }
 
     function getVerfahren(id) {
       var query = breeze.EntityQuery

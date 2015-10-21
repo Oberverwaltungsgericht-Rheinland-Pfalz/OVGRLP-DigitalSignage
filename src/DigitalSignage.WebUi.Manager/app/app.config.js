@@ -7,15 +7,15 @@
     .config(config);
 
   run.$inject = ['$rootScope', '$state', '$stateParams'];
-  config.$inject = ['$mdThemingProvider', '$mdIconProvider', '$stateProvider', '$urlRouterProvider', 'RestangularProvider'];
+  config.$inject = ['$mdThemingProvider', '$mdIconProvider', '$stateProvider', '$urlRouterProvider'];
 
   function run($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
   }
 
-  function config($mdThemingProvider, $mdIconProvider, $stateProvider, $urlRouterProvider, RestangularProvider) {
-    RestangularProvider.setBaseUrl('http://localhost:52208');
+  function config($mdThemingProvider, $mdIconProvider, $stateProvider, $urlRouterProvider) {
+    //RestangularProvider.setBaseUrl('http://localhost:52208');
 
     $mdThemingProvider.theme('default')
       .primaryPalette('brown')

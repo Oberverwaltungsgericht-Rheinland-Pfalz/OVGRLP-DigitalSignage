@@ -21,16 +21,16 @@
     
     return directive;
 
-    ProzbevController.$inject = ['dataService'];
+    ProzbevController.$inject = ['termsDataService'];
 
-    function ProzbevController(dataService) {
+    function ProzbevController(termsDataService) {
       var vm = this;
 
       vm.addNewItem = addNewItem;
       vm.deleteItem = deleteItem;
 
       function addNewItem() {
-        vm.items.push(dataService.createNewEntity(vm.entityName));
+        vm.items.push(termsDataService.createNewEntity(vm.entityName));
       }
 
       function deleteItem(item) {

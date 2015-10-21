@@ -5,11 +5,11 @@
     .module('app.displays')
     .controller('DisplayController', DisplayController);
 
-  DisplayController.$inject = ['$stateParams', '$http', 'Restangular'];
+  DisplayController.$inject = ['$stateParams', '$http', 'settingsDataService'];
 
-  function DisplayController($stateParams, $http, Restangular) {
+  function DisplayController($stateParams, $http, settingsDataService) {
     var vm = this;
-    var baseDisplay = Restangular.one('settings/displays', $stateParams.id);
+    //var baseDisplay = Restangular.one('settings/displays', $stateParams.id);
 
     vm.display = [];
     vm.loading = false;
@@ -22,53 +22,39 @@
     activate();
 
     function activate() {
-      baseDisplay.get().then(function (display) {
-        vm.display = display;
-        update();
-      });
-    }
+      settingsDataService.getDisplay($stateParams.id)
+        .then(function (data) {
+          vm.display = data.results[0];
+          vm.display.update();
+        });
+    };
 
     function poweron() {
-      if (vm.display && vm.display.controlUrl) {
-        vm.display.customGET('start').then(function (data) {
-        });
-      };
+      if (vm.display) {
+        vm.display.poweron()
+          .then(function (data) {
+            console.log(data);
+          }, function (err) {
+            console.log(err);
+          });
+      }
     };
 
     function restart() {
-      if (vm.display && vm.display.controlUrl) {
-        $http.get(vm.display.controlUrl + '/api/restart');
-      };
+      if (vm.display) {
+        vm.display.restart();
+      }
     };
 
     function shutdown() {
-      if (vm.display && vm.display.controlUrl) {
-        $http.get(vm.display.controlUrl + '/api/shutdown');
-      };
+      if (vm.display) {
+        vm.display.shutdown();
+      }
     };
 
     function refresh() {
-      update();
-    };
-
-    function update() {
-      if (vm.display && vm.display.controlUrl) {
-        vm.loading = true;
-
-        vm.display.status = -1;
-        vm.display.customGET('status').then(function (data) {
-          vm.display.status = data.result;
-
-          if (vm.display.status < 1) {
-            vm.screenshot = 'assets/img/offline-display.png';
-          } else {
-            vm.screenshot = vm.display.controlUrl + '/api/screenshot?dt=' + new Date().getTime();
-          };
-
-          vm.loading = false;
-        }, function (error) {
-          vm.loading = false;
-        });
+      if (vm.display) {
+        vm.display.update();
       };
     };
   }

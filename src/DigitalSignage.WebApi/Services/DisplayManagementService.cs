@@ -13,7 +13,7 @@ namespace DigitalSignage.WebApi.Services
 {
   public class DisplayManagementService
   {
-    public async Task<DisplayStatus> GetDisplayStatus(Display display, int timeout = 500)
+    public DisplayStatus GetDisplayStatus(Display display, int timeout = 500)
     {
       DisplayStatus status = DisplayStatus.Unknown;
 
