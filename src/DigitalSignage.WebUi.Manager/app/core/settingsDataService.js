@@ -5,7 +5,7 @@
     .module('app.core')
     .factory('settingsDataService', settingsDataService);
 
-  settingsDataService.$inject = ['$q', '$http','breeze'];
+  settingsDataService.$inject = ['$q', '$http', 'breeze'];
 
   function settingsDataService($q, $http, breeze) {
     //breeze.NamingConvention.camelCase.setAsDefault();
@@ -18,7 +18,8 @@
 
     var service = {
       getDisplayList: getDisplayList,
-      metaDataFetched : false
+      getDisplay: getDisplay,
+      metaDataFetched: false
     };
 
     return service;
@@ -37,11 +38,29 @@
       return promise;
     }
 
+    function getDisplay(id) {
+      var query = breeze.EntityQuery
+        .from('Displays')
+        .where('Id', '==', id);
+
+      var promise = manager.executeQuery(query)
+        .catch(function (err) {
+          console.log(err);
+        }).finally(function () {
+          service.metaDataFetched = true;
+        });
+
+      return promise;
+    }
+
     function Display() {
       var display = this;
 
       display.Status = -1;
+      display.Screenshot = "";
       display.update = update;
+      display.restart = restart;
+      display.shutdown = shutdown;
 
       function update() {
         $http.get(serviceName + '/Display/' + display.Id + '/Status')
@@ -49,7 +68,20 @@
             display.Status = data.data;
           }, function (err) {
             display.Status = -1;
-          })
+          });
+        display.Screenshot = display.ControlUrl + '/api/screenshot?dt=' + new Date().getTime();
+      };
+
+      function shutdown() {
+        if (display.ControlUrl) {
+          $http.get(display.ControlUrl + '/api/shutdown');
+        }
+      };
+
+      function restart() {
+        if (display.ControlUrl) {
+          $http.get(display.ControlUrl + '/api/restart');
+        }
       };
     }
 
