@@ -40,8 +40,8 @@
         controller: 'DisplaysController',
         controllerAs: 'vm'
       })
-      .state('displays.details', {
-        url: '/:id',
+      .state('display', {
+        url: '/displays/:id',
         templateUrl: 'app/displays/display.html',
         controller: 'DisplayController',
         controllerAs: 'vm'
