@@ -4,7 +4,7 @@
   angular
     .module('ds-infoscreen', [
       'ngMaterial',
-      'restangular'
+      'breeze.angular'
   ]);
 
 })();

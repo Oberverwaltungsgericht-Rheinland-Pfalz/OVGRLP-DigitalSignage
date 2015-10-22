@@ -5,9 +5,8 @@
     .module('ds-infoscreen')
     .config(config);
 
-  config.$inject = ['RestangularProvider'];
+  config.$inject = [];
 
-  function config(RestangularProvider) {
-    RestangularProvider.setBaseUrl('http://localhost:52208');
+  function config() {
   }
 })();
