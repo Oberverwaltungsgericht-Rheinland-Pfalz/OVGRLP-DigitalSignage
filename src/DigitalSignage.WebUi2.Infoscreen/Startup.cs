@@ -6,7 +6,7 @@ using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
 using Microsoft.Framework.DependencyInjection;
 
-namespace DigitalSignage.WebUi2.Manager
+namespace DigitalSignage.WebUi2.Infoscreen
 {
   public class Startup
   {
@@ -18,7 +18,7 @@ namespace DigitalSignage.WebUi2.Manager
     public void Configure(IApplicationBuilder app)
     {
       app.UseDefaultFiles();
-      app.UseFileServer();
+      app.UseStaticFiles();
     }
   }
 }
