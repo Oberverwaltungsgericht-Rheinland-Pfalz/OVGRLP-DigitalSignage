@@ -1,0 +1,33 @@
+{
+  "name": "DigitalSignage.WebUi2.Infoscreen",
+  "private": true,
+  "dependencies": {
+    "angular": "*",
+    "angular-animate": "*",
+    "angular-aria": "*",
+    "angular-material": "*",
+    "restangular": "*",
+    "lodash": "*"
+  },
+  "exportsOverride": {
+    "angular": {
+      "js": "angular.min.{js, js.*}"
+    },
+    "angular-animate": {
+      "js": "angular-animate.min.{js, js.*}"
+    },
+    "angular-aria": {
+      "js": "angular-aria.min.{js, js.*}"
+    },
+    "angular-material": {
+      "js": "angular-material.min.js",
+      "css": "angular-material.min.css"
+    },
+    "lodash": {
+      "js": "lodash.min.*"
+    },
+    "restangular": {
+      "js":  "dist/restangular.min.js"
+    }
+  }
+}

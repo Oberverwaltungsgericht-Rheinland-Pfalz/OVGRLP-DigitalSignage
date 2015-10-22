@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="ds-infoscreen" ng-controller="InfoscreenController as vm">
+<head>
+  <!-- Title -->
+  <title>{{vm.title}}</title>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, hight=device-height, initial-scale=1">
+
+  <!-- Component Styles -->
+  <link href="lib/angular-material/css/angular-material.min.css" rel="stylesheet" /><!-- Angular Material -->
+  <!-- Components Scripts -->
+  <script src="lib/angular/js/angular.min.js"></script><!-- Angular.JS -->
+  <script src="lib/angular-animate/js/angular-animate.min.js"></script><!-- Angular Animate -->
+  <script src="lib/angular-aria/js/angular-aria.min.js"></script><!-- Angular Aria -->
+  <script src="lib/angular-material/js/angular-material.min.js"></script><!-- Angular Material -->
+  <script src="lib/lodash/js/lodash.min.js"></script><!-- Lodash -->
+  <script src="lib/restangular/js/restangular.min.js"></script><!-- Restangular -->
+  <!-- App Scripts -->
+  <script src="app/ds-infoscreen.min.js"></script><!-- app -->
+</head>
+<body>
+  <md-toolbar>
+    <h1 class="md-toolbar-tools">
+      {{vm.title}}
+    </h1>
+  </md-toolbar>
+
+  <md-content layout="row" layout-margin layout-padding>
+
+    <div flex="25">
+      <div>
+        <h3>Gericht</h3>
+        <md-checkbox ng-repeat="filter in vm.filters.gericht" ng-model="filter.active">{{filter.title}}</md-checkbox>
+        <md-divider></md-divider>
+      </div>
+      <div>
+        <h3>Status</h3>
+        <md-checkbox ng-repeat="filter in vm.filters.status" ng-model="filter.active">{{filter.title}}</md-checkbox>
+      </div>
+    </div>
+
+    <div flex class="md-whiteframe-z1" layout-fill>
+      <md-list>
+        <md-item ng-repeat="term in vm.terms | multifilter:vm.filters.gericht | multifilter:vm.filters.status | orderBy:'uhrzeitAktuell':reverse">
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>{{term.uhrzeitAktuell}} - {{term.az}}</h3>
+              <h4>{{term.gericht}} - {{term.sitzungssaal}}</h4>
+              <p>
+                {{term.parteienAktivKurz}} ./. {{term.parteienPassivKurz}}
+              </p>
+            </div>
+          </md-item-content>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-item>
+      </md-list>
+    </div>
+
+  </md-content>
+</body>
+</html>
