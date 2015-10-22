@@ -6,8 +6,8 @@
     "angular-animate": "*",
     "angular-aria": "*",
     "angular-material": "*",
-    "restangular": "*",
-    "lodash": "*"
+    "lodash": "*",
+    "breeze-client": "*"
   },
   "exportsOverride": {
     "angular": {
@@ -23,11 +23,12 @@
       "js": "angular-material.min.js",
       "css": "angular-material.min.css"
     },
+    "breeze-client": {
+      "js": "build/{breeze.min.js,adapters/breeze.bridge.angular.js}"
+    },
     "lodash": {
       "js": "lodash.min.*"
-    },
-    "restangular": {
-      "js":  "dist/restangular.min.js"
     }
+
   }
 }

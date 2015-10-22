@@ -17,7 +17,9 @@
   <script src="lib/angular-aria/js/angular-aria.min.js"></script><!-- Angular Aria -->
   <script src="lib/angular-material/js/angular-material.min.js"></script><!-- Angular Material -->
   <script src="lib/lodash/js/lodash.min.js"></script><!-- Lodash -->
-  <script src="lib/restangular/js/restangular.min.js"></script><!-- Restangular -->
+  <script src="lib/breeze-client/js/breeze.min.js"></script><!-- breeze -->
+  <script src="lib/breeze-client/js/breeze.bridge.angular.js"></script><!-- breeze angular -->
+
   <!-- App Scripts -->
   <script src="app/ds-infoscreen.min.js"></script><!-- app -->
 </head>
@@ -47,11 +49,20 @@
         <md-item ng-repeat="term in vm.terms | multifilter:vm.filters.gericht | multifilter:vm.filters.status | orderBy:'uhrzeitAktuell':reverse">
           <md-item-content>
             <div class="md-tile-content">
-              <h3>{{term.uhrzeitAktuell}} - {{term.az}}</h3>
-              <h4>{{term.gericht}} - {{term.sitzungssaal}}</h4>
-              <p>
-                {{term.parteienAktivKurz}} ./. {{term.parteienPassivKurz}}
-              </p>
+              <h3>{{term.UhrzeitAktuell}} Uhr - {{term.Az}}</h3>
+              <h4>{{term.Gericht}} - {{term.Sitzungssaal}}</h4>
+              <div layout="row">
+                <div flex>
+                  <p ng-repeat="item in term.ParteienAktiv">
+                    {{item.Partei}}
+                  </p>
+                </div>
+                <div flex>
+                  <p ng-repeat="item in term.ParteienPassiv">
+                    {{item.Partei}}
+                  </p>
+                </div>
+              </div>
             </div>
           </md-item-content>
           <md-divider ng-if="!$last"></md-divider>

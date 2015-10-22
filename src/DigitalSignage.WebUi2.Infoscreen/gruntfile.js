@@ -1,4 +1,5 @@
-﻿module.exports = function (grunt) {
+/// <binding BeforeBuild='build' />
+module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
@@ -16,7 +17,7 @@
         options: {
           targetDir: "wwwroot/lib",
           layout: "byComponent",
-          cleanTargetDir: false
+          cleanTargetDir: true
         }
       }
     },
@@ -51,4 +52,5 @@
   });
 
   grunt.registerTask('default', ['bower:install', 'less:dev', 'uglify', 'watch']);
+  grunt.registerTask('build', ['bower:install', 'less:dev', 'uglify']);
 };

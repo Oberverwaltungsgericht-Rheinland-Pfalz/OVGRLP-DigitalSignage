@@ -5,35 +5,16 @@
     .module('ds-infoscreen')
     .controller('InfoscreenController', InfoscreenController);
 
-  InfoscreenController.$inject = ['Restangular'];
+  InfoscreenController.$inject = ['termsDataService'];
 
-  function InfoscreenController(Restangular) {
+  function InfoscreenController(termsDataService) {
     var vm = this;
-
-    var verfahrenService = Restangular.service('daten/verfahren');
 
     vm.title = 'Digital Signage - Infoscreen';
     vm.terms = [];
     vm.filters = [];
-    vm.filters.gericht = [
-      {
-        active: false,
-        title: 'Oberverwaltungsgericht Rheinland-Pfalz',
-        expression: { gericht: 'Oberverwaltungsgericht Rheinland-Pfalz' }
-      }, {
-        active: false,
-        title: 'Verwaltungsgericht Koblenz',
-        expression: { gericht: 'Verwaltungsgericht Koblenz' }
-      }, {
-        active: false,
-        title: 'Sozialgericht Koblenz',
-        expression: { gericht: 'Sozialgericht Koblenz' }
-      }, {
-        active: false,
-        title: 'Arbeitsgericht Koblenz',
-        expression: { gericht: 'Arbeitsgericht Koblenz' }
-      }
-    ];
+    vm.filters.gericht = [];
+
     vm.filters.status = [
       {
         active: false,
@@ -60,11 +41,28 @@
 
     function activate() {
       updateData();
-    }
+    };
 
     function updateData() {
-      verfahrenService.getList().then(function (data) {
-        vm.terms = data;
+      termsDataService.getVerfahrenList().then(function (data) {
+        vm.terms = data.results;
+        loadGerichteFilters();
+      });
+    };
+
+    function loadGerichteFilters() {
+      var gerichte = [];
+
+      vm.terms.forEach(function (term) {
+        gerichte.push(term.Gericht);
+      });
+
+      _.uniq(gerichte).forEach(function (data) {
+        vm.filters.gericht.push({
+          active: false,
+          title: data,
+          expression: { Gericht: data }
+        });
       });
     };
   }
