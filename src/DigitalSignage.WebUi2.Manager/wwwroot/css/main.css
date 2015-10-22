@@ -1,0 +1,71 @@
+html,
+body {
+  font-size: 14px;
+  font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.ds-fill-parent {
+  width: 100%;
+  height: 100%;
+}
+.ds-full-width {
+  width: 100%;
+}
+.ds-display-screenshot {
+  width: 100%;
+}
+a {
+  cursor: pointer;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0px;
+  line-height: 1.2em;
+}
+h1 {
+  font-size: 2.3em;
+  margin-bottom: 10px;
+}
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 8px;
+}
+h3 {
+  font-size: 1.4em;
+  margin-bottom: 5px;
+}
+h4 {
+  font-size: 1.2em;
+}
+h5 {
+  font-size: 1.0em;
+  font-weight: bold;
+}
+table.terms {
+  table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
+}
+table.terms td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+table.terms td div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ds-displays {
+  height: 100%;
+}
+.ds-terms {
+  height: 100%;
+}
+.md-button.md-fab.ds-xxmini {
+  line-height: 28px;
+  width: 28px;
+  height: 28px;
+  min-height: 28px;
+}

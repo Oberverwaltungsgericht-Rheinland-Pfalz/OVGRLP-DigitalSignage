@@ -1,0 +1,38 @@
+{
+  "name": "DigitalSignage.WebUi2.Manager",
+  "private": true,
+  "dependencies": {
+    "ag-grid": "*",
+    "angular": "*",
+    "angular-animate": "*",
+    "angular-aria": "*",
+    "angular-material": "*",
+    "breeze-client": "*",
+    "ui-router": "*"
+  },
+  "exportsOverride": {
+    "ag-grid": {
+      "js": "dist/ag-grid.min.js",
+      "css": "dist/*.min.css"
+    },
+    "angular": {
+      "js": "angular.min.{js, js.*}"
+    },
+    "angular-animate": {
+      "js": "angular-animate.min.{js, js.*}"
+    },
+    "angular-aria": {
+      "js": "angular-aria.min.{js, js.*}"
+    },
+    "angular-material": {
+      "js": "angular-material.min.js",
+      "css": "angular-material.min.css"
+    },
+    "breeze-client": {
+      "js": "build/{breeze.min.js,adapters/breeze.bridge.angular.js}"
+    },
+    "ui-router": {
+      "js": "release/angular-ui-router.min.js"
+    }
+  }
+}

@@ -26,7 +26,7 @@ namespace DigitalSignage.WebApi.Services
         else
           status = DisplayStatus.Offline;
       }
-      catch (PingException ex)
+      catch (PingException)
       {
         status = DisplayStatus.Offline;
       }
