@@ -1,6 +1,16 @@
 ﻿module.exports = function (grunt) {
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-ts');
 
   grunt.initConfig({
+    ts: {
+      default: {
+        src: ['Scripts/**/*.ts']
+      }
+    },
     bower: {
       install: {
         options: {
@@ -41,9 +51,4 @@
   });
 
   grunt.registerTask('default', ['bower:install', 'less:dev', 'uglify', 'watch']);
-
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-bower-task');
 };
