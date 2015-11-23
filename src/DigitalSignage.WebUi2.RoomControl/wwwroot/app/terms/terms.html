@@ -1,0 +1,54 @@
+﻿<div layout="column" class="ds-fill-parent">
+    <!-- Toolbar -->
+    <md-toolbar layout="row" class="md-whiteframe-z2 md-hue-1">
+        <md-button ng-click="vm.save()">
+            <md-icon aria-label="Save" md-svg-icon="save"></md-icon> Speichern
+        </md-button>
+        <span flex></span>
+        <h2 layout-align-gt-sm="center" class="md-toolbar-tools">
+            Termine
+        </h2>
+    </md-toolbar>
+    <!-- Termine -->
+    <md-content class="ds-termine-content">
+        <div ng-show="vm.loading" style="height:50px;padding:25px;">
+            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        </div>
+        <div ng-hide="vm.loading || vm.termine.length > 0" style="text-align:center">
+            <h3>Zurzeit keine Verhandlungstermine</h3>
+        </div>
+        <div ng-hide="loading">
+            <div class="md-whiteframe-z1 ds-termin-box" layout="row" layout-align="start start" ng-repeat="termin in vm.termine">
+                <div flex="15" class="md-padding">
+                    <h3>{{termin.az}}</h3>
+                    <p>{{termin.art}}</p>
+                    <p>{{termin.uhrzeitPlan}} Uhr</p>
+                </div>
+                <div flex="25" class="md-padding">
+                    <h3>Aktivpartei(en):</h3>
+                    <p ng-repeat="partei in termin.parteienAktiv">{{partei}}</p>
+                </div>
+                <div flex="25" class="md-padding">
+                    <h3>Passivpartei(en):</h3>
+                    <p ng-repeat="partei in termin.parteienPassiv">{{partei}}</p>
+                </div>
+                <div flex="15" class="md-padding">
+                    <h3>Status:</h3>
+                    <md-select placeholder="Status" ng-model="termin.status">
+                        <md-select-label style="width:100%">{{ termin.status }}</md-select-label>
+                        <md-option value=""></md-option>
+                        <md-option value="Läuft">Läuft</md-option>
+                        <md-option value="Abgeschlossen">Abgeschlossen</md-option>
+                        <md-option value="Verschoben">Verschoben</md-option>
+                        <md-option value="Unterbrochen">Unterbrochen</md-option>
+                        <md-option value="Aufgehoben">Aufgehoben</md-option>
+                    </md-select>
+                </div>
+                <div flex class="md-padding">
+                    <h3>{{termin.oeffentlich == 'ja' ? 'öffentlich' : 'nicht öffentlich'}}</h3>
+                    <md-switch class="ds-public-notpublic" ng-model="termin.oeffentlich" ng-true-value="'ja'" ng-false-value="'nein'"></md-switch>
+                </div>
+            </div>
+        </div>
+    </md-content>
+</div>

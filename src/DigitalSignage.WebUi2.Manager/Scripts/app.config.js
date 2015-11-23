@@ -15,8 +15,6 @@
   }
 
   function config($mdThemingProvider, $mdIconProvider, $stateProvider, $urlRouterProvider) {
-    //RestangularProvider.setBaseUrl('http://localhost:52208');
-
     $mdThemingProvider.theme('default')
       .primaryPalette('brown')
       .accentPalette('red');

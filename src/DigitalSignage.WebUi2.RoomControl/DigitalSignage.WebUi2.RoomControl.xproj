@@ -6,14 +6,14 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>600f89e8-b0d3-4c3a-9836-30f70d12db88</ProjectGuid>
-    <RootNamespace>DigitalSignage.WebUi2.Manager</RootNamespace>
+    <ProjectGuid>782fbf40-7efe-463c-93f4-6077d86d62d3</ProjectGuid>
+    <RootNamespace>DigitalSignage.WebUi2.RoomControl</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">..\artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">..\artifacts\bin\$(MSBuildProjectName)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
-    <DevelopmentServerPort>51445</DevelopmentServerPort>
+    <DevelopmentServerPort>63348</DevelopmentServerPort>
   </PropertyGroup>
   <ItemGroup>
     <DnxInvisibleFolder Include="bower_components\" />
