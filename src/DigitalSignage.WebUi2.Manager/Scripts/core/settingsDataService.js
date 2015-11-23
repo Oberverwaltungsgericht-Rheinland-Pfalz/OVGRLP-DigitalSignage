@@ -8,8 +8,6 @@
   settingsDataService.$inject = ['$q', '$http', 'breeze'];
 
   function settingsDataService($q, $http, breeze) {
-    //breeze.NamingConvention.camelCase.setAsDefault();
-
     var serviceName = 'http://localhost:52208/breeze/EurekaDaten';
     var manager = new breeze.EntityManager(serviceName);
     var store = manager.metadataStore;

@@ -1,0 +1,43 @@
+html,
+body {
+  height: 100%;
+}
+.ds-fill-parent {
+  width: 100%;
+  height: 100%;
+}
+.ds-menu-button {
+  margin-top: 6px;
+  margin-right: 0;
+}
+.ds-filters {
+  height: 100%;
+  margin: 10px;
+}
+.ds-rooms .md-button {
+  text-transform: none;
+}
+.content-wrapper {
+  position: relative;
+}
+.ds-menu-list .md-button {
+  color: inherit;
+  text-align: left;
+  width: 100%;
+}
+.ds-termin-box {
+  margin: 10px;
+  background-color: rgba(179, 179, 179, 0.4);
+}
+md-switch.md-checked.ds-public-notpublic .md-thumb {
+  background-color: #22cc00;
+}
+md-switch.md-checked.ds-public-notpublic .md-bar {
+  background-color: rgba(45, 143, 0, 0.5);
+}
+md-switch.ds-public-notpublic .md-bar {
+  background-color: #dd8384;
+}
+md-switch.ds-public-notpublic .md-thumb {
+  background-color: #e25052;
+}
