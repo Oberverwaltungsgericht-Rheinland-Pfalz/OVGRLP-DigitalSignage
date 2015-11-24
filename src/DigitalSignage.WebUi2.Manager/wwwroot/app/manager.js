@@ -516,14 +516,15 @@
     .module('app.terms')
     .controller('TermController', TermController);
 
-  TermController.$inject = ['$state', '$stateParams', '$mdToast', '$mdDialog', 'termsDataService'];
+  TermController.$inject = ['$state', '$stateParams', '$mdToast', '$mdDialog', 'termsDataService', 'appConfig'];
 
-  function TermController($state, $stateParams, $mdToast, $mdDialog, termsDataService) {
+  function TermController($state, $stateParams, $mdToast, $mdDialog, termsDataService, appConfig) {
     var vm = this;
 
     vm.reset = reset;
     vm.save = save;
     vm.delete = deleteTerm;
+    vm.appConfig = appConfig;
 
     activate();
 
