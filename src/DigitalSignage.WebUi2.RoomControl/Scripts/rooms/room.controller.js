@@ -5,14 +5,15 @@
     .module('app')
     .controller('RoomController', RoomController);
 
-  RoomController.$inject = ['$stateParams', '$mdSidenav', 'Restangular'];
+  RoomController.$inject = ['$stateParams', '$mdSidenav', 'Restangular', 'appConfig'];
 
-  function RoomController($stateParams, $mdSidenav, Restangular) {
+  function RoomController($stateParams, $mdSidenav, Restangular, appConfig) {
     var vm = this;
     var DisplaySrv = Restangular.service('settings/displays');
 
     vm.display = [];
     vm.openNavbar = openNavbar;
+    vm.appConfig = appConfig;
 
     activate();
 

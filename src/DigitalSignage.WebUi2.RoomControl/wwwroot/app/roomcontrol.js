@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.RoomControl - v2.1.0 - 23.11.2015 */
+/*! DigitalSignage.WebUi2.RoomControl - v2.1.0 - 24.11.2015 */
 (function () {
   'use strict';
 
@@ -7,7 +7,28 @@
       'ngMaterial',
       'ui.router',
       'restangular'
-    ]);
+    ])
+    .config(config);
+
+  config.$inject = ['$mdThemingProvider', '$mdIconProvider', 'RestangularProvider', 'appConfig']
+
+  function config($mdThemingProvider, $mdIconProvider, RestangularProvider, appConfig) {
+    RestangularProvider.setBaseUrl(appConfig.apiUrl);
+
+    $mdThemingProvider.theme('default')
+      .primaryPalette('indigo')
+      .accentPalette('red');
+
+    $mdIconProvider
+      .icon('menu', 'icons/ic_menu_black_48px.svg')
+      .icon('home', 'icons/ic_home_black_48px.svg')
+      .icon('save', 'icons/ic_save_black_48px.svg')
+      .icon('terms', 'icons/ic_event_note_black_48px.svg')
+      .icon('display', 'icons/ic_dvr_black_48px.svg')
+      .icon('power', 'icons/ic_power_settings_new_black_48px.svg')
+      .icon('restart', 'icons/ic_replay_black_48px.svg')
+      .icon('refresh', 'icons/ic_refresh_black_48px.svg');
+  }
 })();
 (function () {
   'use strict';
@@ -128,14 +149,15 @@
     .module('app')
     .controller('RoomController', RoomController);
 
-  RoomController.$inject = ['$stateParams', '$mdSidenav', 'Restangular'];
+  RoomController.$inject = ['$stateParams', '$mdSidenav', 'Restangular', 'appConfig'];
 
-  function RoomController($stateParams, $mdSidenav, Restangular) {
+  function RoomController($stateParams, $mdSidenav, Restangular, appConfig) {
     var vm = this;
     var DisplaySrv = Restangular.service('settings/displays');
 
     vm.display = [];
     vm.openNavbar = openNavbar;
+    vm.appConfig = appConfig;
 
     activate();
 

@@ -13,7 +13,7 @@
     <!-- Navigation -->
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="navbar" md-is-locked-open="$mdMedia('gt-md')">
       <md-list class="ds-menu-list">
-        <md-item>
+        <md-item ng-show="vm.appConfig.showHome">
           <md-item-content>
             <md-button ui-sref="rooms">
               <md-icon md-svg-icon="home"></md-icon> Home
