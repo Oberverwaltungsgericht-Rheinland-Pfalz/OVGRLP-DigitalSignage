@@ -14,14 +14,12 @@
         title: '@',
         entityName: '@'
       },
-      controller: RichterController,
+      controller: ['termsDataService', RichterController],
       controllerAs: 'vm',
       bindToController: true
     };
     
     return directive;
-
-    RichterController.$inject = ['termsDataService'];
 
     function RichterController(termsDataService) {
       var vm = this;

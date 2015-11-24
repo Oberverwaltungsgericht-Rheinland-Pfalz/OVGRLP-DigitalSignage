@@ -402,14 +402,12 @@
         title: '@',
         entityName: '@'
       },
-      controller: ParteienController,
+      controller: ['termsDataService', ParteienController],
       controllerAs: 'vm',
       bindToController: true
     };
     
     return directive;
-
-    ParteienController.$inject = ['termsDataService'];
 
     function ParteienController(termsDataService) {
       var vm = this;
@@ -445,14 +443,12 @@
         title: '@',
         entityName: '@'
       },
-      controller: ProzbevController,
+      controller: ['termsDataService', ProzbevController],
       controllerAs: 'vm',
       bindToController: true
     };
     
     return directive;
-
-    ProzbevController.$inject = ['termsDataService'];
 
     function ProzbevController(termsDataService) {
       var vm = this;
@@ -488,14 +484,12 @@
         title: '@',
         entityName: '@'
       },
-      controller: RichterController,
+      controller: ['termsDataService', RichterController],
       controllerAs: 'vm',
       bindToController: true
     };
     
     return directive;
-
-    RichterController.$inject = ['termsDataService'];
 
     function RichterController(termsDataService) {
       var vm = this;

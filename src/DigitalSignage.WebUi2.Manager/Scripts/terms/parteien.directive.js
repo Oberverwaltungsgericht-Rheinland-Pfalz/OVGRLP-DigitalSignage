@@ -14,14 +14,12 @@
         title: '@',
         entityName: '@'
       },
-      controller: ParteienController,
+      controller: ['termsDataService', ParteienController],
       controllerAs: 'vm',
       bindToController: true
     };
     
     return directive;
-
-    ParteienController.$inject = ['termsDataService'];
 
     function ParteienController(termsDataService) {
       var vm = this;
