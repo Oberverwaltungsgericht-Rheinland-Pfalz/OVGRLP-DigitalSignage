@@ -25,21 +25,19 @@
       rowData: null,
       groupKeys: ['Group'],
       groupUseEntireRow: true,
-      ready: function (api) {
-        api.sizeColumnsToFit();
+      onReady: function (params) {
+        params.api.sizeColumnsToFit();
       }
     };
 
     activate();
 
     function activate() {
-      settingsDataService.getDisplayList().then(function(data) {
-        vm.gridOptions.rowData = data.results;
+      settingsDataService.getDisplayList().then(function (data) {
+        vm.gridOptions.api.setRowData(data.results);
         vm.gridOptions.rowData.forEach(function (display) {
           display.update();
         });
-        vm.gridOptions.api.onNewRows();
-        vm.gridOptions.api.expandAll();
       });
     }
 
@@ -57,13 +55,13 @@
 
     function getStateImg(id) {
       if (id == -1) {
-        return "assets/img/display-undefined-icon.png";
+        return "img/display-undefined-icon.png";
       } else if (id == 0) {
-        return "assets/img/display-offline-icon.png";
+        return "img/display-offline-icon.png";
       } else if (id == 1) {
-        return "assets/img/display-online-icon.png";
+        return "img/display-online-icon.png";
       } else {
-        return "assets/img/display-unknown-icon.png";
+        return "img/display-unknown-icon.png";
       }
     };
   }
