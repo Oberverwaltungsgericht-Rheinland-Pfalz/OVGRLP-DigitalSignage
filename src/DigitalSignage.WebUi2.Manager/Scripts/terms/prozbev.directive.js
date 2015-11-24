@@ -14,14 +14,12 @@
         title: '@',
         entityName: '@'
       },
-      controller: ProzbevController,
+      controller: ['termsDataService', ProzbevController],
       controllerAs: 'vm',
       bindToController: true
     };
     
     return directive;
-
-    ProzbevController.$inject = ['termsDataService'];
 
     function ProzbevController(termsDataService) {
       var vm = this;
