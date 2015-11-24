@@ -5,11 +5,10 @@
     .module('app.displays')
     .controller('DisplayController', DisplayController);
 
-  DisplayController.$inject = ['$stateParams', '$http', 'settingsDataService'];
+  DisplayController.$inject = ['$stateParams', '$http', 'settingsDataService', 'appConfig'];
 
-  function DisplayController($stateParams, $http, settingsDataService) {
+  function DisplayController($stateParams, $http, settingsDataService, appConfig) {
     var vm = this;
-    //var baseDisplay = Restangular.one('settings/displays', $stateParams.id);
 
     vm.display = [];
     vm.loading = false;
@@ -18,6 +17,7 @@
     vm.restart = restart;
     vm.shutdown = shutdown;
     vm.refresh = refresh;
+    vm.appConfig = appConfig;
 
     activate();
 

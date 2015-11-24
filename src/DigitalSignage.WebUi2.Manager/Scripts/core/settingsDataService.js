@@ -5,10 +5,10 @@
     .module('app.core')
     .factory('settingsDataService', settingsDataService);
 
-  settingsDataService.$inject = ['$q', '$http', 'breeze'];
+  settingsDataService.$inject = ['$q', '$http', 'breeze', 'appConfig'];
 
-  function settingsDataService($q, $http, breeze) {
-    var serviceName = 'http://localhost:52208/breeze/EurekaDaten';
+  function settingsDataService($q, $http, breeze, appConfig) {
+    var serviceName = appConfig.apiUrl + '/breeze/EurekaDaten';
     var manager = new breeze.EntityManager(serviceName);
     var store = manager.metadataStore;
 
