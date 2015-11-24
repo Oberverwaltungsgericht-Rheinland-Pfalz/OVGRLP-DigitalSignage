@@ -345,21 +345,19 @@
       rowData: null,
       groupKeys: ['Group'],
       groupUseEntireRow: true,
-      ready: function (api) {
-        api.sizeColumnsToFit();
+      onReady: function (params) {
+        params.api.sizeColumnsToFit();
       }
     };
 
     activate();
 
     function activate() {
-      settingsDataService.getDisplayList().then(function(data) {
-        vm.gridOptions.rowData = data.results;
+      settingsDataService.getDisplayList().then(function (data) {
+        vm.gridOptions.api.setRowData(data.results);
         vm.gridOptions.rowData.forEach(function (display) {
           display.update();
         });
-        vm.gridOptions.api.onNewRows();
-        vm.gridOptions.api.expandAll();
       });
     }
 
@@ -377,13 +375,13 @@
 
     function getStateImg(id) {
       if (id == -1) {
-        return "assets/img/display-undefined-icon.png";
+        return "img/display-undefined-icon.png";
       } else if (id == 0) {
-        return "assets/img/display-offline-icon.png";
+        return "img/display-offline-icon.png";
       } else if (id == 1) {
-        return "assets/img/display-online-icon.png";
+        return "img/display-online-icon.png";
       } else {
-        return "assets/img/display-unknown-icon.png";
+        return "img/display-unknown-icon.png";
       }
     };
   }
@@ -616,12 +614,11 @@
     var columnDefs = [
       { headerName: 'Plan', headerGroup: 'Uhrzeit', width: 80, suppressSizeToFit: true, field: 'UhrzeitPlan' },
       { headerName: 'Aktuell', headerGroup: 'Uhrzeit', width: 80, suppressSizeToFit: true, field: 'UhrzeitAktuell' },
-      { headerName: 'Aktenzeichen', width: 150, suppressSizeToFit: true, field: 'Az' },
+      { headerName: 'Aktenzeichen', width: 150, suppressSizeToFit: true, template: '<a ui-sref="term({id:data.VerfahrensId})">{{data.Az}}</a>' },
       { headerName: 'Status', width: 150, suppressSizeToFit: true, field: 'Status' },
       { headerName: 'Aktiv', headerGroup: 'Parteien', suppressSorting: true, suppressMenu: true, template: '<span ng-repeat="item in data.ParteienAktiv">{{item.Partei}}<span ng-hide="$last">; </span></span>' },
       { headerName: 'Passiv', headerGroup: 'Parteien', suppressSorting: true, suppressMenu: true, template: '<span ng-repeat="item in data.ParteienPassiv">{{item.Partei}}<span ng-hide="$last">; </span></span>' },
-      { headerName: 'Datum', width: 100, suppressSizeToFit: true, field: 'Datum' },
-      { headerName: '', width: 100, suppressSizeToFit: true, suppressSorting: true, suppressMenu: true, template: '<a ui-sref="term({id:data.VerfahrensId})">Bearbeiten</a>' }
+      { headerName: 'Datum', width: 100, field: 'Datum' }
     ];
 
     vm.gridOptions = {
@@ -633,9 +630,10 @@
       groupHeaders: true,
       groupKeys: ['Gericht', 'Sitzungssaal'],
       groupUseEntireRow: true,
-      ready: function (api) {
-        api.sizeColumnsToFit();
-        api.setSortModel(defaultSort);
+      groupDefaultExpanded: 1,
+      onReady: function (params) {
+        params.api.sizeColumnsToFit();
+        params.api.setSortModel(defaultSort);
       }
     };
 
@@ -643,9 +641,7 @@
 
     function activate() {
       termsDataService.getVerfahrenList().then(function (data) {
-        vm.gridOptions.rowData = data.results;
-        vm.gridOptions.api.onNewRows();
-        vm.gridOptions.api.expandAll();
+        vm.gridOptions.api.setRowData(data.results);
       })
     };
 
