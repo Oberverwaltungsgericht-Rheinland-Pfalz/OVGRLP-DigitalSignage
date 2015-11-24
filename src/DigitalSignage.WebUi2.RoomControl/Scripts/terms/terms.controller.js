@@ -5,14 +5,16 @@
     .module('app')
     .controller('TermsController', TermsController);
 
-  TermsController.$inject = ['$stateParams', '$mdDialog', '$mdToast', 'Restangular'];
+  TermsController.$inject = ['$stateParams', '$mdDialog', '$mdToast', 'Restangular', 'appConfig'];
 
-  function TermsController($stateParams, $mdDialog, $mdToast, Restangular) {
+  function TermsController($stateParams, $mdDialog, $mdToast, Restangular, appConfig) {
     var vm = this;
 
     vm.termine = [];
     vm.loading = false;
     vm.save = save;
+    vm.managerLink = managerLink;
+    vm.appConfig = appConfig;
 
     activate();
 
@@ -53,6 +55,10 @@
         .position('top left')
         .hideDelay(4000)
       );
+    }
+
+    function managerLink(termid) {
+      return appConfig.termDetailsUrl + termid;
     }
   }
 })();
