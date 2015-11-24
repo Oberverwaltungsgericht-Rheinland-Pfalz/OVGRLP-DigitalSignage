@@ -5,6 +5,7 @@
     .module('app')
     .constant('appConfig', {
       apiUrl: 'http://localhost:52208',
-      showPoweronButton: false
+      showPoweronButton: false,
+      status: ['', 'Läuft', 'Abgeschlossen', 'Verschoben', 'Unterbrochen', 'Aufgehoben']
     });
 })();
