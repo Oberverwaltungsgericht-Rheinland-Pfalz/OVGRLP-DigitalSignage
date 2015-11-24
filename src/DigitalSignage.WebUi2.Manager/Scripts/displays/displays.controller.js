@@ -12,9 +12,8 @@
 
     var columnDefs = [
       { headerName: '', width: 30, suppressSizeToFit: true, template: '<img ng-src="{{vm.getStateImg(data.Status)}}" alt="{{vm.getStateText(data.Status)}}"></img>' },
-      { headerName: 'Name', field: 'Name' },
+      { headerName: 'Name', template: '<a ui-sref="display({id:data.Id})">{{data.Name}}</a>' },
       { headerName: 'Titel', field: 'Title' },
-      { headerName: '', width: 70, suppressSizeToFit: true, template: '<a ui-sref="display({id:data.Id})">Details</a>' }, 
       { headerName: '', width: 110, suppressSizeToFit: true, template: '<a href="" ng-click="data.update()">Aktualisieren</a>'}
     ];
 

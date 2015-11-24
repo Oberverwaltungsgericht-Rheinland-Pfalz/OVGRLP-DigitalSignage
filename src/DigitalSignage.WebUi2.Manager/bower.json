@@ -16,13 +16,13 @@
       "css": "dist/*.min.css"
     },
     "angular": {
-      "js": "angular.min.{js, js.*}"
+      "js": "angular.min.{js,js.*}"
     },
     "angular-animate": {
-      "js": "angular-animate.min.{js, js.*}"
+      "js": "angular-animate.min.{js,js.*}"
     },
     "angular-aria": {
-      "js": "angular-aria.min.{js, js.*}"
+      "js": "angular-aria.min.{js,js.*}"
     },
     "angular-material": {
       "js": "angular-material.min.js",

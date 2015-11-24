@@ -1,54 +1,72 @@
 ﻿module.exports = function (grunt) {
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-bower-task');
-  grunt.loadNpmTasks('grunt-ts');
 
   grunt.initConfig({
-    ts: {
-      default: {
-        src: ['Scripts/**/*.ts']
-      }
-    },
+    pkg: grunt.file.readJSON('package.json'),
     bower: {
       install: {
         options: {
+          install: true,
+          copy: true,
           targetDir: "wwwroot/lib",
           layout: "byComponent",
-          cleanTargetDir: false
+          cleanTargetDir: true
         }
+      }
+    },
+    jshint: {
+      all: ['gruntfile.js', 'app/*.js', 'app/**/*.js']
+    },
+    concat: {
+      options: {
+        stripBanners: true,
+        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("dd.mm.yyyy") %> */\n'
+      },
+      dist: {
+        src: ['Scripts/app.module.js', 'Scripts/**/*.module.js', 'Scripts/**/*.js', '!Scripts/*.config.js', '!Scripts/**/*.config.js'],
+        dest: 'wwwroot/app/manager.js'
+      },
+      config: {
+        src: ['Scripts/*.config.js', 'Scripts/**/*.config.js'],
+        dest: 'wwwroot/app/manager.config.js'
       }
     },
     less: {
-      dev: {
-        options: {
-          
-        }, 
-        files: {
-          "wwwroot/css/main.css": "Styles/main.less"
-        }
-      },
-      prod: {
+      dist: {
         options: {
         },
-        files: {
-          "wwwroot/css/main.css": "Styles/main.less"
-        }
+        src: ['Styles/main.less'],
+        dest: 'wwwroot/css/main.css'
       }
     },
     uglify: {
-      my_target: {
-        files: { 'wwwroot/app/app.min.js': ['Scripts/app.js', 'Scripts/**/*.module.js', 'Scripts/**/*.js'] }
+      options: {
+        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("dd.mm.yyyy") %> */\n'
+      },
+      dist: {
+        src: ['wwwroot/app/manager.js'],
+        dest: 'wwwroot/app/manager.min.js'
       }
     },
     watch: {
       scripts: {
-        files: ['Scripts/**/*js'],
-        tasks: ['uglify']
+        files: ['Scripts/**/*js', 'Styles/*.less'],
+        tasks: ['build']
       }
+    },
+    clean: {
+      js: ['wwwroot/app/*.js', 'wwwroot/app/**/*.js'],
+      css: ['wwwroot/css/*.*']
     }
   });
 
-  grunt.registerTask('default', ['bower:install', 'less:dev', 'uglify', 'watch']);
+  grunt.registerTask('build', ['bower:install', 'jshint:all', 'concat:dist', 'concat:config', 'less:dist', 'uglify:dist']);
+  grunt.registerTask('build-watch', ['build', 'watch']);
+  grunt.registerTask('release', ['clean:js', 'clean:css', 'build']);
 };

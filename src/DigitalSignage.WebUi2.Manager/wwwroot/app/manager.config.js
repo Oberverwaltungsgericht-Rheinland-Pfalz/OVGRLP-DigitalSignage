@@ -1,4 +1,5 @@
-﻿(function () {
+/*! DigitalSignage.WebUi2.Manager - v2.1.0 - 24.11.2015 */
+(function () {
   var app = angular.module('app');
 
   angular

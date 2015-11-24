@@ -5,12 +5,12 @@
     .module('app.core')
     .factory('termsDataService', termsDataService);
 
-  termsDataService.$inject = ['$q', 'breeze'];
+  termsDataService.$inject = ['$q', 'breeze', 'appConfig'];
 
-  function termsDataService($q, breeze) {
+  function termsDataService($q, breeze, appConfig) {
     //breeze.NamingConvention.camelCase.setAsDefault();
 
-    var serviceName = 'http://localhost:52208/breeze/EurekaDaten';
+    var serviceName = appConfig.apiUrl + '/breeze/EurekaDaten';
     var manager = new breeze.EntityManager(serviceName);
 
     var service = {
