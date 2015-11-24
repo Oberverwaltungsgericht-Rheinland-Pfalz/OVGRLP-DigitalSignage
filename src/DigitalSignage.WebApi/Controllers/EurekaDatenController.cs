@@ -63,7 +63,7 @@ namespace DigitalSignage.WebApi.Controllers
     [HttpGet]
     public IQueryable<object> Displays()
     {
-      return contextProvider.Context.Displays;
+      return contextProvider.Context.Displays.Where(d => d.Dummy == false);
     }
 
     // ~/breeze/EurekaDaten/DisplayStatus

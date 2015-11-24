@@ -25,5 +25,6 @@ namespace DigitalSignage.Infrastructure.Models.Settings
     public int WolUdpPort { get; set; }
     public string Description { get; set; }
     public ICollection<Note> Notes { get; set; }
+    public bool Dummy { get; set; }
   }
 }

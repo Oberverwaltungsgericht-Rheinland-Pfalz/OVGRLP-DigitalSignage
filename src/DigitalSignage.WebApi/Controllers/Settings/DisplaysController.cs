@@ -27,7 +27,7 @@ namespace DigitalSignage.WebApi.Controllers.Settings
     [HttpGet]
     public IEnumerable<Display> GetAllDisplays()
     {
-      return context.Displays;
+      return context.Displays.Where(d => d.Dummy == false);
     }
 
     [Route("{id}", Name = "GetDisplayById")]
