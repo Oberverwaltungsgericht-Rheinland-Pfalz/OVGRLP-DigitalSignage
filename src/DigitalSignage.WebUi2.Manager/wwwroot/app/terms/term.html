@@ -26,7 +26,10 @@
       </md-input-container>
       <md-input-container>
         <label>Öffentlich</label>
-        <input ng-model="vm.term.Oeffentlich" />
+        <md-select ng-model="vm.term.Oeffentlich">
+          <md-option value="ja">ja</md-option>
+          <md-option value="nein">nein</md-option>
+        </md-select>
       </md-input-container>
       <md-input-container>
         <label>Uhrzeit (Aktuell)</label>
