@@ -7,7 +7,8 @@
       apiUrl: 'http://localhost:52208',
       termDetailsUrl: 'http://localhost:51445/#/terms/',
       showTermDetails: true,
-      showHome: false
+      showHome: false,
+      status: ['', 'Läuft', 'Abgeschlossen', 'Verschoben', 'Unterbrochen', 'Aufgehoben']
     });
 
 })();
