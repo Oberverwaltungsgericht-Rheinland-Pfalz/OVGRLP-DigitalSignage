@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.RoomControl - v2.1.0 - 24.11.2015 */
+/*! DigitalSignage.WebUi2.RoomControl - v2.1.0 - 25.11.2015 */
 (function () {
   'use strict';
 
@@ -8,7 +8,8 @@
       apiUrl: 'http://localhost:52208',
       termDetailsUrl: 'http://localhost:51445/#/terms/',
       showTermDetails: true,
-      showHome: false
+      showHome: false,
+      status: ['', 'Läuft', 'Abgeschlossen', 'Verschoben', 'Unterbrochen', 'Aufgehoben']
     });
 
 })();

@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.RoomControl - v2.1.0 - 24.11.2015 */
+/*! DigitalSignage.WebUi2.RoomControl - v2.1.0 - 25.11.2015 */
 (function () {
   'use strict';
 
