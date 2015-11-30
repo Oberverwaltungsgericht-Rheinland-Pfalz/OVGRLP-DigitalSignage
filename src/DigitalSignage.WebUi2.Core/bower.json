@@ -1,0 +1,16 @@
+{
+	"name": "DigitalSignage.WebUi2.Core",
+	"private": true,
+  "dependencies": {
+    "angular": "*",
+    "jquery": "*"
+  },
+  "exportsOverride": {
+    "angular": {
+      "js": "angular.min.{js,js.*}"
+    },
+    "jquery": {
+      "js": "dist/jquery.min.{js,map}"
+    }
+  }
+}
