@@ -13,7 +13,8 @@
     "moment": "*",
     "restangular": "*",
     "ui-router": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "ds-core": "../DigitalSignage.WebUi2.Core/bower-ds-core/"
   },
   "exportsOverride": {
     "angular": {
@@ -55,6 +56,9 @@
     },
     "underscore": {
       "js": "underscore-min.{js,map}"
+    },
+    "ds-core": {
+      "js": "ds-core.min.js"
     }
   }
 }

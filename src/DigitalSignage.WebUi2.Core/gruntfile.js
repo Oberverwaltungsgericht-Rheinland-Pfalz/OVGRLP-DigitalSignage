@@ -2,6 +2,7 @@
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-bower-task');
@@ -46,7 +47,16 @@
       }
     },
     clean: {
-      js: ['wwwroot/dist/*.js', 'wwwroot/dist/**/*.js', 'wwwroot/app/*.js']
+      js: ['wwwroot/dist/*.js', 'wwwroot/dist/**/*.js', 'wwwroot/app/*.js'],
+      bower: ['bower-ds-core/**']
+    },
+    copy: {
+      bower: {
+        files: [
+          { flatten: false, expand: true, cwd:'wwwroot/dist/', src: '*.js', dest: 'bower-ds-core/' },
+          { flatten: false, src: 'bower.json', dest: 'bower-ds-core/' }
+        ]
+      }
     },
     watch: {
       scripts: {
@@ -58,5 +68,5 @@
 
   grunt.registerTask('build', ['bower:install', 'jshint:all', 'concat:demo', 'concat:dist', 'uglify:dist']);
   grunt.registerTask('build-watch', ['build', 'watch']);
-  grunt.registerTask('release', ['clean:js', 'build']);
+  grunt.registerTask('release', ['clean:js', 'build', 'clean:bower', 'copy:bower']);
 };
