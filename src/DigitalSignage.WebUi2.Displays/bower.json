@@ -1,0 +1,60 @@
+{
+  "name": "DigitalSignage.WebUi2.Displays",
+  "private": true,
+  "dependencies": {
+    "angular": "*",
+    "angular-aria": "*",
+    "angular-animate": "*",
+    "angular-i18n": "*",
+    "angular-material": "*",
+    "angular-sanitize": "*",
+    "jquery": "*",
+    "fontawesome": "*",
+    "moment": "*",
+    "restangular": "*",
+    "ui-router": "*",
+    "underscore": "*"
+  },
+  "exportsOverride": {
+    "angular": {
+      "js": "angular.min.{js,js.*}"
+    },
+    "angular-animate": {
+      "js": "angular-animate.min.{js,js.*}"
+    },
+    "angular-aria": {
+      "js": "angular-aria.min.{js,js.*}"
+    },
+    "angular-i18n": {
+      "js":  "angular-locale_de-de.js"
+    },
+    "angular-material": {
+      "js": "angular-material.min.js",
+      "css": "angular-material.min.css"
+    },
+    "angular-sanitize": {
+      "js": "angular-sanitize.min.{js,js.*}"
+    },
+    "jquery": {
+      "js": "dist/jquery.min.{js,map}"
+    },
+    "fontawesome": {
+      "css": "css/font-awesome.min.css"
+    },
+    "lodash": {
+      "js": "lodash.min.js"
+    },
+    "moment": {
+      "js": "min/moment-with-locales.min.js"
+    },
+    "restangular": {
+      "js": "dist/restangular.min.js"
+    },
+    "ui-router": {
+      "js": "release/angular-ui-router.min.js"
+    },
+    "underscore": {
+      "js": "underscore-min.{js,map}"
+    }
+  }
+}
