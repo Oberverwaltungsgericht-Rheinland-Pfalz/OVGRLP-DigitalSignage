@@ -1,67 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.Infrastructure", "DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj", "{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.WebApi", "DigitalSignage.WebApi\DigitalSignage.WebApi.csproj", "{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DigitalSignage.WebUi.Displays", "http://localhost:53863", "{7E45B96D-0D18-4B1F-A43D-9113518C6FEC}"
-	ProjectSection(WebsiteProperties) = preProject
-		UseIISExpress = "true"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.1"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_53863"
-		Debug.AspNetCompiler.PhysicalPath = "DigitalSignage.WebUi.Displays\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53863\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_53863"
-		Release.AspNetCompiler.PhysicalPath = "DigitalSignage.WebUi.Displays\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53863\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "DigitalSignage.WebUi.Displays\"
-		DefaultWebSiteLanguage = "Visual C#"
-		StartServerOnDebug = "true"
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DigitalSignage.WebUi.Infoscreen", "http://localhost:60129", "{256C84F6-BECD-48AD-98DE-9BF41C6D8015}"
-	ProjectSection(WebsiteProperties) = preProject
-		UseIISExpress = "true"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_60129"
-		Debug.AspNetCompiler.PhysicalPath = "DigitalSignage.WebUi.Infoscreen\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60129\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_60129"
-		Release.AspNetCompiler.PhysicalPath = "DigitalSignage.WebUi.Infoscreen\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60129\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "DigitalSignage.WebUi.Infoscreen\"
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.DisplayControl", "DigitalSignage.DisplayControl\DigitalSignage.DisplayControl.csproj", "{BFB078B2-087D-4432-BC3D-A01AC9221EDA}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DigitalSignage.WebUi2.Manager", "DigitalSignage.WebUi2.Manager\DigitalSignage.WebUi2.Manager.xproj", "{600F89E8-B0D3-4C3A-9836-30F70D12DB88}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DigitalSignage.WebUi2.Infoscreen", "DigitalSignage.WebUi2.Infoscreen\DigitalSignage.WebUi2.Infoscreen.xproj", "{B784AEF8-F7A8-467F-A465-95F6531CAED3}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DigitalSignage.WebUi2.RoomControl", "DigitalSignage.WebUi2.RoomControl\DigitalSignage.WebUi2.RoomControl.xproj", "{782FBF40-7EFE-463C-93F4-6077D86D62D3}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DigitalSignage.WebUi2.Displays", "DigitalSignage.WebUi2.Displays\DigitalSignage.WebUi2.Displays.xproj", "{96486AEA-BB1F-45DC-A0C6-C71EB8574F45}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DigitalSignage.WebUi2.Core", "DigitalSignage.WebUi2.Core\DigitalSignage.WebUi2.Core.xproj", "{6B60C0E3-0A48-4414-B03E-A2A72B359FEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.Data", "DigitalSignage.Data\DigitalSignage.Data.csproj", "{16441E33-CC5B-4DDD-A543-89C637BB2243}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,38 +23,10 @@ Global
 		{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E45B96D-0D18-4B1F-A43D-9113518C6FEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E45B96D-0D18-4B1F-A43D-9113518C6FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E45B96D-0D18-4B1F-A43D-9113518C6FEC}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E45B96D-0D18-4B1F-A43D-9113518C6FEC}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{256C84F6-BECD-48AD-98DE-9BF41C6D8015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{256C84F6-BECD-48AD-98DE-9BF41C6D8015}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{256C84F6-BECD-48AD-98DE-9BF41C6D8015}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{256C84F6-BECD-48AD-98DE-9BF41C6D8015}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{BFB078B2-087D-4432-BC3D-A01AC9221EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFB078B2-087D-4432-BC3D-A01AC9221EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFB078B2-087D-4432-BC3D-A01AC9221EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFB078B2-087D-4432-BC3D-A01AC9221EDA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{600F89E8-B0D3-4C3A-9836-30F70D12DB88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{600F89E8-B0D3-4C3A-9836-30F70D12DB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{600F89E8-B0D3-4C3A-9836-30F70D12DB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{600F89E8-B0D3-4C3A-9836-30F70D12DB88}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B784AEF8-F7A8-467F-A465-95F6531CAED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B784AEF8-F7A8-467F-A465-95F6531CAED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B784AEF8-F7A8-467F-A465-95F6531CAED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B784AEF8-F7A8-467F-A465-95F6531CAED3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{782FBF40-7EFE-463C-93F4-6077D86D62D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{782FBF40-7EFE-463C-93F4-6077D86D62D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{782FBF40-7EFE-463C-93F4-6077D86D62D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{782FBF40-7EFE-463C-93F4-6077D86D62D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96486AEA-BB1F-45DC-A0C6-C71EB8574F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96486AEA-BB1F-45DC-A0C6-C71EB8574F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96486AEA-BB1F-45DC-A0C6-C71EB8574F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96486AEA-BB1F-45DC-A0C6-C71EB8574F45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6B60C0E3-0A48-4414-B03E-A2A72B359FEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B60C0E3-0A48-4414-B03E-A2A72B359FEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B60C0E3-0A48-4414-B03E-A2A72B359FEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B60C0E3-0A48-4414-B03E-A2A72B359FEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

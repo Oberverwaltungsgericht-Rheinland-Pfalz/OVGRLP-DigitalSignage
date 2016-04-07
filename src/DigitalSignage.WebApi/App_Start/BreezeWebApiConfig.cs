@@ -1,6 +1,6 @@
 using System.Web.Http;
 
-[assembly: WebActivator.PreApplicationStartMethod(
+[assembly: WebActivatorEx.PreApplicationStartMethod(
     typeof(DigitalSignage.WebApi.App_Start.BreezeWebApiConfig), "RegisterBreezePreStart")]
 namespace DigitalSignage.WebApi.App_Start {
   ///<summary>

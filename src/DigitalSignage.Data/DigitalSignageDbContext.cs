@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
-namespace DigitalSignage.WebApi.Data
+namespace DigitalSignage.Data
 {
   public class DigitalSignageDbContext : DbContext
   {
