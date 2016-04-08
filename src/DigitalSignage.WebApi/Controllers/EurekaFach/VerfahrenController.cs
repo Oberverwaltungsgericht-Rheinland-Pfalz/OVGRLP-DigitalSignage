@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using DigitalSignage.WebApi.Data;
+using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using System.Threading.Tasks;
 using System.Web.Http.Description;

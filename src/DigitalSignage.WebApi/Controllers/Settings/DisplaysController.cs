@@ -1,7 +1,7 @@
 ﻿using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.Infrastructure.Models.Settings;
 using DigitalSignage.WebApi.Controllers.EurekaFach;
-using DigitalSignage.WebApi.Data;
+using DigitalSignage.Data;
 using DigitalSignage.WebApi.Services;
 using System;
 using System.Collections.Generic;

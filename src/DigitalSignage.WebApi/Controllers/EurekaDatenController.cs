@@ -2,7 +2,7 @@
 using Breeze.ContextProvider.EF6;
 using Breeze.WebApi2;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
-using DigitalSignage.WebApi.Data;
+using DigitalSignage.Data;
 using DigitalSignage.WebApi.Services;
 using Newtonsoft.Json.Linq;
 using System;

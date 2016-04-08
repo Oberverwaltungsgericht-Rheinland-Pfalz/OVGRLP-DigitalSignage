@@ -1,4 +1,4 @@
-namespace DigitalSignage.WebApi.Migrations
+namespace DigitalSignage.Data.Migrations
 {
   using System;
   using System.Data.Entity;
