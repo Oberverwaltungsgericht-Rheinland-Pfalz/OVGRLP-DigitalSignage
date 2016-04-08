@@ -194,6 +194,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DigitalSignage.Data\DigitalSignage.Data.csproj">
+      <Project>{16441e33-cc5b-4ddd-a543-89c637bb2243}</Project>
+      <Name>DigitalSignage.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj">
       <Project>{4f0dd9ef-4bac-4954-ba53-ad52541e14e3}</Project>
       <Name>DigitalSignage.Infrastructure</Name>
