@@ -13,7 +13,7 @@ namespace DigitalSignage.Infrastructure.Models.EurekaFach
     public byte Lfdnr { get; set; }
     public byte Kammer { get; set; }
     public string Sitzungssaal { get; set; }
-    public int SitzungssaalNr { get; set; }
+    public Nullable<Int32> SitzungssaalNr { get; set; }
     public string UhrzeitPlan { get; set; }
     public string UhrzeitAktuell { get; set; }
     public string Status { get; set; }

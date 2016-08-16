@@ -54,6 +54,10 @@
     <Compile Include="Migrations\201604072101053_2-1-1_Install.Designer.cs">
       <DependentUpon>201604072101053_2-1-1_Install.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608161950205_SitzungssaalNrNullable.cs" />
+    <Compile Include="Migrations\201608161950205_SitzungssaalNrNullable.Designer.cs">
+      <DependentUpon>201608161950205_SitzungssaalNrNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,9 +75,13 @@
     <EmbeddedResource Include="Migrations\201604072101053_2-1-1_Install.resx">
       <DependentUpon>201604072101053_2-1-1_Install.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608161950205_SitzungssaalNrNullable.resx">
+      <DependentUpon>201608161950205_SitzungssaalNrNullable.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Migrations\2-1-1_Install.sql" />
+    <Content Include="Migrations\2-1-1_Patch01.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
