@@ -7,13 +7,13 @@ namespace DigitalSignage.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class SitzungssaalNrNullable : IMigrationMetadata
+    public sealed partial class NotesAdded : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SitzungssaalNrNullable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NotesAdded));
         
         string IMigrationMetadata.Id
         {
-            get { return "201608161950205_SitzungssaalNrNullable"; }
+            get { return "201509180714072_NotesAdded"; }
         }
         
         string IMigrationMetadata.Source

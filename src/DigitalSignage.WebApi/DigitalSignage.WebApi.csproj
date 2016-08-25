@@ -146,7 +146,6 @@
     <Content Include="Global.asax" />
     <Content Include="Migrations\201501230805160_FirstRelease.sql" />
     <Content Include="Migrations\201509180714072_NotesAdded.sql" />
-    <Content Include="Migrations\Update_2-1-0.sql" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
