@@ -50,13 +50,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DigitalSignageDbContext.cs" />
-    <Compile Include="Migrations\201604072101053_2-1-1_Install.cs" />
-    <Compile Include="Migrations\201604072101053_2-1-1_Install.Designer.cs">
-      <DependentUpon>201604072101053_2-1-1_Install.cs</DependentUpon>
+    <Compile Include="Migrations\201501230805160_FirstRelease.cs" />
+    <Compile Include="Migrations\201501230805160_FirstRelease.Designer.cs">
+      <DependentUpon>201501230805160_FirstRelease.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608161950205_SitzungssaalNrNullable.cs" />
-    <Compile Include="Migrations\201608161950205_SitzungssaalNrNullable.Designer.cs">
-      <DependentUpon>201608161950205_SitzungssaalNrNullable.cs</DependentUpon>
+    <Compile Include="Migrations\201509180714072_NotesAdded.cs" />
+    <Compile Include="Migrations\201509180714072_NotesAdded.Designer.cs">
+      <DependentUpon>201509180714072_NotesAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511240920302_DisplayDummyAdded.cs" />
+    <Compile Include="Migrations\201511240920302_DisplayDummyAdded.Designer.cs">
+      <DependentUpon>201511240920302_DisplayDummyAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608252031275_SitzungssaalNrAdded.cs" />
+    <Compile Include="Migrations\201608252031275_SitzungssaalNrAdded.Designer.cs">
+      <DependentUpon>201608252031275_SitzungssaalNrAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,16 +80,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604072101053_2-1-1_Install.resx">
-      <DependentUpon>201604072101053_2-1-1_Install.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608161950205_SitzungssaalNrNullable.resx">
-      <DependentUpon>201608161950205_SitzungssaalNrNullable.cs</DependentUpon>
-    </EmbeddedResource>
+    <Content Include="Migrations\2-0-0_Full.sql" />
+    <Content Include="Migrations\2-1-0_Update.sql" />
+    <Content Include="Migrations\2-1-0_Full.sql" />
+    <Content Include="Migrations\2-1-1_Update.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Migrations\2-1-1_Install.sql" />
-    <Content Include="Migrations\2-1-1_Patch01.sql" />
+    <EmbeddedResource Include="Migrations\201501230805160_FirstRelease.resx">
+      <DependentUpon>201501230805160_FirstRelease.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509180714072_NotesAdded.resx">
+      <DependentUpon>201509180714072_NotesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511240920302_DisplayDummyAdded.resx">
+      <DependentUpon>201511240920302_DisplayDummyAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608252031275_SitzungssaalNrAdded.resx">
+      <DependentUpon>201608252031275_SitzungssaalNrAdded.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
