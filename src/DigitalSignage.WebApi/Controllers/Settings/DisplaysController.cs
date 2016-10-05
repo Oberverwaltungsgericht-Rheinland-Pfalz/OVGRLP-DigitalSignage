@@ -1,7 +1,7 @@
-﻿using DigitalSignage.Infrastructure.Models.EurekaFach;
+﻿using DigitalSignage.Data;
+using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.Infrastructure.Models.Settings;
 using DigitalSignage.WebApi.Controllers.EurekaFach;
-using DigitalSignage.Data;
 using DigitalSignage.WebApi.Services;
 using System;
 using System.Collections.Generic;
@@ -9,9 +9,7 @@ using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Net.NetworkInformation;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -43,7 +41,7 @@ namespace DigitalSignage.WebApi.Controllers.Settings
         return NotFound();
 
       var notes = "";
-      foreach(Note note in display.Notes)
+      foreach (Note note in display.Notes)
       {
         bool active = true;
 

@@ -16,7 +16,7 @@ namespace DigitalSignage.Infrastructure.Models.Settings
 
     [MaxLength]
     public string Content { get; set; }
-    
+
     public DateTime? Start { get; set; }
 
     public DateTime? End { get; set; }

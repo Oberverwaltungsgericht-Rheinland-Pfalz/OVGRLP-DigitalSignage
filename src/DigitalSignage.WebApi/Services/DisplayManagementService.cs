@@ -1,13 +1,9 @@
 ﻿using DigitalSignage.Infrastructure.Models.Settings;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using System.Threading.Tasks;
-using System.Web;
 
 namespace DigitalSignage.WebApi.Services
 {
@@ -54,7 +50,7 @@ namespace DigitalSignage.WebApi.Services
         udpClient.Send(
           magicPaket,
           magicPaket.Length,
-          new IPEndPoint(IPAddress.Parse(ipAddress),updPort));
+          new IPEndPoint(IPAddress.Parse(ipAddress), updPort));
         udpClient.Close();
       }
 
@@ -91,7 +87,5 @@ namespace DigitalSignage.WebApi.Services
         return macBytes;
       }
     }
-
-
   }
 }

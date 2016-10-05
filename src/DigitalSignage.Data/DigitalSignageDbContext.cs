@@ -1,11 +1,7 @@
 ﻿using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.Infrastructure.Models.Settings;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
-using System.Linq;
-using System.Web;
 
 namespace DigitalSignage.Data
 {
@@ -26,7 +22,7 @@ namespace DigitalSignage.Data
           .ToTable("Basics")
           .HasKey(t => t.Nummer);
 
-      #endregion
+      #endregion Basics
 
       #region Stammdaten
 
@@ -35,7 +31,7 @@ namespace DigitalSignage.Data
       modelBuilder.Entity<Stammdaten>().Property(s => s.Datum).IsRequired().HasMaxLength(255);
       modelBuilder.Entity<Stammdaten>().HasMany<Verfahren>(s => s.Verfahren).WithRequired(v => v.Stammdaten).HasForeignKey(v => v.StammdatenId);
 
-      #endregion
+      #endregion Stammdaten
 
       #region Verfahren
 
@@ -62,49 +58,49 @@ namespace DigitalSignage.Data
       modelBuilder.Entity<Verfahren>().HasMany<ProzBevPassiv>(v => v.ProzBevPassiv).WithRequired().HasForeignKey(p => p.VerfahrensId);
       modelBuilder.Entity<Verfahren>().HasMany<ProzBevBeigeladen>(v => v.ProzBevBeigeladen).WithRequired().HasForeignKey(p => p.VerfahrensId);
 
-      #endregion
+      #endregion Verfahren
 
       #region Besetzung
 
       modelBuilder.Entity<Besetzung>().ToTable("Besetzung").HasKey(b => b.BesetzungsId);
       modelBuilder.Entity<Besetzung>().Property(b => b.Richter).IsRequired().HasMaxLength(255);
 
-      #endregion
+      #endregion Besetzung
 
       #region ParteienAktiv
 
       modelBuilder.Entity<ParteienAktiv>().ToTable("ParteienAktiv").HasKey(p => p.ParteiId);
       modelBuilder.Entity<ParteienAktiv>().Property(p => p.Partei).HasMaxLength(255);
 
-      #endregion
+      #endregion ParteienAktiv
 
       #region ParteienPassiv
 
       modelBuilder.Entity<ParteienPassiv>().ToTable("ParteienPassiv").HasKey(p => p.ParteiId);
       modelBuilder.Entity<ParteienPassiv>().Property(p => p.Partei).HasMaxLength(255);
 
-      #endregion
+      #endregion ParteienPassiv
 
       #region ParteienBeigeladen
 
       modelBuilder.Entity<ParteienBeigeladen>().ToTable("ParteienBeigeladen").HasKey(p => p.ParteiId);
       modelBuilder.Entity<ParteienBeigeladen>().Property(p => p.Partei).HasMaxLength(255);
 
-      #endregion
+      #endregion ParteienBeigeladen
 
       #region ParteienSV
 
       modelBuilder.Entity<ParteienSV>().ToTable("ParteienSV").HasKey(p => p.ParteiId);
       modelBuilder.Entity<ParteienSV>().Property(p => p.Partei).HasMaxLength(255);
 
-      #endregion
+      #endregion ParteienSV
 
       #region ParteienZeugen
 
       modelBuilder.Entity<ParteienZeugen>().ToTable("ParteienZeugen").HasKey(p => p.ParteiId);
       modelBuilder.Entity<ParteienZeugen>().Property(p => p.Partei).HasMaxLength(255);
 
-      #endregion
+      #endregion ParteienZeugen
 
       #region ProzBevAktiv
 
@@ -112,7 +108,7 @@ namespace DigitalSignage.Data
       modelBuilder.Entity<ProzBevAktiv>().Property(p => p.ProzBevId).HasColumnName("ProzBevAktivID");
       modelBuilder.Entity<ProzBevAktiv>().Property(p => p.PB).HasMaxLength(255);
 
-      #endregion
+      #endregion ProzBevAktiv
 
       #region ProzBevPassiv
 
@@ -120,7 +116,7 @@ namespace DigitalSignage.Data
       modelBuilder.Entity<ProzBevPassiv>().Property(p => p.ProzBevId).HasColumnName("ProzBevAktivID");
       modelBuilder.Entity<ProzBevPassiv>().Property(p => p.PB).HasMaxLength(255);
 
-      #endregion
+      #endregion ProzBevPassiv
 
       #region ProzBevBeigeladen
 
@@ -128,11 +124,7 @@ namespace DigitalSignage.Data
       modelBuilder.Entity<ProzBevBeigeladen>().Property(p => p.ProzBevId).HasColumnName("ProzBevAktivID");
       modelBuilder.Entity<ProzBevBeigeladen>().Property(p => p.PB).HasMaxLength(255);
 
-      #endregion
-
-      #region Display
-
-      #endregion
+      #endregion ProzBevBeigeladen
 
       base.OnModelCreating(modelBuilder);
     }
@@ -151,7 +143,7 @@ namespace DigitalSignage.Data
     public DbSet<ProzBevPassiv> ProzBevPassiv { get; set; }
     public DbSet<ProzBevBeigeladen> ProzBevBeigeladen { get; set; }
 
-    #endregion
+    #endregion Sitzungsdaten
 
     #region settings
 
@@ -159,6 +151,6 @@ namespace DigitalSignage.Data
     public DbSet<Display> Displays { get; set; }
     public DbSet<Note> Notes { get; set; }
 
-    #endregion
+    #endregion settings
   }
 }

@@ -1,8 +1,8 @@
 ﻿using Breeze.ContextProvider;
 using Breeze.ContextProvider.EF6;
 using Breeze.WebApi2;
-using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.Data;
+using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.WebApi.Services;
 using Newtonsoft.Json.Linq;
 using System;
@@ -93,7 +93,7 @@ namespace DigitalSignage.WebApi.Controllers
       {
         displayManagementService.StartDisplay(display);
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         return InternalServerError(ex);
       }

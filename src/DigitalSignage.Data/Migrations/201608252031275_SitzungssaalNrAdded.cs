@@ -1,18 +1,17 @@
 namespace DigitalSignage.Data.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
-    public partial class SitzungssaalNrAdded : DbMigration
+  using System.Data.Entity.Migrations;
+
+  public partial class SitzungssaalNrAdded : DbMigration
+  {
+    public override void Up()
     {
-        public override void Up()
-        {
-            AddColumn("dbo.Verfahren", "SitzungssaalNr", c => c.Int());
-        }
-        
-        public override void Down()
-        {
-            DropColumn("dbo.Verfahren", "SitzungssaalNr");
-        }
+      AddColumn("dbo.Verfahren", "SitzungssaalNr", c => c.Int());
     }
+
+    public override void Down()
+    {
+      DropColumn("dbo.Verfahren", "SitzungssaalNr");
+    }
+  }
 }
