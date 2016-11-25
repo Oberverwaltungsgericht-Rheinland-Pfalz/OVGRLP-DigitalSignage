@@ -6,6 +6,7 @@
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-browser-sync');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -63,10 +64,21 @@
     clean: {
       js: ['wwwroot/app/*.js', 'wwwroot/app/**/*.js'],
       css: ['wwwroot/css/*.*']
+    },
+    browserSync: {
+      bsFiles: {
+        src : './wwwroot'
+      },
+      options: {
+        server: {
+          baseDir: "./wwwroot"
+        }
+      }
     }
   });
 
   grunt.registerTask('build', ['bower:install', 'jshint:all', 'concat:dist', 'concat:config', 'less:dist', 'uglify:dist']);
   grunt.registerTask('build-watch', ['build', 'watch']);
   grunt.registerTask('release', ['clean:js', 'clean:css', 'build']);
+  grunt.registerTask('serve', ['release', 'browserSync']);
 };
