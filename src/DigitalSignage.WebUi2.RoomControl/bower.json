@@ -1,5 +1,6 @@
 {
 	"name": "DigitalSignage.WebUi2.RoomControl",
+  "version": "2.2.0-1647",
 	"private": true,
   "dependencies": {
     "angular": "*",
