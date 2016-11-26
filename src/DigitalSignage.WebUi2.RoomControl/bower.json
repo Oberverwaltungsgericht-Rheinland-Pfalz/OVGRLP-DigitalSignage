@@ -23,7 +23,7 @@
       "css": "angular-material.min.css"
     },
     "lodash": {
-      "js": "lodash.min.js"
+      "js": "dist/lodash.min.js"
     },
     "restangular": {
       "js": "dist/restangular.min.js"

@@ -14,7 +14,7 @@
   "exportsOverride": {
     "ag-grid": {
       "js": "dist/ag-grid.min.js",
-      "css": "dist/*.min.css"
+      "css": "dist/styles/*.css"
     },
     "angular": {
       "js": "angular.min.{js,js.*}"
