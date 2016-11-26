@@ -43,7 +43,7 @@
       "css": "css/font-awesome.min.css"
     },
     "lodash": {
-      "js": "lodash.min.js"
+      "js": "dist/lodash.min.js"
     },
     "moment": {
       "js": "min/moment-with-locales.min.js"
