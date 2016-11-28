@@ -27,7 +27,7 @@
       "js": "build/{breeze.min.js,adapters/breeze.bridge.angular.js}"
     },
     "lodash": {
-      "js": "lodash.min.*"
+      "js": "dist/lodash.min.*"
     }
 
   }
