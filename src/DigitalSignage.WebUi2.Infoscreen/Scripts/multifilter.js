@@ -7,13 +7,13 @@
 
   function multifilter() {
     return function (items, options) {
-      var activeFilter = _.where(options, { active: true });
+      var activeFilter = _.filter(options, { active: true });
 
       var resultItems = [];
 
       if (activeFilter.length > 0) {
         _.each(activeFilter, function (filter) {
-          resultItems = resultItems.concat(_.where(items, filter.expression))
+          resultItems = resultItems.concat(_.filter(items, filter.expression))
         });
       } else {
         resultItems = items;

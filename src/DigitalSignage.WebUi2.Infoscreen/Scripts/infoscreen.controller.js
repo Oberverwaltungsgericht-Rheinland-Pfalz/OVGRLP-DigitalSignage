@@ -19,19 +19,19 @@
       {
         active: false,
         title: 'Läuft',
-        expression: { status: 'Läuft' }
+        expression: { Status: 'Läuft' }
       }, {
         active: false,
         title: 'Abgeschlossen',
-        expression: { status: 'Abgeschlossen' }
+        expression: { Status: 'Abgeschlossen' }
       }, {
         active: false,
         title: 'Verschoben',
-        expression: { status: 'Verschoben' }
+        expression: { Status: 'Verschoben' }
       }, {
         active: false,
         title: 'Aufgeboben',
-        expression: { status: 'Aufgehoben' }
+        expression: { Status: 'Aufgehoben' }
       }
     ];
 

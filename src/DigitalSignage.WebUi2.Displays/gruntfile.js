@@ -6,7 +6,7 @@
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-bower-task');
-  grunt.loadNpmTasks('grunt-browser-sync');    
+  grunt.loadNpmTasks('grunt-browser-sync');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
