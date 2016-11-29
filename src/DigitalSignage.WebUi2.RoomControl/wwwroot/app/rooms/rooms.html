@@ -1,32 +1,29 @@
-﻿<div layout="column">
-  <!-- Toolbar -->
-  <md-toolbar layout="row">
-    <h1 layout-align-gt-sm="center" class="md-toolbar-tools">
-      Saalsteuerung
-    </h1>
-  </md-toolbar>
+﻿<!-- Toolbar -->
+<md-toolbar layout="row">
+  <h1 layout-align-gt-sm="center" class="md-toolbar-tools">
+    Saalsteuerung
+  </h1>
+</md-toolbar>
 
-  <div layout="row" flex class="content-wrapper">
+<div layout="row" flex class="content-wrapper">
 
-    <!-- Filter -->
-    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="navbar" md-is-locked-open="$mdMedia('gt-md')">
-      <div class="ds-filters">
-        <h3>Filter</h3>
-        <md-checkbox ng-repeat="filter in vm.filters" ng-model="filter.active">{{filter.title}}</md-checkbox>
-      </div>
-    </md-sidenav>
+  <!-- Filter -->
+  <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="navbar" md-is-locked-open="$mdMedia('gt-md')">
+    <div class="ds-filters">
+      <h3>Filter</h3>
+      <md-checkbox ng-repeat="filter in vm.filters" ng-model="filter.active">{{filter.title}}</md-checkbox>
+    </div>
+  </md-sidenav>
 
-    <!-- Content -->
-    <div class="ds-fill-parent">
-      <div ng-show="loading" style="height:50px;padding:25px;">
-        <md-progress-linear md-mode="indeterminate"></md-progress-linear>
-      </div>
-      <div ng-hide="loading" class="ds-rooms">
-        <div ng-repeat="display in vm.displays | multifilter:vm.filters | orderBy: 'name'">
-          <md-button ui-sref="room.terms({ id: display.id })">{{display.title}} ({{display.group}})</md-button>
-        </div>
+  <!-- Content -->
+  <div class="ds-fill-parent">
+    <div ng-show="loading" style="height:50px;padding:25px;">
+      <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+    </div>
+    <div ng-hide="loading" class="ds-rooms">
+      <div ng-repeat="display in vm.displays | multifilter:vm.filters | orderBy: 'name'">
+        <md-button ui-sref="room.terms({ id: display.id })">{{display.title}} ({{display.group}})</md-button>
       </div>
     </div>
   </div>
-
 </div>
