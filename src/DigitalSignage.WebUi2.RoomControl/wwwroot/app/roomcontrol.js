@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.RoomControl - v2.2.0-1647 - 28.11.2016 */
+/*! DigitalSignage.WebUi2.RoomControl - v2.2.0-1647 - 29.11.2016 */
 (function () {
   'use strict';
 
@@ -250,13 +250,13 @@
 
   function multifilter() {
     return function (items, options) {
-      var activeFilter = _.where(options, { active: true });
+      var activeFilter = _.filter(options, { active: true });
 
       var resultItems = [];
 
       if (activeFilter.length > 0) {
         _.each(activeFilter, function (filter) {
-          resultItems = resultItems.concat(_.where(items, filter.expression))
+          resultItems = resultItems.concat(_.filter(items, filter.expression))
         });
       } else {
         resultItems = items;

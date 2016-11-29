@@ -1,53 +1,50 @@
-﻿<div layout="column" class="ds-fill-parent">
-  <!-- Toolbar -->
-  <md-toolbar layout="row" class="md-whiteframe-z2 md-hue-1">
-    <md-button ng-click="vm.save()">
-      <md-icon aria-label="Save" md-svg-icon="save"></md-icon> Speichern
-    </md-button>
-    <span flex></span>
-    <h2 layout-align-gt-sm="center" class="md-toolbar-tools">
-      Termine
-    </h2>
-  </md-toolbar>
-  <!-- Termine -->
-  <md-content class="ds-termine-content">
-    <div ng-show="vm.loading" style="height:50px;padding:25px;">
-      <md-progress-linear md-mode="indeterminate"></md-progress-linear>
-    </div>
-    <div ng-hide="vm.loading || vm.termine.length > 0" style="text-align:center">
-      <h3>Zurzeit keine Verhandlungstermine</h3>
-    </div>
-    <div ng-hide="loading">
-      <div class="md-whiteframe-z1 ds-termin-box" layout="row" layout-align="start start" ng-repeat="termin in vm.termine">
-        <div flex="15" class="md-padding">
-          <h3 ng-switch on="vm.appConfig.showTermDetails">
-            <a ng-switch-when="true" ng-href="{{vm.managerLink(termin.id)}}" target="_blank">{{termin.az}}</a>
-            <span ng-switch-default>{{termin.az}}</span>
-          </h3>
-          <p>{{termin.art}}</p>
-          <p>{{termin.uhrzeitPlan}} Uhr</p>
-        </div>
-        <div flex="25" class="md-padding">
-          <h3>Aktivpartei(en):</h3>
-          <p ng-repeat="partei in termin.parteienAktiv">{{partei}}</p>
-        </div>
-        <div flex="25" class="md-padding">
-          <h3>Passivpartei(en):</h3>
-          <p ng-repeat="partei in termin.parteienPassiv">{{partei}}</p>
-        </div>
-        <div flex="15" class="md-padding">
-          <h3>Status:</h3>
-          <md-select ng-model="termin.status" placeholder="Status">
-            <md-option ng-repeat="status in vm.appConfig.status" value="{{status}}">
-              {{status}}
-            </md-option>
-          </md-select>
-        </div>
-        <div flex class="md-padding">
-          <h3>{{termin.oeffentlich == 'ja' ? 'öffentlich' : 'nicht öffentlich'}}</h3>
-          <md-switch class="ds-public-notpublic" ng-model="termin.oeffentlich" ng-true-value="'ja'" ng-false-value="'nein'"></md-switch>
-        </div>
+﻿<!-- Toolbar -->
+<md-toolbar layout="row" class="md-whiteframe-z2 md-hue-1">
+  <md-button ng-click="vm.save()" flex="none">
+    <md-icon aria-label="Save" md-svg-icon="save"></md-icon>Speichern
+  </md-button>
+  <h2 layout-align-gt-sm="center" class="md-toolbar-tools" flex>
+    Termine
+  </h2>
+</md-toolbar>
+<!-- Termine -->
+<md-content class="ds-termine-content">
+  <div ng-show="vm.loading" style="height:50px;padding:25px;">
+    <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+  </div>
+  <div ng-hide="vm.loading || vm.termine.length > 0" style="text-align:center">
+    <h3>Zurzeit keine Verhandlungstermine</h3>
+  </div>
+  <div ng-hide="loading">
+    <div class="md-whiteframe-z1 ds-termin-box" layout="row" layout-align="start start" ng-repeat="termin in vm.termine">
+      <div flex="15" class="md-padding">
+        <h3 ng-switch on="vm.appConfig.showTermDetails">
+          <a ng-switch-when="true" ng-href="{{vm.managerLink(termin.id)}}" target="_blank">{{termin.az}}</a>
+          <span ng-switch-default>{{termin.az}}</span>
+        </h3>
+        <p>{{termin.art}}</p>
+        <p>{{termin.uhrzeitPlan}} Uhr</p>
+      </div>
+      <div flex="25" class="md-padding">
+        <h3>Aktivpartei(en):</h3>
+        <p ng-repeat="partei in termin.parteienAktiv">{{partei}}</p>
+      </div>
+      <div flex="25" class="md-padding">
+        <h3>Passivpartei(en):</h3>
+        <p ng-repeat="partei in termin.parteienPassiv">{{partei}}</p>
+      </div>
+      <div flex="15" class="md-padding">
+        <h3>Status:</h3>
+        <md-select ng-model="termin.status" placeholder="Status">
+          <md-option ng-repeat="status in vm.appConfig.status" value="{{status}}">
+            {{status}}
+          </md-option>
+        </md-select>
+      </div>
+      <div flex class="md-padding">
+        <h3>{{termin.oeffentlich == 'ja' ? 'öffentlich' : 'nicht öffentlich'}}</h3>
+        <md-switch class="ds-public-notpublic" ng-model="termin.oeffentlich" ng-true-value="'ja'" ng-false-value="'nein'"></md-switch>
       </div>
     </div>
-  </md-content>
-</div>
+  </div>
+</md-content>
