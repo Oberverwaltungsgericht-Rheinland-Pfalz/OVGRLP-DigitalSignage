@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.Manager - v2.2.0-1647 - 25.11.2016 */
+/*! DigitalSignage.WebUi2.Manager - v2.2.0-1647 - 01.12.2016 */
 (function () {
   var app = angular.module('app');
 

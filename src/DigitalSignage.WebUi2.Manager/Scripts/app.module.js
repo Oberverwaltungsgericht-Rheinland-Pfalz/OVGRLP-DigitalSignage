@@ -40,26 +40,33 @@
       .icon('personadd', 'icons/ic_person_add_black_24px.svg');
 
     $stateProvider
-      .state('displays', {
-        url: '/displays',
+      .state('main', {
+        abstract: true,
+        url: '/',
+        templateUrl: 'app/main.html',
+        controller: 'MainController',
+        controllerAs: 'vm'
+      })
+      .state('main.displays', {
+        url: 'displays',
         templateUrl: 'app/displays/displays.html',
         controller: 'DisplaysController',
         controllerAs: 'vm'
       })
-      .state('display', {
-        url: '/displays/:id',
+      .state('main.display', {
+        url: 'displays/:id',
         templateUrl: 'app/displays/display.html',
         controller: 'DisplayController',
         controllerAs: 'vm'
       })
-      .state('terms', {
-        url: '/terms',
+      .state('main.terms', {
+        url: 'terms',
         templateUrl: 'app/terms/terms.html',
         controller: 'TermsController',
         controllerAs: 'vm'
       })
-      .state('term', {
-        url: '/terms/:id',
+      .state('main.term', {
+        url: 'terms/:id',
         templateUrl: 'app/terms/term.html',
         controller: 'TermController',
         controllerAs: 'vm'

@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.Manager - v2.2.0-1647 - 25.11.2016 */
+/*! DigitalSignage.WebUi2.Manager - v2.2.0-1647 - 01.12.2016 */
 (function () {
   'use strict';
 
@@ -41,26 +41,33 @@
       .icon('personadd', 'icons/ic_person_add_black_24px.svg');
 
     $stateProvider
-      .state('displays', {
-        url: '/displays',
+      .state('main', {
+        abstract: true,
+        url: '/',
+        templateUrl: 'app/main.html',
+        controller: 'MainController',
+        controllerAs: 'vm'
+      })
+      .state('main.displays', {
+        url: 'displays',
         templateUrl: 'app/displays/displays.html',
         controller: 'DisplaysController',
         controllerAs: 'vm'
       })
-      .state('display', {
-        url: '/displays/:id',
+      .state('main.display', {
+        url: 'displays/:id',
         templateUrl: 'app/displays/display.html',
         controller: 'DisplayController',
         controllerAs: 'vm'
       })
-      .state('terms', {
-        url: '/terms',
+      .state('main.terms', {
+        url: 'terms',
         templateUrl: 'app/terms/terms.html',
         controller: 'TermsController',
         controllerAs: 'vm'
       })
-      .state('term', {
-        url: '/terms/:id',
+      .state('main.term', {
+        url: 'terms/:id',
         templateUrl: 'app/terms/term.html',
         controller: 'TermController',
         controllerAs: 'vm'
@@ -385,6 +392,24 @@
       } else {
         return "img/display-unknown-icon.png";
       }
+    };
+  }
+})();
+(function () {
+  'use strict';
+
+  angular
+    .module('app')
+    .controller('MainController', MainController);
+
+  MainController.$inject = ['$stateParams', 'appConfig'];
+
+  function MainController($stateParams, appConfig) {
+    var vm = this;
+
+    activate();
+
+    function activate() {
     };
   }
 })();
