@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.Manager - v2.2.0-1647 - 01.12.2016 */
+/*! DigitalSignage.WebUi2.Manager - v2.2.0-1647 - 02.12.2016 */
 (function () {
   'use strict';
 
@@ -43,37 +43,40 @@
     $stateProvider
       .state('main', {
         abstract: true,
-        url: '/',
+        url: '/:mode',
         templateUrl: 'app/main.html',
         controller: 'MainController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        params: {
+          mode: 'user'
+        }
       })
       .state('main.displays', {
-        url: 'displays',
+        url: '/displays',
         templateUrl: 'app/displays/displays.html',
         controller: 'DisplaysController',
         controllerAs: 'vm'
       })
       .state('main.display', {
-        url: 'displays/:id',
+        url: '/displays/:id',
         templateUrl: 'app/displays/display.html',
         controller: 'DisplayController',
         controllerAs: 'vm'
       })
       .state('main.terms', {
-        url: 'terms',
+        url: '/terms',
         templateUrl: 'app/terms/terms.html',
         controller: 'TermsController',
         controllerAs: 'vm'
       })
       .state('main.term', {
-        url: 'terms/:id',
+        url: '/terms/:id',
         templateUrl: 'app/terms/term.html',
         controller: 'TermController',
         controllerAs: 'vm'
       });
 
-    $urlRouterProvider.otherwise('/displays');
+    $urlRouterProvider.otherwise('/support/displays');
   }
 
 })();
@@ -341,7 +344,7 @@
 
     var columnDefs = [
       { headerName: '', width: 30, suppressSizeToFit: true, template: '<img ng-src="{{vm.getStateImg(data.Status)}}" alt="{{vm.getStateText(data.Status)}}"></img>' },
-      { headerName: 'Name', template: '<a ui-sref="display({id:data.Id})">{{data.Name}}</a>' },
+      { headerName: 'Name', template: '<a ui-sref="main.display({id:data.Id})">{{data.Name}}</a>' },
       { headerName: 'Titel', field: 'Title' },
       { headerName: '', width: 110, suppressSizeToFit: true, template: '<a href="" ng-click="data.update()">Aktualisieren</a>'}
     ];
@@ -407,9 +410,12 @@
   function MainController($stateParams, appConfig) {
     var vm = this;
 
+    vm.showMenu = false;
+
     activate();
 
     function activate() {
+      vm.showMenu = ($stateParams.mode === 'support');
     };
   }
 })();
@@ -636,7 +642,7 @@
     var columnDefs = [
       { headerName: 'Plan', headerGroup: 'Uhrzeit', width: 80, suppressSizeToFit: true, field: 'UhrzeitPlan' },
       { headerName: 'Aktuell', headerGroup: 'Uhrzeit', width: 80, suppressSizeToFit: true, field: 'UhrzeitAktuell' },
-      { headerName: 'Aktenzeichen', width: 150, suppressSizeToFit: true, template: '<a ui-sref="term({id:data.VerfahrensId})">{{data.Az}}</a>' },
+      { headerName: 'Aktenzeichen', width: 150, suppressSizeToFit: true, template: '<a ui-sref="main.term({id:data.VerfahrensId})">{{data.Az}}</a>' },
       { headerName: 'Status', width: 150, suppressSizeToFit: true, field: 'Status' },
       { headerName: 'Aktiv', headerGroup: 'Parteien', suppressSorting: true, suppressMenu: true, template: '<span ng-repeat="item in data.ParteienAktiv">{{item.Partei}}<span ng-hide="$last">; </span></span>' },
       { headerName: 'Passiv', headerGroup: 'Parteien', suppressSorting: true, suppressMenu: true, template: '<span ng-repeat="item in data.ParteienPassiv">{{item.Partei}}<span ng-hide="$last">; </span></span>' },

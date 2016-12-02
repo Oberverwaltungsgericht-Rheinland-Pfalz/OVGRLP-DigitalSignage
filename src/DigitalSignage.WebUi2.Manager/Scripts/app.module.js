@@ -42,37 +42,40 @@
     $stateProvider
       .state('main', {
         abstract: true,
-        url: '/',
+        url: '/:mode',
         templateUrl: 'app/main.html',
         controller: 'MainController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        params: {
+          mode: 'user'
+        }
       })
       .state('main.displays', {
-        url: 'displays',
+        url: '/displays',
         templateUrl: 'app/displays/displays.html',
         controller: 'DisplaysController',
         controllerAs: 'vm'
       })
       .state('main.display', {
-        url: 'displays/:id',
+        url: '/displays/:id',
         templateUrl: 'app/displays/display.html',
         controller: 'DisplayController',
         controllerAs: 'vm'
       })
       .state('main.terms', {
-        url: 'terms',
+        url: '/terms',
         templateUrl: 'app/terms/terms.html',
         controller: 'TermsController',
         controllerAs: 'vm'
       })
       .state('main.term', {
-        url: 'terms/:id',
+        url: '/terms/:id',
         templateUrl: 'app/terms/term.html',
         controller: 'TermController',
         controllerAs: 'vm'
       });
 
-    $urlRouterProvider.otherwise('/displays');
+    $urlRouterProvider.otherwise('/support/displays');
   }
 
 })();

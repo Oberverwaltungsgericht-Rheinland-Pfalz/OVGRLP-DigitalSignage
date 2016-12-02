@@ -10,9 +10,12 @@
   function MainController($stateParams, appConfig) {
     var vm = this;
 
+    vm.showMenu = false;
+
     activate();
 
     function activate() {
+      vm.showMenu = ($stateParams.mode === 'support');
     };
   }
 })();
