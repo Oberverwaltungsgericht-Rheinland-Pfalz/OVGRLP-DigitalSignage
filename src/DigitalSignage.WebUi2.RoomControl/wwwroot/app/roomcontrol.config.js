@@ -6,7 +6,7 @@
     .module('app')
     .constant('appConfig', {
       apiUrl: 'http://localhost:52208',
-      termDetailsUrl: 'http://localhost:51445/#/terms/',
+      termDetailsUrl: 'http://localhost:51445/#/user/terms/',
       showTermDetails: true,
       showHome: false,
       status: ['', 'Läuft', 'Abgeschlossen', 'Verschoben', 'Unterbrochen', 'Aufgehoben']

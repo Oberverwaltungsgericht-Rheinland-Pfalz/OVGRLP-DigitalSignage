@@ -76,7 +76,7 @@
         controllerAs: 'vm'
       });
 
-    $urlRouterProvider.otherwise('/user/displays');
+    $urlRouterProvider.otherwise('/support/displays');
   }
 
 })();
