@@ -8,19 +8,18 @@
   termsDataService.$inject = ['$q', 'breeze', 'appConfig'];
 
   function termsDataService($q, breeze, appConfig) {
-    //breeze.NamingConvention.camelCase.setAsDefault();
-
     var serviceName = appConfig.apiUrl + '/breeze/EurekaDaten';
     var manager = new breeze.EntityManager(serviceName);
 
     var service = {
-      getVerfahrenList : getVerfahrenList,
-      getVerfahren : getVerfahren,
-      saveChanges : saveChanges,
-      rejectChanges : rejectChanges,
+      getVerfahrenList: getVerfahrenList,
+      getVerfahren: getVerfahren,
+      deleteVerfahren: deleteVerfahren,
+      saveChanges: saveChanges,
+      rejectChanges: rejectChanges,
       hasChanges: hasChanges,
       createNewEntity: createNewEntity,
-      metaDataFetched : false
+      metaDataFetched: false
     };
 
     return service;
@@ -55,10 +54,18 @@
       return promise;
     }
 
-    function saveChanges() {
-      return manager.saveChanges().finally(function () {
+    function deleteVerfahren(term) {
+      term.entityAspect.setDeleted();
+      return manager.saveChanges().finally(
+        function () {
           service.metaDataFetched = true;
         });
+    }
+
+    function saveChanges() {
+      return manager.saveChanges().finally(function () {
+        service.metaDataFetched = true;
+      });
     }
 
     function rejectChanges() {

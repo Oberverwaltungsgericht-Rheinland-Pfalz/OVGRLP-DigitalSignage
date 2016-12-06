@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.Manager - v2.2.0-1647 - 02.12.2016 */
+/*! DigitalSignage.WebUi2.Manager - v2.2.0-1647 - 06.12.2016 */
 (function () {
   'use strict';
 
@@ -202,19 +202,18 @@
   termsDataService.$inject = ['$q', 'breeze', 'appConfig'];
 
   function termsDataService($q, breeze, appConfig) {
-    //breeze.NamingConvention.camelCase.setAsDefault();
-
     var serviceName = appConfig.apiUrl + '/breeze/EurekaDaten';
     var manager = new breeze.EntityManager(serviceName);
 
     var service = {
-      getVerfahrenList : getVerfahrenList,
-      getVerfahren : getVerfahren,
-      saveChanges : saveChanges,
-      rejectChanges : rejectChanges,
+      getVerfahrenList: getVerfahrenList,
+      getVerfahren: getVerfahren,
+      deleteVerfahren: deleteVerfahren,
+      saveChanges: saveChanges,
+      rejectChanges: rejectChanges,
       hasChanges: hasChanges,
       createNewEntity: createNewEntity,
-      metaDataFetched : false
+      metaDataFetched: false
     };
 
     return service;
@@ -249,10 +248,18 @@
       return promise;
     }
 
-    function saveChanges() {
-      return manager.saveChanges().finally(function () {
+    function deleteVerfahren(term) {
+      term.entityAspect.setDeleted();
+      return manager.saveChanges().finally(
+        function () {
           service.metaDataFetched = true;
         });
+    }
+
+    function saveChanges() {
+      return manager.saveChanges().finally(function () {
+        service.metaDataFetched = true;
+      });
     }
 
     function rejectChanges() {
@@ -343,10 +350,26 @@
     var vm = this;
 
     var columnDefs = [
-      { headerName: '', width: 30, suppressSizeToFit: true, template: '<img ng-src="{{vm.getStateImg(data.Status)}}" alt="{{vm.getStateText(data.Status)}}"></img>' },
-      { headerName: 'Name', template: '<a ui-sref="main.display({id:data.Id})">{{data.Name}}</a>' },
-      { headerName: 'Titel', field: 'Title' },
-      { headerName: '', width: 110, suppressSizeToFit: true, template: '<a href="" ng-click="data.update()">Aktualisieren</a>'}
+      {
+        headerName: '',
+        width: 30,
+        suppressSizeToFit: true,
+        template: '<img ng-src="{{vm.getStateImg(data.Status)}}" alt="{{vm.getStateText(data.Status)}}"></img>'
+      },
+      {
+        headerName: 'Name',
+        template: '<a ui-sref="main.display({id:data.Id})">{{data.Name}}</a>'
+      },
+      {
+        headerName: 'Titel',
+        field: 'Title'
+      },
+      {
+        headerName: '',
+        width: 110,
+        suppressSizeToFit: true,
+        template: '<a href="" ng-click="data.update()">Aktualisieren</a>'
+      }
     ];
 
     vm.getStateText = getStateText;
@@ -355,9 +378,7 @@
       angularCompileRows: true,
       columnDefs: columnDefs,
       rowData: null,
-      groupKeys: ['Group'],
-      groupUseEntireRow: true,
-      onReady: function (params) {
+      onGridReady: function (params) {
         params.api.sizeColumnsToFit();
       }
     };
@@ -367,9 +388,11 @@
     function activate() {
       settingsDataService.getDisplayList().then(function (data) {
         vm.gridOptions.api.setRowData(data.results);
-        vm.gridOptions.rowData.forEach(function (display) {
-          display.update();
-        });
+        if (vm.gridOptions.rowData) {
+          vm.gridOptions.rowData.forEach(function (display) {
+            display.update();
+          });
+        }
       });
     }
 
@@ -606,8 +629,8 @@
         .cancel('Nein');
 
       $mdDialog.show(confirm).then(function () {
-        vm.term.remove().then(function () {
-          $state.go('terms');
+        termsDataService.deleteVerfahren(vm.term).then(function () {
+          $state.go('main.terms');
         }, function (error) {
           $mdDialog.show(
             $mdDialog.alert()
@@ -640,13 +663,69 @@
     ];
 
     var columnDefs = [
-      { headerName: 'Plan', headerGroup: 'Uhrzeit', width: 80, suppressSizeToFit: true, field: 'UhrzeitPlan' },
-      { headerName: 'Aktuell', headerGroup: 'Uhrzeit', width: 80, suppressSizeToFit: true, field: 'UhrzeitAktuell' },
-      { headerName: 'Aktenzeichen', width: 150, suppressSizeToFit: true, template: '<a ui-sref="main.term({id:data.VerfahrensId})">{{data.Az}}</a>' },
-      { headerName: 'Status', width: 150, suppressSizeToFit: true, field: 'Status' },
-      { headerName: 'Aktiv', headerGroup: 'Parteien', suppressSorting: true, suppressMenu: true, template: '<span ng-repeat="item in data.ParteienAktiv">{{item.Partei}}<span ng-hide="$last">; </span></span>' },
-      { headerName: 'Passiv', headerGroup: 'Parteien', suppressSorting: true, suppressMenu: true, template: '<span ng-repeat="item in data.ParteienPassiv">{{item.Partei}}<span ng-hide="$last">; </span></span>' },
-      { headerName: 'Datum', width: 100, field: 'Datum' }
+      {
+        headerName: 'Urhzeit',
+        children: [
+          {
+            headerName: 'Plan',
+            width: 80,
+            suppressSizeToFit: true,
+            field: 'UhrzeitPlan'
+          },
+          {
+            headerName: 'Aktuell',
+            width: 80,
+            suppressSizeToFit: true,
+            field: 'UhrzeitAktuell'
+          }
+        ]
+      },
+      {
+        headerName: 'Aktenzeichen',
+        width: 150,
+        suppressSizeToFit: true,
+        template: '<a ui-sref="main.term({id:data.VerfahrensId})">{{data.Az}}</a>'
+      },
+      {
+        headerName: 'Gericht',
+        hide: true,
+        rowGroupIndex: 0,
+        field: 'Gericht'
+      },
+      {
+        headerName: 'Sitzungssaal',
+        hide: true,
+        rowGroupIndex: 1,
+        field: 'Sitzungssaal'
+      },
+      {
+        headerName: 'Status',
+        width: 150,
+        suppressSizeToFit: true,
+        field: 'Status'
+      },
+      {
+        headerName: 'Parteien',
+        children: [
+          {
+            headerName: 'Aktiv',
+            suppressSorting: true,
+            suppressMenu: true,
+            template: '<span ng-repeat="item in data.ParteienAktiv">{{item.Partei}}<span ng-hide="$last">; </span></span>'
+          },
+          {
+            headerName: 'Passiv',
+            suppressSorting: true,
+            suppressMenu: true,
+            template: '<span ng-repeat="item in data.ParteienPassiv">{{item.Partei}}<span ng-hide="$last">; </span></span>'
+          }
+        ]
+      },
+      {
+        headerName: 'Datum',
+        width: 100,
+        field: 'Datum'
+      }
     ];
 
     vm.gridOptions = {
@@ -655,11 +734,9 @@
       enableFilter: true,
       columnDefs: columnDefs,
       rowData: null,
-      groupHeaders: true,
-      groupKeys: ['Gericht', 'Sitzungssaal'],
       groupUseEntireRow: true,
       groupDefaultExpanded: 1,
-      onReady: function (params) {
+      onGridReady: function (params) {
         params.api.sizeColumnsToFit();
         params.api.setSortModel(defaultSort);
       }
