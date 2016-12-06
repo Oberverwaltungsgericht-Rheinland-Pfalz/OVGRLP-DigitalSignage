@@ -3,7 +3,7 @@
   "version": "2.2.0-1647",
   "private": true,
   "dependencies": {
-    "ag-grid": "*",
+    "ag-grid": "3.3.3",
     "angular": "*",
     "angular-animate": "*",
     "angular-aria": "*",
