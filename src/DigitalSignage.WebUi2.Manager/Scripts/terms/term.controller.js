@@ -62,8 +62,8 @@
         .cancel('Nein');
 
       $mdDialog.show(confirm).then(function () {
-        vm.term.remove().then(function () {
-          $state.go('terms');
+        termsDataService.deleteVerfahren(vm.term).then(function () {
+          $state.go('main.terms');
         }, function (error) {
           $mdDialog.show(
             $mdDialog.alert()
