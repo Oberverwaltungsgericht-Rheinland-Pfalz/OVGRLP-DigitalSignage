@@ -1,6 +1,5 @@
 {
   "name": "DigitalSignage.WebUi2.Manager",
-  "version": "2.2.0-1647",
   "private": true,
   "dependencies": {
     "ag-grid": "3.3.3",

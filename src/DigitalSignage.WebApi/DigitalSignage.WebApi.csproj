@@ -144,8 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Migrations\201501230805160_FirstRelease.sql" />
-    <Content Include="Migrations\201509180714072_NotesAdded.sql" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

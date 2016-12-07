@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.Manager - v2.2.0-1647 - 06.12.2016 */
+/*! DigitalSignage.WebUi2.Manager - v2.2.0-1649 - 07.12.2016 */
 (function () {
   'use strict';
 

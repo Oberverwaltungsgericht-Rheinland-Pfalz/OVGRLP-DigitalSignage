@@ -1,3 +1,20 @@
+<a name="2.2.0-1649"></a>
+### 2.2.0-1649 (07.12.2016)
+
+#### Erweiterungen
+
+* __API/Daten: SitzungssaalNr__ - In der Datenstruktur wurde nun die Eigenschaft *SitzunggssaalNr*
+hinzugef&uuml;gt. (#63)
+
+#### Fehlerkorrekturen
+
+* __InfoScreen: Filter Status__ - Es kann nun wieder nach dem Status gefiltert werden. (#71)
+
+* __RoomControl: Men&uuml;leiste im IE__ - Die Men&uuml;leiste wird nun auch im Internet 
+Explorer korrekt angezeigt. (#72)
+
+* __Manager: Verfahren löschen__ - Verfahren können nun wieder gelöscht werden. (#74)
+
 <a name="2.1.0"></a>
 ### 2.1.0 (25.11.2015)
 

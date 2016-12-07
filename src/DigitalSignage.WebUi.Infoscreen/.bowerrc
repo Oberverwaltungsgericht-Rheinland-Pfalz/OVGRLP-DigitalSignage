@@ -1,6 +1,0 @@
-{
-    "directory": "components/",
-    "analytics": false,
-    "proxy": "http://PROXY:8080",
-    "https-proxy": "http://PROXY:8080"
-}
