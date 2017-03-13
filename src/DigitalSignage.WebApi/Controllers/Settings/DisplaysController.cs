@@ -28,12 +28,14 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       return context.Displays.Where(d => d.Dummy == false);
     }
 
-    [Route("{id}", Name = "GetDisplayById")]
+
+
+    [Route("{id}", Name = "GetDisplay")]
     [HttpGet]
-    //[ResponseType(typeof(Display))]
-    public async Task<IHttpActionResult> GetDisplay(int id)
+    public async Task<IHttpActionResult> GetDisplay(string name)
     {
-      var display = await context.Displays.FindAsync(id);
+      var display = await context.Displays.FirstAsync(
+        d => d.Name == name);
 
       await context.Entry(display).Collection(d => d.Notes).LoadAsync();
 
