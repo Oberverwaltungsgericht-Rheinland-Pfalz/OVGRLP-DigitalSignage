@@ -28,9 +28,7 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       return context.Displays.Where(d => d.Dummy == false);
     }
 
-
-
-    [Route("{id}", Name = "GetDisplay")]
+    [Route("{name}", Name = "GetDisplay")]
     [HttpGet]
     public async Task<IHttpActionResult> GetDisplay(string name)
     {
@@ -73,12 +71,13 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       return Ok(displayDto);
     }
 
-    [Route("{id}/termine")]
+    [Route("{name}/termine")]
     [HttpGet]
     [ResponseType(typeof(IEnumerable<VerfahrenDto>))]
-    public async Task<IHttpActionResult> GetAllTermine(int id)
+    public async Task<IHttpActionResult> GetAllTermine(string name)
     {
-      var display = await context.Displays.FindAsync(id);
+      var display = await context.Displays.FirstAsync(
+        d => d.Name == name);
 
       if (display == null)
         return NotFound();
@@ -107,12 +106,13 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       return Ok(dtos);
     }
 
-    [Route("{id}/status")]
+    [Route("{name}/status")]
     [HttpGet]
     [ResponseType(typeof(DisplayStatus))]
-    public async Task<IHttpActionResult> GetStatusForDisplay(int id)
+    public async Task<IHttpActionResult> GetStatusForDisplay(string name)
     {
-      var display = await context.Displays.FindAsync(id);
+      var display = await context.Displays.FirstAsync(
+        d => d.Name == name);
 
       if (display == null)
         return NotFound();
@@ -120,12 +120,13 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       return Ok(displayManagementService.GetDisplayStatus(display));
     }
 
-    [Route("{id}/start")]
+    [Route("{name}/start")]
     [HttpGet]
     [ResponseType(typeof(void))]
-    public async Task<IHttpActionResult> StartDisplay(int id)
+    public async Task<IHttpActionResult> StartDisplay(string name)
     {
-      var display = await context.Displays.FindAsync(id);
+      var display = await context.Displays.FirstAsync(
+        d => d.Name == name);
 
       if (display == null)
         return NotFound();
@@ -142,17 +143,17 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       return Ok();
     }
 
-    [Route("{id}")]
+    [Route("{name}")]
     [HttpPut]
     [ResponseType(typeof(void))]
-    public async Task<IHttpActionResult> PutDisplay(int id, Display display)
+    public async Task<IHttpActionResult> PutDisplay(string name, Display display)
     {
       if (!ModelState.IsValid)
       {
         return BadRequest(ModelState);
       }
 
-      if (id != display.Id)
+      if (name != display.Name)
       {
         return BadRequest();
       }
@@ -192,15 +193,15 @@ namespace DigitalSignage.WebApi.Controllers.Settings
         return InternalServerError(ex);
       }
 
-      return CreatedAtRoute("GetDisplayById", new { id = display.Id }, display);
+      return CreatedAtRoute("GetDisplay", new { name = display.Name }, display);
     }
 
-    [Route("{id}")]
+    [Route("{name}")]
     [HttpDelete]
     [ResponseType(typeof(Display))]
-    public async Task<IHttpActionResult> DeleteDisplay(int id)
+    public async Task<IHttpActionResult> DeleteDisplay(string name)
     {
-      var display = await context.Displays.FindAsync(id);
+      var display = await context.Displays.FindAsync(name);
 
       if (display == null)
       {
