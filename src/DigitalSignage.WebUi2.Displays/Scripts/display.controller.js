@@ -30,7 +30,7 @@
     }
     
     function loadDisplay() {
-      DisplaysSrv.one($stateParams.id).get().then(function (display) {
+      DisplaysSrv.one($stateParams.name).get().then(function (display) {
         vm.display = display;
         vm.layout = appConfig.templatesUrl + '/' + display.template + '/main.html';
         vm.notes = $sce.trustAsHtml(vm.display.notes);

@@ -17,7 +17,7 @@
         url: '/',
         templateUrl: 'app/index.html'
       }).state('display', {
-        url: '/{id}',
+        url: '/{name}',
         templateUrl: 'app/display.html',
         controller: 'DisplayController',
         controllerAs: 'dc'

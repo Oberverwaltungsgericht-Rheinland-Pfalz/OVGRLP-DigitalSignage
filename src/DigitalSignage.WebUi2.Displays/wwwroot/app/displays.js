@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.Displays - v2.2.0-1649 - 07.12.2016 */
+/*! DigitalSignage.WebUi2.Displays - v2.2.1-1712 - 23.03.2017 */
 (function () {
   'use strict';
 
@@ -18,7 +18,7 @@
         url: '/',
         templateUrl: 'app/index.html'
       }).state('display', {
-        url: '/{id}',
+        url: '/{name}',
         templateUrl: 'app/display.html',
         controller: 'DisplayController',
         controllerAs: 'dc'
@@ -86,7 +86,7 @@
     }
     
     function loadDisplay() {
-      DisplaysSrv.one($stateParams.id).get().then(function (display) {
+      DisplaysSrv.one($stateParams.name).get().then(function (display) {
         vm.display = display;
         vm.layout = appConfig.templatesUrl + '/' + display.template + '/main.html';
         vm.notes = $sce.trustAsHtml(vm.display.notes);
