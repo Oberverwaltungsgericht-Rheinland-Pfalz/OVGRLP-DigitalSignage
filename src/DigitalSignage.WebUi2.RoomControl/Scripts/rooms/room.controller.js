@@ -22,7 +22,7 @@
     }
 
     function loadDisplay() {
-      DisplaySrv.one($stateParams.id).get().then(function (display) {
+      DisplaySrv.one($stateParams.name).get().then(function (display) {
         vm.display = display;
       })
     }
