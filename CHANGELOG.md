@@ -1,3 +1,13 @@
+<a name="2.2.1-1712"></a>
+### 2.2.1-1712 (23.03.2017)
+
+#### Breaking Changes
+
+* __WebApi / Ui: Name statt Id__ - Die WebApi und die Ui-Projekte Displays und RoomControl wurden so
+umgebaut, dass nun der *Name* des Displays für die Navigation genutzt wird und nicht mehr die *Id*.
+Hierdurch ändern sich die Urls zu den Displays. Der Manager sollte von den Änderungen nicht 
+betroffen sein. (#97)
+
 <a name="2.2.0-1649"></a>
 ### 2.2.0-1649 (07.12.2016)
 
