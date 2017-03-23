@@ -16,7 +16,7 @@
         controllerAs: 'vm'
       }).state('room', {
         abstract: true,
-        url: '/:id',
+        url: '/:name',
         templateUrl: 'app/rooms/room.html',
         controller: 'RoomController',
         controllerAs: 'vm'

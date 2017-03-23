@@ -25,7 +25,7 @@
     function loadTerms() {
       vm.loading = true;
 
-      Restangular.one('settings/displays', $stateParams.id).getList('termine').then(function (termine) {
+      Restangular.one('settings/displays', $stateParams.name).getList('termine').then(function (termine) {
         vm.termine = termine;
         vm.loading = false;
       }, function (error) {

@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.RoomControl - v2.2.0-1649 - 07.12.2016 */
+/*! DigitalSignage.WebUi2.RoomControl - v2.2.1-1712 - 23.03.2017 */
 (function () {
   'use strict';
 
@@ -48,7 +48,7 @@
         controllerAs: 'vm'
       }).state('room', {
         abstract: true,
-        url: '/:id',
+        url: '/:name',
         templateUrl: 'app/rooms/room.html',
         controller: 'RoomController',
         controllerAs: 'vm'
@@ -97,7 +97,7 @@
     function loadDisplay() {
       vm.loading = true;
 
-      DisplaySrv.one($stateParams.id).get().then(function (display) {
+      DisplaySrv.one($stateParams.name).get().then(function (display) {
         vm.display = display;
         vm.display.status = -1;
 
@@ -166,7 +166,7 @@
     }
 
     function loadDisplay() {
-      DisplaySrv.one($stateParams.id).get().then(function (display) {
+      DisplaySrv.one($stateParams.name).get().then(function (display) {
         vm.display = display;
       })
     }
@@ -293,7 +293,7 @@
     function loadTerms() {
       vm.loading = true;
 
-      Restangular.one('settings/displays', $stateParams.id).getList('termine').then(function (termine) {
+      Restangular.one('settings/displays', $stateParams.name).getList('termine').then(function (termine) {
         vm.termine = termine;
         vm.loading = false;
       }, function (error) {
