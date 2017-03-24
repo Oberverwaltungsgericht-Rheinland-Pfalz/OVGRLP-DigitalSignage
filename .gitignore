@@ -197,3 +197,6 @@ FakesAssemblies/
 [Tt]est*/[Tt]mp/
 ![Rr]elease/bin/
 ![Rr]elease/
+
+#project specifications
+src/DigitalSignage.DisplayControl/web/components
