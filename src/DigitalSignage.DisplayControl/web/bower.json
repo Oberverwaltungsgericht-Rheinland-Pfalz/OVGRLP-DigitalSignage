@@ -9,5 +9,8 @@
   "dependencies": {
     "angular": "~1.4.1",
     "angular-material": "~0.10.0"
+  },
+  "resolutions": {
+    "angular": "1.6.3"
   }
 }
