@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.Displays - v2.2.1-1712 - 23.03.2017 */
+/*! DigitalSignage.WebUi2.Displays - v2.2.2-1713 - 27.03.2017 */
 (function () {
   'use strict';
 
@@ -135,7 +135,7 @@
 
   function TermineController($scope, $stateParams, $timeout, $interval, $filter, Restangular) {
     var vm = this;
-    var TermineSrv = Restangular.service('termine', Restangular.one('settings/displays', $stateParams.id));
+    var TermineSrv = Restangular.service('termine', Restangular.one('settings/displays', $stateParams.name));
 
     vm.updateInterval = 15 * 1000;
     vm.termine = [];

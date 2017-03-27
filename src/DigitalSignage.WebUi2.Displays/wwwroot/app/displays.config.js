@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.Displays - v2.2.1-1712 - 23.03.2017 */
+/*! DigitalSignage.WebUi2.Displays - v2.2.2-1713 - 27.03.2017 */
 (function () {
   'use strict';
 

@@ -1,3 +1,11 @@
+<a name="2.2.2-1713"></a>
+### 2.2.2-1713 (27.03.2017)
+
+#### Bug Fixes
+
+* __Ui: Diplay__ - Beim Aufruf der Terminsdaten wird nun auch der *Name* verwendet und 
+nicht mehr die *Id*.
+
 <a name="2.2.1-1712"></a>
 ### 2.2.1-1712 (23.03.2017)
 
