@@ -64,4 +64,9 @@ export class DisplayService {
   getDisplays(): Promise<Display[]> {
     return Promise.resolve(DISPLAYS);
   }
+
+  getDisplay(name: string): Promise<Display> {
+    return this.getDisplays()
+      .then(displays => displays.find(display => display.name === name));
+  }
 }
