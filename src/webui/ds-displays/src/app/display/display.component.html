@@ -2,7 +2,11 @@
 
   <!-- Öffentlich / Nicht öffentlich / Sitzung unterbrochen / Nächste Sitzung -->
   <div id="ds-head-status">
-    Öffentlich / Nicht öffentlich / Sitzung unterbrochen / Nächste Sitzung:
+    <h2 *ngIf="activeTermin">
+      {{ (activeTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;' }}
+      {{ (activeTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;' }} 
+    </h2>
+    <!--Öffentlich / Nicht öffentlich / Sitzung unterbrochen / Nächste Sitzung:-->
   </div>
 
   <!--

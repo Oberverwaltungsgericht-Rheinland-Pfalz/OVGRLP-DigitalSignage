@@ -11,7 +11,7 @@ const TERMINE: Termin[] = [
     "sitzungssaal": "Sitzungssaal III",
     "uhrzeitPlan": "omV",
     "uhrzeitAktuell": "omV",
-    "status": "",
+    "status": "Läuft",
     "oeffentlich": "ja",
     "art": "",
     "gegenstand": "Flüchtlingsrechts",
@@ -274,7 +274,7 @@ export class TerminService {
 
   constructor() { }
 
-  getTermine(display: Display): Promise<Termin[]> {
+  getTermine(displayName: string): Promise<Termin[]> {
     return Promise.resolve(TERMINE);
   }
 }
