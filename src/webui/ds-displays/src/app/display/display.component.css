@@ -1,0 +1,28 @@
+#ds-display {
+  font-size: 20px;
+  background-color: lightgray;
+  height: 10240px;
+  width: 1280px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#ds-head-status {
+  height: 80px;
+  background-color: lightgreen;
+}
+
+#ds-head-title {
+  height: 80px;
+  background-color: lightsteelblue;
+}
+
+#ds-main-details {
+  height: 416px;
+  background-color: lightpink;
+}
+
+#ds-main-upcoming {
+  height: 410px;
+  background-color: lightcyan;
+}
