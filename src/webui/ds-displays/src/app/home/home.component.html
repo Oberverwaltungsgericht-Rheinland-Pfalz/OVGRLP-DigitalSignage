@@ -3,6 +3,6 @@
 </p>
 <ul>
   <li *ngFor="let display of displays">
-    {{ display.name }}
+    <a [routerLink]="[display.name]">{{ display.name }}</a>
   </li>
 </ul>
