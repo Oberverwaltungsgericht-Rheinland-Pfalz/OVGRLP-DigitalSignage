@@ -18,6 +18,7 @@ export class DisplayComponent implements OnInit {
   activeTermin: Termin;
   nextTermin: Termin;
   termine: Termin[];
+  datum: Date;
 
   constructor(
     private displayService: DisplayService,
@@ -44,6 +45,7 @@ export class DisplayComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.datum = new Date();
     this.loadDisplay();
   }
 }

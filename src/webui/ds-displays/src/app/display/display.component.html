@@ -1,12 +1,19 @@
-<div *ngIf="display" id="ds-display">
+<div *ngIf="display" id="ds-display" fxLayout="column">
 
   <!-- Öffentlich / Nicht öffentlich / Sitzung unterbrochen / Nächste Sitzung -->
-  <div id="ds-head-status">
-    <h2 *ngIf="activeTermin">
-      {{ (activeTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;' }}
-      {{ (activeTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;' }} 
-    </h2>
-    <!--Öffentlich / Nicht öffentlich / Sitzung unterbrochen / Nächste Sitzung:-->
+  <div fxLayout="column" id="ds-head-status" [ngClass]="
+    {
+      'ds-head-notrunning': !activeTermin,
+      'ds-head-public': activeTermin && activeTermin.oeffentlich == 'ja',
+      'ds-head-notpublic': activeTermin && activeTermin.oeffentlich == 'nein'
+    }">
+    <div *ngIf="activeTermin" fxFlex="grow">
+        {{ (activeTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;' }}
+        {{ (activeTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;' }}
+    </div>
+    <div *ngIf="!activeTermin" [ngClass]="">
+      keine aktuelle Sitzung
+    </div>
   </div>
 
   <!--
@@ -27,21 +34,15 @@
   </div>
   -->
 
-  <div id="ds-head-title">
-    Saalbezeichnung (Titel) | Datum Uhrzeit
-  </div>
-
-  <!--
-  <div class="md-whiteframe-z1 ds-room-date" layout="row">
-    <div flex="65">
-      <h1>{{dc.display.title}}</h1>
+  <div id="ds-head-title" fxLayout="row">
+    <div fxFlex="75" class="ds-head-title-left">
+      {{ display.title }}
     </div>
-    <div flex>
-      <h3 class="ds-text-right">{{dc.dateTime | date:'fullDate'}}</h3>
-      <h3 class="ds-text-right">{{dc.dateTime | date:'shortTime'}} Uhr</h3>
+    <div fxFlex class="ds-head-title-right" fxLayout="column">
+      <div fxFlex>{{ datum | date: 'd. MMMM yyyy' }}</div>
+      <div fxFlex>{{ datum | date: 'HH:mm' }} Uhr</div>
     </div>
   </div>
-  -->
 
   <div id="ds-main-details">
     Details zu den aktuellen oder zum nächsten Verfahren
