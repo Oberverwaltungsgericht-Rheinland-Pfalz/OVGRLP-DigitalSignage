@@ -44,8 +44,26 @@
     </div>
   </div>
 
-  <div id="ds-main-details">
-    Details zu den aktuellen oder zum nächsten Verfahren
+  <div id="ds-main-details" fxFlex fxLayout="row">
+    <div fxFlex fxLayout="column">
+      <!-- Gericht, Kammer, Besetzung -->
+      <div fxFlex fxLayout="row">
+        <div fxFlex>
+          <h1>
+            {{ activeTermin.gericht }}
+          </h1>
+          <h2>
+            {{ activeTermin.kammer }}. Kammer
+          </h2>
+        </div>
+        <div fxFlex>
+          Besetzung
+        </div>
+      </div>
+
+      
+
+    </div>
   </div>
 
   <!--
@@ -108,10 +126,11 @@
       </div>
     </div>
     -->
-
+  <!--
   <div id="ds-main-upcoming">
     weitere Termine
   </div>
+  -->
 
   <!--
     <div class="md-whiteframe-z1 ds-further">
