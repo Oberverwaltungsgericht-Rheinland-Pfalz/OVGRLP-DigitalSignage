@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { DisplayComponent } from './display/display.component';
 import { HomeComponent } from './home/home.component';
+import { CapitalizePipe } from './capitalize.pipe';
 
 const appRoutes: Routes = [
   { path: ':name', component: DisplayComponent },
@@ -18,7 +19,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     DisplayComponent,
-    HomeComponent
+    HomeComponent,
+    CapitalizePipe
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

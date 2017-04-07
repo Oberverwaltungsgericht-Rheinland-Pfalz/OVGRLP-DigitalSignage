@@ -38,7 +38,7 @@ export class DisplayComponent implements OnInit {
   loadTermine() {
     this.terminService.getTermine(this.display.name).then(termine => {
       this.termine = termine;
-      this.activeTermin = this.termine[0];  //TODO: Ermittlung des aktuellen Termins implementieren
+      this.activeTermin = this.termine[1];  //TODO: Ermittlung des aktuellen Termins implementieren
       this.nextTermin = this.termine[1];    //TODO: Ermittlung des nächsten Termins implementieren
       console.log(this.activeTermin);
     });

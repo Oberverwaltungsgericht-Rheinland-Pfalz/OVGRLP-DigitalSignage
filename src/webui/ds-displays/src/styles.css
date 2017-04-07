@@ -83,3 +83,14 @@ h1, h2, h3, h4 {
   font-size: 1.2em;
   font-weight: bold;
 }
+
+.ds-divider {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgba(0,0,0,0.12);
+  margin: 10px 0px;
+}
+
+.ds-gegen {
+  text-align: center;
+}
