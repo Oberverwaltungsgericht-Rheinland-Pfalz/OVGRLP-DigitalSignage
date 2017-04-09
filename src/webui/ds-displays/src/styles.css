@@ -5,7 +5,8 @@ html, body {
   overflow: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
-  background-image: url('assets/img/rlp_background_1280x1024.png');
+  background-color: rgba(0,0,0,.04);
+  /* background-image: url('assets/img/rlp_background_1280x1024.png'); */
 }
 
 h1, h2, h3, h4 {
@@ -41,14 +42,19 @@ h1, h2, h3, h4 {
 }
 
 #ds-main-details > div {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
   padding: 10px;
 }
 
 #ds-main-upcoming {
-  height: 410px;
-  background-color: lightcyan;
+  padding: 10px;
+}
+
+#ds-main-upcoming > div{
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+  padding: 10px;
 }
 
 .ds-head-notpublic {
