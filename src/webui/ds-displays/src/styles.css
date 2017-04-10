@@ -51,10 +51,21 @@ h1, h2, h3, h4 {
   padding: 10px;
 }
 
-#ds-main-upcoming > div{
-  background-color: rgba(255, 255, 255, 0.4);
+.ds-box {
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+  padding: 0;
+}
+
+.ds-box > div {
   padding: 10px;
+}
+
+.ds-box-header {
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2)
 }
 
 .ds-head-notpublic {
@@ -99,4 +110,11 @@ h1, h2, h3, h4 {
 
 .ds-gegen {
   text-align: center;
+}
+
+.ds-upcoming-termin {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(0,0,0,0.12);
+  padding: 10px 0px 10px 5px;
 }

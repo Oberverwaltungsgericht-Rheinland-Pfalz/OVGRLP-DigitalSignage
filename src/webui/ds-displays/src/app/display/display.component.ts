@@ -15,9 +15,9 @@ import { Termin } from '../termin/termin';
 })
 export class DisplayComponent implements OnInit {
   display: Display;
-  activeTermin: Termin;
-  nextTermin: Termin;
-  termine: Termin[];
+  aktiverTermin: Termin;
+  alleTermine: Termin[];
+  folgendeTermine: Termin[];
   datum: Date;
 
   constructor(
@@ -37,10 +37,9 @@ export class DisplayComponent implements OnInit {
 
   loadTermine() {
     this.terminService.getTermine(this.display.name).then(termine => {
-      this.termine = termine;
-      this.activeTermin = this.termine[1];  //TODO: Ermittlung des aktuellen Termins implementieren
-      this.nextTermin = this.termine[1];    //TODO: Ermittlung des nächsten Termins implementieren
-      console.log(this.activeTermin);
+      this.folgendeTermine = termine;
+      this.aktiverTermin = termine[1];  //TODO: Ermittlung des aktuellen Termins implementieren
+      this.folgendeTermine = termine.slice(2);    //TODO: Ermittlung des nächsten Termins implementieren
     });
   }
 

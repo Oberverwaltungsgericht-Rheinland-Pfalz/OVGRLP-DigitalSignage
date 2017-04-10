@@ -3,15 +3,15 @@
   <!-- Öffentlich / Nicht öffentlich / Sitzung unterbrochen / Nächste Sitzung -->
   <div fxLayout="column" id="ds-head-status" [ngClass]="
     {
-      'ds-head-notrunning': !activeTermin,
-      'ds-head-public': activeTermin && activeTermin.oeffentlich == 'ja',
-      'ds-head-notpublic': activeTermin && activeTermin.oeffentlich == 'nein'
+      'ds-head-notrunning': !aktiverTermin,
+      'ds-head-public': aktiverTermin && aktiverTermin.oeffentlich == 'ja',
+      'ds-head-notpublic': aktiverTermin && aktiverTermin.oeffentlich == 'nein'
     }">
-    <div *ngIf="activeTermin" fxFlex="grow">
-        {{ (activeTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;' }}
-        {{ (activeTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;' }}
+    <div *ngIf="aktiverTermin" fxFlex="grow">
+        {{ (aktiverTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;' }}
+        {{ (aktiverTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;' }}
     </div>
-    <div *ngIf="!activeTermin" [ngClass]="">
+    <div *ngIf="!aktiverTermin" [ngClass]="">
       keine aktuelle Sitzung
     </div>
   </div>
@@ -51,14 +51,14 @@
         <div fxFlex="nogrow" fxLayout="row">
           <div fxFlex>
             <h1>
-              {{ activeTermin.gericht }}
+              {{ aktiverTermin.gericht }}
             </h1>
             <h2>
-              {{ activeTermin.kammer }}. Kammer
+              {{ aktiverTermin.kammer }}. Kammer
             </h2>
           </div>
           <div fxFlex="40" fxLayout="column">
-            <div *ngFor="let richter of activeTermin.besetzung">
+            <div *ngFor="let richter of aktiverTermin.besetzung">
               {{ richter }}
             </div>
           </div>
@@ -70,13 +70,13 @@
         <!-- Uhrzeit, Art, AZ -->
         <div fxFlex="nogrow" fxLayout="row">
           <div fxFlex="20">
-            <h3>{{ activeTermin.uhrzeitAktuell }} Uhr</h3>
+            <h3>{{ aktiverTermin.uhrzeitAktuell }} Uhr</h3>
           </div>
           <div fxFlex>
-            <h3>{{ activeTermin.art | capitalize }}</h3>
+            <h3>{{ aktiverTermin.art | capitalize }}</h3>
           </div>
           <div fxFlex="20">
-            <h3>{{ activeTermin.az }}</h3>
+            <h3>{{ aktiverTermin.az }}</h3>
           </div>
         </div>
 
@@ -86,14 +86,14 @@
         <!-- Aktivpartei -->
         <div fxFlex="nogrow" fxLayout="row">
           <div fxFlex>
-            <div *ngFor="let partei of activeTermin.parteienAktiv">
+            <div *ngFor="let partei of aktiverTermin.parteienAktiv">
               {{ partei }}
             </div>
           </div>
           <div fxFlex="5">
           </div>
           <div fxFlex>
-            <div *ngFor="let pb of activeTermin.prozBevAktiv">
+            <div *ngFor="let pb of aktiverTermin.prozBevAktiv">
               {{ pb }}
             </div>
           </div>
@@ -113,14 +113,14 @@
         <!-- Passivpartei -->
         <div fxFlex="nogrow" fxLayout="row">
           <div fxFlex>
-            <div *ngFor="let partei of activeTermin.parteienPassiv">
+            <div *ngFor="let partei of aktiverTermin.parteienPassiv">
               {{ partei }}
             </div>
           </div>
           <div fxFlex="5">
           </div>
           <div fxFlex>
-            <div *ngFor="let pb of activeTermin.prozBevPassiv">
+            <div *ngFor="let pb of aktiverTermin.prozBevPassiv">
               {{ pb }}
             </div>
           </div>
@@ -135,15 +135,33 @@
             wegen:
           </div>
           <div fxFlex>
-            {{ activeTermin.gegenstand }}
+            {{ aktiverTermin.gegenstand }}
           </div>
         </div>
       </div>
     </div>
 
+
     <div id="ds-main-upcoming" fxFlex="25" fxLayout="column">
-      <div fxFlex>
-        <h3>weitere Verfahren</h3>
+      <div *ngIf="letzterTermin" class="ds-box" fxFlex="15" fxLayout="column" style="margin-bottom: 10px">
+        <div fxFlex class="ds-box-header">
+          letztes Verfahren
+        </div>
+        <div fxFlex="grow" class="ds-box-content">
+          TODO
+        </div>
+      </div>
+
+      <div class="ds-box" fxFlex fxLayout="column">
+        <div fxFlex class="ds-box-header">
+          folgende Verfahren
+        </div>
+        <div fxFlex="grow" class="ds-box-content">
+          <div class="ds-upcoming-termin" *ngFor="let termin of folgendeTermine">
+            {{ termin.uhrzeitAktuell }} Uhr - {{ termin.az }}<br />
+            {{ termin.art }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
