@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { DisplayComponent } from './display/display.component';
 import { HomeComponent } from './home/home.component';
 import { CapitalizePipe } from './capitalize.pipe';
+import { TerminComponent } from './termin/termin.component';
 
 const appRoutes: Routes = [
   { path: ':name', component: DisplayComponent },
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
     AppComponent,
     DisplayComponent,
     HomeComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    TerminComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

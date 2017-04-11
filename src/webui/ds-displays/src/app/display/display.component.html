@@ -44,103 +44,10 @@
   </div>
 
   <div id="ds-main" fxFlex fxLayout="row">
-    <div id="ds-main-details" fxLayout="row">
-      <div *ngIf="aktiverTermin" fxFlex fxLayout="column">
-        <!-- Gericht, Kammer, Besetzung -->
-        <div fxFlex="nogrow" fxLayout="row">
-          <div fxFlex>
-            <h1>
-              {{ aktiverTermin.gericht }}
-            </h1>
-            <h2>
-              {{ aktiverTermin.kammer }}. Kammer
-            </h2>
-          </div>
-          <div fxFlex="40" fxLayout="column">
-            <div *ngFor="let richter of aktiverTermin.besetzung">
-              {{ richter }}
-            </div>
-          </div>
-        </div>
-        
-        <!-- Trenner -->
-        <div fxFlex="nogrow" class="ds-divider"></div>
+    <div id="ds-main-details" fxFlex fxLayout="row">
 
-        <!-- Uhrzeit, Art, AZ -->
-        <div fxFlex="nogrow" fxLayout="row">
-          <div fxFlex="20">
-            <h3>{{ aktiverTermin.uhrzeitAktuell }} Uhr</h3>
-          </div>
-          <div fxFlex>
-            <h3>{{ aktiverTermin.art | capitalize }}</h3>
-          </div>
-          <div fxFlex="20">
-            <h3>{{ aktiverTermin.az }}</h3>
-          </div>
-        </div>
+      <app-termin [termin]="aktiverTermin"></app-termin>
 
-        <!-- Trenner -->
-        <div fxFlex="nogrow" class="ds-divider"></div>
-
-        <!-- Aktivpartei -->
-        <div fxFlex="nogrow" fxLayout="row">
-          <div fxFlex>
-            <div *ngFor="let partei of aktiverTermin.parteienAktiv">
-              {{ partei }}
-            </div>
-          </div>
-          <div fxFlex="5">
-          </div>
-          <div fxFlex>
-            <div *ngFor="let pb of aktiverTermin.prozBevAktiv">
-              {{ pb }}
-            </div>
-          </div>
-        </div>
-
-        <!-- Trenner -->
-        <div fxFlex="nogrow" class="ds-divider"></div>
-
-        <!-- gegen -->
-        <div fxFlex="nogrow" class="ds-gegen">
-          gegen
-        </div>
-
-        <!-- Trenner -->
-        <div fxFlex="nogrow" class="ds-divider"></div>
-
-        <!-- Passivpartei -->
-        <div fxFlex="nogrow" fxLayout="row">
-          <div fxFlex>
-            <div *ngFor="let partei of aktiverTermin.parteienPassiv">
-              {{ partei }}
-            </div>
-          </div>
-          <div fxFlex="5">
-          </div>
-          <div fxFlex>
-            <div *ngFor="let pb of aktiverTermin.prozBevPassiv">
-              {{ pb }}
-            </div>
-          </div>
-        </div>
-
-        <!-- Trenner -->
-        <div fxFlex="nogrow" class="ds-divider"></div>
-
-        <!-- wegen -->
-        <div fxFlex="nogrow" fxLayout="row">
-          <div fxFlex="8">
-            wegen:
-          </div>
-          <div fxFlex>
-            {{ aktiverTermin.gegenstand }}
-          </div>
-        </div>
-      </div>
-
-      <div *ngIf="!aktiverTermin">
-      </div>
     </div>
 
     <div id="ds-main-upcoming" fxFlex="25" fxLayout="column">
