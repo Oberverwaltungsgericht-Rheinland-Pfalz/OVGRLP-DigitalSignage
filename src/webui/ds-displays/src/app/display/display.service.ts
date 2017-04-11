@@ -5,23 +5,28 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+import { ConfigService } from '../config.service';
 import { Display } from './display';
 
 @Injectable()
 export class DisplayService {
 
-  constructor(private http: Http) { }
+  private apiUrl: string;
+
+  constructor(private http: Http, private configService: ConfigService) { 
+    this.apiUrl = this.configService.getConfig().apiUrl;
+  }
 
   getDisplays(): Observable<Display[]> {
     return this.http
-      .get('http://5540s-fs1:8082/webapi/settings/displays')
+      .get(`${this.apiUrl}/settings/displays`)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   getDisplay(name: string): Observable<Display> {
     return this.http
-      .get(`http://5540s-fs1:8082/webapi/settings/displays/${name}`)
+      .get(`${this.apiUrl}/settings/displays/${name}`)
       .map(this.extractData)
       .catch(this.handleError);
   }
