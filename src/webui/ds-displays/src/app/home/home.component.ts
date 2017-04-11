@@ -10,11 +10,12 @@ import { DisplayService } from '../display/display.service';
   providers: [DisplayService]
 })
 export class HomeComponent implements OnInit {
-
   displays: Display[];
 
-  getDisplays(): void {
-    this.displayService.getDisplays().then(displays => this.displays = displays);
+  getDisplays() {
+    this.displayService.getDisplays()
+      .subscribe(
+        displays => this.displays = displays);
   }
 
   constructor(private displayService: DisplayService) { }
@@ -22,5 +23,4 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getDisplays();
   }
-
 }

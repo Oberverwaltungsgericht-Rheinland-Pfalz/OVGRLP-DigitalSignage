@@ -1,6 +1,6 @@
-import 'rxjs/add/operator/switchMap';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 import { DisplayService } from './display.service';
 import { TerminService } from '../termin/termin.service';
@@ -17,7 +17,7 @@ export class DisplayComponent implements OnInit {
   display: Display;
   aktiverTermin: Termin;
   alleTermine: Termin[];
-  folgendeTermine: Termin[];
+  offeneTermine: Termin[];
   datum: Date;
 
   constructor(
@@ -31,16 +31,17 @@ export class DisplayComponent implements OnInit {
       .switchMap((params: Params) => this.displayService.getDisplay(params['name']))
       .subscribe(display => {
         this.display = display;
-        this.loadTermine();
+        this.loadTermine(display.name);
       });
   }
 
-  loadTermine() {
-    this.terminService.getTermine(this.display.name).then(termine => {
-      this.folgendeTermine = termine;
-      this.aktiverTermin = termine[1];  //TODO: Ermittlung des aktuellen Termins implementieren
-      this.folgendeTermine = termine.slice(2);    //TODO: Ermittlung des nächsten Termins implementieren
-    });
+  loadTermine(name: string) {
+    this.terminService.getTermine(name)
+      .subscribe(termine => {
+        this.alleTermine = termine.filter(termin => termin.uhrzeitAktuell != 'omV');
+        this.aktiverTermin = this.alleTermine.find(termin => termin.status === 'Läuft');
+        this.offeneTermine = this.alleTermine.filter(termin => !(termin.status === 'Abgeschlossen' || termin.status === 'Aufgehoben'));
+      });
   }
 
   ngOnInit() {
