@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Termin } from './termin';
 import { Display } from '../display/display';
+import { ConfigService } from '../config.service';
 
 import { Http, Response } from '@angular/http';
 
@@ -11,11 +12,13 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class TerminService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private configService: ConfigService) { }
 
   getTermine(displayName: string): Observable<Termin[]> {
+    let apiUrl = this.configService.getConfig().apiUrl;
+
     return this.http
-      .get(`http://5540s-fs1:8082/webapi/settings/displays/${displayName}/termine`)
+      .get(`${apiUrl}/settings/displays/${displayName}/termine`)
       .map(this.extractData)
       .catch(this.handleError);
   }
