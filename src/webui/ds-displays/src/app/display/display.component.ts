@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Observable, Subscription } from 'rxjs/Rx';
+
 import 'rxjs/add/operator/switchMap';
 
 import { DisplayService } from './display.service';
@@ -13,7 +15,9 @@ import { Termin } from '../termin/termin';
   styleUrls: ['./display.component.css'],
   providers: [DisplayService, TerminService]
 })
-export class DisplayComponent implements OnInit {
+export class DisplayComponent implements OnInit, OnDestroy {
+  private updateTimer;
+  private updateSub : Subscription;
   display: Display;
   aktiverTermin: Termin;
   alleTermine: Termin[];
@@ -45,7 +49,14 @@ export class DisplayComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.datum = new Date();
-    this.loadDisplay();
+    this.updateTimer = Observable.timer(2000, 5000);
+    this.updateSub = this.updateTimer.subscribe(t => {
+      this.datum = new Date();
+      this.loadDisplay()
+    });
+  }
+
+  ngOnDestroy() {
+    this.updateSub.unsubscribe();
   }
 }
