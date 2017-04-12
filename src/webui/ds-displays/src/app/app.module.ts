@@ -31,7 +31,7 @@ export function ConfigLoader(configService: ConfigService) {
     TerminComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     BrowserModule,
     FormsModule,
     HttpModule,
