@@ -1,4 +1,10 @@
 <a name="2.2.2-1713"></a>
+### 2.2.3-1716 (20.04.2017)
+
+#### Bug Fixes
+
+* __Ui: Diplay__ - Die Anzeige der Aktuellen Urhzeit erfolgt jetzt im 24 Stunden Modus.
+
 ### 2.2.2-1713 (27.03.2017)
 
 #### Bug Fixes
