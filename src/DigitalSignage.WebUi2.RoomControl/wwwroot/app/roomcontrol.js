@@ -1,4 +1,4 @@
-/*! DigitalSignage.WebUi2.RoomControl - v2.2.1-1712 - 13.04.2017 */
+/*! DigitalSignage.WebUi2.RoomControl - v2.2.1-1712 - 23.03.2017 */
 (function () {
   'use strict';
 
@@ -14,9 +14,6 @@
 
   function config($mdThemingProvider, $mdIconProvider, RestangularProvider, appConfig) {
     RestangularProvider.setBaseUrl(appConfig.apiUrl);
-    RestangularProvider.setRestangularFields({
-      id: "name"
-    });
 
     $mdThemingProvider.theme('default')
       .primaryPalette('indigo')

@@ -21,7 +21,7 @@
       <md-progress-linear md-mode="indeterminate"></md-progress-linear>
     </div>
     <div ng-hide="loading" class="ds-rooms">
-      <div ng-repeat="display in vm.displays | multifilter:vm.filters | orderBy: 'title'">
+      <div ng-repeat="display in vm.displays | multifilter:vm.filters | orderBy: 'name'">
         <md-button ui-sref="room.terms({ name: display.name })">{{display.title}} ({{display.group}})</md-button>
       </div>
     </div>

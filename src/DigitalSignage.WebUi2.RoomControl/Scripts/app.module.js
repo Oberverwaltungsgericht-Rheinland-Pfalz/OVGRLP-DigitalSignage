@@ -13,9 +13,6 @@
 
   function config($mdThemingProvider, $mdIconProvider, RestangularProvider, appConfig) {
     RestangularProvider.setBaseUrl(appConfig.apiUrl);
-    RestangularProvider.setRestangularFields({
-      id: "name"
-    });
 
     $mdThemingProvider.theme('default')
       .primaryPalette('indigo')
