@@ -1,0 +1,176 @@
+<div *ngIf="display" id="ds-display" fxLayout="column">
+
+  <!-- Öffentlich / Nicht öffentlich / Sitzung unterbrochen / Nächste Sitzung -->
+  <div fxLayout="column" id="ds-head-status" [ngClass]="
+    {
+      'ds-head-notrunning': !aktiverTermin,
+      'ds-head-public': aktiverTermin && aktiverTermin.oeffentlich == 'ja',
+      'ds-head-notpublic': aktiverTermin && aktiverTermin.oeffentlich == 'nein'
+    }">
+    <div *ngIf="aktiverTermin" fxFlex="grow">
+        {{ (aktiverTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;' }}
+        {{ (aktiverTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;' }}
+    </div>
+    <div *ngIf="!aktiverTermin" [ngClass]="">
+    </div>
+  </div>
+
+  <!--
+  <div class="ds-public-notpublic ds-text-center" 
+       ng-class="{public : (tc.detailTermin.oeffentlich == 'ja' && tc.detailTermin.status == 'Läuft'),
+                  notpublic : (tc.detailTermin.oeffentlich == 'nein' && tc.detailTermin.status == 'Läuft'), 
+                  notrunning : (tc.detailTermin.status != 'Läuft')}">
+    <h2 ng-show="tc.detailTermin.status == 'Läuft'">
+      {{(tc.detailTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;'}} {{(tc.detailTermin.oeffentlich == 'nein') ?
+      'Nicht öffentliche Sitzung' : '&nbsp;'}}
+    </h2>
+    <h2 ng-show="tc.detailTermin.status == '' || tc.detailTermin.status == 'Verschoben'">
+      Nächste Sitzung:
+    </h2>
+    <h2 ng-show="tc.detailTermin.status == 'Unterbrochen'">
+      Sitzung unterbrochen
+    </h2>
+  </div>
+  -->
+
+  <div id="ds-head-title" fxLayout="row">
+    <div fxFlex="75" class="ds-head-title-left">
+      {{ display.title }}
+    </div>
+    <div fxFlex class="ds-head-title-right" fxLayout="column">
+      <div fxFlex>{{ datum | date: 'd. MMMM yyyy' }}</div>
+      <div fxFlex>{{ datum | date: 'H:mm' }} Uhr</div>
+    </div>
+  </div>
+
+  <div id="ds-main" fxFlex fxLayout="row">
+    <div id="ds-main-details" fxFlex fxLayout="row">
+
+      <app-termin [termin]="aktiverTermin"></app-termin>
+
+    </div>
+
+    <div id="ds-main-upcoming" fxFlex="25" fxLayout="column">
+      <div *ngIf="letzterTermin" class="ds-box" fxFlex="15" fxLayout="column" style="margin-bottom: 10px">
+        <div fxFlex class="ds-box-header">
+          letztes Verfahren
+        </div>
+        <div fxFlex="grow" class="ds-box-content">
+          TODO
+        </div>
+      </div>
+
+      <div class="ds-box" fxFlex fxLayout="column">
+        <div fxFlex class="ds-box-header">
+          folgende Verfahren
+        </div>
+        <div fxFlex="grow" class="ds-box-content">
+          <div class="ds-upcoming-termin" *ngFor="let termin of offeneTermine">
+            {{ termin.uhrzeitAktuell }} Uhr - {{ termin.az }}<br />
+            {{ termin.art }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!--
+  <div class="ds-content" ng-hide="tc.termine.length > 0">
+    <div class="md-whiteframe-z1 ds-no-terms">
+      Zurzeit keine Verhandlungstermine
+    </div>
+  </div>
+
+  <div class="ds-content" ng-show="tc.termine.length > 0">
+    <div class="md-whiteframe-z1 ds-current-next">
+      <div ng-show="tc.detailTermin != null">
+        <div layout="row">
+          <div flex="50">
+            <h2>{{tc.detailTermin.gericht}}</h2>
+            <h3>{{tc.detailTermin.kammer}}. Kammer</h3>
+          </div>
+          <div flex="10">
+            Besetzung:
+          </div>
+          <div flex="40">
+            <p ng-repeat="richter in tc.detailTermin.besetzung">{{richter}}</p>
+          </div>
+        </div>
+
+        <md-divider></md-divider>
+
+        <div layout="row">
+          <div flex="15">
+            <h3>{{tc.detailTermin.uhrzeitAktuell}} Uhr</h3>
+          </div>
+          <div flex="55">
+            <h3>{{tc.detailTermin.art | capitalize}}</h3>
+          </div>
+          <div flex="30" class="ds-text-right">
+            <h3>{{tc.detailTermin.az}}</h3>
+          </div>
+        </div>
+
+        <md-divider></md-divider>
+
+        <div layout="row">
+          <div flex="45">
+            <p style="font-weight:bold" ng-repeat="partei in tc.detailTermin.parteienAktiv">{{partei}}</p>
+            <p ng-repeat="pb in tc.detailTermin.prozBevAktiv">{{pb}}</p>
+          </div>
+          <div flex="10">
+            gegen
+          </div>
+          <div flex="45">
+            <p style="font-weight:bold" ng-repeat="partei in tc.detailTermin.parteienPassiv">{{partei}}</p>
+            <p ng-repeat="pb in tc.detailTermin.prozBevPassiv">{{pb}}</p>
+          </div>
+        </div>
+
+        <div layout="row" style="margin-top:10px">
+          <div flex="10">wegen</div>
+          <div flex><strong>{{tc.detailTermin.gegenstand}}</strong></div>
+        </div>
+      </div>
+    </div>
+    -->
+  <!--
+  <div id="ds-main-upcoming">
+    weitere Termine
+  </div>
+  -->
+
+  <!--
+    <div class="md-whiteframe-z1 ds-further">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h3>Weitere Termine</h3>
+        </div>
+      </md-toolbar>
+      <div class="ds-further-content">
+        <ds-scroll-content step="40" step-duration="300" speed="4000" watch-data="termine">
+          <md-list>
+            <md-list-item ng-repeat="termin in tc.termine track by termin.id" layout="row" layout-align="start start">
+              <div flex="15">
+                <p>{{termin.uhrzeitAktuell}} Uhr</p>
+                <p>{{termin.status}}</p>
+              </div>
+              <div flex="30">
+                <strong>{{termin.az}}</strong><br /> {{termin.gericht}}
+              </div>
+              <div flex="55">
+                {{termin.parteienAktivKurz}} ./. {{termin.parteienPassivKurz}}
+              </div>
+              <md-divider></md-divider>
+            </md-list-item>
+          </md-list>
+        </ds-scroll-content>
+      </div>
+    </div>
+  </div>
+  -->
+</div>

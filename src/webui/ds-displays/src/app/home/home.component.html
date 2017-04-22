@@ -1,0 +1,8 @@
+<p>
+  home works!
+</p>
+<ul>
+  <li *ngFor="let display of displays">
+    <a [routerLink]="[display.name]">{{ display.name }}</a>
+  </li>
+</ul>
