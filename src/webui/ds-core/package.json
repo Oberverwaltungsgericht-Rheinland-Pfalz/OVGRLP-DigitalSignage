@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular2": "^2.0.0-beta.21"
+    "@angular/core": "^4.1.0"
   },
   "devDependencies": {
     "typescript": "^2.3.1"
