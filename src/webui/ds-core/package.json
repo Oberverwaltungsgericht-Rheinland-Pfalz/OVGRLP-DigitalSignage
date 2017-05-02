@@ -1,26 +1,24 @@
 {
   "name": "ds-core",
-  "version": "3.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "Enthält die zentralen Services und Models für die anderen DigitalSignage-Projekte.",
+  "main": "ds-core.bundle.js",
+  "jsnext:main": "ds-core.module.js",
+  "module": "ds-core.module.js",
+  "types": "ds-core.module.d.ts",
   "scripts": {
-    "build": "tsc"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf ./dist && tsc && rollup -c rollup.config.js dist/ds-core.module.js > dist/ds-core.bundle.js"
   },
-  "author": "",
+  "author": "Tobias Grotheer",
   "license": "ISC",
-  "dependencies": {
-    "@angular/core": "^4.1.0",
-    "@angular/common": "^4.1.0",
-    "@angular/http": "^4.1.0",
-    "@angular/platform-browser": "^4.1.0",
-    "@angular/platform-browser-dynamic": "^4.1.0",
-    "core-js": "^2.4.1",
-    "rxjs": "^5.3.0",
-    "zone.js": "^0.8.9"
+  "dependencies" : {
+    "@angular/core": "~4.1.0",
+    "@angular/common": "~4.1.0"
   },
   "devDependencies": {
-    "ts-node": "~2.0.0",
-    "tslint": "~4.5.0",
-    "typescript": "~2.2.0"
+    "rimraf": "~2.6.1",
+    "typescript": "~2.3.2",
+    "rollup": "~0.41.6"
   }
 }
