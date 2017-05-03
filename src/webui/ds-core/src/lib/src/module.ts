@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 
-import { LibService } from './service/lib.service';
+import { DisplayService } from './service/display.service';
 
 @NgModule({
-  providers: [LibService]
+  providers: [DisplayService]
 })
-export class LibModule { }
+export class DsCoreModule { }
