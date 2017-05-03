@@ -1,24 +1,19 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "es2015",
+    "moduleResolution": "node",
     "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "stripInternal": true,
+    "inlineSources": true,
     "declaration": true,
-    "outDir": "./dist",
-    "lib": ["es2015", "dom"],
-    "typeRoots": [
-      "./node_modules/@types", "./node_modules"
-    ],
-    "types": [
-      "node",
-      "mocha",
-      "chai"
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "skipLibCheck": true,
+    "stripInternal": true,
+    "lib": [
+      "es2015",
+      "dom"
     ]
-  },
-  "files": [
-    "./src/lib/ds-core.module.ts"
-  ]
+  }
 }
