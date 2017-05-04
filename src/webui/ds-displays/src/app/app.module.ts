@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { environment } from '../environments/environment';
 
-import { ConfigService } from './config.service';
+import { ConfigService } from 'ds-core';
 import { AppComponent } from './app.component';
 import { DisplayComponent } from './display/display.component';
 import { HomeComponent } from './home/home.component';

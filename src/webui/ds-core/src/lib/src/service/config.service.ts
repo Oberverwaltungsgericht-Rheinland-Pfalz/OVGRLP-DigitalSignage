@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Config } from './config';
+import { Config } from '../model/config';
 
 @Injectable()
 export class ConfigService {

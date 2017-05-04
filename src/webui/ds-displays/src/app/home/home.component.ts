@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Display } from '../display/display';
-import { DisplayService } from '../display/display.service';
+import { Display } from 'ds-core';
+import { DisplayService } from 'ds-core';
 
 @Component({
   selector: 'app-home',

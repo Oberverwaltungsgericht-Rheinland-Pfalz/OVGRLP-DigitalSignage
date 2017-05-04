@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { Termin } from '../model/termin';
+import { Display } from '../model/display';
+import { Config } from '../model/config';
+import { ConfigService } from '../service/config.service';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { ConfigService } from '../config.service';
-import { Display } from './display';
-
 @Injectable()
-export class DisplayService {
+export class TerminService {
 
   private apiUrl: string;
 
@@ -17,16 +19,10 @@ export class DisplayService {
     this.apiUrl = this.configService.getConfig().apiUrl;
   }
 
-  getDisplays(): Observable<Display[]> {
-    return this.http
-      .get(`${this.apiUrl}/settings/displays`)
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
+  getTermine(displayName: string): Observable<Termin[]> {
 
-  getDisplay(name: string): Observable<Display> {
     return this.http
-      .get(`${this.apiUrl}/settings/displays/${name}`)
+      .get(`${this.apiUrl}/settings/displays/${displayName}/termine`)
       .map(this.extractData)
       .catch(this.handleError);
   }
