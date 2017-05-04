@@ -1,43 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { Termin } from '../model/termin';
+import { Display } from '../model/display';
+import { Config } from '../model/config';
+import { ConfigService } from '../service/config.service';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { Config } from '../model/config';
-import { ConfigService } from '../service/config.service';
-import { Display } from '../model/display';
-
 @Injectable()
-export class DisplayService {
+export class TerminService {
 
   private apiUrl: string;
 
-  constructor(private http: Http, private configService: ConfigService) {
+  constructor(private http: Http, private configService: ConfigService) { 
     this.apiUrl = this.configService.getConfig().apiUrl;
   }
 
-  getDisplays(): Observable<Display[]> {
-    return this.http
-      .get(`${this.apiUrl}/settings/displays`)
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
+  getTermine(displayName: string): Observable<Termin[]> {
 
-  getDisplay(name: string): Observable<Display> {
     return this.http
-      .get(`${this.apiUrl}/settings/displays/${name}`)
+      .get(`${this.apiUrl}/settings/displays/${displayName}/termine`)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   private extractData(res: Response) {
     let body = res.json();
-    return body || {};
+    return body || { };
   }
 
-  private handleError(error: Response | any) {
+  private handleError (error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';
