@@ -1,9 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
+import { MdSidenavModule } from '@angular/material';
+
+import 'hammerjs';
 
 import { ConfigService } from 'ds-core';
 
@@ -30,7 +34,9 @@ export function ConfigLoader(configService: ConfigService) {
     RouterModule.forRoot(appRoutes, { useHash: true }),
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    BrowserAnimationsModule,
+    MdSidenavModule
   ],
   providers: [
     ConfigService, {

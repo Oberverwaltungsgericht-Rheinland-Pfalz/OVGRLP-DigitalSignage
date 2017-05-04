@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<md-sidenav-layout>
+  <md-sidenav-container class="ds-container">
+    <md-sidenav #sidenav class="ds-sidenav" opened="true">
+      Jolly good!
+    </md-sidenav>
+
+    <div class="ds-sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+  </md-sidenav-container>
+</md-sidenav-layout>
