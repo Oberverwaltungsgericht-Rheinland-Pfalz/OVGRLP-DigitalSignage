@@ -4,10 +4,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/switchMap';
 
-import { DisplayService } from './display.service';
-import { TerminService } from '../termin/termin.service';
-import { Display } from './display';
-import { Termin } from '../termin/termin';
+import { DisplayService, Display, TerminService, Termin } from 'ds-core';
 
 @Component({
   selector: 'app-display',
