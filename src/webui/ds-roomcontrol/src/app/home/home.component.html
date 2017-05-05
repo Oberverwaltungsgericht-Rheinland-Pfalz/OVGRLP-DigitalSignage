@@ -1,3 +1,5 @@
-<p>
-  home works!
-</p>
+<ul>
+  <li *ngFor="let display of displays">
+    <a [routerLink]="[display.name]">{{ display.title }}</a>
+  </li>
+</ul>
