@@ -1,5 +1,5 @@
-<app-display-control></app-display-control>
+<div *ngIf="display">
+  <h1>{{ display.title }}</h1>
 
-<p>
-  display works!
-</p>
+  <app-display-control></app-display-control>
+</div>

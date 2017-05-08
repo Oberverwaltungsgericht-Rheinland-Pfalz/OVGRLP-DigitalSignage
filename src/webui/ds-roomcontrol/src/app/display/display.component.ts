@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { DisplayService, Display } from 'ds-core';
 
 @Component({
   selector: 'app-display',
@@ -6,10 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./display.component.css']
 })
 export class DisplayComponent implements OnInit {
+  display: Display;
 
-  constructor() { }
+  constructor(
+    private displayService: DisplayService,
+    private route: ActivatedRoute) { }
 
-  ngOnInit() {
+  loadDisplay() {
+    this.route.params
+      .switchMap((params: Params) => this.displayService.getDisplay(params['name']))
+      .subscribe(display => {
+        this.display = display;
+      })
   }
 
+  ngOnInit() {
+    this.loadDisplay();
+  }
 }

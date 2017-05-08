@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DisplayComponent } from './display/display.component';
 import { DisplayControlComponent } from './display-control/display-control.component';
+import { DisplayService } from 'ds-core';
 
 const appRoutes: Routes = [
   { path: ':name', component: DisplayComponent },
@@ -46,7 +47,8 @@ export function ConfigLoader(configService: ConfigService) {
       useFactory: ConfigLoader,
       deps: [ConfigService],
       multi: true
-    }
+    },
+    DisplayService
   ],
   bootstrap: [AppComponent]
 })
