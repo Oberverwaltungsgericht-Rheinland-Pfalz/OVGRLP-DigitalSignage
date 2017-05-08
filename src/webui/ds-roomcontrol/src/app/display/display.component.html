@@ -1,5 +1,7 @@
 <div *ngIf="display">
-  <h1>{{ display.title }}</h1>
+  <md-toolbar color="primary">
+    {{ display.title }}
+  </md-toolbar>
 
-  <app-display-control></app-display-control>
+  <app-display-control [display]="display"></app-display-control>
 </div>
