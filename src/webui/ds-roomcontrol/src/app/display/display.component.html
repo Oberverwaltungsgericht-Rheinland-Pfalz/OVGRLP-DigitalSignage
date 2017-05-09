@@ -3,5 +3,16 @@
     {{ display.title }}
   </md-toolbar>
 
-  <app-display-control [display]="display"></app-display-control>
+  <md-sidenav-container>
+    <md-sidenav mode="side" opened="true">
+      <button md-raised-button>Anschalten</button>
+      <button md-raised-button>Ausschalten</button>
+      <button md-raised-button>Neu starten</button>
+    </md-sidenav>
+
+    <div class="ds-main-content">
+      <app-display-control [display]="display"></app-display-control>
+    </div>
+
+  </md-sidenav-container>
 </div>
