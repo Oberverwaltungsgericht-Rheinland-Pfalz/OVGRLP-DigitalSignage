@@ -1,18 +1,38 @@
-<div *ngIf="display">
+<div *ngIf="display" fxFlex fxLayout="column">
   <md-toolbar color="primary">
     {{ display.title }}
   </md-toolbar>
 
-  <md-sidenav-container>
-    <md-sidenav mode="side" opened="true">
-      <button md-raised-button>Anschalten</button>
-      <button md-raised-button>Ausschalten</button>
-      <button md-raised-button>Neu starten</button>
-    </md-sidenav>
+  <div fxLayout="row" fxFlex>
+    <md-card fxFlex="25">
+      <md-card-header>
+        Steuerung
+      </md-card-header>
+      <md-card-content>
+        -- Vorschau --
+      </md-card-content>
+      <md-card-actions>
+        <button md-button>Anschalten</button>
+        <button md-button>Ausschalten</button>
+        <button md-button>Neu starten</button>
+      </md-card-actions>
+    </md-card>
 
-    <div class="ds-main-content">
-      <app-display-control [display]="display"></app-display-control>
-    </div>
-
-  </md-sidenav-container>
+    <md-card fxFlex>
+      <md-card-header>
+        Termine
+      </md-card-header>
+      <md-card-content>
+        -- Termine --<br />
+        ...<br />
+        ...<br />
+        -- Termine --
+        <app-display-control [display]="display"></app-display-control>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button>speichern</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+    
 </div>

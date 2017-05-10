@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import 'hammerjs';
 
@@ -39,7 +40,8 @@ export function ConfigLoader(configService: ConfigService) {
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   providers: [
     ConfigService, {
