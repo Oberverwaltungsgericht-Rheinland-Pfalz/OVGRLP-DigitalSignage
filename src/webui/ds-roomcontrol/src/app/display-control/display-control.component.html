@@ -1,5 +1,11 @@
-<div *ngIf="display">
-  <p>
-    {{ display.name }} works!
-  </p>
-</div>
+<md-card *ngIf="display">
+  <md-toolbar>
+    Anzeigegerät {{ display.name }}
+  </md-toolbar>
+  <img md-card-image src="{{display.controlUrl}}/api/screenshot">
+  <md-card-actions>
+    <button md-button>Anschalten</button>
+    <button md-button>Ausschalten</button>
+    <button md-button>Neu starten</button>
+  </md-card-actions>
+</md-card>

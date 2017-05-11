@@ -3,20 +3,9 @@
     {{ display.title }}
   </md-toolbar>
 
-  <div fxLayout="row" fxFlex>
-    <md-card fxFlex="25">
-      <md-card-header>
-        Steuerung
-      </md-card-header>
-      <md-card-content>
-        -- Vorschau --
-      </md-card-content>
-      <md-card-actions>
-        <button md-button>Anschalten</button>
-        <button md-button>Ausschalten</button>
-        <button md-button>Neu starten</button>
-      </md-card-actions>
-    </md-card>
+  <div fxLayout="row">
+    <app-display-control fxFlex="35" [display]="display"></app-display-control>
+    
 
     <md-card fxFlex>
       <md-card-header>
@@ -27,12 +16,12 @@
         ...<br />
         ...<br />
         -- Termine --
-        <app-display-control [display]="display"></app-display-control>
+        
       </md-card-content>
       <md-card-actions>
         <button md-button>speichern</button>
       </md-card-actions>
     </md-card>
   </div>
-    
+
 </div>

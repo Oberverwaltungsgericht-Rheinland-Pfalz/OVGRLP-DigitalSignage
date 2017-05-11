@@ -5,9 +5,17 @@ html, body {
   margin: 0px;
   padding: 0px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 20px;
 }
 
 :host {
   display: flex;
+}
+
+md-card {
+  margin: 10px;
+}
+
+md-card > md-toolbar {
+  margin: -24px -24px 0px -24px !important;
+  width: calc(100% + 48px) !important;
 }
