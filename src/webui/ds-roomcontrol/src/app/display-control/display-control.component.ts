@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
-import { Display } from 'ds-core';
+import { Display, DisplayService, DisplayStatus } from 'ds-core';
 
 @Component({
   selector: 'app-display-control',
@@ -9,9 +9,21 @@ import { Display } from 'ds-core';
 })
 export class DisplayControlComponent implements OnInit {
 
-  constructor() { }
+  _display: Display;
+  screenshot: String;
+  status: DisplayStatus;
 
-  @Input() display: Display;
+  constructor(private displayService: DisplayService) { }
+
+  @Input()
+  set display(display: Display) {
+    this._display = display;
+    this.displayService.getDisplayStatus(this._display)
+      .subscribe(response => {
+        this.status = response
+      });
+  }
+  get display(): Display { return this._display; }
 
   ngOnInit() {
   }

@@ -9,6 +9,7 @@
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
+    "preserveConstEnums": true,
     "skipLibCheck": true,
     "stripInternal": true,
     "lib": [

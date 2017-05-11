@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import { Config } from '../model/config';
 import { ConfigService } from '../service/config.service';
 import { Display } from '../model/display';
+import { DisplayStatus } from '../model/displayStatus';
 
 @Injectable()
 export class DisplayService {
@@ -21,20 +22,44 @@ export class DisplayService {
   getDisplays(): Observable<Display[]> {
     return this.http
       .get(`${this.apiUrl}/settings/displays`)
-      .map(this.extractData)
+      .map(this.extractJson)
       .catch(this.handleError);
   }
 
   getDisplay(name: string): Observable<Display> {
     return this.http
       .get(`${this.apiUrl}/settings/displays/${name}`)
-      .map(this.extractData)
+      .map(this.extractJson)
       .catch(this.handleError);
   }
 
-  private extractData(res: Response) {
+  getDisplayStatus(display: Display): Observable<DisplayStatus> {
+    return this.http
+      .get(`${this.apiUrl}/settings/displays/${display.name}/status`)
+      .map(this.extractDisplayStatus)
+      .catch(this.handleError);
+  }
+
+  private extractJson(res: Response) {
     let body = res.json();
     return body || {};
+  }
+
+  private extractDisplayStatus(res: Response): DisplayStatus {
+    let data = res.text();
+
+    console.log(data);
+    
+    if(data === "0")
+      return DisplayStatus.Offline;
+    
+    if(data === "1")
+      return DisplayStatus.Online;
+    
+    if(data === "2")
+      return DisplayStatus.Active;
+
+    return DisplayStatus.Unknown;
   }
 
   private handleError(error: Response | any) {
