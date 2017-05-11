@@ -1,0 +1,17 @@
+<md-card fxFlex>
+  <md-toolbar>
+    Termine
+  </md-toolbar>
+  <md-card-content>
+    <md-card *ngFor="let termin of termine" fxLayout="column">
+      <md-card-content fxLayout="row">
+        <div fxFlex="15">{{ termin.uhrzeitAktuell }}</div>
+        <div fxFlex="25">{{ termin.az }}</div>
+        <div fxFlex>{{ termin.art }}</div>
+      </md-card-content>
+    </md-card>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button>speichern</button>
+  </md-card-actions>
+</md-card>

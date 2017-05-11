@@ -6,22 +6,7 @@
   <div fxLayout="row">
     <app-display-control fxFlex="35" [display]="display"></app-display-control>
     
-
-    <md-card fxFlex>
-      <md-card-header>
-        Termine
-      </md-card-header>
-      <md-card-content>
-        -- Termine --<br />
-        ...<br />
-        ...<br />
-        -- Termine --
-        
-      </md-card-content>
-      <md-card-actions>
-        <button md-button>speichern</button>
-      </md-card-actions>
-    </md-card>
+    <app-termine fxFlex [display]="display"></app-termine>
   </div>
 
 </div>
