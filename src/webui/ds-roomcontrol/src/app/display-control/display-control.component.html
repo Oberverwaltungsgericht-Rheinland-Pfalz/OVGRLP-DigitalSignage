@@ -3,9 +3,16 @@
     Anzeigegerät {{ display.name }}
   </md-toolbar>
   <img md-card-image src="{{display.controlUrl}}/api/screenshot">
+  <md-card-content [ngClass]="{'ds-bg-yellow':(status < 0), 'ds-bg-red': (status === 0), 'ds-bg-green': (status >= 1)}">
+    Status: {{ 
+      (status === 0 ? 'ausgeschaltet' :  
+        (status === 1 ? 'angeschaltet' : (
+          status === 2 ? 'aktiv' : 'unbekannt'
+        )))}}
+  </md-card-content>
   <md-card-actions>
-    <button md-button>Anschalten</button>
-    <button md-button>Ausschalten</button>
-    <button md-button>Neu starten</button>
+    <button md-button *ngIf="(status < 1)">Anschalten</button>
+    <button md-button *ngIf="(status >= 1)">Ausschalten</button>
+    <button md-button *ngIf="(status >= 1)">Neu starten</button>
   </md-card-actions>
 </md-card>
