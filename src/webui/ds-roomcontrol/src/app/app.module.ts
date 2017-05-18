@@ -16,7 +16,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DisplayComponent } from './display/display.component';
 import { DisplayControlComponent } from './display-control/display-control.component';
-import { DisplayService } from 'ds-core';
+import { DisplayService, TerminService } from 'ds-core';
 import { TermineComponent } from './termine/termine.component';
 import { TerminComponent } from './termin/termin.component';
 
@@ -54,7 +54,8 @@ export function ConfigLoader(configService: ConfigService) {
       deps: [ConfigService],
       multi: true
     },
-    DisplayService
+    DisplayService,
+    TerminService
   ],
   bootstrap: [AppComponent]
 })

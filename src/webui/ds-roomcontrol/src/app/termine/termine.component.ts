@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Termin } from 'ds-core';
+import { TerminService, Termin } from 'ds-core';
 
 @Component({
   selector: 'app-termine',
@@ -9,9 +9,21 @@ import { Termin } from 'ds-core';
 })
 export class TermineComponent implements OnInit {
 
-  constructor() { }
+  _displayName: string;
+  termine: Termin[];
 
-  @Input() termine: Termin[];
+  constructor(
+    private terminService: TerminService) { }
+
+  @Input()
+  set displayName(displayName: string) {
+    this._displayName = displayName;
+    this.terminService.getTermine(displayName)
+      .subscribe(termine => {
+        this.termine = termine;
+      });
+  }
+  get displayName(): string { return this._displayName; }
 
   ngOnInit() {
   }
