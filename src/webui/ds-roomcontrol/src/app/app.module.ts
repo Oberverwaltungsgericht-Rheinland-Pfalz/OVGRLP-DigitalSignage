@@ -18,6 +18,7 @@ import { DisplayComponent } from './display/display.component';
 import { DisplayControlComponent } from './display-control/display-control.component';
 import { DisplayService } from 'ds-core';
 import { TermineComponent } from './termine/termine.component';
+import { TerminComponent } from './termin/termin.component';
 
 const appRoutes: Routes = [
   { path: ':name', component: DisplayComponent },
@@ -34,7 +35,8 @@ export function ConfigLoader(configService: ConfigService) {
     HomeComponent,
     DisplayComponent,
     DisplayControlComponent,
-    TermineComponent
+    TermineComponent,
+    TerminComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, { useHash: true }),
