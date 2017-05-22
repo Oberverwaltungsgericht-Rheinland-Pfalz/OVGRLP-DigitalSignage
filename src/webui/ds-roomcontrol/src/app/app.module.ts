@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
@@ -18,7 +18,6 @@ import { DisplayComponent } from './display/display.component';
 import { DisplayControlComponent } from './display-control/display-control.component';
 import { DisplayService, TerminService } from 'ds-core';
 import { TermineComponent } from './termine/termine.component';
-import { TerminComponent } from './termin/termin.component';
 
 const appRoutes: Routes = [
   { path: ':name', component: DisplayComponent },
@@ -35,13 +34,12 @@ export function ConfigLoader(configService: ConfigService) {
     HomeComponent,
     DisplayComponent,
     DisplayControlComponent,
-    TermineComponent,
-    TerminComponent
+    TermineComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, { useHash: true }),
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule,
