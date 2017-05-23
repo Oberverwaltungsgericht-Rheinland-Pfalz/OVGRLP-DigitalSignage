@@ -28,7 +28,11 @@ export class TermineComponent implements OnInit {
   setTermine(termine: Termin[]) {
     const termineFormGroups = termine.map(termin => this.formBuilder.group({
       uhrzeit: termin.uhrzeitAktuell,
-      az: termin.az
+      az: termin.az,
+      aktivpartei: termin.parteienAktivKurz,
+      passivpartei: termin.parteienPassivKurz,
+      oeffentlich: termin.oeffentlich,
+      status: termin.status
     }));
     const termineFormArray = this.formBuilder.array(termineFormGroups);
     this.termineForm.setControl('termine', termineFormArray);

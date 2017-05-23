@@ -31,3 +31,14 @@ md-card > md-toolbar {
 .ds-bg-red {
   background-color: rgba(255, 170, 170, 0.8);
 }
+
+.ds-termin {
+  margin: 5px;
+  padding: 10px;
+  border: 1px lightgray solid;
+}
+
+.ds-termin md-input-container {
+  width: 90%;
+  margin: 5px;
+}

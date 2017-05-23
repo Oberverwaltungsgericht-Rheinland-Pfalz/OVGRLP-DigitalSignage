@@ -5,13 +5,33 @@
     </md-toolbar>
     <md-card-content>
       <div formArrayName="termine">
-        <div *ngFor="let termin of termineForm.get('termine').controls; let i=index" [formGroup]="termin">
-          <md-input-container>
-            <input mdInput type="text" placeholder="Aktenzeichen" formControlName="az">
-          </md-input-container>
-          <md-input-container>
-            <input mdInput type="text" placeholder="Uhrzeit" formControlName="uhrzeit">
-          </md-input-container>
+        <div class="ds-termin" *ngFor="let termin of termineForm.get('termine').controls; let i=index" [formGroup]="termin" fxLayout="row">
+          <div fxFlex="20" fxLayout="column">
+            <md-input-container>
+              <input mdInput type="text" placeholder="Aktenzeichen" formControlName="az">
+            </md-input-container>
+            <md-input-container>
+              <input mdInput type="text" placeholder="Uhrzeit" formControlName="uhrzeit">
+            </md-input-container>
+          </div>
+          <div fxFlex="30">
+            <md-input-container>
+              <textarea mdInput placeholder="Aktivpartei" readonly formControlName="aktivpartei" rows="5"></textarea>
+            </md-input-container>
+          </div>
+          <div fxFlex="30">
+            <md-input-container>
+              <textarea mdInput placeholder="Passivpartei" readonly formControlName="passivpartei" rows="5"></textarea>
+            </md-input-container>
+          </div>
+          <div fxFlex="20" fxLayout="column">
+            <md-input-container>
+              <input mdInput type="text" placeholder="Status" formControlName="status">
+            </md-input-container>
+            <md-input-container>
+              <input mdInput type="text" placeholder="öffentlich" formControlName="oeffentlich">
+            </md-input-container>
+          </div>
         </div>
       </div>
     </md-card-content>
