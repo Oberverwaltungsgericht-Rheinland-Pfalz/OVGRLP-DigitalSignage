@@ -47,7 +47,7 @@ h1, h2, h3, h4 {
   padding: 10px;
 }
 
-#ds-main-upcoming {
+#ds-main-overview {
   padding: 10px;
 }
 
@@ -113,7 +113,7 @@ h1, h2, h3, h4 {
   text-align: center;
 }
 
-.ds-upcoming-termin {
+.ds-overview-termin {
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: rgba(0,0,0,0.12);

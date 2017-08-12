@@ -50,24 +50,16 @@
 
     </div>
 
-    <div id="ds-main-upcoming" fxFlex="25" fxLayout="column">
-      <div *ngIf="letzterTermin" class="ds-box" fxFlex="15" fxLayout="column" style="margin-bottom: 10px">
-        <div fxFlex class="ds-box-header">
-          letztes Verfahren
-        </div>
-        <div fxFlex="grow" class="ds-box-content">
-          TODO
-        </div>
-      </div>
-
+    <div id="ds-main-overview" fxFlex="25" fxLayout="column">
       <div class="ds-box" fxFlex fxLayout="column">
         <div fxFlex class="ds-box-header">
-          folgende Verfahren
+          Verfahren
         </div>
         <div fxFlex="grow" class="ds-box-content">
-          <div class="ds-upcoming-termin" *ngFor="let termin of offeneTermine">
+          <div class="ds-overview-termin" *ngFor="let termin of alleTermine">
             {{ termin.uhrzeitAktuell }} Uhr - {{ termin.az }}<br />
-            {{ termin.art }}
+            {{ termin.art }}<br />
+            {{ termin.status }}
           </div>
         </div>
       </div>
