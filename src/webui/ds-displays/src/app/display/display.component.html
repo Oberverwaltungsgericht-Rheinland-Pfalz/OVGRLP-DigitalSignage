@@ -11,7 +11,8 @@
         {{ (aktiverTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;' }}
         {{ (aktiverTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;' }}
     </div>
-    <div *ngIf="!aktiverTermin" [ngClass]="">
+    <div *ngIf="!aktiverTermin && naechsterTermin" [ngClass]="">
+      In Kürze
     </div>
   </div>
 
@@ -46,7 +47,9 @@
   <div id="ds-main" fxFlex fxLayout="row">
     <div id="ds-main-details" fxFlex fxLayout="row">
 
-      <app-termin [termin]="aktiverTermin"></app-termin>
+      <app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin"></app-termin>
+
+      <app-termin *ngIf="!aktiverTermin && naechsterTermin" [termin]="naechsterTermin"></app-termin>
 
     </div>
 
