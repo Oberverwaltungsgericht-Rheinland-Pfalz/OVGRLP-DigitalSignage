@@ -17,6 +17,7 @@ export class DisplayComponent implements OnInit, OnDestroy {
   private updateSub : Subscription;
   display: Display;
   aktiverTermin: Termin;
+  naechsterTermin: Termin;
   alleTermine: Termin[];
   offeneTermine: Termin[];
   datum: Date;
@@ -42,6 +43,7 @@ export class DisplayComponent implements OnInit, OnDestroy {
         this.alleTermine = termine.filter(termin => termin.uhrzeitAktuell != 'omV');
         this.aktiverTermin = this.alleTermine.find(termin => termin.status === 'Läuft');
         this.offeneTermine = this.alleTermine.filter(termin => !(termin.status === 'Abgeschlossen' || termin.status === 'Aufgehoben'));
+        this.naechsterTermin = this.aktiverTermin ? null : this.offeneTermine[0]; 
       });
   }
 
