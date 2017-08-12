@@ -11,7 +11,8 @@
         {{ (aktiverTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;' }}
         {{ (aktiverTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;' }}
     </div>
-    <div *ngIf="!aktiverTermin" [ngClass]="">
+    <div *ngIf="!aktiverTermin && naechsterTermin" [ngClass]="">
+      In Kürze
     </div>
   </div>
 
