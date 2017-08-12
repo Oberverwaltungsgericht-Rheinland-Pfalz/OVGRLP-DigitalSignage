@@ -1,3 +1,3 @@
 {
-  "apiUrl": "http://vgtrfs01:8082/webapi"
+  "apiUrl": "http://localhost:52208"
 }
