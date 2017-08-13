@@ -1,3 +1,27 @@
+<a name="3.0.1"></a>
+### 3.0.1 (13.08.2017)
+
+#### Änderungen
+
+* __Displays: Versionnummer__ - Die Versionnummer wird nun in der config.js mitgegeben.
+Dadurch kann der Systemverwalter die jeweils aktuelle Version ermitteln.
+
+* __Displays: Alle Verfahren__ - Es werden jtzt nicht nur die folgenden Verfahren, sondern 
+sämtliche Verfahren für den Tag auf der Anzeige dargestellt. Zusätzlich wird jetzt bei allen
+Verfahren in der Übersicht der Status angezeigt. (#107)
+
+* __Displays: In Kürze__ - Wenn kein Verfahren läuft, wird nun das nächste offene Verfahren 
+(ist nicht abgeschlossen oder aufgehoben) angezeigt. Als Übershrift wird auf dem Display 
+"In Kürze" angezeigt. (#109)
+
+<a name="3.0.0"></a>
+### 3.0.0
+
+#### Allgemein
+
+* __Versionierung__ - Es handelt sich nur um eine Anpassung der Versionsnummer, um eine bessere
+Trennung der alten AngularJS-Version und den neuen Entwicklungen zu haben.
+
 <a name="2.2.2-1713"></a>
 ### 2.2.3-1716 (20.04.2017)
 
