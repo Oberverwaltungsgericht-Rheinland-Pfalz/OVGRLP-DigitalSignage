@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { environment } from '../environments/environment';
+import { environment } from './environments/environment';
 
 import { ConfigService } from 'ds-core';
 import { AppComponent } from './app.component';
