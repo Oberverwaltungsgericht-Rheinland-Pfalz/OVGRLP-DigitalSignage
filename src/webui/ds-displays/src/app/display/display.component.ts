@@ -13,7 +13,7 @@ import { DisplayService, Display, TerminService, Termin } from 'ds-core';
   providers: [DisplayService, TerminService]
 })
 export class DisplayComponent implements OnInit, OnDestroy {
-  private updateTimer;
+  private updateTimer : any;
   private updateSub : Subscription;
   display: Display;
   aktiverTermin: Termin;
@@ -49,7 +49,7 @@ export class DisplayComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.updateTimer = Observable.timer(2000, 5000);
-    this.updateSub = this.updateTimer.subscribe(t => {
+    this.updateSub = this.updateTimer.subscribe((t: any) => {
       this.datum = new Date();
       this.loadDisplay()
     });
