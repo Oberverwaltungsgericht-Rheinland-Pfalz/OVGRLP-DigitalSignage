@@ -10,7 +10,8 @@
     "compile": "tsc -p src/" ,
     "serve": "lite-server -c=bs-config.json",
     "prestart": "npm run build",
-    "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
+    "start-obsolet": "concurrently \"npm run build:watch\" \"npm run serve\"",
+    "start": "npm run build && npm run serve",
     "lint": "tslint ./src/**/*.ts -t verbose"
   },
   "license": "MIT",
