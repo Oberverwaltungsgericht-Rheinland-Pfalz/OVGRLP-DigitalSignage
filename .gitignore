@@ -200,3 +200,6 @@ FakesAssemblies/
 
 #project specifications
 src/DigitalSignage.DisplayControl/web/components
+
+Visual Studio Codemap usw.
+.vs/
