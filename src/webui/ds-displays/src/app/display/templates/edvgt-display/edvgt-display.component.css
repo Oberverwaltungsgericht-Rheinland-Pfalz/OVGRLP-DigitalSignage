@@ -1,0 +1,16 @@
+html, body {
+  font-size: 18px;
+}
+
+#ds-display {
+  height: 864px;
+  width: 1080px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#edvgt-head {
+  background-color: pink;
+  color: darkblue;
+  height: 192px;
+}

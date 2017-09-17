@@ -12,13 +12,6 @@ h1, h2, h3, h4 {
   margin: 0px;
 }
 
-#ds-display {
-  height: 1024px;
-  width: 1280px;
-  margin: 0px;
-  padding: 0px;
-}
-
 #ds-head-status {
   height: 80px;
   font-size: 1.8em;

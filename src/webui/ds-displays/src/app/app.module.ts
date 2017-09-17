@@ -9,12 +9,13 @@ import { environment } from './environments/environment';
 import { ConfigService } from 'ds-core';
 import { AppComponent } from './app.component';
 import { DisplayComponent } from './display/display.component';
+import { EdvgtDisplayComponent } from './display/templates/edvgt-display/edvgt-display.component'; //TODO: dynamic
 import { HomeComponent } from './home/home.component';
 import { CapitalizePipe } from './capitalize.pipe';
 import { TerminComponent } from './termin/termin.component';
 
 const appRoutes: Routes = [
-  { path: ':name', component: DisplayComponent },
+  { path: ':name', component: EdvgtDisplayComponent }, //TODO: dynamic
   { path: '', component: HomeComponent }
 ];
 
@@ -26,6 +27,7 @@ export function ConfigLoader(configService: ConfigService) {
   declarations: [
     AppComponent,
     DisplayComponent,
+    EdvgtDisplayComponent, //TODO: dynamic
     HomeComponent,
     CapitalizePipe,
     TerminComponent
