@@ -3,16 +3,20 @@
   "version": "4.0.0-beta.0",
   "private": true,
   "scripts": {
-    "build": "npm run clean && npm run compile && npm run html",
-    "build:watch": "tsc -p src/ -w",
-    "html": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.js src/assets/**/*.* src/config/**/*.* dist/",
+    "build": "npm run clean && npm run compile && npm run html && npm run assets",
+    "html": "cpx src/**/*.{html,css,js} dist/",
+    "html:watch": "cpx src/**/*.{html,css,js} dist/ -w",
+    "assets": "cpx src/{assets,config}/**/*.* dist/",
+    "assets:watch": "cpx src/{assets,config}/**/*.* dist/ -w",
+    "compile": "tsc -p src/",
+    "compile:watch": "tsc -p src/ -w",
     "clean": "rm -rf dist",
-    "compile": "tsc -p src/" ,
     "serve": "lite-server -c=bs-config.json",
     "prestart": "npm run build",
-    "start-obsolet": "concurrently \"npm run build:watch\" \"npm run serve\"",
-    "start": "npm run build && npm run serve",
-    "lint": "tslint ./src/**/*.ts -t verbose"
+    "start": "concurrently \"npm run compile:watch\" \"npm run html:watch\" \"npm run assets:watch\" \"npm run serve\"",
+    "lint": "tslint ./src/**/*.ts -t verbose",
+    "rollup": "rollup main.js --o bundle.js --f iife",
+    "prod": "npm run build && npm run rollup"
   },
   "license": "MIT",
   "dependencies": {
@@ -25,10 +29,11 @@
     "@angular/platform-browser": "~4.3.4",
     "@angular/platform-browser-dynamic": "~4.3.4",
     "@angular/router": "~4.3.4",
-    "ds-core": "file:../ds-core/dist",
-    "systemjs": "0.19.40",
     "core-js": "^2.4.1",
+    "cpx": "^1.5.0",
+    "ds-core": "file:../ds-core/dist",
     "rxjs": "~5.4.3",
+    "systemjs": "0.19.40",
     "zone.js": "~0.8.17"
   },
   "devDependencies": {
@@ -48,6 +53,7 @@
     "protractor": "~4.0.14",
     "rimraf": "^2.5.4",
     "tslint": "^3.15.1",
-    "typescript": "~2.5.2"
+    "typescript": "~2.5.2",
+    "webpack": "^3.6.0"
   }
 }

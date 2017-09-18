@@ -48,7 +48,7 @@ export class DisplayComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.updateTimer = Observable.timer(2000, 5000);
+    this.updateTimer = Observable.timer(5000, 5000);
     this.updateSub = this.updateTimer.subscribe((t: any) => {
       this.datum = new Date();
       this.loadDisplay()

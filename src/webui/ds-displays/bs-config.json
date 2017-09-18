@@ -2,8 +2,7 @@
   "server": {
     "baseDir": "dist",
     "routes": {
-      "/node_modules": "node_modules",
-      "/environments": "src/environments"
+      "/node_modules": "node_modules"
     }
   }
 }
