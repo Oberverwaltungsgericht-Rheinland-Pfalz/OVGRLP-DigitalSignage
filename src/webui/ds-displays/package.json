@@ -8,8 +8,9 @@
     "html:watch": "cpx src/**/*.{html,css,js} dist/ -w",
     "assets": "cpx src/{assets,config}/**/*.* dist/",
     "assets:watch": "cpx src/{assets,config}/**/*.* dist/ -w",
-    "compile": "tsc -p src/",
-    "compile:watch": "tsc -p src/ -w",
+    "compile": "tsc",
+    "compile:watch": "tsc -w",
+    "copymodules": "copy-node-modules ./ ./dist/",
     "clean": "rm -rf dist",
     "serve": "lite-server -c=bs-config.json",
     "prestart": "npm run build",
@@ -30,7 +31,6 @@
     "@angular/platform-browser-dynamic": "~4.3.4",
     "@angular/router": "~4.3.4",
     "core-js": "^2.4.1",
-    "cpx": "^1.5.0",
     "ds-core": "file:../ds-core/dist",
     "rxjs": "~5.4.3",
     "systemjs": "0.19.40",
@@ -41,7 +41,9 @@
     "@types/node": "^6.0.46",
     "canonical-path": "0.0.2",
     "concurrently": "^3.2.0",
+    "copy-node-modules": "^1.0.2",
     "copyfiles": "^1.2.0",
+    "cpx": "^1.5.0",
     "jasmine-core": "~2.4.1",
     "karma": "^1.3.0",
     "karma-chrome-launcher": "^2.0.0",
@@ -53,7 +55,6 @@
     "protractor": "~4.0.14",
     "rimraf": "^2.5.4",
     "tslint": "^3.15.1",
-    "typescript": "~2.5.2",
-    "webpack": "^3.6.0"
+    "typescript": "~2.5.2"
   }
 }
