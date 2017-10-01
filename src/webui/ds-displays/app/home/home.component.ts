@@ -5,8 +5,17 @@ import { DisplayService } from 'ds-core';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  template: `
+    <p>
+      home works!
+    </p>
+    <ul>
+      <li *ngFor="let display of displays">
+        <a [routerLink]="[display.name]">{{ display.name }}</a>
+      </li>
+    </ul>
+  `,
+  styles: [''],
   providers: [DisplayService]
 })
 export class HomeComponent implements OnInit {
@@ -15,7 +24,7 @@ export class HomeComponent implements OnInit {
   getDisplays() {
     this.displayService.getDisplays()
       .subscribe(
-        displays => this.displays = displays);
+      displays => this.displays = displays);
   }
 
   constructor(private displayService: DisplayService) { }

@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "outDir": "./dist",
-    "baseUrl": "src",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "sourceMap": true,
+    "module": "system",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [ "es2015", "dom" ],
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true
-  }
+    "noImplicitAny": false,
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "jspm_packages",
+    "node_modules"
+  ],
+  "compileOnSave": false
 }
