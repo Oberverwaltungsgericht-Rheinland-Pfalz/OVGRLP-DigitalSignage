@@ -35,19 +35,21 @@ export class DisplayComponent implements AfterViewInit, OnDestroy {
     this.route.params
       .switchMap((params: Params) => this.displayService.getDisplay(params['name']))
       .subscribe(display => {
-        const templateName = display.template; //TODO: read from display
-        let viewContainer = this.templateHost.viewContainerRef;
-        viewContainer.clear();
+        if (!this.display || display.template != this.display.template) {
+          const templateName = display.template;
+          let viewContainer = this.templateHost.viewContainerRef;
+          viewContainer.clear();
 
-        let component = TEMPLATES.filter((item) => {
-          return item.name === templateName;
-        })[0];
+          let component = TEMPLATES.filter((item) => {
+            return item.name === templateName;
+          })[0];
 
-        if (component) {
-          let factory = this.componentFactoryResolver.resolveComponentFactory(component);
-          let componentRef = viewContainer.createComponent(factory);
-          this.currentTemplate = <TemplateComponent>componentRef.instance;
-          this.currentTemplate.display = display;
+          if (component) {
+            let factory = this.componentFactoryResolver.resolveComponentFactory(component);
+            let componentRef = viewContainer.createComponent(factory);
+            this.currentTemplate = <TemplateComponent>componentRef.instance;
+            this.currentTemplate.display = display;
+          }
         }
 
         this.display = display;
