@@ -54,22 +54,6 @@ h1, h2, h3, h4 {
   width: 100%;
 }
 
-.ds-head-title-left {
-  padding: 10px;
-  font-size: 2.4em;
-  font-weight: bold;
-  letter-spacing: 0.2em;
-  line-height: 1.0em;
-}
-
-.ds-head-title-right {
-  padding: 8px;
-  text-align: right;
-  line-height: 1.20;
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
 .ds-gegen {
   text-align: center;
 }

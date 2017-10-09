@@ -103,6 +103,22 @@ import { TemplateComponent } from '../template.component';
       background-color: rgb(51,51,51);
       color: rgb(240,240,240);
     }
+
+    .ds-head-title-left {
+      padding: 10px;
+      font-size: 2.4em;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      line-height: 1.0em;
+    }
+    
+    .ds-head-title-right {
+      padding: 8px;
+      text-align: right;
+      line-height: 1.20;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
     
     #ds-main-details {
       padding:10px;
