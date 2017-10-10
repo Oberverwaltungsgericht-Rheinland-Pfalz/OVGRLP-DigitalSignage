@@ -40,7 +40,7 @@ System.config({
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "core-js": "npm:core-js@1.2.7",
-    'ds-core': 'node_modules/ds-core/bundles/ds-core.umd.js',
+    "ds-core": "node_modules/ds-core/bundles/ds-core.umd.js",
     "es6-shim": "github:es-shims/es6-shim@0.35.3",
     "reflect-metadata": "npm:reflect-metadata@0.1.10",
     "rxjs": "npm:rxjs@5.4.3",
