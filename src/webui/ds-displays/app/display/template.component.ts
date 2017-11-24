@@ -18,8 +18,9 @@ export class TemplateComponent implements OnInit, OnDestroy {
   display: Display;
   aktiverTermin: Termin;
   naechsterTermin: Termin;
-  alleTermine: Termin[];
+  alleTermine: Termin[] = [];
   offeneTermine: Termin[];
+  sichtbareTermine : Termin[] = [];
   datum: Date;
 
   constructor(
@@ -27,7 +28,7 @@ export class TemplateComponent implements OnInit, OnDestroy {
   ) { }
 
   loadTermine() {
-    this.terminService.getTermine(this.display.name) //TODO: wo kommt der Name vom Display her?
+    this.terminService.getTermine(this.display.name)
       .subscribe(termine => {
         this.alleTermine = termine.filter(termin => termin.uhrzeitAktuell != 'omV');
         this.aktiverTermin = this.alleTermine.find(termin => termin.status === 'Läuft');
@@ -40,8 +41,17 @@ export class TemplateComponent implements OnInit, OnDestroy {
     this.updateTimer = Observable.timer(2000, 5000);
     this.updateSub = this.updateTimer.subscribe((t: any) => {
       this.datum = new Date();
-      if (this.display)
-        this.loadTermine();
+      if (this.display) {
+        console.log(this.alleTermine.length);
+        if(this.alleTermine.length > 0) {
+          if(this.sichtbareTermine.length >= 2) {
+            this.sichtbareTermine.shift();
+          }
+          this.sichtbareTermine.push(this.alleTermine.shift());
+        } else {
+          this.loadTermine();
+        }
+      }
     });
   }
 

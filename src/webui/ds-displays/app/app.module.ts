@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -37,6 +38,7 @@ export function ConfigLoader(configService: ConfigService) {
   imports: [
     RouterModule.forRoot(appRoutes, { useHash: true }),
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     FlexLayoutModule
   ],
