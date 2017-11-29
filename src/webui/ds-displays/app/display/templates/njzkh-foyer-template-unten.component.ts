@@ -1,5 +1,5 @@
 import { Component, OnDestroy, ElementRef, AfterViewChecked, ViewChild, Optional } from '@angular/core';
-import { trigger, state, style, animate, transition, stagger, query } from '@angular/animations';
+import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations';
 import { Observable, Subscription, Scheduler } from 'rxjs/Rx';
 
 import { TemplateComponent } from '../template.component';
@@ -26,10 +26,10 @@ import { Termin } from 'ds-core';
           <app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin"></app-termin>
           <app-termin *ngIf="!aktiverTermin && naechsterTermin" [termin]="naechsterTermin"></app-termin>
           -->
-
-          <div id="scrollarea" [@termsAnimation]="sichtbareTermine.length">
+          <div id="scrollarea" >
           <!-- b: Termin -->
-            <div fxLayout="column" *ngFor="let termin of sichtbareTermine" style="padding-top: 30px;">
+            <div class="ds-termin" fxLayout="column" *ngFor="let termin of termine" 
+                 [@terminAnimation]="'in'" (@terminAnimation.start)="animationStarted($event)">
               <!-- Gericht, Kammer, Besetzung -->
               <div fxFlex="grow" fxLayout="column">
                 <div fxLayout="row" class="olg-layout-line">
@@ -86,6 +86,10 @@ import { Termin } from 'ds-core';
     #scrollarea {
       height: 750px;
       overflow: hidden;
+    }
+    .ds-termin {
+      overflow: hidden;
+      padding-top: 30px;
     }
     .olgstyle {
       margin: 50px 0;
@@ -165,22 +169,23 @@ import { Termin } from 'ds-core';
     }
   `],
   animations: [
-    trigger('termsAnimation', [
-      transition('* => *',[
-        query(':enter', [
-          style( { transform: 'translateY(-100%)' }),
-          stagger(100, [
-            animate(500, style({ transform: 'translateY(100%)' }))
+    trigger('terminAnimation', [
+      state('in', style({ opacity: 1, height: '*', 'padding-top': '*' })),
+      transition('in => void', [
+        animate('2s ease-out',
+          keyframes([
+            style({ opacity: 0, offset: 0.3, 'padding-top': 0 }),
+            style({ height: 0, offset: 1 })
           ])
-        ], { optional: true }),
-        query(':leave', [
-          stagger(100, [
-            animate(500, style({ transform: 'translateY(-100)%' }))
-          ])
-        ], { optional: true })
+        )
       ])
     ])
   ]
 })
-export class NjzKhFoyerTemplateComponentUnten extends TemplateComponent { 
+export class NjzKhFoyerTemplateComponentUnten extends TemplateComponent {
+  ngOnInit() {
+    /* set parameters here */
+    this.updateInterval = 10000;
+    super.ngOnInit();
+  }
 }
