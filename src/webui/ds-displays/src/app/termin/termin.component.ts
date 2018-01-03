@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 
-import { Termin } from 'ds-core';
+import { Termin } from "../model/termin";
 
 @Component({
-  selector: 'app-termin',
+  selector: "app-termin",
   template: `
     <div *ngIf="termin" fxFlex fxLayout="column" class="ds-box">
       <!-- Gericht, Kammer, Besetzung -->
@@ -99,18 +99,18 @@ import { Termin } from 'ds-core';
       </div>
     </div>
   `,
-  styles: [`
+  styles: [
+    `
     :host {
       display: flex;
     }
-  `]
+  `
+  ]
 })
 export class TerminComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   @Input() termin: Termin;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

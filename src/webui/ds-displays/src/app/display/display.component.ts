@@ -1,23 +1,29 @@
-import { Component, AfterViewInit, OnDestroy, ViewChild, ComponentFactoryResolver } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, Subscription } from 'rxjs/Rx';
+import {
+  Component,
+  AfterViewInit,
+  OnDestroy,
+  ViewChild,
+  ComponentFactoryResolver
+} from "@angular/core";
+import { ActivatedRoute, Params } from "@angular/router";
+import { Observable, Subscription } from "rxjs/Rx";
 
-import 'rxjs/add/operator/switchMap';
+import "rxjs/add/operator/switchMap";
 
-import { DisplayService, Display } from 'ds-core';
+import { Display } from "../model/display";
+import { DisplayService } from "../service/display.service";
 
-import { TemplateComponent } from './template.component';
-import { TemplateHostDirective } from './template-host.directive';
-import { TEMPLATES } from './templates/index';
+import { TemplateComponent } from "./template.component";
+import { TemplateHostDirective } from "./template-host.directive";
+import { TEMPLATES } from "./templates/index";
 
 @Component({
-  selector: 'app-display',
+  selector: "app-display",
   template: `
     <ng-template template-host></ng-template>
   `
 })
 export class DisplayComponent implements AfterViewInit, OnDestroy {
-
   private updateTimer: any;
   private updateSub: Subscription;
   display: Display;
@@ -29,26 +35,31 @@ export class DisplayComponent implements AfterViewInit, OnDestroy {
     private displayService: DisplayService,
     private route: ActivatedRoute,
     private componentFactoryResolver: ComponentFactoryResolver
-  ) { }
+  ) {}
 
   loadDisplay() {
     this.route.params
-      .switchMap((params: Params) => this.displayService.getDisplay(params['name']))
+      .switchMap((params: Params) =>
+        this.displayService.getDisplay(params["name"])
+      )
       .subscribe(display => {
         if (!this.display || display.template != this.display.template) {
           const templateName = display.template;
           let viewContainer = this.templateHost.viewContainerRef;
           viewContainer.clear();
 
-          let component = TEMPLATES.filter((item) => {
+          let component = TEMPLATES.filter(item => {
             return item.name === templateName;
           })[0];
 
           if (component) {
-            let factory = this.componentFactoryResolver.resolveComponentFactory(component);
+            let factory = this.componentFactoryResolver.resolveComponentFactory(
+              component
+            );
             let componentRef = viewContainer.createComponent(factory);
             this.currentTemplate = <TemplateComponent>componentRef.instance;
             this.currentTemplate.display = display;
+            console.log(this.currentTemplate);
           }
         }
 
@@ -59,7 +70,7 @@ export class DisplayComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.updateTimer = Observable.timer(5000, 60000);
     this.updateSub = this.updateTimer.subscribe((t: any) => {
-      this.loadDisplay()
+      this.loadDisplay();
     });
   }
 

@@ -1,52 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { environment } from './environment';
 
-import { ConfigService, DisplayService, TerminService } from 'ds-core';
+import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { DisplayComponent } from './display/display.component';
 import { HomeComponent } from './home/home.component';
+import { DisplayComponent } from './display/display.component';
 import { TerminComponent } from './termin/termin.component';
 import { CapitalizePipe } from './capitalize.pipe';
+import { environment } from '../environments/environment';
+
+import { ConfigService } from './service/config.service';
+import { DisplayService } from './service/display.service';
+import { TerminService } from './service/termin.service';
 
 import { TEMPLATES } from './display/templates/index';
 import { TemplateHostDirective } from './display/template-host.directive';
 
-const appRoutes: Routes = [
-  { path: ':name', component: DisplayComponent },
-  { path: '', component: HomeComponent }
-];
-
 export function ConfigLoader(configService: ConfigService) {
-  return () => configService.load(environment.configFile);
+  return() => configService.load(environment.configFile);
 }
 
 @NgModule({
   declarations: [
     AppComponent,
-    DisplayComponent,
     HomeComponent,
+    DisplayComponent,
+    TerminComponent,
     TemplateHostDirective,
     CapitalizePipe,
-    TerminComponent,
     TEMPLATES
   ],
   imports: [
-    RouterModule.forRoot(appRoutes, { useHash: true }),
     BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
-    HttpModule,
+    HttpClientModule,
     FlexLayoutModule
   ],
   entryComponents: [
     TEMPLATES
   ],
   providers: [
-    ConfigService, 
+    ConfigService,
     {
       provide: APP_INITIALIZER,
       useFactory: ConfigLoader,

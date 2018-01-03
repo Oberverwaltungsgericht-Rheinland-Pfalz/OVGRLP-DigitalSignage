@@ -5,7 +5,7 @@ import { Observable, Subscription, Scheduler } from 'rxjs/Rx';
 import { TemplateComponent } from '../template.component';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
-import { Termin } from 'ds-core';
+import { Termin } from '../../model/termin';
 
 @Component({
   template: `
