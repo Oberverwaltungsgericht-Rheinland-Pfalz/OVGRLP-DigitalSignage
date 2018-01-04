@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { TemplateComponent } from '../template.component';
+import { TemplateComponent } from '../app/display/template.component';
 
 @Component({
   template: `

@@ -17,7 +17,7 @@ import { ConfigService } from './service/config.service';
 import { DisplayService } from './service/display.service';
 import { TerminService } from './service/termin.service';
 
-import { TEMPLATES } from './display/templates/index';
+import { TEMPLATES } from '../templates/index';
 import { TemplateHostDirective } from './display/template-host.directive';
 
 export function ConfigLoader(configService: ConfigService) {

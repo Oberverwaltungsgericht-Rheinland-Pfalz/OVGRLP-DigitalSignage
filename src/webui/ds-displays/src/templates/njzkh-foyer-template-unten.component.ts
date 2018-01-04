@@ -2,10 +2,10 @@ import { Component, OnDestroy, ElementRef, AfterViewChecked, ViewChild, Optional
 import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations';
 import { Observable, Subscription, Scheduler } from 'rxjs/Rx';
 
-import { TemplateComponent } from '../template.component';
+import { TemplateComponent } from '../app/display/template.component';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
-import { Termin } from '../../model/termin';
+import { Termin } from '../app/model/termin';
 
 @Component({
   template: `

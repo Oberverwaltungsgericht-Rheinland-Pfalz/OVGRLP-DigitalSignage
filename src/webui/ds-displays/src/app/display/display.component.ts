@@ -15,7 +15,7 @@ import { DisplayService } from "../service/display.service";
 
 import { TemplateComponent } from "./template.component";
 import { TemplateHostDirective } from "./template-host.directive";
-import { TEMPLATES } from "./templates/index";
+import { TEMPLATES } from "../../templates/index";
 
 @Component({
   selector: "app-display",
