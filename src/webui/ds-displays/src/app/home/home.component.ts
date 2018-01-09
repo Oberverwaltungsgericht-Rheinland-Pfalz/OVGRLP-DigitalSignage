@@ -12,8 +12,7 @@ import { DisplayService } from "../service/display.service";
       </li>
     </ul>
   `,
-  styles: [],
-  providers: [DisplayService]
+  styles: []
 })
 export class HomeComponent implements OnInit {
   displays: Display[];

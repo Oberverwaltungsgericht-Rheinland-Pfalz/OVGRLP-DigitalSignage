@@ -1,6 +1,7 @@
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { enableProdMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -14,14 +15,25 @@ import { CapitalizePipe } from './capitalize.pipe';
 import { environment } from '../environments/environment';
 
 import { ConfigService } from './service/config.service';
-import { DisplayService } from './service/display.service';
-import { TerminService } from './service/termin.service';
+//import { DisplayService } from './service/display.service';
+//import { DisplaySoapService } from './service/display-soap.service';
+//import { TerminService } from './service/termin.service';
+//import { TerminSoapService } from './service/termin-soap.service';
+import { AppServicesProdModule } from './service/prod/app-services-prod.module';
+import { AppServicesDevModule } from './service/dev/app-services-dev.module';
 
 import { TEMPLATES } from '../templates/index';
 import { TemplateHostDirective } from './display/template-host.directive';
 
 export function ConfigLoader(configService: ConfigService) {
   return() => configService.load(environment.configFile);
+}
+
+let serviceModule = AppServicesDevModule;
+
+if (environment.production) {
+  serviceModule = AppServicesProdModule;
+  enableProdMode();
 }
 
 @NgModule({
@@ -39,7 +51,8 @@ export function ConfigLoader(configService: ConfigService) {
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    [serviceModule]
   ],
   entryComponents: [
     TEMPLATES
@@ -51,9 +64,7 @@ export function ConfigLoader(configService: ConfigService) {
       useFactory: ConfigLoader,
       deps: [ConfigService],
       multi: true
-    },
-    DisplayService,
-    TerminService
+    }
   ],
   bootstrap: [AppComponent]
 })

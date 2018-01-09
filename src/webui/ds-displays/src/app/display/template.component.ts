@@ -12,8 +12,7 @@ import { filter } from "rxjs/operators/filter";
   template: `
     <h2>{{display.title}}</h2>
   `,
-  styles: [""],
-  providers: [TerminService]
+  styles: [""]
 })
 export class TemplateComponent implements OnInit, OnDestroy {
   private updateTimer: any;

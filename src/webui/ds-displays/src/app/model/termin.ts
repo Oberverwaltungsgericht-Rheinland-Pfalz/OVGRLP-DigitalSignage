@@ -4,6 +4,7 @@ export class Termin {
   lfdnr: number;
   kammer: number;
   sitzungssaal: string;
+  sitzungssaalNr: number;
   uhrzeitPlan: string;
   uhrzeitAktuell: string;
   status: string;
