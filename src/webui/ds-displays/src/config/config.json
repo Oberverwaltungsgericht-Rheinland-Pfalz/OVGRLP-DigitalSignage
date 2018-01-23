@@ -1,4 +1,4 @@
 {
-  "apiUrl": "http://localhost:52208",
+  "apiUrl": "http://njzapp01:8082/webapi",
   "version": "5.0.0"
 }
