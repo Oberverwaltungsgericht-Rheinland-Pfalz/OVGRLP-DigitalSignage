@@ -1,9 +1,11 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule, LOCALE_ID } from '@angular/core';
 import { enableProdMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -37,6 +39,8 @@ if (environment.production) {
   enableProdMode();
 }
 
+registerLocaleData(localeDe);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +70,9 @@ if (environment.production) {
       useFactory: ConfigLoader,
       deps: [ConfigService],
       multi: true
+    }, 
+    {
+      provide: LOCALE_ID, useValue: 'de'
     }
   ],
   bootstrap: [AppComponent]
