@@ -23,6 +23,7 @@ import { AppServicesProdModule } from './service/prod/app-services-prod.module';
 import { AppServicesDevModule } from './service/dev/app-services-dev.module';
 
 import { TEMPLATES } from '../templates/index';
+import { TemplateComponent } from './display/template.component';
 import { TemplateHostDirective } from './display/template-host.directive';
 
 export function ConfigLoader(configService: ConfigService) {
@@ -44,6 +45,7 @@ if (environment.production) {
     TerminComponent,
     TemplateHostDirective,
     CapitalizePipe,
+    TemplateComponent,
     TEMPLATES
   ],
   imports: [
