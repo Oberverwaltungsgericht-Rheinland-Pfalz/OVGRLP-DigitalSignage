@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations';
 import { TemplateComponent } from '../app/display/template.component';
 
 @Component({
@@ -16,12 +16,26 @@ import { TemplateComponent } from '../app/display/template.component';
       </div>
     </div>
   
-    <div id="ds-main" fxFlex fxLayout="row">
-      <div id="ds-main-overview" fxFlex fxLayout="row">
-        <div class="ds-overview-termin" *ngFor="let termin of alleTermine">
-          {{ termin.uhrzeitAktuell }} Uhr - {{ termin.az }}<br />
-          {{ termin.art }}<br />
-          {{ termin.status }}
+    <div id="ds-main" fxFlex fxLayout="column">
+      <div *ngFor="let termin of termine" [@terminAnimation]="'in'">
+        <div class="ds-overview-termin" fxLayout="row">
+          <div fxFlex="10">
+            <strong>{{ termin.uhrzeitAktuell }} Uhr</strong>
+          </div>
+          <div fxFlex="25">
+            <div>
+              <strong>{{ termin.az }}</strong>
+            </div>
+            <div>
+              {{ termin.gericht }}
+            </div>
+          </div>
+          <div fxFlex>
+            {{ termin.parteienAktivKurz }} ./. {{ termin.parteienPassivKurz }}
+          </div>
+          <div fxFlex="15">
+            {{ termin.sitzungssaal }}
+          </div>
         </div>
       </div>
     </div>
@@ -65,6 +79,32 @@ import { TemplateComponent } from '../app/display/template.component';
       padding:10px;
       background: url('assets/img/rlp_wappen_600x735.png') center no-repeat;
     }
-  `]
+
+    #ds-main {
+      background: url('assets/img/rlp_wappen_600x735.png') center no-repeat;
+    }
+
+    .ds-overview-termin {
+      font-size: 30px;
+      margin: 10px;
+      -webkit-box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.2);
+      -moz-box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.2);
+      box-shadow: 5px 5px 2px 0px rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.6);
+    }
+  `],
+  animations: [
+    trigger('terminAnimation', [
+      state('in', style({ opacity: 1, height: '*', 'padding-top': '*' })),
+      transition('in => void', [
+        animate('2s ease-out',
+          keyframes([
+            style({ opacity: 0, offset: 0.3, 'padding-top': 0 }),
+            style({ height: 0, offset: 1 })
+          ])
+        )
+      ])
+    ])
+  ]
 })
 export class NjzFoyer extends TemplateComponent { }
