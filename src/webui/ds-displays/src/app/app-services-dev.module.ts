@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import { DisplayService } from '../display.service';
-import { DisplayDummyService } from './display-dummy.service';
-import { TerminService } from '../termin.service';
-import { TerminDummyService } from './termin-dummy.service';
-
+import { DisplayService, DisplayDummyService } from 'ds-common';
+import { TerminService, TerminDummyService } from 'ds-common';
 
 @NgModule({
   declarations: [

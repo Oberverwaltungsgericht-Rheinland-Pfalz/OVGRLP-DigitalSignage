@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 
-import { Termin } from "../model/termin";
+import { Termin } from "ds-common";
 
 @Component({
   selector: "app-termin",

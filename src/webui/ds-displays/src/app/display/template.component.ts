@@ -3,9 +3,7 @@ import { Observable, Subscription } from "rxjs/Rx";
 
 import "rxjs/add/operator/switchMap";
 
-import { Termin } from "../model/termin";
-import { Display } from "../model/display";
-import { TerminService } from "../service/termin.service";
+import { Termin, Display, TerminService } from "ds-common";
 import { filter } from "rxjs/operators/filter";
 
 @Component({

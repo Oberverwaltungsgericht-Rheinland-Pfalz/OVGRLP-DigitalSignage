@@ -10,8 +10,7 @@ import { Observable, Subscription } from "rxjs/Rx";
 
 import "rxjs/add/operator/switchMap";
 
-import { Display } from "../model/display";
-import { DisplayService } from "../service/display.service";
+import { Display, DisplayService } from "ds-common";
 
 import { TemplateComponent } from "./template.component";
 import { TemplateHostDirective } from "./template-host.directive";

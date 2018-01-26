@@ -21,8 +21,8 @@ import { ConfigService } from './service/config.service';
 //import { DisplaySoapService } from './service/display-soap.service';
 //import { TerminService } from './service/termin.service';
 //import { TerminSoapService } from './service/termin-soap.service';
-import { AppServicesProdModule } from './service/prod/app-services-prod.module';
-import { AppServicesDevModule } from './service/dev/app-services-dev.module';
+import { AppServicesProdModule } from './app-services-prod.module';
+import { AppServicesDevModule } from './app-services-dev.module';
 
 import { TEMPLATES } from '../templates/index';
 import { TemplateComponent } from './display/template.component';
