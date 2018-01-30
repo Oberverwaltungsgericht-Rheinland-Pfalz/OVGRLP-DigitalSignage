@@ -33,6 +33,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,14 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CLIActions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CLIService.cs" />
+    <Compile Include="models\generated\SaalanzeigeXML.cs" />
+    <Compile Include="Service\CLIService.cs" />
+    <Compile Include="Service\DBService.cs" />
+    <Compile Include="Service\XMLHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DigitalSignage.Data\DigitalSignage.Data.csproj">
+      <Project>{16441e33-cc5b-4ddd-a543-89c637bb2243}</Project>
+      <Name>DigitalSignage.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj">
       <Project>{4f0dd9ef-4bac-4954-ba53-ad52541e14e3}</Project>
       <Name>DigitalSignage.Infrastructure</Name>

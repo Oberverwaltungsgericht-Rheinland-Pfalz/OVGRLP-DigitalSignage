@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-namespace DigitalSignage.ImportCLI.Services
+namespace DigitalSignage.ImportCLI.Service
 {
   public class CLIService
   {
@@ -15,21 +15,19 @@ namespace DigitalSignage.ImportCLI.Services
     }
 
     //! Kommandozeilenargumente auswerten
-    public void ParseCommandLineArguments(String[] args, out List<string> inputFiles, out bool ClearDatabase)
+    public CLIActions ParseCommandLineArguments(String[] args)
     {
+      var cliActions = new CLIActions();
       Match match = null;
       MatchCollection matches = null;
       String cmdline = "\"" + String.Join("\"", args) + "\"";
-
-      //Defaults
-      inputFiles = new List<string>();
-      ClearDatabase = false;
 
       // -h Hilfe anzeigen
       match = Regex.Match(cmdline, "-h");
       if (match.Success)
       {
         WriteHelp();
+        return null;
       }
 
       // -fi Eingabedatei festlegen
@@ -38,7 +36,7 @@ namespace DigitalSignage.ImportCLI.Services
       {
         foreach (Match mat in matches)
         {
-          inputFiles.Add(mat.Groups[1].Value.Replace("\"", ""));
+          cliActions.InputFiles.Add(mat.Groups[1].Value.Replace("\"", ""));
         }
       }
 
@@ -46,16 +44,36 @@ namespace DigitalSignage.ImportCLI.Services
       match = Regex.Match(cmdline, "-c");
       if (match.Success)
       {
-        ClearDatabase = true;
+        cliActions.ClearDatabase = true;
       }
+
+      return cliActions;
     }
 
     //! Übersicht der möglichen Kommandozeilenargumente auf der Konsole ausgeben
     private void WriteHelp()
     {
       Trace("  -add XML-Datendatei für die Verarbeitung vormerken");
-      Trace("  -c   Datenbank vor dem hinzufügen von Daten löschen");
+      Trace("  -c   Datenbank (vor dem hinzufügen von Daten) löschen");
+      WriteHelpForConnectionString();
       Trace("  -h   Hilfe anzeigen");
+    }
+
+    //! Übersicht der möglichen Kommandozeilenargumente auf der Konsole ausgeben
+    private void WriteHelpForConnectionString()
+    {
+      Trace("  -con ConnectionName oder ConnectionString");
+      Trace("       Hier kann entweder ein ConnectionString in folgendem Format angegeben werden:");
+      Trace("         Server=[DBServername]\\[DBInstanz]; Database=[DBName]; Integrated Security=True");
+      Trace("       Alternativ kann ein ConnectionName aus der Konfigurationsdatei angegeben werden.");
+      Trace("       In der Konfigurationsdatei sind momentan folgende hinterlegt:");
+      foreach (System.Configuration.ConnectionStringSettings connection in System.Configuration.ConfigurationManager.ConnectionStrings)
+      {
+        if (connection.Name != "LocalSqlServer")
+        {
+          Trace(String.Format("         {0}: {1}", connection.Name, connection.ConnectionString));
+        }
+      }
     }
 
     //! Ausnahmefehler protokollieren
