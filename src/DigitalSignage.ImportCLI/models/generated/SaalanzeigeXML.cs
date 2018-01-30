@@ -198,7 +198,7 @@ public partial class TerminsaushangTerminiertVerfahren
 
   private string bemerkung2Field;
 
-  private TerminsaushangTerminiertVerfahrenBesetzungRichter[][] besetzungField;
+  private TerminsaushangTerminiertVerfahrenBesetzungRichter[] besetzungField;
 
   private TerminsaushangTerminiertVerfahrenAktivPartei[] aktivParteiField;
 
@@ -361,7 +361,7 @@ public partial class TerminsaushangTerminiertVerfahren
   /// <remarks/>
   [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
   [System.Xml.Serialization.XmlArrayItemAttribute("Richter", typeof(TerminsaushangTerminiertVerfahrenBesetzungRichter), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public TerminsaushangTerminiertVerfahrenBesetzungRichter[][] Besetzung
+  public TerminsaushangTerminiertVerfahrenBesetzungRichter[] Besetzung
   {
     get
     {
