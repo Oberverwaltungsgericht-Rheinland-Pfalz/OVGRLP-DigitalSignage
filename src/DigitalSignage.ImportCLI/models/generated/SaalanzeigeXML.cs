@@ -20,26 +20,22 @@ using System.Xml.Serialization;
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-public partial class Parteien
-{
-
-  private string parteiField;
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Partei
-  {
-    get
-    {
-      return this.parteiField;
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+public partial class Parteien {
+    
+    private string parteiField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Partei {
+        get {
+            return this.parteiField;
+        }
+        set {
+            this.parteiField = value;
+        }
     }
-    set
-    {
-      this.parteiField = value;
-    }
-  }
 }
 
 /// <remarks/>
@@ -47,26 +43,22 @@ public partial class Parteien
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-public partial class ProzBev
-{
-
-  private string pbField;
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string PB
-  {
-    get
-    {
-      return this.pbField;
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+public partial class ProzBev {
+    
+    private string pbField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string PB {
+        get {
+            return this.pbField;
+        }
+        set {
+            this.pbField = value;
+        }
     }
-    set
-    {
-      this.pbField = value;
-    }
-  }
 }
 
 /// <remarks/>
@@ -74,29 +66,25 @@ public partial class ProzBev
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-public partial class Terminsaushang
-{
-
-  private object[] itemsField;
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute("Parteien", typeof(Parteien))]
-  [System.Xml.Serialization.XmlElementAttribute("ProzBev", typeof(ProzBev))]
-  [System.Xml.Serialization.XmlElementAttribute("Stammdaten", typeof(TerminsaushangStammdaten), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  [System.Xml.Serialization.XmlElementAttribute("Terminiert", typeof(TerminsaushangTerminiert), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public object[] Items
-  {
-    get
-    {
-      return this.itemsField;
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+[System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+public partial class Terminsaushang {
+    
+    private object[] itemsField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Parteien", typeof(Parteien))]
+    [System.Xml.Serialization.XmlElementAttribute("ProzBev", typeof(ProzBev))]
+    [System.Xml.Serialization.XmlElementAttribute("Stammdaten", typeof(TerminsaushangStammdaten), Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    [System.Xml.Serialization.XmlElementAttribute("Terminiert", typeof(TerminsaushangTerminiert), Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public object[] Items {
+        get {
+            return this.itemsField;
+        }
+        set {
+            this.itemsField = value;
+        }
     }
-    set
-    {
-      this.itemsField = value;
-    }
-  }
 }
 
 /// <remarks/>
@@ -104,41 +92,34 @@ public partial class Terminsaushang
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-public partial class TerminsaushangStammdaten
-{
-
-  private string gerichtsnameField;
-
-  private string datumField;
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Gerichtsname
-  {
-    get
-    {
-      return this.gerichtsnameField;
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class TerminsaushangStammdaten {
+    
+    private string gerichtsnameField;
+    
+    private string datumField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Gerichtsname {
+        get {
+            return this.gerichtsnameField;
+        }
+        set {
+            this.gerichtsnameField = value;
+        }
     }
-    set
-    {
-      this.gerichtsnameField = value;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Datum {
+        get {
+            return this.datumField;
+        }
+        set {
+            this.datumField = value;
+        }
     }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Datum
-  {
-    get
-    {
-      return this.datumField;
-    }
-    set
-    {
-      this.datumField = value;
-    }
-  }
 }
 
 /// <remarks/>
@@ -146,25 +127,21 @@ public partial class TerminsaushangStammdaten
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-public partial class TerminsaushangTerminiert
-{
-
-  private TerminsaushangTerminiertVerfahren[] verfahrenField;
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute("Verfahren", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public TerminsaushangTerminiertVerfahren[] Verfahren
-  {
-    get
-    {
-      return this.verfahrenField;
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class TerminsaushangTerminiert {
+    
+    private TerminsaushangTerminiertVerfahren[] verfahrenField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Verfahren", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public TerminsaushangTerminiertVerfahren[] Verfahren {
+        get {
+            return this.verfahrenField;
+        }
+        set {
+            this.verfahrenField = value;
+        }
     }
-    set
-    {
-      this.verfahrenField = value;
-    }
-  }
 }
 
 /// <remarks/>
@@ -172,234 +149,190 @@ public partial class TerminsaushangTerminiert
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-public partial class TerminsaushangTerminiertVerfahren
-{
-
-  private string lfdnrField;
-
-  private string kammerField;
-
-  private string sitzungssaalField;
-
-  private string uhrzeitField;
-
-  private string statusField;
-
-  private string oeffentlichField;
-
-  private string artField;
-
-  private string azField;
-
-  private string gegenstandField;
-
-  private string bemerkung1Field;
-
-  private string bemerkung2Field;
-
-  private TerminsaushangTerminiertVerfahrenBesetzungRichter[] besetzungField;
-
-  private TerminsaushangTerminiertVerfahrenAktivPartei[] aktivParteiField;
-
-  private TerminsaushangTerminiertVerfahrenPassivPartei[] passivParteiField;
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Lfdnr
-  {
-    get
-    {
-      return this.lfdnrField;
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class TerminsaushangTerminiertVerfahren {
+    
+    private string lfdnrField;
+    
+    private string kammerField;
+    
+    private string sitzungssaalField;
+    
+    private string uhrzeitField;
+    
+    private string statusField;
+    
+    private string oeffentlichField;
+    
+    private string artField;
+    
+    private string azField;
+    
+    private string gegenstandField;
+    
+    private string bemerkung1Field;
+    
+    private string bemerkung2Field;
+    
+    private TerminsaushangTerminiertVerfahrenBesetzung[] besetzungField;
+    
+    private TerminsaushangTerminiertVerfahrenAktivPartei[] aktivParteiField;
+    
+    private TerminsaushangTerminiertVerfahrenPassivPartei[] passivParteiField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Lfdnr {
+        get {
+            return this.lfdnrField;
+        }
+        set {
+            this.lfdnrField = value;
+        }
     }
-    set
-    {
-      this.lfdnrField = value;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Kammer {
+        get {
+            return this.kammerField;
+        }
+        set {
+            this.kammerField = value;
+        }
     }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Kammer
-  {
-    get
-    {
-      return this.kammerField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Sitzungssaal {
+        get {
+            return this.sitzungssaalField;
+        }
+        set {
+            this.sitzungssaalField = value;
+        }
     }
-    set
-    {
-      this.kammerField = value;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Uhrzeit {
+        get {
+            return this.uhrzeitField;
+        }
+        set {
+            this.uhrzeitField = value;
+        }
     }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Sitzungssaal
-  {
-    get
-    {
-      return this.sitzungssaalField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Status {
+        get {
+            return this.statusField;
+        }
+        set {
+            this.statusField = value;
+        }
     }
-    set
-    {
-      this.sitzungssaalField = value;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Oeffentlich {
+        get {
+            return this.oeffentlichField;
+        }
+        set {
+            this.oeffentlichField = value;
+        }
     }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Uhrzeit
-  {
-    get
-    {
-      return this.uhrzeitField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Art {
+        get {
+            return this.artField;
+        }
+        set {
+            this.artField = value;
+        }
     }
-    set
-    {
-      this.uhrzeitField = value;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Az {
+        get {
+            return this.azField;
+        }
+        set {
+            this.azField = value;
+        }
     }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Status
-  {
-    get
-    {
-      return this.statusField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Gegenstand {
+        get {
+            return this.gegenstandField;
+        }
+        set {
+            this.gegenstandField = value;
+        }
     }
-    set
-    {
-      this.statusField = value;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Bemerkung1 {
+        get {
+            return this.bemerkung1Field;
+        }
+        set {
+            this.bemerkung1Field = value;
+        }
     }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Oeffentlich
-  {
-    get
-    {
-      return this.oeffentlichField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Bemerkung2 {
+        get {
+            return this.bemerkung2Field;
+        }
+        set {
+            this.bemerkung2Field = value;
+        }
     }
-    set
-    {
-      this.oeffentlichField = value;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Besetzung", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public TerminsaushangTerminiertVerfahrenBesetzung[] Besetzung {
+        get {
+            return this.besetzungField;
+        }
+        set {
+            this.besetzungField = value;
+        }
     }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Art
-  {
-    get
-    {
-      return this.artField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("AktivPartei", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public TerminsaushangTerminiertVerfahrenAktivPartei[] AktivPartei {
+        get {
+            return this.aktivParteiField;
+        }
+        set {
+            this.aktivParteiField = value;
+        }
     }
-    set
-    {
-      this.artField = value;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("PassivPartei", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public TerminsaushangTerminiertVerfahrenPassivPartei[] PassivPartei {
+        get {
+            return this.passivParteiField;
+        }
+        set {
+            this.passivParteiField = value;
+        }
     }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Az
-  {
-    get
-    {
-      return this.azField;
-    }
-    set
-    {
-      this.azField = value;
-    }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Gegenstand
-  {
-    get
-    {
-      return this.gegenstandField;
-    }
-    set
-    {
-      this.gegenstandField = value;
-    }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Bemerkung1
-  {
-    get
-    {
-      return this.bemerkung1Field;
-    }
-    set
-    {
-      this.bemerkung1Field = value;
-    }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public string Bemerkung2
-  {
-    get
-    {
-      return this.bemerkung2Field;
-    }
-    set
-    {
-      this.bemerkung2Field = value;
-    }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  [System.Xml.Serialization.XmlArrayItemAttribute("Richter", typeof(TerminsaushangTerminiertVerfahrenBesetzungRichter), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public TerminsaushangTerminiertVerfahrenBesetzungRichter[] Besetzung
-  {
-    get
-    {
-      return this.besetzungField;
-    }
-    set
-    {
-      this.besetzungField = value;
-    }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute("AktivPartei", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public TerminsaushangTerminiertVerfahrenAktivPartei[] AktivPartei
-  {
-    get
-    {
-      return this.aktivParteiField;
-    }
-    set
-    {
-      this.aktivParteiField = value;
-    }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute("PassivPartei", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-  public TerminsaushangTerminiertVerfahrenPassivPartei[] PassivPartei
-  {
-    get
-    {
-      return this.passivParteiField;
-    }
-    set
-    {
-      this.passivParteiField = value;
-    }
-  }
 }
 
 /// <remarks/>
@@ -407,25 +340,21 @@ public partial class TerminsaushangTerminiertVerfahren
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-public partial class TerminsaushangTerminiertVerfahrenBesetzungRichter
-{
-
-  private string valueField;
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlTextAttribute()]
-  public string Value
-  {
-    get
-    {
-      return this.valueField;
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class TerminsaushangTerminiertVerfahrenBesetzung {
+    
+    private string richterField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public string Richter {
+        get {
+            return this.richterField;
+        }
+        set {
+            this.richterField = value;
+        }
     }
-    set
-    {
-      this.valueField = value;
-    }
-  }
 }
 
 /// <remarks/>
@@ -433,41 +362,34 @@ public partial class TerminsaushangTerminiertVerfahrenBesetzungRichter
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-public partial class TerminsaushangTerminiertVerfahrenAktivPartei
-{
-
-  private Parteien[] parteienField;
-
-  private ProzBev[] prozBevField;
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute("Parteien")]
-  public Parteien[] Parteien
-  {
-    get
-    {
-      return this.parteienField;
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class TerminsaushangTerminiertVerfahrenAktivPartei {
+    
+    private Parteien[] parteienField;
+    
+    private ProzBev[] prozBevField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Parteien")]
+    public Parteien[] Parteien {
+        get {
+            return this.parteienField;
+        }
+        set {
+            this.parteienField = value;
+        }
     }
-    set
-    {
-      this.parteienField = value;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ProzBev")]
+    public ProzBev[] ProzBev {
+        get {
+            return this.prozBevField;
+        }
+        set {
+            this.prozBevField = value;
+        }
     }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute("ProzBev")]
-  public ProzBev[] ProzBev
-  {
-    get
-    {
-      return this.prozBevField;
-    }
-    set
-    {
-      this.prozBevField = value;
-    }
-  }
 }
 
 /// <remarks/>
@@ -475,39 +397,32 @@ public partial class TerminsaushangTerminiertVerfahrenAktivPartei
 [System.SerializableAttribute()]
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-public partial class TerminsaushangTerminiertVerfahrenPassivPartei
-{
-
-  private Parteien[] parteienField;
-
-  private ProzBev[] prozBevField;
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute("Parteien")]
-  public Parteien[] Parteien
-  {
-    get
-    {
-      return this.parteienField;
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class TerminsaushangTerminiertVerfahrenPassivPartei {
+    
+    private Parteien[] parteienField;
+    
+    private ProzBev[] prozBevField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Parteien")]
+    public Parteien[] Parteien {
+        get {
+            return this.parteienField;
+        }
+        set {
+            this.parteienField = value;
+        }
     }
-    set
-    {
-      this.parteienField = value;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ProzBev")]
+    public ProzBev[] ProzBev {
+        get {
+            return this.prozBevField;
+        }
+        set {
+            this.prozBevField = value;
+        }
     }
-  }
-
-  /// <remarks/>
-  [System.Xml.Serialization.XmlElementAttribute("ProzBev")]
-  public ProzBev[] ProzBev
-  {
-    get
-    {
-      return this.prozBevField;
-    }
-    set
-    {
-      this.prozBevField = value;
-    }
-  }
 }
