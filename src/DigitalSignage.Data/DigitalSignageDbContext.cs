@@ -7,8 +7,11 @@ namespace DigitalSignage.Data
 {
   public class DigitalSignageDbContext : DbContext
   {
-    public DigitalSignageDbContext()
-        : base("DigitalSignageDbConnectionString")
+    public DigitalSignageDbContext() : this("DigitalSignageDbConnectionString")
+    { }
+
+    public DigitalSignageDbContext(string nameOrConnectionString)
+        : base(nameOrConnectionString)
     {
       this.Database.Log = s => Debug.WriteLine(s);
       this.Configuration.LazyLoadingEnabled = false;
