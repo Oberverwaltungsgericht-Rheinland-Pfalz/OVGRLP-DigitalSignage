@@ -180,6 +180,12 @@ public partial class TerminsaushangTerminiertVerfahren {
     
     private TerminsaushangTerminiertVerfahrenPassivPartei[] passivParteiField;
     
+    private TerminsaushangTerminiertVerfahrenBeigeladen[] beigeladenField;
+    
+    private Parteien[][] svField;
+    
+    private Parteien[][] zeugenField;
+    
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
     public string Lfdnr {
@@ -333,6 +339,41 @@ public partial class TerminsaushangTerminiertVerfahren {
             this.passivParteiField = value;
         }
     }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Beigeladen", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    public TerminsaushangTerminiertVerfahrenBeigeladen[] Beigeladen {
+        get {
+            return this.beigeladenField;
+        }
+        set {
+            this.beigeladenField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    [System.Xml.Serialization.XmlArrayItemAttribute("Parteien", typeof(Parteien), IsNullable=false)]
+    public Parteien[][] SV {
+        get {
+            return this.svField;
+        }
+        set {
+            this.svField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+    [System.Xml.Serialization.XmlArrayItemAttribute("Parteien", typeof(Parteien), IsNullable=false)]
+    public Parteien[][] Zeugen {
+        get {
+            return this.zeugenField;
+        }
+        set {
+            this.zeugenField = value;
+        }
+    }
 }
 
 /// <remarks/>
@@ -399,6 +440,41 @@ public partial class TerminsaushangTerminiertVerfahrenAktivPartei {
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
 public partial class TerminsaushangTerminiertVerfahrenPassivPartei {
+    
+    private Parteien[] parteienField;
+    
+    private ProzBev[] prozBevField;
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("Parteien")]
+    public Parteien[] Parteien {
+        get {
+            return this.parteienField;
+        }
+        set {
+            this.parteienField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlElementAttribute("ProzBev")]
+    public ProzBev[] ProzBev {
+        get {
+            return this.prozBevField;
+        }
+        set {
+            this.prozBevField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class TerminsaushangTerminiertVerfahrenBeigeladen {
     
     private Parteien[] parteienField;
     
