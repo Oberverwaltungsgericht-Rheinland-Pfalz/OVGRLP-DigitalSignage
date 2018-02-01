@@ -10,16 +10,13 @@ namespace DigitalSignage.ImportCLI
   {
     private static void Main(string[] args)
     {
-      List<string> inputFiles;
-      bool clearDB;
-      var cliService = new Services.CLIService();
+      var cliService = new Service.CLIService();
 
       try
       {
-        cliService.ParseCommandLineArguments(args, out inputFiles, out clearDB);
-
-        if (inputFiles == null || inputFiles.Count == 0)
-          throw new ArgumentException("Es wurden keine XML-Einlesedateien angegeben!");
+        CLIActions cliActions = cliService.ParseCommandLineArguments(args);
+        if (null != cliActions)
+          cliActions.ExecuteActions();
       }
       catch (Exception ex)
       {

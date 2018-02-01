@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Breeze.ContextProvider.EF6;
+using DigitalSignage.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,22 +53,15 @@ namespace DigitalSignage.ImportCLI
         {
           if (!string.IsNullOrEmpty(inputFile) && System.IO.File.Exists(inputFile))
           {
-            TerminsaushangTerminiertVerfahren[] verfahren = null;
-            TerminsaushangStammdaten header = null;
+            //TerminsaushangTerminiertVerfahren[] verfahren = null;
+            //TerminsaushangStammdaten header = null;
 
             Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(inputFile);
 
-            foreach (object obj in data.Items)
+            if (null != data)
             {
-              if (obj.GetType().Name == typeof(TerminsaushangStammdaten).Name)
-                header = obj as TerminsaushangStammdaten;
-              if (obj.GetType().Name == typeof(TerminsaushangTerminiert).Name)
-                verfahren = ((TerminsaushangTerminiert)obj).Verfahren;
-            }
-
-            if (null != header && null != verfahren && verfahren.Length > 0)
-            {
-              // hier die Verarbeitung starten...
+              var db = new Service.DBService(this.NameOrConnectionString);
+              db.AddData(data);
             }
           }
         }
