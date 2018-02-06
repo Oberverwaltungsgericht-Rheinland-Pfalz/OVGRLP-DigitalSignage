@@ -38,7 +38,7 @@ namespace DigitalSignage.ImportCLI.Service
       //Kopfdaten
       var st = new DigitalSignage.Infrastructure.Models.EurekaFach.Stammdaten();
       st.Datum = data.Stammdaten.Datum;
-      st.Gerichtsname = data.Stammdaten.Gerichtsname;
+      st.Gerichtsname = data.Stammdaten.Gerichtsname.TrimEnd();
       contextProvider.Context.Stammdaten.Add(st);
 
       //alle Verfahren
@@ -48,16 +48,16 @@ namespace DigitalSignage.ImportCLI.Service
         var v = new DigitalSignage.Infrastructure.Models.EurekaFach.Verfahren();
         v.Lfdnr = Convert.ToByte(verf.Lfdnr);
         v.Kammer = Convert.ToByte(verf.Kammer);
-        v.Sitzungssaal = verf.Sitzungssaal;
-        v.UhrzeitAktuell = verf.Uhrzeit;
-        v.UhrzeitPlan = verf.Uhrzeit;
-        v.Status = verf.Status;
-        v.Oeffentlich = verf.Oeffentlich;
-        v.Art = verf.Art;
-        v.Az = verf.Az;
-        v.Gegenstand = verf.Gegenstand;
-        v.Bemerkung1 = verf.Bemerkung1;
-        v.Bemerkung2 = verf.Bemerkung2;
+        v.Sitzungssaal = verf.Sitzungssaal.TrimEnd();
+        v.UhrzeitAktuell = verf.Uhrzeit.TrimEnd();
+        v.UhrzeitPlan = verf.Uhrzeit.TrimEnd();
+        v.Status = verf.Status.TrimEnd();
+        v.Oeffentlich = verf.Oeffentlich.TrimEnd();
+        v.Art = verf.Art.TrimEnd();
+        v.Az = verf.Az.TrimEnd();
+        v.Gegenstand = verf.Gegenstand.TrimEnd();
+        v.Bemerkung1 = verf.Bemerkung1.TrimEnd();
+        v.Bemerkung2 = verf.Bemerkung2.TrimEnd();
         v.StammdatenId = st.StammdatenId;  //!\TODO: prüfen ???
 
         //Besetzung
@@ -97,7 +97,7 @@ namespace DigitalSignage.ImportCLI.Service
         {
           foreach (string par in verf.AktivPartei.Parteien)
           {
-            aktivPartei.Add(new ParteienAktiv { Partei = par });
+            aktivPartei.Add(new ParteienAktiv { Partei = par.TrimEnd() });
           }
         }
       }
@@ -113,7 +113,7 @@ namespace DigitalSignage.ImportCLI.Service
         {
           foreach (string pro in verf.AktivPartei.ProzBev.PB)
           {
-            aktivProzBev.Add(new ProzBevAktiv { PB = pro });
+            aktivProzBev.Add(new ProzBevAktiv { PB = pro.TrimEnd() });
           }
         }
       }
@@ -129,7 +129,7 @@ namespace DigitalSignage.ImportCLI.Service
         {
           foreach (string par in verf.PassivPartei.Parteien)
           {
-            passivPartei.Add(new ParteienPassiv { Partei = par });
+            passivPartei.Add(new ParteienPassiv { Partei = par.TrimEnd() });
           }
         }
       }
@@ -145,7 +145,7 @@ namespace DigitalSignage.ImportCLI.Service
         {
           foreach (string pro in verf.PassivPartei.ProzBev.PB)
           {
-            passivProzBev.Add(new ProzBevPassiv { PB = pro });
+            passivProzBev.Add(new ProzBevPassiv { PB = pro.TrimEnd() });
           }
         }
       }
@@ -161,7 +161,7 @@ namespace DigitalSignage.ImportCLI.Service
         {
           foreach (string par in verf.Beigeladen.Parteien)
           {
-            beigeladenPartei.Add(new ParteienBeigeladen { Partei = par });
+            beigeladenPartei.Add(new ParteienBeigeladen { Partei = par.TrimEnd() });
           }
         }
       }
@@ -177,7 +177,7 @@ namespace DigitalSignage.ImportCLI.Service
         {
           foreach (string pro in verf.Beigeladen.ProzBev)
           {
-            beigeladenProzBev.Add(new ProzBevBeigeladen { PB = pro });
+            beigeladenProzBev.Add(new ProzBevBeigeladen { PB = pro.TrimEnd() });
           }
         }
       }
@@ -191,7 +191,7 @@ namespace DigitalSignage.ImportCLI.Service
       {
         foreach (string par in verf.SV.Parteien)
         {
-          svPartei.Add(new ParteienSV { Partei = par });
+          svPartei.Add(new ParteienSV { Partei = par.TrimEnd() });
         }
       }
 
@@ -219,7 +219,7 @@ namespace DigitalSignage.ImportCLI.Service
       {
         foreach (string bes in verf.Besetzung)
         {
-          besetzung.Add(new Besetzung { Richter = bes });
+          besetzung.Add(new Besetzung { Richter = bes.TrimEnd() });
         }
       }
       return besetzung;
