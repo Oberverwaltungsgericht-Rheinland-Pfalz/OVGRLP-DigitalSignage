@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using NDesk.Options;
 
 namespace DigitalSignage.ImportCLI.Service
 {
@@ -15,79 +16,65 @@ namespace DigitalSignage.ImportCLI.Service
     }
 
     //! Kommandozeilenargumente auswerten
-    public CLIActions ParseCommandLineArguments(String[] args)
+    public CLIActions ParseCommandLineArguments(String[] args, bool validate = true)
     {
       var cliActions = new CLIActions();
-      Match match = null;
-      MatchCollection matches = null;
-      String cmdline = "\"" + String.Join("\"", args) + "\"";
 
-      // -h Hilfe anzeigen
-      if (Regex.Match(cmdline, "-help").Success || Regex.Match(cmdline, "-h").Success)
+      var p = new OptionSet();
+      p.Add("a|add=", "{XML-Datendatei} für die Verarbeitung vormerken.", v => cliActions.InputFiles.Add(v.Replace("\"", "")));
+      p.Add("c|con=", HelpForConnectionString(), v => cliActions.NameOrConnectionString = v);
+      p.Add("d|delete", "Datenbank (vor dem hinzufügen von Daten) löschen.", v => { if (v != null) cliActions.ClearDatabase = true; });
+      p.Add("l|log=", "Angabe eines {Dateiname}ns oder Verzeichnisses um Ausgaben zu loggen.", v => cliActions.LogFile = v.Replace("\"", ""));
+      p.Add("h|?|help", "Hilfe anzeigen.", v => { if (v != null) cliActions.WritingInformationToUser = true; ShowHelp(p); });
+      p.Add("v|version", "Versionsinformationen anzeigen.", v => { if (v != null) cliActions.WritingInformationToUser = true; ShowVersionInformation(); });
+
+      try
       {
-        WriteHelp();
+        p.Parse(args);
+        if (validate)
+          cliActions.ValidateActions();
+      }
+      catch (Exception e)
+      {
+        Console.Write("DSImportCLI: ");
+        Console.WriteLine(e.Message);
+        Console.WriteLine("Bitte verwenden Sie `DSImportCLI --help' für mehr Informationen.");
         return null;
-      }
-
-      // -add Quell-XML aufnehmen
-      matches = Regex.Matches(cmdline, "-add *(\".+?\"|[^ ]+?)");
-      if (matches.Count > 0)
-      {
-        foreach (Match mat in matches)
-        {
-          cliActions.InputFiles.Add(mat.Groups[1].Value.Replace("\"", ""));
-        }
-      }
-
-      // -clear ClearDatabase
-      match = Regex.Match(cmdline, "-clear");
-      if (match.Success)
-      {
-        cliActions.ClearDatabase = true;
-      }
-
-      // -con ConnectionString oder -Name festlegen
-      matches = Regex.Matches(cmdline, "-con *(\".+?\"|[^ ]+?)");
-      if (matches.Count > 0)
-      {
-        cliActions.NameOrConnectionString = matches[0].Groups[1].Value.Replace("\"", "");
-      }
-
-      // -log logFile oder logDir festlegen
-      matches = Regex.Matches(cmdline, "-log *(\".+?\"|[^ ]+?)");
-      if (matches.Count > 0)
-      {
-        cliActions.LogFile = matches[0].Groups[1].Value.Replace("\"", "");
       }
 
       return cliActions;
     }
 
-    //! Übersicht der möglichen Kommandozeilenargumente auf der Konsole ausgeben
-    private void WriteHelp()
+    private static void ShowVersionInformation()
     {
-      LoggingHelper.Trace("  -add   XML-Datendatei für die Verarbeitung vormerken");
-      LoggingHelper.Trace("  -clear Datenbank (vor dem hinzufügen von Daten) löschen");
-      WriteHelpForConnectionString();
-      LoggingHelper.Trace("  -log   Angabe eines Dateinames oder Verzeichnisses um Ausgaben zu loggen");
-      LoggingHelper.Trace("  -help  Hilfe anzeigen");
+      Console.WriteLine("DSImportCL Version " + CommonHelper.AssemblyVersion());
     }
 
     //! Übersicht der möglichen Kommandozeilenargumente auf der Konsole ausgeben
-    private void WriteHelpForConnectionString()
+    private static void ShowHelp(OptionSet p)
     {
-      LoggingHelper.Trace("  -con   ConnectionName oder ConnectionString");
-      LoggingHelper.Trace("         Hier kann ein ConnectionString in folgendem Format angegeben werden:");
-      LoggingHelper.Trace("           Server=[DBServername]\\[DBInstanz]; Database=[DBName]; Integrated Security=True");
-      LoggingHelper.Trace("         Alternativ kann ein ConnectionName aus der Konfigurationsdatei angegeben werden.");
-      LoggingHelper.Trace("         In der Konfigurationsdatei sind momentan folgende hinterlegt:");
+      Console.WriteLine("Verwendung: DSImportCLI [OPTIONEN]+ [OPTIONSWERTE]");
+      Console.WriteLine();
+      Console.WriteLine("OPTIONEN:");
+      p.WriteOptionDescriptions(Console.Out);
+    }
+
+    //! Übersicht der möglichen Kommandozeilenargumente auf der Konsole ausgeben
+    private string HelpForConnectionString()
+    {
+      string help = string.Concat(
+        "ConnectionName oder {ConnectionString}", "\n",
+        "Hier kann ein ConnectionString in folgendem Format angegeben werden:", "\n",
+        "\"Server=[DBServername]\\[DBInstanz]; Database=[DBName]; Integrated Security=True\"", "\n",
+        "In der Konfigurationsdatei sind momentan folgende hinterlegt:");
       foreach (System.Configuration.ConnectionStringSettings connection in System.Configuration.ConfigurationManager.ConnectionStrings)
       {
         if (connection.Name != "LocalSqlServer")
         {
-          LoggingHelper.Trace(String.Format("           {0}: {1}", connection.Name, connection.ConnectionString));
+          help = help + String.Format("\n  {0}: {1}", connection.Name, connection.ConnectionString);
         }
       }
+      return help;
     }
   }
 }

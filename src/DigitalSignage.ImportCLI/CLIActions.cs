@@ -12,6 +12,7 @@ namespace DigitalSignage.ImportCLI
   {
     public List<string> InputFiles;
     public bool ClearDatabase;
+    public bool WritingInformationToUser;
     public string NameOrConnectionString;
     public string LogFile;
 
@@ -20,10 +21,13 @@ namespace DigitalSignage.ImportCLI
       //Defaults
       this.InputFiles = new List<string>();
       this.ClearDatabase = false;
+      this.WritingInformationToUser = false;
     }
 
-    private void ValidateActions()
+    public void ValidateActions()
     {
+      if (WritingInformationToUser)
+        return;
       if (String.IsNullOrEmpty(this.NameOrConnectionString))
       {
         throw new ArgumentException("Es wurde kein ConnectionString angegeben! (-con)");
@@ -38,6 +42,8 @@ namespace DigitalSignage.ImportCLI
 
     public void ExecuteActions()
     {
+      if (WritingInformationToUser)
+        return;
       if (LogFile != "")
         Service.LoggingHelper.InitLogging(LogFile);
 
