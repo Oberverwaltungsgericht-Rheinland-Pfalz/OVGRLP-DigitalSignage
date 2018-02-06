@@ -20,7 +20,7 @@ namespace DigitalSignage.ImportCLI
       }
       catch (Exception ex)
       {
-        cliService.Trace(ex);
+        Service.LoggingHelper.Trace(ex);
       }
 
 #if DEBUG

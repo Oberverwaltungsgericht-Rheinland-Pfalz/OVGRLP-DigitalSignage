@@ -13,6 +13,7 @@ namespace DigitalSignage.ImportCLI
     public List<string> InputFiles;
     public bool ClearDatabase;
     public string NameOrConnectionString;
+    public string LogFile;
 
     public CLIActions()
     {
@@ -37,13 +38,20 @@ namespace DigitalSignage.ImportCLI
 
     public void ExecuteActions()
     {
+      if (LogFile != "")
+        Service.LoggingHelper.InitLogging(LogFile);
+
       ValidateActions();
+
+      Service.LoggingHelper.Trace("ausgewahlte Datenbank: " + this.NameOrConnectionString);
 
       //ggf. zuerst die Datenbank löschen
       if (this.ClearDatabase)
       {
+        Service.LoggingHelper.Trace("Daten werden aus der Datebank gelöscht");
         var db = new Service.DBService(this.NameOrConnectionString);
         db.DeleteAll();
+        Service.LoggingHelper.Trace("=> erfolgreich");
       }
 
       //XML Dateien eilesen
@@ -53,21 +61,18 @@ namespace DigitalSignage.ImportCLI
         {
           if (!string.IsNullOrEmpty(inputFile) && System.IO.File.Exists(inputFile))
           {
-            //TerminsaushangTerminiertVerfahren[] verfahren = null;
-            //TerminsaushangStammdaten header = null;
-
+            Service.LoggingHelper.Trace("Verarbeitung: " + inputFile);
             Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(inputFile);
-
             if (null != data)
             {
               var db = new Service.DBService(this.NameOrConnectionString);
               db.AddData(data);
+              Service.LoggingHelper.Trace("=> erfolgreich");
             }
           }
         }
       }
-
-      //
+      Service.LoggingHelper.Trace("Programmende... ");
     }
   }
 }
