@@ -1,11 +1,7 @@
 ﻿using OvgRlp.Libs.Logging;
 using OvgRlp.Libs.Logging.LogTypes;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DigitalSignage.ImportCLI.Service
 {
