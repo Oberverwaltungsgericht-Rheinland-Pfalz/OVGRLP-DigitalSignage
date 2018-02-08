@@ -32,7 +32,7 @@ namespace DigitalSignage.ImportCLI
 
       if (!this.ClearDatabase)
       {
-        if (this.InputFiles == null || this.InputFiles.Count == 0)
+        if ((this.InputFiles == null || this.InputFiles.Count == 0) && (this.UpdateFiles == null || this.UpdateFiles.Count == 0))
           throw new ArgumentException("Es wurden keine XML-Einlesedateien angegeben!");
       }
     }
@@ -47,34 +47,52 @@ namespace DigitalSignage.ImportCLI
       ValidateActions();
 
       Service.LoggingHelper.Trace("ausgewahlte Datenbank: " + this.NameOrConnectionString);
+      var db = new Service.DBService(this.NameOrConnectionString);
 
       //ggf. zuerst die Datenbank löschen
       if (this.ClearDatabase)
       {
         Service.LoggingHelper.Trace("Daten werden aus der Datebank gelöscht");
-        var db = new Service.DBService(this.NameOrConnectionString);
         db.DeleteAll();
         Service.LoggingHelper.Trace("=> erfolgreich");
       }
 
-      //XML Dateien eilesen
+      //XML Dateien neu einlesen
       if (this.InputFiles != null || this.InputFiles.Count > 0)
       {
         foreach (string inputFile in this.InputFiles)
         {
           if (!string.IsNullOrEmpty(inputFile) && System.IO.File.Exists(inputFile))
           {
-            Service.LoggingHelper.Trace("Verarbeitung: " + inputFile);
+            Service.LoggingHelper.Trace("Daten werden hinzugefügt: " + inputFile);
             Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(inputFile);
             if (null != data)
             {
-              var db = new Service.DBService(this.NameOrConnectionString);
               db.AddData(data);
               Service.LoggingHelper.Trace("=> erfolgreich");
             }
           }
         }
       }
+
+      //XML Dateien zum Update
+      if (this.UpdateFiles != null || this.UpdateFiles.Count > 0)
+      {
+        foreach (string updateFile in this.UpdateFiles)
+        {
+          if (!string.IsNullOrEmpty(updateFile) && System.IO.File.Exists(updateFile))
+          {
+            Service.LoggingHelper.Trace("Datenupdate: " + updateFile);
+            Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(updateFile);
+            if (null != data)
+            {
+              db.UpdateData(data);
+              Service.LoggingHelper.Trace("=> erfolgreich");
+            }
+          }
+        }
+      }
+
       Service.LoggingHelper.Trace("Programmende... ");
     }
   }

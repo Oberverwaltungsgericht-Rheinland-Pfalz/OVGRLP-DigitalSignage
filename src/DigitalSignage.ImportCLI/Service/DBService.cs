@@ -30,7 +30,6 @@ namespace DigitalSignage.ImportCLI.Service
 
     public void AddData(Terminsaushang data)
     {
-      //EFContextProvider<DigitalSignageDbContext> contextProvider = new EFContextProvider<DigitalSignageDbContext>();
       var contextProvider = new EfContextProvider(this.NameOrConnectionString);
 
       //Kopfdaten
@@ -39,48 +38,50 @@ namespace DigitalSignage.ImportCLI.Service
       st.Gerichtsname = data.Stammdaten.Gerichtsname.TrimEnd();
       contextProvider.Context.Stammdaten.Add(st);
 
-      //alle Verfahren
+      //alle Verfahren aufnehmen
       foreach (TerminsaushangVerfahren verf in data.Terminiert)
       {
-        // Verfahrens-Kopfdaten
-        var v = new DigitalSignage.Infrastructure.Models.EurekaFach.Verfahren();
-        v.Lfdnr = Convert.ToByte(verf.Lfdnr);
-        v.Kammer = Convert.ToByte(verf.Kammer);
-        v.Sitzungssaal = verf.Sitzungssaal.TrimEnd();
-        v.UhrzeitAktuell = verf.Uhrzeit.TrimEnd();
-        v.UhrzeitPlan = verf.Uhrzeit.TrimEnd();
-        v.Status = verf.Status.TrimEnd();
-        v.Oeffentlich = verf.Oeffentlich.TrimEnd();
-        v.Art = verf.Art.TrimEnd();
-        v.Az = verf.Az.TrimEnd();
-        v.Gegenstand = verf.Gegenstand.TrimEnd();
-        v.Bemerkung1 = verf.Bemerkung1.TrimEnd();
-        v.Bemerkung2 = verf.Bemerkung2.TrimEnd();
-        v.StammdatenId = st.StammdatenId;  //!\TODO: prüfen ???
-
-        //Besetzung
-        v.Besetzung = DetermineBesetzung(verf);
-
-        //Aktivpartei und Prozessbevollmächtigte Aktivpartei
-        v.ParteienAktiv = DetermineAktivParteien(verf); ;
-        v.ProzBevAktiv = DetermineAktivProzBev(verf); ;
-
-        //Passivpartei und Prozessbevollmächtigte Passivpartei
-        v.ParteienPassiv = DeterminePassivParteien(verf);
-        v.ProzBevPassiv = DeterminePassivProzBev(verf);
-
-        // Beigeladene
-        v.ParteienBeigeladen = DetermineBeigeladeneParteien(verf);
-        v.ProzBevBeigeladen = DetermineBeigeladeneProzBev(verf);
-
-        // Sachverständige
-        v.ParteienSV = DetermineSachverstaendige(verf);
-
-        // Zeugen
-        v.ParteienZeugen = DetermineZeugen(verf);
+        var v = new Verfahren();
 
         // Aufnahme der Verfahrensdaten
+        v.StammdatenId = st.StammdatenId;
+        AddVerfahrensdaten(v, verf);
         contextProvider.Context.Verfahren.Add(v);
+      }
+
+      contextProvider.Context.SaveChanges();
+    }
+
+    public void UpdateData(Terminsaushang data)
+    {
+      var contextProvider = new EfContextProvider(this.NameOrConnectionString);
+
+      // StammdatenID ahand Gericht und Datum finden
+      var st = contextProvider.Context.Stammdaten.Where(s => s.Datum == data.Stammdaten.Datum && s.Gerichtsname == data.Stammdaten.Gerichtsname).ToList();
+      if (null == st || st.Count == 0)
+        throw new Exception(string.Format("Stammdaten '{0}' vom {1} konnten nicht gefunden werden", data.Stammdaten.Gerichtsname, data.Stammdaten.Datum));
+      if (st.Count > 1)
+        throw new Exception(string.Format("Zu den Stammdaten '{0}' vom {1} konnte kein eindeutiger Datensatz ermittelt werden", data.Stammdaten.Gerichtsname, data.Stammdaten.Datum));
+      int StammdatenID = st[0].StammdatenId;
+
+      foreach (TerminsaushangVerfahren verf in data.Terminiert)
+      {
+        var ver = contextProvider.Context.Verfahren.Where(v => v.StammdatenId == StammdatenID && v.Az == verf.Az).ToList();
+        if (null == ver || ver.Count == 0)
+        {
+          var v = new Verfahren();
+          v.StammdatenId = StammdatenID;
+          AddVerfahrensdaten(v, verf);
+          contextProvider.Context.Verfahren.Add(v);
+        }
+        else
+        {
+          if (ver.Count > 1)
+            throw new Exception(string.Format("Zu dem Verfahren '{0}' konnte kein eindeutiger Datensatz ermittelt werden", verf.Az));
+          int VerfahrenID = ver[0].VerfahrensId;
+          DeleteVerfahrensParteien(contextProvider, ver[0]);
+          AddVerfahrensdaten(ver[0], verf);
+        }
       }
 
       contextProvider.Context.SaveChanges();
@@ -221,6 +222,83 @@ namespace DigitalSignage.ImportCLI.Service
         }
       }
       return besetzung;
+    }
+
+    private void AddVerfahrensdaten(Verfahren verfahren, TerminsaushangVerfahren verf)
+    {
+      // Verfahrens-Kopfdaten
+      verfahren.Lfdnr = Convert.ToByte(verf.Lfdnr);
+      verfahren.Kammer = Convert.ToByte(verf.Kammer);
+      verfahren.Sitzungssaal = verf.Sitzungssaal.TrimEnd();
+      verfahren.UhrzeitAktuell = verf.Uhrzeit.TrimEnd();
+      verfahren.UhrzeitPlan = verf.Uhrzeit.TrimEnd();
+      verfahren.Status = verf.Status.TrimEnd();
+      verfahren.Oeffentlich = verf.Oeffentlich.TrimEnd();
+      verfahren.Art = verf.Art.TrimEnd();
+      verfahren.Az = verf.Az.TrimEnd();
+      verfahren.Gegenstand = verf.Gegenstand.TrimEnd();
+      verfahren.Bemerkung1 = verf.Bemerkung1.TrimEnd();
+      verfahren.Bemerkung2 = verf.Bemerkung2.TrimEnd();
+
+      //Besetzung
+      verfahren.Besetzung = DetermineBesetzung(verf);
+
+      //Aktivpartei und Prozessbevollmächtigte Aktivpartei
+      verfahren.ParteienAktiv = DetermineAktivParteien(verf); ;
+      verfahren.ProzBevAktiv = DetermineAktivProzBev(verf); ;
+
+      //Passivpartei und Prozessbevollmächtigte Passivpartei
+      verfahren.ParteienPassiv = DeterminePassivParteien(verf);
+      verfahren.ProzBevPassiv = DeterminePassivProzBev(verf);
+
+      // Beigeladene
+      verfahren.ParteienBeigeladen = DetermineBeigeladeneParteien(verf);
+      verfahren.ProzBevBeigeladen = DetermineBeigeladeneProzBev(verf);
+
+      // Sachverständige
+      verfahren.ParteienSV = DetermineSachverstaendige(verf);
+
+      // Zeugen
+      verfahren.ParteienZeugen = DetermineZeugen(verf);
+    }
+
+    private void DeleteVerfahrensParteien(EfContextProvider contextProvider, Verfahren verfahren)
+    {
+      var aktivPartei = contextProvider.Context.ParteienAktiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+      foreach (var p in aktivPartei)
+        contextProvider.Context.ParteienAktiv.Remove(p);
+
+      var aktivProzBev = contextProvider.Context.ProzBevAktiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+      foreach (var p in aktivProzBev)
+        contextProvider.Context.ProzBevAktiv.Remove(p);
+
+      var passivPartei = contextProvider.Context.ParteienPassiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+      foreach (var p in passivPartei)
+        contextProvider.Context.ParteienPassiv.Remove(p);
+
+      var passivProzBev = contextProvider.Context.ProzBevPassiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+      foreach (var p in passivProzBev)
+        contextProvider.Context.ProzBevPassiv.Remove(p);
+
+      var beigeladenPartei = contextProvider.Context.ParteienBeigeladen.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+      foreach (var p in beigeladenPartei)
+        contextProvider.Context.ParteienBeigeladen.Remove(p);
+
+      var beigeladenProzBev = contextProvider.Context.ProzBevBeigeladen.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+      foreach (var p in beigeladenProzBev)
+        contextProvider.Context.ProzBevBeigeladen.Remove(p);
+
+      var svPartei = contextProvider.Context.ParteienSV.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+      foreach (var p in svPartei)
+        contextProvider.Context.ParteienSV.Remove(p);
+
+      var zPartei = contextProvider.Context.ParteienZeugen.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+      foreach (var p in zPartei)
+        contextProvider.Context.ParteienZeugen.Remove(p);
+
+      var besetzung = contextProvider.Context.Besetzung.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+      foreach (var p in besetzung)
+        contextProvider.Context.Besetzung.Remove(p);
     }
   }
 
