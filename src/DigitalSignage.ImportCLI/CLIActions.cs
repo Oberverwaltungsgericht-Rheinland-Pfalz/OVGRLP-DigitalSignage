@@ -6,6 +6,7 @@ namespace DigitalSignage.ImportCLI
   public class CLIActions
   {
     public List<string> InputFiles;
+    public List<string> UpdateFiles;
     public bool ClearDatabase;
     public bool WritingInformationToUser;
     public string NameOrConnectionString;
@@ -15,6 +16,7 @@ namespace DigitalSignage.ImportCLI
     {
       //Defaults
       this.InputFiles = new List<string>();
+      this.UpdateFiles = new List<string>();
       this.ClearDatabase = false;
       this.WritingInformationToUser = false;
     }

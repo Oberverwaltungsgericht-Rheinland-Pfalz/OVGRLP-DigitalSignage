@@ -19,8 +19,9 @@ namespace DigitalSignage.ImportCLI.Service
       p.Add("a|add=", "{XML-Datendatei} für die Verarbeitung vormerken.", v => cliActions.InputFiles.Add(v.Replace("\"", "")));
       p.Add("c|con=", HelpForConnectionString(), v => cliActions.NameOrConnectionString = v);
       p.Add("d|delete", "Datenbank (vor dem hinzufügen von Daten) löschen.", v => { if (v != null) cliActions.ClearDatabase = true; });
-      p.Add("l|log=", "Angabe eines {Dateiname}ns oder Verzeichnisses um Ausgaben zu loggen.", v => cliActions.LogFile = v.Replace("\"", ""));
       p.Add("h|?|help", "Hilfe anzeigen.", v => { if (v != null) cliActions.WritingInformationToUser = true; ShowHelp(p); });
+      p.Add("l|log=", "Angabe eines {Dateiname}ns oder Verzeichnisses um Ausgaben zu loggen.", v => cliActions.LogFile = v.Replace("\"", ""));
+      p.Add("u|update=", "{XML-Datendatei} für Datenupdate vormerken.", v => cliActions.UpdateFiles.Add(v.Replace("\"", "")));
       p.Add("v|version", "Versionsinformationen anzeigen.", v => { if (v != null) cliActions.WritingInformationToUser = true; ShowVersionInformation(); });
 
       try
@@ -42,7 +43,7 @@ namespace DigitalSignage.ImportCLI.Service
 
     private static void ShowVersionInformation()
     {
-      Console.WriteLine("DSImportCL Version " + CommonHelper.AssemblyVersion());
+      Console.WriteLine("DSImportCLI Version " + CommonHelper.AssemblyVersion());
     }
 
     //! Übersicht der möglichen Kommandozeilenargumente auf der Konsole ausgeben
