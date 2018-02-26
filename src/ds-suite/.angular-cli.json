@@ -137,8 +137,14 @@
       }
     },
     {
-      "name": "core",
-      "root": "libs/core/src",
+      "name": "backend",
+      "root": "libs/backend/src",
+      "test": "../../../test.js",
+      "appRoot": ""
+    },
+    {
+      "name": "model",
+      "root": "libs/model/src",
       "test": "../../../test.js",
       "appRoot": ""
     }
