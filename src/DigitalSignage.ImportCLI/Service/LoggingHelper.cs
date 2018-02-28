@@ -7,9 +7,10 @@ namespace DigitalSignage.ImportCLI.Service
 {
   public class LoggingHelper
   {
-    private static LogEventLevel LogLevel = LogEventLevel.Information;
-    private static Serilog.Core.Logger LoggerInstance = null;
+    private static bool m_FileLogging = false;
+    private static LogEntry m_LogEntry = null;
 
+    //! Logging (hinsichtlich Filelogging)  initialisieren
     public static void InitLogging(string logDir)
     {
       // Textfile logging
@@ -25,18 +26,19 @@ namespace DigitalSignage.ImportCLI.Service
           logType = new LogTypeFile(logDir);
         }
         Logger.LoggingTypes.Add(logType);
-        LoggerInstance = Logger.CreateLogger();
+        m_FileLogging = true;
       }
     }
 
     //! Ausnahmefehler protokollieren
-    public static void Trace(Exception ex)
+    public static void Trace(Exception ex, bool LogStack = false)
     {
       Exception exx = ex;
-      LogLevel = LogEventLevel.Error;
       do
       {
-        Trace(exx.Message, exx.StackTrace);
+        Trace(exx.Message, LogEventLevel.Error);
+        if (LogStack)
+          Trace(exx.StackTrace, LogEventLevel.Error);
         exx = exx.InnerException;
       } while (null != exx);
     }
@@ -46,11 +48,28 @@ namespace DigitalSignage.ImportCLI.Service
     {
       foreach (var text in args)
       {
-        System.Diagnostics.Trace.WriteLine(text);
-        if (null != LoggerInstance)
-        {
-          LoggerInstance.Write(LogLevel.toSerilogEventLevel(), text);
-        }
+        Trace(text, LogEventLevel.Information);
+      }
+    }
+
+    //! Programmausgabe protokollieren
+    public static void Trace(String text, LogEventLevel logEventLevel)
+    {
+      System.Diagnostics.Trace.WriteLine(text);
+      if (m_FileLogging)
+      {
+        if (null == m_LogEntry)
+        { m_LogEntry = new LogEntry(text, logEventLevel); }
+        else { m_LogEntry.AddSubEntry(text, logEventLevel); }
+      }
+    }
+
+    //! Logischer Logging Block (hinsichtlich Filelogging) finalisieren
+    public static void EndLoggingBlock(string context = "")
+    {
+      if (null != m_LogEntry)
+      {
+        Logger.Log(m_LogEntry, context);
       }
     }
   }

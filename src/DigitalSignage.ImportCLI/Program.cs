@@ -16,7 +16,7 @@ namespace DigitalSignage.ImportCLI
       }
       catch (Exception ex)
       {
-        Service.LoggingHelper.Trace(ex);
+        Service.LoggingHelper.Trace(ex, true);
       }
 
 #if DEBUG
