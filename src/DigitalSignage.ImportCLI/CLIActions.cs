@@ -65,12 +65,17 @@ namespace DigitalSignage.ImportCLI
           if (!string.IsNullOrEmpty(inputFile) && System.IO.File.Exists(inputFile))
           {
             Service.LoggingHelper.Trace("Daten werden hinzugefügt: " + inputFile);
-            Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(inputFile);
-            if (null != data)
+            try
             {
-              db.AddData(data);
-              Service.LoggingHelper.Trace("=> erfolgreich");
+              Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(inputFile);
+              if (null != data)
+              {
+                db.AddData(data);
+                Service.LoggingHelper.Trace("=> erfolgreich");
+              }
             }
+            catch (Exception ex)
+            { Service.LoggingHelper.Trace(ex); }
           }
         }
       }
@@ -83,17 +88,24 @@ namespace DigitalSignage.ImportCLI
           if (!string.IsNullOrEmpty(updateFile) && System.IO.File.Exists(updateFile))
           {
             Service.LoggingHelper.Trace("Datenupdate: " + updateFile);
-            Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(updateFile);
-            if (null != data)
+            try
             {
-              db.UpdateData(data);
-              Service.LoggingHelper.Trace("=> erfolgreich");
+              Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(updateFile);
+              if (null != data)
+              {
+                db.UpdateData(data);
+                Service.LoggingHelper.Trace("=> erfolgreich");
+              }
             }
+            catch (Exception ex)
+            { Service.LoggingHelper.Trace(ex); }
           }
         }
       }
 
       Service.LoggingHelper.Trace("Programmende... ");
+      if (LogFile != "")
+        Service.LoggingHelper.EndLoggingBlock();
     }
   }
 }
