@@ -7,14 +7,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-const WEBAPI_URL = "http://...";
+const WEBAPI_URL = 'http://...';
 
 @Injectable()
 export class TerminService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getTermine(displayName: string): Observable<Termin[]> {
-    return this.http
-      .get<Termin[]>(`${WEBAPI_URL}/settings/display/${displayName}/termine`);
+    return this.http.get<Termin[]>(`${WEBAPI_URL}/settings/display/${displayName}/termine`);
   }
 }

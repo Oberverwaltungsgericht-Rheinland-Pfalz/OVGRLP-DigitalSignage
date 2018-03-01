@@ -1,0 +1,6 @@
+<h1>Digital Signage - Anzeigen</h1>
+<ul>
+  <li *ngFor="let display of displays">
+    <a [routerLink]="[display.name]">{{ display.name }}</a>
+  </li>
+</ul>
