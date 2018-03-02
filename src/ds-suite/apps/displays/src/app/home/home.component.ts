@@ -11,12 +11,10 @@ import { DisplayService } from '@ds-suite/backend';
 export class HomeComponent implements OnInit {
   displays: Display[];
 
-  constructor(private displayService: DisplayService) { }
+  constructor(private displayService: DisplayService) {}
 
   getDisplays() {
-    this.displayService
-      .getDisplays()
-      .subscribe(displays => (this.displays = displays));
+    this.displayService.getDisplays().subscribe(displays => (this.displays = displays));
   }
 
   ngOnInit() {
