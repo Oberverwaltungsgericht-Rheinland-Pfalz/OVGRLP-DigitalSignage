@@ -3,14 +3,16 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { DisplayService } from './display.service';
+import { TerminService } from './termin.service';
 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule, 
     HttpClientModule
   ],
   providers: [
-    DisplayService
+    DisplayService,
+    TerminService
   ]
 })
 export class BackendModule {}
