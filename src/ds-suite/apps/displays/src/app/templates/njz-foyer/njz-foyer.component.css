@@ -1,0 +1,50 @@
+#ds-display {
+  height: 1080px;
+  width: 1920px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#ds-head-status div {
+  padding: 10px;
+}
+
+#ds-head-title {
+  height: 120px;
+  background-color: rgb(51, 51, 51);
+  color: rgb(240, 240, 240);
+}
+
+.ds-head-title-left {
+  padding: 10px;
+  font-size: 3.2em;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  line-height: 1.2em;
+}
+
+.ds-head-title-right {
+  padding: 8px;
+  text-align: right;
+  line-height: 1.2;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+#ds-main-overview {
+  padding: 10px;
+  background: url("assets/img/rlp_wappen_600x735.png") center no-repeat;
+}
+
+#ds-main {
+  background: url("assets/img/rlp_wappen_600x735.png") center no-repeat;
+}
+
+.ds-overview-termin {
+  font-size: 30px;
+  margin: 10px;
+  -webkit-box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.6);
+}

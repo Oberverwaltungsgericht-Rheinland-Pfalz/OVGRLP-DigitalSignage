@@ -12,14 +12,13 @@ import { DisplayComponent } from './display/display.component';
 import { DisplayTemplateComponent } from './display-template/display-template.component';
 
 import { TemplateHostDirective } from './display-template/template-host.directive';
-import { TEMPLATES } from './display-template/templates';
+import { TEMPLATES } from './templates';
 import { TerminComponent } from './termin/termin.component';
 import { CapitalizePipe } from './capitalize.pipe';
+import { NjzFoyerComponent } from './templates/njz-foyer/njz-foyer.component';
+import { NjzSaalComponent } from './templates/njz-saal/njz-saal.component';
 
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: ":name", component: DisplayComponent }
-];
+const routes: Routes = [{ path: '', component: HomeComponent }, { path: ':name', component: DisplayComponent }];
 
 @NgModule({
   imports: [
@@ -37,7 +36,9 @@ const routes: Routes = [
     TemplateHostDirective,
     TEMPLATES,
     TerminComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    NjzFoyerComponent,
+    NjzSaalComponent
   ],
   entryComponents: [TEMPLATES],
   bootstrap: [AppComponent]

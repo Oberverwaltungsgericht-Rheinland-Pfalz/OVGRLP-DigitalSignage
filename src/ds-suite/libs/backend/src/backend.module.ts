@@ -6,13 +6,7 @@ import { DisplayService } from './display.service';
 import { TerminService } from './termin.service';
 
 @NgModule({
-  imports: [
-    CommonModule, 
-    HttpClientModule
-  ],
-  providers: [
-    DisplayService,
-    TerminService
-  ]
+  imports: [CommonModule, HttpClientModule],
+  providers: [DisplayService, TerminService]
 })
 export class BackendModule {}
