@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NxModule } from '@nrwl/nx';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -21,13 +22,13 @@ import { NjzFoyerComponent } from './templates/njz-foyer/njz-foyer.component';
 import { NjzSaalComponent } from './templates/njz-saal/njz-saal.component';
 import { NjzkhFoyerComponent } from './templates/njzkh-foyer/njzkh-foyer.component';
 import { EdvgtSteleComponent } from './templates/edvgt-stele/edvgt-stele.component';
- 
 
 const routes: Routes = [{ path: '', component: HomeComponent }, { path: ':name', component: DisplayComponent }];
 
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     NxModule.forRoot(),
     RouterModule.forRoot(routes, { useHash: true, initialNavigation: 'enabled' }),
     BACKEND_MODULE
