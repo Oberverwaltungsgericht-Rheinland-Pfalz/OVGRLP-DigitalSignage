@@ -60,6 +60,23 @@ export class DummyDisplayService implements DisplayService {
         description: null,
         notes: null,
         dummy: false
+      },
+      {
+        id: 4,
+        name: "njz-ko-foyer",
+        title: "Neues Justizzentrum Koblenz",
+        template: "NjzFoyerComponent",
+        styles: "",
+        filter: "",
+        group: "Testanzeigen",
+        controlUrl: "",
+        netAddress: "",
+        wolIpAddress: "",
+        wolMacAddress: "",
+        wolUdpPort: 9,
+        description: null,
+        notes: null,
+        dummy: false
       }
     ];
 
