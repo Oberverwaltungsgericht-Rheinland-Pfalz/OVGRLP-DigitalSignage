@@ -1,20 +1,25 @@
+<div id="edvgt-head">
+  Saalanzeige Rheinland-Pfalz
+</div>
+
 <div *ngIf="display" id="ds-display" fxLayout="column">
+
   <!-- Öffentlich / Nicht öffentlich / Sitzung unterbrochen / Nächste Sitzung -->
   <div fxLayout="column" id="ds-head-status" [ngClass]="
-    {
-      'ds-head-notrunning': !aktiverTermin,
-      'ds-head-public': aktiverTermin && aktiverTermin.oeffentlich == 'ja',
-      'ds-head-notpublic': aktiverTermin && aktiverTermin.oeffentlich == 'nein'
-    }">
+        {
+          'ds-head-notrunning': !aktiverTermin,
+          'ds-head-public': aktiverTermin && aktiverTermin.oeffentlich == 'ja',
+          'ds-head-notpublic': aktiverTermin && aktiverTermin.oeffentlich == 'nein'
+        }">
     <div *ngIf="aktiverTermin" fxFlex="grow">
-        {{ (aktiverTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;' }}
-        {{ (aktiverTermin.oeffentlich == 'nein') ? 'Nicht öffentliche Sitzung' : '&nbsp;' }}
+      {{ (aktiverTermin.oeffentlich == 'ja') ? 'Öffentliche Sitzung' : '&nbsp;' }} {{ (aktiverTermin.oeffentlich == 'nein') ? 'Nicht
+      öffentliche Sitzung' : '&nbsp;' }}
     </div>
     <div *ngIf="!aktiverTermin && naechsterTermin" [ngClass]="">
       In Kürze
     </div>
   </div>
-  
+
   <div id="ds-head-title" fxLayout="row">
     <div fxFlex="75" class="ds-head-title-left">
       {{ display.title }}
@@ -27,8 +32,11 @@
 
   <div id="ds-main" fxFlex fxLayout="row">
     <div id="ds-main-details" fxFlex fxLayout="row">
+
       <app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin"></app-termin>
+
       <app-termin *ngIf="!aktiverTermin && naechsterTermin" [termin]="naechsterTermin"></app-termin>
+
     </div>
 
     <div id="ds-main-overview" fxFlex="25" fxLayout="column">
@@ -38,12 +46,16 @@
         </div>
         <div fxFlex="grow" class="ds-box-content">
           <div class="ds-overview-termin" *ngFor="let termin of termine">
-            {{ termin.uhrzeitAktuell }} Uhr - {{ termin.az }}<br />
-            {{ termin.art }}<br />
-            {{ termin.status }}
+            {{ termin.uhrzeitAktuell }} Uhr - {{ termin.az }}
+            <br /> {{ termin.art }}
+            <br /> {{ termin.status }}
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div id="edvgt-foot">
+  weitere Informationen
 </div>

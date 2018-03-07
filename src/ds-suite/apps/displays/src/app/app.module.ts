@@ -17,6 +17,8 @@ import { TerminComponent } from './termin/termin.component';
 import { CapitalizePipe } from './capitalize.pipe';
 import { NjzFoyerComponent } from './templates/njz-foyer/njz-foyer.component';
 import { NjzSaalComponent } from './templates/njz-saal/njz-saal.component';
+import { NjzkhFoyerComponent } from './templates/njzkh-foyer/njzkh-foyer.component';
+import { EdvgtSteleComponent } from './templates/edvgt-stele/edvgt-stele.component';
 
 const routes: Routes = [{ path: '', component: HomeComponent }, { path: ':name', component: DisplayComponent }];
 
@@ -38,7 +40,9 @@ const routes: Routes = [{ path: '', component: HomeComponent }, { path: ':name',
     TerminComponent,
     CapitalizePipe,
     NjzFoyerComponent,
-    NjzSaalComponent
+    NjzSaalComponent,
+    NjzkhFoyerComponent,
+    EdvgtSteleComponent
   ],
   entryComponents: [TEMPLATES],
   bootstrap: [AppComponent]

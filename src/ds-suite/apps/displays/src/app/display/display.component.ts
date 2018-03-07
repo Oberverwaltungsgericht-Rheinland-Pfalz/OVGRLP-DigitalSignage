@@ -9,7 +9,7 @@ import { DisplayService } from '@ds-suite/backend';
 
 import { DisplayTemplateComponent } from './../display-template/display-template.component';
 import { TemplateHostDirective } from './../display-template/template-host.directive';
-import { TEMPLATES } from './../display-template/templates';
+import { TEMPLATES } from './../templates';
 
 @Component({
   selector: 'app-display',
