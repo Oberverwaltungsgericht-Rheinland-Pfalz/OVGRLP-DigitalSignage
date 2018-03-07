@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 import 'rxjs/add/operator/switchMap';
 
 import { Display } from '@ds-suite/model';
-import { DisplayService } from '@ds-suite/backend';
+import { DisplayService } from '@ds-suite/core';
 
 import { DisplayTemplateComponent } from './../display-template/display-template.component';
 import { TemplateHostDirective } from './../display-template/template-host.directive';

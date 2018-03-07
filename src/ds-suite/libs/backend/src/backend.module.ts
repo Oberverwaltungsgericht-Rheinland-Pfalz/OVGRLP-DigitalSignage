@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-import { DisplayService } from './display.service';
-import { TerminService } from './termin.service';
+import { SoapDisplayService } from './soap-display.service';
+import { SoapTerminService } from './soap-termin.service';
+import { TerminService, DisplayService } from '@ds-suite/core';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
-  providers: [DisplayService, TerminService]
+  providers: [
+    { provide: TerminService, useClass: SoapTerminService },
+    { provide: DisplayService, useClass: SoapDisplayService }
+  ]
 })
 export class BackendModule {}

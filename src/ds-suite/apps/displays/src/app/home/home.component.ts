@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Display } from '@ds-suite/model';
-import { DisplayService } from '@ds-suite/backend';
+import { DisplayService } from '@ds-suite/core';
 
 @Component({
   selector: 'app-home',

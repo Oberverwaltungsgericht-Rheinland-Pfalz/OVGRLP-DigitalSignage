@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
 import { BackendModule } from '@ds-suite/backend';
+import { BackendDevModule as BACKEND_MODULE } from '@ds-suite/backend-dev';
+
 import { AppConfig } from '@ds-suite/model';
 import { DS_DISPLAYS_CONFIG } from './app.config';
 import { DisplayComponent } from './display/display.component';
@@ -19,6 +21,7 @@ import { NjzFoyerComponent } from './templates/njz-foyer/njz-foyer.component';
 import { NjzSaalComponent } from './templates/njz-saal/njz-saal.component';
 import { NjzkhFoyerComponent } from './templates/njzkh-foyer/njzkh-foyer.component';
 import { EdvgtSteleComponent } from './templates/edvgt-stele/edvgt-stele.component';
+ 
 
 const routes: Routes = [{ path: '', component: HomeComponent }, { path: ':name', component: DisplayComponent }];
 
@@ -27,7 +30,7 @@ const routes: Routes = [{ path: '', component: HomeComponent }, { path: ':name',
     BrowserModule,
     NxModule.forRoot(),
     RouterModule.forRoot(routes, { useHash: true, initialNavigation: 'enabled' }),
-    BackendModule
+    BACKEND_MODULE
   ],
   providers: [{ provide: AppConfig, useValue: DS_DISPLAYS_CONFIG }],
   declarations: [

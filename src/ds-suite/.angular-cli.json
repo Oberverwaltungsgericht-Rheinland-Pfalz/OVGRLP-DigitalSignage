@@ -143,6 +143,18 @@
       "appRoot": ""
     },
     {
+      "name": "backend-dev",
+      "root": "libs/backend-dev/src",
+      "test": "../../../test.js",
+      "appRoot": ""
+    },
+    {
+      "name": "core",
+      "root": "libs/core/src",
+      "test": "../../../test.js",
+      "appRoot": ""
+    },
+    {
       "name": "model",
       "root": "libs/model/src",
       "test": "../../../test.js",

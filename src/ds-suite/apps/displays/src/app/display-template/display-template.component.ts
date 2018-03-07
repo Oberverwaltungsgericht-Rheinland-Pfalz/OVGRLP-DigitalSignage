@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
 
 import { Termin, Display } from '@ds-suite/model';
-import { TerminService } from '@ds-suite/backend';
+import { TerminService } from '@ds-suite/core';
 
 import 'rxjs/add/operator/switchMap';
 import { filter } from 'rxjs/operators/filter';

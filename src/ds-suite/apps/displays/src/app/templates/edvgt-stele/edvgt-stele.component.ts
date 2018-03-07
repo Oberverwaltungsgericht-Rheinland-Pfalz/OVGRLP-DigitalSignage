@@ -6,5 +6,4 @@ import { DisplayTemplateComponent } from '../../display-template/display-templat
   templateUrl: './edvgt-stele.component.html',
   styleUrls: ['./edvgt-stele.component.css']
 })
-export class EdvgtSteleComponent extends DisplayTemplateComponent {
-}
+export class EdvgtSteleComponent extends DisplayTemplateComponent {}
