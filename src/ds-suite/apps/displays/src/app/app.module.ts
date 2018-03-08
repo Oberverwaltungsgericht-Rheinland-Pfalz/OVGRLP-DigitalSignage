@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
+import { NxModule } from '@nrwl/nx';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NxModule } from '@nrwl/nx';
 import { Routes, RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 import { BackendModule } from '@ds-suite/backend';

@@ -87,31 +87,6 @@
       }
     },
     {
-      "name": "displays",
-      "root": "apps/displays/src",
-      "outDir": "dist/apps/displays",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
-      "index": "index.html",
-      "main": "main.ts",
-      "polyfills": "polyfills.ts",
-      "test": "../../../test.js",
-      "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "../../../tsconfig.spec.json",
-      "prefix": "app",
-      "styles": [
-        "styles.css"
-      ],
-      "scripts": [],
-      "environmentSource": "environments/environment.ts",
-      "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
-      }
-    },
-    {
       "name": "roomcontrol",
       "root": "apps/roomcontrol/src",
       "outDir": "dist/apps/roomcontrol",
