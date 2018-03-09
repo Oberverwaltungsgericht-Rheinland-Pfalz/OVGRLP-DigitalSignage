@@ -29,7 +29,6 @@ export class DisplayTemplateComponent implements OnInit {
   constructor(private terminService: TerminService) {}
 
   loadTermine() {
-    console.log('load termine');
     this.terminService.getTermine(this.display.name).subscribe(result => {
       let tmpTermine: Termin[] = result;
 
@@ -74,14 +73,12 @@ export class DisplayTemplateComponent implements OnInit {
           this.loadTermine();
         } else {
           this.termine.shift();
-          console.log(this.termine.length);
         }
       }
     });
   }
 
   animationStarted(event: AnimationEvent) {
-    console.log(event);
   }
 
   ngOnDestroy() {

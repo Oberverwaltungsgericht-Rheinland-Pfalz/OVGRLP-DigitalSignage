@@ -48,7 +48,6 @@ export class DisplayComponent implements AfterViewInit, OnDestroy {
             let componentRef = viewContainer.createComponent(factory);
             this.currentTemplate = <DisplayTemplateComponent>componentRef.instance;
             this.currentTemplate.display = display;
-            console.log(this.currentTemplate);
           }
         }
 
