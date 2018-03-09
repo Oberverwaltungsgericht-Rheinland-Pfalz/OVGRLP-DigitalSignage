@@ -9,7 +9,7 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class DummyTerminService implements TerminService {
   getTermine(displayName: string): Observable<Termin[]> {
-    let termine: Termin[] = [
+    const termine: Termin[] = [
       {
         id: 1,
         az: "1 K 1111/18.XY",
