@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NxModule } from '@nrwl/nx';
 
 import { BackendModule } from '@ds-suite/backend';
@@ -27,6 +28,7 @@ const routes: Routes = [{ path: '', component: HomeComponent }, { path: ':name',
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     NxModule.forRoot(),
     RouterModule.forRoot(routes, { useHash: true, initialNavigation: 'enabled' }),
     BACKEND_MODULE
