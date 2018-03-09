@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { Termin, Display } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
@@ -12,18 +13,18 @@ import { filter } from 'rxjs/operators/filter';
   templateUrl: './display-template.component.html',
   styleUrls: ['./display-template.component.css']
 })
-export class DisplayTemplateComponent implements OnInit {
+export class DisplayTemplateComponent implements OnInit, OnDestroy {
   private updateTimer: any;
   private updateSub: Subscription;
 
-  public updateInterval: number = 10000;
+  public updateInterval = 10000;
 
   display: Display;
   aktiverTermin: Termin;
   naechsterTermin: Termin;
   termine: Termin[] = [];
   termineOffen: Termin[] = [];
-  termineCount: number = 0;
+  termineCount = 0;
   datum: Date;
 
   constructor(private terminService: TerminService) {}
@@ -57,7 +58,7 @@ export class DisplayTemplateComponent implements OnInit {
   }
 
   filterTermine(termine: Termin[]): Termin[] {
-    return termine.filter(termin => termin.uhrzeitAktuell != 'omV');
+    return termine.filter(termin => termin.uhrzeitAktuell !== 'omV');
   }
 
   findAktiverTermin(termine: Termin[]): Termin {
