@@ -9,7 +9,7 @@ import { Display, DisplayStatus, AppConfig } from '@ds-suite/model';
 @Injectable()
 export class DummyDisplayService implements DisplayService {
   getDisplays(): Observable<Display[]> {
-    let displays: Display[] = [
+    const displays: Display[] = [
       {
         id: 1,
         name: "saal1",
@@ -98,7 +98,7 @@ export class DummyDisplayService implements DisplayService {
     ];
 
     console.log("DisplayDummyService.getDisplays()");
-    
+
     return of(displays);
   }
 
@@ -108,14 +108,14 @@ export class DummyDisplayService implements DisplayService {
     console.log(`DisplayDummyService.getDisplay(name: '${name}')`);
 
     this.getDisplays().subscribe((displays) => {
-      display = displays.find((display) => { return display.name === name });
+      display = displays.find((d) => d.name === name );
     });
 
     return of(display);
   }
 
   getDisplayStatus(display: Display): Observable<DisplayStatus> {
-    let displayStatus: DisplayStatus = DisplayStatus.Active;
+    const displayStatus: DisplayStatus = DisplayStatus.Active;
 
     console.log(
       `DisplayDummyService.getDisplayStatus(display: '${display.name}')`
