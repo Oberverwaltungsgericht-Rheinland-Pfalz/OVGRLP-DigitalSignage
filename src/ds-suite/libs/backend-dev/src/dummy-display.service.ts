@@ -77,6 +77,23 @@ export class DummyDisplayService implements DisplayService {
         description: null,
         notes: null,
         dummy: false
+      },
+      {
+        id: 5,
+        name: "njz-ko-saal",
+        title: "Sitzungssaal",
+        template: "NjzSaalComponent",
+        styles: "",
+        filter: "",
+        group: "Testanzeigen",
+        controlUrl: "",
+        netAddress: "",
+        wolIpAddress: "",
+        wolMacAddress: "",
+        wolUdpPort: 9,
+        description: null,
+        notes: null,
+        dummy: false
       }
     ];
 
