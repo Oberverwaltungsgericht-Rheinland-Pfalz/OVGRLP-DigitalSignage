@@ -1,28 +1,25 @@
 import { NgModule } from '@angular/core';
-import { NxModule } from '@nrwl/nx';
-
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { NxModule } from '@nrwl/nx';
 
 import { BackendModule } from '@ds-suite/backend';
 import { BackendDevModule as BACKEND_MODULE } from '@ds-suite/backend-dev';
 
-import { AppConfig } from '@ds-suite/model';
-import { DS_DISPLAYS_CONFIG } from './app.config';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 import { DisplayComponent } from './display/display.component';
 import { DisplayTemplateComponent } from './display-template/display-template.component';
+import { TerminComponent } from './termin/termin.component';
+
+import { AppConfig } from '@ds-suite/model';
+import { DS_DISPLAYS_CONFIG } from './app.config';
 
 import { TemplateHostDirective } from './display-template/template-host.directive';
 import { TEMPLATES } from './templates';
-import { TerminComponent } from './termin/termin.component';
+
 import { CapitalizePipe } from './capitalize.pipe';
-import { NjzFoyerComponent } from './templates/njz-foyer/njz-foyer.component';
-import { NjzSaalComponent } from './templates/njz-saal/njz-saal.component';
-import { NjzkhFoyerComponent } from './templates/njzkh-foyer/njzkh-foyer.component';
-import { EdvgtSteleComponent } from './templates/edvgt-stele/edvgt-stele.component';
 
 const routes: Routes = [{ path: '', component: HomeComponent }, { path: ':name', component: DisplayComponent }];
 
@@ -43,11 +40,7 @@ const routes: Routes = [{ path: '', component: HomeComponent }, { path: ':name',
     TemplateHostDirective,
     TEMPLATES,
     TerminComponent,
-    CapitalizePipe,
-    NjzFoyerComponent,
-    NjzSaalComponent,
-    NjzkhFoyerComponent,
-    EdvgtSteleComponent
+    CapitalizePipe
   ],
   entryComponents: [TEMPLATES],
   bootstrap: [AppComponent]
