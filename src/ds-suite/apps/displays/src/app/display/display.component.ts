@@ -1,8 +1,10 @@
 import { Component, AfterViewInit, OnDestroy, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/timer';
 
 import { Display } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
@@ -34,18 +36,18 @@ export class DisplayComponent implements AfterViewInit, OnDestroy {
     this.route.params
       .switchMap((params: Params) => this.displayService.getDisplay(params['name']))
       .subscribe(display => {
-        if (!this.display || display.template != this.display.template) {
+        if (!this.display || display.template !== this.display.template) {
           const templateName = display.template;
-          let viewContainer = this.templateHost.viewContainerRef;
+          const viewContainer = this.templateHost.viewContainerRef;
           viewContainer.clear();
 
-          let component = TEMPLATES.filter(item => {
+          const component = TEMPLATES.filter(item => {
             return item.name === templateName;
           })[0];
 
           if (component) {
-            let factory = this.componentFactoryResolver.resolveComponentFactory(component);
-            let componentRef = viewContainer.createComponent(factory);
+            const factory = this.componentFactoryResolver.resolveComponentFactory(component);
+            const componentRef = viewContainer.createComponent(factory);
             this.currentTemplate = <DisplayTemplateComponent>componentRef.instance;
             this.currentTemplate.display = display;
           }
