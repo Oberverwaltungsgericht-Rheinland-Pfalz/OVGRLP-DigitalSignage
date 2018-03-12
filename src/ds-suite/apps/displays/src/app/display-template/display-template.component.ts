@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ViewChild, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -14,6 +14,9 @@ import { filter } from 'rxjs/operators/filter';
   styleUrls: ['./display-template.component.css']
 })
 export class DisplayTemplateComponent implements OnInit, OnDestroy {
+  @ViewChild('dsTermineContainer') dsTermineContainer: ElementRef;
+  @ViewChildren('dsTermineChild') dsTermineChildren: QueryList<ElementRef>;
+
   private updateTimer: any;
   private updateSub: Subscription;
 
@@ -26,10 +29,12 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
   termineOffen: Termin[] = [];
   termineCount = 0;
   datum: Date;
+  scrollMode = false;
 
-  constructor(private terminService: TerminService) {}
+  constructor(private terminService: TerminService) { }
 
   loadTermine() {
+    console.log('load');
     this.terminService.getTermine(this.display.name).subscribe(result => {
       let tmpTermine: Termin[] = result;
 
@@ -41,9 +46,28 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
         termin => !(termin.status === 'Abgeschlossen' || termin.status === 'Aufgehoben')
       );
       this.naechsterTermin = this.aktiverTermin ? null : this.termineOffen[0];
+      this.scrollMode = this.isScrollMode();
 
-      this.termine = this.termine.concat(tmpTermine);
+      if (this.scrollMode)
+        this.termine = this.termine.concat(tmpTermine);
+      else
+        this.termine = tmpTermine;
     });
+  }
+
+  private isScrollMode(): boolean {
+    if (this.dsTermineContainer && this.dsTermineChildren) {
+      let containerHeight = this.dsTermineContainer.nativeElement.offsetHeight;
+      let childrenHeight = 0;
+
+      this.dsTermineChildren.forEach(element => {
+        childrenHeight += element.nativeElement.offsetHeight;
+      });
+
+      return containerHeight < childrenHeight;
+    } else {
+      return false;
+    }
   }
 
   sortTermine(termine: Termin[]): Termin[] {
@@ -70,10 +94,13 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
     this.updateSub = this.updateTimer.subscribe((t: any) => {
       this.datum = new Date();
       if (this.display) {
-        if (this.termine.length === 0 || this.termine.length <= this.termineCount) {
+        if (this.termine.length === 0 ||
+          (this.scrollMode && this.termine.length <= this.termineCount) ||
+          (!this.scrollMode)) {
           this.loadTermine();
         } else {
-          this.termine.shift();
+          if (this.scrollMode)
+            this.termine.shift();
         }
       }
     });
