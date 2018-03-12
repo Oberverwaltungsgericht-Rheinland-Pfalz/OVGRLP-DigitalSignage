@@ -10,8 +10,8 @@
     </div>
   </div>
 
-  <div id="ds-main" fxFlex fxLayout="column">
-    <div *ngFor="let termin of termine" [@terminAnimation]="'in'">
+  <div id="ds-main" fxFlex fxLayout="column" #dsTermineContainer>
+    <div *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
       <div class="ds-overview-termin" fxLayout="row">
         <div fxFlex="10">
           <strong>{{ termin.uhrzeitAktuell }} Uhr</strong>
