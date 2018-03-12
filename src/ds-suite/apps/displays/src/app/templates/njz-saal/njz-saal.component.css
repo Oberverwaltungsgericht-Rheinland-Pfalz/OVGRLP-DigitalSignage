@@ -7,19 +7,6 @@
   z-index: 1;
 }
 
-#edvgt-head {
-  background-color: #871d33;
-  color:#F1F1F1;
-  font-weight: bold;
-  height: 128px;
-  font-size: 60px;
-  text-align: center;
-  line-height: 128px;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
-  z-index: 2;
-  position: relative;
-}
-
 #ds-head-status {
   height: 80px;
   font-size: 1.8em;
