@@ -1,0 +1,1 @@
+export { NjzKhFoyerComponent } from './njz-kh-foyer/njz-kh-foyer.component';

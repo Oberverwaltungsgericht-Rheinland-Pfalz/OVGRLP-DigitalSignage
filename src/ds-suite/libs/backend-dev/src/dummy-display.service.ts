@@ -65,7 +65,7 @@ export class DummyDisplayService implements DisplayService {
         id: 4,
         name: "njz-ko-foyer",
         title: "Neues Justizzentrum Koblenz",
-        template: "NjzFoyerComponent",
+        template: "NjzKoFoyerComponent",
         styles: "",
         filter: "",
         group: "Testanzeigen",
@@ -82,7 +82,24 @@ export class DummyDisplayService implements DisplayService {
         id: 5,
         name: "njz-ko-saal",
         title: "Sitzungssaal",
-        template: "NjzSaalComponent",
+        template: "NjzKoSaalComponent",
+        styles: "",
+        filter: "",
+        group: "Testanzeigen",
+        controlUrl: "",
+        netAddress: "",
+        wolIpAddress: "",
+        wolMacAddress: "",
+        wolUdpPort: 9,
+        description: null,
+        notes: null,
+        dummy: false
+      },
+      {
+        id: 5,
+        name: "njz-kh-foyer",
+        title: "Justizzentrum Bad Kreuznach",
+        template: "NjzKhFoyerComponent",
         styles: "",
         filter: "",
         group: "Testanzeigen",
@@ -108,7 +125,7 @@ export class DummyDisplayService implements DisplayService {
     console.log(`DisplayDummyService.getDisplay(name: '${name}')`);
 
     this.getDisplays().subscribe((displays) => {
-      display = displays.find((d) => d.name === name );
+      display = displays.find((d) => d.name === name);
     });
 
     return of(display);
