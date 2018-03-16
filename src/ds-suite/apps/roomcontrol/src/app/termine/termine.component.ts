@@ -27,6 +27,10 @@ export class TermineComponent implements OnInit {
   }
   get displayName(): string { return this._displayName; }
 
+  changeOeffentlich(termin: Termin) {
+    console.log("now");
+  }
+
   ngOnInit() {
   }
 

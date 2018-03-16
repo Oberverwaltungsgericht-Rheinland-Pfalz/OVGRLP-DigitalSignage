@@ -1,0 +1,34 @@
+<clr-stack-block style="overflow-y: auto">
+  <clr-stack-label>
+    {{termin.uhrzeitAktuell}} - {{termin.az}}
+  </clr-stack-label>
+  <clr-stack-content>
+    {{termin.status}}
+  </clr-stack-content>
+  <clr-stack-block>
+    <clr-stack-label>
+      Besetzung
+    </clr-stack-label>
+    <clr-stack-content>
+      <span *ngFor="let richter of termin.besetzung">
+        {{richter}}
+      </span>
+    </clr-stack-content>
+  </clr-stack-block>
+  <clr-stack-block>
+    <clr-stack-label>
+      Aktivpartei
+    </clr-stack-label>
+    <clr-stack-content>
+      {{termin.parteienAktivKurz}}
+    </clr-stack-content>
+  </clr-stack-block>
+  <clr-stack-block>
+    <clr-stack-label>
+      Passivpartei
+    </clr-stack-label>
+    <clr-stack-content>
+      {{termin.parteienPassivKurz}}
+    </clr-stack-content>
+  </clr-stack-block>
+</clr-stack-block>

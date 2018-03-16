@@ -1,6 +1,7 @@
 import { NgModule, enableProdMode } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from "@angular/router";
+import { FormsModule }   from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NxModule } from "@nrwl/nx";
 import { ClarityModule } from "@clr/angular";
@@ -15,6 +16,7 @@ import { environment } from "../environments/environment";
 import { DisplayComponent } from './display/display.component';
 import { DisplayControlComponent } from './display-control/display-control.component';
 import { TermineComponent } from './termine/termine.component';
+import { TerminComponent } from './termin/termin.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -30,6 +32,7 @@ if (environment.production) {
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     FlexLayoutModule,
     NxModule.forRoot(),
     RouterModule.forRoot(routes, {
@@ -39,7 +42,7 @@ if (environment.production) {
     ClarityModule,
     BACKEND_MODULE
   ],
-  declarations: [AppComponent, HomeComponent, DisplayComponent, DisplayControlComponent, TermineComponent],
+  declarations: [AppComponent, HomeComponent, DisplayComponent, DisplayControlComponent, TermineComponent, TerminComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
