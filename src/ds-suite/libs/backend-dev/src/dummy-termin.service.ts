@@ -84,7 +84,7 @@ export class DummyTerminService implements TerminService {
         uhrzeitPlan: "13:00",
         uhrzeitAktuell: "13:00",
         status: "",
-        oeffentlich: "ja",
+        oeffentlich: "nein",
         art: "mündliche Verhandlung",
         gegenstand: "Rundfunkbeitrags",
         bemerkung1: "",
