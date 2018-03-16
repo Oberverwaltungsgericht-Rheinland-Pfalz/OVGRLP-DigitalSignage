@@ -1,0 +1,18 @@
+<div class="card" *ngIf="display" fxLayout="column">
+  <div class="card-header">
+    Anzeigegerät {{ display.name }}
+  </div>
+  <div class="card-img">
+    <img [src]="screenshot">
+  </div>
+  <div class="card-block" [ngClass]="{'ds-bg-yellow':(status < 0), 'ds-bg-red': (status === 0), 'ds-bg-green': (status >= 1)}">
+    <div class="card-text">
+      Status: {{ (status === 0 ? 'ausgeschaltet' : (status === 1 ? 'angeschaltet' : ( status === 2 ? 'aktiv' : 'unbekannt' )))}}
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-sm btn-link" *ngIf="(status < 1)">Anschalten</button>
+    <button class="btn btn-sm btn-link" *ngIf="(status >= 1)">Ausschalten</button>
+    <button class="btn btn-sm btn-link" *ngIf="(status >= 1)">Neu starten</button>
+  </div>
+</div>
