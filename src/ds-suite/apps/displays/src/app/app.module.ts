@@ -5,6 +5,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { registerLocaleData } from "@angular/common";
 import localeDe from "@angular/common/locales/de";
+
 import { NxModule } from "@nrwl/nx";
 
 import { BackendModule } from "@ds-suite/backend";
@@ -56,7 +57,8 @@ registerLocaleData(localeDe);
       useValue: DS_DISPLAYS_CONFIG
     },
     {
-      provide: LOCALE_ID, useValue: 'de'
+      provide: LOCALE_ID,
+      useValue: "de"
     }
   ],
   declarations: [
