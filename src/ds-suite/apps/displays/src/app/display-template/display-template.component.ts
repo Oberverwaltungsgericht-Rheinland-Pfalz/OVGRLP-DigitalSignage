@@ -57,7 +57,7 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
 
   private isScrollMode(): boolean {
     if (this.dsTermineContainer && this.dsTermineChildren) {
-      let containerHeight = this.dsTermineContainer.nativeElement.offsetHeight;
+      const containerHeight = this.dsTermineContainer.nativeElement.offsetHeight;
       let childrenHeight = 0;
 
       this.dsTermineChildren.forEach(element => {
