@@ -49,10 +49,7 @@
     "schematics": {
       "collection": "@nrwl/schematics",
       "postGenerate": "npm run format",
-      "newProject": [
-        "app",
-        "lib"
-      ]
+      "newProject": ["app", "lib"]
     },
     "styleExt": "css",
     "component": {}
@@ -65,10 +62,7 @@
       "name": "displays",
       "root": "apps/displays/src",
       "outDir": "dist/apps/displays",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      "assets": ["assets", "favicon.ico"],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -76,9 +70,7 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "../../../tsconfig.spec.json",
       "prefix": "app",
-      "styles": [
-        "styles.css"
-      ],
+      "styles": ["styles.css"],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -90,10 +82,7 @@
       "name": "roomcontrol",
       "root": "apps/roomcontrol/src",
       "outDir": "dist/apps/roomcontrol",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      "assets": ["assets", "favicon.ico"],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -102,9 +91,10 @@
       "testTsconfig": "../../../tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../../../node_modules/@clr/icons/clr-icons.min.css",
+        "../../../node_modules/@clr/ui/clr-ui.min.css"
       ],
-      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
