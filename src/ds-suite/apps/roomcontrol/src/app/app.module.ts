@@ -1,6 +1,7 @@
 import { NgModule, enableProdMode } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from "@angular/router";
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NxModule } from "@nrwl/nx";
 import { ClarityModule } from "@clr/angular";
 
@@ -28,6 +29,7 @@ if (environment.production) {
 @NgModule({
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     NxModule.forRoot(),
     RouterModule.forRoot(routes, {
       useHash: true,
