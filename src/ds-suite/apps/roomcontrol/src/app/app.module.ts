@@ -14,6 +14,7 @@ import { HomeComponent } from "./home/home.component";
 import { environment } from "../environments/environment";
 import { DisplayComponent } from './display/display.component';
 import { DisplayControlComponent } from './display-control/display-control.component';
+import { TermineComponent } from './termine/termine.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -38,7 +39,7 @@ if (environment.production) {
     ClarityModule,
     BACKEND_MODULE
   ],
-  declarations: [AppComponent, HomeComponent, DisplayComponent, DisplayControlComponent],
+  declarations: [AppComponent, HomeComponent, DisplayComponent, DisplayControlComponent, TermineComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

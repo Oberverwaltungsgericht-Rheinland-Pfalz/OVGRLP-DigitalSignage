@@ -1,5 +1,4 @@
-<h2>Display works!</h2>
 <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxFlex>
-  <!--<app-termine fxFlex="66" fxLayout="column" *ngIf="display" [displayName]="display.name"></app-termine>-->
+  <app-termine fxFlex="66" fxLayout="column" *ngIf="display" [displayName]="display.name"></app-termine>
   <app-display-control fxFlex="33" fxLayout="column" *ngIf="display" [display]="display"></app-display-control>
 </div>
