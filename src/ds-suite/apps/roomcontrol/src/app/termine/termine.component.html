@@ -12,15 +12,15 @@
         <clr-dg-column class="ds-termin-column-oeffentlich">Öffentlich</clr-dg-column>
         <clr-dg-column class="ds-termin-column-status">Status</clr-dg-column>
 
-        <clr-dg-row *clrDgItems="let termin of termine">
+        <clr-dg-row *clrDgItems="let termin of termine; let i = index">
           <clr-dg-cell>{{ termin.uhrzeitAktuell }}</clr-dg-cell>
           <clr-dg-cell>{{ termin.az }}</clr-dg-cell>
           <clr-dg-cell>{{ termin.parteienAktivKurz }}</clr-dg-cell>
           <clr-dg-cell>{{ termin.parteienPassivKurz }}</clr-dg-cell>
           <clr-dg-cell>
             <div class="toggle-switch">
-              <input type="checkbox" [checked]="termin.oeffentlich === 'ja'" (change)="changeOeffentlich(termin)">
-              <label></label>
+              <input [id]="'chk_oeff_' + i" type="checkbox" [checked]="termin.oeffentlich === 'ja'" (change)="changeOeffentlich(termin)">
+              <label [for]="'chk_oeff_' + i"></label>
             </div>
           </clr-dg-cell>
           <clr-dg-cell>{{ termin.status }}</clr-dg-cell>
