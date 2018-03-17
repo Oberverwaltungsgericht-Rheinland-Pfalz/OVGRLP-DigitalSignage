@@ -1,4 +1,14 @@
-<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxFlex>
-  <app-termine fxFlex="66" fxLayout="column" *ngIf="display" [displayName]="display.name"></app-termine>
-  <app-display-control fxFlex="33" fxLayout="column" *ngIf="display" [display]="display"></app-display-control>
-</div>
+<clr-tabs>
+  <clr-tab>
+    <button clrTabLink>Termine</button>
+    <clr-tab-content *clrIfActive>
+      <app-termine *ngIf="display" [displayName]="display.name"></app-termine>
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>Anzeige</button>
+    <clr-tab-content *clrIfActive>
+      <app-display-control *ngIf="display" [display]="display"></app-display-control>
+    </clr-tab-content>
+  </clr-tab>
+</clr-tabs>

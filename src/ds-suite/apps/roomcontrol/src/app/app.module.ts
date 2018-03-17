@@ -1,7 +1,7 @@
 import { NgModule, enableProdMode } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from "@angular/router";
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NxModule } from "@nrwl/nx";
 import { ClarityModule } from "@clr/angular";
@@ -44,4 +44,4 @@ if (environment.production) {
   declarations: [AppComponent, HomeComponent, DisplayComponent, DisplayControlComponent, TermineComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
