@@ -12,6 +12,13 @@ export class TermineComponent implements OnInit {
 
   _displayName: string;
   termine: Termin[];
+  statusValues: string[] = [
+    '',
+    'läuft',
+    'abgeschlossen',
+    'aufgehoben',
+    'unterbrochen'
+  ];
 
   constructor(
     private terminService: TerminService) {

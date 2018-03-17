@@ -1,5 +1,5 @@
 .ds-termin-column-uhrzeit {
-  width: 10%;
+  width: 8%;
 }
 
 .ds-termin-column-az {
@@ -7,13 +7,13 @@
 }
 
 .ds-termin-column-partei {
-  width: 23%;
+  width: 22%;
 }
 
 .ds-termin-column-oeffentlich {
-  width: 10%;
+  width: 8%;
 }
 
 .ds-termin-column-status {
-  width: 10%;
+  width: 15%;
 }
