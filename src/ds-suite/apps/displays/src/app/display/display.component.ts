@@ -41,6 +41,9 @@ export class DisplayComponent implements AfterViewInit, OnDestroy {
           const viewContainer = this.templateHost.viewContainerRef;
           viewContainer.clear();
 
+          console.log(display);
+          console.log(display.template);
+
           const component = TEMPLATES.filter(item => {
             return item.name === templateName;
           })[0];

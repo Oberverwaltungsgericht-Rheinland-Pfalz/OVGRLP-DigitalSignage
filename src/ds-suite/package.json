@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"npm run json-srv:run\" \"npm run displays:serve\" \"npm run roomcontrol:serve\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,7 +21,10 @@
     "nx-migrate": "./node_modules/.bin/nx migrate",
     "nx-migrate:check": "./node_modules/.bin/nx migrate check",
     "nx-migrate:skip": "./node_modules/.bin/nx migrate skip",
-    "postinstall": "./node_modules/.bin/nx migrate check"
+    "postinstall": "./node_modules/.bin/nx migrate check",
+    "displays:serve": "ng serve -a displays --port 4201",
+    "roomcontrol:serve": "ng serve -a roomcontrol --port 4202",
+    "json-srv:run": "json-server --watch json-srv/db/example.json --routes json-srv/routes.json --port 4200"
   },
   "private": true,
   "dependencies": {
@@ -43,6 +46,7 @@
     "@ngrx/store-devtools": "~5.2.0",
     "@nrwl/nx": "~0.8.0",
     "@webcomponents/custom-elements": "^1.0.8",
+    "concurrently": "^3.5.1",
     "core-js": "~2.5.3",
     "rxjs": "~5.5.6",
     "zone.js": "~0.8.20"

@@ -1,0 +1,5 @@
+{
+  "/settings/displays": "/displays",
+  "/settings/displays/:name": "/displays?name=:name",
+  "/settings/displays/:name/termine": "/termine"
+}
