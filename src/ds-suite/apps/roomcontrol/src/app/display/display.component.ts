@@ -1,7 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
 
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/timer';
 
 import { Display, Termin } from "@ds-suite/model";
 import { DisplayService, TerminService } from "@ds-suite/core";
@@ -11,7 +14,9 @@ import { DisplayService, TerminService } from "@ds-suite/core";
   templateUrl: "./display.component.html",
   styleUrls: ["./display.component.css"]
 })
-export class DisplayComponent implements OnInit {
+export class DisplayComponent implements OnInit, OnDestroy, AfterViewInit {
+  private updateTimer: any;
+  private updateSub: Subscription;
   display: Display;
   termine: Termin[] = [];
 
@@ -19,7 +24,7 @@ export class DisplayComponent implements OnInit {
     private displayService: DisplayService,
     private terminService: TerminService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   loadDisplay() {
     console.log(this.route.paramMap);
@@ -32,11 +37,18 @@ export class DisplayComponent implements OnInit {
       });
   }
 
-  loadTermine() {
-    // todo:
-  }
-
   ngOnInit() {
     this.loadDisplay();
+  }
+
+  ngAfterViewInit(): void {
+    this.updateTimer = Observable.timer(5000, 60000);
+    this.updateSub = this.updateTimer.subscribe((t: any) => {
+      this.loadDisplay();
+    });
+  }
+
+  ngOnDestroy() {
+    this.updateSub.unsubscribe();
   }
 }
