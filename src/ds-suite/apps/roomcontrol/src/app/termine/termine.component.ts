@@ -46,6 +46,14 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
 
   changeOeffentlich(termin: Termin) {
     console.log("now");
+    this.terminService.saveTermin(termin).subscribe(val => { },
+      err => {
+        console.error(err);
+      });
+  }
+
+  changeStatus(termin: Termin) {
+    this.terminService.saveTermin(termin);
   }
 
   ngOnInit() {

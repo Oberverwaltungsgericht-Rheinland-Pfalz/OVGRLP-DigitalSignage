@@ -21,7 +21,7 @@
       </clr-dg-cell>
       <clr-dg-cell>
         <div class="select">
-          <select [name]="'sel_status_' + i" [id]="'sel_status_' + i" [(ngModel)]="termin.status">
+          <select [name]="'sel_status_' + i" [id]="'sel_status_' + i" [(ngModel)]="termin.status" (change)="changeStatus(termin)">
             <option *ngFor="let status of statusValues" [value]="status">{{ status }}</option>
           </select>
         </div>

@@ -15,21 +15,28 @@
       "gegenstand": "Rundfunkbeitrags",
       "bemerkung1": "",
       "bemerkung2": "",
-      "parteienAktiv": ["Frank Ferdinand\r"],
-      "prozBevAktiv": ["Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"],
-      "parteienPassiv": ["Südwestrundfunk, vertreten durch den Intendanten\r"],
+      "parteienAktiv": [
+        "Frank Ferdinand\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
       "prozBevPassiv": [],
       "parteienBeigeladen": [],
       "prozBevBeigeladen": [],
       "parteienZeugen": [],
       "parteienSv": [],
       "parteienAktivKurz": "Frank Ferdinand\r",
-      "parteienPassivKurz":
-        "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
       "stammdatenId": 1,
       "gericht": "Testgericht Koblenz",
       "datum": "09.01.2018",
-      "besetzung": ["Vorsitzender Richter am Testgericht Heinzmann"]
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
     },
     {
       "id": 2,
@@ -46,21 +53,28 @@
       "gegenstand": "Rundfunkbeitrags",
       "bemerkung1": "",
       "bemerkung2": "",
-      "parteienAktiv": ["Simone Sterntaler\r"],
-      "prozBevAktiv": ["Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"],
-      "parteienPassiv": ["Südwestrundfunk, vertreten durch den Intendanten\r"],
+      "parteienAktiv": [
+        "Simone Sterntaler\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
       "prozBevPassiv": [],
       "parteienBeigeladen": [],
       "prozBevBeigeladen": [],
       "parteienZeugen": [],
       "parteienSv": [],
       "parteienAktivKurz": "Simone Sterntaler\r",
-      "parteienPassivKurz":
-        "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
       "stammdatenId": 1,
       "gericht": "Testgericht Koblenz",
       "datum": "09.01.2018",
-      "besetzung": ["Vorsitzender Richter am Testgericht Heinzmann"]
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
     },
     {
       "id": 3,
@@ -77,21 +91,28 @@
       "gegenstand": "Rundfunkbeitrags",
       "bemerkung1": "",
       "bemerkung2": "",
-      "parteienAktiv": ["Peter Peterson\r"],
-      "prozBevAktiv": ["Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"],
-      "parteienPassiv": ["Südwestrundfunk, vertreten durch den Intendanten\r"],
+      "parteienAktiv": [
+        "Peter Peterson\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
       "prozBevPassiv": [],
       "parteienBeigeladen": [],
       "prozBevBeigeladen": [],
       "parteienZeugen": [],
       "parteienSv": [],
       "parteienAktivKurz": "Peter Peterson\r",
-      "parteienPassivKurz":
-        "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
       "stammdatenId": 1,
       "gericht": "Testgericht Koblenz",
       "datum": "09.01.2018",
-      "besetzung": ["Vorsitzender Richter am Testgericht Heinzmann"]
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
     },
     {
       "id": 4,
@@ -108,21 +129,28 @@
       "gegenstand": "Rundfunkbeitrags",
       "bemerkung1": "",
       "bemerkung2": "",
-      "parteienAktiv": ["Peter Peterson\r"],
-      "prozBevAktiv": ["Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"],
-      "parteienPassiv": ["Südwestrundfunk, vertreten durch den Intendanten\r"],
+      "parteienAktiv": [
+        "Peter Peterson\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
       "prozBevPassiv": [],
       "parteienBeigeladen": [],
       "prozBevBeigeladen": [],
       "parteienZeugen": [],
       "parteienSv": [],
       "parteienAktivKurz": "Peter Peterson\r",
-      "parteienPassivKurz":
-        "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
       "stammdatenId": 1,
       "gericht": "Testgericht Koblenz",
       "datum": "09.01.2018",
-      "besetzung": ["Vorsitzender Richter am Testgericht Heinzmann"]
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
     },
     {
       "id": 5,
@@ -139,21 +167,28 @@
       "gegenstand": "Rundfunkbeitrags",
       "bemerkung1": "",
       "bemerkung2": "",
-      "parteienAktiv": ["Peter Peterson\r"],
-      "prozBevAktiv": ["Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"],
-      "parteienPassiv": ["Südwestrundfunk, vertreten durch den Intendanten\r"],
+      "parteienAktiv": [
+        "Peter Peterson\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
       "prozBevPassiv": [],
       "parteienBeigeladen": [],
       "prozBevBeigeladen": [],
       "parteienZeugen": [],
       "parteienSv": [],
       "parteienAktivKurz": "Peter Peterson\r",
-      "parteienPassivKurz":
-        "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
       "stammdatenId": 1,
       "gericht": "Testgericht Koblenz",
       "datum": "09.01.2018",
-      "besetzung": ["Vorsitzender Richter am Testgericht Heinzmann"]
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
     },
     {
       "id": 6,
@@ -170,21 +205,28 @@
       "gegenstand": "Rundfunkbeitrags",
       "bemerkung1": "",
       "bemerkung2": "",
-      "parteienAktiv": ["Peter Peterson\r"],
-      "prozBevAktiv": ["Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"],
-      "parteienPassiv": ["Südwestrundfunk, vertreten durch den Intendanten\r"],
+      "parteienAktiv": [
+        "Peter Peterson\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
       "prozBevPassiv": [],
       "parteienBeigeladen": [],
       "prozBevBeigeladen": [],
       "parteienZeugen": [],
       "parteienSv": [],
       "parteienAktivKurz": "Peter Peterson\r",
-      "parteienPassivKurz":
-        "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
       "stammdatenId": 1,
       "gericht": "Testgericht Koblenz",
       "datum": "09.01.2018",
-      "besetzung": ["Vorsitzender Richter am Testgericht Heinzmann"]
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
     },
     {
       "id": 7,
@@ -201,21 +243,28 @@
       "gegenstand": "Rundfunkbeitrags",
       "bemerkung1": "",
       "bemerkung2": "",
-      "parteienAktiv": ["Peter Peterson\r"],
-      "prozBevAktiv": ["Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"],
-      "parteienPassiv": ["Südwestrundfunk, vertreten durch den Intendanten\r"],
+      "parteienAktiv": [
+        "Peter Peterson\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
       "prozBevPassiv": [],
       "parteienBeigeladen": [],
       "prozBevBeigeladen": [],
       "parteienZeugen": [],
       "parteienSv": [],
       "parteienAktivKurz": "Peter Peterson\r",
-      "parteienPassivKurz":
-        "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
       "stammdatenId": 1,
       "gericht": "Testgericht Koblenz",
       "datum": "09.01.2018",
-      "besetzung": ["Vorsitzender Richter am Testgericht Heinzmann"]
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
     },
     {
       "id": 8,
@@ -232,21 +281,28 @@
       "gegenstand": "Rundfunkbeitrags",
       "bemerkung1": "",
       "bemerkung2": "",
-      "parteienAktiv": ["Peter Peterson\r"],
-      "prozBevAktiv": ["Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"],
-      "parteienPassiv": ["Südwestrundfunk, vertreten durch den Intendanten\r"],
+      "parteienAktiv": [
+        "Peter Peterson\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
       "prozBevPassiv": [],
       "parteienBeigeladen": [],
       "prozBevBeigeladen": [],
       "parteienZeugen": [],
       "parteienSv": [],
       "parteienAktivKurz": "Peter Peterson\r",
-      "parteienPassivKurz":
-        "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
       "stammdatenId": 1,
       "gericht": "Testgericht Koblenz",
       "datum": "09.01.2018",
-      "besetzung": ["Vorsitzender Richter am Testgericht Heinzmann"]
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
     },
     {
       "id": 9,
@@ -263,21 +319,28 @@
       "gegenstand": "Rundfunkbeitrags",
       "bemerkung1": "",
       "bemerkung2": "",
-      "parteienAktiv": ["Peter Peterson\r"],
-      "prozBevAktiv": ["Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"],
-      "parteienPassiv": ["Südwestrundfunk, vertreten durch den Intendanten\r"],
+      "parteienAktiv": [
+        "Peter Peterson\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
       "prozBevPassiv": [],
       "parteienBeigeladen": [],
       "prozBevBeigeladen": [],
       "parteienZeugen": [],
       "parteienSv": [],
       "parteienAktivKurz": "Peter Peterson\r",
-      "parteienPassivKurz":
-        "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
       "stammdatenId": 1,
       "gericht": "Testgericht Koblenz",
       "datum": "09.01.2018",
-      "besetzung": ["Vorsitzender Richter am Testgericht Heinzmann"]
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
     }
   ],
   "displays": [
