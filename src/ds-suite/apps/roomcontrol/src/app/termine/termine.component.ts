@@ -45,7 +45,11 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   changeOeffentlich(termin: Termin) {
-    console.log("now");
+    if(termin.oeffentlich === 'ja')
+      termin.oeffentlich = 'nein'
+    else
+      termin.oeffentlich = 'ja'
+
     this.terminService.saveTermin(termin).subscribe(val => { },
       err => {
         console.error(err);

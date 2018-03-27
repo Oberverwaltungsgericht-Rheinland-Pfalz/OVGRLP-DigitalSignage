@@ -2,5 +2,6 @@
   "/settings/displays": "/displays",
   "/settings/displays/:name": "/displays?name=:name",
   "/settings/displays/:name/termine": "/termine",
+  "/daten/verfahren": "/termine",
   "/daten/verfahren/:id": "/termine/:id"
 }
