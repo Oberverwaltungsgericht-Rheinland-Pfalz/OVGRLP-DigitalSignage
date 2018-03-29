@@ -2,6 +2,7 @@
   "/settings/displays": "/displays",
   "/settings/displays/:name": "/displays?name=:name",
   "/settings/displays/:name/termine": "/termine",
+  "/settings/displays/:id/status": "/displaysStatus/:id",
   "/daten/verfahren": "/termine",
   "/daten/verfahren/:id": "/termine/:id"
 }

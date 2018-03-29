@@ -446,5 +446,23 @@
       "notes": null,
       "dummy": false
     }
+  ],
+  "displaysStatus": [
+    {
+      "id": "njz-ko-foyer",
+      "status": -1
+    },
+    {
+      "id": "njz-ko-saal",
+      "status": 0
+    },
+    {
+      "id": "njz-kh-foyer",
+      "status": 1
+    },
+    {
+      "id": "saal1",
+      "status": 2
+    }
   ]
 }
