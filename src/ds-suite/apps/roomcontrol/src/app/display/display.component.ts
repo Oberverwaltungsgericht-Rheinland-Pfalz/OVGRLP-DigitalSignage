@@ -27,7 +27,6 @@ export class DisplayComponent implements OnInit, OnDestroy, AfterViewInit {
   ) { }
 
   loadDisplay() {
-    console.log(this.route.paramMap);
     this.route.params
       .switchMap((params: Params) =>
         this.displayService.getDisplay(params["name"])
