@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations';
 
+import { Termin, Display } from '@ds-suite/model';
 import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
 
 @Component({
@@ -22,4 +23,10 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
     ])
   ]
 })
-export class NjzKhFoyerComponent extends DisplayTemplateComponent { }
+export class NjzKhFoyerComponent extends DisplayTemplateComponent { 
+  ngOnInit() {
+    //this.updateInterval = 1000;
+
+    super.ngOnInit();
+  }
+}
