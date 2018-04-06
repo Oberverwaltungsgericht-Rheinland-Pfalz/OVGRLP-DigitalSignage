@@ -20,14 +20,30 @@ import { AppConfig } from "@ds-suite/model";
 import { DS_DISPLAYS_CONFIG } from "./app.config";
 
 import { TemplateHostDirective } from "./display-template/template-host.directive";
-import { TEMPLATES } from "./templates";
+import { NjzKhFoyerComponent, NjzKhSaalComponent, NjzKoFoyerComponent, NjzKoSaalComponent } from "./templates";
 
 import { CapitalizePipe } from "./capitalize.pipe";
 import { environment } from "../environments/environment";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: ":name", component: DisplayComponent }
+  {
+    path: ":name", component: DisplayComponent,
+    children: [
+      {
+        path: "njzko", children: [
+          { path: "foyer", component: NjzKoFoyerComponent },
+          { path: "saal", component: NjzKoSaalComponent }
+        ]
+      },
+      {
+        path: "njzkh", children: [
+          { path: "foyer", component: NjzKhFoyerComponent },
+          { path: "saal", component: NjzKhSaalComponent }
+        ]
+      }
+    ]
+  },
 ];
 
 registerLocaleData(localeDe);
@@ -60,11 +76,13 @@ registerLocaleData(localeDe);
     DisplayComponent,
     DisplayTemplateComponent,
     TemplateHostDirective,
-    TEMPLATES,
     TerminComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    NjzKhFoyerComponent,
+    NjzKhSaalComponent,
+    NjzKoFoyerComponent,
+    NjzKoSaalComponent
   ],
-  entryComponents: [TEMPLATES],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

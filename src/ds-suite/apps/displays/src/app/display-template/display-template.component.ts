@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, ViewChild, ViewChildren, ElementRef, QueryList } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -31,27 +32,30 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
   datum: Date;
   scrollMode = false;
 
-  constructor(private terminService: TerminService) { }
+  constructor(private route: ActivatedRoute, private terminService: TerminService) { }
 
   loadTermine() {
-    console.log('load');
-    this.terminService.getTermine(this.display.name).subscribe(result => {
-      let tmpTermine: Termin[] = result;
+    this.route.params.subscribe(params => {
+      this.display = params as Display;
 
-      tmpTermine = this.filterTermine(tmpTermine);
-      tmpTermine = this.sortTermine(tmpTermine);
-      this.termineCount = tmpTermine.length;
-      this.aktiverTermin = this.findAktiverTermin(tmpTermine);
-      this.termineOffen = tmpTermine.filter(
-        termin => !(termin.status === 'Abgeschlossen' || termin.status === 'Aufgehoben')
-      );
-      this.naechsterTermin = this.aktiverTermin ? null : this.termineOffen[0];
-      this.scrollMode = this.isScrollMode();
-
-      if (this.scrollMode)
-        this.termine = this.termine.concat(tmpTermine);
-      else
-        this.termine = tmpTermine;
+      this.terminService.getTermine(this.display.name).subscribe(result => {
+        let tmpTermine: Termin[] = result;
+  
+        tmpTermine = this.filterTermine(tmpTermine);
+        tmpTermine = this.sortTermine(tmpTermine);
+        this.termineCount = tmpTermine.length;
+        this.aktiverTermin = this.findAktiverTermin(tmpTermine);
+        this.termineOffen = tmpTermine.filter(
+          termin => !(termin.status === 'Abgeschlossen' || termin.status === 'Aufgehoben')
+        );
+        this.naechsterTermin = this.aktiverTermin ? null : this.termineOffen[0];
+        this.scrollMode = this.isScrollMode();
+  
+        if (this.scrollMode)
+          this.termine = this.termine.concat(tmpTermine);
+        else
+          this.termine = tmpTermine;
+      });
     });
   }
 
@@ -93,15 +97,13 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
     this.updateTimer = Observable.timer(2000, this.updateInterval);
     this.updateSub = this.updateTimer.subscribe((t: any) => {
       this.datum = new Date();
-      if (this.display) {
-        if (this.termine.length === 0 ||
-          (this.scrollMode && this.termine.length <= this.termineCount) ||
-          (!this.scrollMode)) {
-          this.loadTermine();
-        } else {
-          if (this.scrollMode)
-            this.termine.shift();
-        }
+      if (this.termine.length === 0 ||
+        (this.scrollMode && this.termine.length <= this.termineCount) ||
+        (!this.scrollMode)) {
+        this.loadTermine();
+      } else {
+        if (this.scrollMode)
+          this.termine.shift();
       }
     });
   }
