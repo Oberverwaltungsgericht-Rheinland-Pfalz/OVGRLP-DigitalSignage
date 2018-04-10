@@ -13,9 +13,6 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule, routingComponents } from './app.routing';
 import { DsCommonModule } from './ds-common/ds-common.module';
 
-import { AppConfig } from "@ds-suite/model";
-import { DS_DISPLAYS_CONFIG } from "./app.config";
-
 import { environment } from "../environments/environment";
 
 registerLocaleData(localeDe);
@@ -31,10 +28,6 @@ registerLocaleData(localeDe);
     DsCommonModule
   ],
   providers: [
-    {
-      provide: AppConfig,
-      useValue: DS_DISPLAYS_CONFIG
-    },
     {
       provide: LOCALE_ID,
       useValue: "de"

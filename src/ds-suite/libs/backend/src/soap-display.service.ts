@@ -5,12 +5,16 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { DisplayService } from '@ds-suite/core';
+import { DisplayService, ConfigService } from '@ds-suite/core';
 import { Display, DisplayStatus, AppConfig } from '@ds-suite/model';
 
 @Injectable()
 export class SoapDisplayService implements DisplayService {
-  constructor(private http: HttpClient, private config: AppConfig) { }
+  private config: AppConfig;
+
+  constructor(private http: HttpClient, private configService: ConfigService) {
+    this.config = configService.getConfig();
+  }
 
   getDisplays(): Observable<Display[]> {
     return this.http.get<Display[]>(`${this.config.webApiUrl}/settings/displays`);
@@ -19,7 +23,7 @@ export class SoapDisplayService implements DisplayService {
   getDisplay(name: string): Observable<Display> {
     return this.http.get<Display>(`${this.config.webApiUrl}/settings/displays/${name}`).map(resp => {
       //HACK: das geht sicherlich besser
-      if(resp instanceof Array) {
+      if (resp instanceof Array) {
         return resp[0];
       } else {
         return resp;

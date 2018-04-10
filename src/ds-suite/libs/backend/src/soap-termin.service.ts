@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 import { Display, Termin, AppConfig } from '@ds-suite/model';
-import { TerminService } from '@ds-suite/core';
+import { TerminService, ConfigService } from '@ds-suite/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -13,7 +13,11 @@ const headers = new HttpHeaders()
 
 @Injectable()
 export class SoapTerminService implements TerminService {
-  constructor(private http: HttpClient, private config: AppConfig) { }
+  private config: AppConfig;
+
+  constructor(private http: HttpClient, private configService: ConfigService) {
+    this.config = this.configService.getConfig();
+  }
 
   getTermine(displayName: string): Observable<Termin[]> {
     return this.http.get<Termin[]>(`${this.config.webApiUrl}/settings/displays/${displayName}/termine`);
