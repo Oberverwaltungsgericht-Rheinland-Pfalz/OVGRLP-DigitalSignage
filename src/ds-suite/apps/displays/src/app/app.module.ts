@@ -16,8 +16,6 @@ import { DsCommonModule } from './ds-common/ds-common.module';
 import { AppConfig } from "@ds-suite/model";
 import { DS_DISPLAYS_CONFIG } from "./app.config";
 
-import { TemplateHostDirective } from "./display-template/template-host.directive";
-
 import { environment } from "../environments/environment";
 
 registerLocaleData(localeDe);

@@ -10,7 +10,6 @@ import { Display } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
 
 import { DisplayTemplateComponent } from './../display-template/display-template.component';
-import { TemplateHostDirective } from './../display-template/template-host.directive';
 
 @Component({
   selector: 'app-display',
