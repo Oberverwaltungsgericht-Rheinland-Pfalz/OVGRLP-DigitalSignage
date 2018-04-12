@@ -78,7 +78,7 @@ namespace DigitalSignage.ImportCLI.Service
         {
           if (ver.Count > 1)
             throw new Exception(string.Format("Zu dem Verfahren '{0}' konnte kein eindeutiger Datensatz ermittelt werden", verf.Az));
-          int VerfahrenID = ver[0].VerfahrensId;
+          Int64 VerfahrenID = ver[0].VerfahrensId;
           DeleteVerfahrensParteien(contextProvider, ver[0]);
           AddVerfahrensdaten(ver[0], verf);
         }
