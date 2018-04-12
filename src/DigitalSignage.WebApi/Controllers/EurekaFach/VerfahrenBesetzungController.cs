@@ -18,7 +18,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpGet]
     [ResponseType(typeof(IEnumerable<Besetzung>))]
-    public async Task<IHttpActionResult> GetAllBesetzungByVerfahren(int verfid)
+    public async Task<IHttpActionResult> GetAllBesetzungByVerfahren(Int64 verfid)
     {
       var verfahren = await context.Verfahren.FindAsync(verfid);
 
@@ -42,7 +42,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}", Name = "GetBesetzungById")]
     [HttpGet]
     [ResponseType(typeof(Besetzung))]
-    public async Task<IHttpActionResult> GetBesetzung(int verfid, int id)
+    public async Task<IHttpActionResult> GetBesetzung(Int64 verfid, int id)
     {
       var besetzung = await context.Besetzung.FindAsync(id);
 
@@ -57,7 +57,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpPut]
     [ResponseType(typeof(void))]
-    public async Task<IHttpActionResult> PutBesetzung(int verfid, int id, Besetzung besetzung)
+    public async Task<IHttpActionResult> PutBesetzung(Int64 verfid, int id, Besetzung besetzung)
     {
       if (!ModelState.IsValid)
       {
@@ -85,7 +85,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpPost]
     [ResponseType(typeof(Besetzung))]
-    public async Task<IHttpActionResult> PostBesetzung(int verfid, Besetzung besetzung)
+    public async Task<IHttpActionResult> PostBesetzung(Int64 verfid, Besetzung besetzung)
     {
       if (!ModelState.IsValid)
       {
@@ -116,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpDelete]
     [ResponseType(typeof(Besetzung))]
-    public async Task<IHttpActionResult> DeleteBesetzung(int verfid, int id)
+    public async Task<IHttpActionResult> DeleteBesetzung(Int64 verfid, int id)
     {
       var besetzung = await context.Besetzung.FindAsync(id);
 

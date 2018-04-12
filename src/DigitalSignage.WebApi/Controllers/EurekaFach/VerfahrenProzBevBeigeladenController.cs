@@ -18,7 +18,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpGet]
     [ResponseType(typeof(IEnumerable<ProzBevBeigeladen>))]
-    public async Task<IHttpActionResult> GetAllProzBevBeigeladenByVerfahren(int verfid)
+    public async Task<IHttpActionResult> GetAllProzBevBeigeladenByVerfahren(Int64 verfid)
     {
       var verfahren = await context.Verfahren.FindAsync(verfid);
 
@@ -42,7 +42,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}", Name = "GetProzBevBeigeladenById")]
     [HttpGet]
     [ResponseType(typeof(ProzBevBeigeladen))]
-    public async Task<IHttpActionResult> GetProzBevBeigeladen(int verfid, int id)
+    public async Task<IHttpActionResult> GetProzBevBeigeladen(Int64 verfid, int id)
     {
       var prozBevBeigeladen = await context.ProzBevBeigeladen.FindAsync(id);
 
@@ -57,7 +57,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpPut]
     [ResponseType(typeof(void))]
-    public async Task<IHttpActionResult> PutProzBevBeigeladen(int verfid, int id, ProzBevBeigeladen prozBevBeigeladen)
+    public async Task<IHttpActionResult> PutProzBevBeigeladen(Int64 verfid, int id, ProzBevBeigeladen prozBevBeigeladen)
     {
       if (!ModelState.IsValid)
       {
@@ -85,7 +85,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpPost]
     [ResponseType(typeof(ProzBevBeigeladen))]
-    public async Task<IHttpActionResult> PostProzBevBeigeladen(int verfid, ProzBevBeigeladen prozBevBeigeladen)
+    public async Task<IHttpActionResult> PostProzBevBeigeladen(Int64 verfid, ProzBevBeigeladen prozBevBeigeladen)
     {
       if (!ModelState.IsValid)
       {
@@ -116,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpDelete]
     [ResponseType(typeof(ProzBevBeigeladen))]
-    public async Task<IHttpActionResult> DeleteProzBevBeigeladen(int verfid, int id)
+    public async Task<IHttpActionResult> DeleteProzBevBeigeladen(Int64 verfid, int id)
     {
       var prozBevBeigeladen = await context.ProzBevBeigeladen.FindAsync(id);
 

@@ -18,7 +18,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpGet]
     [ResponseType(typeof(IEnumerable<ParteienSV>))]
-    public async Task<IHttpActionResult> GetAllParteienSVByVerfahren(int verfid)
+    public async Task<IHttpActionResult> GetAllParteienSVByVerfahren(Int64 verfid)
     {
       var verfahren = await context.Verfahren.FindAsync(verfid);
 
@@ -42,7 +42,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}", Name = "GetParteienSVById")]
     [HttpGet]
     [ResponseType(typeof(ParteienSV))]
-    public async Task<IHttpActionResult> GetParteienSV(int verfid, int id)
+    public async Task<IHttpActionResult> GetParteienSV(Int64 verfid, int id)
     {
       var parteienSV = await context.ParteienSV.FindAsync(id);
 
@@ -57,7 +57,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpPut]
     [ResponseType(typeof(void))]
-    public async Task<IHttpActionResult> PutParteienSV(int verfid, int id, ParteienSV parteienSV)
+    public async Task<IHttpActionResult> PutParteienSV(Int64 verfid, int id, ParteienSV parteienSV)
     {
       if (!ModelState.IsValid)
       {
@@ -85,7 +85,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpPost]
     [ResponseType(typeof(ParteienSV))]
-    public async Task<IHttpActionResult> PostParteienSV(int verfid, ParteienSV parteienSV)
+    public async Task<IHttpActionResult> PostParteienSV(Int64 verfid, ParteienSV parteienSV)
     {
       if (!ModelState.IsValid)
       {
@@ -116,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpDelete]
     [ResponseType(typeof(ParteienSV))]
-    public async Task<IHttpActionResult> DeleteParteienSV(int verfid, int id)
+    public async Task<IHttpActionResult> DeleteParteienSV(Int64 verfid, int id)
     {
       var parteienSV = await context.ParteienSV.FindAsync(id);
 

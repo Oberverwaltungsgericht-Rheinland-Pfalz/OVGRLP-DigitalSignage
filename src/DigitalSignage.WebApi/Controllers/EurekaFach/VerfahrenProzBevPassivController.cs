@@ -18,7 +18,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpGet]
     [ResponseType(typeof(IEnumerable<ProzBevPassiv>))]
-    public async Task<IHttpActionResult> GetAllProzBevPassivByVerfahren(int verfid)
+    public async Task<IHttpActionResult> GetAllProzBevPassivByVerfahren(Int64 verfid)
     {
       var verfahren = await context.Verfahren.FindAsync(verfid);
 
@@ -42,7 +42,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}", Name = "GetProzBevPassivById")]
     [HttpGet]
     [ResponseType(typeof(ProzBevPassiv))]
-    public async Task<IHttpActionResult> GetProzBevPassiv(int verfid, int id)
+    public async Task<IHttpActionResult> GetProzBevPassiv(Int64 verfid, int id)
     {
       var prozBevPassiv = await context.ProzBevPassiv.FindAsync(id);
 
@@ -57,7 +57,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpPut]
     [ResponseType(typeof(void))]
-    public async Task<IHttpActionResult> PutProzBevPassiv(int verfid, int id, ProzBevPassiv prozBevPassiv)
+    public async Task<IHttpActionResult> PutProzBevPassiv(Int64 verfid, int id, ProzBevPassiv prozBevPassiv)
     {
       if (!ModelState.IsValid)
       {
@@ -85,7 +85,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpPost]
     [ResponseType(typeof(ProzBevPassiv))]
-    public async Task<IHttpActionResult> PostProzBevPassiv(int verfid, ProzBevPassiv prozBevPassiv)
+    public async Task<IHttpActionResult> PostProzBevPassiv(Int64 verfid, ProzBevPassiv prozBevPassiv)
     {
       if (!ModelState.IsValid)
       {
@@ -116,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpDelete]
     [ResponseType(typeof(ProzBevPassiv))]
-    public async Task<IHttpActionResult> DeleteProzBevPassiv(int verfid, int id)
+    public async Task<IHttpActionResult> DeleteProzBevPassiv(Int64 verfid, int id)
     {
       var prozBevPassiv = await context.ProzBevPassiv.FindAsync(id);
 

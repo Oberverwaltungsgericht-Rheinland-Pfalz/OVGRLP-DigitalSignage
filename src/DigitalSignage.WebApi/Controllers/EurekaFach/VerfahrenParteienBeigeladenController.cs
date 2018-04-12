@@ -18,7 +18,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpGet]
     [ResponseType(typeof(IEnumerable<ParteienBeigeladen>))]
-    public async Task<IHttpActionResult> GetAllParteienBeigeladenByVerfahren(int verfid)
+    public async Task<IHttpActionResult> GetAllParteienBeigeladenByVerfahren(Int64 verfid)
     {
       var verfahren = await context.Verfahren.FindAsync(verfid);
 
@@ -42,7 +42,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}", Name = "GetParteienBeigeladenById")]
     [HttpGet]
     [ResponseType(typeof(ParteienBeigeladen))]
-    public async Task<IHttpActionResult> GetParteienBeigeladen(int verfid, int id)
+    public async Task<IHttpActionResult> GetParteienBeigeladen(Int64 verfid, int id)
     {
       var parteienBeigeladen = await context.ParteienBeigeladen.FindAsync(id);
 
@@ -57,7 +57,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpPut]
     [ResponseType(typeof(void))]
-    public async Task<IHttpActionResult> PutParteienBeigeladen(int verfid, int id, ParteienBeigeladen parteienBeigeladen)
+    public async Task<IHttpActionResult> PutParteienBeigeladen(Int64 verfid, int id, ParteienBeigeladen parteienBeigeladen)
     {
       if (!ModelState.IsValid)
       {
@@ -85,7 +85,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpPost]
     [ResponseType(typeof(ParteienBeigeladen))]
-    public async Task<IHttpActionResult> PostParteienBeigeladen(int verfid, ParteienBeigeladen parteienBeigeladen)
+    public async Task<IHttpActionResult> PostParteienBeigeladen(Int64 verfid, ParteienBeigeladen parteienBeigeladen)
     {
       if (!ModelState.IsValid)
       {
@@ -116,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpDelete]
     [ResponseType(typeof(ParteienBeigeladen))]
-    public async Task<IHttpActionResult> DeleteParteienBeigeladen(int verfid, int id)
+    public async Task<IHttpActionResult> DeleteParteienBeigeladen(Int64 verfid, int id)
     {
       var parteienBeigeladen = await context.ParteienBeigeladen.FindAsync(id);
 

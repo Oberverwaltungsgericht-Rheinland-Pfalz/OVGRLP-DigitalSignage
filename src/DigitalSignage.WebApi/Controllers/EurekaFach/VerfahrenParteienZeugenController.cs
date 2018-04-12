@@ -18,7 +18,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpGet]
     [ResponseType(typeof(IEnumerable<ParteienZeugen>))]
-    public async Task<IHttpActionResult> GetAllParteienZeugenByVerfahren(int verfid)
+    public async Task<IHttpActionResult> GetAllParteienZeugenByVerfahren(Int64 verfid)
     {
       var verfahren = await context.Verfahren.FindAsync(verfid);
 
@@ -42,7 +42,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}", Name = "GetParteienZeugenById")]
     [HttpGet]
     [ResponseType(typeof(ParteienZeugen))]
-    public async Task<IHttpActionResult> GetParteienZeugen(int verfid, int id)
+    public async Task<IHttpActionResult> GetParteienZeugen(Int64 verfid, int id)
     {
       var parteienZeugen = await context.ParteienZeugen.FindAsync(id);
 
@@ -57,7 +57,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpPut]
     [ResponseType(typeof(void))]
-    public async Task<IHttpActionResult> PutParteienZeugen(int verfid, int id, ParteienZeugen parteienZeugen)
+    public async Task<IHttpActionResult> PutParteienZeugen(Int64 verfid, int id, ParteienZeugen parteienZeugen)
     {
       if (!ModelState.IsValid)
       {
@@ -85,7 +85,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpPost]
     [ResponseType(typeof(ParteienZeugen))]
-    public async Task<IHttpActionResult> PostParteienZeugen(int verfid, ParteienZeugen parteienZeugen)
+    public async Task<IHttpActionResult> PostParteienZeugen(Int64 verfid, ParteienZeugen parteienZeugen)
     {
       if (!ModelState.IsValid)
       {
@@ -116,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpDelete]
     [ResponseType(typeof(ParteienZeugen))]
-    public async Task<IHttpActionResult> DeleteParteienZeugen(int verfid, int id)
+    public async Task<IHttpActionResult> DeleteParteienZeugen(Int64 verfid, int id)
     {
       var parteienZeugen = await context.ParteienZeugen.FindAsync(id);
 

@@ -18,7 +18,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpGet]
     [ResponseType(typeof(IEnumerable<ParteienPassiv>))]
-    public async Task<IHttpActionResult> GetAllParteienPassivByVerfahren(int verfid)
+    public async Task<IHttpActionResult> GetAllParteienPassivByVerfahren(Int64 verfid)
     {
       var verfahren = await context.Verfahren.FindAsync(verfid);
 
@@ -42,7 +42,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}", Name = "GetParteienPassivById")]
     [HttpGet]
     [ResponseType(typeof(ParteienPassiv))]
-    public async Task<IHttpActionResult> GetParteienPassiv(int verfid, int id)
+    public async Task<IHttpActionResult> GetParteienPassiv(Int64 verfid, int id)
     {
       var parteienPassiv = await context.ParteienPassiv.FindAsync(id);
 
@@ -57,7 +57,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpPut]
     [ResponseType(typeof(void))]
-    public async Task<IHttpActionResult> PutParteienPassiv(int verfid, int id, ParteienPassiv parteienPassiv)
+    public async Task<IHttpActionResult> PutParteienPassiv(Int64 verfid, int id, ParteienPassiv parteienPassiv)
     {
       if (!ModelState.IsValid)
       {
@@ -85,7 +85,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpPost]
     [ResponseType(typeof(ParteienPassiv))]
-    public async Task<IHttpActionResult> PostParteienPassiv(int verfid, ParteienPassiv parteienPassiv)
+    public async Task<IHttpActionResult> PostParteienPassiv(Int64 verfid, ParteienPassiv parteienPassiv)
     {
       if (!ModelState.IsValid)
       {
@@ -116,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpDelete]
     [ResponseType(typeof(ParteienPassiv))]
-    public async Task<IHttpActionResult> DeleteParteienPassiv(int verfid, int id)
+    public async Task<IHttpActionResult> DeleteParteienPassiv(Int64 verfid, int id)
     {
       var parteienPassiv = await context.ParteienPassiv.FindAsync(id);
 

@@ -46,7 +46,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}", Name = "GetVerfahrenById")]
     [HttpGet]
     [ResponseType(typeof(VerfahrenDto))]
-    public async Task<IHttpActionResult> GetVerfahren(int id)
+    public async Task<IHttpActionResult> GetVerfahren(Int64 id)
     {
       var verfahren = await context.Verfahren.FindAsync(id);
       await context.Entry(verfahren).Reference(v => v.Stammdaten).LoadAsync();
@@ -71,7 +71,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpPut]
     [ResponseType(typeof(void))]
-    public async Task<IHttpActionResult> PutVerfahren(int id, VerfahrenDto dto)
+    public async Task<IHttpActionResult> PutVerfahren(Int64 id, VerfahrenDto dto)
     {
       if (!ModelState.IsValid)
       {
@@ -130,7 +130,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpDelete]
     [ResponseType(typeof(Verfahren))]
-    public async Task<IHttpActionResult> DeleteVerfahren(int id)
+    public async Task<IHttpActionResult> DeleteVerfahren(Int64 id)
     {
       var verfahren = await context.Verfahren.FindAsync(id);
 

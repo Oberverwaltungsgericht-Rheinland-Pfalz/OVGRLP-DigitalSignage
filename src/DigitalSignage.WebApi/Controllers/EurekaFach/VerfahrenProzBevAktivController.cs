@@ -18,7 +18,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpGet]
     [ResponseType(typeof(IEnumerable<ProzBevAktiv>))]
-    public async Task<IHttpActionResult> GetAllProzBevAktivByVerfahren(int verfid)
+    public async Task<IHttpActionResult> GetAllProzBevAktivByVerfahren(Int64 verfid)
     {
       var verfahren = await context.Verfahren.FindAsync(verfid);
 
@@ -42,7 +42,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}", Name = "GetProzBevAktivById")]
     [HttpGet]
     [ResponseType(typeof(ProzBevAktiv))]
-    public async Task<IHttpActionResult> GetProzBevAktiv(int verfid, int id)
+    public async Task<IHttpActionResult> GetProzBevAktiv(Int64 verfid, int id)
     {
       var prozBevAktiv = await context.ProzBevAktiv.FindAsync(id);
 
@@ -57,7 +57,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpPut]
     [ResponseType(typeof(void))]
-    public async Task<IHttpActionResult> PutProzBevAktiv(int verfid, int id, ProzBevAktiv prozBevAktiv)
+    public async Task<IHttpActionResult> PutProzBevAktiv(Int64 verfid, int id, ProzBevAktiv prozBevAktiv)
     {
       if (!ModelState.IsValid)
       {
@@ -85,7 +85,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("")]
     [HttpPost]
     [ResponseType(typeof(ProzBevAktiv))]
-    public async Task<IHttpActionResult> PostProzBevAktiv(int verfid, ProzBevAktiv prozBevAktiv)
+    public async Task<IHttpActionResult> PostProzBevAktiv(Int64 verfid, ProzBevAktiv prozBevAktiv)
     {
       if (!ModelState.IsValid)
       {
@@ -116,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
     [Route("{id}")]
     [HttpDelete]
     [ResponseType(typeof(ProzBevAktiv))]
-    public async Task<IHttpActionResult> DeleteProzBevAktiv(int verfid, int id)
+    public async Task<IHttpActionResult> DeleteProzBevAktiv(Int64 verfid, int id)
     {
       var prozBevAktiv = await context.ProzBevAktiv.FindAsync(id);
 
