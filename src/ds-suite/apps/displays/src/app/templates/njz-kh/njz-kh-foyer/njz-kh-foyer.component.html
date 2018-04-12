@@ -21,13 +21,18 @@
             <strong>{{ termin.az }}</strong>
           </div>
           <div>
-            {{ termin.gericht }}
+            <span *ngIf="termin.oeffentlich == 'nein'" class="olg-layout-nichtoeffentlich">
+              Nicht öffentliche Sitzung
+            </span>
+            <span *ngIf="termin.oeffentlich == 'ja'" class="olg-layout-oeffentlich">
+              Öffentliche Sitzung
+            </span>
           </div>
         </div>
         <div fxFlex>
-          {{ termin.parteienAktivKurz }} ./. {{ termin.parteienPassivKurz }}
+          {{ termin.parteienAktivKurz }} <br />./. {{ termin.parteienPassivKurz }}
         </div>
-        <div fxFlex="15">
+        <div fxFlex="15" class="olg-layout-saal">
           {{ termin.sitzungssaal }}
         </div>
       </div>
