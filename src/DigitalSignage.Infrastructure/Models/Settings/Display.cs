@@ -9,7 +9,6 @@ namespace DigitalSignage.Infrastructure.Models.Settings
   {
     [Key]
     public int Id { get; set; }
-
     public string Name { get; set; }
     public string Title { get; set; }
     public string Template { get; set; }

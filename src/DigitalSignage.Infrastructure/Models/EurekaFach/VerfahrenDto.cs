@@ -5,12 +5,12 @@ namespace DigitalSignage.Infrastructure.Models.EurekaFach
 {
   public class VerfahrenDto
   {
-    public int Id { get; set; }
+    public Int64 Id { get; set; }
     public string Az { get; set; }
     public byte Lfdnr { get; set; }
     public byte Kammer { get; set; }
     public string Sitzungssaal { get; set; }
-    public Nullable<Int32> SitzungssaalNr { get; set; }
+    public Nullable<Int64> SitzungssaalNr { get; set; }
     public string UhrzeitPlan { get; set; }
     public string UhrzeitAktuell { get; set; }
     public string Status { get; set; }

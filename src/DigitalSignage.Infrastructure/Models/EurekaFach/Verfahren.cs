@@ -5,13 +5,13 @@ namespace DigitalSignage.Infrastructure.Models.EurekaFach
 {
   public class Verfahren
   {
-    public int VerfahrensId { get; set; }
+    public Int64 VerfahrensId { get; set; }
     public int StammdatenId { get; set; }
     public virtual Stammdaten Stammdaten { get; set; }
     public byte Lfdnr { get; set; }
     public byte Kammer { get; set; }
     public string Sitzungssaal { get; set; }
-    public Nullable<Int32> SitzungssaalNr { get; set; }
+    public Nullable<Int64> SitzungssaalNr { get; set; }
     public string UhrzeitPlan { get; set; }
     public string UhrzeitAktuell { get; set; }
     public string Status { get; set; }
