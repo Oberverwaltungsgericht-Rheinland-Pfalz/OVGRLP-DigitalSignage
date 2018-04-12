@@ -1,8 +1,8 @@
 #ds-display {
-  height: 1080px;
-  width: 1920px;
-  margin: 0px;
-  padding: 0px;
+  height: 824px;
+  width: 1280px;
+  margin: 0;
+  padding: 0;
 }
 
 #ds-head-status div {
@@ -10,41 +10,54 @@
 }
 
 #ds-head-title {
-  height: 120px;
-  background-color: rgb(51, 51, 51);
-  color: rgb(240, 240, 240);
+  padding: 0 3%;
+  margin-bottom: 1%;
+  background-color: #8e8e8e;
+  color: #fff;
+  -webkit-box-shadow: 0 3px 30px 0 #000;
+  box-shadow: 0 3px 30px 0 #000;
 }
 
 .ds-head-title-left {
-  padding: 10px;
-  font-size: 3.2em;
+  padding: 1% 0;
+  font-size: 4vw;
   font-weight: bold;
-  letter-spacing: 0.2em;
-  line-height: 1.2em;
+  letter-spacing: 0.1em;
 }
 
 .ds-head-title-right {
-  padding: 8px;
+  padding: 1% 0;
   text-align: right;
-  line-height: 1.2;
-  font-size: 1.8em;
+  font-size: 1.8vw;
   font-weight: bold;
 }
 
 #ds-main-overview {
-  padding: 10px;
-  background: url("/assets/img/rlp_wappen_600x735.png") center no-repeat;
+  padding: 0 2%;
+  background: url("/assets/img/rlp_wappen_600x735.png") no-repeat;
+  background-size: auto 80%;
+  background-position: center; 
 }
 
 #ds-main {
-  background: url("/assets/img/rlp_wappen_600x735.png") center no-repeat;
+  padding: 0 2%;
+  background: url("/assets/img/rlp_wappen_600x735.png") no-repeat;
+  background-size: auto 80%;
+  background-position: center; 
 }
 
 .ds-overview-termin {
-  font-size: 30px;
-  margin: 10px;
-  -webkit-box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.2);
+  font-size: 1.7vw;
+  margin: 1% 0 0 0;
+  padding: 1%;
+  -webkit-box-shadow: 0 5px 10px 0px #8e8e8e;
+  box-shadow: 0 5px 10px 0px #8e8e8e;
   background: rgba(255, 255, 255, 0.6);
 }
+.olg-layout-nichtoeffentlich {
+	font-weight: bold; color: #871d33;
+}
+.olg-layout-oeffentlich {
+	font-weight: bold; color: #3d7417;
+}
+.olg-layout-saal { text-align: right; }
