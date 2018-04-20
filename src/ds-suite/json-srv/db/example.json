@@ -445,6 +445,23 @@
       "description": null,
       "notes": null,
       "dummy": false
+    },
+    {
+      "id": 6,
+      "name": "njz-kh-foyer-wappen",
+      "title": "Justizzentrum Bad Kreuznach",
+      "template": "njzkh/foyer-wappen",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
     }
   ],
   "displaysStatus": [
