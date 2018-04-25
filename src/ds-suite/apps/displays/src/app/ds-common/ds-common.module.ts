@@ -5,7 +5,7 @@ import { ConfigService } from '@ds-suite/core';
 import { JsonConfigService } from '@ds-suite/backend';
 
 export function ConfigLoader(configService: JsonConfigService) {
-  return () => configService.load('/assets/config.json');
+  return () => configService.load('./assets/config.json');
 }
 
 @NgModule({
