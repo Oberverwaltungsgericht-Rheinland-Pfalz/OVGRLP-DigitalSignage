@@ -1,13 +1,13 @@
 <div *ngIf="display" id="ds-display" fxLayout="column">
-  <div id="ds-head-title" fxLayout="row">
-    <div fxFlex="75" class="ds-head-title-left">
-      {{ display.title }}
-    </div>
-    <div fxFlex class="ds-head-title-right" fxLayout="column">
-      <div fxFlex>{{ datum | date: 'd. MMMM yyyy' }}</div>
-      <div id="setmytime" fxFlex>{{ datum | date: 'H:mm' }} Uhr</div>
-    </div>
-  </div>
+    <div id="ds-head-title" fxLayout="row">
+        <div fxFlex="75" class="ds-head-title-left">
+          {{ display.title }}
+        </div>
+        <div fxFlex class="ds-head-title-right" fxLayout="column"></div>
+      </div>
+      <div class="ds-head-title-date">
+        {{ datum | date: 'd. MMMM yyyy' }} - {{ datum | date: 'H:mm' }} Uhr
+      </div>
 
   <div id="ds-main" fxFlex fxLayout="column">
     <div id="ds-main-details">
@@ -16,23 +16,8 @@
         <div class="ds-termin" fxLayout="column" *ngFor="let termin of termine" [@terminAnimation]="'in'" #dsTermineChild>
           <!-- Gericht, Kammer, Besetzung -->
           <div fxFlex="grow" fxLayout="column">
-            <div fxLayout="row" class="olg-layout-line">
-              <div fxFlex="70">
-                <h2>
-                  {{ termin.gericht }}
-                </h2>
-              </div>
-              <div fxFlex="30">
-                <span *ngIf="termin.oeffentlich == 'nein'" class="olg-layout-nichtoeffentlich">
-                  Nicht öffentliche Sitzung
-                </span>
-                <span *ngIf="termin.oeffentlich == 'ja'" class="olg-layout-oeffentlich">
-                  Öffentliche Sitzung
-                </span>
-              </div>
-            </div>
 
-            <div fxLayout="row" class="olg-layout-line">
+            <div fxLayout="row" *ngIf="termin.oeffentlich == 'nein'" class="row-nichtoeffentlich">
               <div fxFlex="15">
                 <h3>{{termin.uhrzeitAktuell}} Uhr</h3>
               </div>
@@ -40,10 +25,32 @@
                 <h3>{{termin.art | capitalize}}</h3>
               </div>
               <div fxFlex="30" class="ds-text-right">
-                <h3>{{termin.az}}</h3>
+                <h3>Nicht öffentliche Sitzung</h3>
+              </div>
+            </div>
+            <div fxLayout="row" *ngIf="termin.oeffentlich == 'ja'" class="row-oeffentlich">
+              <div fxFlex="15">
+                <h3>{{termin.uhrzeitAktuell}} Uhr</h3>
+              </div>
+              <div fxFlex="55">
+                <h3>{{termin.art | capitalize}}</h3>
+              </div>
+              <div fxFlex="30" class="ds-text-right">
+                <h3>Öffentliche Sitzung</h3>
               </div>
             </div>
 
+            <div fxLayout="row" class="olg-layout-line">
+              <div fxFlex="70">
+                <h2>
+                  {{termin.az}}
+                </h2>
+              </div>
+              <div fxFlex="30">
+                <h3>{{ termin.gericht }}</h3>
+              </div>
+            </div>
+            
             <div fxLayout="row" class="olg-layout-noline">
               <div fxFlex="45">
                 <div style="font-weight:bold; margin-bottom: 8px;">{{termin.parteienAktiv}}</div>
