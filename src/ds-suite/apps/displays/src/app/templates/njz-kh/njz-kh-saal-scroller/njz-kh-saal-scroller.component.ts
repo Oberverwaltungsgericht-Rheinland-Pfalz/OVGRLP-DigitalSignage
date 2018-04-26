@@ -23,4 +23,5 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
   ]
 })
 export class NjzKhSaalScrollerComponent extends DisplayTemplateComponent {
+  public updateInterval = 3000;
 }
