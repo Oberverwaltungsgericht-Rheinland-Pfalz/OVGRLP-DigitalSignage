@@ -16,6 +16,15 @@
         <div class="ds-termin" fxLayout="column" *ngFor="let termin of termine" [@terminAnimation]="'in'" #dsTermineChild>
           <!-- Gericht, Kammer, Besetzung -->
           <div fxFlex="grow" fxLayout="column">
+            <div fxLayout="row" *ngIf="termin.oeffentlich == 'x'" class="olg-layout-line">
+              <div fxFlex="15">
+                <h3>{{termin.uhrzeitAktuell}} Uhr</h3>
+              </div>
+              <div fxFlex="55">
+                <h3>{{termin.art | capitalize}}</h3>
+              </div>
+              <div fxFlex="30" class="ds-text-right"><br /></div>
+            </div>
 
             <div fxLayout="row" *ngIf="termin.oeffentlich == 'nein'" class="row-nichtoeffentlich">
               <div fxFlex="15">
