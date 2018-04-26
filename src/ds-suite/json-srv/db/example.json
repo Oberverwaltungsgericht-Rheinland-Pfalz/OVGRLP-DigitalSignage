@@ -513,7 +513,25 @@
       "description": null,
       "notes": null,
       "dummy": false
+    },
+    {
+      "id": 10,
+      "name": "njz-kh-saal",
+      "title": "Sitzungssaal 1",
+      "template": "njzkh/saal",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
     }
+
   ],
   "displaysStatus": [
     {
