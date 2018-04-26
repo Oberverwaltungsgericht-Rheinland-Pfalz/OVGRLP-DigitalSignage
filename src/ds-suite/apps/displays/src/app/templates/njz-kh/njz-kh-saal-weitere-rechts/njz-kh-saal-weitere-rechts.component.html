@@ -12,8 +12,9 @@
   <div id="ds-main" fxFlex fxLayout="row">
     <!-- b: Aktueller Termin -->
     <div  class="mainSide" id="ds-main-details" fxFlex fxLayout="column">
+      <!--<app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin"></app-termin>-->
       <!-- b: Status Läuft -->
-      <div style="min-height: 100%;" fxLayout="column">
+        <div style="min-height: 100%;" fxLayout="column">
           <div>
             <div fxLayout="row" *ngIf="aktiverTermin.oeffentlich == 'nein'" class="top-nichtoeffentlich">
               <div fxFlex="50">
@@ -62,11 +63,8 @@
         <div *ngIf="aktiverTermin.oeffentlich == 'ja'" class="bottom-oeffentlich">
           <h4>{{ aktiverTermin.gericht }}</h4>
         </div>
-            
 
-
-
-      </div>
+       </div>
       <!-- e: Status Läuft -->
       <!--<app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin"></app-termin>-->
       <!--<app-termin *ngIf="!aktiverTermin && naechsterTermin" [termin]="naechsterTermin"></app-termin>-->
