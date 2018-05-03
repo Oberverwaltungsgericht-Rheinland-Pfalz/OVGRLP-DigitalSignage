@@ -9,13 +9,13 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
   styleUrls: ['./njz-kh-saal-weitere-unten.component.css'],
   animations: [
     trigger('terminAnimation', [
-      state('in', style({ opacity: 1, height: '*', 'padding-top': '*' })),
+      state('in', style({ opacity: 1, 'min-width': '*', margin: '*' })),
       transition('in => void', [
         animate(
           '2s ease-out',
           keyframes([
-            style({ opacity: 0, offset: 0.3, 'padding-top': 0 }), 
-            style({ height: 0, offset: 1 })
+            style({ opacity: 0, offset: 0.3 }), 
+            style({ 'min-width': '0px', margin: 0, offset: 1 })
           ])
         )
       ])
@@ -23,4 +23,5 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
   ]
 })
 export class NjzKhSaalWeitereUntenComponent extends DisplayTemplateComponent {
+  public updateInterval = 6000;
 }
