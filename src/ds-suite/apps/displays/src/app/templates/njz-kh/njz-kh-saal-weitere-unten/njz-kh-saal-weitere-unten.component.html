@@ -79,7 +79,7 @@
       <!-- b: Weitere Termine -->
       <div id="scrollarea" #dsTermineContainer>
         <div class="ds-termin" fxLayout="row">
-          <div class="bottomBox" *ngFor="let termin of termine" [@terminAnimation]="'in'" #dsTermineChild>
+          <div class="bottomBox" *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
 
             <div *ngIf="termin.oeffentlich == 'nein' || termin.oeffentlich == 'x'" class="preview-nichtoeffentlich">
               <h4 class="nichtoeffentlich">&nbsp;{{termin.uhrzeitAktuell}} Uhr <div class="ds-text-right">nicht öffentlich&nbsp;</div></h4>

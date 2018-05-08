@@ -13,7 +13,7 @@
     <div id="ds-main-details">
       <div id="scrollarea" #dsTermineContainer>
         <!-- b: Termin -->
-        <div class="ds-termin" fxLayout="column" *ngFor="let termin of termine" [@terminAnimation]="'in'" #dsTermineChild>
+        <div class="ds-termin" fxLayout="column" *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
           <!-- Gericht, Kammer, Besetzung -->
           <div fxFlex="grow" fxLayout="column">
             <div fxLayout="row" class="olg-layout-line">

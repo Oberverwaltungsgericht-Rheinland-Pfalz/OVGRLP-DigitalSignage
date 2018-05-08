@@ -76,7 +76,7 @@
       <div class="rightSideHeadline">Weitere Termine</div>
       <div id="scrollarea" #dsTermineContainer>
         <!-- b: Termin -->
-        <div class="ds-termin" fxLayout="column" *ngFor="let termin of termine" [@terminAnimation]="'in'" #dsTermineChild>
+        <div class="ds-termin" fxLayout="column" *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
             <div fxFlex="grow" fxLayout="column">
   
               <div fxLayout="row" *ngIf="termin.oeffentlich == 'nein'" class="preview-nichtoeffentlich">
