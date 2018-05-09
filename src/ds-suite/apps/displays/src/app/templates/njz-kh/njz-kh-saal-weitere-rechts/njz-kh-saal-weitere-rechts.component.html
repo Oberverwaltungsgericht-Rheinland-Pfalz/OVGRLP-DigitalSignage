@@ -12,9 +12,10 @@
   <div id="ds-main" fxFlex fxLayout="row">
     <!-- b: Aktueller Termin -->
     <div  class="mainSide" id="ds-main-details" fxFlex fxLayout="column">
+      <p class="noItems" *ngIf="!termine.length">Keine Termine vorhanden.</p>
       <!--<app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin"></app-termin>-->
       <!-- b: Status Läuft -->
-        <div style="min-height: 100%;" fxLayout="column">
+        <div *ngIf="termine.length" style="min-height: 100%;" fxLayout="column">
           <div>
             <div fxLayout="row" *ngIf="aktiverTermin.oeffentlich == 'nein'" class="top-nichtoeffentlich">
               <div fxFlex="50">

@@ -190,3 +190,9 @@
   background-color: #d8e3d1;
   color: #3d7417;
 }
+.noItems {
+  padding: 2% 0 40% 0;
+  font-weight: bold; 
+  font-size: 150%;
+  text-align: center;
+}

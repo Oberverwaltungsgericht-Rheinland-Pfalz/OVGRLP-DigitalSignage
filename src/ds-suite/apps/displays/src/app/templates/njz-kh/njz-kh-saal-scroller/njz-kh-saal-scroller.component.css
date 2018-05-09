@@ -90,3 +90,8 @@
   color: #fff;
   border-bottom: 1px solid #ddd;
 }
+.noItems {
+  font-weight: bold; 
+  font-size: 150%;
+  text-align: center;
+}

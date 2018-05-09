@@ -88,3 +88,8 @@
   font-weight: bold;
   color: #871d33;
 }
+.noItems {
+  font-weight: bold; 
+  font-size: 150%;
+  text-align: center;
+}

@@ -14,9 +14,10 @@
     <div>
       <!-- b: Aktueller Termin -->
       <div class="mainSide" id="ds-main-details" fxFlex fxLayout="column">
+        <div class="noItems" fxLayout="column" *ngIf="!termine.length">Keine Termine vorhanden.</div>
         <!--<app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin"></app-termin>-->
         <!-- b: Status Läuft -->
-        <div style="min-height: 100%;" fxLayout="column">
+        <div *ngIf="termine.length"  style="min-height: 100%;" fxLayout="column">
           <div>
             <div fxLayout="row" *ngIf="aktiverTermin.oeffentlich == 'nein'" class="top-nichtoeffentlich">
               <div fxFlex="50"><h3>Jetzt verhandelt:</h3></div>

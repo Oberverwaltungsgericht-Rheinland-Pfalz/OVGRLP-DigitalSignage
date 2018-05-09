@@ -12,6 +12,7 @@
   <div id="ds-main" fxFlex fxLayout="column">
     <div id="ds-main-details">
       <div id="scrollarea" #dsTermineContainer>
+        <p class="noItems" *ngIf="!termine.length">Keine Termine vorhanden.</p>
         <!-- b: Termin -->
         <div class="ds-termin" fxLayout="column" *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
           <!-- Gericht, Kammer, Besetzung -->
