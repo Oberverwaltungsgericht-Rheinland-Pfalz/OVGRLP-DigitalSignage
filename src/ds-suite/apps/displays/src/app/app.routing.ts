@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: "njzkh",
         loadChildren: './templates/njz-kh/njz-kh.module#NjzKhModule'
+      },
+      {
+        path: "demo",
+        loadChildren: './templates/demo/demo.module#DemoModule'
       }
     ]
   },
