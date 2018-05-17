@@ -12,8 +12,8 @@
   <div id="ds-main" fxFlex fxLayout="row">
     <!-- b: Aktueller Termin -->
     <div  class="mainSide" id="ds-main-details" fxFlex fxLayout="column">
-      <p class="noItems" *ngIf="!termine.length">Keine Termine vorhanden.</p>
-      <!--<app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin"></app-termin>-->
+      <p class="noItems" *ngIf="!termine.length || aktiverTermin.az != ''">Keine aktuell laufenden Termine vorhanden.</p>
+
       <!-- b: Status Läuft -->
         <div *ngIf="termine.length" style="min-height: 100%;" fxLayout="column">
           <div>
@@ -79,7 +79,6 @@
         <!-- b: Termin -->
         <div class="ds-termin" fxLayout="column" *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
             <div fxFlex="grow" fxLayout="column">
-  
               <div fxLayout="row" *ngIf="termin.oeffentlich == 'nein'" class="preview-nichtoeffentlich">
                 <div fxFlex="40">
                   <h4>&nbsp;{{termin.uhrzeitAktuell}} Uhr</h4>
