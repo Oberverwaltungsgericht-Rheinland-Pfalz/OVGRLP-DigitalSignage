@@ -2,7 +2,7 @@
   "termine": [
     {
       "id": 1,
-      "az": "1 K 1111/18.XY",
+      "az": "1 K 1111/18.01",
       "lfdnr": 1,
       "kammer": 1,
       "sitzungssaa": "Sitzungssaal I",
@@ -40,14 +40,14 @@
     },
     {
       "id": 2,
-      "az": "1 K 2222/18.Läuft",
+      "az": "1 K 2222/18.02",
       "lfdnr": 2,
       "kammer": 1,
       "sitzungssaal": "Sitzungssaal I",
       "sitzungssaalNr": 1,
       "uhrzeitPlan": "11:00",
       "uhrzeitAktuell": "11:00",
-      "status": "Läuft",
+      "status": "",
       "oeffentlich": "ja",
       "art": "mündliche Verhandlung",
       "gegenstand": "Rundfunkbeitrags",
@@ -78,7 +78,7 @@
     },
     {
       "id": 3,
-      "az": "1 K 3333/18.XY",
+      "az": "1 K 3333/18.03",
       "lfdnr": 3,
       "kammer": 1,
       "sitzungssaal": "Sitzungssaal I",
@@ -116,7 +116,7 @@
     },
     {
       "id": 4,
-      "az": "1 K 3333/18.XY",
+      "az": "1 K 3333/18.04",
       "lfdnr": 4,
       "kammer": 1,
       "sitzungssaal": "Sitzungssaal I",
@@ -154,7 +154,7 @@
     },
     {
       "id": 5,
-      "az": "1 K 3333/18.XY",
+      "az": "1 K 3333/18.05",
       "lfdnr": 5,
       "kammer": 1,
       "sitzungssaal": "Sitzungssaal I",
@@ -192,7 +192,7 @@
     },
     {
       "id": 6,
-      "az": "1 K 3333/18.XY",
+      "az": "1 K 3333/18.06",
       "lfdnr": 6,
       "kammer": 1,
       "sitzungssaal": "Sitzungssaal I",
@@ -230,7 +230,7 @@
     },
     {
       "id": 7,
-      "az": "1 K 3333/18.XY",
+      "az": "1 K 3333/18.07",
       "lfdnr": 7,
       "kammer": 1,
       "sitzungssaal": "Sitzungssaal I",
@@ -268,7 +268,7 @@
     },
     {
       "id": 8,
-      "az": "1 K 3333/18.XY",
+      "az": "1 K 3333/18.08",
       "lfdnr": 8,
       "kammer": 1,
       "sitzungssaal": "Sitzungssaal I",
@@ -306,7 +306,7 @@
     },
     {
       "id": 9,
-      "az": "1 K 3333/18.XY",
+      "az": "1 K 3333/18.09",
       "lfdnr": 9,
       "kammer": 1,
       "sitzungssaal": "Sitzungssaal I",
@@ -346,7 +346,7 @@
   "displays": [
     {
       "id": 1,
-      "name": "saal1",
+      "name": "xxx-saal1",
       "title": "Sitzungssaal I",
       "template": "NjzSaalTemplateComponent",
       "styles": "",
@@ -363,7 +363,7 @@
     },
     {
       "id": 2,
-      "name": "saal2",
+      "name": "xxx-saal2",
       "title": "Sitzungssaal II",
       "template": "NjzSaalTemplateComponent",
       "styles": "",
@@ -380,7 +380,7 @@
     },
     {
       "id": 3,
-      "name": "saal3",
+      "name": "xxx-saal3",
       "title": "Sitzungssaal III",
       "template": "NjzKhFoyerTemplateComponentUnten",
       "styles": "",
@@ -430,7 +430,7 @@
       "dummy": false
     },
     {
-      "id": 5,
+      "id": 6,
       "name": "njz-kh-foyer",
       "title": "Justizzentrum Bad Kreuznach",
       "template": "njzkh/foyer",
@@ -447,7 +447,7 @@
       "dummy": false
     },
     {
-      "id": 6,
+      "id": 7,
       "name": "njz-kh-foyer-wappen",
       "title": "Justizzentrum Bad Kreuznach",
       "template": "njzkh/foyer-wappen",
@@ -464,27 +464,10 @@
       "dummy": false
     },
     {
-      "id": 7,
-      "name": "njz-kh-saal-weitere-rechts",
-      "title": "Sitzungssaal 1",
-      "template": "demo/saal-weitere-rechts",
-      "styles": "",
-      "filter": "",
-      "group": "Testanzeigen",
-      "controlUrl": "",
-      "netAddress": "",
-      "wolIpAddress": "",
-      "wolMacAddress": "",
-      "wolUdpPort": 9,
-      "description": null,
-      "notes": null,
-      "dummy": false
-    },
-    {
       "id": 8,
-      "name": "njz-kh-saal-weitere-unten",
+      "name": "njz-kh-saal",
       "title": "Sitzungssaal 1",
-      "template": "demo/saal-weitere-unten",
+      "template": "njzkh/saal",
       "styles": "",
       "filter": "",
       "group": "Testanzeigen",
@@ -516,9 +499,94 @@
     },
     {
       "id": 10,
-      "name": "njz-kh-saal",
+      "name": "Demo: Foyer-Ansicht, Variante A",
       "title": "Sitzungssaal 1",
-      "template": "njzkh/saal",
+      "template": "demo/demo-foyer-variante-a",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 11,
+      "name": "Demo: Foyer-Ansicht, Variante B",
+      "title": "Sitzungssaal 1",
+      "template": "demo/demo-foyer-variante-b",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 12,
+      "name": "Demo: Saal-Ansicht, Variante A",
+      "title": "Sitzungssaal 1",
+      "template": "demo/demo-saal-variante-a",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 13,
+      "name": "Demo: Saal-Ansicht, Variante B",
+      "title": "Sitzungssaal 1",
+      "template": "demo/demo-saal-variante-b",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 14,
+      "name": "Demo: Saal-Ansicht, Variante mit weiteren Terminen rechts",
+      "title": "Sitzungssaal 1",
+      "template": "demo/demo-saal-variante-weitere-rechts",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 15,
+      "name": "Demo: Saal-Ansicht, Variante mit weiteren Terminen unten",
+      "title": "Sitzungssaal 1",
+      "template": "demo/demo-saal-variante-weitere-unten",
       "styles": "",
       "filter": "",
       "group": "Testanzeigen",
@@ -531,7 +599,6 @@
       "notes": null,
       "dummy": false
     }
-
   ],
   "displaysStatus": [
     {
