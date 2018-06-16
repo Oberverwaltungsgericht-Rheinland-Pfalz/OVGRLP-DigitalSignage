@@ -18,6 +18,15 @@
     "paths": {
       "@ds-suite/*": [
         "libs/*"
+      ],
+      "@ds-suite/core": [
+        "libs/core/src/index.ts"
+      ],
+      "@ds-suite/model": [
+        "libs/model/src/index.ts"
+      ],
+      "@ds-suite/backend": [
+        "libs/backend/src/index.ts"
       ]
     }
   },

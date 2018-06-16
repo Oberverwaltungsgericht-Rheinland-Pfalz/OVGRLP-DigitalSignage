@@ -1,4 +1,4 @@
-export interface Termin {
+export class Termin {
   id: number;
   az: string;
   lfdnr: number;

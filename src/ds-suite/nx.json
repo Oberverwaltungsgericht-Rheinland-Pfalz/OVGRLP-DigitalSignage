@@ -1,0 +1,20 @@
+{
+  "npmScope": "ds-suite",
+  "projects": {
+    "displays": {
+      "tags": []
+    },
+    "roomcontrol": {
+      "tags": []
+    },
+    "core": {
+      "tags": []
+    },
+    "model": {
+      "tags": []
+    },
+    "backend": {
+      "tags": []
+    }
+  }
+}

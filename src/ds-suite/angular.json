@@ -1,0 +1,327 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "displays": {
+      "root": "apps/displays/",
+      "sourceRoot": "apps/displays/src",
+      "projectType": "application",
+      "prefix": "ds-suite",
+      "schematics": {
+        "@schematics/angular:class": {
+          "spec": false
+        },
+        "@schematics/angular:component": {
+          "spec": false
+        },
+        "@schematics/angular:directive": {
+          "spec": false
+        },
+        "@schematics/angular:guard": {
+          "spec": false
+        },
+        "@schematics/angular:module": {
+          "spec": false
+        },
+        "@schematics/angular:pipe": {
+          "spec": false
+        },
+        "@schematics/angular:service": {
+          "spec": false
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/displays",
+            "index": "apps/displays/src/index.html",
+            "main": "apps/displays/src/main.ts",
+            "polyfills": "apps/displays/src/polyfills.ts",
+            "tsConfig": "apps/displays/tsconfig.app.json",
+            "assets": [
+              "apps/displays/src/favicon.ico",
+              "apps/displays/src/assets"
+            ],
+            "styles": [
+              "apps/displays/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/displays/src/environments/environment.ts",
+                  "with": "apps/displays/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "displays:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "displays:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "displays:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/displays/src/test.ts",
+            "polyfills": "apps/displays/src/polyfills.ts",
+            "tsConfig": "apps/displays/tsconfig.spec.json",
+            "karmaConfig": "apps/displays/karma.conf.js",
+            "styles": [
+              "apps/displays/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/displays/src/favicon.ico",
+              "apps/displays/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/displays/tsconfig.app.json",
+              "apps/displays/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "roomcontrol": {
+      "root": "apps/roomcontrol/",
+      "sourceRoot": "apps/roomcontrol/src",
+      "projectType": "application",
+      "prefix": "ds-suite",
+      "schematics": {
+        "@schematics/angular:class": {
+          "spec": false
+        },
+        "@schematics/angular:component": {
+          "spec": false
+        },
+        "@schematics/angular:directive": {
+          "spec": false
+        },
+        "@schematics/angular:guard": {
+          "spec": false
+        },
+        "@schematics/angular:module": {
+          "spec": false
+        },
+        "@schematics/angular:pipe": {
+          "spec": false
+        },
+        "@schematics/angular:service": {
+          "spec": false
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/roomcontrol",
+            "index": "apps/roomcontrol/src/index.html",
+            "main": "apps/roomcontrol/src/main.ts",
+            "polyfills": "apps/roomcontrol/src/polyfills.ts",
+            "tsConfig": "apps/roomcontrol/tsconfig.app.json",
+            "assets": [
+              "apps/roomcontrol/src/favicon.ico",
+              "apps/roomcontrol/src/assets"
+            ],
+            "styles": [
+              "apps/roomcontrol/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/roomcontrol/src/environments/environment.ts",
+                  "with": "apps/roomcontrol/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "roomcontrol:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "roomcontrol:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "roomcontrol:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/roomcontrol/src/test.ts",
+            "polyfills": "apps/roomcontrol/src/polyfills.ts",
+            "tsConfig": "apps/roomcontrol/tsconfig.spec.json",
+            "karmaConfig": "apps/roomcontrol/karma.conf.js",
+            "styles": [
+              "apps/roomcontrol/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/roomcontrol/src/favicon.ico",
+              "apps/roomcontrol/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/roomcontrol/tsconfig.app.json",
+              "apps/roomcontrol/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "core": {
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "projectType": "library",
+      "prefix": "ds-suite",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/core/src/test.ts",
+            "tsConfig": "libs/core/tsconfig.spec.json",
+            "karmaConfig": "libs/core/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/core/tsconfig.lib.json",
+              "libs/core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "model": {
+      "root": "libs/model",
+      "sourceRoot": "libs/model/src",
+      "projectType": "library",
+      "prefix": "ds-suite",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/model/src/test.ts",
+            "tsConfig": "libs/model/tsconfig.spec.json",
+            "karmaConfig": "libs/model/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/model/tsconfig.lib.json",
+              "libs/model/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "backend": {
+      "root": "libs/backend",
+      "sourceRoot": "libs/backend/src",
+      "projectType": "library",
+      "prefix": "ds-suite",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/backend/src/test.ts",
+            "tsConfig": "libs/backend/tsconfig.spec.json",
+            "karmaConfig": "libs/backend/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/backend/tsconfig.lib.json",
+              "libs/backend/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "defaultProject": "displays"
+}
