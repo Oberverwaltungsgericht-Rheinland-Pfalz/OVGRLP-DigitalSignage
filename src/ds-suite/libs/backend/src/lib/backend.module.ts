@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { SoapDisplayService } from './soap-display.service';
 import { SoapTerminService } from './soap-termin.service';
-import { TerminService, DisplayService } from '@ds-suite/core';
+import { TerminService, DisplayService, ConfigService } from '@ds-suite/core';
+
 @NgModule({
   imports: [CommonModule, HttpClientModule],
   providers: [

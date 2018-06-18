@@ -4,11 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"npm run json-srv:run\" \"npm run displays:serve\" \"npm run roomcontrol:serve\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
-    "e2e": "ng e2e",
+    "displays:serve": "ng serve --project displays --port 4201",
+    "roomcontrol:serve": "ng serve -project roomcontrol --port 4202",
+    "json-srv:run": "json-server --watch json-srv/db/example.json --routes json-srv/routes.json --port 4200",
     "affected:apps": "./node_modules/.bin/nx affected:apps",
     "affected:build": "./node_modules/.bin/nx affected:build",
     "affected:e2e": "./node_modules/.bin/nx affected:e2e",
@@ -28,6 +30,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "6.0.1",
+    "@angular/cdk": "^6.2.1",
     "@angular/common": "6.0.1",
     "@angular/compiler": "6.0.1",
     "@angular/core": "6.0.1",
@@ -74,6 +77,7 @@
     "protractor": "~5.3.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "prettier": "1.10.2"
+    "prettier": "1.10.2",
+    "concurrently": "~3.5.1"
   }
 }
