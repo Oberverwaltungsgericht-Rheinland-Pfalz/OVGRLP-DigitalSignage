@@ -21,4 +21,8 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
     ])
   ]
 })
-export class NjzKoFoyerComponent extends DisplayTemplateComponent { }
+export class NjzKoFoyerComponent extends DisplayTemplateComponent { 
+  isFlughafenanzeige() : boolean {
+    return this.display.title === 'Neues Justizzentrum Koblenz';
+  }
+}

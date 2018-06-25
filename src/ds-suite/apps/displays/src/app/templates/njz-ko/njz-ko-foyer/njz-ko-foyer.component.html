@@ -21,7 +21,9 @@
             <strong>{{ termin.az }}</strong>
           </div>
           <div>
-            {{ termin.gericht }}
+            <span *ngIf="isFlughafenanzeige()">
+              {{ termin.gericht }}
+            </span>
           </div>
         </div>
         <div fxFlex>
