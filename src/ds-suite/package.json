@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"npm run json-srv:run\" \"npm run displays:serve\" \"npm run roomcontrol:serve\"",
-    "start:njzko": "concurrently \"npm run json-srv:njzko\" \"npm run displays:serve\" \"npm run roomcontrol:serve\"",
+    "start": "concurrently \"npm run json-srv:run\" \"npm run displays:serve\"",
+    "start:njzko": "concurrently \"npm run json-srv:njzko\" \"npm run displays:serve\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
