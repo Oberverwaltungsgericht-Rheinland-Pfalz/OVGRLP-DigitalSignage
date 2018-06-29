@@ -62,11 +62,14 @@ namespace DigitalSignage.ImportCLI
       {
         foreach (string inputFile in this.InputFiles)
         {
-          if (!string.IsNullOrEmpty(inputFile) && System.IO.File.Exists(inputFile))
+          if (!string.IsNullOrEmpty(inputFile))
           {
             Service.LoggingHelper.Trace("Daten werden hinzugefügt: " + inputFile);
             try
             {
+              if (!System.IO.File.Exists(inputFile))
+                throw new Exception("Die Datei konnte nicht geöffnet werden.");
+
               Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(inputFile);
               if (null != data)
               {
