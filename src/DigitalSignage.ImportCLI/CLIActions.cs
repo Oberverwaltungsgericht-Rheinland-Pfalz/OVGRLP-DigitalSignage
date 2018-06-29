@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DigitalSignage.ImportCLI
 {
@@ -67,8 +68,8 @@ namespace DigitalSignage.ImportCLI
             Service.LoggingHelper.Trace("Daten werden hinzugefügt: " + inputFile);
             try
             {
-              if (!System.IO.File.Exists(inputFile))
-                throw new Exception("Die Datei konnte nicht geöffnet werden.");
+              if (!File.Exists(inputFile))
+                throw new IOException("=> Die Datei konnte nicht geöffnet werden.");
 
               Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(inputFile);
               if (null != data)
@@ -77,6 +78,8 @@ namespace DigitalSignage.ImportCLI
                 Service.LoggingHelper.Trace("=> erfolgreich");
               }
             }
+            catch (IOException ex)
+            { Service.LoggingHelper.Trace(ex, false, OvgRlp.Libs.Logging.LogEventLevel.Warning); }
             catch (Exception ex)
             { Service.LoggingHelper.Trace(ex); }
           }
@@ -88,11 +91,14 @@ namespace DigitalSignage.ImportCLI
       {
         foreach (string updateFile in this.UpdateFiles)
         {
-          if (!string.IsNullOrEmpty(updateFile) && System.IO.File.Exists(updateFile))
+          if (!string.IsNullOrEmpty(updateFile))
           {
             Service.LoggingHelper.Trace("Datenupdate: " + updateFile);
             try
             {
+              if (!File.Exists(updateFile))
+                throw new IOException("=> Die Datei konnte nicht geöffnet werden.");
+
               Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(updateFile);
               if (null != data)
               {
@@ -100,6 +106,8 @@ namespace DigitalSignage.ImportCLI
                 Service.LoggingHelper.Trace("=> erfolgreich");
               }
             }
+            catch (IOException ex)
+            { Service.LoggingHelper.Trace(ex, false, OvgRlp.Libs.Logging.LogEventLevel.Warning); }
             catch (Exception ex)
             { Service.LoggingHelper.Trace(ex); }
           }

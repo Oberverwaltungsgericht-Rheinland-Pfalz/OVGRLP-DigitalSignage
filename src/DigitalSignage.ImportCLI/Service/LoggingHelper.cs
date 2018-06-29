@@ -31,14 +31,14 @@ namespace DigitalSignage.ImportCLI.Service
     }
 
     //! Ausnahmefehler protokollieren
-    public static void Trace(Exception ex, bool LogStack = false)
+    public static void Trace(Exception ex, bool LogStack = false, LogEventLevel logEventLevel = LogEventLevel.Error)
     {
       Exception exx = ex;
       do
       {
-        Trace(exx.Message, LogEventLevel.Error);
+        Trace(exx.Message, logEventLevel);
         if (LogStack)
-          Trace(exx.StackTrace, LogEventLevel.Error);
+          Trace(exx.StackTrace, logEventLevel);
         exx = exx.InnerException;
       } while (null != exx);
     }
