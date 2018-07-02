@@ -54,3 +54,7 @@
 #ds-main-overview {
   padding: 10px;
 }
+
+.ds-overview-termin-completed {
+  color: darkgrey;
+}

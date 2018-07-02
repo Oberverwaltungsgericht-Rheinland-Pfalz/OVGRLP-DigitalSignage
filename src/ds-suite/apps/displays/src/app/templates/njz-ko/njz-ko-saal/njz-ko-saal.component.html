@@ -37,7 +37,10 @@
           Verfahren
         </div>
         <div fxFlex="grow" class="ds-box-content">
-          <div class="ds-overview-termin" *ngFor="let termin of termine">
+          <div class="ds-overview-termin" *ngFor="let termin of termine" [ngClass]="
+          {
+            'ds-overview-termin-completed': termin.status == 'Abgeschlossen'
+          }">
             {{ termin.uhrzeitAktuell }} Uhr - {{ termin.az }}<br />
             {{ termin.art }}<br />
             {{ termin.status }}
