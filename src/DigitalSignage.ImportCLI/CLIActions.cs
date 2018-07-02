@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OvgRlp.Core.XML;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -71,7 +72,7 @@ namespace DigitalSignage.ImportCLI
               if (!File.Exists(inputFile))
                 throw new IOException("=> Die Datei konnte nicht geöffnet werden.");
 
-              Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(inputFile);
+              Terminsaushang data = XMLHelper.DeserializeFromXml<Terminsaushang>(inputFile);
               if (null != data)
               {
                 db.AddData(data);
@@ -99,7 +100,7 @@ namespace DigitalSignage.ImportCLI
               if (!File.Exists(updateFile))
                 throw new IOException("=> Die Datei konnte nicht geöffnet werden.");
 
-              Terminsaushang data = Service.XMLHelper.DeserializeFromXml<Terminsaushang>(updateFile);
+              Terminsaushang data = XMLHelper.DeserializeFromXml<Terminsaushang>(updateFile);
               if (null != data)
               {
                 db.UpdateData(data);
