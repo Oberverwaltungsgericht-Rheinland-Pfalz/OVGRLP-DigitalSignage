@@ -159,13 +159,13 @@
   font-weight: bold;
 }
 .bottomBox {
-  min-width: 420px;   /* Auflösung: 1280 */
+  min-width: 390px;   /* Auflösung: 1280 */
   overflow: hidden;
   height: 230px;
-  margin: 18px;
+  margin: 18px 10px;
   border-radius: 12px;
-  -webkit-box-shadow: 0 3px 20px 0 #000;
-  box-shadow: 0 3px 20px 0 #000;
+  -webkit-box-shadow: 0 3px 10px 0 #000;
+  box-shadow: 0 3px 10px 0 #000;
   background: #fff;
 }
 .bottomBoxContent {
@@ -173,6 +173,11 @@
 }
 .ds-text-right {
   float: right;
+}
+.ds-text-right-small {
+  float: right;
+  font-weight: normal;
+  font-size: 90%;
 }
 .preview-nichtoeffentlich {
   padding: 0.5%;

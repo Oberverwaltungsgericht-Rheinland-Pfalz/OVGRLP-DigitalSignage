@@ -81,23 +81,26 @@
       <div id="scrollarea" #dsTermineContainer>
         <div class="ds-termin" fxLayout="row">
           <div class="bottomBox" *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
+            <div fxFlex="grow" fxLayout="column" class="terminelement">
+              <div *ngIf="termin.oeffentlich == 'nein' || termin.oeffentlich == 'x'" class="preview-nichtoeffentlich">
+                <h4 class="nichtoeffentlich">&nbsp;{{termin.uhrzeitAktuell}} Uhr <div class="ds-text-right">nicht öffentlich&nbsp;</div></h4>
+              </div>
+              <div  *ngIf="termin.oeffentlich == 'ja'" class="preview-oeffentlich">
+                <h4 class="nichtoeffentlich">&nbsp;{{termin.uhrzeitAktuell}} Uhr <div class="ds-text-right">öffentlich&nbsp;</div></h4>
+              </div>
 
-            <div *ngIf="termin.oeffentlich == 'nein' || termin.oeffentlich == 'x'" class="preview-nichtoeffentlich">
-              <h4 class="nichtoeffentlich">&nbsp;{{termin.uhrzeitAktuell}} Uhr <div class="ds-text-right">nicht öffentlich&nbsp;</div></h4>
-            </div>
-            <div  *ngIf="termin.oeffentlich == 'ja'" class="preview-oeffentlich">
-              <h4 class="nichtoeffentlich">&nbsp;{{termin.uhrzeitAktuell}} Uhr <div class="ds-text-right">öffentlich&nbsp;</div></h4>
-            </div>
-
-            <div class="bottomBoxContent">
-              <h4>{{termin.az}}<div class="ds-text-right">{{termin.art | capitalize}}</div></h4>
-              <div style="font-weight:normal;">{{ termin.gericht }}</div>
-              <div class="olg-layout-line"></div>
-              <div style="font-weight:bold;">{{termin.parteienAktiv}}</div>
-              <div style="font-size: 0.9em;">{{termin.prozBevAktiv}}</div>
-              <div style="font-size: small;"><i>gegen</i></div>
-              <div style="font-weight:bold;">{{termin.parteienPassiv}}</div>
-              <div style="font-size: 0.9em;">{{termin.prozBevPassiv}}</div>
+              <div class="bottomBoxContent">
+                <h4>{{termin.az}}<div class="ds-text-right-small">{{termin.art | capitalize}}</div></h4>
+                <div style="font-weight:normal;">{{ termin.gericht }}</div>
+                <div class="olg-layout-line"></div>
+                <div *ngIf="termin.oeffentlich == 'ja'">
+                  <div style="font-weight:bold;">{{termin.parteienAktiv}}</div>
+                  <div style="font-size: 0.9em;">{{termin.prozBevAktiv}}</div>
+                  <div style="font-size: small;"><i>gegen</i></div>
+                  <div style="font-weight:bold;">{{termin.parteienPassiv}}</div>
+                  <div style="font-size: 0.9em;">{{termin.prozBevPassiv}}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

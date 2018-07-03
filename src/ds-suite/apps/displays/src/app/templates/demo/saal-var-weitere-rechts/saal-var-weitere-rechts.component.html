@@ -78,7 +78,7 @@
       <div id="scrollarea" #dsTermineContainer>
         <!-- b: Termin -->
         <div class="ds-termin" fxLayout="column" *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
-            <div fxFlex="grow" fxLayout="column">
+            <div fxFlex="grow" fxLayout="column" class="terminelement">
               <div fxLayout="row" *ngIf="termin.oeffentlich == 'nein'" class="preview-nichtoeffentlich">
                 <div fxFlex="40">
                   <h4>&nbsp;{{termin.uhrzeitAktuell}} Uhr</h4>
@@ -98,14 +98,16 @@
   
               <div fxLayout="column" class="rightSidePadding">
                 <h3>{{termin.az}}</h3>
-                <h4>{{termin.art | capitalize}}</h4>
+                <h4 style="font-weight: normal; font-size: 90%;">{{termin.art | capitalize}}</h4>
                 <h4>{{ termin.gericht }}</h4>
-                <div class="olg-layout-line"></div>
-                <div style="font-weight:bold;">{{termin.parteienAktiv}}</div>
-                <div style="font-size: 0.9em;">{{termin.prozBevAktiv}}</div>
-                <div style="font-size: small;"><i>gegen</i></div>
-                <div style="font-weight:bold;">{{termin.parteienPassiv}}</div>
-                <div style="font-size: 0.9em;">{{termin.prozBevPassiv}}</div>
+                <div *ngIf="termin.oeffentlich == 'ja'">
+                  <div class="olg-layout-line"></div>
+                  <div style="font-weight:bold;">{{termin.parteienAktiv}}</div>
+                  <div style="font-size: 0.9em;">{{termin.prozBevAktiv}}</div>
+                  <div style="font-size: small;"><i>gegen</i></div>
+                  <div style="font-weight:bold;">{{termin.parteienPassiv}}</div>
+                  <div style="font-size: 0.9em;">{{termin.prozBevPassiv}}</div>
+                </div>
               </div>
               
               <div fxLayout="column" *ngIf="termin.oeffentlich == 'ja'" class="divider-oeffentlich"></div>
