@@ -18,69 +18,99 @@
           <!-- Gericht, Kammer, Besetzung -->
           <div fxFlex="grow" fxLayout="column">
             <div fxLayout="row" *ngIf="termin.oeffentlich == 'x'" class="olg-layout-line">
-              <div fxFlex="15">
+              <div fxFlex="20">
                 <h3>{{termin.uhrzeitAktuell}} Uhr</h3>
               </div>
-              <div fxFlex="55">
+              <div fxFlex="40">
                 <h3>{{termin.art | capitalize}}</h3>
               </div>
-              <div fxFlex="30" class="ds-text-right"><br /></div>
+              <div fxFlex="40" class="ds-text-right"><br /></div>
             </div>
 
             <div fxLayout="row" *ngIf="termin.oeffentlich == 'nein'" class="row-nichtoeffentlich">
-              <div fxFlex="15">
+              <div fxFlex="20">
                 <h3>{{termin.uhrzeitAktuell}} Uhr</h3>
               </div>
-              <div fxFlex="55">
+              <div fxFlex="40">
                 <h3>{{termin.art | capitalize}}</h3>
               </div>
-              <div fxFlex="30" class="ds-text-right">
+              <div fxFlex="40">
                 <h3>Nicht öffentliche Sitzung</h3>
               </div>
             </div>
             <div fxLayout="row" *ngIf="termin.oeffentlich == 'ja'" class="row-oeffentlich">
-              <div fxFlex="15">
+              <div fxFlex="20">
                 <h3>{{termin.uhrzeitAktuell}} Uhr</h3>
               </div>
-              <div fxFlex="55">
+              <div fxFlex="40">
                 <h3>{{termin.art | capitalize}}</h3>
               </div>
-              <div fxFlex="30" class="ds-text-right">
+              <div fxFlex="40">
                 <h3>Öffentliche Sitzung</h3>
               </div>
             </div>
 
             <div fxLayout="row" class="olg-layout-line">
-              <div fxFlex="70">
+              <div fxFlex="20">
                 <h2>
                   {{termin.az}}
                 </h2>
               </div>
-              <div fxFlex="30">
-                <h3>{{ termin.gericht }}</h3>
+              <div fxFlex="40">
+                <h2>
+                  {{termin.gericht}}
+                </h2>
+              </div>
+              <div fxFlex="40">
+                <div *ngIf="termin.besetzung != ''">
+                  <div *ngFor="let richter of termin.besetzung; last as r">
+                  {{ richter }}<span *ngIf="!r">,<br /></span>
+                  </div>
+                </div>
               </div>
             </div>
             
-            <div fxLayout="row" class="olg-layout-noline">
+            <div fxLayout="row" *ngIf="termin.parteienAktivKurz != ''" class="olg-layout-noline">
               <div fxFlex="45">
-                <div style="font-weight:bold; margin-bottom: 8px;">{{termin.parteienAktiv}}</div>
-                <div>{{termin.prozBevAktiv}}</div>
+                <div style="font-weight:bold; margin-bottom: 8px;">
+                    <span *ngFor="let aktiv of termin.parteienAktiv | slice:0:3; last as a">
+                    {{aktiv}}<span *ngIf="!a">,<br /></span>
+                    </span>
+                    <span *ngIf="termin.parteienAktiv.length > 3">u.a.</span>
+                </div>
+                <div>
+                    <span *ngFor="let bevAktiv of termin.prozBevAktiv | slice:0:3; last as ba">
+                        {{bevAktiv}}<span *ngIf="!ba">,<br /></span>
+                        </span>
+                    <span *ngIf="termin.prozBevAktiv.length > 3">u.a.</span>
+                </div>
               </div>
-              <div fxFlex="10">
+              <div fxFlex="10" style="text-align: center;">
                 <div>gegen</div>
                 <div>&nbsp;</div>
               </div>
               <div fxFlex="45">
-                <div style="font-weight:bold; margin-bottom: 8px;">{{termin.parteienPassiv}}</div>
-                <div>{{termin.prozBevPassiv}}</div>
+                <div style="font-weight:bold; margin-bottom: 8px;">
+                    <span *ngFor="let passiv of termin.parteienPassiv | slice:0:3; last as p">
+                        {{passiv}}<span *ngIf="!p">,<br /></span>
+                        </span>
+                    <span *ngIf="termin.parteienPassiv.length > 3">u.a.</span>
+                </div>
+                <div>
+                    <span *ngFor="let bevPassiv of termin.prozBevPassiv | slice:0:3; last as bp">
+                        {{bevPassiv}}<span *ngIf="!bp">,<br /></span>
+                        </span>
+                    <span *ngIf="termin.prozBevPassiv.length > 3">u.a.</span>
+                </div>
               </div>
             </div>
             <div fxLayout="row" ng-hide="termin.bemerkung1 == 'FAMxy' && termin.oeffentlich == 'nein'" style="margin-top:10px">
-              <div fxFlex="15">wegen</div>
-              <div fxFlex="85">
+              <div fxFlex="20">wegen</div>
+              <div fxFlex="80">
                 <strong>{{termin.gegenstand}}</strong>
               </div>
             </div>
+            <div fxLayout="row" *ngIf="termin.parteienAktivKurz == ''" style="height: 100px;"></div>
 
             <div class="olgstyle"></div>
           </div>
