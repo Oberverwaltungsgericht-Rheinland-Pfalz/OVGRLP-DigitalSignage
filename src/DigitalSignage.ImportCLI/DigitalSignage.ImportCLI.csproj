@@ -50,6 +50,9 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="OvgRlp.Core, Version=1.2.0.1825, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OvgRlp_Core.1.2.0.1825\lib\net461\OvgRlp.Core.dll</HintPath>
+    </Reference>
     <Reference Include="OvgRlp.libs.Logging, Version=1.3.0.1802, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OvgRlp_Logging.1.3.0.1802\lib\net45\OvgRlp.libs.Logging.dll</HintPath>
     </Reference>
@@ -85,10 +88,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="models\generated\SaalanzeigeXML.cs" />
     <Compile Include="Service\CLIService.cs" />
-    <Compile Include="Service\CommonHelper.cs" />
     <Compile Include="Service\DBService.cs" />
     <Compile Include="Service\LoggingHelper.cs" />
-    <Compile Include="Service\XMLHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

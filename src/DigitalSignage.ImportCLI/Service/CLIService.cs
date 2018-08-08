@@ -1,4 +1,5 @@
 ﻿using NDesk.Options;
+using OvgRlp.Core.Common;
 using System;
 
 namespace DigitalSignage.ImportCLI.Service
@@ -43,7 +44,7 @@ namespace DigitalSignage.ImportCLI.Service
 
     private static void ShowVersionInformation()
     {
-      Console.WriteLine("DSImportCLI Version " + CommonHelper.AssemblyVersion());
+      Console.WriteLine("DSImportCLI Version " + AssemblyHelper.AssemblyVersion(System.Reflection.Assembly.GetExecutingAssembly()));
     }
 
     //! Übersicht der möglichen Kommandozeilenargumente auf der Konsole ausgeben
