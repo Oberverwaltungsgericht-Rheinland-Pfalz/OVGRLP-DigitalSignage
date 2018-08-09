@@ -416,7 +416,24 @@
       "id": 5,
       "name": "njzko-arbgko",
       "title": "Arbeitsgericht Koblenz",
-      "template": "njzko/saal",
+      "template": "njzko/foyer",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 6,
+      "name": "njzko-sondermeldungen",
+      "title": "Sondermeldungen Test",
+      "template": "njzko/foyer",
       "styles": "",
       "filter": "",
       "group": "Testanzeigen",
@@ -446,6 +463,19 @@
     {
       "id": "saal1",
       "status": 2
+    }
+  ],
+  "notes": [
+    {
+      "id": 1,
+      "name": "njzko-sondermeldungen",
+      "content": "<div style='background-color:pink;width:300px;height:200px;margin-top:500px;margin-left:1000px'><h1>Hallo Welt</h2></div>",
+      "forced": true
+    }, {
+      "id": 2,
+      "name": "njzko-sondermeldungen",
+      "content": "<div style='background-color:blue;width:400px;height:300px;margin-top:200px;margin-left:500px'><h1>HUHU</h2></div>",
+      "forced": true
     }
   ]
 }
