@@ -12,6 +12,5 @@ export class Display {
   wolMacAddress: string;
   wolUdpPort: number;
   description: string;
-  notes: any;
   dummy: boolean;
 }
