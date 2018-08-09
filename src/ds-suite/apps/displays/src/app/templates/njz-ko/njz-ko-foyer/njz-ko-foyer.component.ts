@@ -26,7 +26,7 @@ export class NjzKoFoyerComponent extends DisplayTemplateComponent {
     return this.display.title === 'Neues Justizzentrum Koblenz';
   }
 
-  public WithoutRepresentative(name : string ) : string {
+  public ParteiOhneVertreten(name : string ) : string {
     var rval : string = name;
       if (name.includes(', vertreten durch')){
         rval=name.substring(0,name.indexOf(', vertreten durch'));

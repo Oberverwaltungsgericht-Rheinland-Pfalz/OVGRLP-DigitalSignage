@@ -27,7 +27,7 @@
           </div>
         </div>
         <div fxFlex>
-          {{ WithoutRepresentative(termin.parteienAktivKurz) }} ./. {{ WithoutRepresentative(termin.parteienPassivKurz) }}
+          {{ ParteiOhneVertreten(termin.parteienAktivKurz) }} ./. {{ ParteiOhneVertreten(termin.parteienPassivKurz) }}
         </div>
         <div fxFlex="15">
           {{ termin.sitzungssaal }}
