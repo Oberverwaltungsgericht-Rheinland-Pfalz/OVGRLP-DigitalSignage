@@ -17,10 +17,15 @@
 
 .ds-head-title-left {
   padding: 10px;
-  font-size: 3.0em;
+  font-size: 60px;
   font-weight: bold;
   letter-spacing: 0.15em;
-  line-height: 1.4em;
+  line-height: 1.6em;
+}
+
+.ds-head-title-left-small {
+  font-size: 40px;
+  line-height: 1.2em;
 }
 
 .ds-head-title-right {

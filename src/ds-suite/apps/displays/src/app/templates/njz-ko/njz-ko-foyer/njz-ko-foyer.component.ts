@@ -3,6 +3,8 @@ import { trigger, state, style, animate, transition, stagger, query, keyframes }
 
 import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
 
+import { Termin } from '@ds-suite/model';
+
 @Component({
   selector: 'app-njz-foyer',
   templateUrl: './njz-ko-foyer.component.html',
@@ -37,7 +39,9 @@ export class NjzKoFoyerComponent extends DisplayTemplateComponent {
     return rval;
   }
 
-  public
+  public KumulierteTitel(termine: Termin[]): string[] {
+    return Array.from(new Set(termine.map(t => t.gericht)));
+  }
 }
 
 

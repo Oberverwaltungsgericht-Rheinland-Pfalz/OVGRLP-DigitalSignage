@@ -1,8 +1,13 @@
 <div *ngIf="display" id="ds-display" fxLayout="column">
 
   <div id="ds-head-title" fxLayout="row">
-    <div fxFlex="80" class="ds-head-title-left">
-      {{ display.title }}
+    <div fxFlex="80" [ngClass]="{
+        'ds-head-title-left': true,
+        'ds-head-title-left-small': KumulierteTitel(termine).length > 1
+      }">
+      <div *ngFor="let gericht of KumulierteTitel(termine)">
+        {{ gericht }}
+      </div>
     </div>
     <div fxFlex class="ds-head-title-right" fxLayout="column">
       <div fxFlex>{{ datum | date: 'd. MMMM yyyy' }}</div>
