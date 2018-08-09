@@ -1,5 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CapitalizePipe } from './capitalize.pipe';
+import { SafeHtmlPipe } from './safe-html.pipe';
 
 import { ConfigService } from '@ds-suite/core';
 import { JsonConfigService } from '@ds-suite/backend';
@@ -11,10 +12,12 @@ export function ConfigLoader(configService: JsonConfigService) {
 @NgModule({
   imports: [],
   exports: [
-    CapitalizePipe
+    CapitalizePipe,
+    SafeHtmlPipe
   ],
   declarations: [
-    CapitalizePipe
+    CapitalizePipe,
+    SafeHtmlPipe
   ],
   providers: [
     JsonConfigService,
