@@ -21,21 +21,23 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
     ])
   ]
 })
-export class NjzKoFoyerComponent extends DisplayTemplateComponent { 
-  isFlughafenanzeige() : boolean {
+export class NjzKoFoyerComponent extends DisplayTemplateComponent {
+  isFlughafenanzeige(): boolean {
     return this.display.title === 'Neues Justizzentrum Koblenz';
   }
 
-  public ParteiOhneVertreten(name : string ) : string {
-    var rval : string = name;
-      if (name.includes(', vertreten durch')){
-        rval=name.substring(0,name.indexOf(', vertreten durch'));
-      }
-      if (name.includes(' vertreten durch')){
-        rval=name.substring(0,name.indexOf(' vertreten durch'));
-      }
+  public ParteiOhneVertreten(name: string): string {
+    var rval: string = name;
+    if (name.includes(', vertreten durch')) {
+      rval = name.substring(0, name.indexOf(', vertreten durch'));
+    }
+    if (name.includes(' vertreten durch')) {
+      rval = name.substring(0, name.indexOf(' vertreten durch'));
+    }
     return rval;
   }
+
+  public
 }
 
 
