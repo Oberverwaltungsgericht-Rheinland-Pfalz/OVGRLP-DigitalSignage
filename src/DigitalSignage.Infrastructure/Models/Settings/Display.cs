@@ -21,7 +21,7 @@ namespace DigitalSignage.Infrastructure.Models.Settings
     public string WolMacAddress { get; set; }
     public int WolUdpPort { get; set; }
     public string Description { get; set; }
-    public ICollection<Note> Notes { get; set; }
+    public ICollection<NoteAssignment> NotesAssignments { get; set; }
     public bool Dummy { get; set; }
   }
 }

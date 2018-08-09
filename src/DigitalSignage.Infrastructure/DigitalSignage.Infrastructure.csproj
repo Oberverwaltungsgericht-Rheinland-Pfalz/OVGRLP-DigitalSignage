@@ -70,6 +70,7 @@
     <Compile Include="Models\EurekaFach\Verfahren.cs" />
     <Compile Include="Models\Settings\DisplayStatus.cs" />
     <Compile Include="Models\Settings\Note.cs" />
+    <Compile Include="Models\Settings\NoteAssignment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -153,6 +153,7 @@ namespace DigitalSignage.Data
     public DbSet<Basics> Basics { get; set; }
     public DbSet<Display> Displays { get; set; }
     public DbSet<Note> Notes { get; set; }
+    public DbSet<NoteAssignment> NoteAssignments { get; set; }
 
     #endregion settings
   }
