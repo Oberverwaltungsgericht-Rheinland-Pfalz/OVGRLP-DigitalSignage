@@ -32,28 +32,12 @@ namespace DigitalSignage.WebApi.Controllers.Settings
     [HttpGet]
     public async Task<IHttpActionResult> GetDisplay(string name)
     {
-      var display = await context.Displays.FirstAsync(
-        d => d.Name == name);
-
-      await context.Entry(display).Collection(d => d.Notes).LoadAsync();
+      var display = await context.Displays
+        .FirstAsync(
+          d => d.Name == name);
 
       if (display == null)
         return NotFound();
-
-      var notes = "";
-      foreach (Note note in display.Notes)
-      {
-        bool active = true;
-
-        if (note.Start.HasValue && note.Start.Value > DateTime.Now)
-          active = false;
-
-        if (note.End.HasValue && note.End.Value < DateTime.Now)
-          active = false;
-
-        if (active)
-          notes = notes += note.Content;
-      }
 
       var displayDto = new
       {
@@ -64,8 +48,7 @@ namespace DigitalSignage.WebApi.Controllers.Settings
         Template = display.Template,
         Styles = display.Styles,
         ControlUrl = display.ControlUrl,
-        Group = display.Group,
-        Notes = notes
+        Group = display.Group
       };
 
       return Ok(displayDto);
@@ -104,6 +87,34 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       );
 
       return Ok(dtos);
+    }
+
+    [Route("{name}/activenotes")]
+    [ResponseType(typeof(IEnumerable<Note>))]
+    public async Task<IHttpActionResult> GetActiveNotes(string name)
+    {
+      var display = await context.Displays
+        .Include(d => d.NotesAssignments.Select(na => na.Note))
+        .FirstAsync(
+          d => d.Name == name);
+
+      if (display == null)
+        return NotFound();
+
+      return Ok(display.NotesAssignments.Where(na => IsActiveNoteAssignment(na)).Select(na => na.Note));
+    }
+
+    private static bool IsActiveNoteAssignment(NoteAssignment noteAssignment)
+    {
+      bool erval = true;
+
+      if (noteAssignment.Start.HasValue && noteAssignment.Start.Value > DateTime.Now)
+        erval = false;
+
+      if (noteAssignment.End.HasValue && noteAssignment.End.Value < DateTime.Now)
+        erval = false;
+
+      return erval;
     }
 
     [Route("{name}/status")]
