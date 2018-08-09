@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { DisplayService, ConfigService } from '@ds-suite/core';
-import { Display, DisplayStatus, AppConfig } from '@ds-suite/model';
+import { Display, DisplayStatus, AppConfig, Note } from '@ds-suite/model';
 
 @Injectable()
 export class SoapDisplayService implements DisplayService {
@@ -29,6 +29,10 @@ export class SoapDisplayService implements DisplayService {
         return resp;
       }
     });
+  }
+
+  getDisplayNotes(name: string): Observable<Note[]> {
+    return this.http.get<Note[]>(`${this.config.webApiUrl}/settings/displays/${name}/activenotes`);
   }
 
   getDisplayStatus(display: Display): Observable<DisplayStatus> {
