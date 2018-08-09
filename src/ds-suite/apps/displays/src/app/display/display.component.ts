@@ -6,10 +6,10 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/timer';
 
-import { Display } from '@ds-suite/model';
+import { Display, Note } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
 
-import { DisplayTemplateComponent } from './../display-template/display-template.component';
+import { DisplayTemplateComponent } from '../display-template/display-template.component';
 
 @Component({
   selector: 'app-display',
@@ -20,6 +20,7 @@ export class DisplayComponent implements AfterViewInit, OnDestroy {
   private updateTimer: any;
   private updateSub: Subscription;
   display: Display;
+  notes: Note[];
   currentTemplate: DisplayTemplateComponent;
 
   constructor(
@@ -34,6 +35,12 @@ export class DisplayComponent implements AfterViewInit, OnDestroy {
       .subscribe(display => {
         this.display = display;
         this.router.navigate([display.template, display], { relativeTo: this.route, skipLocationChange: true });
+      });
+
+    this.route.params
+      .switchMap((params: Params) => this.displayService.getDisplayNotes(params['name']))
+      .subscribe(notes => {
+        this.notes = notes;
       });
   }
 

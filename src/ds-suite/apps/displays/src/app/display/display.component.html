@@ -2,3 +2,7 @@
 <div *ngIf="display">
   <router-outlet></router-outlet>
 </div>
+
+<div style="position:absolute; width: 100%; height:100%; top:0px; left:0px" *ngIf="notes && notes.length > 0">
+  <div *ngFor="let note of notes" [innerHtml]="note.content | safeHtml"></div>
+</div>
