@@ -343,6 +343,84 @@
       ]
     }
   ],
+  "termine-ovgvgh": [
+    {
+      "id": 1,
+      "az": "1 A 11500/18.OVG",
+      "lfdnr": 1,
+      "kammer": 1,
+      "sitzungssaal": "Sitzungssaal A021",
+      "sitzungssaalNr": 1,
+      "uhrzeitPlan": "10:00",
+      "uhrzeitAktuell": "10:00",
+      "status": "",
+      "oeffentlich": "ja",
+      "art": "mündliche Verhandlung",
+      "gegenstand": "Rundfunkbeitrags",
+      "bemerkung1": "",
+      "bemerkung2": "",
+      "parteienAktiv": [
+        "Frank Ferdinand\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
+      "prozBevPassiv": [],
+      "parteienBeigeladen": [],
+      "prozBevBeigeladen": [],
+      "parteienZeugen": [],
+      "parteienSv": [],
+      "parteienAktivKurz": "Frank Ferdinand\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "stammdatenId": 1,
+      "gericht": "Oberverwaltungsgericht Rheinland-Pfalz",
+      "datum": "09.01.2018",
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
+    },
+    {
+      "id": 2,
+      "az": "VGH B 2/18",
+      "lfdnr": 2,
+      "kammer": 1,
+      "sitzungssaal": "Sitzungssaal E009",
+      "sitzungssaalN": 1,
+      "uhrzeitPlan": "10:00",
+      "uhrzeitAktuell": "10:00",
+      "status": "",
+      "oeffentlich": "nein",
+      "art": "mündliche Verhandlung",
+      "gegenstand": "Rundfunkbeitrags",
+      "bemerkung1": "",
+      "bemerkung2": "",
+      "parteienAktiv": [
+        "Frank Ferdinand\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
+      "prozBevPassiv": [],
+      "parteienBeigeladen": [],
+      "prozBevBeigeladen": [],
+      "parteienZeugen": [],
+      "parteienSv": [],
+      "parteienAktivKurz": "Frank Ferdinand\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "stammdatenId": 1,
+      "gericht": "Verfassungsgerichtshof Rheinland-Pfalz",
+      "datum": "09.01.2018",
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
+    }
+  ],
   "displays": [
     {
       "id": 1,
