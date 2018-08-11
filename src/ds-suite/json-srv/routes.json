@@ -3,6 +3,7 @@
   "/settings/displays/:name": "/displays?name=:name",
   "/settings/displays/njzko-ovgvgh/termine": "/termine-ovgvgh",
   "/settings/displays/njzko-ovg/termine": "/termine-ovg",
+  "/settings/displays/njzko-arbgko/termine": "/termine-arbgko",
   "/settings/displays/:name/termine": "/termine",
   "/settings/displays/:name/activenotes": "/notes?name=:name",
   "/settings/displays/:id/status": "/displaysStatus/:id",

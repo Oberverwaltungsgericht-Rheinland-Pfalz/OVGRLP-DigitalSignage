@@ -47,6 +47,11 @@ export class NjzKoFoyerComponent extends DisplayTemplateComponent {
     return termin.gericht === "Oberverwaltungsgericht Rheinland-Pfalz" &&
       (termin.kammer == 4 || termin.kammer == 5);
   }
+
+  public IstBeschlussverfahren(termin: Termin) {
+    return termin.gericht === "Arbeitsgericht Koblenz" &&
+      termin.az.includes(' BV ');
+  }
 }
 
 

@@ -33,8 +33,8 @@
         </div>
         <div fxFlex>
           <span>{{ ParteiOhneVertreten(termin.parteienAktivKurz) }}</span>
-          <span *ngIf="!IstPersonalvertretung(termin)"> ./. </span>
-          <span *ngIf="IstPersonalvertretung(termin)"><br /></span>
+          <span *ngIf="!IstPersonalvertretung(termin) && !IstBeschlussverfahren(termin)"> ./. </span>
+          <span *ngIf="IstPersonalvertretung(termin) || IstBeschlussverfahren(termin)"><br /></span>
           <span>{{ ParteiOhneVertreten(termin.parteienPassivKurz) }}</span>
         </div>
         <div fxFlex="15">
