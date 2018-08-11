@@ -1,6 +1,5 @@
 {
-  "termine": [
-    {
+  "termine": [{
       "id": 1,
       "az": "1 K 1111/18.KO",
       "lfdnr": 1,
@@ -343,8 +342,198 @@
       ]
     }
   ],
-  "termine-ovgvgh": [
+  "termine-ovg": [{
+      "id": 1,
+      "az": "1 A 10111/18.OVG",
+      "lfdnr": 1,
+      "kammer": 1,
+      "sitzungssaal": "Sitzungssaal E009",
+      "sitzungssaalNr": 1,
+      "uhrzeitPlan": "10:00",
+      "uhrzeitAktuell": "10:00",
+      "status": "",
+      "oeffentlich": "nein",
+      "art": "mündliche Verhandlung",
+      "gegenstand": "Rundfunkbeitrags",
+      "bemerkung1": "",
+      "bemerkung2": "",
+      "parteienAktiv": [
+        "Frank Ferdinand\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
+      "prozBevPassiv": [],
+      "parteienBeigeladen": [],
+      "prozBevBeigeladen": [],
+      "parteienZeugen": [],
+      "parteienSv": [],
+      "parteienAktivKurz": "Frank Ferdinand\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "stammdatenId": 1,
+      "gericht": "Oberverwaltungsgericht Rheinland-Pfalz",
+      "datum": "09.01.2018",
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
+    },
     {
+      "id": 2,
+      "az": "4 B 10333/18.OVG",
+      "lfdnr": 2,
+      "kammer": 4,
+      "sitzungssaal": "Sitzungssaal E009",
+      "sitzungssaalNr": 1,
+      "uhrzeitPlan": "11:00",
+      "uhrzeitAktuell": "11:00",
+      "status": "",
+      "oeffentlich": "ja",
+      "art": "mündliche Verhandlung",
+      "gegenstand": "Personalvertretungsrecht",
+      "bemerkung1": "",
+      "bemerkung2": "",
+      "parteienAktiv": [
+        "Simone Sterntaler\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
+      "prozBevPassiv": [],
+      "parteienBeigeladen": [],
+      "prozBevBeigeladen": [],
+      "parteienZeugen": [],
+      "parteienSv": [],
+      "parteienAktivKurz": "Simone Sterntaler\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "stammdatenId": 1,
+      "gericht": "Oberverwaltungsgericht Rheinland-Pfalz",
+      "datum": "09.01.2018",
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
+    },
+    {
+      "id": 3,
+      "az": "5 B 10444/18.OVG",
+      "lfdnr": 3,
+      "kammer": 5,
+      "sitzungssaal": "Sitzungssaal E009",
+      "sitzungssaalNr": 1,
+      "uhrzeitPlan": "13:00",
+      "uhrzeitAktuell": "13:00",
+      "status": "",
+      "oeffentlich": "ja",
+      "art": "mündliche Verhandlung",
+      "gegenstand": "Personalvertretungsrecht",
+      "bemerkung1": "",
+      "bemerkung2": "",
+      "parteienAktiv": [
+        "Peter Peterson\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
+      "prozBevPassiv": [],
+      "parteienBeigeladen": [],
+      "prozBevBeigeladen": [],
+      "parteienZeugen": [],
+      "parteienSv": [],
+      "parteienAktivKurz": "Peter Peterson\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "stammdatenId": 1,
+      "gericht": "Oberverwaltungsgericht Rheinland-Pfalz",
+      "datum": "09.01.2018",
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
+    },
+    {
+      "id": 4,
+      "az": "1 A 10123/18.OVG",
+      "lfdnr": 4,
+      "kammer": 1,
+      "sitzungssaal": "Sitzungssaal E009",
+      "sitzungssaalNr": 1,
+      "uhrzeitPlan": "14:00",
+      "uhrzeitAktuell": "14:00",
+      "status": "",
+      "oeffentlich": "ja",
+      "art": "mündliche Verhandlung",
+      "gegenstand": "Rundfunkbeitrags",
+      "bemerkung1": "",
+      "bemerkung2": "",
+      "parteienAktiv": [
+        "Peter Peterson\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
+      "prozBevPassiv": [],
+      "parteienBeigeladen": [],
+      "prozBevBeigeladen": [],
+      "parteienZeugen": [],
+      "parteienSv": [],
+      "parteienAktivKurz": "Peter Peterson\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "stammdatenId": 1,
+      "gericht": "Oberverwaltungsgericht Rheinland-Pfalz",
+      "datum": "09.01.2018",
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
+    },
+    {
+      "id": 5,
+      "az": "1 A 10054/18.KO",
+      "lfdnr": 5,
+      "kammer": 1,
+      "sitzungssaal": "Sitzungssaal E009",
+      "sitzungssaalNr": 1,
+      "uhrzeitPlan": "15:00",
+      "uhrzeitAktuell": "15:00",
+      "status": "",
+      "oeffentlich": "ja",
+      "art": "mündliche Verhandlung",
+      "gegenstand": "Rundfunkbeitrags",
+      "bemerkung1": "",
+      "bemerkung2": "",
+      "parteienAktiv": [
+        "Peter Peterson\r"
+      ],
+      "prozBevAktiv": [
+        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
+      ],
+      "parteienPassiv": [
+        "Südwestrundfunk, vertreten durch den Intendanten\r"
+      ],
+      "prozBevPassiv": [],
+      "parteienBeigeladen": [],
+      "prozBevBeigeladen": [],
+      "parteienZeugen": [],
+      "parteienSv": [],
+      "parteienAktivKurz": "Peter Peterson\r",
+      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
+      "stammdatenId": 1,
+      "gericht": "Oberverwaltungsgericht Rheinland-Pfalz",
+      "datum": "09.01.2018",
+      "besetzung": [
+        "Vorsitzender Richter am Testgericht Heinzmann"
+      ]
+    }
+  ],
+  "termine-ovgvgh": [{
       "id": 1,
       "az": "1 A 11500/18.OVG",
       "lfdnr": 1,
@@ -421,8 +610,7 @@
       ]
     }
   ],
-  "displays": [
-    {
+  "displays": [{
       "id": 1,
       "name": "njzko-gesamt",
       "title": "Neues Justizzentrum Koblenz",
@@ -525,8 +713,7 @@
       "dummy": false
     }
   ],
-  "displaysStatus": [
-    {
+  "displaysStatus": [{
       "id": "njz-ko-foyer",
       "status": -1
     },
@@ -543,17 +730,15 @@
       "status": 2
     }
   ],
-  "notes": [
-    {
-      "id": 1,
-      "name": "njzko-sondermeldungen",
-      "content": "<div style='background-color:pink;width:300px;height:200px;margin-top:500px;margin-left:1000px'><h1>Hallo Welt</h2></div>",
-      "forced": true
-    }, {
-      "id": 2,
-      "name": "njzko-sondermeldungen",
-      "content": "<div style='background-color:blue;width:400px;height:300px;margin-top:200px;margin-left:500px'><h1>HUHU</h2></div>",
-      "forced": true
-    }
-  ]
+  "notes": [{
+    "id": 1,
+    "name": "njzko-sondermeldungen",
+    "content": "<div style='background-color:pink;width:300px;height:200px;margin-top:500px;margin-left:1000px'><h1>Hallo Welt</h2></div>",
+    "forced": true
+  }, {
+    "id": 2,
+    "name": "njzko-sondermeldungen",
+    "content": "<div style='background-color:blue;width:400px;height:300px;margin-top:200px;margin-left:500px'><h1>HUHU</h2></div>",
+    "forced": true
+  }]
 }

@@ -42,6 +42,11 @@ export class NjzKoFoyerComponent extends DisplayTemplateComponent {
   public KumulierteTitel(termine: Termin[]): string[] {
     return Array.from(new Set(termine.map(t => t.gericht)));
   }
+
+  public IstPersonalvertretung(termin: Termin) {
+    return termin.gericht === "Oberverwaltungsgericht Rheinland-Pfalz" &&
+      (termin.kammer == 4 || termin.kammer == 5);
+  }
 }
 
 

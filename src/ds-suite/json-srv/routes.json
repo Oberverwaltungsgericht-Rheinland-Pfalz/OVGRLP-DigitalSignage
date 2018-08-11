@@ -1,7 +1,8 @@
 {
   "/settings/displays": "/displays",
   "/settings/displays/:name": "/displays?name=:name",
-  "/settings/displays/njzko-ovg/termine": "/termine-ovgvgh",
+  "/settings/displays/njzko-ovgvgh/termine": "/termine-ovgvgh",
+  "/settings/displays/njzko-ovg/termine": "/termine-ovg",
   "/settings/displays/:name/termine": "/termine",
   "/settings/displays/:name/activenotes": "/notes?name=:name",
   "/settings/displays/:id/status": "/displaysStatus/:id",
