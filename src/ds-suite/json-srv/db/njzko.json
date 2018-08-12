@@ -839,6 +839,22 @@
     "description": null,
     "notes": null,
     "dummy": false
+  }, {
+    "id": 7,
+    "name": "njzko-saal",
+    "title": "Sitzungssaal A123",
+    "template": "njzko/saal",
+    "styles": "",
+    "filter": "",
+    "group": "Testanzeigen",
+    "controlUrl": "",
+    "netAddress": "",
+    "wolIpAddress": "",
+    "wolMacAddress": "",
+    "wolUdpPort": 9,
+    "description": null,
+    "notes": null,
+    "dummy": false
   }],
   "displaysStatus": [{
     "id": "njz-ko-foyer",
