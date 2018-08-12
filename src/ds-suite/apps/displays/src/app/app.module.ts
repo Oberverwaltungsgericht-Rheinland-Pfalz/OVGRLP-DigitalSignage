@@ -11,7 +11,6 @@ import { BackendModule } from '@ds-suite/backend';
 
 import { AppComponent } from './app.component';
 import { DisplayTemplateComponent } from './display-template/display-template.component';
-import { TerminComponent } from './termin/termin.component';
 import { AppRoutingModule, routingComponents } from './app.routing';
 import { DsCommonModule } from './ds-common/ds-common.module';
 
@@ -21,7 +20,6 @@ registerLocaleData(localeDe);
   declarations: [
     AppComponent,
     DisplayTemplateComponent,
-    TerminComponent,
     routingComponents
   ],
   imports: [
