@@ -1,5 +1,13 @@
 <div *ngIf="termin" fxFlex fxLayout="column" class="ds-box">
-  <!-- Gericht, Kammer, Besetzung -->
+
+  <!-- Seitenkopf -->
+  <div style="text-align: center" class="ds-termin-head">
+    <h1>{{ termin.gericht }}</h1>
+    <h2>- Öffentliche Sitzung -</h2>
+    <h2>{{ termin.kammer }}. Kammer</h2>
+  </div>
+
+  <!-- Gericht, Kammer, Besetzung
   <div fxFlex="nogrow" fxLayout="row">
     <div fxFlex>
       <h1>
@@ -13,6 +21,18 @@
       <div *ngFor="let richter of termin.besetzung">
         {{ richter }}
       </div>
+    </div>
+  </div>
+-->
+
+  <!-- Trenner -->
+  <div fxFlex="nogrow" class="ds-divider"></div>
+
+  <!-- Besetzung -->
+  <div fxLayout="row">
+    <div fxFlex="30"><h3>Besetzung:</h3></div>
+    <div *ngFor="let richter of termin.besetzung">
+      {{ richter }}
     </div>
   </div>
 
