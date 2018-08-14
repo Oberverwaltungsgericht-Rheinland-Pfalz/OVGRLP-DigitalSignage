@@ -12,5 +12,13 @@ export class TerminComponent implements OnInit {
 
   @Input() termin: Termin;
 
+  IstOeffentlich() {
+    return this.termin.oeffentlich === 'ja';
+  }
+
+  IstAktiv() {
+    return this.termin.status === 'Läuft';
+  }
+
   ngOnInit() {}
 }

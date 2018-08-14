@@ -7,3 +7,23 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.ds-inkuerze {
+  color: #4d4d4d;
+}
+
+.ds-oeffentlich {
+  color: #006416;
+}
+
+.ds-nichtoeffentlich {
+  color: #af0101;
+}
+
+.ds-box-oeffentlich {
+  background-color: rgba(0, 100, 22, 0.5);
+}
+
+.ds-box-nichtoeffentlich {
+  background-color: rgba(175, 1, 1, 0.5);
+}
