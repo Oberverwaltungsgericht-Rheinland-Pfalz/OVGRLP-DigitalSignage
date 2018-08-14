@@ -20,10 +20,10 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   termine: Termin[];
   statusValues: string[] = [
     '',
-    'läuft',
-    'abgeschlossen',
-    'aufgehoben',
-    'unterbrochen'
+    'Läuft',
+    'Abgeschlossen',
+    'Aufgehoben',
+    'Unterbrochen'
   ];
 
   constructor(
