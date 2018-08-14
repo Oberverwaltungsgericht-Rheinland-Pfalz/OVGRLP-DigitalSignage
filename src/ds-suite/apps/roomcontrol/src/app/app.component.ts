@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+const { version: appVersion } = require('../../package.app.json')
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  appVersion: string = "";
+
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.appVersion = appVersion;
+  }
 }
