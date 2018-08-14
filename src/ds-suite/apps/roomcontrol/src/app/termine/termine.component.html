@@ -15,7 +15,7 @@
       <clr-dg-cell>{{ termin.parteienPassivKurz }}</clr-dg-cell>
       <clr-dg-cell>
         <div class="toggle-switch">
-          <input [id]="'chk_oeff_' + i" type="checkbox" [checked]="termin.oeffentlich === 'ja'" (change)="changeOeffentlich(termin)">
+          <input [id]="'chk_oeff_' + i" type="checkbox" [checked]="termin.oeffentlich | yesnoBoolean" (change)="changeOeffentlich(termin)">
           <label [for]="'chk_oeff_' + i"></label>
         </div>
       </clr-dg-cell>
