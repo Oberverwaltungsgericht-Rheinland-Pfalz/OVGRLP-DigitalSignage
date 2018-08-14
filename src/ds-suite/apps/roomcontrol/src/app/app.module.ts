@@ -13,13 +13,13 @@ import { BackendModule } from "@ds-suite/backend";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 
-import { environment } from "../environments/environment";
 import { DisplayComponent } from './display/display.component';
 import { DisplayControlComponent } from './display-control/display-control.component';
 import { TermineComponent } from './termine/termine.component';
 
-import { AppConfig } from "@ds-suite/model";
-import { DS_DISPLAYS_CONFIG } from "./app.config";
+import { DsCommonModule } from './ds-common/ds-common.module';
+
+registerLocaleData(localeDe);
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -37,13 +37,10 @@ const routes: Routes = [
       initialNavigation: "enabled"
     }),
     ClarityModule,
-    BackendModule
+    BackendModule,
+    DsCommonModule
   ],
   providers: [
-    {
-      provide: AppConfig,
-      useValue: DS_DISPLAYS_CONFIG
-    },
     {
       provide: LOCALE_ID,
       useValue: "de"
