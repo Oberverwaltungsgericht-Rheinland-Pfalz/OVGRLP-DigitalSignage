@@ -39,4 +39,24 @@ export class DisplayControlComponent implements OnInit {
     this.screenshot = '/assets/img/unknown.jpg';
   }
 
+  DisplayStatusToString(stat: DisplayStatus) : string {
+    var rval : string ="";
+    switch (stat) {
+      case DisplayStatus.Unknown:
+        rval="unbekannt"
+        break;
+      case DisplayStatus.Active:
+        rval="aktiv"
+        break;
+      case DisplayStatus.Online:
+        rval="angeschaltet"
+        break;
+      case DisplayStatus.Offline:
+        rval="ausgeschaltet"
+        break;
+      }
+      console.log (rval)
+      return rval;
+  }
+
 }

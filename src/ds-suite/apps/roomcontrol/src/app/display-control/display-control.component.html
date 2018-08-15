@@ -7,7 +7,7 @@
   </div>
   <div class="card-block" [ngClass]="{'ds-bg-yellow':(status < 0), 'ds-bg-red': (status === 0), 'ds-bg-green': (status >= 1)}">
     <div class="card-text">
-      Status: {{ (status === 0 ? 'ausgeschaltet' : (status === 1 ? 'angeschaltet' : ( status === 2 ? 'aktiv' : 'unbekannt' )))}}
+      Status: {{DisplayStatusToString(status)}}
     </div>
   </div>
   <div class="card-footer">
