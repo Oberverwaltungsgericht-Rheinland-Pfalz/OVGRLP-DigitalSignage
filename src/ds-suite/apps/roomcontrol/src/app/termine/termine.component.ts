@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -7,6 +7,7 @@ import 'rxjs/add/observable/timer';
 
 import { Termin } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
+import { ClrDatagrid } from '@clr/angular';
 
 @Component({
   selector: 'app-termine',
@@ -16,6 +17,8 @@ import { TerminService } from '@ds-suite/core';
 export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   private updateTimer: any;
   private updateSub: Subscription;
+  @ViewChild('myDataGrid') myDataGrid: ClrDatagrid;
+  
   _displayName: string;
   termine: Termin[];
   statusValues: string[] = [
@@ -65,6 +68,10 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
+  }
+
+  private onResize() {
+    this.myDataGrid.resize();
   }
 
   onSubmit() {

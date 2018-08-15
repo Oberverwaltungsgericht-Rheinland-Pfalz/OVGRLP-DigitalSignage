@@ -1,16 +1,18 @@
+
 <h1>Termine</h1>
 <form>
-  <clr-datagrid>
-    <clr-dg-column class="ds-termin-column-uhrzeit">Uhrzeit</clr-dg-column>
+  <clr-datagrid #myDataGrid (window:resize)="onResize($event)">
+
+    <clr-dg-column>Uhrzeit</clr-dg-column>
     <clr-dg-column class="ds-termin-column-az">Aktenzeichen</clr-dg-column>
-    <clr-dg-column class="ds-termin-column-partei">Aktivpartei</clr-dg-column>
-    <clr-dg-column class="ds-termin-column-partei">Passivpartei</clr-dg-column>
-    <clr-dg-column class="ds-termin-column-oeffentlich">Öffentlich</clr-dg-column>
-    <clr-dg-column class="ds-termin-column-status">Status</clr-dg-column>
+    <clr-dg-column>Aktivpartei</clr-dg-column>
+    <clr-dg-column>Passivpartei</clr-dg-column>
+    <clr-dg-column>Öffentlich</clr-dg-column>
+    <clr-dg-column>Status</clr-dg-column>
 
     <clr-dg-row *clrDgItems="let termin of termine; let i = index">
       <clr-dg-cell>{{ termin.uhrzeitAktuell }}</clr-dg-cell>
-      <clr-dg-cell>{{ termin.az }}</clr-dg-cell>
+      <clr-dg-cell class="ds-termin-column-az">{{ termin.az }}</clr-dg-cell>
       <clr-dg-cell>{{ termin.parteienAktivKurz }}</clr-dg-cell>
       <clr-dg-cell>{{ termin.parteienPassivKurz }}</clr-dg-cell>
       <clr-dg-cell>
