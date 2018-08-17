@@ -1,5 +1,6 @@
 import { NgModule, enableProdMode, LOCALE_ID } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Routes, RouterModule } from "@angular/router";
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -15,6 +16,7 @@ import { HomeComponent } from "./home/home.component";
 
 import { DisplayComponent } from './display/display.component';
 import { DisplayControlComponent } from './display-control/display-control.component';
+import {DisplayDialogComponent } from './display-dialog/display-dialog.component';
 import { TermineComponent } from './termine/termine.component';
 
 import { DsCommonModule } from './ds-common/ds-common.module';
@@ -29,6 +31,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     FlexLayoutModule,
     NxModule.forRoot(),
@@ -46,7 +49,7 @@ const routes: Routes = [
       useValue: "de"
     }
   ],
-  declarations: [AppComponent, HomeComponent, DisplayComponent, DisplayControlComponent, TermineComponent],
+  declarations: [AppComponent, HomeComponent, DisplayComponent, DisplayControlComponent, TermineComponent,DisplayDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

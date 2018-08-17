@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 import { Display, DisplayStatus } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
+
+import { DisplayDialogComponent } from '../display-dialog/display-dialog.component';
 
 @Component({
   selector: 'app-display-control',
@@ -12,6 +14,7 @@ export class DisplayControlComponent implements OnInit {
   _display: Display;
   screenshot: String;
   status: DisplayStatus;
+  @ViewChild(DisplayDialogComponent) modal: DisplayDialogComponent;
 
   constructor(private displayService: DisplayService) { }
 
@@ -32,6 +35,8 @@ export class DisplayControlComponent implements OnInit {
     else if (this.status === DisplayStatus.Online)
       this.screenshot = `${this.display.controlUrl}/api/screenshot`;
     else
+      this.screenshot = '/assets/img/unknown.jpg';
+
       this.screenshot = '/assets/img/unknown.jpg';
   }
 

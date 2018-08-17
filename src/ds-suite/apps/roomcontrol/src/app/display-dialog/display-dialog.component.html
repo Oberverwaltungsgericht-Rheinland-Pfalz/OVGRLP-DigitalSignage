@@ -1,0 +1,40 @@
+<!--div class="modal static bump-down">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-label="Close" class="close" type="button">
+                    <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                </button>
+                <h3 class="modal-title">I have a nice title</h3>
+            </div>
+            <div class="modal-body">
+              <img [src]='assets/img/unknown' >
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" type="button">Cancel</button>
+                <button class="btn btn-primary" type="button">Ok</button>
+            </div>
+        </div>
+    </div>
+  </div-->
+
+<clr-modal [(clrModalOpen)]="show" [clrModalSize]="'xl'">
+    <div class="modal-body"  >
+        <img [src]="screenshot" (click)="ChangeSize1()" [ngClass]="
+        {
+          'img-smallSize': increasePicture == false,
+          'img-bigSize': increasePicture == true
+        }">
+    </div>
+    <div class="modal-footer">
+        <div class="w-100">
+            <button type="button" class="btn btn-icon" (click)="ChangeSize(false)">
+                    <clr-icon shape="zoom-out"></clr-icon>
+            </button>
+            <button type="button" class="btn btn-icon" (click)="ChangeSize(true)">
+                    <clr-icon shape="zoom-in"></clr-icon>
+            </button>
+        </div>
+        <button (click)="close()" class="btn btn-sm btn-link" type="button">Ok</button>
+    </div>
+</clr-modal>
