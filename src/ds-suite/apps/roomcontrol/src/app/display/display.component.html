@@ -1,4 +1,4 @@
-<clr-tabs>
+<!--clr-tabs>
   <clr-tab>
     <button clrTabLink>Termine</button>
     <clr-tab-content *clrIfActive>
@@ -11,4 +11,13 @@
       <app-display-control *ngIf="display" [display]="display"></app-display-control>
     </clr-tab-content>
   </clr-tab>
-</clr-tabs>
+</clr-tabs-->
+
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" >
+  <div fxFlex="75%">
+    <app-termine *ngIf="display" [displayName]="display.name"></app-termine>
+  </div>
+  <div fxFlex="25%" class="display-control">
+    <app-display-control *ngIf="display" [display]="display"></app-display-control>
+  </div>
+</div>
