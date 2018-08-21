@@ -38,4 +38,18 @@ export class SoapDisplayService implements DisplayService {
   getDisplayStatus(display: Display): Observable<DisplayStatus> {
     return this.http.get<DisplayStatus>(`${this.config.webApiUrl}/settings/displays/${display.name}/status`);
   }
+
+  startDisplay(display: Display): Observable<void> {
+    console.log("wird gestaretet;",display)
+    return this.http.get<void>(`${this.config.webApiUrl}/settings/displays/${display.name}/start`);
+  }
+
+  stopDisplay(display: Display): Observable<void> {
+    return this.http.get<void>(`${display.controlUrl}/api/shutdown`);    //!\TODO: besser via Webservice (zentral) zur Verfügung stellen
+  }
+
+  restartDisplay(display: Display): Observable<void> {
+    return this.http.get<void>(`${display.controlUrl}/api/restart`);    //!\TODO: besser via Webservice (zentral) zur Verfügung stellen
+  }
+
 }
