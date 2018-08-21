@@ -12,6 +12,7 @@
     "displays:serve": "ng serve --project displays --port 4201",
     "roomcontrol:serve": "ng serve --project roomcontrol --port 4202",
     "displays:build": "ng build --project displays --prod --base-href /displays/",
+    "roomcontrol:build": "ng build --project roomcontrol --prod --base-href /roomcontrol/",
     "json-srv:run": "json-server --watch json-srv/db/example.json --routes json-srv/routes.json --port 4200",
     "json-srv:njzko": "json-server --watch json-srv/db/njzko.json --routes json-srv/routes.json --port 4200",
     "affected:apps": "./node_modules/.bin/nx affected:apps",
