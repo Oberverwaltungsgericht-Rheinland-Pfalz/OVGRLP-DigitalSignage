@@ -5,6 +5,7 @@ import { DisplayService } from '@ds-suite/core';
 
 import { DisplayDialogComponent } from '../display-dialog/display-dialog.component';
 import {Resizer  } from '@ds-suite/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-display-control',
@@ -48,7 +49,7 @@ export class DisplayControlComponent implements OnInit, AfterViewInit {
     if (this.status === DisplayStatus.Offline)
       this.screenshot = '/assets/img/offline.jpg'
     else if (this.status === DisplayStatus.Online)
-      this.screenshot = `${this.display.controlUrl}/api/screenshot`;
+      this.screenshot = `${this.display.controlUrl}/api/screenshot`;  //!\TODO: evtl. via Webservice (zentral) zur Verfügung stellen
     else
       this.screenshot = '/assets/img/unknown.jpg';
   }
@@ -94,4 +95,29 @@ export class DisplayControlComponent implements OnInit, AfterViewInit {
       this.ImageHeight = height.toString();
     }
   }
+
+  start() {
+    this.displayService.startDisplay(this.display)
+      .subscribe(response => { },
+        err => {
+          console.error("Display konnte nicht gestartet werden: ",err);
+        });
+  }
+
+  restart() {
+    this.displayService.restartDisplay(this.display)
+      .subscribe(response => { },
+        err => {
+          console.error("Display konnte nicht neu gestartet werden: ",err);
+        });
+  }
+
+  shutdown() {
+    this.displayService.stopDisplay(this.display)
+      .subscribe(response => { },
+        err => {
+          console.error("Display konnte nicht heruntergefahren werden: ",err);
+        });
+  }
+
 }

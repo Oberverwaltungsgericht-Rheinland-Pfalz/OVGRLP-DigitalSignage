@@ -11,9 +11,9 @@
     </div>
   </div>
   <div class="card-footer">
-    <button class="btn btn-sm btn-link" *ngIf="(status < 1)">Anschalten</button>
-    <button class="btn btn-sm btn-link" *ngIf="(status >= 1)">Ausschalten</button>
-    <button class="btn btn-sm btn-link" *ngIf="(status >= 1)">Neu starten</button>
+    <button class="btn btn-sm btn-link" *ngIf="(status < 1)" (click)="start()">Anschalten</button>
+    <button class="btn btn-sm btn-link" *ngIf="(status >= 1)" (click)="shutdown()">Ausschalten</button>
+    <button class="btn btn-sm btn-link" *ngIf="(status >= 1)" (click)="restart()">Neu starten</button>
   </div>
 </div>
 
