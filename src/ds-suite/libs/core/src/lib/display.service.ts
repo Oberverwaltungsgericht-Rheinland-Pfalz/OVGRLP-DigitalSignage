@@ -12,4 +12,10 @@ export abstract class DisplayService {
   abstract getDisplayNotes(name: string): Observable<Note[]>;
 
   abstract getDisplayStatus(display: Display): Observable<DisplayStatus>;
+
+  abstract startDisplay(display: Display): Observable<void>;
+
+  abstract restartDisplay(display: Display): Observable<void>;
+
+  abstract stopDisplay(display: Display): Observable<void>;
 }
