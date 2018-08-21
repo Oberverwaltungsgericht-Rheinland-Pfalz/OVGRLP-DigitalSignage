@@ -1,7 +1,7 @@
 
 <!--h1>Termine</h1-->
 <form>
-  <clr-datagrid #DataGridTermine (window:resize)="onResize($event)">
+  <clr-datagrid #DataGridTermine (window:resize)="onResize($event)" [clrDgLoading]="loadingTermine">
 
     <clr-dg-column class="ds-termin-column-uhrzeit">Uhrzeit</clr-dg-column>
     <clr-dg-column class="ds-termin-column-az">Aktenzeichen</clr-dg-column>

@@ -18,7 +18,7 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   private updateTimer: any;
   private updateSub: Subscription;
   @ViewChild('DataGridTermine') DataGridTermine: ClrDatagrid;
-  
+  loadingTermine: boolean = true;
   _displayName: string;
   termine: Termin[];
   statusValues: string[] = [
@@ -44,6 +44,7 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
     this.terminService.getTermine(this.displayName)
       .subscribe(termine => {
         this.termine = termine;
+        this.loadingTermine=false;
       });
   }
 
