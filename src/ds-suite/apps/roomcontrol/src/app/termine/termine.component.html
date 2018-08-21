@@ -10,6 +10,7 @@
     <clr-dg-column class="ds-termin-column-oeffentlich">Öffentlich</clr-dg-column>
     <clr-dg-column class="ds-termin-column-status">Status</clr-dg-column>
 
+    <clr-dg-placeholder>Es sind keine Termine vorhanden</clr-dg-placeholder>
     <clr-dg-row *clrDgItems="let termin of termine; let i = index">
       <clr-dg-cell class="ds-termin-column-uhrzeit">{{ termin.uhrzeitAktuell }}</clr-dg-cell>
       <clr-dg-cell class="ds-termin-column-az">{{ termin.az }}</clr-dg-cell>
