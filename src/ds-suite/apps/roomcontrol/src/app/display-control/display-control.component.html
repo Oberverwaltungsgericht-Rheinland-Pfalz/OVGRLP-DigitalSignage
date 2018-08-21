@@ -2,7 +2,7 @@
   <div class="card-header">
     Anzeigegerät {{ display.name }}
   </div>
-  <div class="card-img">
+  <div class="card-img"  *ngIf="screenshot">
     <img [src]="screenshot" (click)="modal.open(screenshot)">
   </div>
   <div class="card-block" [ngClass]="{'ds-bg-yellow':(status < 0), 'ds-bg-red': (status === 0), 'ds-bg-green': (status >= 1)}">

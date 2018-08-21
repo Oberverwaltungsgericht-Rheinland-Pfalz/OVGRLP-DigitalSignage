@@ -36,12 +36,9 @@ export class DisplayControlComponent implements OnInit {
       this.screenshot = `${this.display.controlUrl}/api/screenshot`;
     else
       this.screenshot = '/assets/img/unknown.jpg';
-
-      this.screenshot = '/assets/img/unknown.jpg';
   }
 
   ngOnInit() {
-    this.screenshot = '/assets/img/unknown.jpg';
   }
 
   DisplayStatusToString(stat: DisplayStatus) : string {

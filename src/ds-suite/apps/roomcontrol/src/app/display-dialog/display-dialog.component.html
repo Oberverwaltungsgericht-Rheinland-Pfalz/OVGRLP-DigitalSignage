@@ -19,7 +19,7 @@
   </div-->
 
 <clr-modal [(clrModalOpen)]="show" [clrModalSize]="'xl'">
-    <div class="modal-body"  >
+    <div class="modal-body" *ngIf="screenshot">
         <img [src]="screenshot" (click)="ChangeSize1()" [ngClass]="
         {
           'img-smallSize': increasePicture == false,
