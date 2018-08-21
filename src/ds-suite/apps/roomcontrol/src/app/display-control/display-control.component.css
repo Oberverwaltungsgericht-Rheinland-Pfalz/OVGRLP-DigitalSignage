@@ -9,3 +9,9 @@
 .ds-bg-green{
     color:green;
 }
+
+.img-middle-proportion {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}

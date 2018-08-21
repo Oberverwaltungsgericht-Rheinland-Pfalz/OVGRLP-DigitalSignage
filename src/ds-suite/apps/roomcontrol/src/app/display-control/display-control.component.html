@@ -2,8 +2,8 @@
   <div class="card-header">
     Anzeigegerät {{ display.name }}
   </div>
-  <div class="card-img"  *ngIf="screenshot">
-    <img [src]="screenshot" (click)="modal.open(screenshot)">
+  <div class="card-img"  id="ScreenshotImage" (window:resize)="onResize($event)" *ngIf="screenshot">
+    <img [src]="screenshot" (click)="modal.open(screenshot)" class="img-middle-proportion" [style.height.px]="ImageHeight" >
   </div>
   <div class="card-block" [ngClass]="{'ds-bg-yellow':(status < 0), 'ds-bg-red': (status === 0), 'ds-bg-green': (status >= 1)}">
     <div class="card-text">
