@@ -57,7 +57,6 @@ export class DisplayControlComponent implements OnInit {
         rval="ausgeschaltet"
         break;
       }
-      console.log (rval)
       return rval;
   }
 

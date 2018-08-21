@@ -17,7 +17,7 @@ import { ClrDatagrid } from '@clr/angular';
 export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   private updateTimer: any;
   private updateSub: Subscription;
-  @ViewChild('myDataGrid') myDataGrid: ClrDatagrid;
+  @ViewChild('DataGridTermine') DataGridTermine: ClrDatagrid;
   
   _displayName: string;
   termine: Termin[];
@@ -60,7 +60,6 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   changeStatus(termin: Termin) {
-    console.log(termin);
     this.terminService.saveTermin(termin).subscribe(val => { },
       err => {
         console.error(err);
@@ -70,8 +69,8 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
   }
 
-  private onResize() {
-    this.myDataGrid.resize();
+  onResize(event) {
+    this.DataGridTermine.resize();
   }
 
   onSubmit() {
