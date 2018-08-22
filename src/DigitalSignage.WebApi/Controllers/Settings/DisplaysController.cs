@@ -154,6 +154,30 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       return Ok();
     }
 
+    [Route("{name}/ScreenshotUrl")]
+    [HttpGet]
+    [ResponseType(typeof(string))]
+    public async Task<IHttpActionResult> GetScreenshotUrl(string name)
+    {
+      string url = string.Empty;
+      var display = await context.Displays.FirstAsync(
+        d => d.Name == name);
+
+      if (display == null)
+        return NotFound();
+
+      try
+      {
+        url = displayManagementService.GetDisplayScreenshotUrl(display);
+      }
+      catch
+      {
+        return InternalServerError();
+      }
+
+      return Ok(url);
+    }
+
     [Route("{name}")]
     [HttpPut]
     [ResponseType(typeof(void))]

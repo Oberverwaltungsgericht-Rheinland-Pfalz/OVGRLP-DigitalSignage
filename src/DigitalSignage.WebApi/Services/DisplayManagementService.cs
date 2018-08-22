@@ -34,6 +34,11 @@ namespace DigitalSignage.WebApi.Services
       return status;
     }
 
+    public string GetDisplayScreenshotUrl(Display display)
+    {
+      return string.Concat(display.ControlUrl, "/api/screenshot?", DateTime.Now.ToString("MMddyyHHmmss"));
+    }
+
     public void StartDisplay(Display display)
     {
       WolHelper.SendMagicPacket(display.WolMacAddress, display.WolIpAddress, display.WolUdpPort);
