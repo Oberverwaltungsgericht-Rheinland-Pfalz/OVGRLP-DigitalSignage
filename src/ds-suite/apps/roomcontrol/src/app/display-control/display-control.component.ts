@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-
 import { Display, DisplayStatus } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
 
@@ -118,6 +117,15 @@ export class DisplayControlComponent implements OnInit, AfterViewInit {
         err => {
           console.error("Display konnte nicht heruntergefahren werden: ",err);
         });
+  }
+
+  updateClick() {
+    this.screenshot = '/assets/img/unknown.jpg';
+    var foo = new Promise<void>(resolve => {
+      setTimeout(resolve, 100);
+    }).then(() => {
+      this.updateScreenshot();
+    });
   }
 
 }
