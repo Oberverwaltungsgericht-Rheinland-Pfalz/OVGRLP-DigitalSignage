@@ -17,6 +17,7 @@ import { DisplayService, TerminService } from "@ds-suite/core";
 export class DisplayComponent implements OnInit, OnDestroy, AfterViewInit {
   private updateTimer: any;
   private updateSub: Subscription;
+  private compact: boolean = true;
   display: Display;
   termine: Termin[] = [];
 
@@ -28,9 +29,12 @@ export class DisplayComponent implements OnInit, OnDestroy, AfterViewInit {
 
   loadDisplay() {
     this.route.params
-      .switchMap((params: Params) =>
-        this.displayService.getDisplay(params["name"])
-      )
+      .switchMap((params: Params) =>  {
+        if (params["representation"] != undefined) {
+          this.compact=(params["representation"]!="tab" && params["representation"]!="true")
+        }
+        return this.displayService.getDisplay(params["name"])
+      })       
       .subscribe(display => {
         this.display = display;
       });

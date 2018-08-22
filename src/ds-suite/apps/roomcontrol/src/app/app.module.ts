@@ -25,7 +25,8 @@ registerLocaleData(localeDe);
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: ":name", component: DisplayComponent }
+  { path: ":name", component: DisplayComponent },
+  { path: ":name/:representation", component: DisplayComponent }
 ];
 
 @NgModule({
