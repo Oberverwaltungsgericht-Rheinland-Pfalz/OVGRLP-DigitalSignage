@@ -48,7 +48,12 @@ export class DisplayControlComponent implements OnInit, AfterViewInit {
     if (this.status === DisplayStatus.Offline)
       this.screenshot = '/assets/img/offline.jpg'
     else if (this.status === DisplayStatus.Online)
-      this.screenshot = `${this.display.controlUrl}/api/screenshot`;  //!\TODO: evtl. via Webservice (zentral) zur Verfügung stellen
+      this.displayService.getScreenshotUrl(this._display)
+        .subscribe(response => this.screenshot = response,
+          err => {
+            console.error("ScreenshotUrl konnte nicht abgerufen werden: ",err);
+            this.screenshot = '/assets/img/unknown.jpg';
+          });
     else
       this.screenshot = '/assets/img/unknown.jpg';
   }
