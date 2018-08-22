@@ -13,6 +13,8 @@ export abstract class DisplayService {
 
   abstract getDisplayStatus(display: Display): Observable<DisplayStatus>;
 
+  abstract getScreenshotUrl(display: Display): Observable<string>;
+
   abstract startDisplay(display: Display): Observable<void>;
 
   abstract restartDisplay(display: Display): Observable<void>;
