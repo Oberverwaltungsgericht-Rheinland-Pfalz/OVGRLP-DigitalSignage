@@ -39,6 +39,10 @@ export class SoapDisplayService implements DisplayService {
     return this.http.get<DisplayStatus>(`${this.config.webApiUrl}/settings/displays/${display.name}/status`);
   }
 
+  getScreenshotUrl(display: Display): Observable<string> {
+    return this.http.get<string>(`${this.config.webApiUrl}/settings/displays/${display.name}/ScreenshotUrl`);
+  }
+
   startDisplay(display: Display): Observable<void> {
     console.log("wird gestaretet;",display)
     return this.http.get<void>(`${this.config.webApiUrl}/settings/displays/${display.name}/start`);
