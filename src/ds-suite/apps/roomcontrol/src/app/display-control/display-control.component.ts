@@ -96,7 +96,7 @@ export class DisplayControlComponent implements OnInit, AfterViewInit {
     }
   }
 
-  start() {
+  startClick() {
     this.displayService.startDisplay(this.display)
       .subscribe(response => { },
         err => {
@@ -104,7 +104,7 @@ export class DisplayControlComponent implements OnInit, AfterViewInit {
         });
   }
 
-  restart() {
+  restartClick() {
     this.displayService.restartDisplay(this.display)
       .subscribe(response => { },
         err => {
@@ -112,7 +112,7 @@ export class DisplayControlComponent implements OnInit, AfterViewInit {
         });
   }
 
-  shutdown() {
+  shutdownClick() {
     this.displayService.stopDisplay(this.display)
       .subscribe(response => { },
         err => {
