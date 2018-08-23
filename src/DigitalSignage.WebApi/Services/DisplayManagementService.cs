@@ -44,6 +44,20 @@ namespace DigitalSignage.WebApi.Services
       WolHelper.SendMagicPacket(display.WolMacAddress, display.WolIpAddress, display.WolUdpPort);
     }
 
+    public void RestartDisplay(Display display)
+    {
+      string completeUrl = string.Concat(display.ControlUrl, "/api/restart");
+      var request = UrlHelper.CallUrl(completeUrl);
+      request.Close();
+    }
+
+    public void StopDisplay(Display display)
+    {
+      string completeUrl = string.Concat(display.ControlUrl, "/api/shutdown");
+      var request = UrlHelper.CallUrl(completeUrl);
+      request.Close();
+    }
+
     internal class WolHelper
     {
       internal static void SendMagicPacket(string macAddress, string ipAddress, int updPort)
@@ -90,6 +104,16 @@ namespace DigitalSignage.WebApi.Services
         }
 
         return macBytes;
+      }
+    }
+
+    internal class UrlHelper
+    {
+      internal static HttpWebResponse CallUrl(string Url)
+      {
+        WebRequest request = WebRequest.Create(Url);
+        request.Credentials = CredentialCache.DefaultCredentials;
+        return (HttpWebResponse)request.GetResponse();
       }
     }
   }

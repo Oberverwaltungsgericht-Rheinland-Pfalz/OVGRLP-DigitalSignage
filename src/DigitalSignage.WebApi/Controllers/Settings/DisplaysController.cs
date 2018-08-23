@@ -154,6 +154,52 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       return Ok();
     }
 
+    [Route("{name}/restart")]
+    [HttpGet]
+    [ResponseType(typeof(void))]
+    public async Task<IHttpActionResult> RestartDisplay(string name)
+    {
+      var display = await context.Displays.FirstAsync(
+        d => d.Name == name);
+
+      if (display == null)
+        return NotFound();
+
+      try
+      {
+        displayManagementService.RestartDisplay(display);
+      }
+      catch (Exception ex)
+      {
+        return InternalServerError(ex);
+      }
+
+      return Ok();
+    }
+
+    [Route("{name}/stop")]
+    [HttpGet]
+    [ResponseType(typeof(void))]
+    public async Task<IHttpActionResult> StopDisplay(string name)
+    {
+      var display = await context.Displays.FirstAsync(
+        d => d.Name == name);
+
+      if (display == null)
+        return NotFound();
+
+      try
+      {
+        displayManagementService.StopDisplay(display);
+      }
+      catch (Exception ex)
+      {
+        return InternalServerError(ex);
+      }
+
+      return Ok();
+    }
+
     [Route("{name}/ScreenshotUrl")]
     [HttpGet]
     [ResponseType(typeof(string))]
