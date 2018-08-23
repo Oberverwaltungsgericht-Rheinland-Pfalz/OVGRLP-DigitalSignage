@@ -17,7 +17,7 @@ import { DisplayService, TerminService } from "@ds-suite/core";
 export class DisplayComponent implements OnInit, OnDestroy, AfterViewInit {
   private updateTimer: any;
   private updateSub: Subscription;
-  private compact: boolean = true;
+  compact: boolean = true;
   display: Display;
   termine: Termin[] = [];
 
