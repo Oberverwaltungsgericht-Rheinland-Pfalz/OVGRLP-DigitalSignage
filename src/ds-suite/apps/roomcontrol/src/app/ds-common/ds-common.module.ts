@@ -1,7 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { ConfigService } from '@ds-suite/core';
-import { YesNoBooleanPipe } from '@ds-suite/core';
 import { JsonConfigService } from '@ds-suite/backend';
 
 export function ConfigLoader(configService: JsonConfigService) {
@@ -10,12 +9,8 @@ export function ConfigLoader(configService: JsonConfigService) {
 
 @NgModule({
   imports: [],
-  exports: [
-    YesNoBooleanPipe
-  ],
-  declarations: [
-    YesNoBooleanPipe
-  ],
+  exports: [],
+  declarations: [],
   providers: [
     JsonConfigService,
     {

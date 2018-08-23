@@ -20,6 +20,7 @@ import {DisplayDialogComponent } from './display-dialog/display-dialog.component
 import { TermineComponent } from './termine/termine.component';
 
 import { DsCommonModule } from './ds-common/ds-common.module';
+import { CoreModule } from '@ds-suite/core';
 
 registerLocaleData(localeDe);
 
@@ -42,7 +43,8 @@ const routes: Routes = [
     }),
     ClarityModule,
     BackendModule,
-    DsCommonModule
+    DsCommonModule,
+    CoreModule
   ],
   providers: [
     {
