@@ -1,6 +1,5 @@
 {
   "name": "ds-suite",
-  "version": "1.0.1-beta.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
