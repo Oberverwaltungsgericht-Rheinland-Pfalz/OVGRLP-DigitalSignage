@@ -46,16 +46,16 @@ export class DisplayControlComponent implements OnInit, AfterViewInit {
 
   updateScreenshot() {
     if (this.status === DisplayStatus.Offline)
-      this.screenshot = '/assets/img/offline.jpg'
+      this.screenshot = 'assets/img/offline.jpg'
     else if (this.status === DisplayStatus.Online)
       this.displayService.getScreenshotUrl(this._display)
         .subscribe(response => this.screenshot = response,
           err => {
             console.error("ScreenshotUrl konnte nicht abgerufen werden: ",err);
-            this.screenshot = '/assets/img/unknown.jpg';
+            this.screenshot = 'assets/img/unknown.jpg';
           });
     else
-      this.screenshot = '/assets/img/unknown.jpg';
+      this.screenshot = 'assets/img/unknown.jpg';
   }
 
   ngOnInit() {
@@ -125,7 +125,7 @@ export class DisplayControlComponent implements OnInit, AfterViewInit {
   }
 
   updateClick() {
-    this.screenshot = '/assets/img/unknown.jpg';
+    this.screenshot = 'assets/img/unknown.jpg';
     var foo = new Promise<void>(resolve => {
       setTimeout(resolve, 100);
     }).then(() => {
