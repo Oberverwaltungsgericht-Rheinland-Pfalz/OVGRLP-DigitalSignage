@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { DsCommonModule } from '../../ds-common/ds-common.module';
+import { CoreModule } from '@ds-suite/core';
 
 import { NjzKoFoyerComponent } from './njz-ko-foyer/njz-ko-foyer.component';
 import { NjzKoSaalComponent } from './njz-ko-saal/njz-ko-saal.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FlexLayoutModule,
-    DsCommonModule
+    DsCommonModule,
+    CoreModule
   ],
   declarations: [
     NjzKoFoyerComponent,

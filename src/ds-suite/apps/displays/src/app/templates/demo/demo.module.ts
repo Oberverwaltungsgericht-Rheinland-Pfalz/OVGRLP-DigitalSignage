@@ -13,6 +13,7 @@ import { NjzKhSaalWeitereRechtsComponent } from './njz-kh-saal-weitere-rechts/nj
 import { NjzKhSaalWeitereUntenComponent } from './njz-kh-saal-weitere-unten/njz-kh-saal-weitere-unten.component';
 
 import { DsCommonModule } from '../../ds-common/ds-common.module';
+import { CoreModule } from '@ds-suite/core';
 
 const routes: Routes = [
   { path: "demo-foyer-variante-a", component: DemoFoyerVarAComponent },
@@ -30,7 +31,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FlexLayoutModule,
-    DsCommonModule
+    DsCommonModule,
+    CoreModule
   ],
   declarations: [
     DemoFoyerVarAComponent,

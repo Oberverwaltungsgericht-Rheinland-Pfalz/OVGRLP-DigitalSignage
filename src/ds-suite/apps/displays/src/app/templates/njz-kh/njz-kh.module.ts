@@ -9,6 +9,7 @@ import { NjzKhSaalComponent } from './njz-kh-saal/njz-kh-saal.component';
 import { NjzKhSaalScrollerComponent } from './njz-kh-saal-scroller/njz-kh-saal-scroller.component';
 
 import { DsCommonModule } from '../../ds-common/ds-common.module';
+import { CoreModule } from '@ds-suite/core';
 
 const routes: Routes = [
   { path: "foyer", component: NjzKhFoyerComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FlexLayoutModule,
-    DsCommonModule
+    DsCommonModule,
+    CoreModule
   ],
   declarations: [
     NjzKhFoyerComponent,
