@@ -49,11 +49,11 @@ export class SoapDisplayService implements DisplayService {
   }
 
   stopDisplay(display: Display): Observable<void> {
-    return this.http.get<void>(`${display.controlUrl}/api/shutdown`);    //!\TODO: besser via Webservice (zentral) zur Verfügung stellen
+    return this.http.get<void>(`${this.config.webApiUrl}/settings/displays/${display.name}/stop`);
   }
 
   restartDisplay(display: Display): Observable<void> {
-    return this.http.get<void>(`${display.controlUrl}/api/restart`);    //!\TODO: besser via Webservice (zentral) zur Verfügung stellen
+    return this.http.get<void>(`${this.config.webApiUrl}/settings/displays/${display.name}/restart`);
   }
 
 }
