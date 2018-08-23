@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { DisplayTemplateComponent } from './display-template/display-template.component';
 import { AppRoutingModule, routingComponents } from './app.routing';
 import { DsCommonModule } from './ds-common/ds-common.module';
+import { CoreModule } from '@ds-suite/core';
 
 registerLocaleData(localeDe);
 
@@ -29,7 +30,8 @@ registerLocaleData(localeDe);
     NxModule.forRoot(),
     AppRoutingModule,
     BackendModule,
-    DsCommonModule
+    DsCommonModule,
+    CoreModule
   ],
   providers: [
     {

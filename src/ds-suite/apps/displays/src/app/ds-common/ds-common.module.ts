@@ -1,5 +1,4 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { SafeHtmlPipe } from './safe-html.pipe';
 
 import { ConfigService } from '@ds-suite/core';
 import { JsonConfigService } from '@ds-suite/backend';
@@ -10,12 +9,8 @@ export function ConfigLoader(configService: JsonConfigService) {
 
 @NgModule({
   imports: [],
-  exports: [
-    SafeHtmlPipe
-  ],
-  declarations: [
-    SafeHtmlPipe
-  ],
+  exports: [],
+  declarations: [],
   providers: [
     JsonConfigService,
     {
