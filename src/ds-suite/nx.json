@@ -15,6 +15,9 @@
     },
     "backend": {
       "tags": []
+    },
+    "dsmanager": {
+      "tags": []
     }
   }
 }
