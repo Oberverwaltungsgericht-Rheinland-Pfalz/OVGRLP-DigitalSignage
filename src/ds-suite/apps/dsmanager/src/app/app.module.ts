@@ -13,6 +13,7 @@ import { BackendModule } from "@ds-suite/backend";
 import { CoreModule } from '@ds-suite/core';
 
 import { AppComponent } from './app.component';
+import { DsCommonModule } from './ds-common/ds-common.module';
 
 
 registerLocaleData(localeDe);
@@ -32,6 +33,7 @@ const routes: Routes = [
     }),
     ClarityModule,
     BackendModule,
+    DsCommonModule,
     CoreModule
   ],
   providers: [
