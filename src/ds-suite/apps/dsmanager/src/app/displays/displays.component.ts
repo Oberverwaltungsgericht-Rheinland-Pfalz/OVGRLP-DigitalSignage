@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Display, DisplayStatus } from '@ds-suite/model';
+import { DisplayDto, DisplayStatus } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
 
 @Component({
@@ -9,54 +9,48 @@ import { DisplayService } from '@ds-suite/core';
   styleUrls: ['./displays.component.css']
 })
 export class DisplaysComponent implements OnInit {
-  displays: Display[];
+  displayDto: DisplayDto[];
   displayGroups: string[];
 
   constructor(private displayService: DisplayService) { }
 
   getDisplays() {
-    this.displayService.getDisplays()
+    this.displayService.getDisplaysDto()
       .subscribe(
         displays => {
-          this.displays = displays.sort((d1, d2) => d1.title > d2.title ? 1 : -1)
-          this.DetermineDisplayGroups(this.displays);
+          this.displayDto = displays.sort((d1, d2) => d1.title > d2.title ? 1 : -1)
+          this.DetermineDisplayGroups(this.displayDto);
         }
       );
   }
 
-  GetDisplaysFromGroup(group: string): Display[]{
-    console.log ("GetDisplaysFromGroup:",group)
-    return this.displays.filter(t => t.group==group);
+  GetDisplaysFromGroup(group: string): DisplayDto[] {
+    console.log("GetDisplaysFromGroup:", group)
+    return this.displayDto.filter(t => t.group == group);
   }
 
-  DetermineDisplayGroups(displays: Display[]): void {
-    this.displayGroups=Array.from(new Set(displays.map(t => t.group)));
+  DetermineDisplayGroups(displays: DisplayDto[]): void {
+    this.displayGroups = Array.from(new Set(displays.map(t => t.group)));
   }
 
-  DisplayStatusToString(stat: DisplayStatus) : string {
-    var rval : string ="";
+  DisplayStatusToString(stat: DisplayStatus): string {
+    var rval: string = "";
     switch (stat) {
       case DisplayStatus.Unknown:
-        rval="unbekannt"
+        rval = "unbekannt"
         break;
       case DisplayStatus.Active:
-        rval="aktiv"
+        rval = "aktiv"
         break;
       case DisplayStatus.Online:
-        rval="angeschaltet"
+        rval = "angeschaltet"
         break;
       case DisplayStatus.Offline:
-        rval="ausgeschaltet"
+        rval = "ausgeschaltet"
         break;
-      }
-      return rval;
+    }
+    return rval;
   }
-
-  async getDisplayStatus(display: Display) :DisplayStatus {
-    return await this.displayService.getDisplayStatus(display)
-      .subscribe(response => {return response as DisplayStatus;});
-  }
-  
 
   ngOnInit() {
     this.getDisplays();
