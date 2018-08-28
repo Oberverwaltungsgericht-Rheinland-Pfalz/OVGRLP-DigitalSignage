@@ -13,7 +13,8 @@ namespace DigitalSignage.WebApi
       formatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
       // enable cross-origin resource sharing
-      var cors = new EnableCorsAttribute(origins: "http://localhost:4202", headers: "*", methods: "*");
+      //var cors = new EnableCorsAttribute(origins: "http://localhost:4202", headers: "*", methods: "*");
+      var cors = new EnableCorsAttribute(origins: "*", headers: "*", methods: "*");
       config.EnableCors(cors);
 
       config.MapHttpAttributeRoutes();
