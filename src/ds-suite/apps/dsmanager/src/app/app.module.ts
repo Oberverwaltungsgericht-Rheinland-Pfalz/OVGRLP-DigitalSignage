@@ -1,6 +1,8 @@
 import { NgModule,LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Routes, RouterModule } from "@angular/router";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ClarityModule } from "@clr/angular";
 
@@ -14,18 +16,21 @@ import { CoreModule } from '@ds-suite/core';
 
 import { AppComponent } from './app.component';
 import { DsCommonModule } from './ds-common/ds-common.module';
+import { DisplaysComponent } from './displays/displays.component';
 
 
 registerLocaleData(localeDe);
 
 const routes: Routes = [
-  /*{ path: "", component: HomeComponent }*/
+  { path: "", component: DisplaysComponent }
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DisplaysComponent],
   imports: [
     BrowserModule, 
+    BrowserAnimationsModule,
+    FlexLayoutModule,
     NxModule.forRoot(),
     RouterModule.forRoot(routes, {
       useHash: true,
