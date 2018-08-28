@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { DisplayService, ConfigService } from '@ds-suite/core';
-import { Display, DisplayStatus, AppConfig, Note } from '@ds-suite/model';
+import { Display, DisplayDto, DisplayStatus, AppConfig, Note } from '@ds-suite/model';
 
 @Injectable()
 export class SoapDisplayService implements DisplayService {
@@ -18,6 +18,10 @@ export class SoapDisplayService implements DisplayService {
 
   getDisplays(): Observable<Display[]> {
     return this.http.get<Display[]>(`${this.config.webApiUrl}/settings/displays`);
+  }
+
+  getDisplaysDto(): Observable<DisplayDto[]> {
+    return this.http.get<DisplayDto[]>(`${this.config.webApiUrl}/settings/displays/DisplaysEx`);
   }
 
   getDisplay(name: string): Observable<Display> {
