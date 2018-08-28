@@ -1,4 +1,5 @@
-﻿using DigitalSignage.Data;
+﻿using AutoMapper;
+using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.Infrastructure.Models.Settings;
 using DigitalSignage.WebApi.Controllers.EurekaFach;
@@ -26,6 +27,23 @@ namespace DigitalSignage.WebApi.Controllers.Settings
     public IEnumerable<Display> GetAllDisplays()
     {
       return context.Displays.Where(d => d.Dummy == false);
+    }
+
+    [Route("DisplaysEx")]
+    [HttpGet]
+    public IEnumerable<DisplayDto> GetAllDisplaysEx()
+    {
+      List<Display> displays = context.Displays.Where(d => d.Dummy == false).ToList();
+      List<DisplayDto> displaysEx = new List<DisplayDto>();
+      foreach (Display disp in displays)
+      {
+        DisplayDto dispEx = Mapper.Map<DisplayDto>(disp);
+        dispEx.Status = displayManagementService.GetDisplayStatus(disp);
+        dispEx.ScreenshotUrl = displayManagementService.GetDisplayScreenshotUrl(disp);
+        displaysEx.Add(dispEx);
+      }
+
+      return displaysEx;
     }
 
     [Route("{name}", Name = "GetDisplay")]
@@ -302,5 +320,11 @@ namespace DigitalSignage.WebApi.Controllers.Settings
 
       base.Dispose(disposing);
     }
+  }
+
+  public class DisplayDto : Display
+  {
+    public DisplayStatus Status;
+    public string ScreenshotUrl;
   }
 }

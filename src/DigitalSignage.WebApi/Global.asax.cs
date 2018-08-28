@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Web.Http;
 using System.Web.Mvc;
 
@@ -10,6 +11,11 @@ namespace DigitalSignage.WebApi
     {
       AreaRegistration.RegisterAllAreas();
       GlobalConfiguration.Configure(WebApiConfig.Register);
+
+      Mapper.Initialize(cfg =>
+      {
+        cfg.CreateMap<Infrastructure.Models.Settings.Display, Controllers.Settings.DisplayDto>();
+      });
     }
   }
 }
