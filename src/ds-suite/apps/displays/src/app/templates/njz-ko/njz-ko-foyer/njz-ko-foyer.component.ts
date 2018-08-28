@@ -4,6 +4,7 @@ import { trigger, state, style, animate, transition, stagger, query, keyframes }
 import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
 
 import { Termin } from '@ds-suite/model';
+import { TerminFunctions } from '../shared/termin.functions';
 
 @Component({
   selector: 'app-njz-foyer',
@@ -24,6 +25,8 @@ import { Termin } from '@ds-suite/model';
   ]
 })
 export class NjzKoFoyerComponent extends DisplayTemplateComponent {
+  termFunc = TerminFunctions;
+
   isFlughafenanzeige(): boolean {
     return this.display.title === 'Neues Justizzentrum Koblenz';
   }
@@ -41,16 +44,6 @@ export class NjzKoFoyerComponent extends DisplayTemplateComponent {
 
   public KumulierteTitel(termine: Termin[]): string[] {
     return Array.from(new Set(termine.map(t => t.gericht)));
-  }
-
-  public IstPersonalvertretung(termin: Termin) {
-    return termin.gericht === "Oberverwaltungsgericht Rheinland-Pfalz" &&
-      (termin.kammer == 4 || termin.kammer == 5);
-  }
-
-  public IstBeschlussverfahren(termin: Termin) {
-    return termin.gericht === "Arbeitsgericht Koblenz" &&
-      termin.az.includes(' BV ');
   }
 }
 
