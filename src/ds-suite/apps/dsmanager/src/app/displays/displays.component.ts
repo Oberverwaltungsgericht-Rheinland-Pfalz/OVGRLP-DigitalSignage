@@ -25,7 +25,6 @@ export class DisplaysComponent implements OnInit {
   }
 
   GetDisplaysFromGroup(group: string): DisplayDto[] {
-    console.log("GetDisplaysFromGroup:", group)
     return this.displayDto.filter(t => t.group == group);
   }
 
