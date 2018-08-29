@@ -5,9 +5,9 @@
   <div class="card-img"  id="ScreenshotImage" (window:resize)="onResize($event)" *ngIf="screenshot">
     <img [src]="screenshot" (click)="modal.open(screenshot)" class="img-middle-proportion" [style.height.px]="ImageHeight" >
   </div>
-  <div class="card-block" [ngClass]="{'ds-bg-yellow':(status < 0), 'ds-bg-red': (status === 0), 'ds-bg-green': (status >= 1)}">
+  <div class="card-block">
     <div class="card-text">
-      Status: {{DisplayStatusToString(status)}}
+      <display-status [status]="status" [description]="'Status: '"></display-status>
     </div>
   </div>
   <div class="card-footer">

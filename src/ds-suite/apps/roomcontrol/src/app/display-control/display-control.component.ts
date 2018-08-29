@@ -73,25 +73,6 @@ export class DisplayControlComponent implements OnInit, AfterViewInit {
     
   }
 
-  DisplayStatusToString(stat: DisplayStatus) : string {
-    var rval : string ="";
-    switch (stat) {
-      case DisplayStatus.Unknown:
-        rval="unbekannt"
-        break;
-      case DisplayStatus.Active:
-        rval="aktiv"
-        break;
-      case DisplayStatus.Online:
-        rval="angeschaltet"
-        break;
-      case DisplayStatus.Offline:
-        rval="ausgeschaltet"
-        break;
-      }
-      return rval;
-  }
-
   private onResize() {
     if(this.sizeToScreenHeigt) {
       var ImageFramename : string ="ScreenshotImage";

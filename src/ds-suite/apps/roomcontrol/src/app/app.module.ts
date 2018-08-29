@@ -9,7 +9,9 @@ import localeDe from "@angular/common/locales/de";
 import { NxModule } from "@nrwl/nx";
 import { ClarityModule } from "@clr/angular";
 
+import { CoreModule } from '@ds-suite/core';
 import { BackendModule } from "@ds-suite/backend";
+import { DisplayStatusComponent } from "@ds-suite/backend";
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
@@ -20,7 +22,7 @@ import {DisplayDialogComponent } from './display-dialog/display-dialog.component
 import { TermineComponent } from './termine/termine.component';
 
 import { DsCommonModule } from './ds-common/ds-common.module';
-import { CoreModule } from '@ds-suite/core';
+
 
 registerLocaleData(localeDe);
 
@@ -52,7 +54,7 @@ const routes: Routes = [
       useValue: "de"
     }
   ],
-  declarations: [AppComponent, HomeComponent, DisplayComponent, DisplayControlComponent, TermineComponent,DisplayDialogComponent],
+  declarations: [AppComponent, HomeComponent, DisplayComponent, DisplayControlComponent, TermineComponent, DisplayDialogComponent, DisplayStatusComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
