@@ -12,13 +12,13 @@ import { ClarityModule } from "@clr/angular";
 import { CoreModule } from '@ds-suite/core';
 import { BackendModule } from "@ds-suite/backend";
 import { DisplayStatusComponent } from "@ds-suite/backend";
+import { DisplayDialogComponent } from '@ds-suite/backend';
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 
 import { DisplayComponent } from './display/display.component';
 import { DisplayControlComponent } from './display-control/display-control.component';
-import {DisplayDialogComponent } from './display-dialog/display-dialog.component';
 import { TermineComponent } from './termine/termine.component';
 
 import { DsCommonModule } from './ds-common/ds-common.module';
