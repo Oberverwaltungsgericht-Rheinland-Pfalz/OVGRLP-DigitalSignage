@@ -11,6 +11,8 @@ export abstract class DisplayService {
 
   abstract getDisplay(name: string): Observable<Display>;
 
+  abstract getDisplayDto(name: string): Observable<DisplayDto>;
+
   abstract getDisplayNotes(name: string): Observable<Note[]>;
 
   abstract getDisplayStatus(display: Display): Observable<DisplayStatus>;

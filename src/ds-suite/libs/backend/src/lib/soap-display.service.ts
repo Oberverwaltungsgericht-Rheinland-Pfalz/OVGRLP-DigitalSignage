@@ -35,6 +35,14 @@ export class SoapDisplayService implements DisplayService {
     });
   }
 
+  getDisplayDto(name: string): Observable<DisplayDto> {
+    return this.http.get<DisplayDto>(`${this.config.webApiUrl}/settings/displays/${name}/DisplayEx`).map(resp => {
+      //HACK: das geht sicherlich besser
+      if (resp instanceof Array) {return resp[0];} 
+      else { return resp; }
+    });
+  }
+
   getDisplayNotes(name: string): Observable<Note[]> {
     return this.http.get<Note[]>(`${this.config.webApiUrl}/settings/displays/${name}/activenotes`);
   }
