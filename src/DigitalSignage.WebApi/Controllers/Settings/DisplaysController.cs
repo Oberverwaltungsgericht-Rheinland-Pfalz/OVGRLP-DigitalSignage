@@ -69,6 +69,22 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       return Ok(displayDto);
     }
 
+    [Route("{name}/DisplayEx", Name = "GetDisplayEx")]
+    [HttpGet]
+    public async Task<IHttpActionResult> GetDisplayEx(string name)
+    {
+      var display = await context.Displays
+        .FirstAsync(
+          d => d.Name == name);
+
+      if (display == null)
+        return NotFound();
+
+      DisplayDto displayDto = DisplayDto.FromDisplay(display, displayManagementService);
+
+      return Ok(displayDto);
+    }
+
     [Route("{name}/termine")]
     [HttpGet]
     [ResponseType(typeof(IEnumerable<VerfahrenDto>))]
