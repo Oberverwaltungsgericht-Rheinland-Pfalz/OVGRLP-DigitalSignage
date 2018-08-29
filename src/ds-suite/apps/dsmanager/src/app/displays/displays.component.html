@@ -3,7 +3,7 @@
         <clr-stack-label>{{group}}</clr-stack-label>
         <clr-stack-block *ngFor="let display of GetDisplaysFromGroup(group)">
             <clr-stack-label style="max-width:20%;" class="nameColumn">
-                <button class="btn btn-sm btn-link" (click)="updateClick()"><clr-icon shape="refresh"></clr-icon></button>
+                <button class="btn btn-sm btn-link" (click)="updateDisplayClick(display)"><clr-icon shape="refresh"></clr-icon></button>
                 {{display.name}}
             </clr-stack-label>
             <clr-stack-content>
@@ -12,11 +12,11 @@
                         <display-status [status]="display.status"></display-status>
                     </div>
                     <div fxFlex="30%" class="actionColumn">
-                        <button class="btn btn-sm btn-link" *ngIf="(display.status < 1)" (click)="startClick()"><clr-icon
+                        <button class="btn btn-sm btn-link" *ngIf="(display.status < 1)" (click)="startDisplayClick()"><clr-icon
                                 shape="play"></clr-icon> Anschalten</button>
-                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1)" (click)="shutdownClick()"><clr-icon
+                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1)" (click)="stopDisplayClick()"><clr-icon
                                 shape="power"></clr-icon> Ausschalten</button>
-                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1)" (click)="restartClick()"><clr-icon
+                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1)" (click)="restartDisplayClick()"><clr-icon
                                 shape="replay-all"></clr-icon> Neu starten</button>
                     </div>
                     <div fxFlex="20%" class="screenshotColumn">

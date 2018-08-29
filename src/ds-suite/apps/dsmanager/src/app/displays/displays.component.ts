@@ -38,4 +38,42 @@ export class DisplaysComponent implements OnInit {
   ngOnInit() {
     this.getDisplays();
   }
+
+  updateDisplayClick(display: DisplayDto){
+    this.displayService.getDisplayDto(display.name)
+      .subscribe(
+        disp => {
+          var index=this.displayDto.findIndex(t => t.name == display.name)
+          this.displayDto[index]=disp
+          console.log("updateDisplayClick:",index)
+        },
+        err => {
+          console.error("Display " + display.name + " konnte nicht gestartet werden: ",err);
+        });
+  }
+
+  startDisplayClick(display: DisplayDto) {
+    this.displayService.startDisplay(display)
+      .subscribe(response => { },
+        err => {
+          console.error("Display " + display.name + " konnte nicht gestartet werden: ",err);
+        });
+  }
+
+  restartDisplayClick(display: DisplayDto) {
+    this.displayService.restartDisplay(display)
+      .subscribe(response => { },
+        err => {
+          console.error("Display " + display.name + " konnte nicht neu gestartet werden: ",err);
+        });
+  }
+
+  stopDisplayClick(display: DisplayDto) {
+    this.displayService.stopDisplay(display)
+      .subscribe(response => { },
+        err => {
+          console.error("Display " + display.name + " konnte nicht heruntergefahren werden: ",err);
+        });
+  }
+
 }
