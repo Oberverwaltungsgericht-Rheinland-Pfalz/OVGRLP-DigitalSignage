@@ -9,7 +9,7 @@
             <clr-stack-content>
                 <div fxLayout="row">
                     <div fxFlex="20%" class="statusColumn">
-                        {{DisplayStatusToString(display.status)}}
+                        <display-status [status]="display.status"></display-status>
                     </div>
                     <div fxFlex="30%" class="actionColumn">
                         <button class="btn btn-sm btn-link" *ngIf="(display.status < 1)" (click)="startClick()"><clr-icon

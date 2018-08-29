@@ -32,25 +32,6 @@ export class DisplaysComponent implements OnInit {
     this.displayGroups = Array.from(new Set(displays.map(t => t.group)));
   }
 
-  DisplayStatusToString(stat: DisplayStatus): string {
-    var rval: string = "";
-    switch (stat) {
-      case DisplayStatus.Unknown:
-        rval = "unbekannt"
-        break;
-      case DisplayStatus.Active:
-        rval = "aktiv"
-        break;
-      case DisplayStatus.Online:
-        rval = "angeschaltet"
-        break;
-      case DisplayStatus.Offline:
-        rval = "ausgeschaltet"
-        break;
-    }
-    return rval;
-  }
-
   ngOnInit() {
     this.getDisplays();
   }
