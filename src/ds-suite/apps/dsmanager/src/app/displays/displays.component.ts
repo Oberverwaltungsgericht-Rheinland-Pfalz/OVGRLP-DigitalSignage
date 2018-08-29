@@ -39,6 +39,13 @@ export class DisplaysComponent implements OnInit {
     this.getDisplays();
   }
 
+  updateGroupClick(group: string){
+    var disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
+    disp.forEach(display => {
+      this. updateDisplayClick(display);
+    });
+  }
+
   updateDisplayClick(display: DisplayDto){
     this.displayService.getDisplayDto(display.name)
       .subscribe(
@@ -52,6 +59,13 @@ export class DisplaysComponent implements OnInit {
         });
   }
 
+  startGroupClick(group: string){
+    var disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
+    disp.forEach(display => {
+      this. startDisplayClick(display);
+    });
+  }
+
   startDisplayClick(display: DisplayDto) {
     this.displayService.startDisplay(display)
       .subscribe(response => { },
@@ -60,12 +74,26 @@ export class DisplaysComponent implements OnInit {
         });
   }
 
+  restartGroupClick(group: string){
+    var disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
+    disp.forEach(display => {
+      this. restartDisplayClick(display);
+    });
+  }
+
   restartDisplayClick(display: DisplayDto) {
     this.displayService.restartDisplay(display)
       .subscribe(response => { },
         err => {
           console.error("Display " + display.name + " konnte nicht neu gestartet werden: ",err);
         });
+  }
+
+  stopGroupClick(group: string){
+    var disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
+    disp.forEach(display => {
+      this. stopDisplayClick(display);
+    });
   }
 
   stopDisplayClick(display: DisplayDto) {

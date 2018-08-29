@@ -1,6 +1,38 @@
 <clr-stack-view>
     <clr-stack-block [clrSbExpanded]="true" *ngFor="let group of displayGroups">
         <clr-stack-label>{{group}}</clr-stack-label>
+        <clr-stack-content>
+            <div fxLayout="row">
+                <div fxFlex="78%">
+                </div>
+                <div fxFlex="22%">
+                    <clr-tooltip>
+                        <button class="btn btn-sm btn-link btn-small" (click)="updateGroupClick(group)" clrTooltipTrigger> 
+                            <clr-icon shape="refresh"></clr-icon>
+                            <clr-tooltip-content clrPosition="bottom-left" clrSize="lg" *clrIfOpen>Gruppe '{{group}}' aktualisieren</clr-tooltip-content>
+                        </button>
+                    </clr-tooltip>
+                    <clr-tooltip>
+                        <button class="btn btn-sm btn-link btn-small" (click)="startGroupClick(group)" clrTooltipTrigger> 
+                            <clr-icon shape="play"></clr-icon>
+                            <clr-tooltip-content clrPosition="bottom-left" clrSize="lg" *clrIfOpen>Gruppe '{{group}}' starten</clr-tooltip-content>
+                        </button>
+                    </clr-tooltip>
+                    <clr-tooltip>
+                        <button class="btn btn-sm btn-link btn-small" (click)="restartGroupClick(group)" clrTooltipTrigger> 
+                            <clr-icon shape="replay-all"></clr-icon>
+                            <clr-tooltip-content clrPosition="bottom-left" clrSize="lg" *clrIfOpen>Gruppe '{{group}}' neu starten</clr-tooltip-content>
+                        </button>
+                    </clr-tooltip>
+                    <clr-tooltip>
+                        <button class="btn btn-sm btn-link btn-small" (click)="stopGroupClick(group)" clrTooltipTrigger> 
+                            <clr-icon shape="power"></clr-icon>
+                            <clr-tooltip-content clrPosition="bottom-left" clrSize="lg" *clrIfOpen>Gruppe '{{group}}' herunterfahren</clr-tooltip-content>
+                        </button>
+                    </clr-tooltip>
+                </div>
+            </div>
+        </clr-stack-content>
         <clr-stack-block *ngFor="let display of GetDisplaysFromGroup(group)">
             <clr-stack-label style="max-width:20%;" class="nameColumn">
                 <button class="btn btn-sm btn-link" (click)="updateDisplayClick(display)"><clr-icon shape="refresh"></clr-icon></button>

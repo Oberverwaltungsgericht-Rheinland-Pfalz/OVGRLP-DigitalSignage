@@ -25,3 +25,8 @@
     margin-right: auto;
     display: block;
 }
+
+.btn-small {
+    padding: 0 0;
+    min-width: 1.5rem;
+}
