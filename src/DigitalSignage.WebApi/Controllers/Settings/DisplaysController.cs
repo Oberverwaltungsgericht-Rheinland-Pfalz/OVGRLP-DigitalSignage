@@ -37,10 +37,7 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       List<DisplayDto> displaysEx = new List<DisplayDto>();
       foreach (Display disp in displays)
       {
-        DisplayDto dispEx = Mapper.Map<DisplayDto>(disp);
-        dispEx.Status = displayManagementService.GetDisplayStatus(disp);
-        dispEx.ScreenshotUrl = displayManagementService.GetDisplayScreenshotUrl(disp);
-        displaysEx.Add(dispEx);
+        displaysEx.Add(DisplayDto.FromDisplay(disp, displayManagementService));
       }
 
       return displaysEx;
@@ -326,5 +323,19 @@ namespace DigitalSignage.WebApi.Controllers.Settings
   {
     public DisplayStatus Status;
     public string ScreenshotUrl;
+
+    public static DisplayDto FromDisplay(Display display)
+    {
+      var displayManagementService = new DisplayManagementService();
+      return FromDisplay(display, displayManagementService);
+    }
+
+    public static DisplayDto FromDisplay(Display display, DisplayManagementService displayManagementService)
+    {
+      DisplayDto dispEx = Mapper.Map<DisplayDto>(display);
+      dispEx.Status = displayManagementService.GetDisplayStatus(display);
+      dispEx.ScreenshotUrl = displayManagementService.GetDisplayScreenshotUrl(display);
+      return dispEx;
+    }
   }
 }
