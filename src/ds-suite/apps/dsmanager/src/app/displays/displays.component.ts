@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { DisplayDto, DisplayStatus } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
+import { DisplayDialogComponent } from '@ds-suite/backend';
 
 @Component({
   selector: 'displays',
@@ -11,6 +12,8 @@ import { DisplayService } from '@ds-suite/core';
 export class DisplaysComponent implements OnInit {
   displayDto: DisplayDto[];
   displayGroups: string[];
+  
+  @ViewChild(DisplayDialogComponent) modal: DisplayDialogComponent;
 
   constructor(private displayService: DisplayService) { }
 

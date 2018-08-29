@@ -14,6 +14,7 @@ import { NxModule } from '@nrwl/nx';
 import { CoreModule } from '@ds-suite/core';
 import { BackendModule } from "@ds-suite/backend";
 import { DisplayStatusComponent } from "@ds-suite/backend";
+import { DisplayDialogComponent } from '@ds-suite/backend';
 
 import { AppComponent } from './app.component';
 import { DsCommonModule } from './ds-common/ds-common.module';
@@ -27,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, DisplaysComponent, DisplayStatusComponent],
+  declarations: [AppComponent, DisplaysComponent, DisplayStatusComponent, DisplayDialogComponent],
   imports: [
     BrowserModule, 
     BrowserAnimationsModule,
