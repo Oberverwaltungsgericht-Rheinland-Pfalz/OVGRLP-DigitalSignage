@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core
 import { Display, DisplayStatus } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
 
-import { DisplayDialogComponent } from '@ds-suite/backend';
+import { DisplayDialogComponent } from '@ds-suite/ui';
 import {Resizer  } from '@ds-suite/core';
 import { HttpClient } from '@angular/common/http';
 

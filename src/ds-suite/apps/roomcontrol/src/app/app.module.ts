@@ -9,10 +9,9 @@ import localeDe from "@angular/common/locales/de";
 import { NxModule } from "@nrwl/nx";
 import { ClarityModule } from "@clr/angular";
 
-import { CoreModule } from '@ds-suite/core';
+import { CoreModule } from "@ds-suite/core";
 import { BackendModule } from "@ds-suite/backend";
-import { DisplayStatusComponent } from "@ds-suite/backend";
-import { DisplayDialogComponent } from '@ds-suite/backend';
+import { UiModule } from "@ds-suite/ui";
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
@@ -46,7 +45,8 @@ const routes: Routes = [
     ClarityModule,
     BackendModule,
     DsCommonModule,
-    CoreModule
+    CoreModule,
+    UiModule
   ],
   providers: [
     {
@@ -54,7 +54,7 @@ const routes: Routes = [
       useValue: "de"
     }
   ],
-  declarations: [AppComponent, HomeComponent, DisplayComponent, DisplayControlComponent, TermineComponent, DisplayDialogComponent, DisplayStatusComponent],
+  declarations: [AppComponent, HomeComponent, DisplayComponent, DisplayControlComponent, TermineComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
