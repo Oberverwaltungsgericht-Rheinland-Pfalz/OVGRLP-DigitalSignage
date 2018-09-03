@@ -27,6 +27,9 @@
       ],
       "@ds-suite/backend": [
         "libs/backend/src/index.ts"
+      ],
+      "@ds-suite/ui": [
+        "libs/ui/src/index.ts"
       ]
     }
   },

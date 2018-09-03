@@ -18,6 +18,9 @@
     },
     "dsmanager": {
       "tags": []
+    },
+    "ui": {
+      "tags": []
     }
   }
 }
