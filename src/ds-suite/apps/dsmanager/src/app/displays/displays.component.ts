@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { DisplayDto, DisplayStatus } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
-import { DisplayDialogComponent } from '@ds-suite/backend';
+import { DisplayDialogComponent } from '@ds-suite/ui';
 
 @Component({
   selector: 'displays',

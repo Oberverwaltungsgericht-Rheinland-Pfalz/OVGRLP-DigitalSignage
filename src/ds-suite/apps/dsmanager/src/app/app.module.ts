@@ -13,8 +13,7 @@ import { NxModule } from '@nrwl/nx';
 
 import { CoreModule } from '@ds-suite/core';
 import { BackendModule } from "@ds-suite/backend";
-import { DisplayStatusComponent } from "@ds-suite/backend";
-import { DisplayDialogComponent } from '@ds-suite/backend';
+import { UiModule } from '@ds-suite/ui';
 
 import { AppComponent } from './app.component';
 import { DsCommonModule } from './ds-common/ds-common.module';
@@ -28,7 +27,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, DisplaysComponent, DisplayStatusComponent, DisplayDialogComponent],
+  declarations: [AppComponent, DisplaysComponent],
   imports: [
     BrowserModule, 
     BrowserAnimationsModule,
@@ -41,7 +40,8 @@ const routes: Routes = [
     ClarityModule,
     BackendModule,
     DsCommonModule,
-    CoreModule
+    CoreModule,
+    UiModule
   ],
   providers: [
     {
