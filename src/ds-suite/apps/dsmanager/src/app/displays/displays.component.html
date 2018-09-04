@@ -1,4 +1,9 @@
-<clr-stack-view>
+<div *ngIf="isLoading" class="loading-spinner">
+    <div class="spinner"></div>
+    <div class="loading-spinner-desciption">loading</div>   
+</div>
+
+<clr-stack-view *ngIf="!isLoading">
     <clr-stack-block [clrSbExpanded]="true" *ngFor="let group of displayGroups">
         <clr-stack-label>{{group}}</clr-stack-label>
         <clr-stack-content>

@@ -12,7 +12,8 @@ import { DisplayDialogComponent } from '@ds-suite/ui';
 export class DisplaysComponent implements OnInit {
   displayDto: DisplayDto[];
   displayGroups: string[];
-  
+  public isLoading: boolean = false;
+
   @ViewChild(DisplayDialogComponent) modal: DisplayDialogComponent;
 
   constructor(private displayService: DisplayService) { }
@@ -23,8 +24,12 @@ export class DisplaysComponent implements OnInit {
         displays => {
           this.displayDto = displays.sort((d1, d2) => d1.title > d2.title ? 1 : -1)
           this.DetermineDisplayGroups(this.displayDto);
-        }
-      );
+          
+        },
+        err => {
+          console.error("Displays konnten nicht geladen werden: ",err);
+        },
+        ()=> this.isLoading = false);
   }
 
   GetDisplaysFromGroup(group: string): DisplayDto[] {
@@ -36,6 +41,7 @@ export class DisplaysComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.getDisplays();
   }
 
@@ -52,10 +58,9 @@ export class DisplaysComponent implements OnInit {
         disp => {
           var index=this.displayDto.findIndex(t => t.name == display.name)
           this.displayDto[index]=disp
-          console.log("updateDisplayClick:",index)
         },
         err => {
-          console.error("Display " + display.name + " konnte nicht gestartet werden: ",err);
+          console.error("Display " + display.name + " konnte nicht aktualisiert werden: ",err);
         });
   }
 

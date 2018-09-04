@@ -1,3 +1,15 @@
+.loading-spinner {
+    position: absolute; /* positionieren */
+    top: 50%; /* in die Mitte verschieben */
+    left: 50%;
+}
+
+.loading-spinner-desciption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .nameColumn {
     margin: .25rem 0;
 }
