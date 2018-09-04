@@ -24,7 +24,8 @@ import { TermineComponent } from './termine/termine.component';
 registerLocaleData(localeDe);
 
 const routes: Routes = [
-  { path: "", component: DisplaysComponent }
+  { path: "", component: DisplaysComponent },
+  { path: "termine", component: TermineComponent }
 ];
 
 @NgModule({
