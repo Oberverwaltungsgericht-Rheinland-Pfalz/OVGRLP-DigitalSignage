@@ -18,6 +18,7 @@ import { UiModule } from '@ds-suite/ui';
 import { AppComponent } from './app.component';
 import { DsCommonModule } from './ds-common/ds-common.module';
 import { DisplaysComponent } from './displays/displays.component';
+import { TermineComponent } from './termine/termine.component';
 
 
 registerLocaleData(localeDe);
@@ -27,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, DisplaysComponent],
+  declarations: [AppComponent, DisplaysComponent, TermineComponent],
   imports: [
     BrowserModule, 
     BrowserAnimationsModule,
