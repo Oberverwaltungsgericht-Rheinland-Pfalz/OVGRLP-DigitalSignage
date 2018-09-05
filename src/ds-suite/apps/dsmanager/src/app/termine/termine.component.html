@@ -1,91 +1,91 @@
 <div class="main-container">
     <div class="content-container">
-        <nav class="sidenav">
-            <section class="sidenav-content">
-                <!--Selektion nach Status-->
-                <section class="nav-group">
-                    <input id="tabStatus" type="checkbox">
-                    <label for="tabStatus">Status</label>
-                    <ul class="nav-list">
-                        <div *ngFor="let status of GetStatusValues(); let index = index;">
-                            <clr-checkbox
-                            [clrInline]="true"
-                            [name]="'sel_status_' + index"  
-                                    [id]="'sel_status_' + index"
-                                    [(clrChecked)]="selStatus[index]"
-                                    (change)="changeSelection()">
-                                    {{status}}
-                            </clr-checkbox>
-                        </div>
-                    </ul>
-                </section>
-                <!--Selektion nach Gericht-->
-                <section class="nav-group">
-                    <input id="tabGericht" type="checkbox">
-                    <label for="tabGericht">Gericht</label>
-                    <ul class="nav-list">
-                        <div *ngFor="let gericht of GetGerichtValues(); let index = index;">
-                            <clr-checkbox
-                            [clrInline]="true"
-                            [name]="'sel_gericht_' + index"  
-                                    [id]="'sel_gericht_' + index"
-                                    [(clrChecked)]="selGericht[index]"
-                                    (change)="changeSelection()">
-                                    {{gericht}}
-                            </clr-checkbox>
-                        </div>
-                    </ul>
-                </section>
-                <!--Selektion nach Saal-->
-                <section class="nav-group">
-                    <input id="tabSaal" type="checkbox">
-                    <label for="tabSaal">Saal</label>
-                    <ul class="nav-list">
-                        <div *ngFor="let saal of GetSaalValues(); let index = index;">
-                            <clr-checkbox
-                                [clrInline]="true"
-                                [name]="'sel_saal_' + index"  
-                                [id]="'sel_saal_' + index"
-                                [(clrChecked)]="selSaal[index]"
+    <nav class="sidenav">
+        <section class="sidenav-content">
+            <!--Selektion nach Status-->
+            <section class="nav-group">
+                <input id="tabStatus" type="checkbox">
+                <label for="tabStatus">Status</label>
+                <ul class="nav-list">
+                    <div *ngFor="let status of GetStatusValues(true); let index = index;">
+                        <clr-checkbox
+                        [clrInline]="true"
+                        [name]="'sel_status_' + index"  
+                                [id]="'sel_status_' + index"
+                                [(clrChecked)]="selStatus[index]"
                                 (change)="changeSelection()">
-                                {{saal}}
-                            </clr-checkbox>
-                        </div>
-                    </ul>
-                </section>
-
+                                {{status}}
+                        </clr-checkbox>
+                    </div>
+                </ul>
             </section>
-          </nav>  
-      <div class="content-area">
-        
-        <clr-datagrid #DataGridTermine  (window:resize)="onResize($event)" [clrDgLoading]="loadingTermine">
+            <!--Selektion nach Gericht-->
+            <section class="nav-group">
+                <input id="tabGericht" type="checkbox">
+                <label for="tabGericht">Gericht</label>
+                <ul class="nav-list">
+                    <div *ngFor="let gericht of GetGerichtValues(); let index = index;">
+                        <clr-checkbox
+                        [clrInline]="true"
+                        [name]="'sel_gericht_' + index"  
+                                [id]="'sel_gericht_' + index"
+                                [(clrChecked)]="selGericht[index]"
+                                (change)="changeSelection()">
+                                {{gericht}}
+                        </clr-checkbox>
+                    </div>
+                </ul>
+            </section>
+            <!--Selektion nach Saal-->
+            <section class="nav-group">
+                <input id="tabSaal" type="checkbox">
+                <label for="tabSaal">Saal</label>
+                <ul class="nav-list">
+                    <div *ngFor="let saal of GetSaalValues(); let index = index;">
+                        <clr-checkbox
+                            [clrInline]="true"
+                            [name]="'sel_saal_' + index"  
+                            [id]="'sel_saal_' + index"
+                            [(clrChecked)]="selSaal[index]"
+                            (change)="changeSelection()">
+                            {{saal}}
+                        </clr-checkbox>
+                    </div>
+                </ul>
+            </section>
 
-            <clr-dg-column class="ds-termin-column-uhrzeit">Uhrzeit</clr-dg-column>
-            <clr-dg-column class="ds-termin-column-gericht">Gericht</clr-dg-column>
-            <clr-dg-column class="ds-termin-column-saal">Saal</clr-dg-column>
-            <clr-dg-column class="ds-termin-column-az">Aktenzeichen</clr-dg-column>
-            <clr-dg-column class="ds-termin-column-partei">Aktivpartei</clr-dg-column>
-            <clr-dg-column class="ds-termin-column-partei">Passivpartei</clr-dg-column>
-            <clr-dg-column class="ds-termin-column-oeffentlich">Öffentlich</clr-dg-column>
-            <clr-dg-column class="ds-termin-column-status">Status</clr-dg-column>
-        
-            <clr-dg-placeholder>Zu dieser Selektion sind keine Termine vorhanden</clr-dg-placeholder>
-            <clr-dg-row *clrDgItems="let termin of filteredTermine; let i = index">
-              <clr-dg-cell class="ds-termin-column-uhrzeit">{{ termin.uhrzeitAktuell }}</clr-dg-cell>
-              <clr-dg-cell class="ds-termin-column-gericht">{{ termin.gericht }}</clr-dg-cell>
-              <clr-dg-cell class="ds-termin-column-saal">{{ termin.sitzungssaal }}</clr-dg-cell>
-              <clr-dg-cell class="ds-termin-column-az">{{ termin.az }}</clr-dg-cell>
-              <clr-dg-cell class="ds-termin-column-partei">{{ termin.parteienAktivKurz }}</clr-dg-cell>
-              <clr-dg-cell class="ds-termin-column-partei">{{ termin.parteienPassivKurz }}</clr-dg-cell>
-              <clr-dg-cell class="ds-termin-column-oeffentlich">
-                <div class="toggle-switch">
-                  <input [id]="'chk_oeff_' + i" type="checkbox" [checked]="termin.oeffentlich | yesnoBoolean" disabled>
-                  <label [for]="'chk_oeff_' + i"></label>
-                </div>
-              </clr-dg-cell>
-              <clr-dg-cell class="ds-termin-column-status">{{termin.status}}</clr-dg-cell>
-            </clr-dg-row>
-          </clr-datagrid>
+        </section>
+        </nav>  
+    <div class="content-area">
+    
+    <clr-datagrid #DataGridTermine  (window:resize)="onResize($event)" [clrDgLoading]="loadingTermine">
+
+        <clr-dg-column class="ds-termin-column-uhrzeit">Uhrzeit</clr-dg-column>
+        <clr-dg-column class="ds-termin-column-gericht">Gericht</clr-dg-column>
+        <clr-dg-column class="ds-termin-column-saal">Saal</clr-dg-column>
+        <clr-dg-column class="ds-termin-column-az">Aktenzeichen</clr-dg-column>
+        <clr-dg-column class="ds-termin-column-partei">Aktivpartei</clr-dg-column>
+        <clr-dg-column class="ds-termin-column-partei">Passivpartei</clr-dg-column>
+        <clr-dg-column class="ds-termin-column-oeffentlich">Öffentlich</clr-dg-column>
+        <clr-dg-column class="ds-termin-column-status">Status</clr-dg-column>
+    
+        <clr-dg-placeholder>Zu dieser Selektion sind keine Termine vorhanden</clr-dg-placeholder>
+        <clr-dg-row *clrDgItems="let termin of filteredTermine; let i = index">
+            <clr-dg-cell class="ds-termin-column-uhrzeit">{{ termin.uhrzeitAktuell }}</clr-dg-cell>
+            <clr-dg-cell class="ds-termin-column-gericht">{{ termin.gericht }}</clr-dg-cell>
+            <clr-dg-cell class="ds-termin-column-saal">{{ termin.sitzungssaal }}</clr-dg-cell>
+            <clr-dg-cell class="ds-termin-column-az">{{ termin.az }}</clr-dg-cell>
+            <clr-dg-cell class="ds-termin-column-partei">{{ termin.parteienAktivKurz }}</clr-dg-cell>
+            <clr-dg-cell class="ds-termin-column-partei">{{ termin.parteienPassivKurz }}</clr-dg-cell>
+            <clr-dg-cell class="ds-termin-column-oeffentlich">
+            <div class="toggle-switch">
+                <input [id]="'chk_oeff_' + i" type="checkbox" [checked]="termin.oeffentlich | yesnoBoolean" disabled>
+                <label [for]="'chk_oeff_' + i"></label>
+            </div>
+            </clr-dg-cell>
+            <clr-dg-cell class="ds-termin-column-status">{{termin.status}}</clr-dg-cell>
+        </clr-dg-row>
+        </clr-datagrid>
 
         
     </div>

@@ -38,7 +38,7 @@ export class TermineComponent implements OnInit {
     var selGericht: string[] = [];
     var selSaal: string[] = [];
 
-    var statusValues: string[] = Object.values(TerminStatus);
+    var statusValues: string[] = this.GetStatusValues();
     var gerichtValues: string[] = this.GetGerichtValues();
     var saalValues: string[] = this.GetSaalValues();
 
@@ -59,8 +59,6 @@ export class TermineComponent implements OnInit {
     }
     
     this.filteredTermine=this.termine.filter(t=> {
-      console.log("selStatus",selStatus)
-      console.log("t.status",t.status)
       if (selStatus.length>0 && selStatus.indexOf(t.status)<0)
         return false;
       if (selGericht.length>0 && selGericht.indexOf(t.gericht)<0)
@@ -72,8 +70,19 @@ export class TermineComponent implements OnInit {
 
   }
 
-  GetStatusValues() : Array<string> {
-    return Object.keys(TerminStatus)
+  GetStatusValues(forView:boolean=false) : Array<string> {
+    if (this.termine==undefined) return [];
+    var rval=Array.from(new Set(this.termine.map(t => t.status))).sort((d1, d2) => d1 > d2 ? 1 : -1);
+    
+    //für die Anzeige '' in 'offen' übersetzen
+    if (forView) {
+      var indOffen=rval.indexOf(TerminStatus.offen);
+      if (indOffen>-1) {
+        rval[indOffen]="Offen";
+      }
+    }
+    
+    return rval;
   }
 
   GetGerichtValues() : Array<string> {
