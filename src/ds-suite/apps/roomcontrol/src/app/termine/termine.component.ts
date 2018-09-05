@@ -6,6 +6,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/timer';
 
 import { Termin } from '@ds-suite/model';
+import { TerminStatus } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
 import { ClrDatagrid } from '@clr/angular';
 
@@ -21,13 +22,10 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   loadingTermine: boolean = true;
   _displayName: string;
   termine: Termin[];
-  statusValues: string[] = [
-    '',
-    'Läuft',
-    'Abgeschlossen',
-    'Aufgehoben',
-    'Unterbrochen'
-  ];
+
+  GetStatausValues() : Array<string> {
+    return Object.values(TerminStatus)
+}
 
   constructor(
     private terminService: TerminService) {
