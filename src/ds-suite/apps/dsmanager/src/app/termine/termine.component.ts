@@ -78,12 +78,12 @@ export class TermineComponent implements OnInit {
 
   GetGerichtValues() : Array<string> {
     if (this.termine==undefined) return [];
-    return  Array.from(new Set(this.termine.map(t => t.gericht)));
+    return  Array.from(new Set(this.termine.map(t => t.gericht))).sort((d1, d2) => d1 > d2 ? 1 : -1);
   }
 
   GetSaalValues() : Array<string> {
     if (this.termine==undefined) return [];
-    return  Array.from(new Set(this.termine.map(t => t.sitzungssaal)));
+    return  Array.from(new Set(this.termine.map(t => t.sitzungssaal))).sort((d1, d2) => d1 > d2 ? 1 : -1);
   }
   
   loadTermine() {
