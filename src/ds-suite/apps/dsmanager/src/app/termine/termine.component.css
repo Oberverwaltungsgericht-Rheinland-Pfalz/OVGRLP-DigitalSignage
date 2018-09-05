@@ -1,0 +1,18 @@
+.main-container {
+    height:100%;
+    
+}
+.sidenav {
+    min-width: 220px;
+    width: 220px; 
+}
+
+
+.sidenav .nav-group label {
+    padding: 0 0 0 .5rem;
+}
+
+.sidenav .nav-group .nav-list{
+    padding: 0 0 0 1rem;
+}
+
