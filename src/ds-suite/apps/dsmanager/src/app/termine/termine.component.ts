@@ -96,7 +96,7 @@ export class TermineComponent implements OnInit {
   }
   
   loadTermine() {
-    this.terminService.getTermine("NJZ-Foyer-Gesamt")
+    this.terminService.getAllTermine()
       .subscribe(termine => {
         this.termine = termine;
         this.InitSaalSelection();
