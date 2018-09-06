@@ -886,6 +886,23 @@
       "description": null,
       "notes": null,
       "dummy": false
+    },
+    {
+      "id": 8,
+      "name": "njzko-edvgt-stele",
+      "title": "Sitzungssaal EDVGT",
+      "template": "njzko/edvgt-stele",
+      "styles": "",
+      "filter": "",
+      "group": "EDVGT",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
     }
   ],
   "displaysStatus": [

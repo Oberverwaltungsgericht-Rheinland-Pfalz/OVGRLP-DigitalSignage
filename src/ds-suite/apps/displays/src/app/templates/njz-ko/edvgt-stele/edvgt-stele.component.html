@@ -1,0 +1,42 @@
+<!-- Kopf -->
+<div id="ds-stele-header">
+  <h1>Digitale Saalanzeige</h1>
+</div>
+
+<!-- Anzeigegerät Simulation -->
+<div *ngIf="display" id="ds-display" fxLayout="column">
+  <div id="ds-head-title" fxLayout="row">
+    <div fxFlex="75" class="ds-head-title-left">
+      {{ display.title }}
+    </div>
+    <div fxFlex class="ds-head-title-right" fxLayout="column">
+      <div fxFlex>{{ datum | date: 'd. MMMM yyyy' }}</div>
+      <div fxFlex>{{ datum | date: 'H:mm' }} Uhr</div>
+    </div>
+  </div>
+
+  <div id="ds-main" fxFlex fxLayout="row">
+    <div id="ds-main-details" fxFlex fxLayout="row">
+      <app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin"></app-termin>
+      <app-termin *ngIf="!aktiverTermin && naechsterTermin" [termin]="naechsterTermin"></app-termin>
+    </div>
+
+    <div id="ds-main-overview" fxFlex="25" fxLayout="column">
+      <div class="ds-box" fxFlex fxLayout="column">
+        <div fxFlex class="ds-box-header">
+          <h3>Verfahren</h3>
+        </div>
+        <div fxFlex="grow" class="ds-box-content">
+          <div class="ds-overview-termin" *ngFor="let termin of termine" [ngClass]="
+          {
+            'ds-overview-termin-completed': termin.status == 'Abgeschlossen'
+          }">
+            {{ termin.uhrzeitAktuell }} Uhr - {{ termin.az }}<br />
+            {{ termin.art }}<br />
+            {{ termin.status }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

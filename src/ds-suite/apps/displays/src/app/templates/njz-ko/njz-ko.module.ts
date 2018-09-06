@@ -7,12 +7,14 @@ import { CoreModule } from '@ds-suite/core';
 
 import { NjzKoFoyerComponent } from './njz-ko-foyer/njz-ko-foyer.component';
 import { NjzKoSaalComponent } from './njz-ko-saal/njz-ko-saal.component';
+import { EdvgtSteleComponent } from './edvgt-stele/edvgt-stele.component';
 
 import { TerminComponent } from './termin/termin.component';
 
 const routes: Routes = [
   { path: "foyer", component: NjzKoFoyerComponent },
-  { path: "saal", component: NjzKoSaalComponent }
+  { path: "saal", component: NjzKoSaalComponent },
+  { path: "edvgt-stele", component: EdvgtSteleComponent}
 ];
 
 @NgModule({
@@ -26,6 +28,7 @@ const routes: Routes = [
   declarations: [
     NjzKoFoyerComponent,
     NjzKoSaalComponent,
+    EdvgtSteleComponent,
     TerminComponent
   ]
 })
