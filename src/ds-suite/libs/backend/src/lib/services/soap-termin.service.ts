@@ -19,6 +19,10 @@ export class SoapTerminService implements TerminService {
     this.config = this.configService.getConfig();
   }
 
+  getAllTermine(): Observable<Termin[]> {
+    return this.http.get<Termin[]>(`${this.config.webApiUrl}/daten/verfahren`);
+  }
+
   getTermine(displayName: string): Observable<Termin[]> {
     return this.http.get<Termin[]>(`${this.config.webApiUrl}/settings/displays/${displayName}/termine`);
   }
