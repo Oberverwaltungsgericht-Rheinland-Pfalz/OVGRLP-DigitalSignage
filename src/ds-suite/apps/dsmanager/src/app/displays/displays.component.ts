@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
+import { Termin } from '@ds-suite/model';
+import { TerminService } from '@ds-suite/core';
 import { DisplayDto, DisplayStatus } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
 import { DisplayDialogComponent } from '@ds-suite/ui';
@@ -11,12 +13,15 @@ import { DisplayDialogComponent } from '@ds-suite/ui';
 })
 export class DisplaysComponent implements OnInit {
   displayDto: DisplayDto[];
+  termine: Termin[];
   displayGroups: string[];
   public isLoading: boolean = false;
 
   @ViewChild(DisplayDialogComponent) modal: DisplayDialogComponent;
 
-  constructor(private displayService: DisplayService) { }
+  constructor(private displayService: DisplayService,
+    private terminService: TerminService) { 
+  }
 
   getDisplays() {
     this.displayService.getDisplaysDto()
@@ -40,8 +45,19 @@ export class DisplaysComponent implements OnInit {
     this.displayGroups = Array.from(new Set(displays.map(t => t.group)));
   }
 
+  loadTermine() {
+    this.terminService.getAllTermine()
+      .subscribe(termine => {
+        this.termine = termine;
+      },
+      err => {
+        console.error("Termine konnten nicht geladen werden: ",err);
+      });
+  }
+
   ngOnInit() {
     this.isLoading = true;
+    this.loadTermine();
     this.getDisplays();
   }
 
@@ -107,6 +123,10 @@ export class DisplaysComponent implements OnInit {
         err => {
           console.error("Display " + display.name + " konnte nicht heruntergefahren werden: ",err);
         });
+  }
+
+  TermineExist(display: DisplayDto) {
+    return this.termine!=undefined && this.termine.find(t=> t.sitzungssaal==display.title || t.gericht==display.title )
   }
 
 }

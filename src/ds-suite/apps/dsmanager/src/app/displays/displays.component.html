@@ -62,7 +62,9 @@
                         </div>
                     </div>
                     <div fxFlex="30%" class="terminLinkColumn">
-                        <button class="btn btn-sm btn-link" (click)="AnzeigeTermineClick()">Termine Anzeigen</button>
+                        <div *ngIf="TermineExist(display)">
+                            <button class="btn btn-sm btn-link" (click)="AnzeigeTermineClick(display)">Termine Anzeigen</button>
+                        </div>
                     </div>
                 </div>
             </clr-stack-content>
