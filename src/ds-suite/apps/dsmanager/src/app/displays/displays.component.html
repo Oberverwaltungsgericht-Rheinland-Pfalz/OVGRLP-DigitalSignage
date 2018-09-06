@@ -49,11 +49,11 @@
                         <display-status [status]="display.status"></display-status>
                     </div>
                     <div fxFlex="30%" class="actionColumn">
-                        <button class="btn btn-sm btn-link" *ngIf="(display.status < 1)" (click)="startDisplayClick()"><clr-icon
+                        <button class="btn btn-sm btn-link" *ngIf="(display.status < 1)" (click)="startDisplayClick(display)"><clr-icon
                                 shape="play"></clr-icon> Anschalten</button>
-                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1)" (click)="stopDisplayClick()"><clr-icon
+                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1)" (click)="stopDisplayClick(display)"><clr-icon
                                 shape="power"></clr-icon> Ausschalten</button>
-                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1)" (click)="restartDisplayClick()"><clr-icon
+                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1)" (click)="restartDisplayClick(display)"><clr-icon
                                 shape="replay-all"></clr-icon> Neu starten</button>
                     </div>
                     <div fxFlex="20%" class="screenshotColumn">
