@@ -41,7 +41,7 @@
         <clr-stack-block *ngFor="let display of GetDisplaysFromGroup(group)">
             <clr-stack-label style="max-width:20%;" class="nameColumn">
                 <button class="btn btn-sm btn-link" (click)="updateDisplayClick(display)"><clr-icon shape="refresh"></clr-icon></button>
-                {{display.name}}
+                {{display.title}}
             </clr-stack-label>
             <clr-stack-content>
                 <div fxLayout="row">
