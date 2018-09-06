@@ -35,6 +35,10 @@ export class TermineComponent implements OnInit {
     this.filterTermine();
   }
 
+  editTerminClick(termin: Termin){
+    console.log("termin:",termin)
+  }
+
   filterTermine() {
     this.filteredTermine=[];
     var i:number;

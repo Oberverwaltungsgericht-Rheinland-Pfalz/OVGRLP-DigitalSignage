@@ -60,6 +60,7 @@
     
     <clr-datagrid #DataGridTermine  (window:resize)="onResize($event)" [clrDgLoading]="loadingTermine">
 
+        <clr-dg-column class="ds-termin-column-edit"></clr-dg-column>
         <clr-dg-column class="ds-termin-column-uhrzeit">Uhrzeit</clr-dg-column>
         <clr-dg-column class="ds-termin-column-gericht">Gericht</clr-dg-column>
         <clr-dg-column class="ds-termin-column-saal">Saal</clr-dg-column>
@@ -71,6 +72,7 @@
     
         <clr-dg-placeholder>Zu dieser Selektion sind keine Termine vorhanden</clr-dg-placeholder>
         <clr-dg-row *clrDgItems="let termin of filteredTermine; let i = index">
+            <clr-dg-cell class="ds-termin-column-edit"><clr-icon shape="pencil" class="is-solid" (click)="editTerminClick(termin)"></clr-icon></clr-dg-cell>
             <clr-dg-cell class="ds-termin-column-uhrzeit">{{ termin.uhrzeitAktuell }}</clr-dg-cell>
             <clr-dg-cell class="ds-termin-column-gericht">{{ termin.gericht }}</clr-dg-cell>
             <clr-dg-cell class="ds-termin-column-saal">{{ termin.sitzungssaal }}</clr-dg-cell>

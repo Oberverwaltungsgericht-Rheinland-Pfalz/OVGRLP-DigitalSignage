@@ -24,6 +24,12 @@
     padding-right: 0!important;
 }
 
+.ds-termin-column-edit {
+    min-width: 35px;
+    width: 35px;
+    cursor: pointer;
+  }
+
 .ds-termin-column-uhrzeit {
     min-width: 2.5rem;
     width: 60px;
