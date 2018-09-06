@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Termin } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
@@ -20,7 +21,8 @@ export class DisplaysComponent implements OnInit {
   @ViewChild(DisplayDialogComponent) modal: DisplayDialogComponent;
 
   constructor(private displayService: DisplayService,
-    private terminService: TerminService) { 
+    private terminService: TerminService,
+    private router: Router) { 
   }
 
   getDisplays() {
@@ -29,7 +31,6 @@ export class DisplaysComponent implements OnInit {
         displays => {
           this.displayDto = displays.sort((d1, d2) => d1.title > d2.title ? 1 : -1)
           this.DetermineDisplayGroups(this.displayDto);
-          
         },
         err => {
           console.error("Displays konnten nicht geladen werden: ",err);
@@ -59,6 +60,10 @@ export class DisplaysComponent implements OnInit {
     this.isLoading = true;
     this.loadTermine();
     this.getDisplays();
+  }
+
+  AnzeigeTermineClick(display: DisplayDto) {
+    this.router.navigate(['/termine', display.title]);
   }
 
   updateGroupClick(group: string){

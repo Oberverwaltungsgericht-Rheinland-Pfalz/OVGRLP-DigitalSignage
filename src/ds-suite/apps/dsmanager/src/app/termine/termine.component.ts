@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Display } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
@@ -20,9 +21,12 @@ export class TermineComponent implements OnInit {
   public selStatus: boolean[] = [false, false, false, false, false];
   public selGericht: boolean[] = [];
   public selSaal: boolean[] = [];
+  private routedSaal: string = "";
   @ViewChild('DataGridTermine') DataGridTermine: ClrDatagrid;
 
-  constructor(private terminService: TerminService) { }
+  constructor(private terminService: TerminService,
+    private route: ActivatedRoute) { 
+  }
 
   changeSelection() {
     //console.log("selStatus:",this.selStatus)
@@ -111,14 +115,16 @@ export class TermineComponent implements OnInit {
 
   InitSaalSelection(){
     this.GetSaalValues().forEach(element => {
-      this.selSaal.push(false);
+      var sel:boolean = (element==this.routedSaal);
+      this.selSaal.push(sel);
     });
   }
 
   
   InitGerichtSelection(){
     this.GetGerichtValues().forEach(element => {
-      this.selGericht.push(false);
+      var sel:boolean = (element==this.routedSaal);
+      this.selGericht.push(sel);
     });
   }
 
@@ -127,6 +133,11 @@ export class TermineComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params["saal"] != undefined) {
+        this.routedSaal=params["saal"]
+      }
+    })
     this.loadTermine();
   }
 
