@@ -9,6 +9,8 @@ import { TerminStatus } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
 import { ClrDatagrid } from '@clr/angular';
 
+import { TerminDialogComponent } from '../termin-dialog/termin-dialog.component';
+
 @Component({
   selector: 'termine',
   templateUrl: './termine.component.html',
@@ -23,6 +25,7 @@ export class TermineComponent implements OnInit {
   public selSaal: boolean[] = [];
   private routedSaal: string = "";
   @ViewChild('DataGridTermine') DataGridTermine: ClrDatagrid;
+  @ViewChild(TerminDialogComponent) terminDialog: TerminDialogComponent;
 
   constructor(private terminService: TerminService,
     private route: ActivatedRoute) { 
@@ -37,6 +40,7 @@ export class TermineComponent implements OnInit {
 
   editTerminClick(termin: Termin){
     console.log("termin:",termin)
+    this.terminDialog.open(termin)
   }
 
   filterTermine() {
