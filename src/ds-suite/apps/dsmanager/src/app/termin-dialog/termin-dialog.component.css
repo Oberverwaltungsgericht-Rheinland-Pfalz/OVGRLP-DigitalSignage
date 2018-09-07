@@ -1,0 +1,35 @@
+div.card-block.multiple-list-header {
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+
+clr-icon.multiple-list-header-img {
+    float: right;
+    margin: 8px;
+    cursor: pointer;
+}
+
+clr-icon.multiple-list-content-img {
+    vertical-align: sub;
+    cursor: pointer;
+}
+
+.imput-right-margin {
+    margin-right: 24px;
+}
+
+.help-text-margin {
+    margin-top: 0!important;
+}
+
+div.card {
+    margin-top: 6px!important;
+}
+
+div.card.besetzung-card-odd {
+    margin-right: 6px!important;
+    width: calc(50% - 6px)
+}
+div.card.besetzung-card-even {
+    width: 50%;
+}

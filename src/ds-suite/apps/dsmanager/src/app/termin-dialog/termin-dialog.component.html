@@ -1,3 +1,341 @@
-<p>
-  termin-dialog works!
-</p>
+<clr-modal [(clrModalOpen)]="show" [clrModalSize]="'xl'" [clrModalStaticBackdrop]="true">
+    <div class="modal-body">
+        <form *ngIf="termin!=undefined">
+            <section class="form-block">
+
+            <div class="form-group">
+              <label for="orga_1">Organisatorisches</label>
+              <div class="clr-control-container">
+                  <div class="clr-input-wrapper imput-right-margin">
+                      <input type="text" id="orga_1" [(ngModel)]="termin.sitzungssaal" name="sitzungssaal" size="45">
+                  </div>
+                  <span class="clr-subtext help-text-margin">Raum</span>
+              </div>
+              <div class="clr-control-container">
+                  <div class="clr-input-wrapper  imput-right-margin">
+                      <input type="time" id="orga_2" [(ngModel)]="termin.uhrzeitPlan" name="UhrzeitPlan" size="35">
+                  </div>
+                  <span class="clr-subtext help-text-margin">Uhrzeit (Plan)</span>
+              </div>
+              <div class="clr-control-container">
+                  <div class="clr-input-wrapper"  imput-right-margin>
+                      <input type="time" id="orga_3" [(ngModel)]="termin.uhrzeitAktuell" name="uhrzeitAktuell" size="35">
+                  </div>
+                  <span class="clr-subtext help-text-margin">Uhrzeit (Aktuell)</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Verf_1">Verfahrensdaten</label>
+                <div class="clr-control-container">
+                    <div class="clr-input-wrapper imput-right-margin">
+                        <input type="text" id="Verf_1" [(ngModel)]="termin.az" name="az" size="20">
+                    </div>
+                    <span class="clr-subtext help-text-margin">Aktenzeichen</span>
+                </div>
+                <div class="clr-control-container">
+                    <div class="clr-input-wrapper  imput-right-margin">
+                        <input type="text" id="Verf_2" [(ngModel)]="termin.gegenstand" name="gegenstand" size="55">
+                    </div>
+                    <span class="clr-subtext help-text-margin">Gegenstand</span>
+                </div>
+                <div class="clr-control-container">
+                    <div class="clr-input-wrapper  imput-right-margin">
+                        <input type="text" id="Verf_3" [(ngModel)]="termin.art" name="art" size="27">
+                    </div>
+                    <span class="clr-subtext help-text-margin">Art</span>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                  <label for="Sitz_1">Sitzungsdaten</label>
+                  <div class="clr-control-container">
+                      <div class="clr-input-wrapper imput-right-margin">
+                          <input type="text" id="Sitz_1" [(ngModel)]="termin.status" name="status" size="35">
+                      </div>
+                      <span class="clr-subtext help-text-margin">Status</span>
+                  </div>
+                  <div class="clr-control-container">
+                      <div class="clr-input-wrapper  imput-right-margin">
+                          <input type="text" id="Sitz_2" [(ngModel)]="termin.oeffentlich" name="oeffentlich" size="20">
+                      </div>
+                      <span class="clr-subtext help-text-margin">Öffentlich</span>
+                  </div>
+                  <div class="card">
+                      <div class="card-block multiple-list-header">
+                              <span>Besetzung</span>
+                              <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.besetzung)"></clr-icon>
+                      </div>
+                      <div class="card-block">
+                          <ul class="list-unstyled">
+                              <li *ngFor="let besetzung of termin.besetzung">
+                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.besetzung,besetzung)"></clr-icon>
+                                {{besetzung}}
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                </div>
+
+
+
+                <div class="form-group">
+                  <label for="besetzung">Parteien</label>
+                  <div class="card besetzung-card-odd">
+                      <div class="card-block multiple-list-header">
+                              <span>Aktivparteien</span>
+                              <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.parteienAktiv)"></clr-icon>
+                      </div>
+                      <div class="card-block">
+                          <ul class="list-unstyled">
+                              <li *ngFor="let parteienAktiv of termin.parteienAktiv">
+                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.parteienAktiv,parteienAktiv)"></clr-icon>
+                                {{parteienAktiv}}
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="card besetzung-card-even">
+                      <div class="card-block multiple-list-header">
+                              <span>Passivparteien</span>
+                              <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.parteienPassiv)"></clr-icon>
+                      </div>
+                      <div class="card-block">
+                          <ul class="list-unstyled">
+                              <li *ngFor="let parteienPassiv of termin.parteienPassiv">
+                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.parteienPassiv,parteienPassiv)"></clr-icon>
+                                {{parteienPassiv}}
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+
+                  <div class="card besetzung-card-odd">
+                      <div class="card-block multiple-list-header">
+                              <span>Prozessbevollmächtigte Aktivpartei</span>
+                              <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.prozBevAktiv)"></clr-icon>
+                      </div>
+                      <div class="card-block">
+                          <ul class="list-unstyled">
+                              <li *ngFor="let prozBevAktiv of termin.prozBevAktiv">
+                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.prozBevAktiv,prozBevAktiv)"></clr-icon>
+                                {{prozBevAktiv}}
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="card besetzung-card-even">
+                      <div class="card-block multiple-list-header">
+                              <span>Prozessbevollmächtigte Passivpartei</span>
+                              <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.prozBevPassiv)"></clr-icon>
+                      </div>
+                      <div class="card-block">
+                          <ul class="list-unstyled">
+                              <li *ngFor="let prozBevPassiv of termin.prozBevPassiv">
+                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.prozBevPassiv,prozBevPassiv)"></clr-icon>
+                                {{prozBevPassiv}}
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+
+                  <div class="card besetzung-card-odd">
+                      <div class="card-block multiple-list-header">
+                              <span>Beigeladen</span>
+                              <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.parteienBeigeladen)"></clr-icon>
+                      </div>
+                      <div class="card-block">
+                          <ul class="list-unstyled">
+                              <li *ngFor="let parteienBeigeladen of termin.parteienBeigeladen">
+                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.parteienBeigeladen,parteienBeigeladen)"></clr-icon>
+                                {{parteienBeigeladen}}
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="card besetzung-card-even">
+                      <div class="card-block multiple-list-header">
+                              <span>Zeugen</span>
+                              <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.parteienZeugen)"></clr-icon>
+                      </div>
+                      <div class="card-block">
+                          <ul class="list-unstyled">
+                              <li *ngFor="let parteienZeugen of termin.parteienZeugen">
+                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.parteienZeugen,parteienZeugen)"></clr-icon>
+                                {{parteienZeugen}}
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+
+                  <div class="card besetzung-card-odd">
+                      <div class="card-block multiple-list-header">
+                              <span>Prozessbevollmächtigte Beigeladen</span>
+                              <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.prozBevBeigeladen)"></clr-icon>
+                      </div>
+                      <div class="card-block">
+                          <ul class="list-unstyled">
+                              <li *ngFor="let prozBevBeigeladen of termin.prozBevBeigeladen">
+                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.prozBevBeigeladen,prozBevBeigeladen)"></clr-icon>
+                                {{prozBevBeigeladen}}
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="card besetzung-card-even">
+                      <div class="card-block multiple-list-header">
+                              <span>Sachverständige</span>
+                              <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.parteienSv)"></clr-icon>
+                      </div>
+                      <div class="card-block">
+                          <ul class="list-unstyled">
+                              <li *ngFor="let parteienSv of termin.parteienSv">
+                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.parteienSv,parteienSv)"></clr-icon>
+                                {{parteienSv}}
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+
+                </div>
+
+            </section>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <div style="width:86%!important">
+            <button (click)="saveClick()" class="btn btn-sm btn-link" type="button">
+              <clr-icon shape="floppy"></clr-icon>
+              Speichern
+            </button>
+            <button (click)="deleteClick()" class="btn btn-sm btn-link" type="button">
+                <clr-icon shape="trash"></clr-icon>
+                Löschen
+              </button>
+        </div>
+        <button (click)="close()" class="btn btn-sm btn-link" type="button">
+          <clr-icon shape="times"></clr-icon>
+          Abbrechen
+        </button>
+    </div>
+</clr-modal>
+
+
+<!--
+<clr-modal [(clrModalOpen)]="show" [clrModalSize]="'xl'" [clrModalStaticBackdrop]="true">
+    <div class="modal-body">
+      
+        <form>
+            <section class="form-block">
+                <label>Input Fields</label>
+                <div class="form-group">
+                    <label for="formFields_1">Textbox [type="text"]</label>
+                    <input type="text" id="formFields_1" placeholder="Email" size="35" disabled>
+                    <input type="text" id="formFields_2" placeholder="Email 2" size="45">
+                    <input type="text" id="formFields_3" placeholder="Email" size="25">
+                    <input type="text" id="formFields_4" placeholder="Email 2">
+                    <input type="text" id="formFields_5" placeholder="Email">
+                    <input type="text" id="formFields_6" placeholder="Email 2">
+                </div>
+                <div class="form-group">
+                    <label for="formFields_7">Textbox [type="password"]</label>
+                    <input type="password" id="formFields_7" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="formFields_8">Textarea</label>
+                    <textarea id="formFields_8" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="formFields_9">Textbox [type="url"]</label>
+                    <input type="url" id="formFields_9" placeholder="https://vmware.github.io/clarity/" size="35">
+                </div>
+                <div class="form-group">
+                    <label for="formFields_10">Textbox [type="tel"]</label>
+                    <input type="tel" id="formFields_10" size="35">
+                </div>
+                <div class="form-group">
+                    <label for="formFields_11">Textbox [type="date"]</label>
+                    <input type="date" id="formFields_11" size="35">
+                </div>
+                <div class="form-group">
+                    <label for="formFields_12">Textbox [type="datetime-local"]</label>
+                    <input type="datetime-local" id="formFields_12" size="35">
+                </div>
+                <div class="form-group">
+                    <label for="formFields_13">Textbox Readonly [type="text"]</label>
+                    <input type="text" id="formFields_13" size="35" readonly value="Readonly Text">
+                </div>
+                <div class="form-group">
+                    <label for="formFields_1">Textbox [type="text"]</label>
+                    <div class="clr-control-container">
+                        <div class="clr-input-wrapper">
+                            <input type="text" id="formFields_1" placeholder="Email" size="35">
+                        </div>
+                        <span class="clr-subtext">Helper Text</span>
+                    </div>
+                    <div class="clr-control-container">
+                        <div class="clr-input-wrapper">
+                            <input type="text" id="formFields_1" placeholder="Email 2" size="45">
+                        </div>
+                        <span class="clr-subtext">Helper Text 2</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="formFields_18">Textbox [type="text"]</label>
+                    <div class="clr-control-container">
+                        <div class="clr-input-wrapper">
+                            <textarea id="formFields_18" rows="3" style="width:350px"></textarea>
+                        </div>
+                        <span class="clr-subtext">Helper textarea 1</span>
+                    </div>
+                    <div class="clr-control-container">
+                        <div class="clr-input-wrapper">
+                            <div class="card">
+                                <div class="card-block multiple-list-header">
+                                        <span>prozessbevollmächtigter</span>
+                                        <clr-icon shape="plus" class="multiple-list-header-img"></clr-icon>
+                                </div>
+                                <div class="card-block">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                          <clr-icon shape="trash" class="multiple-list-content-img"></clr-icon>
+                                          Ullamco Laboris
+                                        </li>
+                                        <li>
+                                          <clr-icon shape="trash" class="multiple-list-content-img"></clr-icon>
+                                          Consequat
+                                        </li>
+                                        <li>
+                                          <clr-icon shape="trash" class="multiple-list-content-img"></clr-icon>
+                                          Excepteur sint occaecat cupidatat non proident
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="clr-subtext">Helper textarea 2</span>
+                    </div>
+                </div>
+            </section>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <div class="w-100">
+            <button (click)="saveClick()" class="btn btn-sm btn-link" type="button">
+              <clr-icon shape="floppy"></clr-icon>
+              Speichern
+            </button>
+            <button (click)="deleteClick()" class="btn btn-sm btn-link" type="button">
+                <clr-icon shape="trash"></clr-icon>
+                Löschen
+              </button>
+        </div>
+        <button (click)="close()" class="btn btn-sm btn-link" type="button">
+          <clr-icon shape="times"></clr-icon>
+          Abbrechen
+        </button>
+    </div>
+</clr-modal>
+-->
