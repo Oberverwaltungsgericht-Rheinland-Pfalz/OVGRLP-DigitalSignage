@@ -2,53 +2,47 @@
   "termine": [
     {
       "id": 1,
-      "az": "1 K 1111/18.01",
+      "az": "3 K 79/14",
       "lfdnr": 1,
-      "kammer": 1,
+      "kammer": 0,
       "sitzungssaal": "Sitzungssaal I",
       "sitzungssaalNr": 1,
       "uhrzeitPlan": "10:00",
       "uhrzeitAktuell": "10:00",
       "status": "",
-      "oeffentlich": "nein",
-      "art": "mündliche Verhandlung",
-      "gegenstand": "Rundfunkbeitrags",
-      "bemerkung1": "",
+      "oeffentlich": "x",
+      "art": "Verkündung Zuschlag",
+      "gegenstand": "Zwangsversteigerung",
+      "bemerkung1": "VSIMM",
       "bemerkung2": "",
       "parteienAktiv": [
-        "Frank Ferdinand\r"
+        "1. Blatt: 948 BV1 Gemarkung: Tiefenbach Wirtschaftsart und Lage: Gebäude- und Freifläche Kirchstraße 11 u.a.","2. Blatt: 948 BV2 Gemarkung: Tiefenbach Wirtschaftsart und Lage: Gebäude- und Freifläche Kirchstraße"
       ],
-      "prozBevAktiv": [
-        "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
-      ],
-      "parteienPassiv": [
-        "Südwestrundfunk, vertreten durch den Intendanten\r"
-      ],
+      "prozBevAktiv": [],
+      "parteienPassiv": [],
       "prozBevPassiv": [],
       "parteienBeigeladen": [],
       "prozBevBeigeladen": [],
       "parteienZeugen": [],
       "parteienSv": [],
       "parteienAktivKurz": "",
-      "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
-      "stammdatenId": 1,
-      "gericht": "Testgericht Koblenz",
+      "parteienPassivKurz": "",
+      "stammdatenId": 1085807,
+      "gericht": "AG Bad Kreuznach",
       "datum": "09.01.2018",
-      "besetzung": [
-        "Vorsitzender Richter am Testgericht Heinzmann"
-      ]
+      "besetzung": []
     },
     {
       "id": 2,
 		  "az": "7 Ca 906/17", 
 		  "lfdnr": 2,
 		  "kammer": 6,
-		  "sitzungssaal": "Sitzungssaal 13",
+		  "sitzungssaal": "Geschäftsstellenzimmer 208",
 		  "sitzungssaalNr": null,
 		  "uhrzeitPlan": "11:00",
 		  "uhrzeitAktuell": "11:00",
   	  "status": "",
-		  "oeffentlich": "ja",
+		  "oeffentlich": "nein",
 		  "art": "",
 		  "gegenstand": "Bestandsstreitigkeiten: Kündigungen",
 		  "bemerkung1": "",
@@ -749,6 +743,28 @@
       "name": "Demo: Saal-Ansicht, Variante mit weiteren Terminen unten",
       "title": "Sitzungssaal 1",
       "template": "demo/demo-saal-variante-weitere-unten",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 16,
+      "name": "Trier, Foyer",
+      "title": "Verhandlungstermine",
+      "template": "demo/demo-foyer-variante-tr",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 17,
+      "name": "Trier, Foyer Variante",
+      "title": "Verhandlungstermine",
+      "template": "demo/demo-foyer-variante-trier",
       "styles": "",
       "filter": "",
       "group": "Testanzeigen",

@@ -64,53 +64,61 @@
               <div fxFlex="40">
                 <div *ngIf="termin.besetzung != ''">
                   <div *ngFor="let richter of termin.besetzung; last as r">
-                  {{ richter }}<span *ngIf="!r">,<br /></span>
+                  {{ richter | capitalize }}<span *ngIf="!r">,<br /></span>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div fxLayout="row" *ngIf="termin.parteienAktivKurz != ''" class="olg-layout-noline">
-              <div fxFlex="45">
-                <div style="font-weight:bold; margin-bottom: 8px;">
-                    <span *ngFor="let aktiv of termin.parteienAktiv | slice:0:3; last as a">
-                    {{aktiv}}<span *ngIf="!a">,<br /></span>
-                    </span>
-                    <span *ngIf="termin.parteienAktiv.length > 3">u.a.</span>
+            <div *ngIf="termin.bemerkung1 != 'VSIMM'">
+              <div fxLayout="row" *ngIf="termin.parteienAktivKurz != ''" class="olg-layout-noline">
+                <div fxFlex="45">
+                  <div style="font-weight:bold; margin-bottom: 8px;">
+                      <span *ngFor="let aktiv of termin.parteienAktiv | slice:0:3; last as a">
+                      {{aktiv}}<span *ngIf="!a">,<br /></span>
+                      </span>
+                      <span *ngIf="termin.parteienAktiv.length > 3">u.a.</span>
+                  </div>
+                  <div>
+                      <span *ngFor="let bevAktiv of termin.prozBevAktiv | slice:0:3; last as ba">
+                          {{bevAktiv}}<span *ngIf="!ba">,<br /></span>
+                          </span>
+                      <span *ngIf="termin.prozBevAktiv.length > 3">u.a.</span>
+                  </div>
                 </div>
-                <div>
-                    <span *ngFor="let bevAktiv of termin.prozBevAktiv | slice:0:3; last as ba">
-                        {{bevAktiv}}<span *ngIf="!ba">,<br /></span>
-                        </span>
-                    <span *ngIf="termin.prozBevAktiv.length > 3">u.a.</span>
+                <div fxFlex="10" style="text-align: center;">
+                  <div>gegen</div>
+                  <div>&nbsp;</div>
                 </div>
-              </div>
-              <div fxFlex="10" style="text-align: center;">
-                <div>gegen</div>
-                <div>&nbsp;</div>
-              </div>
-              <div fxFlex="45">
-                <div style="font-weight:bold; margin-bottom: 8px;">
-                    <span *ngFor="let passiv of termin.parteienPassiv | slice:0:3; last as p">
-                        {{passiv}}<span *ngIf="!p">,<br /></span>
-                        </span>
-                    <span *ngIf="termin.parteienPassiv.length > 3">u.a.</span>
-                </div>
-                <div>
-                    <span *ngFor="let bevPassiv of termin.prozBevPassiv | slice:0:3; last as bp">
-                        {{bevPassiv}}<span *ngIf="!bp">,<br /></span>
-                        </span>
-                    <span *ngIf="termin.prozBevPassiv.length > 3">u.a.</span>
+                <div fxFlex="45">
+                  <div style="font-weight:bold; margin-bottom: 8px;">
+                      <span *ngFor="let passiv of termin.parteienPassiv | slice:0:3; last as p">
+                          {{passiv}}<span *ngIf="!p">,<br /></span>
+                          </span>
+                      <span *ngIf="termin.parteienPassiv.length > 3">u.a.</span>
+                  </div>
+                  <div>
+                      <span *ngFor="let bevPassiv of termin.prozBevPassiv | slice:0:3; last as bp">
+                          {{bevPassiv}}<span *ngIf="!bp">,<br /></span>
+                          </span>
+                      <span *ngIf="termin.prozBevPassiv.length > 3">u.a.</span>
+                  </div>
                 </div>
               </div>
             </div>
+            <div fxLayout="column" *ngIf="termin.bemerkung1 == 'VSIMM'" class="olg-layout-noline">
+              <div *ngFor="let aktiv of termin.parteienAktiv; last as a" style="font-weight: bold; line-height: 2em;">
+                {{aktiv}}<span *ngIf="!a">,<br /></span>
+              </div>
+            </div>
+
             <div fxLayout="row" ng-hide="termin.bemerkung1 == 'FAMxy' && termin.oeffentlich == 'nein'" style="margin-top:10px">
               <div fxFlex="20">wegen</div>
               <div fxFlex="80">
                 <strong>{{termin.gegenstand}}</strong>
               </div>
             </div>
-            <div fxLayout="row" *ngIf="termin.parteienAktivKurz == ''" style="height: 100px;"></div>
+            <div fxLayout="row" *ngIf="termin.parteienAktivKurz == '' && termin.bemerkung1 != 'VSIMM'" style="height: 100px;"></div>
 
             <div class="olgstyle"></div>
           </div>
