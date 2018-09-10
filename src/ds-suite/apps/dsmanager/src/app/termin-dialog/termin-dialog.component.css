@@ -13,6 +13,9 @@ clr-icon.multiple-list-content-img {
     vertical-align: sub;
     cursor: pointer;
 }
+.multiple-list-imput {
+    width: calc(100% - 16px);
+}
 
 .imput-right-margin {
     margin-right: 24px;

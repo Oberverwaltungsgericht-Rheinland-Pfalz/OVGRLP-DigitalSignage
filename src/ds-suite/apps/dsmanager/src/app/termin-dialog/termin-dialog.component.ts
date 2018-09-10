@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Termin } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
+import { getTypeNameForDebugging } from '@angular/common/src/directives/ng_for_of';
 
 @Component({
   selector: 'termin-dialog',
@@ -15,32 +16,33 @@ export class TerminDialogComponent implements OnInit {
   constructor(private terminService: TerminService) { }
 
   open(termin: Termin) {
-    this.termin = (JSON.parse(JSON.stringify(termin)));  /*Hack: kopie von Objekt termin*/
     this.terminService.getTerminByBreeze(termin.id).then(item => {
       this.termin=item;
     });
     this.show = true;
   }
 
-  addItemClick(arr: Array<string>) {
-
+  addItemClick(arr: Array<any>,typeName:string) {
+    arr.push(this.terminService.breezeEntityManager.createEntity(typeName))
   }
   
   deleteItemClick(arr: Array<any>, element: any) {
-    var index = arr.indexOf(element, 0);
+    var index = arr.indexOf(element);
+    element.entityAspect.setDeleted();
     if (index > -1) {
       arr.splice(index, 1);
     }
   }
 
   saveClick() {
-    this.terminService.saveTermin(this.termin).subscribe(val => { console.log("gespeichert:",this.termin); },
-      err => {
-        console.error(err);
-      });
+    this.terminService.saveTerminByBreeze(this.termin).then(() => {
+      this.close(); 
+    });
+   this.show = false;
   }
 
   close() {
+    this.terminService.breezeEntityManager.clear();
     this.show = false;
   }
 
