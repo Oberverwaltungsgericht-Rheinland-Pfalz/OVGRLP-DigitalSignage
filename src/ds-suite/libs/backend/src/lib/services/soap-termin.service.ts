@@ -15,7 +15,7 @@ const headers = new HttpHeaders()
 @Injectable()
 export class SoapTerminService implements TerminService {
   private config: AppConfig;
-  private breezeEntityManager: EntityManager;
+  public breezeEntityManager: EntityManager;
 
   constructor(private http: HttpClient, private configService: ConfigService) {
     this.config = this.configService.getConfig();
@@ -53,8 +53,14 @@ export class SoapTerminService implements TerminService {
     return promise;
   }
 
-  saveTerminByBreeze(termin:any) {
-    //!\TDOD
+  saveTerminByBreeze(termin:any) : Promise<void> {
+    return this.breezeEntityManager.saveChanges()
+    .then(res => { 
+      console.log("Daten wurden gespeichert:",res);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
   }
 
 }
