@@ -2,6 +2,7 @@
     <div class="content-container">
     <nav class="sidenav">
         <section class="sidenav-content">
+
             <!--Selektion nach Status-->
             <section class="nav-group">
                 <input id="tabStatus" type="checkbox">
@@ -53,11 +54,15 @@
                     </div>
                 </ul>
             </section>
-
         </section>
+
+        <button class="btn btn-sm btn-primary" (click)="updateClick()">
+                <clr-icon shape="refresh"></clr-icon>
+                aktualisieren
+            </button>
         </nav>  
+
     <div class="content-area">
-    
     <clr-datagrid #DataGridTermine  (window:resize)="onResize($event)" [clrDgLoading]="loadingTermine">
 
         <clr-dg-column class="ds-termin-column-edit"></clr-dg-column>
@@ -90,6 +95,7 @@
         </clr-datagrid>
 
     </div>
+    
 </div>
 
 <termin-dialog></termin-dialog>

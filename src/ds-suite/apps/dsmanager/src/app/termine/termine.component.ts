@@ -38,8 +38,7 @@ export class TermineComponent implements OnInit {
     this.filterTermine();
   }
 
-  editTerminClick(termin: Termin){
-    console.log("termin:",termin)
+  editTerminClick(termin: Termin){    
     this.terminDialog.open(termin)
   }
 
@@ -128,6 +127,9 @@ export class TermineComponent implements OnInit {
     });
   }
 
+  updateClick() {
+    this.loadTermine();
+  }
   
   InitGerichtSelection(){
     this.GetGerichtValues().forEach(element => {
