@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Termin } from '@ds-suite/model';
+import { TerminService } from '@ds-suite/core';
 
 @Component({
   selector: 'termin-dialog',
@@ -8,15 +9,16 @@ import { Termin } from '@ds-suite/model';
   styleUrls: ['./termin-dialog.component.css']
 })
 export class TerminDialogComponent implements OnInit {
-  public termin: Termin;
-  public origTermin: Termin;
+  public termin: any;
   public show: boolean = false;
 
-  constructor() { }
+  constructor(private terminService: TerminService) { }
 
   open(termin: Termin) {
-    this.origTermin = termin;
     this.termin = (JSON.parse(JSON.stringify(termin)));  /*Hack: kopie von Objekt termin*/
+    this.terminService.getTerminByBreeze(termin.id).then(item => {
+      this.termin=item;
+    });
     this.show = true;
   }
 
@@ -24,11 +26,18 @@ export class TerminDialogComponent implements OnInit {
 
   }
   
-  deleteItemClick(arr: Array<string>, element: string) {
+  deleteItemClick(arr: Array<any>, element: any) {
     var index = arr.indexOf(element, 0);
     if (index > -1) {
       arr.splice(index, 1);
     }
+  }
+
+  saveClick() {
+    this.terminService.saveTermin(this.termin).subscribe(val => { console.log("gespeichert:",this.termin); },
+      err => {
+        console.error(err);
+      });
   }
 
   close() {
@@ -36,7 +45,6 @@ export class TerminDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.termin)
   }
 
 }
