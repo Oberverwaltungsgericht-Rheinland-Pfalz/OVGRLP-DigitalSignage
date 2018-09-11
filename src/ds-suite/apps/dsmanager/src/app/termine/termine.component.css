@@ -6,6 +6,10 @@
     width: 220px; 
 }
 
+.sidenav-content {
+    height:100%;
+}
+
 .sidenav .nav-group label {
     padding: 0 0 0 0!important;
 }
