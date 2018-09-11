@@ -78,7 +78,6 @@
                 </div>
 
 
-
                 <div class="form-group">
                   <label for="besetzung">Parteien</label>
                   <div class="card besetzung-card-odd">
@@ -220,3 +219,5 @@
         </button>
     </div>
 </clr-modal>
+
+<yes-no-dialog title="Termin löschen?" message="Möchten Sie den Termin wirklich unwiderruflich löschen?" (result)="OnDeleteResult($event)"></yes-no-dialog>

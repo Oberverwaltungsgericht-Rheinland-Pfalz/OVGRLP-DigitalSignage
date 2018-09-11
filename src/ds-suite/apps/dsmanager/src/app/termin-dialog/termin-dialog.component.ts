@@ -1,7 +1,8 @@
-import { Component,  EventEmitter, OnInit, Output  } from '@angular/core';
+import { Component,  EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 import { Termin } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
+import { YesNoDialogComponent } from '@ds-suite/ui';
 
 @Component({
   selector: 'termin-dialog',
@@ -10,6 +11,7 @@ import { TerminService } from '@ds-suite/core';
 })
 export class TerminDialogComponent implements OnInit {
   @Output() dataChanged = new EventEmitter<void>();
+  @ViewChild(YesNoDialogComponent) yesNoDialog: YesNoDialogComponent;
   public termin: any;
   public show: boolean = false;
   
@@ -35,6 +37,10 @@ export class TerminDialogComponent implements OnInit {
     }
   }
 
+  deleteClick(){
+    this.yesNoDialog.open();
+  }
+
   saveClick() {
     this.terminService.saveTerminByBreeze(this.termin).then(() => {
       this.dataChanged.emit();
@@ -49,6 +55,15 @@ export class TerminDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  OnDeleteResult(result:boolean) {
+    if (result) {
+      this.terminService.deleteTerminByBreeze(this.termin).then(() => {
+        this.dataChanged.emit();
+        this.close(); 
+      });
+    }
   }
 
 }
