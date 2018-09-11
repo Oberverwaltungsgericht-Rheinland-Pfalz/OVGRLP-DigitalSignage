@@ -1,0 +1,42 @@
+.main-container {
+    height:100%;
+}
+.sidenav {
+    min-width: 220px;
+    width: 220px; 
+}
+.sidenav-content {
+    height:100%;
+}
+
+.content-area {
+    padding-top: 0!important;
+    padding-right: 0!important;
+    padding-bottom: 0!important;
+}
+
+div.card.besetzung-card-meldung {
+    margin-right: 6px!important;
+    width: calc(50% - 6px);
+    margin-top: 0;
+}
+
+div.card.besetzung-card-zuordnung {
+    width: 50%;
+    margin-top: 0;
+}
+
+.btn-notes {
+    margin: 0 0;
+}
+
+.edit-note-area {
+    display: flex;
+    height: calc(100% - 50px);
+}
+
+.edit-note-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 14px 0 0 0;
+}

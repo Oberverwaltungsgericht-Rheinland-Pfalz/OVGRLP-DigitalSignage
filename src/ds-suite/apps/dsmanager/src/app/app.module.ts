@@ -20,6 +20,7 @@ import { DsCommonModule } from './ds-common/ds-common.module';
 import { DisplaysComponent } from './displays/displays.component';
 import { TermineComponent } from './termine/termine.component';
 import { TerminDialogComponent } from './termin-dialog/termin-dialog.component';
+import { SondermeldungenComponent } from './sondermeldungen/sondermeldungen.component';
 
 
 registerLocaleData(localeDe);
@@ -31,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, DisplaysComponent, TermineComponent, TerminDialogComponent],
+  declarations: [AppComponent, DisplaysComponent, TermineComponent, TerminDialogComponent, SondermeldungenComponent],
   imports: [
     BrowserModule, 
     BrowserAnimationsModule,

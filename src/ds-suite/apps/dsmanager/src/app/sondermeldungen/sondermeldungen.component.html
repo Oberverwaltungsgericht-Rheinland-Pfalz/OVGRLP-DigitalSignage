@@ -1,0 +1,65 @@
+<div class="main-container">
+    <div class="content-container">
+    <nav class="sidenav">
+        <section class="sidenav-content">
+          
+            <ul class="nav-list">
+                <div *ngFor="let note of notes; let index = index;">
+                    <button class="btn btn-link btn-sm btn-notes" 
+                      [name]="'sel_gericht_' + index"  
+                      [id]="'sel_gericht_' + index"
+                      (click)="noteClick(note)">
+                      {{note.Name}}
+                    </button>
+                </div>
+            </ul>
+
+        </section>
+
+          <button class="btn btn-sm btn-primary" (click)="addNewClick()">
+            <clr-icon shape="plus"></clr-icon>
+            neu hinzufügen
+          </button>
+        </nav>  
+
+    <div class="content-area" *ngIf="currentNote!=null">
+      
+      <div class="edit-note-area">
+          <div class="card besetzung-card-meldung">
+              <div class="card-block multiple-list-header">
+                      <span>Meldung</span>
+              </div>
+              <div class="card-block">
+                 
+              </div>
+          </div>
+  
+          <div class="card besetzung-card-zuordnung">
+              <div class="card-block multiple-list-header">
+                  <span>Zuordnungen</span>
+              </div>
+              <div class="card-block">
+                  
+              </div>
+          </div>
+      </div>
+      
+      
+      <div class="edit-note-footer">
+          <button (click)="saveClick()" class="btn btn-sm btn-link" type="button">
+              <clr-icon shape="floppy"></clr-icon>
+              Speichern
+            </button>
+          <button (click)="deleteClick()" class="btn btn-sm btn-link" type="button">
+              <clr-icon shape="trash"></clr-icon>
+              Löschen
+            </button>
+          <button (click)="cancelClick()" class="btn btn-sm btn-link" type="button">
+              <clr-icon shape="times"></clr-icon>
+              Abbrechen
+            </button>
+      </div>
+
+    </div>
+
+</div>
