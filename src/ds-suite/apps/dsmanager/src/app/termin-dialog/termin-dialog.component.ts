@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  EventEmitter, OnInit, Output  } from '@angular/core';
 
 import { Termin } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
-import { getTypeNameForDebugging } from '@angular/common/src/directives/ng_for_of';
 
 @Component({
   selector: 'termin-dialog',
@@ -10,8 +9,10 @@ import { getTypeNameForDebugging } from '@angular/common/src/directives/ng_for_o
   styleUrls: ['./termin-dialog.component.css']
 })
 export class TerminDialogComponent implements OnInit {
+  @Output() dataChanged = new EventEmitter<void>();
   public termin: any;
   public show: boolean = false;
+  
 
   constructor(private terminService: TerminService) { }
 
@@ -36,6 +37,7 @@ export class TerminDialogComponent implements OnInit {
 
   saveClick() {
     this.terminService.saveTerminByBreeze(this.termin).then(() => {
+      this.dataChanged.emit();
       this.close(); 
     });
    this.show = false;
