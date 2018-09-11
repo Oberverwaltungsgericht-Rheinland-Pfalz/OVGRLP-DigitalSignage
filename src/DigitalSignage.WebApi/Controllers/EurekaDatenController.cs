@@ -3,6 +3,7 @@ using Breeze.ContextProvider.EF6;
 using Breeze.WebApi2;
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
+using DigitalSignage.Infrastructure.Models.Settings;
 using DigitalSignage.WebApi.Services;
 using Newtonsoft.Json.Linq;
 using System;
@@ -64,6 +65,13 @@ namespace DigitalSignage.WebApi.Controllers
     public IQueryable<object> Displays()
     {
       return contextProvider.Context.Displays.Where(d => d.Dummy == false);
+    }
+
+    // ~/breeze/EurekaDaten/Notes
+    [HttpGet]
+    public IQueryable<Note> Notes()
+    {
+      return contextProvider.Context.Notes;
     }
 
     // ~/breeze/EurekaDaten/DisplayStatus
