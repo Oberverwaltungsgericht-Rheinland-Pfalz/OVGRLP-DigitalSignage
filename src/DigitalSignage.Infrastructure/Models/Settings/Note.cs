@@ -19,5 +19,7 @@ namespace DigitalSignage.Infrastructure.Models.Settings
 
     [Required]
     public bool Forced { get; set; }
+
+    public ICollection<NoteAssignment> NotesAssignments { get; set; }
   }
 }
