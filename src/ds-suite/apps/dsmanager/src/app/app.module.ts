@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Routes, RouterModule } from "@angular/router";
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 
 import { ClarityModule } from "@clr/angular";
 
@@ -37,6 +38,7 @@ const routes: Routes = [
   imports: [
     BrowserModule, 
     BrowserAnimationsModule,
+    FormsModule,
     FlexLayoutModule,
     NxModule.forRoot(),
     RouterModule.forRoot(routes, {
