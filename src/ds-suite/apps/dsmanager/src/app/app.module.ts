@@ -28,7 +28,8 @@ registerLocaleData(localeDe);
 const routes: Routes = [
   { path: "", component: DisplaysComponent },
   { path: "termine", component: TermineComponent },
-  { path: 'termine/:saal', component: TermineComponent }
+  { path: 'termine/:saal', component: TermineComponent },
+  { path: "sondermeldungen", component: SondermeldungenComponent }
 ];
 
 @NgModule({
