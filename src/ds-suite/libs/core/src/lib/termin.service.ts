@@ -14,4 +14,5 @@ export abstract class TerminService {
   abstract saveTermin(termin: Termin): Observable<Termin>;
   abstract getTerminByBreeze(id: number) : Promise<any>;
   abstract saveTerminByBreeze(termin: any) : Promise<void>;
+  abstract deleteTerminByBreeze(termin: any) : Promise<void>;
 }

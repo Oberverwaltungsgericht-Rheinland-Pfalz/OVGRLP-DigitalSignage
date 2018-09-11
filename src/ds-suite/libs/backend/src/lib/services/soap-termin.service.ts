@@ -58,8 +58,19 @@ export class SoapTerminService implements TerminService {
     .then(res => { 
       console.log("Daten wurden gespeichert:",res);
     })
-    .catch((error) => {
-        console.log(error);
+    .catch((err) => {
+      console.error("Fehler beim Speichern eines Termins:",err);
+    });
+  }
+
+  deleteTerminByBreeze(termin:any) : Promise<void> {
+    termin.entityAspect.setDeleted();
+    return this.breezeEntityManager.saveChanges()
+    .then(res => { 
+      console.log("Termin wurde gelöscht:",res);
+    })
+    .catch((err) => {
+      console.error("Fehler beim Löschen eines Termins:",err);
     });
   }
 
