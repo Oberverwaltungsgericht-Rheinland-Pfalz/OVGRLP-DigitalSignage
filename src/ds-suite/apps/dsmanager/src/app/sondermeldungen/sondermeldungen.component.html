@@ -29,8 +29,38 @@
               <div class="card-block multiple-list-header">
                       <span>Meldung</span>
               </div>
-              <div class="card-block">
-                 
+              <div class="card-block card-block-content">
+                   
+                <div fxLayout="column" fxFlexFill>
+                    <div fxFlex="40px">
+                        <div fxLayout="row" fxFlexFill>
+                            <div fxFlex="80px">
+                                <label for="name">Name</label>
+                            </div>
+                            <div fxFlex>
+                                <input type="text" id="name" [(ngModel)]="currentNote.Name" name="name" size="20">
+                            </div>
+                        </div>
+                    </div>
+                    <div fxFlex>
+                        <div fxFlex="80px">
+                            <label for="content">Html Code</label>
+                        </div>
+                        <div fxFlex>
+                            <textarea class="clr-textarea clr-textarea-full-size" id="content" [(ngModel)]="currentNote.Content" name="content"></textarea>
+                        </div>
+                    </div>
+                    <div fxFlex="40px">
+                        <div fxFlex="80px">
+                            <label for="forced">Forced</label>
+                        </div>
+                        <div fxFlex>
+                            <input type="text" id="forced" [(ngModel)]="currentNote.Forced" name="forced" size="20">
+                            <span class="clr-subtext help-text-margin">Steuerung, ob der Inhalt trotz aktivier Termine angezeigt werden soll</span>
+                        </div>                            
+                    </div>
+                </div>
+
               </div>
           </div>
   
@@ -38,8 +68,11 @@
               <div class="card-block multiple-list-header">
                   <span>Zuordnungen</span>
               </div>
-              <div class="card-block">
-                  
+              <div class="card-block  card-block-content">
+
+        
+                
+
               </div>
           </div>
       </div>

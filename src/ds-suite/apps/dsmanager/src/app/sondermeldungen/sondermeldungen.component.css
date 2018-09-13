@@ -26,6 +26,14 @@ div.card.besetzung-card-zuordnung {
     margin-top: 0;
 }
 
+div.card-block-content {
+    height: calc(100% - 50px);
+}
+
+.clr-textarea-full-size{
+    height: calc(100% - 16px);
+}
+
 .btn-notes {
     margin: 0 0;
 }
