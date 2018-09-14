@@ -22,5 +22,9 @@ namespace DigitalSignage.Infrastructure.Models.Settings
     public DateTime? End { get; set; }
 
     public string Comment { get; set; }
+
+    public int DisplayId { get; set; }
+
+    public virtual Display Display { get; set; }
   }
 }
