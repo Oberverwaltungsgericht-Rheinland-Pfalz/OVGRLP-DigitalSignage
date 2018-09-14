@@ -26,7 +26,7 @@ export class SoapNoteService implements NoteService {
 getNotesByBreeze(): Promise<any> {
     var query = EntityQuery
         .from('Notes')
-        .expand('NotesAssignments')
+        .expand('NotesAssignments,NotesAssignments.Display')
         .orderBy('Id desc');
 
     var promise = this.breezeEntityManager.executeQuery(query)
