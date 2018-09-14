@@ -48,3 +48,9 @@ div.card-block-content {
     justify-content: flex-end;
     padding: 14px 0 0 0;
 }
+
+.ds-note-assignment-column-edit {
+    min-width: 35px;
+    width: 35px;
+    cursor: pointer;
+  }

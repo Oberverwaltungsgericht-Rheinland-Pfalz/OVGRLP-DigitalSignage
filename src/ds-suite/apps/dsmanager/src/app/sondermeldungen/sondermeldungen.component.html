@@ -70,8 +70,99 @@
               </div>
               <div class="card-block  card-block-content">
 
-        
-                
+                    <div fxLayout="column" fxFlexFill>
+                        <div fxFlex>
+                            <clr-datagrid #DataGridTermine style="height: 95%">
+                                <clr-dg-column class="ds-note-assignment-column-edit"></clr-dg-column>
+                                <clr-dg-column class="ds-note-assignment-column-displays">Display</clr-dg-column>
+                                <clr-dg-column class="ds-note-assignment-column-uhrzeit-von">Start</clr-dg-column>
+                                <clr-dg-column class="ds-note-assignment-column-uhrzeit-bis">Ende</clr-dg-column>
+                                <clr-dg-column class="ds-note-assignment-column-kommentar">Kommentar</clr-dg-column>
+                            
+                                <clr-dg-placeholder>Es sind keine Zuordnungen vorhanden</clr-dg-placeholder>
+                                <clr-dg-row *clrDgItems="let ass of currentDisplayNoteAssignments; let i = index">
+                                    <clr-dg-cell class="ds-note-assignment-column-edit"><clr-icon shape="pencil" class="is-solid" (click)="editAssignmentClick(ass)"></clr-icon></clr-dg-cell>
+                                    <clr-dg-cell class="ds-note-assignment-column-displays">{{ ass.DisplayNames }}</clr-dg-cell>
+                                    <clr-dg-cell class="ds-note-assignment-column-uhrzeit-von">{{ ass.StartForDisplay }}</clr-dg-cell>
+                                    <clr-dg-cell class="ds-note-assignment-column-uhrzeit-bis">{{ ass.EndForDisplay }}</clr-dg-cell>
+                                    <clr-dg-cell class="ds-note-assignment-column-kommentar">{{ ass.Comment }}</clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
+
+                        <div fxFlex="40px" style="text-align: right;">
+                            <div *ngIf="currentDisplayNoteAssignment==null">
+                                <button class="btn btn-sm btn-primary" style="margin-right:0px " (click)="addNewAssignmentClick()">
+                                    <clr-icon shape="plus"></clr-icon>
+                                    neu hinzufügen
+                                </button>
+                            </div>
+                        </div>
+                        <div fxFlex="300px">
+
+                            <div *ngIf="currentDisplayNoteAssignment!=null">
+
+                                <div fxLayout="column" fxFlexFill>
+                                    <div fxFlex="40px">
+                                        <div fxLayout="row" fxFlexFill>
+                                            <div fxFlex="80px">
+                                                <label for="comment">Kommentar</label>
+                                            </div>
+                                            <div fxFlex>
+                                                <input type="text" id="comment" [(ngModel)]="currentDisplayNoteAssignment.Comment" name="comment" style="width:100%" >
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div fxFlex="40px">
+                                        <div fxLayout="row" fxFlexFill>
+                                            <div fxFlex="80px">
+                                                <label for="start">Start</label>
+                                            </div>
+                                            <div fxFlex>
+                                                <input type="datetime-local" id="start" [(ngModel)]="currentDisplayNoteAssignment.Start" name="start">
+                                            </div>
+                                            <div fxFlex="80px">
+                                                <label for="end">Ende</label>
+                                            </div>
+                                            <div fxFlex>
+                                                <input type="datetime-local" id="end" [(ngModel)]="currentDisplayNoteAssignment.End" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div fxFlex="180px">
+                                        <div fxFlex="80px">
+                                            <label for="content">Displays</label>
+                                        </div>
+                                        <div fxFlex style="display:flex;flex-wrap:wrap;overflow: auto;">
+                                                <div *ngFor="let display of displays; let index = index;" style="margin-right: 16px;">
+                                                    <clr-checkbox
+                                                    [clrInline]="true"
+                                                    [name]="'sel_displ_' + index"  
+                                                            [id]="'sel_displ_' + index"
+                                                            [(clrChecked)]="currentDisplaysChecked[index]">
+                                                            {{display.title}} 
+                                                    </clr-checkbox>
+                                                </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div fxFlex="40px" style="text-align: right;">
+                                        <button (click)="saveAssignmentClick()" class="btn btn-sm btn-link" type="button">
+                                            <clr-icon shape="floppy"></clr-icon>
+                                            </button>
+                                        <button (click)="deleteAssignmentClick()" class="btn btn-sm btn-link" type="button">
+                                            <clr-icon shape="trash"></clr-icon>
+                                            </button>
+                                        <button (click)="cancelAssignmentClick()" class="btn btn-sm btn-link" type="button">
+                                            <clr-icon shape="times"></clr-icon>
+                                            </button>    
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
 
               </div>
           </div>
