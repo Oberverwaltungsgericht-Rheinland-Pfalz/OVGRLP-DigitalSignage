@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201808081053405_2-5-0-1832_NoteAssignmentsAdded.Designer.cs">
       <DependentUpon>201808081053405_2-5-0-1832_NoteAssignmentsAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809140556179_2-6-0-1837_ChangeDisplayIDName.cs" />
+    <Compile Include="Migrations\201809140556179_2-6-0-1837_ChangeDisplayIDName.Designer.cs">
+      <DependentUpon>201809140556179_2-6-0-1837_ChangeDisplayIDName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -100,6 +104,7 @@
     </Content>
     <Content Include="Migrations\2-4-0-1815_Update.sql" />
     <Content Include="Migrations\2-5-0-1832_Update.sql" />
+    <Content Include="Migrations\2-6-0-1837_Update.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501230805160_FirstRelease.resx">
@@ -119,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808081053405_2-5-0-1832_NoteAssignmentsAdded.resx">
       <DependentUpon>201808081053405_2-5-0-1832_NoteAssignmentsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809140556179_2-6-0-1837_ChangeDisplayIDName.resx">
+      <DependentUpon>201809140556179_2-6-0-1837_ChangeDisplayIDName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
