@@ -156,16 +156,17 @@ export class SondermeldungenComponent implements OnInit {
           this.formatDate(d.End) == this.formatDate(a.End) && 
           d.Comment == a.Comment
           );
+        var displayIndex=this.displays.findIndex(d=>d.id==a.DisplayId);
         if (ind>=0) {
           displayAss[ind].Id.push(a.Id);
           displayAss[ind].DisplayId.push(a.DisplayId);
-          displayAss[ind].DisplayNames.push(a.Display.Title);
+          displayAss[ind].DisplayNames.push(this.displays[displayIndex].title);
         }
         else {
           var dsa: NoteDisplayAssignment ={
             Id: [a.Id],
             DisplayId: [a.DisplayId],
-            DisplayNames: [a.Display.Title],
+            DisplayNames: [this.displays[displayIndex].title],
             Start: a.Start, 
             StartForDisplay: this.formatDate(a.Start), 
             End: a.End, 
@@ -195,10 +196,6 @@ formatDate(datetime:any,format:string ='DD.MM.YYYY hh:mm') {
 interface NotesAssignments {
   Id: number;
   DisplayId: number;
-  Display: {
-    Name: string;
-    Title: string;
-  },
   Comment?: string;
   Start?: string;
   End?: string;
