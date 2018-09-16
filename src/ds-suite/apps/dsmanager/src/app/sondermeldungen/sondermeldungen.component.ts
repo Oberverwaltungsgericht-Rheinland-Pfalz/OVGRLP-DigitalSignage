@@ -101,6 +101,12 @@ export class SondermeldungenComponent implements OnInit {
     this.initActivatedDisplays();
   }
 
+  saveClick() {
+    this.noteService.saveNotesByBreeze().then(() => {
+      this.currentNote=null;
+      this.loadNotes();
+    });
+  }
   saveAssignmentClick(){
     this.deleteCurrentAssignment();
     this.saveCurrentAssignment();
