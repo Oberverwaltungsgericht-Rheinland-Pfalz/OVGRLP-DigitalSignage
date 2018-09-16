@@ -81,6 +81,11 @@ export class SondermeldungenComponent implements OnInit {
     this.currentDisplaysChecked=displaysChecked;
   }
 
+  addNewClick() {
+    this.noteService.breezeEntityManager.rejectChanges();
+    this.currentNote = this.noteService.breezeEntityManager.createEntity('Note')
+  }
+
   addNewAssignmentClick() {
     var ass: NoteDisplayAssignment = {
       Id: [],

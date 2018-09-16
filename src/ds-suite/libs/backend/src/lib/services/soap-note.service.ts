@@ -44,7 +44,7 @@ getNotesByBreeze(): Promise<any> {
 saveNotesByBreeze(): Promise<void> {
     return this.breezeEntityManager.saveChanges()
         .then(res => { 
-            console.log("Daten wurden gespeichert:",res);
+            console.log("Sondermeldung wurde gespeichert:",res);
         })
         .catch((err) => {
             console.error("Fehler beim Speichern der Sondermeldungen:",err);
