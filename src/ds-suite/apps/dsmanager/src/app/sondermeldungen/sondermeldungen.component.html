@@ -47,7 +47,14 @@
                             <label for="content">Html Code</label>
                         </div>
                         <div fxFlex>
-                            <textarea class="clr-textarea clr-textarea-full-size" id="content" [(ngModel)]="currentNote.Content" name="content"></textarea>
+                            <ngx-codemirror 
+                            [(ngModel)]="currentNote.Content" 
+                                [options]="{
+                                    lineNumbers: true,
+                                    lineWrapping: true,
+                                    mode: 'markdown'}">
+                            </ngx-codemirror>
+                            <!--textarea class="clr-textarea clr-textarea-full-size" id="content" [(ngModel)]="currentNote.Content" name="content"></textarea-->
                         </div>
                     </div>
                     <div fxFlex="40px">

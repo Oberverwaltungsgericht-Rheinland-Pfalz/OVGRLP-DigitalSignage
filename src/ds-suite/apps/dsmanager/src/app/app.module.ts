@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 
 import { ClarityModule } from "@clr/angular";
+import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 
 import { registerLocaleData } from "@angular/common";
 import localeDe from "@angular/common/locales/de";
@@ -46,6 +47,7 @@ const routes: Routes = [
       initialNavigation: "enabled"
     }),
     ClarityModule,
+    CodemirrorModule,
     BackendModule,
     DsCommonModule,
     CoreModule,
