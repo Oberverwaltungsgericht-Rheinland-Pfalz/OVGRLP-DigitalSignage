@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DateFormatPipe } from 'angular2-moment';
 
+import { YesNoDialogComponent } from '@ds-suite/ui';
 import { NoteService } from '@ds-suite/core';
 import { DisplayService } from '@ds-suite/core';
 import { Display} from '@ds-suite/model';
@@ -17,6 +18,8 @@ export class SondermeldungenComponent implements OnInit {
   public currentDisplayNoteAssignments: NoteDisplayAssignment[] = [];
   public currentDisplayNoteAssignment: NoteDisplayAssignment = null;
   public currentDisplaysChecked: boolean[] = [] ;
+
+  @ViewChild(YesNoDialogComponent) yesNoDialog: YesNoDialogComponent;
 
   _currentNote: any = null;
   set currentNote (currentNote: any){
@@ -114,6 +117,10 @@ export class SondermeldungenComponent implements OnInit {
     this.loadCurrentNoteDisplayAssignments();
   }
 
+  deleteClick(){
+    this.yesNoDialog.open();
+  }
+
   deleteAssignmentClick(){
     this.deleteCurrentAssignment()
     this.currentDisplayNoteAssignment=null;
@@ -194,6 +201,25 @@ export class SondermeldungenComponent implements OnInit {
     }
     
     this.currentDisplayNoteAssignments= displayAss;
+  }
+
+  OnDeleteResult(result:boolean) {
+    var i:number;
+    if (result) {
+      
+      //!\TODO: Löschen in einem Rutsch, inkl. Assignments implementieren
+      //        Muss gehen, bei den Terminen und den Parteien ist es auch nichts anderes
+      for (i=0; i<this.currentNote.NotesAssignments.length; i++) {
+        this.currentNote.NotesAssignments[i].entityAspect.setDeleted();
+      }
+      this.noteService.saveNotesByBreeze().then(() => {
+        this.noteService.deleteNoteByBreeze(this.currentNote).then(() => {
+          this.currentNote=null;
+          this.loadNotes();
+        });
+      });
+
+    }
   }
 
 formatDate(datetime:any,format:string ='DD.MM.YYYY hh:mm') {
