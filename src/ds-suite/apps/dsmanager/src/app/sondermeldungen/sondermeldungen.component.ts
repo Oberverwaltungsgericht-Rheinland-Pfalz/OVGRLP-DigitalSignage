@@ -43,19 +43,12 @@ export class SondermeldungenComponent implements OnInit {
   loadNotes(){
     this.noteService.getNotesByBreeze().then(items => {
       this.notes=items;
-      console.log("Notes:",this.notes);
     });
   }
 
   noteClick(note:any){
     this.noteService.breezeEntityManager.rejectChanges();
     this.currentNote=note;
-    console.log(note)
-  }
-
-  cancelClick() {
-    this.noteService.breezeEntityManager.rejectChanges();
-    this.currentNote=null;
   }
 
   editAssignmentClick(ass:NoteDisplayAssignment) {
@@ -107,6 +100,7 @@ export class SondermeldungenComponent implements OnInit {
       this.loadNotes();
     });
   }
+
   saveAssignmentClick(){
     
     //!\TODO: Grafische Info anzeigen
@@ -131,7 +125,6 @@ export class SondermeldungenComponent implements OnInit {
     for (i=0; i<this.currentDisplaysChecked.length; i++) {
       if (this.currentDisplaysChecked[i]==true) {
         var displayId=this.displays[i].id;
-        console.log("displays neu angelegt:",displayId);
         this.currentNote.entityAspect.entityManager.createEntity("NoteAssignment",{
           DisplayId: displayId, 
           Comment: this.currentDisplayNoteAssignment.Comment,
@@ -141,15 +134,20 @@ export class SondermeldungenComponent implements OnInit {
         })
       }
     }
+
   }
 
   deleteCurrentAssignment() {
     var i:number;
     for (i=0; i<this.currentDisplayNoteAssignment.Id.length; i++) {
       var index=this.currentNote.NotesAssignments.findIndex(a=> a.Id==this.currentDisplayNoteAssignment.Id[i])
-      console.log("this.currentNote",index)
       this.currentNote.NotesAssignments[index].entityAspect.setDeleted();
     }
+  }
+
+  cancelClick() {
+    this.noteService.breezeEntityManager.rejectChanges();
+    this.currentNote=null;
   }
 
   cancelAssignmentClick(){
@@ -195,7 +193,6 @@ export class SondermeldungenComponent implements OnInit {
       });
     }
     
-    console.log(displayAss);
     this.currentDisplayNoteAssignments= displayAss;
   }
 
