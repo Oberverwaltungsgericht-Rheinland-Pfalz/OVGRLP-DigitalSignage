@@ -108,6 +108,12 @@ export class SondermeldungenComponent implements OnInit {
     });
   }
   saveAssignmentClick(){
+    
+    //!\TODO: Grafische Info anzeigen
+    if (this.currentDisplaysChecked.filter(d => d==true).length==0) {
+      return;
+    }
+
     this.deleteCurrentAssignment();
     this.saveCurrentAssignment();
     this.currentDisplayNoteAssignment=null;
