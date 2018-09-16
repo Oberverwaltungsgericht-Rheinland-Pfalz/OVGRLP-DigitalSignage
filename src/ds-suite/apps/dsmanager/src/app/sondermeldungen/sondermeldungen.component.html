@@ -47,7 +47,7 @@
                             <label for="content">Html Code</label>
                         </div>
                         <div fxFlex>
-                            <ngx-codemirror 
+                            <ngx-codemirror #codemirrorEditor   
                             [(ngModel)]="currentNote.Content" 
                                 [options]="{
                                     lineNumbers: true,

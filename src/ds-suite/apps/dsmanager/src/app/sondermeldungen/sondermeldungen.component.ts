@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DateFormatPipe } from 'angular2-moment';
 
+import { CodemirrorComponent } from '@ctrl/ngx-codemirror';
 import { YesNoDialogComponent } from '@ds-suite/ui';
 import { NoteService } from '@ds-suite/core';
 import { DisplayService } from '@ds-suite/core';
@@ -20,6 +21,7 @@ export class SondermeldungenComponent implements OnInit {
   public currentDisplaysChecked: boolean[] = [] ;
 
   @ViewChild(YesNoDialogComponent) yesNoDialog: YesNoDialogComponent;
+  @ViewChild('codemirrorEditor') codemirrorEditor: CodemirrorComponent;
 
   _currentNote: any = null;
   set currentNote (currentNote: any){
@@ -52,6 +54,7 @@ export class SondermeldungenComponent implements OnInit {
   noteClick(note:any){
     this.noteService.breezeEntityManager.rejectChanges();
     this.currentNote=note;
+    this.setCodeMirrorSize();
   }
 
   editAssignmentClick(ass:NoteDisplayAssignment) {
@@ -60,6 +63,7 @@ export class SondermeldungenComponent implements OnInit {
     this.currentDisplayNoteAssignment.End=this.formatDate(this.currentDisplayNoteAssignment.End,'YYYY-MM-DDThh:mm');
 
     this.initActivatedDisplays();
+
   }
 
   initActivatedDisplays(){
@@ -80,6 +84,7 @@ export class SondermeldungenComponent implements OnInit {
   addNewClick() {
     this.noteService.breezeEntityManager.rejectChanges();
     this.currentNote = this.noteService.breezeEntityManager.createEntity('Note')
+    this.setCodeMirrorSize();
   }
 
   addNewAssignmentClick() {
@@ -142,6 +147,16 @@ export class SondermeldungenComponent implements OnInit {
       }
     }
 
+  }
+
+  setCodeMirrorSize() {
+    // geht bestimmt besser - aber vorerst lauffähig
+    var foo = new Promise<void>(resolve => {
+      setTimeout(resolve, 100);
+    }).then(() => {
+      this.codemirrorEditor.codeMirror.setSize("100%","calc(100% - 16px)")
+      this.codemirrorEditor.codeMirror.refresh();
+    });
   }
 
   deleteCurrentAssignment() {
