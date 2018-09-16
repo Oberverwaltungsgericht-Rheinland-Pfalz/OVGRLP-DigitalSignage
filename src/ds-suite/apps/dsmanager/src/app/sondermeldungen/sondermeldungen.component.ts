@@ -110,7 +110,20 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   saveCurrentAssignment() {
-    //!\TODO
+    var i:number;
+    for (i=0; i<this.currentDisplaysChecked.length; i++) {
+      if (this.currentDisplaysChecked[i]==true) {
+        var displayId=this.displays[i].id;
+        console.log("displays neu angelegt:",displayId);
+        this.currentNote.entityAspect.entityManager.createEntity("NoteAssignment",{
+          DisplayId: displayId, 
+          Comment: this.currentDisplayNoteAssignment.Comment,
+          Start: this.currentDisplayNoteAssignment.Start,
+          End: this.currentDisplayNoteAssignment.End,
+          NoteId: this.currentNote.Id
+        })
+      }
+    }
   }
 
   deleteCurrentAssignment() {
@@ -189,6 +202,8 @@ interface NotesAssignments {
   Comment?: string;
   Start?: string;
   End?: string;
+  NoteId: number;
+
 }
 
 interface NoteDisplayAssignment {
