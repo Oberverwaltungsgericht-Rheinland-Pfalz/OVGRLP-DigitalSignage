@@ -35,14 +35,14 @@ export class SondermeldungenComponent implements OnInit {
     private displayService: DisplayService) { }
 
   loadDisplays(){
-      this.displayService.getDisplays()
-      .subscribe(
-        displays => {
-          this.displays = displays.sort((d1, d2) => d1.title > d2.title ? 1 : -1)
-        },
-        err => {
-          console.error("Displays konnten nicht geladen werden: ",err);
-        });
+    this.displayService.getDisplays()
+    .subscribe(
+      displays => {
+        this.displays = displays.sort((d1, d2) => d1.title > d2.title ? 1 : -1)
+      },
+      err => {
+        console.error("Displays konnten nicht geladen werden: ",err);
+      });
     }
 
   loadNotes(){
@@ -220,22 +220,25 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   OnDeleteResult(result:boolean) {
-    var i:number;
+    var assignmentIds: number[] = [];
     if (result) {
       
-      //!\TODO: Löschen in einem Rutsch, inkl. Assignments implementieren
-      //        Muss gehen, bei den Terminen und den Parteien ist es auch nichts anderes
-      for (i=0; i<this.currentNote.NotesAssignments.length; i++) {
-        this.currentNote.NotesAssignments[i].entityAspect.setDeleted();
-      }
-      this.noteService.saveNotesByBreeze().then(() => {
+      //
+      this.currentNote.NotesAssignments.forEach(a =>{
+       assignmentIds.push(a.Id);
+      })
+      assignmentIds.forEach(id=>{
+       var ind=this.currentNote.NotesAssignments.findIndex(a=> a.Id==id);
+       this.currentNote.NotesAssignments[ind].entityAspect.setDeleted();
+      });
+      
+      //this.noteService.saveNotesByBreeze().then(() => {
         this.noteService.deleteNoteByBreeze(this.currentNote).then(() => {
           this.currentNote=null;
           this.loadNotes();
-        });
-      });
-
-    }
+          });
+      //});
+      }
   }
 
 formatDate(datetime:any,format:string ='DD.MM.YYYY hh:mm') {
