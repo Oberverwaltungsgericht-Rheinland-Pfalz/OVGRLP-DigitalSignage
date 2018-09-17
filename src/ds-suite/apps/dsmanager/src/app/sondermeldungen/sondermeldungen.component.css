@@ -36,6 +36,7 @@ div.card-block-content {
 
 .btn-notes {
     margin: 0 0;
+    text-align: left;
 }
 
 .edit-note-area {
