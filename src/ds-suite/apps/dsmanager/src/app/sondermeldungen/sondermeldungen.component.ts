@@ -84,6 +84,7 @@ export class SondermeldungenComponent implements OnInit {
   addNewClick() {
     this.noteService.breezeEntityManager.rejectChanges();
     this.currentNote = this.noteService.breezeEntityManager.createEntity('Note')
+    this.currentNote.Content="";  //nullwert zur korrekten Anzeige verhindern
     this.setCodeMirrorSize();
   }
 
