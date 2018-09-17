@@ -1,6 +1,6 @@
 import { Component,  EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
-import { Termin } from '@ds-suite/model';
+import { Termin, TerminStatus } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
 import { YesNoDialogComponent } from '@ds-suite/ui';
 
@@ -14,9 +14,12 @@ export class TerminDialogComponent implements OnInit {
   @ViewChild(YesNoDialogComponent) yesNoDialog: YesNoDialogComponent;
   public termin: any;
   public show: boolean = false;
-  
-
+ 
   constructor(private terminService: TerminService) { }
+
+  GetStatausValues() : Array<string> {
+    return Object.values(TerminStatus)
+  }
 
   open(termin: Termin) {
     this.terminService.getTerminByBreeze(termin.id).then(item => {

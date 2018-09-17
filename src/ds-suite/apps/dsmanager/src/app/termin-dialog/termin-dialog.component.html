@@ -51,7 +51,11 @@
                   <label for="Sitz_1">Sitzungsdaten</label>
                   <div class="clr-control-container">
                       <div class="clr-input-wrapper imput-right-margin">
-                          <input type="text" id="Sitz_1" [(ngModel)]="termin.Status" name="status" size="35">
+                          <div class="select">
+                            <select id="Sitz_1" name="status" [(ngModel)]="termin.Status">
+                              <option *ngFor="let status of GetStatausValues()" [value]="status">{{ status }}</option>
+                            </select>
+                          </div>
                       </div>
                       <span class="clr-subtext help-text-margin">Status</span>
                   </div>
