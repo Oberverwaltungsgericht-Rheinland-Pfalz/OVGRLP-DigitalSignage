@@ -62,7 +62,10 @@
                             <label for="forced">Forced</label>
                         </div>
                         <div fxFlex>
-                            <input type="text" id="forced" [(ngModel)]="currentNote.Forced" name="forced" size="20">
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="forced" [(ngModel)]="currentNote.Forced" name="forced" size="20">
+                                <label for="forced"></label>
+                            </div>
                             <span class="clr-subtext help-text-margin">Steuerung, ob der Inhalt trotz aktivier Termine angezeigt werden soll</span>
                         </div>                            
                     </div>
