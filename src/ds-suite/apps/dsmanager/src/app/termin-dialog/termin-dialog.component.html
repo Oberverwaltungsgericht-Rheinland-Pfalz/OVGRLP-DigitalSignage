@@ -57,7 +57,10 @@
                   </div>
                   <div class="clr-control-container">
                       <div class="clr-input-wrapper  imput-right-margin">
-                          <input type="text" id="Sitz_2" [(ngModel)]="termin.Oeffentlich" name="oeffentlich" size="20">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="Sitz_2" [checked]="termin.Oeffentlich | yesnoBoolean" (change)="changeOeffentlich(termin)" name="oeffentlich" size="20">
+                            <label for="Sitz_2"></label>
+                        </div> 
                       </div>
                       <span class="clr-subtext help-text-margin">Öffentlich</span>
                   </div>

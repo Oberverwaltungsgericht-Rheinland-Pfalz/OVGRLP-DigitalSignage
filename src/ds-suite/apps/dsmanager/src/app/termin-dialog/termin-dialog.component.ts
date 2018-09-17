@@ -49,6 +49,13 @@ export class TerminDialogComponent implements OnInit {
    this.show = false;
   }
 
+  changeOeffentlich(termin: any) {
+    if(termin.Oeffentlich === 'ja')
+      termin.Oeffentlich = 'nein'
+    else
+      termin.Oeffentlich = 'ja'
+  }
+
   close() {
     this.terminService.breezeEntityManager.clear();
     this.show = false;
