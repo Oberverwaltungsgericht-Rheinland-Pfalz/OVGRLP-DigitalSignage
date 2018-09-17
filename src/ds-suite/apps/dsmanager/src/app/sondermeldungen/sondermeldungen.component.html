@@ -80,8 +80,8 @@
               </div>
               <div class="card-block  card-block-content">
 
-                    <div fxLayout="column" fxFlexFill>
-                        <div fxFlex>
+                    <div fxLayout="column" fxFill>
+                        <div fxFlex="calc(100% - 280px)">
                             <clr-datagrid #DataGridTermine style="height: 95%">
                                 <clr-dg-column class="ds-note-assignment-column-edit"></clr-dg-column>
                                 <clr-dg-column class="ds-note-assignment-column-displays">Display</clr-dg-column>
@@ -98,17 +98,15 @@
                                     <clr-dg-cell class="ds-note-assignment-column-kommentar">{{ ass.Comment }}</clr-dg-cell>
                                 </clr-dg-row>
                             </clr-datagrid>
-                        </div>
-
-                        <div fxFlex="40px" style="text-align: right;">
-                            <div *ngIf="currentDisplayNoteAssignment==null">
-                                <button class="btn btn-sm btn-primary" style="margin-right:0px " (click)="addNewAssignmentClick()">
+                            <div *ngIf="currentDisplayNoteAssignment==null" style="text-align: right;">
+                                <button class="btn btn-sm btn-primary" style="margin-right:0px;margin-top:16px " (click)="addNewAssignmentClick()">
                                     <clr-icon shape="plus"></clr-icon>
                                     neu hinzufügen
                                 </button>
                             </div>
                         </div>
-                        <div fxFlex="300px">
+
+                        <div fxFlex="280px">
 
                             <div *ngIf="currentDisplayNoteAssignment!=null">
 
@@ -130,17 +128,21 @@
                                                 <label for="start">Start</label>
                                             </div>
                                             <div fxFlex>
-                                                <input type="datetime-local" id="start" [(ngModel)]="currentDisplayNoteAssignment.Start" name="start">
-                                            </div>
-                                            <div fxFlex="80px">
-                                                <label for="end">Ende</label>
-                                            </div>
-                                            <div fxFlex>
-                                                <input type="datetime-local" id="end" [(ngModel)]="currentDisplayNoteAssignment.End" name="end">
+                                                <input type="datetime-local" id="start" [(ngModel)]="currentDisplayNoteAssignment.Start" name="start" size="25px">
                                             </div>
                                         </div>
                                     </div>
-                                    <div fxFlex="180px">
+                                    <div fxFlex="40px">
+                                            <div fxLayout="row" fxFlexFill>
+                                                <div fxFlex="80px">
+                                                    <label for="end">Ende</label>
+                                                </div>
+                                                <div fxFlex>
+                                                    <input type="datetime-local" id="end" [(ngModel)]="currentDisplayNoteAssignment.End" name="end">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div fxFlex="130px">
                                         <div fxFlex="80px">
                                             <label for="content">Displays</label>
                                         </div>
@@ -157,7 +159,7 @@
                                             
                                         </div>
                                     </div>
-                                    <div fxFlex="40px" style="text-align: right;">
+                                    <div fxFlex="30px" style="text-align: right;">
                                         <button (click)="saveAssignmentClick()" class="btn btn-sm btn-link" type="button">
                                             <clr-icon shape="floppy"></clr-icon>
                                             </button>
