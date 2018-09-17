@@ -85,6 +85,7 @@ export class SondermeldungenComponent implements OnInit {
     this.noteService.breezeEntityManager.rejectChanges();
     this.currentNote = this.noteService.breezeEntityManager.createEntity('Note')
     this.currentNote.Content="";  //nullwert zur korrekten Anzeige verhindern
+    this.currentNote.Forced=true;
     this.setCodeMirrorSize();
   }
 
