@@ -131,6 +131,18 @@
     </div>
   </div>
 
+  <div *ngIf="(termin.parteienZeugen.length + termin.parteienSv.length) > 0" fxFlex="nogrow">
+    <span *ngIf="termin.parteienZeugen.length == 1">
+      und {{ termin.parteienZeugen.length }} Zeugin/Zeuge
+    </span>
+    <span *ngIf="termin.parteienZeugen.length > 1">
+      und {{ termin.parteienZeugen.length }} Zeugen
+    </span>
+    <span *ngIf="termin.parteienSv.length > 0">
+      und {{ termin.parteienSv.length }} Sachverständige(r)
+    </span>
+  </div>
+
   <!-- Trenner -->
   <div fxFlex="nogrow" class="ds-divider"></div>
 
