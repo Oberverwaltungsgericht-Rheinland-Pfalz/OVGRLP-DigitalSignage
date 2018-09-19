@@ -47,8 +47,10 @@
     <div fxFlex="30">
       <h3>Besetzung:</h3>
     </div>
-    <div *ngFor="let richter of termin.besetzung">
-      {{ richter }}
+    <div fxFlex>
+      <span *ngFor="let richter of termin.besetzung">
+          {{ richter }}<br />
+      </span>
     </div>
   </div>
 

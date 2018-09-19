@@ -9,7 +9,7 @@
       "sitzungssaalN": 1,
       "uhrzeitPlan": "10:00",
       "uhrzeitAktuell": "10:00",
-      "status": "",
+      "status": "Läuft",
       "oeffentlich": "nein",
       "art": "mündliche Verhandlung",
       "gegenstand": "Rundfunkbeitrags",
@@ -35,7 +35,10 @@
       "gericht": "Verwaltungsgericht Koblenz",
       "datum": "09.01.2018",
       "besetzung": [
-        "Vorsitzender Richter am Testgericht Heinzmann"
+        "Vorsitzender Richter am Testgericht Heinzmann",
+        "Richter am Verwaltungsgericht Müller",
+        "Richter am Verwaltungsgericht Müller",
+        "Richter am Verwaltungsgericht Müller"
       ]
     },
     {
