@@ -25,10 +25,18 @@
         "Südwestrundfunk, vertreten durch den Intendanten\r"
       ],
       "prozBevPassiv": [],
-      "parteienBeigeladen": [],
+      "parteienBeigeladen": [
+        "Ortsgemeinde Nörtershausen",
+        "Ortsgemeinde Alken"
+      ],
       "prozBevBeigeladen": [],
-      "parteienZeugen": [],
-      "parteienSv": [],
+      "parteienZeugen": [
+        "Michael Müller",
+        "Steffen Müller"
+      ],
+      "parteienSv": [
+        "Dr. Mabuse"
+      ],
       "parteienAktivKurz": "Frank Ferdinand\r",
       "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
       "stammdatenId": 1,

@@ -49,7 +49,7 @@
     </div>
     <div fxFlex>
       <span *ngFor="let richter of termin.besetzung">
-          {{ richter }}<br />
+        {{ richter }}<br />
       </span>
     </div>
   </div>
@@ -119,6 +119,21 @@
   <!-- Trenner -->
   <div fxFlex="nogrow" class="ds-divider"></div>
 
+  <!-- Beigeladene -->
+  <div fxFlex="nogrow" fxLayout="row">
+    <div fxFlex="15">
+      Beigeladen:
+    </div>
+    <div fxFlex>
+      <span *ngFor="let beigeladen of termin.parteienBeigeladen; let i = index">
+        {{ beigeladen }}<span *ngIf="(i+1) < termin.parteienBeigeladen.length">; </span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Trenner -->
+  <div fxFlex="nogrow" class="ds-divider"></div>
+
   <!-- wegen -->
   <div fxFlex="nogrow" fxLayout="row">
     <div fxFlex="8">
@@ -128,4 +143,5 @@
       {{ termin.gegenstand }}
     </div>
   </div>
+
 </div>
