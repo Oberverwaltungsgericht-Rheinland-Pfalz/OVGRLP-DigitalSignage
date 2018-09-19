@@ -40,7 +40,7 @@ export class DisplayComponent implements AfterViewInit, OnDestroy {
     this.route.params
       .switchMap((params: Params) => this.displayService.getDisplayNotes(params['name']))
       .subscribe(notes => {
-        if(JSON.stringify(this.notes) === JSON.stringify(notes))
+        if(JSON.stringify(this.notes) != JSON.stringify(notes))
           this.notes = notes;
       });
   }
