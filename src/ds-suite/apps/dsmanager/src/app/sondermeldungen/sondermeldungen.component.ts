@@ -6,7 +6,6 @@ import { YesNoDialogComponent } from '@ds-suite/ui';
 import { NoteService } from '@ds-suite/core';
 import { DisplayService } from '@ds-suite/core';
 import { Display} from '@ds-suite/model';
-import { NullAstVisitor } from '@angular/compiler';
 
 @Component({
   selector: 'sondermeldungen',
@@ -105,10 +104,36 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   saveClick() {
+    this.parseChangedDatetimesForBreeze();
     this.noteService.saveNotesByBreeze().then(() => {
       this.currentNote=null;
       this.loadNotes();
     });
+  }
+
+  // !!!HACK!!!
+  // breeze wandelt intern die Zeitzonen zwischen Server und Client um und speichert in der Datenbank im UTC-Format
+  // Da dies an anderer Stelle (bspw. bei Displays) nicht geschieht, wird hier die Umwandlung umgangen
+  parseChangedDatetimesForBreeze(){
+    var i:number;
+    for (i=0; i<this.currentNote.NotesAssignments.length; i++) {
+      if (this.currentNote.NotesAssignments[i].entityAspect.entityState.isUnchanged()==false) {
+        this.currentNote.NotesAssignments[i].Start=this.AddTimeZoneToTime(this.currentNote.NotesAssignments[i].Start)
+        this.currentNote.NotesAssignments[i].End=this.AddTimeZoneToTime(this.currentNote.NotesAssignments[i].End)
+      }
+    }
+  }
+  AddTimeZoneToTime(source: any) {
+    var rval:any = source;
+
+    if (null!=rval) {
+      rval=new Date(Date.parse(rval));
+      var offsetMin = rval.getTimezoneOffset()*-1;
+      rval.setMinutes(rval.getMinutes() + offsetMin)
+      rval=new Date(Date.parse(rval));
+    }
+
+    return rval;
   }
 
   saveAssignmentClick(){

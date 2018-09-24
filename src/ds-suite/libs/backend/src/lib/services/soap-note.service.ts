@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EntityManager, EntityQuery } from 'breeze-client';
+import { EntityManager, EntityQuery, DataType} from 'breeze-client';
 
 import { AppConfig } from '@ds-suite/model';
 import { NoteService, ConfigService } from '@ds-suite/core';
@@ -21,6 +21,12 @@ export class SoapNoteService implements NoteService {
     this.config = this.configService.getConfig();
     var BreezeserviceName = this.config.webApiUrl + '/breeze/EurekaDaten'
     this.breezeEntityManager = new EntityManager(BreezeserviceName);
+    
+    // breeze wandelt intern die Zeitzonen zwischen Server und Client um und speichert in der Datenbank im UTC-Format
+    // Da dies an anderer Stelle (bspw. bei Displays) nicht geschieht, wird hier die Umwandlung ausgeschaltet
+    //https://github.com/Breeze/temphire.angular/issues/12
+    DataType.parseDateFromServer = this.parseDateForBreeze;
+    
     }
 
 getNotesByBreeze(): Promise<any> {
@@ -60,6 +66,10 @@ deleteNoteByBreeze(note: any): Promise<void> {
         .catch((err) => {
             console.error("Fehler beim Löschen einer Sondermeldung:",err);
         });
+    }
+
+parseDateForBreeze(source: any): Date{
+        return source
     }
 
 }
