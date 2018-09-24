@@ -55,3 +55,7 @@ div.card-block-content {
     width: 35px;
     cursor: pointer;
   }
+
+.full-width{
+    width: 100%;
+}
