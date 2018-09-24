@@ -19,11 +19,14 @@ div.card.besetzung-card-meldung {
     margin-right: 6px!important;
     width: calc(50% - 6px);
     margin-top: 0;
+    min-width: 500px;
 }
 
 div.card.besetzung-card-zuordnung {
     width: 50%;
     margin-top: 0;
+    min-width: 500px;
+    
 }
 
 div.card-block-content {
@@ -42,6 +45,7 @@ div.card-block-content {
 .edit-note-area {
     display: flex;
     height: calc(100% - 50px);
+    min-height: 500px;
 }
 
 .edit-note-footer {
