@@ -58,8 +58,8 @@ export class SondermeldungenComponent implements OnInit {
 
   editAssignmentClick(ass:NoteDisplayAssignment) {
     this.currentDisplayNoteAssignment=ass;
-    this.currentDisplayNoteAssignment.Start=this.formatDate(this.currentDisplayNoteAssignment.Start,'YYYY-MM-DDThh:mm');
-    this.currentDisplayNoteAssignment.End=this.formatDate(this.currentDisplayNoteAssignment.End,'YYYY-MM-DDThh:mm');
+    this.currentDisplayNoteAssignment.Start=this.formatDate(this.currentDisplayNoteAssignment.Start,'YYYY-MM-DDTHH:mm');
+    this.currentDisplayNoteAssignment.End=this.formatDate(this.currentDisplayNoteAssignment.End,'YYYY-MM-DDTHH:mm');
 
     this.initActivatedDisplays();
 
@@ -267,12 +267,14 @@ export class SondermeldungenComponent implements OnInit {
       }
   }
 
-formatDate(datetime:any,format:string ='DD.MM.YYYY hh:mm') {
+formatDate(datetime:any,format:string ='DD.MM.YYYY HH:mm') {
   var rval:any = datetime;
+  console.log("formatDate:",datetime); 
   if (null!=datetime) {
     var df = new DateFormatPipe();
     rval=df.transform(datetime, format); 
   }
+  console.log("formatDate1:",rval); 
   return rval
  }
 
