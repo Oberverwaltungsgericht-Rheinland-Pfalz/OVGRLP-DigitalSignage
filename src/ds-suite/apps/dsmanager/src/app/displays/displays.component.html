@@ -57,7 +57,7 @@
                                 shape="replay-all"></clr-icon> Neu starten</button>
                     </div>
                     <div fxFlex="20%" class="screenshotColumn">
-                        <div *ngIf="display.screenshotUrl">
+                        <div *ngIf="display.screenshotUrl && (display.status >= 1)">
                             <img [src]="display.screenshotUrl" (click)="modal.open(display.screenshotUrl)" class="img-smallSize">
                         </div>
                     </div>
