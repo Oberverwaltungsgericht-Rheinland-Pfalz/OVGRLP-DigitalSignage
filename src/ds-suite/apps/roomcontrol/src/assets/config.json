@@ -1,3 +1,4 @@
 {
-  "webApiUrl": "http://localhost:4200"
+   "webApiUrl": "http://Server:8082/webapi/v2/",
+  "useWindowsAuthentication": true
 }
