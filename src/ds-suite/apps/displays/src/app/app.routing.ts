@@ -20,6 +20,14 @@ const routes: Routes = [
       {
         path: "demo",
         loadChildren: './templates/demo/demo.module#DemoModule'
+      },
+      {
+        path: "jzzw",
+        loadChildren: './templates/jz-zw/jz-zw.module#JzZwModule'
+      },
+      {
+        path: "jzkl",
+        loadChildren: './templates/jz-kl/jz-kl.module#JzKlModule'
       }
     ]
   },
