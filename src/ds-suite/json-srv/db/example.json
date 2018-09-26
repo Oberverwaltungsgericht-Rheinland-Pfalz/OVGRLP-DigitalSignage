@@ -770,6 +770,138 @@
       "group": "Testanzeigen",
       "notes": null,
       "dummy": false
+    },
+    {
+      "id": 18,
+      "name": "Zweibrücken, Foyer Variante A",
+      "title": "Verhandlungstermine",
+      "template": "jzzw/jzzw-foyer-variante-a",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 19,
+      "name": "Zweibrücken, Foyer Variante B",
+      "title": "Verhandlungstermine",
+      "template": "jzzw/jzzw-foyer-variante-b",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 20,
+      "name": "Zweibrücken, Saal Variante A",
+      "title": "Verhandlungstermine",
+      "template": "jzzw/jzzw-saal-variante-a",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 21,
+      "name": "Zweibrücken, Saal Variante B",
+      "title": "Verhandlungstermine",
+      "template": "jzzw/jzzw-saal-variante-b",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 22,
+      "name": "Zweibrücken, Saal Variante: Weitere Termine rechts",
+      "title": "Verhandlungstermine",
+      "template": "jzzw/jzzw-saal-variante-weitere-rechts",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 23,
+      "name": "Zweibrücken, Saal Variante: Weitere Termine unten",
+      "title": "Verhandlungstermine",
+      "template": "jzzw/jzzw-saal-variante-weitere-unten",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 24,
+      "name": "Kaiserslautern, Foyer Variante A",
+      "title": "Verhandlungstermine",
+      "template": "jzkl/jzkl-foyer-variante-a",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 25,
+      "name": "Kaiserslautern, Foyer Variante B",
+      "title": "Verhandlungstermine",
+      "template": "jzkl/jzkl-foyer-variante-b",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 26,
+      "name": "Kaiserslautern, Saal Variante A",
+      "title": "Verhandlungstermine",
+      "template": "jzkl/jzkl-saal-variante-a",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 27,
+      "name": "Kaiserslautern, Saal Variante B",
+      "title": "Verhandlungstermine",
+      "template": "jzkl/jzkl-saal-variante-b",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 28,
+      "name": "Kaiserslautern, Saal Variante: Weitere Termine rechts",
+      "title": "Verhandlungstermine",
+      "template": "jzkl/jzkl-saal-variante-weitere-rechts",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 29,
+      "name": "Kaiserslautern, Saal Variante: Weitere Termine unten",
+      "title": "Verhandlungstermine",
+      "template": "jzkl/jzkl-saal-variante-weitere-unten",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "notes": null,
+      "dummy": false
     }
   ],
   "displaysStatus": [
