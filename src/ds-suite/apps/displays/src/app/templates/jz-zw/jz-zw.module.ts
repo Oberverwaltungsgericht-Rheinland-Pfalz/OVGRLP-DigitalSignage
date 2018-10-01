@@ -11,6 +11,7 @@ import { JZZWSaalVarRechtsComponent } from './saal-var-weitere-rechts/saal-var-w
 import { JZZWSaalVarUntenComponent } from './saal-var-weitere-unten/saal-var-weitere-unten.component';
 
 import { DsCommonModule } from '../../ds-common/ds-common.module';
+import { CoreModule } from '@ds-suite/core';
 
 const routes: Routes = [
   { path: "jzzw-foyer-variante-a", component: JZZWFoyerVarAComponent },
@@ -26,7 +27,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FlexLayoutModule,
-    DsCommonModule
+    DsCommonModule,
+    CoreModule
   ],
   declarations: [
     JZZWFoyerVarAComponent,
