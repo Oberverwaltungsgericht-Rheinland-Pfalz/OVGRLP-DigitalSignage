@@ -24,7 +24,7 @@
   text-align: right;
   font-size: 1.8vw;
   font-weight: bold;
-  background: url("/assets/img/logo-demo.png") no-repeat;
+  background: url("/assets/img/logo-justiz-kaiserslautern.png") no-repeat;
   background-size: contain;
   background-position: top right;
 }
@@ -48,7 +48,7 @@
 .mainSide {
   border-radius: 12px;
   box-shadow: 0 1px 10px #333;
-  margin: 1% 0;
+  margin: 1% 3% 1% 0;
   background: url("/assets/img/rlp_wappen_600x735.png") no-repeat;
   background-size: auto 66%;
   background-position: 50% 75%;  
@@ -88,19 +88,15 @@
   text-align: center;
 }
 
-.ds-text-right {
-  text-align: right;
-}
-
 .activeCaseAz {
-  padding: 1% 5%;
-  text-align: left;
+  padding: 1%;
+  text-align: center;
   font-weight: bold;
   font-size: 2.0em;
 }
 .activeCaseType {
-  padding: 1.8% 5% 0 5%;
-  text-align: right;
+  padding: 1%;
+  text-align: center;
   font-weight: bold;
   font-size: 1.5em;
 }
@@ -110,30 +106,24 @@
   border-bottom: 1px solid #ddd;
   margin: 0 5% 20px 5%;
 }
-.activeCaseParts1 {
+.activeCaseParts {
   font-size: 1.2em;
-  margin: 1% 5%;
-}
-.activeCaseParts2 {
-  font-size: 1.2em;
-  text-align: right;
-  margin: 1% 5%;
+  margin: 3% 5% 3% 5%;
 }
 .activeCasePartsSmallBorder {
-  text-align: center;
-  margin: 1% 0;
+  margin: 1% 5%;
 }
 .activeCasePartsLargeBorder {
-  margin: 3% 5%;
+  margin: 10% 5% 0 5%;
 }
 
-.downtown {
+.rightSide {
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 1px 10px #333;
   margin: 1% 0;
 }
-.downtownHeadline {
+.rightSideHeadline {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   color: #333;
@@ -144,60 +134,48 @@
   font-weight: bold;
 }
 #scrollarea {
+  height: 750px;
   margin: 1% 0 0 0;
   overflow: hidden;
 }
 .ds-termin {
-  overflow: hidden;
-}
-.bottomHeadline {
-  margin: 1.5% 1.5% 0 1.5%;
-  padding: 1% 0 0.5% 0;
-  border-bottom: 3px solid #333;
-  color: #333;
-  font-size: 1.3em;
-  font-weight: bold;
-}
-.bottomBox {
-  min-width: 390px;   /* Auflösung: 1280 */
-  overflow: hidden;
-  height: 230px;
-  margin: 18px 10px;
-  border-radius: 12px;
-  -webkit-box-shadow: 0 3px 10px 0 #000;
-  box-shadow: 0 3px 10px 0 #000;
-  background: #fff;
-}
-.bottomBoxContent {
-  padding: 12px;
-}
-.ds-text-right {
-  float: right;
-}
-.ds-text-right-small {
-  float: right;
-  font-weight: normal;
-  font-size: 90%;
+  padding-top: 1%;
 }
 .preview-nichtoeffentlich {
   padding: 0.5%;
-  margin: 1% 1% 0.5% 1%;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
   background-color: #e7d2d6;
   color: #871d33;
+  margin: 0 0.5%;
 }
 .preview-oeffentlich {
   padding: 0.5%;
-  margin: 1% 1% 0.5% 1%;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
   background-color: #d8e3d1;
   color: #3d7417;
+  margin: 0 0.5%;
+}
+.rightSidePadding{
+  padding: 1% 3%;
+}
+.ds-text-right {
+  text-align: right;
+}
+.divider-nichtoeffentlich {
+  clear: both;
+  margin: 5px 0 125px 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0),#871d33, rgba(0, 0, 0, 0));
+}
+.divider-oeffentlich {
+  clear: both;
+  margin: 5px 0 125px 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0),#3d7417, rgba(0, 0, 0, 0));
 }
 .noItems {
-  padding: 2% 0 35% 0;
   font-weight: bold; 
   font-size: 150%;
   text-align: center;
+}
+.terminelement {
+  height: 400px;
 }
