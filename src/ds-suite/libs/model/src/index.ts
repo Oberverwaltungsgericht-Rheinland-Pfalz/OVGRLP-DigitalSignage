@@ -6,3 +6,4 @@ export { DisplayStatus } from './lib/display-status';
 export { TerminStatus } from './lib/termin-status';
 export { Termin } from './lib/termin';
 export { Note } from './lib/note';
+export { Alert, AlertType } from './lib/alert';
