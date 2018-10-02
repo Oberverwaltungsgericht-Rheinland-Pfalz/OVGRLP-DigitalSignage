@@ -5,6 +5,8 @@ import { ClarityModule } from "@clr/angular";
 import { DisplayStatusComponent } from './components/display-status/display-status.component';
 import { DisplayDialogComponent } from './components/display-dialog/display-dialog.component';
 import { YesNoDialogComponent } from './components/yes-no-dialog/yes-no-dialog.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { AlertService } from '@ds-suite/core';
 
 @NgModule({
   imports: [
@@ -12,8 +14,8 @@ import { YesNoDialogComponent } from './components/yes-no-dialog/yes-no-dialog.c
     ClarityModule,
     HttpClientModule
   ],
-  declarations: [DisplayStatusComponent, DisplayDialogComponent, YesNoDialogComponent],
-  exports: [DisplayStatusComponent, DisplayDialogComponent, YesNoDialogComponent],
-  providers: []
+  declarations: [DisplayStatusComponent, DisplayDialogComponent, YesNoDialogComponent, AlertComponent],
+  exports: [DisplayStatusComponent, DisplayDialogComponent, YesNoDialogComponent, AlertComponent],
+  providers: [AlertService]
 })
 export class UiModule {}

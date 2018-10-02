@@ -45,6 +45,7 @@
               "apps/displays/src/assets"
             ],
             "styles": [
+              "node_modules/@clr/ui/clr-ui.min.css",
               "apps/displays/src/styles.css"
             ],
             "scripts": []
