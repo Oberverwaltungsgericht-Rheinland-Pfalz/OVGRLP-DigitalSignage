@@ -4,7 +4,7 @@ import { Alert, AlertType } from '@ds-suite/model';
 import { AlertService } from '@ds-suite/core';
 
 @Component({
-  moduleId: module.id,
+  
   selector: "alert",
   templateUrl: "./alert.component.html",
   styleUrls: ["./alert.component.css"]
