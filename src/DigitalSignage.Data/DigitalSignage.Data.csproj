@@ -106,11 +106,21 @@
     <Content Include="Migrations\2-2-0-1649_Update.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Migrations\2-4-0-1815_Update.sql" />
-    <Content Include="Migrations\2-5-0-1832_Update.sql" />
-    <Content Include="Migrations\2-6-0-1837_Update.sql" />
-    <Content Include="Migrations\2-7-0-1839_Full.sql" />
-    <Content Include="Migrations\2-7-0-1839_Update.sql" />
+    <Content Include="Migrations\2-4-0-1815_Update.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Migrations\2-5-0-1832_Update.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Migrations\2-6-0-1837_Update.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Migrations\2-7-0-1839_Full.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Migrations\2-7-0-1839_Update.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501230805160_FirstRelease.resx">
