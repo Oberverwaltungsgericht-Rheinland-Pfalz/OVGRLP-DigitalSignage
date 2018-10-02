@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse }  from '@angular/common/http';
+import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse, HttpErrorResponse }  from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 
 import { AppConfig } from '@ds-suite/model';
 import { ConfigService } from '../config.service';
+import { AlertService } from '../alert.service';
 
 @Injectable()
 export class CredentialsInterceptor implements HttpInterceptor {
@@ -18,7 +19,7 @@ export class CredentialsInterceptor implements HttpInterceptor {
         return this._config; 
     }
 
-    constructor(private configService: ConfigService){}
+    constructor(private configService: ConfigService, private alertService: AlertService){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (this.config!=undefined && this.config.useWindowsAuthentication==true){
@@ -26,6 +27,12 @@ export class CredentialsInterceptor implements HttpInterceptor {
                 withCredentials: true
             });
         }
-        return next.handle(req);
+        return next.handle(req).do((event: HttpEvent<any>) => {}, (err: any) => {
+            if (err instanceof HttpErrorResponse) {
+                if(err.status==403) {
+                    this.alertService.error("Zugriff nicht erlaubt:" + err.statusText)
+                }                
+            }
+          });;
     }
 }
