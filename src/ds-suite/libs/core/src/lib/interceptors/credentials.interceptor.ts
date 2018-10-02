@@ -30,9 +30,9 @@ export class CredentialsInterceptor implements HttpInterceptor {
         return next.handle(req).do((event: HttpEvent<any>) => {}, (err: any) => {
             if (err instanceof HttpErrorResponse) {
                 if(err.status==403) {
-                    this.alertService.error("Zugriff nicht erlaubt:" + err.statusText)
+                    this.alertService.error("Zugriff nicht erlaubt: " + err.statusText)
                 }                
             }
-          });;
+        });
     }
 }
