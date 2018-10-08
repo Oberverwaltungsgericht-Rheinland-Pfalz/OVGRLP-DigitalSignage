@@ -75,12 +75,14 @@ namespace DigitalSignage.WebApi.Services
         }
       }
       System.Diagnostics.Trace.WriteLine("UrlRequest : " + urlPath + "(" + httpMethod + ")");
-      //System.Diagnostics.Trace.WriteLine("daten/verfahren <-> * :" + Compare("daten/verfahren", "*"));
-      //System.Diagnostics.Trace.WriteLine("daten/verfahren <-> daten/* :" + Compare("daten/verfahren", "daten/*"));
-      //System.Diagnostics.Trace.WriteLine("daten/verfahren <-> setting/displays/* :" + Compare("daten/verfahren", "setting/displays/*"));
-      //System.Diagnostics.Trace.WriteLine("daten/verfahren/test <-> daten/*/test :" + Compare("daten/verfahren/test", "daten/*/test"));
 
       return allowed;
+    }
+
+    public static bool CheckPermissionForIdentity(WindowsIdentity userIdentity, string urlPath, string httpMethod)
+    {
+      var permService = new PermissionService(userIdentity);
+      return permService.checkPermission(urlPath, httpMethod);
     }
 
     public List<Permission> getSortedPermissions()
