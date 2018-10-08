@@ -160,6 +160,7 @@
     <Compile Include="Controllers\EurekaFach\VerfahrenController.cs" />
     <Compile Include="Controllers\EurekaFach\StammdatenController.cs" />
     <Compile Include="Controllers\Settings\DisplaysController.cs" />
+    <Compile Include="Controllers\Settings\PermissionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
