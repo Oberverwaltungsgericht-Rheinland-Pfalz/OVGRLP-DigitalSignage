@@ -3,7 +3,7 @@
     <div class="loading-spinner-desciption">loading</div>   
 </div>
 
-<clr-stack-view *ngIf="!isLoading">
+<clr-stack-view *ngIf="!isLoading">   
     <clr-stack-block [clrSbExpanded]="true" *ngFor="let group of displayGroups">
         <clr-stack-label>{{group}}</clr-stack-label>
         <clr-stack-content>
@@ -18,19 +18,19 @@
                         </button>
                     </clr-tooltip>
                     <clr-tooltip>
-                        <button class="btn btn-sm btn-link btn-small" (click)="startGroupClick(group)" clrTooltipTrigger> 
+                        <button class="btn btn-sm btn-link btn-small" (click)="startGroupClick(group)" clrTooltipTrigger *ngIf="basicPermission.allowDisplaysControl == true"> 
                             <clr-icon shape="play"></clr-icon>
                             <clr-tooltip-content clrPosition="bottom-left" clrSize="lg" *clrIfOpen>Gruppe '{{group}}' starten</clr-tooltip-content>
                         </button>
                     </clr-tooltip>
                     <clr-tooltip>
-                        <button class="btn btn-sm btn-link btn-small" (click)="restartGroupClick(group)" clrTooltipTrigger> 
+                        <button class="btn btn-sm btn-link btn-small" (click)="restartGroupClick(group)" clrTooltipTrigger *ngIf="basicPermission.allowDisplaysControl == true"> 
                             <clr-icon shape="replay-all"></clr-icon>
                             <clr-tooltip-content clrPosition="bottom-left" clrSize="lg" *clrIfOpen>Gruppe '{{group}}' neu starten</clr-tooltip-content>
                         </button>
                     </clr-tooltip>
                     <clr-tooltip>
-                        <button class="btn btn-sm btn-link btn-small" (click)="stopGroupClick(group)" clrTooltipTrigger> 
+                        <button class="btn btn-sm btn-link btn-small" (click)="stopGroupClick(group)" clrTooltipTrigger *ngIf="basicPermission.allowDisplaysControl == true"> 
                             <clr-icon shape="power"></clr-icon>
                             <clr-tooltip-content clrPosition="bottom-left" clrSize="lg" *clrIfOpen>Gruppe '{{group}}' herunterfahren</clr-tooltip-content>
                         </button>
@@ -49,11 +49,11 @@
                         <display-status [status]="display.status"></display-status>
                     </div>
                     <div fxFlex="30%" class="actionColumn">
-                        <button class="btn btn-sm btn-link" *ngIf="(display.status < 1)" (click)="startDisplayClick(display)"><clr-icon
+                        <button class="btn btn-sm btn-link" *ngIf="(display.status < 1 && basicPermission.allowDisplaysControl == true)" (click)="startDisplayClick(display)"><clr-icon
                                 shape="play"></clr-icon> Anschalten</button>
-                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1)" (click)="stopDisplayClick(display)"><clr-icon
+                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1 && basicPermission.allowDisplaysControl == true)" (click)="stopDisplayClick(display)"><clr-icon
                                 shape="power"></clr-icon> Ausschalten</button>
-                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1)" (click)="restartDisplayClick(display)"><clr-icon
+                        <button class="btn btn-sm btn-link" *ngIf="(display.status >= 1 && basicPermission.allowDisplaysControl == true)" (click)="restartDisplayClick(display)"><clr-icon
                                 shape="replay-all"></clr-icon> Neu starten</button>
                     </div>
                     <div fxFlex="20%" class="screenshotColumn">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div fxFlex="30%" class="terminLinkColumn">
-                        <div *ngIf="TermineExist(display)">
+                        <div *ngIf="(TermineExist(display) && basicPermission.allowTermine >= 1)">
                             <button class="btn btn-sm btn-link" (click)="AnzeigeTermineClick(display)">Termine Anzeigen</button>
                         </div>
                     </div>

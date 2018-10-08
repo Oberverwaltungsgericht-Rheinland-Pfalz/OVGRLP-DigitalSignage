@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Termin } from '@ds-suite/model';
-import { TerminService } from '@ds-suite/core';
+import { Termin, BasicPermissions, Restriction } from '@ds-suite/model';
+import { TerminService, DisplayService, PermissionService } from '@ds-suite/core';
 import { DisplayDto, DisplayStatus } from '@ds-suite/model';
-import { DisplayService } from '@ds-suite/core';
 import { DisplayDialogComponent } from '@ds-suite/ui';
 
 @Component({
@@ -16,12 +15,14 @@ export class DisplaysComponent implements OnInit {
   displayDto: DisplayDto[];
   termine: Termin[];
   displayGroups: string[];
+  basicPermission: BasicPermissions;
   public isLoading: boolean = false;
 
   @ViewChild(DisplayDialogComponent) modal: DisplayDialogComponent;
 
   constructor(private displayService: DisplayService,
     private terminService: TerminService,
+    private permissionService: PermissionService,
     private router: Router) { 
   }
 
@@ -46,6 +47,20 @@ export class DisplaysComponent implements OnInit {
     this.displayGroups = Array.from(new Set(displays.map(t => t.group)));
   }
 
+  loadBasicPermissions() {
+    this.basicPermission = {allowDisplays:true};
+    this.permissionService.getBasicPermissions()
+      .subscribe(perm => {
+        this.basicPermission = perm;
+        if (this.basicPermission.allowTermine>=1) {
+          this.loadTermine();
+        }
+      },
+      err => {
+        console.error("Berechtigungen konnten nicht geladen werden: ",err);
+      });
+  }
+
   loadTermine() {
     this.terminService.getAllTermine()
       .subscribe(termine => {
@@ -58,7 +73,7 @@ export class DisplaysComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.loadTermine();
+    this.loadBasicPermissions();
     this.getDisplays();
   }
 
