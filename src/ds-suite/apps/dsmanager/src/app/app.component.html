@@ -10,13 +10,13 @@
             <span class="title">Displays</span>
         </a>
     </div>
-    <div class="branding">
+    <div class="branding" *ngIf="basicPermission.allowTermine >= 1">
       <a href="#/termine" class="nav-link">
           <clr-icon shape="calendar"></clr-icon>
           <span class="title">Termine</span>
       </a>
     </div>
-    <div class="branding">
+    <div class="branding" *ngIf="basicPermission.allowNotes >= 1">
         <a href="#/sondermeldungen" class="nav-link">
             <clr-icon shape="image"></clr-icon>
             <span class="title">Sondermeldungen</span>
