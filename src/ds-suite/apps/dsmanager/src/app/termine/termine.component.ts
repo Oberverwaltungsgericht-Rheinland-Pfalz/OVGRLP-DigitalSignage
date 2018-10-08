@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Display } from '@ds-suite/model';
+import { Display, Restriction } from '@ds-suite/model';
 import { DisplayService } from '@ds-suite/core';
 
 import { Termin } from '@ds-suite/model';
-import { TerminStatus } from '@ds-suite/model';
-import { TerminService } from '@ds-suite/core';
+import { TerminStatus, BasicPermissions } from '@ds-suite/model';
+import { TerminService, PermissionService } from '@ds-suite/core';
 import { ClrDatagrid } from '@clr/angular';
 
 import { TerminDialogComponent } from '../termin-dialog/termin-dialog.component';
@@ -20,6 +20,7 @@ export class TermineComponent implements OnInit {
   termine: Termin[];
   filteredTermine: Termin[];
   loadingTermine: boolean = true;
+  basicPermission: BasicPermissions;
   public selStatus: boolean[] = [false, false, false, false, false];
   public selGericht: boolean[] = [];
   public selSaal: boolean[] = [];
@@ -28,13 +29,11 @@ export class TermineComponent implements OnInit {
   @ViewChild(TerminDialogComponent) terminDialog: TerminDialogComponent;
 
   constructor(private terminService: TerminService,
+    private permissionService: PermissionService,
     private route: ActivatedRoute) { 
   }
 
   changeSelection() {
-    //console.log("selStatus:",this.selStatus)
-    //console.log("selGericht:",this.selGericht)
-    //console.log("selSaal:",this.selSaal)
     this.filterTermine();
   }
 
@@ -48,7 +47,7 @@ export class TermineComponent implements OnInit {
     var selStatus: string[] = [];
     var selGericht: string[] = [];
     var selSaal: string[] = [];
-
+    
     var statusValues: string[] = this.GetStatusValues();
     var gerichtValues: string[] = this.GetGerichtValues();
     var saalValues: string[] = this.GetSaalValues();
@@ -120,6 +119,17 @@ export class TermineComponent implements OnInit {
       });
   }
 
+  loadBasicPermissions() {
+    this.basicPermission = {allowTermine:Restriction.read};
+    this.permissionService.getBasicPermissions()
+      .subscribe(perm => {
+        this.basicPermission = perm;
+      },
+      err => {
+        console.error("Berechtigungen konnten nicht geladen werden: ",err);
+      });
+  }
+
   InitSaalSelection(){
     this.GetSaalValues().forEach(element => {
       var sel:boolean = (element==this.routedSaal);
@@ -148,6 +158,7 @@ export class TermineComponent implements OnInit {
         this.routedSaal=params["saal"]
       }
     })
+    this.loadBasicPermissions();
     this.loadTermine();
   }
 

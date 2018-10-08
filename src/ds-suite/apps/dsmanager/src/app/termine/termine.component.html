@@ -77,7 +77,9 @@
     
         <clr-dg-placeholder>Zu dieser Selektion sind keine Termine vorhanden</clr-dg-placeholder>
         <clr-dg-row *clrDgItems="let termin of filteredTermine; let i = index">
-            <clr-dg-cell class="ds-termin-column-edit"><clr-icon shape="pencil" class="is-solid" (click)="editTerminClick(termin)"></clr-icon></clr-dg-cell>
+            <clr-dg-cell class="ds-termin-column-edit">
+                <clr-icon shape="pencil" class="is-solid" (click)="editTerminClick(termin)" *ngIf="basicPermission.allowTermine > 1"></clr-icon>
+            </clr-dg-cell>
             <clr-dg-cell class="ds-termin-column-uhrzeit">{{ termin.uhrzeitAktuell }}</clr-dg-cell>
             <clr-dg-cell class="ds-termin-column-gericht">{{ termin.gericht }}</clr-dg-cell>
             <clr-dg-cell class="ds-termin-column-saal">{{ termin.sitzungssaal }}</clr-dg-cell>
