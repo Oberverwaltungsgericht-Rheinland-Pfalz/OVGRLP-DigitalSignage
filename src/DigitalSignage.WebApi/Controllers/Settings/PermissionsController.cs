@@ -44,23 +44,33 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       WindowsIdentity wid = HttpContext.Current.Request.LogonUserIdentity;     //new WindowsIdentity(HttpContext.Current.User.Identity.Name);
       var ps = new PermissionService(wid);
 
-      perm.AllowDisplays = ps.checkPermission("settings/displays", "GET");
-      perm.AllowDisplaysControl = (ps.checkPermission("settings/displays", "GET") && ps.checkPermission("settings/displays/*/start", "GET"));
-
-      perm.AllowTermine = Restriction.forbidden;
-      if (ps.checkPermission("daten/verfahren", "GET"))
+      if (Properties.Settings.Default.checkPermissions)
       {
-        perm.AllowTermine = Restriction.read;
-        if (ps.checkPermission("breeze/EurekaDaten", "POST"))
-          perm.AllowTermine = Restriction.write;
+        perm.AllowDisplays = ps.checkPermission("settings/displays", "GET");
+        perm.AllowDisplaysControl = (ps.checkPermission("settings/displays", "GET") && ps.checkPermission("settings/displays/*/start", "GET"));
+
+        perm.AllowTermine = Restriction.forbidden;
+        if (ps.checkPermission("daten/verfahren", "GET"))
+        {
+          perm.AllowTermine = Restriction.read;
+          if (ps.checkPermission("breeze/EurekaDaten", "POST"))
+            perm.AllowTermine = Restriction.write;
+        }
+
+        perm.AllowNotes = Restriction.forbidden;
+        if (ps.checkPermission("breeze/EurekaDaten", "GET"))
+        {
+          perm.AllowNotes = Restriction.read;
+          if (ps.checkPermission("breeze/EurekaDaten", "POST"))
+            perm.AllowNotes = Restriction.write;
+        }
       }
-
-      perm.AllowNotes = Restriction.forbidden;
-      if (ps.checkPermission("breeze/EurekaDaten", "GET"))
+      else
       {
-        perm.AllowNotes = Restriction.read;
-        if (ps.checkPermission("breeze/EurekaDaten", "POST"))
-          perm.AllowNotes = Restriction.write;
+        perm.AllowDisplays = true;
+        perm.AllowDisplaysControl = true;
+        perm.AllowNotes = Restriction.write;
+        perm.AllowTermine = Restriction.write;
       }
 
       return Ok(perm);
