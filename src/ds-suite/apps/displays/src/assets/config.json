@@ -1,4 +1,4 @@
 {
-  "webApiUrl": "http://Server:8082/webapi/v2/",
-  "useWindowsAuthentication": true
+  "webApiUrl": "http://10.10.90.198:8086/webapi",
+  "useWindowsAuthentication": false
 }
