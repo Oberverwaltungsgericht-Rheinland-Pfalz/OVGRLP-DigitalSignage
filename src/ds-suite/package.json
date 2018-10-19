@@ -10,8 +10,10 @@
     "serve:dsmanager": "ng serve --project dsmanager --port 4203",
     "serve:roomcontrol": "ng serve --project roomcontrol --port 4202",
     "serve": "concurrently \"npm run serve:displays\" \"npm run serve:roomcontrol\" \"npm run serve:dsmanager\"",
-    "serve:njzko": "concurrently \"npm run json-srv:njzko\" \"npm run serve\"",
-    "json-srv:njzko": "json-server --watch json-srv/db/njzko.json --routes json-srv/routes.json --port 4200",
+    "serve:ovg": "concurrently \"npm run json-srv:ovg\" \"npm run serve\"",
+    "serve:olg": "concurrently \"npm run json-srv:olg\" \"npm run serve\"",
+    "json-srv:ovg": "json-server --watch json-srv/ovg/db.json --routes json-srv/ovg/routes.json --port 4200",
+    "json-srv:olg": "json-server --watch json-srv/olg/db.json --routes json-srv/olg/routes.json --port 4200",
     "help": "./node_modules/.bin/nx help"
   },
   "private": true,
