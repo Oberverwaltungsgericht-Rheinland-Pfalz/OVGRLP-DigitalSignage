@@ -22,6 +22,10 @@ const routes: Routes = [
         loadChildren: './templates/demo/demo.module#DemoModule'
       },
       {
+        path: "jztr",
+        loadChildren: './templates/jz-tr/jz-tr.module#JzTrModule'
+      },
+      {
         path: "jzzw",
         loadChildren: './templates/jz-zw/jz-zw.module#JzZwModule'
       },
