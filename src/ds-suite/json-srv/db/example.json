@@ -584,6 +584,40 @@
       "description": null,
       "notes": null,
       "dummy": false
+    },
+    {
+      "id": 16,
+      "name": "Trier: Foyer-Ansicht 1",
+      "title": "Sitzungssaal 1",
+      "template": "jztr/jztr-foyer-variante-tr",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 17,
+      "name": "Trier: Foyer-Ansicht 2",
+      "title": "Sitzungssaal 1",
+      "template": "jztr/jztr-foyer-variante-trier",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
     }
   ],
   "displays": [
