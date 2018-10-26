@@ -40,6 +40,11 @@
   font-weight: bold;
 }
 
+.ds-keine-termine h1 {
+  margin-top: 400px;
+  text-align: center;
+}
+
 #ds-main-details {
   padding:10px;
   background: url('/assets/img/rlp_wappen_500x613.png') center no-repeat;
