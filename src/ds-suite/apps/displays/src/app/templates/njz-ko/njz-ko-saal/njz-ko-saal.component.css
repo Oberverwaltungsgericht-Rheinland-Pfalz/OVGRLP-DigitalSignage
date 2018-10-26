@@ -63,3 +63,17 @@
 .ds-overview-termin-completed {
   color: darkgrey;
 }
+
+.ds-overview-termin-active {
+  font-weight: bold;
+}
+
+.ds-overview-termin-public {
+  color: #006416;
+  font-weight: bold;
+}
+
+.ds-overview-termin-notpublic {
+  color: #af0101;
+  font-weight: bold;
+}

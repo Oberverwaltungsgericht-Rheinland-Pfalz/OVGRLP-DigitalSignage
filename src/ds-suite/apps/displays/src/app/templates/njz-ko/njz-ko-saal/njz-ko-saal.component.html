@@ -44,8 +44,15 @@
         <div fxFlex="grow" class="ds-box-content">
           <div class="ds-overview-termin" *ngFor="let termin of termine" [ngClass]="
           {
-            'ds-overview-termin-completed': termin.status == 'Abgeschlossen'
+            'ds-overview-termin-completed': termin.status == 'Abgeschlossen',
+            'ds-overview-termin-active': termin.status == 'Läuft'
           }">
+            <span [ngClass]="
+              {
+                'ds-overview-termin-public': termin.oeffentlich == 'ja',
+                'ds-overview-termin-notpublic': termin.oeffentlich == 'nein'
+              }  
+            ">&#10074;</span>
             {{ termin.uhrzeitAktuell }} Uhr - {{ termin.az }}<br />
             {{ termin.art }}<br />
             {{ termin.status }}
