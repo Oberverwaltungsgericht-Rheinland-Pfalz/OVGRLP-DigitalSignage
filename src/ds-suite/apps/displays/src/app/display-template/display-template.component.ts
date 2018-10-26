@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Termin, Display } from '@ds-suite/model';
+import { Termin, TerminStatus, Display } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
 
 import 'rxjs/add/operator/switchMap';
@@ -106,6 +106,23 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
           this.termine.shift();
       }
     });
+  }
+
+  removeFinishedTermine(termine: Termin[], maxTermine: number, maxFinished: number) : Termin[] {
+    var termineTmp = termine;
+
+    if(termineTmp.length > maxTermine) {
+      var termineFinished = termineTmp.filter(t => t.status == TerminStatus.abgeschlossen);
+      var termineUnfinished = termineTmp.filter(t => t.status != TerminStatus.abgeschlossen);
+
+      if(termineFinished.length > maxFinished) {
+        termineFinished.splice(0, termineFinished.length - maxFinished);
+      }
+
+      termineTmp = termineFinished.concat(termineUnfinished);
+    }
+
+    return termineTmp;
   }
 
   animationStarted(event: AnimationEvent) {
