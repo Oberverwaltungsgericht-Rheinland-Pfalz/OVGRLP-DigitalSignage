@@ -120,7 +120,7 @@
   <div fxFlex="nogrow" class="ds-divider"></div>
 
   <!-- Beigeladene -->
-  <div fxFlex="nogrow" fxLayout="row">
+  <div fxFlex="nogrow" fxLayout="row" *ngIf="termin.parteienBeigeladen.length > 0">
     <div fxFlex="15">
       Beigeladen:
     </div>
