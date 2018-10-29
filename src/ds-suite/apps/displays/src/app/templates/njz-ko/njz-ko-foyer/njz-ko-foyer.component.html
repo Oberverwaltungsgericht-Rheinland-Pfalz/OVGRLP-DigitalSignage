@@ -45,10 +45,17 @@
 
         <!-- Standard -->
         <div fxFlex *ngIf="!termFunc.IstBerufgerichtlichesVerfahren(termin) && !termFunc.IstVghVerfahren(termin)">
-          <span>{{ ParteiOhneVertreten(termin.parteienAktivKurz) }}</span>
-          <span *ngIf="!termFunc.IstPersonalvertretung(termin) && !termFunc.IstBeschlussverfahren(termin)"> ./. </span>
-          <span *ngIf="termFunc.IstPersonalvertretung(termin) || termFunc.IstBeschlussverfahren(termin)"><br /></span>
-          <span>{{ ParteiOhneVertreten(termin.parteienPassivKurz) }}</span>
+          <!-- Aktivparteien sind vorhanden -->
+          <span *ngIf="termFunc.AnzahlAktivparteien(termin)>0">
+            <span>{{ ParteiOhneVertreten(termin.parteienAktivKurz) }}</span>
+            <span *ngIf="!termFunc.IstPersonalvertretung(termin) && !termFunc.IstBeschlussverfahren(termin)"> ./. </span>
+            <span *ngIf="termFunc.IstPersonalvertretung(termin) || termFunc.IstBeschlussverfahren(termin)"><br /></span>
+            <span>{{ ParteiOhneVertreten(termin.parteienPassivKurz) }}</span>
+          </span>
+          <!-- keine Aktivparteien vorhanden -->
+          <span *ngIf="termFunc.AnzahlAktivparteien(termin)==0">
+            {{ termin.bemerkung1 }}
+          </span>
         </div>
 
         <div fxFlex="15">
