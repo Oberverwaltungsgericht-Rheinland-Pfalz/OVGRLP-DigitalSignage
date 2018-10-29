@@ -10,6 +10,9 @@ export class TerminFunctions {
     return termin.gericht === "Oberverwaltungsgericht Rheinland-Pfalz" &&
       (termin.az.includes('LBG-H'));
   }
+
+  public static IstVghVerfahren(termin: Termin) {
+    return termin.az.includes('VGH');
   }
 
   public static IstBeschlussverfahren(termin: Termin) {

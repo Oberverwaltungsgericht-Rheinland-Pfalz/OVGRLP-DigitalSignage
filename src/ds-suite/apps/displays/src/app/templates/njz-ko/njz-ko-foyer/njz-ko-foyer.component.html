@@ -37,8 +37,14 @@
           <span>Berufgerichtliches Verfahren<br />gegen {{ ParteiOhneVertreten(termin.parteienPassivKurz) }}</span>
         </div>
 
+        <!-- Besonderheit VGH -->
+        <div fxFlex *ngIf="termFunc.IstVghVerfahren(termin)">
+          <span *ngIf="isFlughafenanzeige()">{{ ParteiOhneVertreten(termin.parteienAktivKurz) }}<br />{{ ParteiOhneVertreten(termin.parteienPassivKurz) }}</span>
+          <span *ngIf="!isFlughafenanzeige()"><strong>{{ termin.gegenstand }}</strong></span>
+        </div>
+
         <!-- Standard -->
-        <div fxFlex *ngIf="!termFunc.IstBerufgerichtlichesVerfahren(termin)">
+        <div fxFlex *ngIf="!termFunc.IstBerufgerichtlichesVerfahren(termin) && !termFunc.IstVghVerfahren(termin)">
           <span>{{ ParteiOhneVertreten(termin.parteienAktivKurz) }}</span>
           <span *ngIf="!termFunc.IstPersonalvertretung(termin) && !termFunc.IstBeschlussverfahren(termin)"> ./. </span>
           <span *ngIf="termFunc.IstPersonalvertretung(termin) || termFunc.IstBeschlussverfahren(termin)"><br /></span>
