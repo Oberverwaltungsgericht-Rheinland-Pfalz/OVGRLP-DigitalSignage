@@ -10,4 +10,10 @@ export class TerminFunctions {
     return termin.gericht === "Arbeitsgericht Koblenz" &&
       termin.az.includes(' BV ');
   }
+
+  public static IstSenat(termin: Termin) {
+    return (termin.gericht === "Oberverwaltungsgericht Rheinland-Pfalz" ||
+    termin.gericht === "Verfassungsgerichtshof Rheinland-Pfalz");
+  }
+
 }
