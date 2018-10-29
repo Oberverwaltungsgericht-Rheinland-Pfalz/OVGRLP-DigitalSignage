@@ -6,6 +6,12 @@ export class TerminFunctions {
       (termin.kammer == 4 || termin.kammer == 5);
   }
 
+  public static IstBerufgerichtlichesVerfahren(termin: Termin) {
+    return termin.gericht === "Oberverwaltungsgericht Rheinland-Pfalz" &&
+      (termin.az.includes('LBG-H'));
+  }
+  }
+
   public static IstBeschlussverfahren(termin: Termin) {
     return termin.gericht === "Arbeitsgericht Koblenz" &&
       termin.az.includes(' BV ');

@@ -31,12 +31,20 @@
             </span>
           </div>
         </div>
-        <div fxFlex>
+
+        <!-- Besonderheit LBGH -->
+        <div fxFlex *ngIf="termFunc.IstBerufgerichtlichesVerfahren(termin)">
+          <span>Berufgerichtliches Verfahren<br />gegen {{ ParteiOhneVertreten(termin.parteienPassivKurz) }}</span>
+        </div>
+
+        <!-- Standard -->
+        <div fxFlex *ngIf="!termFunc.IstBerufgerichtlichesVerfahren(termin)">
           <span>{{ ParteiOhneVertreten(termin.parteienAktivKurz) }}</span>
           <span *ngIf="!termFunc.IstPersonalvertretung(termin) && !termFunc.IstBeschlussverfahren(termin)"> ./. </span>
           <span *ngIf="termFunc.IstPersonalvertretung(termin) || termFunc.IstBeschlussverfahren(termin)"><br /></span>
           <span>{{ ParteiOhneVertreten(termin.parteienPassivKurz) }}</span>
         </div>
+
         <div fxFlex="15">
           {{ termin.sitzungssaal }}
         </div>
