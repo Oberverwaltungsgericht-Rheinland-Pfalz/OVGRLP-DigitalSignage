@@ -108,15 +108,27 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
     });
   }
 
-  removeFinishedTermine(termine: Termin[], maxTermine: number, maxFinished: number) : Termin[] {
+  removeFinishedTermine(termine: Termin[], maxTermine: number, minFinished: number) : Termin[] {
     var termineTmp = termine;
 
     if(termineTmp.length > maxTermine) {
       var termineFinished = termineTmp.filter(t => t.status == TerminStatus.abgeschlossen);
       var termineUnfinished = termineTmp.filter(t => t.status != TerminStatus.abgeschlossen);
 
-      if(termineFinished.length > maxFinished) {
-        termineFinished.splice(0, termineFinished.length - maxFinished);
+      if(termineFinished.length > minFinished) {
+        
+        // grundsätzlich nur noch die minimale Anzahl der erledigten Termine anzeigen,
+        // wenn insgesamt mehr Termine vorhanden sind, als darstellbar sind
+        var clearCount: number = termineFinished.length - minFinished;
+        
+        // Wenn jedoch möglich, die darstellbaren Termine wieder mit den erledigten füllen 
+        // (mehr als die minimale Anzahl von Terminen)
+        if ((termineFinished.length - clearCount + termineUnfinished.length)<maxTermine) 
+          clearCount = (termineFinished.length + termineUnfinished.length - (maxTermine))
+        
+        // ggf. erledigte Termine rausfiltern
+        if (clearCount > 0)
+          termineFinished.splice(0, clearCount);
       }
 
       termineTmp = termineFinished.concat(termineUnfinished);
