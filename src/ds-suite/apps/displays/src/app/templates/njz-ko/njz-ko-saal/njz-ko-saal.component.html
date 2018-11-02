@@ -29,7 +29,7 @@
 
   <div id="ds-main" fxFlex fxLayout="row">
     <div id="ds-main-details" fxFlex fxLayout="row">
-      <app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin"></app-termin>
+      <app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin" [footerText]='GetTerminFooterText()'></app-termin>
       <app-termin *ngIf="!aktiverTermin && naechsterTermin" [termin]="naechsterTermin"></app-termin>
       <div fxFlex class="ds-box ds-keine-termine" *ngIf="termine.length == 0">
         <h1>Zurzeit keine Verhandlungstermine</h1>

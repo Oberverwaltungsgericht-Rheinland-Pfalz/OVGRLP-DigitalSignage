@@ -19,6 +19,15 @@ export class NjzKoSaalComponent extends DisplayTemplateComponent {
     this.SwitchMultipleActiveTermine=true;
     super.ngOnInit();
   }
+
+  GetTerminFooterText(): string {
+    var rval="";
+    if (this.SwitchMultipleActiveTermine && this.activeTermineCount > 1) {
+      rval = rval.concat(this.activeTermineIndex.toString()," von ",this.activeTermineCount.toString());
+    }
+    return rval;
+  }
+
   filterTermine(termine: Termin[]) : Termin[] {
     return super.removeFinishedTermine(
       super.sortTermine(super.filterTermine(termine)), 
