@@ -15,6 +15,10 @@ const MAX_FINISHED = 3;
 export class NjzKoSaalComponent extends DisplayTemplateComponent {
   termFunc = TerminFunctions;
 
+  ngOnInit() {
+    this.SwitchMultipleActiveTermine=true;
+    super.ngOnInit();
+  }
   filterTermine(termine: Termin[]) : Termin[] {
     return super.removeFinishedTermine(
       super.sortTermine(super.filterTermine(termine)), 
