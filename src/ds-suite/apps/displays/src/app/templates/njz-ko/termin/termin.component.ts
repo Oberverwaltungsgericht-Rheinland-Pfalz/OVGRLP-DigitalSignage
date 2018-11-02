@@ -14,6 +14,7 @@ export class TerminComponent implements OnInit {
   constructor() {}
 
   @Input() termin: Termin;
+  @Input() footerText: string;
 
   IstOeffentlich() {
     return this.termin.oeffentlich === 'ja';
