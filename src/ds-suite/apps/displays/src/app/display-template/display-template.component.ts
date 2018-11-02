@@ -22,9 +22,13 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
   private updateSub: Subscription;
 
   public updateInterval = 10000;
+  public SwitchMultipleActiveTermine: boolean = false;
 
   display: Display;
   aktiverTermin: Termin;
+  activeTermine: Termin[] = [];
+  activeTermineCount = 0;
+  activeTermineIndex = 0;
   naechsterTermin: Termin;
   termine: Termin[] = [];
   termineOffen: Termin[] = [];
@@ -44,7 +48,17 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
         tmpTermine = this.filterTermine(tmpTermine);
         tmpTermine = this.sortTermine(tmpTermine);
         this.termineCount = tmpTermine.length;
-        this.aktiverTermin = this.findAktiverTermin(tmpTermine);
+        
+        this.activeTermine = this.findActiveTermine(tmpTermine);
+        this.activeTermineCount = this.activeTermine.length;
+        this.activeTermineIndex++;
+        if ((this.activeTermineIndex) > this.activeTermineCount)
+          this.activeTermineIndex=1;
+        
+        this.aktiverTermin = this.findFirstActiveTermin(tmpTermine);
+        if (this.SwitchMultipleActiveTermine) 
+          this.aktiverTermin = this.activeTermine[this.activeTermineIndex-1];
+        
         this.termineOffen = tmpTermine.filter(
           termin => !(termin.status === 'Abgeschlossen' || termin.status === 'Aufgehoben')
         );
@@ -89,8 +103,12 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
     return termine.filter(termin => termin.uhrzeitAktuell !== 'omV');
   }
 
-  findAktiverTermin(termine: Termin[]): Termin {
+  findFirstActiveTermin(termine: Termin[]): Termin {
     return termine.find(termin => termin.status === 'Läuft');
+  }
+
+  findActiveTermine(termine: Termin[]): Termin[]  {
+    return termine.filter(termin => termin.status === 'Läuft');
   }
 
   ngOnInit() {
