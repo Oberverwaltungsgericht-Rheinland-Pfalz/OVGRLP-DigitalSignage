@@ -51,12 +51,11 @@ export class NjzKoFoyerComponent extends DisplayTemplateComponent {
   }
 
   public KumulierteTitel(termine: Termin[]): string[] {
-    if (this.isFlughafenanzeige()) {
-      return [this.display.title];
-    } else {
-      return Array.from(new Set(termine.map(t => t.gericht)));
-    }
-    
+    var rval : string[] = Array.from(new Set(termine.map(t => t.gericht))); 
+    if (this.isFlughafenanzeige() || rval.length==0) {
+      rval = [this.display.title];
+    } 
+    return rval
   }
 }
 
