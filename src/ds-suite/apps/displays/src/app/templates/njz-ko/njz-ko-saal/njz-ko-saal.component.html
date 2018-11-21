@@ -44,7 +44,7 @@
         <div fxFlex="grow" class="ds-box-content">
           <div class="ds-overview-termin" *ngFor="let termin of termine" [ngClass]="
           {
-            'ds-overview-termin-completed': termin.status == 'Abgeschlossen',
+            'ds-overview-termin-completed': termin.status == 'Abgeschlossen' || termin.status == 'Aufgehoben',
             'ds-overview-termin-active': termin.status == 'Läuft'
           }">
             <span [ngClass]="
