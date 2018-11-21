@@ -130,8 +130,8 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
     var termineTmp = termine;
 
     if(termineTmp.length > maxTermine) {
-      var termineFinished = termineTmp.filter(t => t.status == TerminStatus.abgeschlossen);
-      var termineUnfinished = termineTmp.filter(t => t.status != TerminStatus.abgeschlossen);
+      var termineFinished = termineTmp.filter(t => t.status == TerminStatus.abgeschlossen || t.status == TerminStatus.aufgehoben);
+      var termineUnfinished = termineTmp.filter(t => t.status != TerminStatus.abgeschlossen && t.status != TerminStatus.aufgehoben);
 
       if(termineFinished.length > minFinished) {
         
