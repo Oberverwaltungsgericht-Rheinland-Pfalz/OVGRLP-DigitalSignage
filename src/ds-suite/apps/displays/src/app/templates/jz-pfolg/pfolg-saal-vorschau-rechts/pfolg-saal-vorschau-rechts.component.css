@@ -1,0 +1,199 @@
+#ds-display {
+  height: 1024px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#ds-head-status div {
+  padding: 10px;
+}
+#ds-head-title {
+  padding: 0 3%;
+  background-color: #fff;
+  color: #333;
+}
+.ds-head-title-left {
+  padding: 1% 0;
+  font-size: 4vw;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+.ds-head-title-right {
+  padding: 1% 0;
+  text-align: right;
+  font-size: 1.8vw;
+  font-weight: bold;
+  background: url("/assets/img/logo-justiz-pfolg.png") no-repeat;
+  background-size: contain;
+  background-position: top right;
+}
+.ds-head-title-date {
+  border-top: 2px solid #fff;
+  border-bottom: 1px solid #000;
+  padding: 0.3% 3%;
+  margin-bottom: 1%;
+  color: #fff;
+  font-weight: bold;
+  background-color: #333;
+  text-align: right;
+  -webkit-box-shadow: 0 3px 30px 0 #000;
+  box-shadow: 0 3px 20px 0 #000;
+}
+
+#ds-main {
+  padding: 0 2%;
+}
+
+.mainSide {
+  border-radius: 12px;
+  box-shadow: 0 1px 10px #333;
+  margin: 1% 3% 1% 0;
+  background: url("/assets/img/rlp_wappen_600x735.png") no-repeat;
+  background-size: auto 66%;
+  background-position: 50% 75%;  
+}
+.top-nichtoeffentlich {
+  padding: 2% 5%;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background-color: #871d33;
+  color: #fff;
+  margin: 0.5%;
+}
+.top-oeffentlich {
+  padding: 2% 5%;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background-color: #3d7417;
+  color: #fff;
+  margin: 0.5%;
+}
+.bottom-nichtoeffentlich {
+  padding: 1% 5%;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background-color: #871d33;
+  color: #fff;
+  margin: 0.5%;
+  text-align: center;
+}
+.bottom-oeffentlich {
+  padding: 1% 5%;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background-color: #3d7417;
+  color: #fff;
+  margin: 0.5%;
+  text-align: center;
+}
+
+.activeCaseAz {
+  padding: 1%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.0em;
+}
+.activeCaseType {
+  padding: 1%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.layout-line {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  margin: 0 5% 20px 5%;
+}
+.activeCaseParts {
+  font-size: 1.2em;
+  margin: 3% 5% 3% 5%;
+}
+.activeCasePartsSmallBorder {
+  margin: 1% 5%;
+}
+.activeCasePartsLargeBorder {
+  margin: 10% 5% 0 5%;
+}
+
+.rightSide {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 10px #333;
+  margin: 1% 0;
+  overflow: hidden;
+}
+.rightSideHeadline {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  color: #333;
+  background-color: #C7C7C7;
+  margin: 0 0 10% 0;
+  padding: 1% 3%;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.ds-termin {
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+.preview-nichtoeffentlich {
+  padding: 0.5%;
+  background-color: #e7d2d6;
+  color: #871d33;
+  margin: 0 0.5%;
+}
+.preview-oeffentlich {
+  padding: 0.5%;
+  background-color: #d8e3d1;
+  color: #3d7417;
+  margin: 0 0.5%;
+}
+.rightSidePadding{
+  padding: 1% 3%;
+}
+.ds-text-right {
+  text-align: right;
+}
+.divider-nichtoeffentlich {
+  clear: both;
+  margin: 5px 0 125px 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0),#871d33, rgba(0, 0, 0, 0));
+}
+.divider-oeffentlich {
+  clear: both;
+  margin: 5px 0 125px 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0),#3d7417, rgba(0, 0, 0, 0));
+}
+.noItems {
+  font-weight: bold;
+  text-align: center;
+  font-size: 150%;
+}
+.notActiveItemAgo, .notActiveItem, .activeItem {
+  padding: 1em 0.5em;
+  margin: 0;
+}
+.notActiveItemAgo {
+  font-style: italic; 
+  font-size: 80%;
+}
+.notActiveItem {
+  font-style: normal; 
+  font-size: 80%;
+}
+.activeItem {
+  border-top: 3px solid darkslategrey;
+  border-bottom: 3px solid darkslategrey;
+  font-weight: bold; 
+  font-size: 80%;
+}
+.hinweis-oeffentlich {
+  color: #3d7417;
+}
+.hinweis-nichtoeffentlich {
+  color: #871d33;
+}
