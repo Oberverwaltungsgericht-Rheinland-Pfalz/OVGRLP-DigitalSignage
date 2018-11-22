@@ -58,10 +58,10 @@ namespace DigitalSignage.WebApi.Controllers.Settings
         }
 
         perm.AllowNotes = Restriction.forbidden;
-        if (ps.checkPermission("breeze/EurekaDaten", "GET"))
+        if (ps.checkPermission("breeze/EurekaDaten/Notes", "GET"))
         {
           perm.AllowNotes = Restriction.read;
-          if (ps.checkPermission("breeze/EurekaDaten", "POST"))
+          if (ps.checkPermission("breeze/EurekaDaten/Notes", "POST"))
             perm.AllowNotes = Restriction.write;
         }
       }

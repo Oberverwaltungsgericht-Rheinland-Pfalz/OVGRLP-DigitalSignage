@@ -18,7 +18,7 @@
       'ds-nichtoeffentlich' : !IstOeffentlich() }">
       {{ IstOeffentlich() ? '- Öffentliche Sitzung -' : '- Nicht öffentliche Sitzung -'}}
     </h2>
-    <h2>{{ termin.kammer }}. Kammer</h2>
+    <h2>{{ termin.kammer }}. {{ termFunc.IstSenat(termin) ? 'Senat' : 'Kammer'}}</h2>
   </div>
 
   <!-- Gericht, Kammer, Besetzung
@@ -120,7 +120,7 @@
   <div fxFlex="nogrow" class="ds-divider"></div>
 
   <!-- Beigeladene -->
-  <div fxFlex="nogrow" fxLayout="row">
+  <div fxFlex="nogrow" fxLayout="row" *ngIf="termin.parteienBeigeladen.length > 0">
     <div fxFlex="15">
       Beigeladen:
     </div>
@@ -154,6 +154,11 @@
     <div fxFlex>
       {{ termin.gegenstand }}
     </div>
+  </div>
+
+  <!-- fußtext (unten rechts) -->
+  <div fxFlex="auto" fxLayoutAlign="end end">
+    {{ footerText }}
   </div>
 
 </div>

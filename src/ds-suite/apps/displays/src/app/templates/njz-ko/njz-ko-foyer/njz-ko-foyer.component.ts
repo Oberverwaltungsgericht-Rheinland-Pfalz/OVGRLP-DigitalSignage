@@ -31,6 +31,14 @@ export class NjzKoFoyerComponent extends DisplayTemplateComponent {
     return this.display.title === 'Neues Justizzentrum Koblenz';
   }
 
+  GerichtsnameFuerGlobalAnzeige(termin: Termin): string {
+    var rval: string = termin.gericht;
+    if (rval.substring(0,22)=='Oberverwaltungsgericht') {
+      rval='Oberverwaltungsgericht'  // analog zur xslt ohne Rheinland-Pfalz, damit kein Umbruch...
+    }
+    return rval;
+  }
+
   public ParteiOhneVertreten(name: string): string {
     var rval: string = name;
     if (name.includes(', vertreten durch')) {
@@ -43,7 +51,11 @@ export class NjzKoFoyerComponent extends DisplayTemplateComponent {
   }
 
   public KumulierteTitel(termine: Termin[]): string[] {
-    return Array.from(new Set(termine.map(t => t.gericht)));
+    var rval : string[] = Array.from(new Set(termine.map(t => t.gericht))); 
+    if (this.isFlughafenanzeige() || rval.length==0) {
+      rval = [this.display.title];
+    } 
+    return rval
   }
 }
 

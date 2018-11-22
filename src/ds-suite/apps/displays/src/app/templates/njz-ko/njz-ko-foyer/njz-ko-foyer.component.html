@@ -27,16 +27,37 @@
           </div>
           <div>
             <span *ngIf="isFlughafenanzeige()">
-              {{ termin.gericht }}
+              {{ GerichtsnameFuerGlobalAnzeige(termin) }}
             </span>
           </div>
         </div>
-        <div fxFlex>
-          <span>{{ ParteiOhneVertreten(termin.parteienAktivKurz) }}</span>
-          <span *ngIf="!termFunc.IstPersonalvertretung(termin) && !termFunc.IstBeschlussverfahren(termin)"> ./. </span>
-          <span *ngIf="termFunc.IstPersonalvertretung(termin) || termFunc.IstBeschlussverfahren(termin)"><br /></span>
-          <span>{{ ParteiOhneVertreten(termin.parteienPassivKurz) }}</span>
+
+        <!-- Besonderheit LBGH -->
+        <div fxFlex *ngIf="termFunc.IstBerufgerichtlichesVerfahren(termin)">
+          <span>Berufgerichtliches Verfahren<br />gegen {{ ParteiOhneVertreten(termin.parteienPassivKurz) }}</span>
         </div>
+
+        <!-- Besonderheit VGH -->
+        <div fxFlex *ngIf="termFunc.IstVghVerfahren(termin)">
+          <span *ngIf="isFlughafenanzeige()">{{ ParteiOhneVertreten(termin.parteienAktivKurz) }}<br />{{ ParteiOhneVertreten(termin.parteienPassivKurz) }}</span>
+          <span *ngIf="!isFlughafenanzeige()"><strong>{{ termin.gegenstand }}</strong></span>
+        </div>
+
+        <!-- Standard -->
+        <div fxFlex *ngIf="!termFunc.IstBerufgerichtlichesVerfahren(termin) && !termFunc.IstVghVerfahren(termin)">
+          <!-- Aktivparteien sind vorhanden -->
+          <span *ngIf="termFunc.AnzahlAktivparteien(termin)>0">
+            <span>{{ ParteiOhneVertreten(termin.parteienAktivKurz) }}</span>
+            <span *ngIf="!termFunc.IstPersonalvertretung(termin) && !termFunc.IstBeschlussverfahren(termin)"> ./. </span>
+            <span *ngIf="termFunc.IstPersonalvertretung(termin) || termFunc.IstBeschlussverfahren(termin)"><br /></span>
+            <span>{{ ParteiOhneVertreten(termin.parteienPassivKurz) }}</span>
+          </span>
+          <!-- keine Aktivparteien vorhanden -->
+          <span *ngIf="termFunc.AnzahlAktivparteien(termin)==0">
+            {{ termin.bemerkung1 }}
+          </span>
+        </div>
+
         <div fxFlex="15">
           {{ termin.sitzungssaal }}
         </div>

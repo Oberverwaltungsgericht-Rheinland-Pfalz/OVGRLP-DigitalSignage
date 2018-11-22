@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Termin, Display } from '@ds-suite/model';
+import { Termin, TerminStatus, Display } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
 
 import 'rxjs/add/operator/switchMap';
@@ -22,9 +22,13 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
   private updateSub: Subscription;
 
   public updateInterval = 10000;
+  public SwitchMultipleActiveTermine: boolean = false;
 
   display: Display;
   aktiverTermin: Termin;
+  activeTermine: Termin[] = [];
+  activeTermineCount = 0;
+  activeTermineIndex = 0;
   naechsterTermin: Termin;
   termine: Termin[] = [];
   termineOffen: Termin[] = [];
@@ -44,7 +48,17 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
         tmpTermine = this.filterTermine(tmpTermine);
         tmpTermine = this.sortTermine(tmpTermine);
         this.termineCount = tmpTermine.length;
-        this.aktiverTermin = this.findAktiverTermin(tmpTermine);
+        
+        this.activeTermine = this.findActiveTermine(tmpTermine);
+        this.activeTermineCount = this.activeTermine.length;
+        this.activeTermineIndex++;
+        if ((this.activeTermineIndex) > this.activeTermineCount)
+          this.activeTermineIndex=1;
+        
+        this.aktiverTermin = this.findFirstActiveTermin(tmpTermine);
+        if (this.SwitchMultipleActiveTermine) 
+          this.aktiverTermin = this.activeTermine[this.activeTermineIndex-1];
+        
         this.termineOffen = tmpTermine.filter(
           termin => !(termin.status === 'Abgeschlossen' || termin.status === 'Aufgehoben')
         );
@@ -89,8 +103,12 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
     return termine.filter(termin => termin.uhrzeitAktuell !== 'omV');
   }
 
-  findAktiverTermin(termine: Termin[]): Termin {
+  findFirstActiveTermin(termine: Termin[]): Termin {
     return termine.find(termin => termin.status === 'Läuft');
+  }
+
+  findActiveTermine(termine: Termin[]): Termin[]  {
+    return termine.filter(termin => termin.status === 'Läuft');
   }
 
   ngOnInit() {
@@ -106,6 +124,35 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
           this.termine.shift();
       }
     });
+  }
+
+  removeFinishedTermine(termine: Termin[], maxTermine: number, minFinished: number) : Termin[] {
+    var termineTmp = termine;
+
+    if(termineTmp.length > maxTermine) {
+      var termineFinished = termineTmp.filter(t => t.status == TerminStatus.abgeschlossen);
+      var termineUnfinished = termineTmp.filter(t => t.status != TerminStatus.abgeschlossen);
+
+      if(termineFinished.length > minFinished) {
+        
+        // grundsätzlich nur noch die minimale Anzahl der erledigten Termine anzeigen,
+        // wenn insgesamt mehr Termine vorhanden sind, als darstellbar sind
+        var clearCount: number = termineFinished.length - minFinished;
+        
+        // Wenn jedoch möglich, die darstellbaren Termine wieder mit den erledigten füllen 
+        // (mehr als die minimale Anzahl von Terminen)
+        if ((termineFinished.length - clearCount + termineUnfinished.length)<maxTermine) 
+          clearCount = (termineFinished.length + termineUnfinished.length - (maxTermine))
+        
+        // ggf. erledigte Termine rausfiltern
+        if (clearCount > 0)
+          termineFinished.splice(0, clearCount);
+      }
+
+      termineTmp = termineFinished.concat(termineUnfinished);
+    }
+
+    return termineTmp;
   }
 
   animationStarted(event: AnimationEvent) {

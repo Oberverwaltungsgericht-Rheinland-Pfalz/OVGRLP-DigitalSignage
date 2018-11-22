@@ -108,7 +108,7 @@ export class TermineComponent implements OnInit {
   loadTermine() {
     this.terminService.getAllTermine()
       .subscribe(termine => {
-        this.termine = termine;
+        this.termine = this.sortTermine(termine);
         this.InitSaalSelection();
         this.InitGerichtSelection();
         this.filterTermine()
@@ -160,6 +160,17 @@ export class TermineComponent implements OnInit {
     })
     this.loadBasicPermissions();
     this.loadTermine();
+  }
+
+  sortTermine(termine: Termin[]): Termin[] {
+    return termine.sort((t1, t2) => {
+      if (t1.uhrzeitAktuell > t2.uhrzeitAktuell) {
+        return 1;
+      } else if (t1.uhrzeitAktuell < t2.uhrzeitAktuell) {
+        return -1;
+      }
+      return 0;
+    });
   }
 
 }
