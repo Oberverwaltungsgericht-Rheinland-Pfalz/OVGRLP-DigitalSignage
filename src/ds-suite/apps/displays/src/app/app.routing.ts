@@ -26,6 +26,10 @@ const routes: Routes = [
         loadChildren: './templates/jz-tr/jz-tr.module#JzTrModule'
       },
       {
+        path: "pfolg",
+        loadChildren: './templates/jz-pfolg/jz-pfolg.module#PfolgModule'
+      },
+      {
         path: "jzzw",
         loadChildren: './templates/jz-zw/jz-zw.module#JzZwModule'
       },
