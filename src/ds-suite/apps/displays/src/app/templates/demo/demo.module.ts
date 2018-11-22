@@ -11,6 +11,7 @@ import { DemoSaalVarAComponent } from './saal-var-a/saal-var-a.component';
 import { DemoSaalVarBComponent } from './saal-var-b/saal-var-b.component';
 import { DemoSaalVarRechtsComponent } from './saal-var-weitere-rechts/saal-var-weitere-rechts.component';
 import { DemoSaalVarUntenComponent } from './saal-var-weitere-unten/saal-var-weitere-unten.component';
+import { DemoSaalVorschauRechtsComponent } from './saal-vorschau-rechts/saal-vorschau-rechts.component';
 import { NjzKhSaalWeitereRechtsComponent } from './njz-kh-saal-weitere-rechts/njz-kh-saal-weitere-rechts.component';
 import { NjzKhSaalWeitereUntenComponent } from './njz-kh-saal-weitere-unten/njz-kh-saal-weitere-unten.component';
 
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: "demo-saal-variante-b", component: DemoSaalVarBComponent },
   { path: "demo-saal-variante-weitere-rechts", component: DemoSaalVarRechtsComponent },
   { path: "demo-saal-variante-weitere-unten", component: DemoSaalVarUntenComponent },
+  { path: "demo-saal-vorschau-rechts", component: DemoSaalVorschauRechtsComponent },
   { path: "saal-weitere-rechts", component: NjzKhSaalWeitereRechtsComponent },
   { path: "saal-weitere-unten", component: NjzKhSaalWeitereUntenComponent }
 ];
@@ -47,6 +49,7 @@ const routes: Routes = [
     DemoSaalVarBComponent,
     DemoSaalVarRechtsComponent,
     DemoSaalVarUntenComponent,
+    DemoSaalVorschauRechtsComponent,
     NjzKhSaalWeitereRechtsComponent,
     NjzKhSaalWeitereUntenComponent
   ]
