@@ -13,7 +13,7 @@
 }
 
 .ds-oeffentlich {
-  color: #006416;
+  /*color: #006416;*/
 }
 
 .ds-nichtoeffentlich {
@@ -21,7 +21,7 @@
 }
 
 .ds-box-oeffentlich {
-  background-color: rgba(0, 100, 22, 0.5);
+  background-color:#abdd88;
 }
 
 .ds-box-nichtoeffentlich {
