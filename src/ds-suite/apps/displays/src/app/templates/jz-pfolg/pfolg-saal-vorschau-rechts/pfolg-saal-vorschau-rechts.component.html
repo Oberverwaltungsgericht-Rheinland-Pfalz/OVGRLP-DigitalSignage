@@ -1,0 +1,168 @@
+<div *ngIf="display" id="ds-display" fxLayout="column">
+    <div id="ds-head-title" fxLayout="row">
+        <div fxFlex="75" class="ds-head-title-left">
+          {{ display.title }}
+        </div>
+        <div fxFlex class="ds-head-title-right" fxLayout="column"></div>
+      </div>
+      <div class="ds-head-title-date">
+        {{ datum | date: 'd. MMMM yyyy' }} - {{ datum | date: 'H:mm' }} Uhr
+      </div>
+
+  <div id="ds-main" fxFlex fxLayout="row">
+    <!-- b: Aktueller Termin -->
+    <div  class="mainSide" id="ds-main-details" fxFlex fxLayout="column">
+      <p class="noItems" *ngIf="!aktiverTermin">Keine aktuell laufenden Termine vorhanden.</p>
+
+      <!-- b: Status Läuft -->
+        <div *ngIf="aktiverTermin" style="min-height: 100%;" fxLayout="column">
+          <div>
+            <div fxLayout="row" *ngIf="aktiverTermin.oeffentlich == 'nein'" class="top-nichtoeffentlich">
+              <div fxFlex="50">
+                <h3>Jetzt verhandelt:</h3>
+              </div>
+              <div fxFlex="50" class="ds-text-right">
+                <h3>Nicht öffentliche Sitzung</h3>
+              </div>
+            </div>
+            <div fxLayout="row" *ngIf="aktiverTermin.oeffentlich == 'ja'" class="top-oeffentlich">
+              <div fxFlex="50">
+                <h3>Jetzt verhandelt:</h3>
+              </div>
+              <div fxFlex="50" class="ds-text-right">
+                <h3>Öffentliche Sitzung</h3>
+              </div>
+            </div>
+        </div>
+          
+        <div fxFlex="1">
+          <div class="activeCaseAz">{{aktiverTermin.az}}</div>
+          <div class="activeCaseType">{{aktiverTermin.art | capitalize}}</div>
+  
+          <div class="layout-line"></div>
+
+          <div *ngIf="aktiverTermin.oeffentlich == 'ja'">
+            <div [ngSwitch]="aktiverTermin.bemerkung1">
+              <div *ngSwitchCase="'STRAF'">
+                  <div class="activeCaseParts">
+                    <div><strong>{{aktiverTermin.parteienAktiv}}</strong></div>
+                    <div>{{aktiverTermin.prozBevAktiv}}</div>
+                  </div>
+                  <div class="activeCasePartsLargeBorder">
+                    <div><i>wegen</i></div>
+                    <div><strong>{{aktiverTermin.gegenstand}}</strong></div>
+                  </div>
+              </div>
+              <div *ngSwitchCase="'ZIV'">
+                <div class="activeCaseParts">
+                  <div><strong>{{aktiverTermin.parteienAktiv}}</strong></div>
+                  <div>{{aktiverTermin.prozBevAktiv}}</div>
+                </div>
+                <div class="activeCasePartsSmallBorder">
+                  <div><i>gegen</i></div>
+                </div>
+                <div class="activeCaseParts">
+                  <div><strong>{{aktiverTermin.parteienPassiv}}</strong></div>
+                  <div>{{aktiverTermin.prozBevPassiv}}</div>
+                </div>
+                <div class="activeCasePartsLargeBorder">
+                  <div><i>wegen</i></div>
+                  <div><strong>{{aktiverTermin.gegenstand}}</strong></div>
+                </div>
+              </div>
+              <div *ngSwitchCase="'VSIMM'">
+                <div class="activeCaseParts">
+                      <div><strong>{{aktiverTermin.parteienSv}}</strong></div>
+                </div>
+                <div class="activeCasePartsLargeBorder">
+                  <div><i>wegen</i></div>
+                  <div><strong>{{aktiverTermin.gegenstand}}</strong></div>
+                </div>
+              </div>
+              <div *ngSwitchCase="'FAM'">
+                <div class="activeCaseParts">
+                      <div><strong>{{aktiverTermin.parteienAktiv}}</strong></div>
+                      <div>{{aktiverTermin.prozBevAktiv}}</div>
+                </div>
+                <div class="activeCasePartsSmallBorder">
+                  <div><i>gegen</i></div>
+                </div>
+                <div class="activeCaseParts">
+                  <div><strong>{{aktiverTermin.parteienPassiv}}</strong></div>
+                  <div>{{aktiverTermin.prozBevPassiv}}</div>
+                </div>
+                <div class="activeCasePartsLargeBorder">
+                  <div><i>wegen</i></div>
+                  <div><strong>{{aktiverTermin.gegenstand}}</strong></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+          
+        <div *ngIf="aktiverTermin.oeffentlich == 'nein'" class="bottom-nichtoeffentlich">
+          <h4>{{ aktiverTermin.gericht }}</h4>
+          <div><span *ngFor="let besetzungItem of aktiverTermin.besetzung; last as t">{{ besetzungItem }}<span *ngIf="!t">,&nbsp;</span></span></div>
+        </div>
+        <div *ngIf="aktiverTermin.oeffentlich == 'ja'" class="bottom-oeffentlich">
+          <h4>{{ aktiverTermin.gericht }}</h4>
+          <div><span *ngFor="let besetzungItem of aktiverTermin.besetzung; last as t">{{ besetzungItem }}<span *ngIf="!t">,&nbsp;</span></span></div>
+        </div>
+
+       </div>
+      <!-- e: Status Läuft -->
+      <!--<app-termin *ngIf="aktiverTermin" [termin]="aktiverTermin"></app-termin>-->
+      <!--<app-termin *ngIf="!aktiverTermin && naechsterTermin" [termin]="naechsterTermin"></app-termin>-->
+    </div>
+    <!-- e: Aktueller Termin -->
+
+    <!-- b: Weitere Termine -->
+    <div class="rightSide" fxFlex="25">
+      <div class="rightSideHeadline">Weitere Termine</div>
+        <div class="ds-termin" fxLayout="column" *ngFor="let termin of termine" #dsTermineChild>
+          <div class="notActiveItemAgo" *ngIf="termin.status == 'Abgeschlossen'">
+              <div>{{termin.uhrzeitAktuell}} Uhr:&nbsp;{{termin.az}}</div>
+              <div *ngIf="termin.oeffentlich == 'nein'" class="hinweis-nichtoeffentlich">nicht öffentliche Sitzung</div>
+              <div *ngIf="termin.oeffentlich == 'ja'" class="hinweis-oeffentlich">öffentliche Sitzung</div>
+              <div *ngIf="termin.oeffentlich == 'ja'">
+                <div [ngSwitch]="aktiverTermin.bemerkung1">
+                  <div *ngSwitchCase="'STRAF'">{{ termin.parteienAktivKurz }}</div>
+                  <div *ngSwitchCase="'ZIV'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>
+                  <div *ngSwitchCase="'FAM'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>
+                  <div *ngSwitchCase="'VSIMM'">{{ termin.gegenstand }}</div>
+                </div>
+              </div>
+          </div>
+          <div class="activeItem" *ngIf="termin.status == 'Läuft' || termin.status == 'Unterbrochen'" >
+              <div><strong>{{termin.uhrzeitAktuell}} Uhr:&nbsp;{{termin.az}}</strong></div>
+              <div *ngIf="termin.oeffentlich == 'nein'" class="hinweis-nichtoeffentlich">nicht öffentliche Sitzung</div>
+              <div *ngIf="termin.oeffentlich == 'ja'" class="hinweis-oeffentlich">öffentliche Sitzung</div>
+              <div *ngIf="termin.oeffentlich == 'ja'">
+                  <div [ngSwitch]="aktiverTermin.bemerkung1">
+                      <div *ngSwitchCase="'STRAF'">{{ termin.parteienAktivKurz }}</div>
+                      <div *ngSwitchCase="'ZIV'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>
+                      <div *ngSwitchCase="'FAM'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>
+                      <div *ngSwitchCase="'VSIMM'">{{ termin.gegenstand }}</div>
+                  </div>
+              </div>
+          </div>
+          <div class="notActiveItem" *ngIf="termin.status == ''">
+            <div><strong>{{termin.uhrzeitAktuell}} Uhr:&nbsp;{{termin.az}}</strong></div>
+            <div *ngIf="termin.oeffentlich == 'nein'" class="hinweis-nichtoeffentlich"><strong>nicht öffentliche Sitzung</strong></div>
+              <div *ngIf="termin.oeffentlich == 'ja'" class="hinweis-oeffentlich"><strong>öffentliche Sitzung</strong></div>
+            <div *ngIf="termin.oeffentlich == 'ja'">
+              <div [ngSwitch]="aktiverTermin.bemerkung1">
+                  <div *ngSwitchCase="'STRAF'">{{ termin.parteienAktivKurz }}</div>
+                  <div *ngSwitchCase="'ZIV'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>
+                  <div *ngSwitchCase="'FAM'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>
+                  <div *ngSwitchCase="'VSIMM'">{{ termin.gegenstand }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- e: Weitere Termine -->
+
+  </div>
+</div>
