@@ -12,8 +12,13 @@
   <div id="ds-main" fxFlex fxLayout="row">
     <!-- b: Aktueller Termin -->
     <div  class="mainSide" id="ds-main-details" fxFlex fxLayout="column">
-      <p class="noItems" *ngIf="!aktiverTermin">Keine aktuell laufenden Termine vorhanden.</p>
-
+        <p class="noItems" *ngIf="!aktiverTermin">Keine aktuell laufenden Termine vorhanden.</p>
+        <div *ngIf="naechsterTermin">
+          <p class="noItems"><br /></p>
+          <p class="noItems">Nächster Termin: {{ naechsterTermin.uhrzeitPlan }} Uhr, AZ: {{ naechsterTermin.az }}</p>
+          <p *ngIf="naechsterTermin.oeffentlich == 'ja'" class="noItems hinweis-oeffentlich-2"><strong>öffentliche Sitzung</strong></p>
+          <p *ngIf="naechsterTermin.oeffentlich == 'nein'" class="noItems hinweis-nichtoeffentlich-2"><strong>nicht öffentliche Sitzung</strong></p>
+        </div>
       <!-- b: Status Läuft -->
         <div *ngIf="aktiverTermin" style="min-height: 100%;" fxLayout="column">
           <div>
@@ -135,7 +140,7 @@
             <div *ngIf="termin.oeffentlich == 'nein'" class="hinweis-nichtoeffentlich">nicht öffentliche Sitzung</div>
             <div *ngIf="termin.oeffentlich == 'ja'" class="hinweis-oeffentlich">öffentliche Sitzung</div>
             <div *ngIf="termin.oeffentlich == 'ja'">
-              <div [ngSwitch]="aktiverTermin.bemerkung1">
+              <div [ngSwitch]="termin.bemerkung1">
                 <div *ngSwitchCase="'STRAF'">{{ termin.parteienAktivKurz }}</div>
                 <div *ngSwitchCase="'ZIV'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>
                 <div *ngSwitchCase="'FAM'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>
@@ -149,7 +154,7 @@
               <div *ngIf="termin.oeffentlich == 'nein'" class="hinweis-nichtoeffentlich">nicht öffentliche Sitzung</div>
               <div *ngIf="termin.oeffentlich == 'ja'" class="hinweis-oeffentlich">öffentliche Sitzung</div>
               <div *ngIf="termin.oeffentlich == 'ja'">
-                <div [ngSwitch]="aktiverTermin.bemerkung1">
+                <div [ngSwitch]="termin.bemerkung1">
                   <div *ngSwitchCase="'STRAF'">{{ termin.parteienAktivKurz }}</div>
                   <div *ngSwitchCase="'ZIV'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>
                   <div *ngSwitchCase="'FAM'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>
@@ -163,7 +168,7 @@
             <div *ngIf="termin.oeffentlich == 'nein'" class="hinweis-nichtoeffentlich">nicht öffentliche Sitzung</div>
             <div *ngIf="termin.oeffentlich == 'ja'" class="hinweis-oeffentlich">öffentliche Sitzung</div>
             <div *ngIf="termin.oeffentlich == 'ja'">
-              <div [ngSwitch]="aktiverTermin.bemerkung1">
+              <div [ngSwitch]="termin.bemerkung1">
                 <div *ngSwitchCase="'STRAF'">{{ termin.parteienAktivKurz }}</div>
                 <div *ngSwitchCase="'ZIV'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>
                 <div *ngSwitchCase="'FAM'">{{ termin.parteienAktivKurz }} <br /> ./. {{ termin.parteienPassivKurz }}</div>

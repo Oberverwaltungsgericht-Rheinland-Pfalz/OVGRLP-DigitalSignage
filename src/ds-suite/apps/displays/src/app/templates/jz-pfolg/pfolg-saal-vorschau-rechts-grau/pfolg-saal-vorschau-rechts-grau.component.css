@@ -222,3 +222,9 @@
   font-weight: bold;
   text-shadow: none;
 }
+.hinweis-oeffentlich-2 {
+  color: #3d7417;
+}
+.hinweis-nichtoeffentlich-2 {
+  color: #871d33;
+}

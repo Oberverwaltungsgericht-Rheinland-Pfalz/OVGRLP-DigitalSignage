@@ -3,6 +3,11 @@ import { trigger, state, style, animate, transition, stagger, query, keyframes }
 
 import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
 
+import { Termin, TerminStatus } from '@ds-suite/model';
+const MAX_TERMINE = 3;
+const MAX_FINISHED = 1;
+const MAX_TERMINITEMS = 5;
+
 @Component({
   selector: 'app-pfolg-saal-vorschau-rechts-grau',
   templateUrl: './pfolg-saal-vorschau-rechts-grau.component.html',
@@ -23,4 +28,40 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
   ]
 })
 export class PfolgSaalVorschauRechtsGrauComponent extends DisplayTemplateComponent {
+
+  showTermineStream(termine: Termin[], maxTermine: number, minFinished: number, maxTerminitems: number) : Termin[] {
+    var termineTmp = termine;
+    if(termineTmp.length > maxTermine) {
+      var termineFinished = termineTmp.filter(t => t.status == TerminStatus.abgeschlossen);
+      var termineUnfinished = termineTmp.filter(t => t.status != TerminStatus.abgeschlossen);
+      if(termineFinished.length > minFinished) {
+        
+        // grundsätzlich nur noch die minimale Anzahl der erledigten Termine anzeigen,
+        // wenn insgesamt mehr Termine vorhanden sind, als darstellbar sind
+        var clearCount: number = termineFinished.length - minFinished;
+        
+        // Wenn jedoch möglich, die darstellbaren Termine wieder mit den erledigten füllen 
+        // (mehr als die minimale Anzahl von Terminen)
+        if ((termineFinished.length - clearCount + termineUnfinished.length)<maxTermine) 
+          clearCount = (termineFinished.length + termineUnfinished.length - (maxTermine))
+        
+        // ggf. erledigte Termine rausfiltern
+        if (clearCount > 0)
+          termineFinished.splice(0, clearCount);
+      }
+      termineTmp = termineFinished.concat(termineUnfinished);
+      if(termineTmp.length > maxTerminitems) {
+        var subtraktor:number = termineTmp.length - (maxTerminitems - termineTmp.length);
+        termineTmp.splice(maxTerminitems,subtraktor);
+      }
+    }
+    return termineTmp;
+  }
+
+  filterTermine(termine: Termin[]) : Termin[] {
+    return this.showTermineStream(
+      super.sortTermine(super.filterTermine(termine)), 
+      MAX_TERMINE, MAX_FINISHED, MAX_TERMINITEMS);
+  }
+
 }
