@@ -14,7 +14,7 @@
                         [name]="'sel_status_' + index"  
                                 [id]="'sel_status_' + index"
                                 [(clrChecked)]="selStatus[index]"
-                                (change)="changeSelection()">
+                                (clrCheckedChange)="changeSelection()">
                                 {{status}}
                         </clr-checkbox>
                     </div>
@@ -31,7 +31,7 @@
                         [name]="'sel_gericht_' + index"  
                                 [id]="'sel_gericht_' + index"
                                 [(clrChecked)]="selGericht[index]"
-                                (change)="changeSelection()">
+                                (clrCheckedChange)="changeSelection()">
                                 {{gericht}}
                         </clr-checkbox>
                     </div>
@@ -48,7 +48,7 @@
                             [name]="'sel_saal_' + index"  
                             [id]="'sel_saal_' + index"
                             [(clrChecked)]="selSaal[index]"
-                            (change)="changeSelection()">
+                            (clrCheckedChange)="changeSelection()">
                             {{saal}}
                         </clr-checkbox>
                     </div>
