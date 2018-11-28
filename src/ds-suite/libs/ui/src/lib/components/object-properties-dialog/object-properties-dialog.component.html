@@ -1,0 +1,14 @@
+<clr-modal [(clrModalOpen)]="show" [clrModalSize]="'m'" [clrModalStaticBackdrop]="true" [clrModalClosable]="true">
+  <h3 class="modal-title">{{Title}}</h3>  
+  <div class="modal-body">
+    <table>
+      <tr *ngFor="let property of listOfPropertys">
+          <td>{{property.Name}}</td>
+          <td>{{property.Value}}</td>
+        </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button (click)="close()" class="btn btn-sm btn-link" type="button">Ok</button>
+  </div>
+</clr-modal>

@@ -6,7 +6,10 @@ import { DisplayStatusComponent } from './components/display-status/display-stat
 import { DisplayDialogComponent } from './components/display-dialog/display-dialog.component';
 import { YesNoDialogComponent } from './components/yes-no-dialog/yes-no-dialog.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { ObjectPropertiesDialogComponent } from './components/object-properties-dialog/object-properties-dialog.component';
+
 import { AlertService } from '@ds-suite/core';
+
 
 @NgModule({
   imports: [
@@ -14,8 +17,8 @@ import { AlertService } from '@ds-suite/core';
     ClarityModule,
     HttpClientModule
   ],
-  declarations: [DisplayStatusComponent, DisplayDialogComponent, YesNoDialogComponent, AlertComponent],
-  exports: [DisplayStatusComponent, DisplayDialogComponent, YesNoDialogComponent, AlertComponent],
+  declarations: [DisplayStatusComponent, DisplayDialogComponent, YesNoDialogComponent, AlertComponent, ObjectPropertiesDialogComponent],
+  exports: [DisplayStatusComponent, DisplayDialogComponent, YesNoDialogComponent, AlertComponent, ObjectPropertiesDialogComponent],
   providers: [AlertService]
 })
 export class UiModule {}
