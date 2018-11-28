@@ -27,6 +27,11 @@ import { TerminFunctions } from '../shared/termin.functions';
 export class NjzKoFoyerComponent extends DisplayTemplateComponent {
   termFunc = TerminFunctions;
 
+  ngOnInit() {
+    this.updateInterval = 6000;
+    super.ngOnInit();
+  }
+
   isFlughafenanzeige(): boolean {
     return this.display.title === 'Neues Justizzentrum Koblenz';
   }
