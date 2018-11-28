@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 import { Termin, BasicPermissions, Restriction } from '@ds-suite/model';
 import { TerminService, DisplayService, PermissionService } from '@ds-suite/core';
-import { DisplayDto, DisplayStatus } from '@ds-suite/model';
-import { DisplayDialogComponent } from '@ds-suite/ui';
+import { DisplayDto, DisplayStatus, Display } from '@ds-suite/model';
+import { DisplayDialogComponent, ObjectPropertiesDialogComponent } from '@ds-suite/ui';
 
 @Component({
   selector: 'displays',
@@ -19,6 +19,7 @@ export class DisplaysComponent implements OnInit {
   public isLoading: boolean = false;
 
   @ViewChild(DisplayDialogComponent) modal: DisplayDialogComponent;
+  @ViewChild(ObjectPropertiesDialogComponent) modalProperties: ObjectPropertiesDialogComponent;
 
   constructor(private displayService: DisplayService,
     private terminService: TerminService,
@@ -75,6 +76,12 @@ export class DisplaysComponent implements OnInit {
     this.isLoading = true;
     this.loadBasicPermissions();
     this.getDisplays();
+  }
+
+  openDisplayProperties(display: Display) {
+    if (BasicPermissions.isAdmin(this.basicPermission)) {
+      this.modalProperties.open(display,"Display-Infos")
+    }    
   }
 
   AnzeigeTermineClick(display: DisplayDto) {
