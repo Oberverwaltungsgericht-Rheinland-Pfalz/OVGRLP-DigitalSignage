@@ -2,8 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/apps/displays",
-    "module": "es2015",
-    "types": []
+    "module": "es2015"
   },
   "exclude": [
     "src/test.ts",
