@@ -7,8 +7,8 @@ import { ObjectProperty } from '@ds-suite/model';
   styleUrls: ['./object-properties-dialog.component.css']
 })
 export class ObjectPropertiesDialogComponent implements OnInit {
-  private listOfPropertys: Array<ObjectProperty>;
   public show: boolean = false;
+  listOfPropertys: Array<ObjectProperty>;
   _objectData: Object;
   _title: string;
 
