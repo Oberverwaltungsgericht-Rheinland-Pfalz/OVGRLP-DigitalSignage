@@ -9,3 +9,4 @@ export { Note } from './lib/note';
 export { BasicPermissions } from './lib/basic-permissions';
 export { Restriction } from './lib/restriction';
 export { Alert, AlertType } from './lib/alert';
+export { ObjectProperty } from './lib/object-property';
