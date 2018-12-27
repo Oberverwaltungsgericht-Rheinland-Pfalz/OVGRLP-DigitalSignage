@@ -135,8 +135,8 @@
   font-weight: bold;
 }
 .ds-termin {
-  padding-top: 1%;
-  padding-bottom: 1%;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .preview-nichtoeffentlich {
   padding: 0.5%;

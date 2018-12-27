@@ -29,6 +29,11 @@ const MAX_TERMINITEMS = 5;
 })
 export class PfolgSaalVorschauRechtsGrauComponent extends DisplayTemplateComponent {
 
+  ngOnInit() {
+    this.SwitchMultipleActiveTermine=true;
+    super.ngOnInit();
+  }
+
   showTermineStream(termine: Termin[], maxTermine: number, minFinished: number, maxTerminitems: number) : Termin[] {
     var termineTmp = termine;
     if(termineTmp.length > maxTermine) {

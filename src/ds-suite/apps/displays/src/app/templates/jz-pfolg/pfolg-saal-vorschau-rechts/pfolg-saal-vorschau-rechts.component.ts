@@ -30,7 +30,7 @@ const MAX_TERMINITEMS = 5;
 export class PfolgSaalVorschauRechtsComponent extends DisplayTemplateComponent {
 
   ngOnInit() {
-    
+    this.SwitchMultipleActiveTermine=true;
     super.ngOnInit();
   }
 
