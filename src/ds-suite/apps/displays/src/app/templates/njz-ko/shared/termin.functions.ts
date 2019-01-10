@@ -31,7 +31,8 @@ export class TerminFunctions {
 
   public static IstSenat(termin: Termin) {
     return (termin.gericht === "Oberverwaltungsgericht Rheinland-Pfalz" ||
-    termin.gericht === "Verfassungsgerichtshof Rheinland-Pfalz");
+    termin.gericht === "Verfassungsgerichtshof Rheinland-Pfalz"||
+    termin.gericht === "Finanzgericht Rheinland-Pfalz");
   }
 
 }
