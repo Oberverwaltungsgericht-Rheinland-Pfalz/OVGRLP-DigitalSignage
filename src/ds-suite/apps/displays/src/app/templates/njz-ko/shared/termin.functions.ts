@@ -11,8 +11,14 @@ export class TerminFunctions {
   }
 
   public static IstPersonalvertretung(termin: Termin) {
-    return termin.gericht === "Oberverwaltungsgericht Rheinland-Pfalz" &&
-      (termin.kammer == 4 || termin.kammer == 5);
+    var rval:Boolean=false
+    
+    if (termin.gericht === "Oberverwaltungsgericht Rheinland-Pfalz" && (termin.kammer == 4 || termin.kammer == 5))
+      rval=true;
+    if (termin.gericht === "Verwaltungsgericht Mainz" && (termin.kammer == 2 || termin.kammer == 5))
+      rval=true;
+
+    return rval;
   }
 
   public static IstBerufgerichtlichesVerfahren(termin: Termin) {

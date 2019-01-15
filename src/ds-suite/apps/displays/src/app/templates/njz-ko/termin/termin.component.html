@@ -93,16 +93,15 @@
   <div fxFlex="nogrow" class="ds-divider"></div>
 
   <!-- gegen -->
-  <div fxFlex="nogrow" class="ds-gegen">
-    gegen
-  </div>
+  <div *ngIf="!termFunc.IstPersonalvertretung(termin)" fxFlex="nogrow" class="ds-gegen">gegen</div>
 
   <!-- Trenner -->
-  <div fxFlex="nogrow" class="ds-divider"></div>
-
+  <div *ngIf="!termFunc.IstPersonalvertretung(termin)" fxFlex="nogrow" class="ds-divider"></div>
+  
   <!-- Passivpartei -->
-  <div fxFlex="nogrow" fxLayout="row">
+  <div fxFlex="nogrow" fxLayout="row">    
     <div fxFlex>
+      <div *ngIf="termFunc.IstPersonalvertretung(termin)">beteiligt:</div>   <!-- besonderheit Personalvertretung -->
       <div *ngFor="let partei of termin.parteienPassiv">
         {{ partei }}
       </div>
