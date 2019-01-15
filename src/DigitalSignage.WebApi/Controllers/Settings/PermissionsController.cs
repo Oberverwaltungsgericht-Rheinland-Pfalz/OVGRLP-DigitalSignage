@@ -81,7 +81,8 @@ namespace DigitalSignage.WebApi.Controllers.Settings
     [ResponseType(typeof(bool))]
     public IHttpActionResult GetPermission(string urlPath)
     {
-      var wid = new WindowsIdentity(HttpContext.Current.User.Identity.Name);
+      string name = GetUPNUserFormat(HttpContext.Current.User.Identity.Name);
+      var wid = new WindowsIdentity(name);
       return Ok(PermissionService.CheckPermissionForIdentity(wid, urlPath, "GET"));
     }
 
@@ -89,7 +90,8 @@ namespace DigitalSignage.WebApi.Controllers.Settings
     [HttpGet]
     public IHttpActionResult PutPermission(string urlPath)
     {
-      var wid = new WindowsIdentity(HttpContext.Current.User.Identity.Name);
+      string name = GetUPNUserFormat(HttpContext.Current.User.Identity.Name);
+      var wid = new WindowsIdentity(name);
       return Ok(PermissionService.CheckPermissionForIdentity(wid, urlPath, "PUT"));
     }
 
@@ -97,7 +99,8 @@ namespace DigitalSignage.WebApi.Controllers.Settings
     [HttpGet]
     public IHttpActionResult PostPermission(string urlPath)
     {
-      var wid = new WindowsIdentity(HttpContext.Current.User.Identity.Name);
+      string name = GetUPNUserFormat(HttpContext.Current.User.Identity.Name);
+      var wid = new WindowsIdentity(name);
       return Ok(PermissionService.CheckPermissionForIdentity(wid, urlPath, "POST"));
     }
 
@@ -105,8 +108,20 @@ namespace DigitalSignage.WebApi.Controllers.Settings
     [HttpGet]
     public IHttpActionResult DeletePermission(string urlPath)
     {
-      var wid = new WindowsIdentity(HttpContext.Current.User.Identity.Name);
+      string name = GetUPNUserFormat(HttpContext.Current.User.Identity.Name);
+      var wid = new WindowsIdentity(name);
       return Ok(PermissionService.CheckPermissionForIdentity(wid, urlPath, "DELETE"));
+    }
+
+    // User Principal Name format
+    // Übergabeformat: domäne\user
+    // Rückgabeformat: user@domäne
+    private string GetUPNUserFormat(string name)
+    {
+      char del = '\\';
+      if (name.Contains(del))
+        name = name.Split(del).ToArray()[1] + "@" + name.Split(del).ToArray()[0];
+      return name;
     }
   }
 
