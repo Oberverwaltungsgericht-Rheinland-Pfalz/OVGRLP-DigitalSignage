@@ -34,5 +34,6 @@ namespace DigitalSignage.Infrastructure.Models.EurekaFach
     public string Datum { get; set; }
     public ICollection<string> Besetzung { get; set; }
     public ICollection<string> ParteienBeteiligt { get; set; }
+    public virtual ICollection<Objekte> Objekte { get; set; }
   }
 }

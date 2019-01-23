@@ -61,6 +61,7 @@ namespace DigitalSignage.Data
       modelBuilder.Entity<Verfahren>().HasMany<ProzBevPassiv>(v => v.ProzBevPassiv).WithRequired().HasForeignKey(p => p.VerfahrensId);
       modelBuilder.Entity<Verfahren>().HasMany<ProzBevBeigeladen>(v => v.ProzBevBeigeladen).WithRequired().HasForeignKey(p => p.VerfahrensId);
       modelBuilder.Entity<Verfahren>().HasMany<ParteienBeteiligt>(v => v.ParteienBeteiligt).WithRequired().HasForeignKey(p => p.VerfahrensId);
+      modelBuilder.Entity<Verfahren>().HasMany<Objekte>(v => v.Objekte).WithRequired().HasForeignKey(o => o.VerfahrensId);
 
       #endregion Verfahren
 
@@ -137,6 +138,31 @@ namespace DigitalSignage.Data
 
       #endregion ProzBevBeigeladen
 
+      #region Objekte
+
+      modelBuilder.Entity<Objekte>().ToTable("Objekte").HasKey(o => o.ObjektId);
+      modelBuilder.Entity<Objekte>().Property(o => o.Objektart).IsRequired().HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Gemarkung).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Flur).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Wirtschaftsart).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Anschrift).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Groesse).HasMaxLength(50);
+      modelBuilder.Entity<Objekte>().Property(o => o.Objekt).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Blatt).HasMaxLength(50);
+      modelBuilder.Entity<Objekte>().Property(o => o.Grundbuchamt).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Zusatz).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Eigentumsart).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Nutzungsrecht).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Kurzname).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Grundbuchbezirk).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.Eigentumsanteil).HasMaxLength(50);
+      modelBuilder.Entity<Objekte>().Property(o => o.Schiffsregisterart).HasMaxLength(50);
+      modelBuilder.Entity<Objekte>().Property(o => o.Schiffsname).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.IMONR).HasMaxLength(255);
+      modelBuilder.Entity<Objekte>().Property(o => o.RegisterGericht).HasMaxLength(255);
+
+      #endregion Objekte
+
       base.OnModelCreating(modelBuilder);
     }
 
@@ -154,6 +180,7 @@ namespace DigitalSignage.Data
     public DbSet<ProzBevPassiv> ProzBevPassiv { get; set; }
     public DbSet<ProzBevBeigeladen> ProzBevBeigeladen { get; set; }
     public DbSet<ParteienBeteiligt> ParteienBeteiligt { get; set; }
+    public DbSet<Objekte> Objekte { get; set; }
 
     #endregion Sitzungsdaten
 
