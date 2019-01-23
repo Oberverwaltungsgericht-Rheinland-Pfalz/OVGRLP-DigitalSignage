@@ -27,4 +27,5 @@ export class Termin {
   gericht: string;
   datum: string;
   besetzung: string[];
+  parteienBeteiligt: string[];
 }
