@@ -34,6 +34,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
           .Include(v => v.ProzBevBeigeladen)
           .Include(v => v.ParteienZeugen)
           .Include(v => v.ParteienSV)
+          .Include(v => v.ParteienBeteiligt)
           .ToList()
           .ForEach(v =>
           {
@@ -59,6 +60,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
       await context.Entry(verfahren).Collection(v => v.ProzBevBeigeladen).LoadAsync();
       await context.Entry(verfahren).Collection(v => v.ParteienZeugen).LoadAsync();
       await context.Entry(verfahren).Collection(v => v.ParteienSV).LoadAsync();
+      await context.Entry(verfahren).Collection(v => v.ParteienBeteiligt).LoadAsync();
 
       if (verfahren == null)
       {
@@ -251,6 +253,12 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         parteienSv.Add(partei.Partei);
       }
 
+      List<string> parteienBeteiligt = new List<string>();
+      foreach (var partei in verfahren.ParteienBeteiligt)
+      {
+        parteienBeteiligt.Add(partei.Partei);
+      }
+
       return new VerfahrenDto()
       {
         Id = verfahren.VerfahrensId,
@@ -277,6 +285,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         ProzBevBeigeladen = prozBevBeigeladen,
         ParteienZeugen = parteienZeugen,
         ParteienSv = parteienSv,
+        ParteienBeteiligt = parteienBeteiligt,
         Art = verfahren.Art,
         Gericht = verfahren.Stammdaten.Gerichtsname,
         Datum = verfahren.Stammdaten.Datum,
