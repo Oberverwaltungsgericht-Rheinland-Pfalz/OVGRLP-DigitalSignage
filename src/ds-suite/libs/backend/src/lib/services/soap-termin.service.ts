@@ -39,7 +39,7 @@ export class SoapTerminService implements TerminService {
     var query = EntityQuery
       .from('Verfahren')
       .where('VerfahrensId', '==', id)
-      .expand('Stammdaten, Besetzung, ParteienAktiv, ProzBevAktiv, ParteienPassiv, ProzBevPassiv, ParteienBeigeladen, ProzBevBeigeladen, ParteienZeugen, ParteienSV, ParteienBeteiligt');
+      .expand('Stammdaten, Besetzung, ParteienAktiv, ProzBevAktiv, ParteienPassiv, ProzBevPassiv, ParteienBeigeladen, ProzBevBeigeladen, ParteienZeugen, ParteienSV, ParteienBeteiligt, Objekte');
 
     var promise = this.breezeEntityManager.executeQuery(query)
       .then(res => { 

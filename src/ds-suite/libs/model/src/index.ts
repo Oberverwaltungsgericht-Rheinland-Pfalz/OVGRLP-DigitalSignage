@@ -5,6 +5,7 @@ export { DisplayDto } from './lib/DisplayDto';
 export { DisplayStatus } from './lib/display-status';
 export { TerminStatus } from './lib/termin-status';
 export { Termin } from './lib/termin';
+export { Objekt } from './lib/objekt';
 export { Note } from './lib/note';
 export { BasicPermissions } from './lib/basic-permissions';
 export { Restriction } from './lib/restriction';
