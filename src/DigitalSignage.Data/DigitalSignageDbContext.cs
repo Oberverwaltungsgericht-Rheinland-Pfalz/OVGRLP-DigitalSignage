@@ -60,6 +60,7 @@ namespace DigitalSignage.Data
       modelBuilder.Entity<Verfahren>().HasMany<ProzBevAktiv>(v => v.ProzBevAktiv).WithRequired().HasForeignKey(p => p.VerfahrensId);
       modelBuilder.Entity<Verfahren>().HasMany<ProzBevPassiv>(v => v.ProzBevPassiv).WithRequired().HasForeignKey(p => p.VerfahrensId);
       modelBuilder.Entity<Verfahren>().HasMany<ProzBevBeigeladen>(v => v.ProzBevBeigeladen).WithRequired().HasForeignKey(p => p.VerfahrensId);
+      modelBuilder.Entity<Verfahren>().HasMany<ParteienBeteiligt>(v => v.ParteienBeteiligt).WithRequired().HasForeignKey(p => p.VerfahrensId);
 
       #endregion Verfahren
 
@@ -104,6 +105,13 @@ namespace DigitalSignage.Data
       modelBuilder.Entity<ParteienZeugen>().Property(p => p.Partei).HasMaxLength(255);
 
       #endregion ParteienZeugen
+
+      #region ParteienBeteiligt
+
+      modelBuilder.Entity<ParteienBeteiligt>().ToTable("ParteienBeteiligt").HasKey(p => p.ParteiId);
+      modelBuilder.Entity<ParteienBeteiligt>().Property(p => p.Partei).HasMaxLength(255);
+
+      #endregion ParteienBeteiligt
 
       #region ProzBevAktiv
 

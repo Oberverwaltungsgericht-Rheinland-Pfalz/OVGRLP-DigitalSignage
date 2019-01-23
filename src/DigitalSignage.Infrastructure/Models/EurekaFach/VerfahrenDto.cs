@@ -33,5 +33,6 @@ namespace DigitalSignage.Infrastructure.Models.EurekaFach
     public string Gericht { get; set; }
     public string Datum { get; set; }
     public ICollection<string> Besetzung { get; set; }
+    public ICollection<string> ParteienBeteiligt { get; set; }
   }
 }

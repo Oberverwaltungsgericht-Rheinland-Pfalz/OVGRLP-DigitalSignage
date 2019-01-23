@@ -30,5 +30,6 @@ namespace DigitalSignage.Infrastructure.Models.EurekaFach
     public virtual ICollection<ProzBevAktiv> ProzBevAktiv { get; set; }
     public virtual ICollection<ProzBevBeigeladen> ProzBevBeigeladen { get; set; }
     public virtual ICollection<ProzBevPassiv> ProzBevPassiv { get; set; }
+    public virtual ICollection<ParteienBeteiligt> ParteienBeteiligt { get; set; }
   }
 }

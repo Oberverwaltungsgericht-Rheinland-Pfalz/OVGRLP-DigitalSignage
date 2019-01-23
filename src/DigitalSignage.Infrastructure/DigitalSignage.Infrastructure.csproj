@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\EurekaFach\ParteienBeteiligt.cs" />
     <Compile Include="Models\EurekaFach\VerfahrenDto.cs" />
     <Compile Include="Models\Settings\Display.cs" />
     <Compile Include="Models\EurekaFach\Basics.cs" />
