@@ -155,6 +155,19 @@
     </div>
   </div>
 
+  <!-- objekte (nur exemplarisch eingebaut - wird in der Fachgerichtsbarkeit nicht genutzt!) -->
+  <div *ngIf="termin.objekte.length > 0" fxFlex="nogrow" class="ds-divider"></div>   <!-- Trenner -->
+  <div *ngIf="termin.objekte.length > 0" fxFlex="nogrow">
+    <div fxFlex="15">
+      Objekte:
+    </div>
+    <div fxFlex>
+      <div *ngFor="let objekt of termin.objekte">
+        {{ objekt.objektart }}
+      </div>
+    </div>
+  </div>
+
   <!-- fußtext (unten rechts) -->
   <div fxFlex="auto" fxLayoutAlign="end end">
     {{ footerText }}
