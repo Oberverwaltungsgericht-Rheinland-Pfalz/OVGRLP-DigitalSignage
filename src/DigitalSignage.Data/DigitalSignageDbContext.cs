@@ -153,6 +153,7 @@ namespace DigitalSignage.Data
     public DbSet<ProzBevAktiv> ProzBevAktiv { get; set; }
     public DbSet<ProzBevPassiv> ProzBevPassiv { get; set; }
     public DbSet<ProzBevBeigeladen> ProzBevBeigeladen { get; set; }
+    public DbSet<ParteienBeteiligt> ParteienBeteiligt { get; set; }
 
     #endregion Sitzungsdaten
 
