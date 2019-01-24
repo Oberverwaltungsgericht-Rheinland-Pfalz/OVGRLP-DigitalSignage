@@ -224,6 +224,22 @@ namespace DigitalSignage.ImportCLI.Service
       return besetzung;
     }
 
+    private List<ParteienBeteiligt> DetermineBeteiligte(TerminsaushangVerfahren verf)
+    {
+      var beteiligt = new List<ParteienBeteiligt>();
+      if (null != verf.Beteiligt)
+      {
+        foreach (var bet in verf.Beteiligt.Parteien)
+        {
+          if (bet.TrimEnd() == "Beteiligte:")
+            continue;
+          beteiligt.Add(new ParteienBeteiligt { Partei = bet.TrimEnd() });
+        }
+      }
+
+      return beteiligt;
+    }
+
     private void AddVerfahrensdaten(Verfahren verfahren, TerminsaushangVerfahren verf)
     {
       // Verfahrens-Kopfdaten
@@ -260,6 +276,9 @@ namespace DigitalSignage.ImportCLI.Service
 
       // Zeugen
       verfahren.ParteienZeugen = DetermineZeugen(verf);
+
+      // Beteiligte
+      verfahren.ParteienBeteiligt = DetermineBeteiligte(verf);
     }
 
     private void DeleteVerfahrensParteien(EfContextProvider contextProvider, Verfahren verfahren)
