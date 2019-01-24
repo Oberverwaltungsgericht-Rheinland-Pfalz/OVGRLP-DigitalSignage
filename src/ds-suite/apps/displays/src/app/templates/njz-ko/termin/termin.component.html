@@ -99,9 +99,8 @@
   <div *ngIf="!termFunc.IstPersonalvertretung(termin)" fxFlex="nogrow" class="ds-divider"></div>
   
   <!-- Passivpartei -->
-  <div fxFlex="nogrow" fxLayout="row">    
+  <div *ngIf="!termFunc.IstPersonalvertretung(termin)" fxFlex="nogrow" fxLayout="row">    
     <div fxFlex>
-      <div *ngIf="termFunc.IstPersonalvertretung(termin)">beteiligt:</div>   <!-- besonderheit Personalvertretung -->
       <div *ngFor="let partei of termin.parteienPassiv">
         {{ partei }}
       </div>
@@ -111,6 +110,16 @@
     <div fxFlex>
       <div *ngFor="let pb of termin.prozBevPassiv">
         {{ pb }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Beteiligte -->
+  <div *ngIf="termin.parteienBeteiligt.length > 0" fxFlex="nogrow" fxLayout="row">    
+    <div fxFlex>
+      <div>beteiligt:</div>
+      <div *ngFor="let partei of termin.parteienBeteiligt">
+        {{ partei }}
       </div>
     </div>
   </div>
