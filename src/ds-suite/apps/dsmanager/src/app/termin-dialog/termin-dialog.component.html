@@ -202,9 +202,22 @@
                           </ul>
                       </div>
                   </div>
-
+                  
+                    <div class="card besetzung-card-odd">
+                        <div class="card-block multiple-list-header">
+                                <span>Beteiligte</span>
+                                <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.ParteienBeteiligt,'ParteienBeteiligt')"></clr-icon>
+                        </div>
+                        <div class="card-block">
+                            <ul class="list-unstyled">
+                                <li *ngFor="let parteienBeteiligt of termin.ParteienBeteiligt; let i = index">
+                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienBeteiligt,parteienBeteiligt)"></clr-icon>
+                                <input type="text" [id]="'parteienBeteiligt_' + i" [(ngModel)]="parteienBeteiligt.Partei" [name]="'parteienBeteiligt_' + i" class="multiple-list-imput">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-
             </section>
         </form>
 
