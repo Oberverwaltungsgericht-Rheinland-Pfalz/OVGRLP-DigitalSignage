@@ -113,6 +113,8 @@ namespace DigitalSignage.WebApi.Controllers.Settings
                 context.Entry(v).Collection("ProzBevBeigeladen").Load();
                 context.Entry(v).Collection("ParteienZeugen").Load();
                 context.Entry(v).Collection("ParteienSV").Load();
+                context.Entry(v).Collection("ParteienBeteiligt").Load();
+                context.Entry(v).Collection("Objekte").Load();
                 dtos.Add(VerfahrenController.GetDtoFromVerfahren(v));
               }
       );

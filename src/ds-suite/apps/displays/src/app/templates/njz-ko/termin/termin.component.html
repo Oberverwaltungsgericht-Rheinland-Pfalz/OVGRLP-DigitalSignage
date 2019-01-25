@@ -93,15 +93,13 @@
   <div fxFlex="nogrow" class="ds-divider"></div>
 
   <!-- gegen -->
-  <div fxFlex="nogrow" class="ds-gegen">
-    gegen
-  </div>
+  <div *ngIf="!termFunc.IstPersonalvertretung(termin)" fxFlex="nogrow" class="ds-gegen">gegen</div>
 
   <!-- Trenner -->
-  <div fxFlex="nogrow" class="ds-divider"></div>
-
+  <div *ngIf="!termFunc.IstPersonalvertretung(termin)" fxFlex="nogrow" class="ds-divider"></div>
+  
   <!-- Passivpartei -->
-  <div fxFlex="nogrow" fxLayout="row">
+  <div *ngIf="!termFunc.IstPersonalvertretung(termin)" fxFlex="nogrow" fxLayout="row">    
     <div fxFlex>
       <div *ngFor="let partei of termin.parteienPassiv">
         {{ partei }}
@@ -112,6 +110,16 @@
     <div fxFlex>
       <div *ngFor="let pb of termin.prozBevPassiv">
         {{ pb }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Beteiligte -->
+  <div *ngIf="termin.parteienBeteiligt.length > 0" fxFlex="nogrow" fxLayout="row">    
+    <div fxFlex>
+      <div>beteiligt:</div>
+      <div *ngFor="let partei of termin.parteienBeteiligt">
+        {{ partei }}
       </div>
     </div>
   </div>
@@ -153,6 +161,19 @@
     </div>
     <div fxFlex>
       {{ termin.gegenstand }}
+    </div>
+  </div>
+
+  <!-- objekte (nur exemplarisch eingebaut - wird in der Fachgerichtsbarkeit nicht genutzt!) -->
+  <div *ngIf="termin.objekte.length > 0" fxFlex="nogrow" class="ds-divider"></div>   <!-- Trenner -->
+  <div *ngIf="termin.objekte.length > 0" fxFlex="nogrow">
+    <div fxFlex="15">
+      Objekte:
+    </div>
+    <div fxFlex>
+      <div *ngFor="let objekt of termin.objekte">
+        {{ objekt.objektart }}
+      </div>
     </div>
   </div>
 

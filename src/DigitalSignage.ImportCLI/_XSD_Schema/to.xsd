@@ -1,36 +1,37 @@
-﻿<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="Terminsaushang">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="Stammdaten">
           <xs:complexType>
             <xs:sequence>
-              <xs:element type="xs:string" name="Gerichtsname"/>
-              <xs:element type="xs:string" name="Datum"/>
+              <xs:element name="Gerichtsname" type="xs:string" />
+              <xs:element name="Datum" type="xs:string" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
         <xs:element name="Terminiert">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Verfahren" maxOccurs="unbounded" minOccurs="0">
+              <xs:element maxOccurs="unbounded" name="Verfahren">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element type="xs:byte" name="Lfdnr"/>
-                    <xs:element type="xs:byte" name="Kammer"/>
-                    <xs:element type="xs:string" name="Sitzungssaal"/>
-                    <xs:element type="xs:string" name="Uhrzeit"/>
-                    <xs:element type="xs:string" name="Status"/>
-                    <xs:element type="xs:string" name="Oeffentlich"/>
-                    <xs:element type="xs:string" name="Art"/>
-                    <xs:element type="xs:string" name="Az"/>
-                    <xs:element type="xs:string" name="Gegenstand"/>
-                    <xs:element type="xs:string" name="Bemerkung1"/>
-                    <xs:element type="xs:string" name="Bemerkung2"/>
+                    <xs:element name="Lfdnr" type="xs:unsignedByte" />
+                    <xs:element name="Kammer" type="xs:unsignedByte" />
+                    <xs:element name="Sitzungssaal" type="xs:string" />
+                    <xs:element name="Uhrzeit" type="xs:string" />
+                    <xs:element name="Status" type="xs:string" />
+                    <xs:element name="Oeffentlich" type="xs:string" />
+                    <xs:element name="Art" type="xs:string" />
+                    <xs:element name="Az" type="xs:string" />
+                    <xs:element name="Gegenstand" type="xs:string" />
+                    <xs:element name="Bemerkung1" type="xs:string" />
+                    <xs:element name="Bemerkung2" type="xs:string" />
                     <xs:element name="Besetzung">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element type="xs:string" name="Richter" maxOccurs="unbounded" minOccurs="0"/>
+                          <xs:element maxOccurs="unbounded" name="Richter" type="xs:string" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -39,15 +40,15 @@
                         <xs:sequence>
                           <xs:element name="Parteien">
                             <xs:complexType>
-                              <xs:choice maxOccurs="unbounded" minOccurs="0">
-                                <xs:element type="xs:string" name="Partei"/>
-                              </xs:choice>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="Partei" type="xs:string" />
+                              </xs:sequence>
                             </xs:complexType>
                           </xs:element>
                           <xs:element name="ProzBev">
-                            <xs:complexType mixed="true">
-                              <xs:sequence>
-                                <xs:element type="xs:string" name="PB" maxOccurs="unbounded" minOccurs="0"/>
+                            <xs:complexType>
+                              <xs:sequence minOccurs="0">
+                                <xs:element maxOccurs="unbounded" name="PB" type="xs:string" />
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
@@ -60,60 +61,73 @@
                           <xs:element name="Parteien">
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element type="xs:string" name="Partei" maxOccurs="unbounded" minOccurs="0"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                          <xs:element name="ProzBev">
-                            <xs:complexType mixed="true">
-                              <xs:sequence>
-                                <xs:element type="xs:string" name="PB" maxOccurs="unbounded" minOccurs="0"/>
-                              </xs:sequence>
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="Beigeladen" minOccurs="0">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="Parteien">
-                            <xs:complexType>
-                              <xs:sequence>
-                                <xs:element type="xs:string" name="Partei" maxOccurs="unbounded" minOccurs="0"/>
+                                <xs:element maxOccurs="unbounded" name="Partei" type="xs:string" />
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
                           <xs:element name="ProzBev">
                             <xs:complexType>
-                              <xs:sequence>
-                                <xs:element type="xs:string" name="PB" maxOccurs="unbounded" minOccurs="0"/>
+                              <xs:sequence minOccurs="0">
+                                <xs:element maxOccurs="unbounded" name="PB" type="xs:string" />
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="SV" minOccurs="0">
+                    <xs:element minOccurs="0" name="Beigeladen">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="Parteien">
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element type="xs:string" name="Partei" maxOccurs="unbounded" minOccurs="0"/>
+                                <xs:element maxOccurs="unbounded" name="Partei" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ProzBev">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="PB" type="xs:string" />
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="Zeugen" minOccurs="0">
+                    <xs:element minOccurs="0" name="SV">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="Parteien">
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element type="xs:string" name="Partei" maxOccurs="unbounded" minOccurs="0"/>
+                                <xs:element maxOccurs="unbounded" name="Partei" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Zeugen">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Parteien">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="Partei" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Beteiligt">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Parteien">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="Partei" type="xs:string" />
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>

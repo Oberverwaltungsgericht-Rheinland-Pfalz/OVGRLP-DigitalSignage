@@ -5,4 +5,8 @@ export class BasicPermissions {
     allowDisplaysControl?: boolean = false;
     allowTermine?: Restriction = Restriction.forbidden;
     allowNotes?: Restriction = Restriction.forbidden;
+
+    public static isAdmin(perm: BasicPermissions) {
+      return (perm.allowNotes == Restriction.write);
+    }
   }

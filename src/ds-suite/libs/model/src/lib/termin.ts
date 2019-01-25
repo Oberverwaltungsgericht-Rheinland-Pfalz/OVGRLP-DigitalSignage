@@ -1,3 +1,5 @@
+import { Objekt } from './objekt';
+
 export class Termin {
   id: number;
   az: string;
@@ -27,4 +29,6 @@ export class Termin {
   gericht: string;
   datum: string;
   besetzung: string[];
+  parteienBeteiligt: string[];
+  objekte: Objekt[];
 }
