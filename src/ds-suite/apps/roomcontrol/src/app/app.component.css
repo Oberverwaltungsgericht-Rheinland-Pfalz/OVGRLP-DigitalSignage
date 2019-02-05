@@ -1,3 +1,16 @@
 .ds-sidenav-content {
   overflow: auto;
 }
+
+
+.main-container .content-container .content-area {
+  /* 
+  hier liegt wohl ein Bug beim Chrome vor: (v. 71.0.3578.98)  
+  **** Achtung: kann ab v. 72.0.3626.81 wieder entfernt werden - damit geht es wieder ***
+  wenn die Auflösung bei 1920x1080 liegt und die Größe auf 125% gestellt ist, 
+  wird beim hover Event über die Kombobox etwas falsch berechnet und rechts der Scrollbalken eingeblendet.
+  Das sieht dann aus wie "flackern", sodass sich die Anwendung nicht mehr richtig bedienen lässt.
+  Daher haben wir vorerst den Scrollbalken rechts dauerhaft eingeblendet
+  */
+  overflow-y: scroll;
+  }
