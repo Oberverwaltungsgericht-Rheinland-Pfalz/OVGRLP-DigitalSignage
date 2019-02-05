@@ -24,7 +24,12 @@ export class TerminDialogComponent implements OnInit {
   open(termin: Termin) {
     this.terminService.getTerminByBreeze(termin.id).then(item => {
       this.termin=item;
-    });
+      //ggf. Neuanlage...
+      if (undefined==this.termin && termin.id==-1) {
+        this.termin = this.terminService.breezeEntityManager.createEntity('Verfahren')
+        console.log(this.termin)
+      }
+    })
     this.show = true;
   }
 
@@ -45,11 +50,36 @@ export class TerminDialogComponent implements OnInit {
   }
 
   saveClick() {
+    this.checkNullFields();
     this.terminService.saveTerminByBreeze(this.termin).then(() => {
       this.dataChanged.emit();
       this.close(); 
     });
-   this.show = false;
+    this.show = false;
+  }
+
+  checkNullFields() {
+    if (this.termin.Az==undefined || this.termin.Az==""){
+      this.termin.Az=" ";
+    }
+    if (this.termin.Sitzungssaal==undefined || this.termin.Sitzungssaal==""){
+      this.termin.Sitzungssaal=" ";
+    }
+    if (this.termin.UhrzeitPlan==undefined || this.termin.UhrzeitPlan==""){
+      this.termin.UhrzeitPlan=" ";
+    }
+    if (this.termin.UhrzeitAktuell==undefined || this.termin.UhrzeitAktuell==""){
+      this.termin.UhrzeitAktuell=" ";
+    }
+    if (this.termin.Oeffentlich==undefined || this.termin.Oeffentlich==""){
+      this.termin.Oeffentlich=" ";
+    }
+    if (this.termin.Gegenstand==undefined || this.termin.Gegenstand==""){
+      this.termin.Gegenstand=" ";
+    }
+    if (this.termin.Art==undefined || this.termin.Art==""){
+      this.termin.Art=" ";
+    }
   }
 
   changeOeffentlich(termin: any) {
