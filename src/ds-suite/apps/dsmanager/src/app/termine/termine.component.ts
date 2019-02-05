@@ -141,6 +141,14 @@ export class TermineComponent implements OnInit {
     this.loadTermine();
   }
   
+  addNewTerminClick() {
+    // Neuen Termin anlegen
+    var termin: Termin;
+    termin =  new Termin();
+    termin.id=-1
+    this.terminDialog.open(termin)
+  }
+
   InitGerichtSelection(){
     this.GetGerichtValues().forEach(element => {
       var sel:boolean = (element==this.routedSaal);
