@@ -1,5 +1,5 @@
 export class Stammdaten {
-  StammdatenId: number;
-  Gerichtsname: string;
-  Datum: string;
+  stammdatenId: number;
+  gerichtsname: string;
+  datum: string;
 }
