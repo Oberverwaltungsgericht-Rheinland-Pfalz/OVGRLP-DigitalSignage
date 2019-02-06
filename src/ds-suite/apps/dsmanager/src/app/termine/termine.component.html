@@ -60,7 +60,7 @@
             <clr-icon shape="refresh"></clr-icon>
             aktualisieren
         </button>
-        <button class="btn btn-sm btn-primary" (click)="addNewTerminClick()">
+        <button class="btn btn-sm btn-primary" (click)="addNewTerminClick()" *ngIf="basicPermission.allowTermine > 1">
             <clr-icon shape="plus"></clr-icon>
             neu hinzufügen
         </button>
