@@ -7,7 +7,8 @@ import { SoapDisplayService } from './services/soap-display.service';
 import { SoapNoteService } from './services/soap-note.service';
 import { SoapTerminService } from './services/soap-termin.service';
 import { SoapPermissionService } from './services/soap-permission.service';
-import { TerminService, DisplayService, NoteService, PermissionService } from '@ds-suite/core';
+import { SoapStammdatenService } from './services/soap-stammdaten.service';
+import { TerminService, DisplayService, NoteService, PermissionService, StammdatenService } from '@ds-suite/core';
 
 @NgModule({
   imports: [CommonModule, BreezeBridgeHttpClientModule, HttpClientModule],
@@ -15,7 +16,8 @@ import { TerminService, DisplayService, NoteService, PermissionService } from '@
     { provide: TerminService, useClass: SoapTerminService },
     { provide: DisplayService, useClass: SoapDisplayService },
     { provide: NoteService, useClass: SoapNoteService },
-    { provide: PermissionService, useClass: SoapPermissionService }
+    { provide: PermissionService, useClass: SoapPermissionService },
+    { provide: StammdatenService, useClass: SoapStammdatenService }
   ]
 })
 export class BackendModule {}
