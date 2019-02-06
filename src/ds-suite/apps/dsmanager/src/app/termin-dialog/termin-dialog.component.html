@@ -3,6 +3,19 @@
         <form *ngIf="termin!=undefined">
             <section class="form-block">
 
+            <div class="form-group" *ngIf="neuanlage">
+                <label for="ger_1">Gericht</label>
+                <div class="clr-control-container">
+                    <div class="clr-input-wrapper imput-right-margin">
+                        <div class="select">
+                        <select id="ger_1" name="gericht" [(ngModel)]="termin.StammdatenId">
+                            <option *ngFor="let gericht of stammdaten" [value]="gericht.stammdatenId">{{ gericht.gerichtsname }}</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
               <label for="orga_1">Organisatorisches</label>
               <div class="clr-control-container">

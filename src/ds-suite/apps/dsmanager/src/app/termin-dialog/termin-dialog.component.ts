@@ -1,7 +1,7 @@
 import { Component,  EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
-import { Termin, TerminStatus } from '@ds-suite/model';
-import { TerminService } from '@ds-suite/core';
+import { Termin, TerminStatus, Stammdaten } from '@ds-suite/model';
+import { TerminService, StammdatenService } from '@ds-suite/core';
 import { YesNoDialogComponent } from '@ds-suite/ui';
 
 @Component({
@@ -13,9 +13,12 @@ export class TerminDialogComponent implements OnInit {
   @Output() dataChanged = new EventEmitter<void>();
   @ViewChild(YesNoDialogComponent) yesNoDialog: YesNoDialogComponent;
   public termin: any;
+  public stammdaten: Stammdaten[];
   public show: boolean = false;
- 
-  constructor(private terminService: TerminService) { }
+  public neuanlage: boolean = false;
+
+  constructor(private terminService: TerminService,
+              private stammdatenService: StammdatenService) { }
 
   GetStatausValues() : Array<string> {
     return Object.values(TerminStatus)
@@ -23,14 +26,27 @@ export class TerminDialogComponent implements OnInit {
 
   open(termin: Termin) {
     this.terminService.getTerminByBreeze(termin.id).then(item => {
+      this.neuanlage = false;
       this.termin=item;
       //ggf. Neuanlage...
       if (undefined==this.termin && termin.id==-1) {
-        this.termin = this.terminService.breezeEntityManager.createEntity('Verfahren')
-        console.log(this.termin)
+        this.neuanlage = true;
+        this.termin = this.terminService.breezeEntityManager.createEntity('Verfahren');
+        this.initStammdaten();
       }
     })
     this.show = true;
+  }
+
+  initStammdaten() {
+    this.stammdatenService.getStammdaten()
+    .subscribe(stammdaten => {
+        this.stammdaten = stammdaten;
+        // 1. Gericht vorschlagen
+        if (this.stammdaten.length>0) {
+          this.termin.StammdatenId=this.stammdaten[0].stammdatenId;
+        }
+      });
   }
 
   addItemClick(arr: Array<any>,typeName:string) {
