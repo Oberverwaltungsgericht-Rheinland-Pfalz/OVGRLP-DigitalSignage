@@ -2,6 +2,7 @@ export * from './lib/core.module';
 export { TerminService } from './lib/termin.service';
 export { NoteService } from './lib/note.service';
 export { DisplayService } from './lib/display.service';
+export { StammdatenService } from './lib/stammdaten.service';
 export { ConfigService } from './lib/config.service';
 export { PermissionService } from './lib/permission.service';
 export { YesNoBooleanPipe } from './lib/pipes/yes-no-boolean.pipe';
