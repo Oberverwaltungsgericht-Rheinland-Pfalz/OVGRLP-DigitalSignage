@@ -26,7 +26,7 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
 })
 export class JzTrFoyerVarTrComponent extends DisplayTemplateComponent { 
   ngOnInit() {
-    this.updateInterval = 5000;
+    this.updateInterval = 4000;
 
     super.ngOnInit();
   }
