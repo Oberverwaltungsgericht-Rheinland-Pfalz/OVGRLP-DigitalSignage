@@ -36,3 +36,8 @@ div.card.besetzung-card-odd {
 div.card.besetzung-card-even {
     width: 50%;
 }
+
+div.clr-control-container.bemerkung, #bem_1 {
+    width: 100%;
+    height: 10em;
+}
