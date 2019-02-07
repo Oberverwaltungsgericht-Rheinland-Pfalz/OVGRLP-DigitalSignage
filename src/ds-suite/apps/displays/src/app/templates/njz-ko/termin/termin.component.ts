@@ -24,5 +24,37 @@ export class TerminComponent implements OnInit {
     return this.termin.status === 'Läuft';
   }
 
+  AktivExists() {
+    return (this.termin.parteienAktiv.length > 0 || this.termin.prozBevAktiv.length > 0);
+  }
+
+  PassivExists() {
+    return (this.termin.parteienPassiv.length > 0 || this.termin.prozBevPassiv.length > 0) ;
+  }
+
+  AktivOrPassivExists() {
+    return (this.AktivExists() || this.PassivExists()) ;
+  }
+
+  BeigeladenExists() {
+    return this.termin.parteienBeigeladen.length > 0 ;
+  }
+
+  ZeugenOrSachvExists() {
+    return (this.termin.parteienZeugen.length + this.termin.parteienSv.length) > 0 ;
+  }
+
+  BeteiligteExists() {
+    return this.termin.parteienBeteiligt.length > 0 ;
+  }
+
+  PersonalVertr() {
+    return this.termFunc.IstPersonalvertretung(this.termin)
+  }
+
+  GegenstandExists() {
+    return this.termin.gegenstand.trim()!="" ;
+  }
+
   ngOnInit() {}
 }

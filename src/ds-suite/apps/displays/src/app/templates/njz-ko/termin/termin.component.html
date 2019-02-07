@@ -11,151 +11,130 @@
   </div>
 
   <!-- Seitenkopf -->
-  <div style="text-align: center" class="ds-termin-head">
-    <h1>{{ termin.gericht }}</h1>
-    <h2 [ngClass]="{ 
-      'ds-oeffentlich' : IstOeffentlich(),
-      'ds-nichtoeffentlich' : !IstOeffentlich() }">
-      {{ IstOeffentlich() ? '- Öffentliche Sitzung -' : '- Nicht öffentliche Sitzung -'}}
-    </h2>
-    <h2>{{ termin.kammer }}. {{ termFunc.IstSenat(termin) ? 'Senat' : 'Kammer'}}</h2>
-  </div>
-
-  <!-- Gericht, Kammer, Besetzung
-  <div fxFlex="nogrow" fxLayout="row">
-    <div fxFlex>
-      <h1>
-        {{ termin.gericht }}
-      </h1>
-      <h2>
-        {{ termin.kammer }}. Kammer
+    <div style="text-align: center" class="ds-termin-head">
+      <h1>{{ termin.gericht }}</h1>
+      <h2 [ngClass]="{ 
+        'ds-oeffentlich' : IstOeffentlich(),
+        'ds-nichtoeffentlich' : !IstOeffentlich() }">
+        {{ IstOeffentlich() ? '- Öffentliche Sitzung -' : '- Nicht öffentliche Sitzung -'}}
       </h2>
+      <h2>{{ termin.kammer }}. {{ termFunc.IstSenat(termin) ? 'Senat' : 'Kammer'}}</h2>
     </div>
-    <div fxFlex="40" fxLayout="column">
-      <div *ngFor="let richter of termin.besetzung">
-        {{ richter }}
+  <!-- Ende Seitenkopf -->
+
+
+  <!-- Besetzung -->  
+    <div fxFlex="nogrow" class="ds-divider"></div>  <!-- Trenner -->
+    <div fxLayout="row">
+      <div fxFlex="30">
+        <h3>Besetzung:</h3>
+      </div>
+      <div fxFlex>
+        <span *ngFor="let richter of termin.besetzung">
+          {{ richter }}<br />
+        </span>
       </div>
     </div>
-  </div>
--->
+  <!-- *** Ende Besetzung -->
 
-  <!-- Trenner -->
-  <div fxFlex="nogrow" class="ds-divider"></div>
-
-  <!-- Besetzung -->
-  <div fxLayout="row">
-    <div fxFlex="30">
-      <h3>Besetzung:</h3>
-    </div>
-    <div fxFlex>
-      <span *ngFor="let richter of termin.besetzung">
-        {{ richter }}<br />
-      </span>
-    </div>
-  </div>
-
-  <!-- Trenner -->
-  <div fxFlex="nogrow" class="ds-divider"></div>
 
   <!-- Uhrzeit, Art, AZ -->
-  <div fxFlex="nogrow" fxLayout="row">
-    <div fxFlex="20">
-      <h3>{{ termin.uhrzeitAktuell }} Uhr</h3>
+  <div fxFlex="nogrow" class="ds-divider"></div>  <!-- Trenner -->
+    <div fxFlex="nogrow" fxLayout="row">
+      <div fxFlex="20">
+        <h3>{{ termin.uhrzeitAktuell }} Uhr</h3>
+      </div>
+      <div fxFlex>
+        <h3>{{ termin.art | capitalize }}</h3>
+      </div>
+      <div fxFlex="20">
+        <h3>{{ termin.az }}</h3>
+      </div>
     </div>
-    <div fxFlex>
-      <h3>{{ termin.art | capitalize }}</h3>
-    </div>
-    <div fxFlex="20">
-      <h3>{{ termin.az }}</h3>
-    </div>
-  </div>
+    <div fxFlex="nogrow" class="ds-divider"></div>  <!-- Trenner -->
+  <!-- *** Ende Uhrzeit, Art, AZ -->
 
-  <!-- Trenner -->
-  <div fxFlex="nogrow" class="ds-divider"></div>
 
   <!-- Aktivpartei -->
-  <div fxFlex="nogrow" fxLayout="row">
-    <div fxFlex>
-      <div *ngFor="let partei of termin.parteienAktiv">
-        {{ partei }}
+    <div fxFlex="nogrow" fxLayout="row">
+      <div fxFlex>
+        <div *ngFor="let partei of termin.parteienAktiv">
+          {{ partei }}
+        </div>
       </div>
-    </div>
-    <div fxFlex="5">
-    </div>
-    <div fxFlex>
-      <div *ngFor="let pb of termin.prozBevAktiv">
-        {{ pb }}
+      <div fxFlex="5">
       </div>
-    </div>
-  </div>
+      <div fxFlex>
+        <div *ngFor="let pb of termin.prozBevAktiv">
+          {{ pb }}
+        </div>
+      </div>
+    </div> 
+    <div *ngIf="AktivExists()" fxFlex="nogrow" class="ds-divider"></div>  <!-- Trenner -->
+  <!-- *** Ende Aktivpartei -->
 
-  <!-- Trenner -->
-  <div fxFlex="nogrow" class="ds-divider"></div>
 
   <!-- gegen -->
-  <div *ngIf="!termFunc.IstPersonalvertretung(termin)" fxFlex="nogrow" class="ds-gegen">gegen</div>
-
-  <!-- Trenner -->
-  <div *ngIf="!termFunc.IstPersonalvertretung(termin)" fxFlex="nogrow" class="ds-divider"></div>
+    <div *ngIf="!PersonalVertr() && AktivOrPassivExists()" fxFlex="nogrow" class="ds-gegen">gegen</div>
+    <div *ngIf="!PersonalVertr() && AktivOrPassivExists()" fxFlex="nogrow" class="ds-divider"></div>    <!-- Trenner -->
+  <!-- *** Ende gegen -->   
   
-  <!-- Passivpartei -->
-  <div *ngIf="!termFunc.IstPersonalvertretung(termin)" fxFlex="nogrow" fxLayout="row">    
-    <div fxFlex>
-      <div *ngFor="let partei of termin.parteienPassiv">
-        {{ partei }}
+
+  <!-- Passivpartei, Beteiligte -->
+    <div *ngIf="!PersonalVertr()" fxFlex="nogrow" fxLayout="row">    <!-- Passivpartei -->  
+      <div fxFlex>
+        <div *ngFor="let partei of termin.parteienPassiv">
+          {{ partei }}
+        </div>
+      </div>
+      <div fxFlex="5">
+      </div>
+      <div fxFlex>
+        <div *ngFor="let pb of termin.prozBevPassiv">
+          {{ pb }}
+        </div>
       </div>
     </div>
-    <div fxFlex="5">
-    </div>
-    <div fxFlex>
-      <div *ngFor="let pb of termin.prozBevPassiv">
-        {{ pb }}
+    <div *ngIf="BeteiligteExists()" fxFlex="nogrow" fxLayout="row">       <!-- Beteiligte -->
+      <div fxFlex>
+        <div>beteiligt:</div>
+        <div *ngFor="let partei of termin.parteienBeteiligt">
+          {{ partei }}
+        </div>
       </div>
     </div>
-  </div>
+    <div *ngIf="(!PersonalVertr() && PassivExists()) || BeteiligteExists()" fxFlex="nogrow" class="ds-divider"></div>  <!-- Trenner -->
+  <!-- *** Ende Passivpartei, Beteiligte -->   
+  
 
-  <!-- Beteiligte -->
-  <div *ngIf="termin.parteienBeteiligt.length > 0" fxFlex="nogrow" fxLayout="row">    
-    <div fxFlex>
-      <div>beteiligt:</div>
-      <div *ngFor="let partei of termin.parteienBeteiligt">
-        {{ partei }}
+  <!-- Beigeladene, Zeugen und Sachverständige -->
+    <div fxFlex="nogrow" fxLayout="row" *ngIf="termin.parteienBeigeladen.length > 0">   <!-- Beigeladene -->
+      <div fxFlex="15">
+        Beigeladen:
+      </div>
+      <div fxFlex>
+        <span *ngFor="let beigeladen of termin.parteienBeigeladen; let i = index">
+          {{ beigeladen }}<span *ngIf="(i+1) < termin.parteienBeigeladen.length">; </span>
+        </span>
       </div>
     </div>
-  </div>
-
-  <!-- Trenner -->
-  <div fxFlex="nogrow" class="ds-divider"></div>
-
-  <!-- Beigeladene -->
-  <div fxFlex="nogrow" fxLayout="row" *ngIf="termin.parteienBeigeladen.length > 0">
-    <div fxFlex="15">
-      Beigeladen:
-    </div>
-    <div fxFlex>
-      <span *ngFor="let beigeladen of termin.parteienBeigeladen; let i = index">
-        {{ beigeladen }}<span *ngIf="(i+1) < termin.parteienBeigeladen.length">; </span>
+    <div *ngIf="ZeugenOrSachvExists()" fxFlex="nogrow">    <!-- Zeugen und Sachverständige -->
+      <span *ngIf="termin.parteienZeugen.length == 1">
+        und {{ termin.parteienZeugen.length }} Zeugin/Zeuge
+      </span>
+      <span *ngIf="termin.parteienZeugen.length > 1">
+        und {{ termin.parteienZeugen.length }} Zeugen
+      </span>
+      <span *ngIf="termin.parteienSv.length > 0">
+        und {{ termin.parteienSv.length }} Sachverständige(r)
       </span>
     </div>
-  </div>
-
-  <div *ngIf="(termin.parteienZeugen.length + termin.parteienSv.length) > 0" fxFlex="nogrow">
-    <span *ngIf="termin.parteienZeugen.length == 1">
-      und {{ termin.parteienZeugen.length }} Zeugin/Zeuge
-    </span>
-    <span *ngIf="termin.parteienZeugen.length > 1">
-      und {{ termin.parteienZeugen.length }} Zeugen
-    </span>
-    <span *ngIf="termin.parteienSv.length > 0">
-      und {{ termin.parteienSv.length }} Sachverständige(r)
-    </span>
-  </div>
-
-  <!-- Trenner -->
-  <div fxFlex="nogrow" class="ds-divider"></div>
+    <div *ngIf="BeigeladenExists() || ZeugenOrSachvExists()" fxFlex="nogrow" class="ds-divider"></div>   <!-- Trenner -->
+  <!-- *** Ende Beigeladene, Zeugen und Sachverständige -->   
+  
 
   <!-- wegen -->
-  <div fxFlex="nogrow" fxLayout="row">
+  <div *ngIf="GegenstandExists()" fxFlex="nogrow" fxLayout="row">
     <div fxFlex="8">
       wegen:
     </div>
@@ -176,10 +155,12 @@
       </div>
     </div>
   </div>
+  
 
   <!-- fußtext (unten rechts) -->
-  <div fxFlex="auto" fxLayoutAlign="end end">
-    {{ footerText }}
-  </div>
+    <div fxFlex="auto" fxLayoutAlign="end end">
+      {{ footerText }}
+    </div>
+  <!-- *** fußtext (unten rechts) -->
 
 </div>
