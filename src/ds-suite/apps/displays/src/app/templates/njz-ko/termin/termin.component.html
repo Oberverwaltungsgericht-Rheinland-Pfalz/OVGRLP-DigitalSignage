@@ -157,9 +157,9 @@
   </div>
   
   <!-- ggf. Bemerkung1 anzeigen -->
-  <div *ngIf="AnzeigeBemerkung1()" fxFlex="nogrow" fxLayout="row">
+  <div *ngIf="AnzeigeBemerkung1()" fxFlex="nogrow" fxLayout="row" class="ds-bemerkung">
     <div fxFlex>
-      {{ termin.bemerkung1 }}
+        <div [innerHtml]="termin.bemerkung1 | safeHtml"></div>
     </div>
   </div>
 
