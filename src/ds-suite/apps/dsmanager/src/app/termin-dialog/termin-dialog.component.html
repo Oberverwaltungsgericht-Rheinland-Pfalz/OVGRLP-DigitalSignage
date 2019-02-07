@@ -4,15 +4,22 @@
             <section class="form-block">
 
             <div class="form-group" *ngIf="neuanlage">
-                <label for="ger_1">Gericht</label>
+                <label for="ger_1">Zuordnung</label>
                 <div class="clr-control-container">
                     <div class="clr-input-wrapper imput-right-margin">
                         <div class="select">
-                        <select id="ger_1" name="gericht" [(ngModel)]="termin.StammdatenId">
-                            <option *ngFor="let gericht of stammdaten" [value]="gericht.stammdatenId">{{ gericht.gerichtsname }}</option>
-                        </select>
+                            <select id="ger_1" name="gericht" [(ngModel)]="termin.StammdatenId">
+                                <option *ngFor="let gericht of stammdaten" [value]="gericht.stammdatenId">{{ gericht.gerichtsname }}</option>
+                            </select>
                         </div>
                     </div>
+                    <span class="clr-subtext help-text-margin">Gericht</span>
+                </div>
+                <div class="clr-control-container">
+                    <div class="clr-input-wrapper imput-right-margin">
+                        <input type="text" id="ger_2"  [(ngModel)]="termin.Kammer"  name="kammer" size="35">
+                    </div>
+                    <span class="clr-subtext help-text-margin">Spruchkörper</span>
                 </div>
             </div>
 
