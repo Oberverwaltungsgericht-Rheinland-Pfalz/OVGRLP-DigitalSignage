@@ -53,11 +53,13 @@ export class TerminComponent implements OnInit {
   }
 
   GegenstandExists() {
-    return this.termin.gegenstand.trim()!="" ;
+    console.log("geg",this.termin.gegenstand)
+    return (this.termin.gegenstand!=null && this.termin.gegenstand.trim()!="") ;
   }
 
   AnzeigeBemerkung1() {
-    return this.termin.bemerkung1.trim()!="";
+    console.log("bem",this.termin.bemerkung1)
+    return (this.termin.bemerkung1!=null && this.termin.bemerkung1.trim()!="");
   }
 
   ngOnInit() {}
