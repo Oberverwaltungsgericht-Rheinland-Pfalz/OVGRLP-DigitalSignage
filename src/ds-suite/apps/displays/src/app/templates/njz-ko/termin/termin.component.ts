@@ -56,5 +56,9 @@ export class TerminComponent implements OnInit {
     return this.termin.gegenstand.trim()!="" ;
   }
 
+  AnzeigeBemerkung1() {
+    return this.termin.bemerkung1.trim()!="";
+  }
+
   ngOnInit() {}
 }

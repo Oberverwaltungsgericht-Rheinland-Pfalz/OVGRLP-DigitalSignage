@@ -156,6 +156,12 @@
     </div>
   </div>
   
+  <!-- ggf. Bemerkung1 anzeigen -->
+  <div *ngIf="AnzeigeBemerkung1()" fxFlex="nogrow" fxLayout="row">
+    <div fxFlex>
+      {{ termin.bemerkung1 }}
+    </div>
+  </div>
 
   <!-- fußtext (unten rechts) -->
     <div fxFlex="auto" fxLayoutAlign="end end">
