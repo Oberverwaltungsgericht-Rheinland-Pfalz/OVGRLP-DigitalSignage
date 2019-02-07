@@ -101,6 +101,23 @@
                     <div><strong>{{aktiverTermin.gegenstand}}</strong></div>
                   </div>
                 </div>
+                <div *ngSwitchCase="''"> <!-- Default-Wert: Arbeitsgericht -->
+                  <div class="activeCaseParts">
+                        <div><strong>{{aktiverTermin.parteienAktiv}}</strong></div>
+                        <div>{{aktiverTermin.prozBevAktiv}}</div>
+                  </div>
+                  <div class="activeCasePartsSmallBorder">
+                    <div><i>gegen</i></div>
+                  </div>
+                  <div class="activeCaseParts">
+                    <div><strong>{{aktiverTermin.parteienPassiv}}</strong></div>
+                    <div>{{aktiverTermin.prozBevPassiv}}</div>
+                  </div>
+                  <div class="activeCasePartsLargeBorder">
+                    <div><i>wegen</i></div>
+                    <div><strong>{{aktiverTermin.gegenstand}}</strong></div>
+                  </div>
+                </div>
               </div>
   
             </div>
@@ -165,7 +182,7 @@
               </div>
           </div>
 
-          <div class="notActiveItem" *ngIf="termin.status == ''">
+          <div class="notActiveItem" *ngIf="!termin.status">
             <div class="itemDate">{{termin.uhrzeitAktuell}} Uhr:&nbsp;{{termin.az}}</div>
             <div *ngIf="termin.oeffentlich == 'nein'" class="hinweis-nichtoeffentlich">nicht öffentliche Sitzung</div>
             <div *ngIf="termin.oeffentlich == 'ja'" class="hinweis-oeffentlich">öffentliche Sitzung</div>
