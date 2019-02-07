@@ -18,7 +18,7 @@
         'ds-nichtoeffentlich' : !IstOeffentlich() }">
         {{ IstOeffentlich() ? '- Öffentliche Sitzung -' : '- Nicht öffentliche Sitzung -'}}
       </h2>
-      <h2>{{ termin.kammer }}. {{ termFunc.IstSenat(termin) ? 'Senat' : 'Kammer'}}</h2>
+      <h2 *ngIf="termin.kammer!='0'" >{{ termin.kammer }}. {{ termFunc.IstSenat(termin) ? 'Senat' : 'Kammer'}}</h2>
     </div>
   <!-- Ende Seitenkopf -->
 
