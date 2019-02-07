@@ -14,6 +14,7 @@ import { DemoSaalVarUntenComponent } from './saal-var-weitere-unten/saal-var-wei
 import { DemoSaalVorschauRechtsComponent } from './saal-vorschau-rechts/saal-vorschau-rechts.component';
 import { NjzKhSaalWeitereRechtsComponent } from './njz-kh-saal-weitere-rechts/njz-kh-saal-weitere-rechts.component';
 import { NjzKhSaalWeitereUntenComponent } from './njz-kh-saal-weitere-unten/njz-kh-saal-weitere-unten.component';
+import { SaalScrollerVsimmComponent } from './saal-scroller-vsimm/saal-scroller-vsimm.component';
 
 import { DsCommonModule } from '../../ds-common/ds-common.module';
 import { CoreModule } from '@ds-suite/core';
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: "demo-saal-variante-weitere-unten", component: DemoSaalVarUntenComponent },
   { path: "demo-saal-vorschau-rechts", component: DemoSaalVorschauRechtsComponent },
   { path: "saal-weitere-rechts", component: NjzKhSaalWeitereRechtsComponent },
-  { path: "saal-weitere-unten", component: NjzKhSaalWeitereUntenComponent }
+  { path: "saal-weitere-unten", component: NjzKhSaalWeitereUntenComponent },
+  { path: "demo-saal-scroller-vsimm", component: SaalScrollerVsimmComponent }
 ];
 
 @NgModule({
@@ -51,7 +53,8 @@ const routes: Routes = [
     DemoSaalVarUntenComponent,
     DemoSaalVorschauRechtsComponent,
     NjzKhSaalWeitereRechtsComponent,
-    NjzKhSaalWeitereUntenComponent
+    NjzKhSaalWeitereUntenComponent,
+    SaalScrollerVsimmComponent
   ]
 })
 export class DemoModule { }
