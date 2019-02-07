@@ -24,8 +24,8 @@
 
 
   <!-- Besetzung -->  
-    <div fxFlex="nogrow" class="ds-divider"></div>  <!-- Trenner -->
-    <div fxLayout="row">
+    <div *ngIf="BesetzungExists()" fxFlex="nogrow" class="ds-divider"></div>  <!-- Trenner -->
+    <div *ngIf="BesetzungExists()" fxLayout="row">
       <div fxFlex="30">
         <h3>Besetzung:</h3>
       </div>
@@ -36,7 +36,7 @@
       </div>
     </div>
   <!-- *** Ende Besetzung -->
-
+  
 
   <!-- Uhrzeit, Art, AZ -->
   <div fxFlex="nogrow" class="ds-divider"></div>  <!-- Trenner -->

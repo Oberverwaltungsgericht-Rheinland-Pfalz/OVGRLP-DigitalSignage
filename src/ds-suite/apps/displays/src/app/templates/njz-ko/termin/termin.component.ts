@@ -28,6 +28,10 @@ export class TerminComponent implements OnInit {
     return (this.termin.parteienAktiv.length > 0 || this.termin.prozBevAktiv.length > 0);
   }
 
+  BesetzungExists() {
+    return this.termin.besetzung.length > 0 ;
+  }
+
   PassivExists() {
     return (this.termin.parteienPassiv.length > 0 || this.termin.prozBevPassiv.length > 0) ;
   }
