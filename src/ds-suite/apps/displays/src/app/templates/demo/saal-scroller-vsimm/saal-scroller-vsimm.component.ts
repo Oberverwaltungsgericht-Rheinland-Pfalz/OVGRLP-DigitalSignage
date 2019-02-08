@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations';
 
-import { Termin, Display } from '@ds-suite/model';
 import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
 
 @Component({
-  selector: 'app-foyer-var-trier',
-  templateUrl: './foyer-var-trier.component.html',
-  styleUrls: ['./foyer-var-trier.component.css'],
-
+  selector: 'app-saal-scroller-vsimm',
+  templateUrl: './saal-scroller-vsimm.component.html',
+  styleUrls: ['./saal-scroller-vsimm.component.css'],
   animations: [
     trigger('terminAnimation', [
       state('in', style({ opacity: 1, height: '*', 'padding-top': '*' })),
@@ -24,10 +22,9 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
     ])
   ]
 })
-export class JzTrFoyerVarTrierComponent extends DisplayTemplateComponent { 
+export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
   ngOnInit() {
-    this.updateInterval = 4000;
-
+    this.updateInterval=4000;
     super.ngOnInit();
   }
 }

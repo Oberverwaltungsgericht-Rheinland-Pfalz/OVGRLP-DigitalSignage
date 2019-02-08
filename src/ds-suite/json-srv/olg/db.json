@@ -1,36 +1,36 @@
 {
   "termine": [
     {
-      "id": 1,
-      "az": "3 K 79/14",
-      "lfdnr": 1,
-      "kammer": 0,
-      "sitzungssaal": "Sitzungssaal I",
-      "sitzungssaalNr": 1,
-      "uhrzeitPlan": "10:00",
-      "uhrzeitAktuell": "10:00",
-      "status": "",
-      "oeffentlich": "x",
-      "art": "Verkündung Zuschlag",
-      "gegenstand": "Zwangsversteigerung",
-      "bemerkung1": "VSIMM",
-      "bemerkung2": "",
-      "parteienAktiv": [
-        "1. Blatt: 948 BV1 Gemarkung: Tiefenbach Wirtschaftsart und Lage: Gebäude- und Freifläche Kirchstraße 11 u.a.","2. Blatt: 948 BV2 Gemarkung: Tiefenbach Wirtschaftsart und Lage: Gebäude- und Freifläche Kirchstraße"
-      ],
-      "prozBevAktiv": [],
-      "parteienPassiv": [],
-      "prozBevPassiv": [],
-      "parteienBeigeladen": [],
-      "prozBevBeigeladen": [],
-      "parteienZeugen": [],
-      "parteienSv": [],
-      "parteienAktivKurz": "",
-      "parteienPassivKurz": "",
-      "stammdatenId": 1085807,
-      "gericht": "AG Bad Kreuznach",
-      "datum": "09.01.2018",
-      "besetzung": []
+      "id":1,
+      "az":"5 O 327/17",
+      "lfdnr":1,
+      "kammer":0,
+      "sitzungssaal":"Sitzungsaal 230",
+      "sitzungssaalNr":52396740,
+      "uhrzeitPlan":"09:30",
+      "uhrzeitAktuell":"09:30",
+      "status":"Läuft",
+      "oeffentlich":"ja",
+      "art":"Güteverh./Haupttermin",
+      "gegenstand":"Forderung",
+      "bemerkung1":"VSIMM",
+      "bemerkung2":null,
+      "parteienAktiv":["Mille Deco GmbH Oikos Decor Center"],
+      "prozBevAktiv":["Hilsamer-Schreiner"],
+      "parteienPassiv":["Roth, Michael"],
+      "prozBevPassiv":["König Rechtsanwälte"],
+      "parteienBeigeladen":[],
+      "prozBevBeigeladen":[],
+      "parteienZeugen":[],
+      "parteienSv":[],
+      "parteienAktivKurz":"Mille Deco GmbH Oikos Decor Center",
+      "parteienPassivKurz":"Roth, Michael",
+      "stammdatenId":1276097,
+      "gericht":"LG Trier",
+      "datum":"09.12.2016",
+      "besetzung":["test besetzung"],
+      "parteienBeteiligt":[],
+      "objekte":[{"objektId":1,"verfahrensId":2112789213,"objektart":"Grundstück","gemarkung":"Koblenz","flur":"Flur 1 Nr. 1","wirtschaftsart":"Gebäude- und Freifläche\\nEinserstraße 1","anschrift":"Anschrift","groesse":"1111.0000","objekt":"Haus mit Garten, ideale Lage, Baujahr 1990","blatt":"1111 BV 1","grundbuchamt":"West Point (Testgericht)","zusatz":"Herrschvermerk","eigentumsart":"EIGENTUMSART","nutzungsrecht":null,"kurzname":"BV 1 Flur 1 Nr. 1, Flur 11 Nr. 11","verkehrswert":150000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":null,"schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":2,"verfahrensId":2112789213,"objektart":"Grundstück","gemarkung":"Koblenz","flur":"Flur 11 Nr. 11","wirtschaftsart":"Gebäude- und Freifläche\\nEinserstraße 11","anschrift":"Anschrift","groesse":"111.0000","objekt":"Haus mit Garten, ideale Lage, Baujahr 1990","blatt":"1111 BV 1","grundbuchamt":"West Point (Testgericht)","zusatz":"Herrschvermerk","eigentumsart":"EIGENTUMSART","nutzungsrecht":null,"kurzname":"BV 1 Flur 1 Nr. 1, Flur 11 Nr. 11","verkehrswert":150000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":null,"schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":3,"verfahrensId":2112789213,"objektart":"Wohnungseigentum","gemarkung":"Koblenz","flur":"Flur 2 Nr. 2","wirtschaftsart":"Gebäude- und Freifläche\\nZweierstraße 2","anschrift":"Anschrift","groesse":"222.0000","objekt":"Wohung im Erdgeschoss rechts, Mehrfamilienhaus mit 3 Parteien, Baujahr 2000","blatt":"2222 BV 2","grundbuchamt":"West Point (Testgericht)","zusatz":"Herrschvermerk","eigentumsart":"EIGENTUMSART","nutzungsrecht":"an dem Kellerraum, dem Pkw-Stellplatz sowie dem Mülleimerstellplatz Nr. 2a laut Anlage zum Aufteilungsplan","kurzname":"Wohnung im EG Nr. 2","verkehrswert":50000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":"1/3","schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":4,"verfahrensId":2112789213,"objektart":"Wohnungseigentum","gemarkung":"Koblenz","flur":"Flur 22 Nr. 22","wirtschaftsart":"Gebäude- und Freifläche\\nZweierstraße 22","anschrift":"Anschrift","groesse":"22.0000","objekt":"Wohung im Erdgeschoss rechts, Mehrfamilienhaus mit 3 Parteien, Baujahr 2000","blatt":"2222 BV 2","grundbuchamt":"West Point (Testgericht)","zusatz":"Herrschvermerk","eigentumsart":"EIGENTUMSART","nutzungsrecht":"an dem Kellerraum, dem Pkw-Stellplatz sowie dem Mülleimerstellplatz Nr. 2a laut Anlage zum Aufteilungsplan","kurzname":"Wohnung im EG Nr. 2","verkehrswert":50000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":"1/3","schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":5,"verfahrensId":2112789213,"objektart":"Teileigentum","gemarkung":"Koblenz","flur":"Flur 33 Nr. 33","wirtschaftsart":"Gebäude- und Freifläche\\nDreierstraße 33","anschrift":"Anschrift","groesse":"33.0000","objekt":"Büro mit 5 Zimmern in einem Mehrparteienhaus mit 3 Parteien","blatt":"3333 BV 3","grundbuchamt":"West Point (Testgericht)","zusatz":"Herrschvermerk","eigentumsart":"EIGENTUMSART","nutzungsrecht":"an dem Kellerraum, dem Pkw-Stellplatz sowie dem Mülleimerstellplatz, Nr. 3a laut Anlage zum Aufteilungsplan","kurzname":"Büroräume im 1. OG Nr. 3","verkehrswert":80000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":"1/3","schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":6,"verfahrensId":2112789213,"objektart":"Teileigentum","gemarkung":"Koblenz","flur":"Flur 3 Nr. 3","wirtschaftsart":"Gebäude- und Freifläche\\nDreierstraße 3","anschrift":"Anschrift","groesse":"333.0000","objekt":"Büro mit 5 Zimmern in einem Mehrparteienhaus mit 3 Parteien","blatt":"3333 BV 3","grundbuchamt":"West Point (Testgericht)","zusatz":"Herrschvermerk","eigentumsart":"EIGENTUMSART","nutzungsrecht":"an dem Kellerraum, dem Pkw-Stellplatz sowie dem Mülleimerstellplatz, Nr. 3a laut Anlage zum Aufteilungsplan","kurzname":"Büroräume im 1. OG Nr. 3","verkehrswert":80000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":"1/3","schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":7,"verfahrensId":2112789213,"objektart":"Erbbaurecht","gemarkung":"Koblenz","flur":"Flur 4 Nr. 4","wirtschaftsart":"Gebäude- und Freifläche\\nViererstraße 4","anschrift":"Anschrift","groesse":"444.0000","objekt":"Wunderschönes Einfamilienhaus, direkt neben der Kirche","blatt":"4444 BV 4","grundbuchamt":"West Point (Testgericht)","zusatz":"Eingetragen für die Dauer von 99 Jahren","eigentumsart":"EIGENTUMSART","nutzungsrecht":null,"kurzname":"ErbbR an Flur 4 Nr. 4, Flur 44 Nr. 44","verkehrswert":200000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":null,"schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":8,"verfahrensId":2112789213,"objektart":"Erbbaurecht","gemarkung":"Koblenz","flur":"Flur 44 Nr. 44","wirtschaftsart":null,"anschrift":"Anschrift","groesse":"4444.0000","objekt":"Wunderschönes Einfamilienhaus, direkt neben der Kirche","blatt":"4444 BV 4","grundbuchamt":"West Point (Testgericht)","zusatz":"Eingetragen für die Dauer von 99 Jahren","eigentumsart":"EIGENTUMSART","nutzungsrecht":null,"kurzname":"ErbbR an Flur 4 Nr. 4, Flur 44 Nr. 44","verkehrswert":200000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":null,"schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":9,"verfahrensId":2112789213,"objektart":"Wohnungserbbaurecht","gemarkung":"Koblenz","flur":"Flur 55 Nr. 55","wirtschaftsart":null,"anschrift":"Anschrift","groesse":"5.0000","objekt":"Wohnung in einem Mehrparteienhaus mit 35 Parteien","blatt":"5555 BV 5","grundbuchamt":"West Point (Testgericht)","zusatz":"Eingetragen für die Dauer von 99 Jahren","eigentumsart":"EIGENTUMSART","nutzungsrecht":"an dem Pkw-Stellplatz Nr. 5a laut Anlage zum Aufteilungsplan","kurzname":"WoErbbR an Wohnung Nr. 5","verkehrswert":40000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":"1/35","schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":10,"verfahrensId":2112789213,"objektart":"Wohnungserbbaurecht","gemarkung":"Koblenz","flur":"Flur 5 Nr. 5","wirtschaftsart":"Gebäude- und Freifläche\\nFünferstraße 5","anschrift":"Anschrift","groesse":"555.0000","objekt":"Wohnung in einem Mehrparteienhaus mit 35 Parteien","blatt":"5555 BV 5","grundbuchamt":"West Point (Testgericht)","zusatz":"Eingetragen für die Dauer von 99 Jahren","eigentumsart":"EIGENTUMSART","nutzungsrecht":"an dem Pkw-Stellplatz Nr. 5a laut Anlage zum Aufteilungsplan","kurzname":"WoErbbR an Wohnung Nr. 5","verkehrswert":40000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":"1/35","schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":11,"verfahrensId":2112789213,"objektart":"Teilerbbaurecht","gemarkung":"Koblenz","flur":"Flur 6 Nr. 66","wirtschaftsart":null,"anschrift":"Anschrift","groesse":"6.0000","objekt":"Geschäftsräume in großem Bürogebäude, mitten in der Fußgänerzone","blatt":"6666 BV 6","grundbuchamt":"West Point (Testgericht)","zusatz":"Eingetragen für die Dauer von 99 Jahren","eigentumsart":"EIGENTUMSART","nutzungsrecht":"an den Pkw-Stellplätzen Nr. 6-66 laut Anlage zum Aufteilungsplan","kurzname":"TErbbR an Geschäftsräumen im EG Nr. 6","verkehrswert":60000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":"2/35","schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":12,"verfahrensId":2112789213,"objektart":"Teilerbbaurecht","gemarkung":"Koblenz","flur":"Flur 6 Nr. 6","wirtschaftsart":"Gebäude- und Freifläche\\nSechserstraße 6","anschrift":"Anschrift","groesse":"666.0000","objekt":"Geschäftsräume in großem Bürogebäude, mitten in der Fußgänerzone","blatt":"6666 BV 6","grundbuchamt":"West Point (Testgericht)","zusatz":"Eingetragen für die Dauer von 99 Jahren","eigentumsart":"EIGENTUMSART","nutzungsrecht":"an den Pkw-Stellplätzen Nr. 6-66 laut Anlage zum Aufteilungsplan","kurzname":"TErbbR an Geschäftsräumen im EG Nr. 6","verkehrswert":60000.00,"grundbuchbezirk":"Koblenz","eigentumsanteil":"2/35","schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":13,"verfahrensId":2112789213,"objektart":"Schiffe und Schiffsbauwerke","gemarkung":null,"flur":null,"wirtschaftsart":null,"anschrift":"Anschrift","groesse":null,"objekt":"Schiffchen","blatt":"7777","grundbuchamt":"West Point (Testgericht)","zusatz":"Vermerke....","eigentumsart":"EIGENTUMSART","nutzungsrecht":null,"kurzname":"Lieselotte II ssdf","verkehrswert":20000.00,"grundbuchbezirk":null,"eigentumsanteil":null,"schiffsregisterart":"Binnenschiffsregister","schiffsname":"Lieselotte II","imonr":"IMMONR","registerGericht":"REGISTERGERICHT"},{"objektId":14,"verfahrensId":2112789213,"objektart":"sonstige Objekte","gemarkung":null,"flur":null,"wirtschaftsart":null,"anschrift":"Anschrift","groesse":null,"objekt":"kleines süßes Tinyhouse","blatt":null,"grundbuchamt":null,"zusatz":"Herrschvermerk","eigentumsart":"EIGENTUMSART","nutzungsrecht":null,"kurzname":"Tinyhouse","verkehrswert":10000.00,"grundbuchbezirk":null,"eigentumsanteil":null,"schiffsregisterart":null,"schiffsname":null,"imonr":"IMMONR","registerGericht":"REGISTERGERICHT"}]
     },
     {
       "id": 2,
@@ -42,10 +42,10 @@
 		  "uhrzeitPlan": "11:00",
 		  "uhrzeitAktuell": "11:00",
   	  "status": "",
-		  "oeffentlich": "nein",
+		  "oeffentlich": "ja",
 		  "art": "",
 		  "gegenstand": "Bestandsstreitigkeiten: Kündigungen",
-		  "bemerkung1": "",
+		  "bemerkung1": "FAM",
 		  "bemerkung2": "Mertes (Bankenverband) und Bambach (Forstamt)",
 		  "parteienAktiv": ["1. Georg Schnieder", "2. Beate Franzkoch", "3. Jens Gerhart", "4. Jan Ortmann", "5. Julia-Romina Fauß", "6. Thomas Pech", "7. Michael Ahartinger", "8. Alexandra Gerber", "9. Dirk Freudenberg", "10. Bernhard Diendorf"],
 		  "prozBevAktiv": [],
@@ -72,7 +72,7 @@
       "uhrzeitPlan": "13:00",
       "uhrzeitAktuell": "13:00",
       "status": "",
-      "oeffentlich": "x",
+      "oeffentlich": "nein",
       "art": "mündliche Verhandlung",
       "gegenstand": "Rundfunkbeitrags",
       "bemerkung1": "",
@@ -151,7 +151,7 @@
       "oeffentlich": "ja",
       "art": "mündliche Verhandlung",
       "gegenstand": "Rundfunkbeitrags",
-      "bemerkung1": "",
+      "bemerkung1": "STRAF",
       "bemerkung2": "",
       "parteienAktiv": [
         "Peter Peterson\r"
@@ -189,10 +189,10 @@
       "oeffentlich": "ja",
       "art": "mündliche Verhandlung",
       "gegenstand": "Rundfunkbeitrags",
-      "bemerkung1": "",
+      "bemerkung1": "FAM",
       "bemerkung2": "",
       "parteienAktiv": [
-        "Peter Peterson\r"
+        "Marie Marieson\r"
       ],
       "prozBevAktiv": [
         "Proz.-Bev.: Rechtsanwalt Volkmar Stern\r"
@@ -205,7 +205,7 @@
       "prozBevBeigeladen": [],
       "parteienZeugen": [],
       "parteienSv": [],
-      "parteienAktivKurz": "Peter Peterson\r",
+      "parteienAktivKurz": "Marie Marieson\r",
       "parteienPassivKurz": "Südwestrundfunk, vertreten durch den Intendanten\r",
       "stammdatenId": 1,
       "gericht": "Testgericht Koblenz",
@@ -502,6 +502,23 @@
     },
     {
       "id": 16,
+      "name": "Demo: Saal-Ansicht, Terminvorschau rechts",
+      "title": "Sitzungssaal 1",
+      "template": "demo/demo-saal-vorschau-rechts",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 17,
       "name": "Trier: Foyer-Ansicht 1",
       "title": "Sitzungssaal 1",
       "template": "jztr/jztr-foyer-variante-tr",
@@ -518,7 +535,7 @@
       "dummy": false
     },
     {
-      "id": 17,
+      "id": 18,
       "name": "Trier: Foyer-Ansicht 2",
       "title": "Sitzungssaal 1",
       "template": "jztr/jztr-foyer-variante-trier",
@@ -535,7 +552,7 @@
       "dummy": false
     },     
     {
-      "id": 16,
+      "id": 19,
       "name": "Trier, Foyer",
       "title": "Verhandlungstermine",
       "template": "demo/demo-foyer-variante-tr",
@@ -552,7 +569,7 @@
       "dummy": false
     },    
     {
-      "id": 17,
+      "id": 20,
       "name": "Trier, Foyer Variante",
       "title": "Verhandlungstermine",
       "template": "demo/demo-foyer-variante-trier",
@@ -569,7 +586,7 @@
       "dummy": false
     },
     {
-      "id": 18,
+      "id": 21,
       "name": "Zweibrücken, Foyer Variante A",
       "title": "Verhandlungstermine",
       "template": "jzzw/jzzw-foyer-variante-a",
@@ -586,7 +603,7 @@
       "dummy": false
     },
     {
-      "id": 19,
+      "id": 22,
       "name": "Zweibrücken, Foyer Variante B",
       "title": "Verhandlungstermine",
       "template": "jzzw/jzzw-foyer-variante-b",
@@ -603,7 +620,7 @@
       "dummy": false
     },
     {
-      "id": 20,
+      "id": 23,
       "name": "Zweibrücken, Saal Variante A",
       "title": "Verhandlungstermine",
       "template": "jzzw/jzzw-saal-variante-a",
@@ -620,7 +637,7 @@
       "dummy": false
     },
     {
-      "id": 21,
+      "id": 24,
       "name": "Zweibrücken, Saal Variante B",
       "title": "Verhandlungstermine",
       "template": "jzzw/jzzw-saal-variante-b",
@@ -637,7 +654,7 @@
       "dummy": false
     },
     {
-      "id": 22,
+      "id": 25,
       "name": "Zweibrücken, Saal Variante: Weitere Termine rechts",
       "title": "Verhandlungstermine",
       "template": "jzzw/jzzw-saal-variante-weitere-rechts",
@@ -654,7 +671,7 @@
       "dummy": false
     },
     {
-      "id": 23,
+      "id": 26,
       "name": "Zweibrücken, Saal Variante: Weitere Termine unten",
       "title": "Verhandlungstermine",
       "template": "jzzw/jzzw-saal-variante-weitere-unten",
@@ -671,7 +688,7 @@
       "dummy": false
     },
     {
-      "id": 24,
+      "id": 27,
       "name": "Kaiserslautern, Foyer Variante A",
       "title": "Verhandlungstermine",
       "template": "jzkl/jzkl-foyer-variante-a",
@@ -688,7 +705,7 @@
       "dummy": false
     },
     {
-      "id": 25,
+      "id": 28,
       "name": "Kaiserslautern, Foyer Variante B",
       "title": "Verhandlungstermine",
       "template": "jzkl/jzkl-foyer-variante-b",
@@ -705,7 +722,7 @@
       "dummy": false
     },
     {
-      "id": 26,
+      "id": 29,
       "name": "Kaiserslautern, Saal Variante A",
       "title": "Verhandlungstermine",
       "template": "jzkl/jzkl-saal-variante-a",
@@ -722,7 +739,7 @@
       "dummy": false
     },
     {
-      "id": 27,
+      "id": 30,
       "name": "Kaiserslautern, Saal Variante B",
       "title": "Verhandlungstermine",
       "template": "jzkl/jzkl-saal-variante-b",
@@ -739,7 +756,7 @@
       "dummy": false
     },
     {
-      "id": 28,
+      "id": 31,
       "name": "Kaiserslautern, Saal Variante: Weitere Termine rechts",
       "title": "Verhandlungstermine",
       "template": "jzkl/jzkl-saal-variante-weitere-rechts",
@@ -756,10 +773,78 @@
       "dummy": false
     },
     {
-      "id": 29,
+      "id": 32,
       "name": "Kaiserslautern, Saal Variante: Weitere Termine unten",
       "title": "Verhandlungstermine",
       "template": "jzkl/jzkl-saal-variante-weitere-unten",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 33,
+      "name": "PfOLG: Foyer",
+      "title": "Verhandlungstermine",
+      "template": "pfolg/pfolg-foyer",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 34,
+      "name": "PfOLG: Saal",
+      "title": "Verhandlungstermine",
+      "template": "pfolg/pfolg-saal-vorschau-rechts",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 35,
+      "name": "PfOLG: Saal, Alternative",
+      "title": "Verhandlungstermine",
+      "template": "pfolg/pfolg-saal-vorschau-rechts-grau",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
+    },
+    {
+      "id": 36,
+      "name": "VSIMM",
+      "title": "VSIMM-Termine",
+      "template": "demo/demo-saal-scroller-vsimm",
       "styles": "",
       "filter": "",
       "group": "Testanzeigen",
