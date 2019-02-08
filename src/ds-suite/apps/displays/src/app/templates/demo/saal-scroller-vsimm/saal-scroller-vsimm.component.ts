@@ -23,5 +23,8 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
   ]
 })
 export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
-  public updateInterval = 5000;
+  ngOnInit() {
+    this.updateInterval=4000;
+    super.ngOnInit();
+  }
 }
