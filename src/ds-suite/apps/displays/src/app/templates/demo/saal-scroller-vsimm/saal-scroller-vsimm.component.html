@@ -131,9 +131,9 @@
               <div *ngIf="aktiverTermin.objekte.length > 0">
                 <div><h3>Versteigerungsobjekte:</h3></div>
               </div>
-              <div id="scrollarea" #dsTermineContainer>                  
+              <div id="scrollarea" #dsObjectsContainer>                  
 
-                  <div class="einzelobjekt" *ngFor="let objekt of aktiverTermin.objekte" [@terminAnimation]="scrollMode ? 'in' : ''"  #dsTermineChild>
+                  <div class="einzelobjekt" *ngFor="let objekt of objects" [@terminAnimation]="ScrollingObjectsActive ? 'in' : ''"  #dsObjectsChild>
                     {{ objekt.objektart }}, {{ objekt.gemarkung }}
                     <br />{{ objekt.wirtschaftsart }}
                     <br />{{ objekt.anschrift }}
