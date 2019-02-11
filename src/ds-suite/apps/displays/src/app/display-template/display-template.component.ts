@@ -69,8 +69,13 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
           this.termine = this.termine.concat(tmpTermine);
         else
           this.termine = tmpTermine;
+        this.termineLoaded();
       });
     });
+  }
+
+  termineLoaded() {
+    /* hier sind die Termine bereits geladen */
   }
 
   private isScrollMode(): boolean {
