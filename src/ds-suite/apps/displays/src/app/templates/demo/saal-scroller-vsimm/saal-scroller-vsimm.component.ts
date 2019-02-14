@@ -13,13 +13,26 @@ import { isNullOrUndefined } from 'util';
   styleUrls: ['./saal-scroller-vsimm.component.css'],
   animations: [
     trigger('terminAnimation', [
-      state('in', style({ opacity: 1, height: '*', 'padding-top': '*' })),
+      state('in', style({ opacity: 1, height: '160px', 'padding-top': '*' })),
       transition('in => void', [
         animate(
           '2s ease-out',
           keyframes([
             style({ opacity: 0, offset: 0.3, 'padding-top': 0 }), 
             style({ height: 0, offset: 1 })
+          ])
+        )
+      ])
+    ]),
+    trigger('objektAnimation', [
+      state('in', style({ opacity: 1, height: '236px', 'margin-top': '*' })),
+      transition('in => void', [
+        animate(
+          '1.9s linear',
+          keyframes([
+            style({ 'margin-top': '0', offset: 0 }), 
+            style({ 'margin-top': '-236px', opacity: 0.7, offset: 0.95 }),
+            style({ opacity: 0, 'margin-top': '0', height: '0', offset: 1 }),
           ])
         )
       ])
@@ -40,14 +53,14 @@ export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
   @ViewChildren('dsObjectsChild') dsObjectsChildren: QueryList<ElementRef>;
 
   ngOnInit() {
-    this.updateInterval=4000;
+    this.updateInterval=6000;
     super.ngOnInit();
     this.initializeObjectScrolling();
   }
 
   initializeObjectScrolling() {
-    this.ScrollIntervallObjects = 4000;
-    this.ScrollIntervallTimer = Observable.timer(2000, this.ScrollIntervallObjects);
+    this.ScrollIntervallObjects = 1850;
+    this.ScrollIntervallTimer = Observable.timer(1850, this.ScrollIntervallObjects);
     this.ScrollIntervallSub = this.ScrollIntervallTimer.subscribe((t: any) => {
       if (this.objects.length === 0 ||
         (this.ScrollingObjectsActive && this.objects.length <= this.objectsCount) ||
