@@ -62,8 +62,7 @@ export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
     this.ScrollIntervallObjects = 1850;
     this.ScrollIntervallTimer = Observable.timer(1850, this.ScrollIntervallObjects);
     this.ScrollIntervallSub = this.ScrollIntervallTimer.subscribe((t: any) => {
-      if (this.objects.length === 0 ||
-        (this.ScrollingObjectsActive && this.objects.length <= this.objectsCount) ||
+      if (this.objects.length <=1 ||
         (!this.ScrollingObjectsActive)) {
         this.loadObjects();
       } else {
@@ -91,9 +90,8 @@ export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
   termineLoaded() {
     super.termineLoaded();
     this.ScrollingObjectsActive = this.isScrollingObjectsActive();
-    this.objectsCount = 0;
-    if (!isNullOrUndefined(this.aktiverTermin) && !isNullOrUndefined(this.aktiverTermin.objekte)) 
-      this.objectsCount = this.aktiverTermin.objekte.length;
+    
+    // wenn sich der Termin ändert, müssen die Objekte neu geladen werden
     if (isNullOrUndefined(this.aktiverTermin) || this.lastActiveTerminID != this.aktiverTermin.id) {
       this.objects= [];
       this.loadObjects();
@@ -108,7 +106,7 @@ export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
     var objects: Objekt[] = [];
     if (!isNullOrUndefined(this.aktiverTermin) && !isNullOrUndefined(this.aktiverTermin.objekte))
       objects=this.aktiverTermin.objekte;
-
+      
     if (this.ScrollingObjectsActive)
       this.objects = this.objects.concat(objects);
     else
