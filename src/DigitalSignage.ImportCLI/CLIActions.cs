@@ -76,6 +76,7 @@ namespace DigitalSignage.ImportCLI
               if (null != data)
               {
                 db.AddData(data);
+                AddDbWarningsToLogging(db);
                 Service.LoggingHelper.Trace("=> erfolgreich");
               }
             }
@@ -104,6 +105,7 @@ namespace DigitalSignage.ImportCLI
               if (null != data)
               {
                 db.UpdateData(data);
+                AddDbWarningsToLogging(db);
                 Service.LoggingHelper.Trace("=> erfolgreich");
               }
             }
@@ -118,6 +120,18 @@ namespace DigitalSignage.ImportCLI
       Service.LoggingHelper.Trace("Programmende... ");
       if (LogFile != "")
         Service.LoggingHelper.EndLoggingBlock();
+    }
+
+    public void AddDbWarningsToLogging(Service.DBService dBService)
+    {
+      if (null != dBService.Warnings && dBService.Warnings.Count > 0)
+      {
+        foreach (string warning in dBService.Warnings)
+        {
+          Service.LoggingHelper.Trace(warning, OvgRlp.Libs.Logging.LogEventLevel.Warning);
+        }
+        dBService.Warnings.Clear();
+      }
     }
   }
 }

@@ -10,6 +10,7 @@ namespace DigitalSignage.ImportCLI.Service
   public class DBService
   {
     public string NameOrConnectionString;
+    public List<string> Warnings = new List<string>();
 
     public DBService(string nameOrConnectionString)
     {
@@ -242,6 +243,13 @@ namespace DigitalSignage.ImportCLI.Service
 
     private void AddVerfahrensdaten(Verfahren verfahren, TerminsaushangVerfahren verf)
     {
+      // validations
+      if (verf.Gegenstand.TrimEnd().Length > 255)
+      {
+        Warnings.Add(string.Format("Der Gegenstand von Verfahren {0} war mit {1} zeichen zu lang und musste auf 255 Zeichen gekürzt werden", verf.Az.TrimEnd(), verf.Gegenstand.TrimEnd().Length));
+        verf.Gegenstand = verf.Gegenstand.TrimEnd().Substring(0, 255);
+      }
+
       // Verfahrens-Kopfdaten
       verfahren.Lfdnr = Convert.ToByte(verf.Lfdnr);
       verfahren.Kammer = Convert.ToByte(verf.Kammer);
