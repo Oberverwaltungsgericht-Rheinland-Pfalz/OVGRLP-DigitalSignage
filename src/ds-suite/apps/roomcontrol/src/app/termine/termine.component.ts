@@ -41,9 +41,20 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   loadTermine() {
     this.terminService.getTermine(this.displayName)
       .subscribe(termine => {
-        this.termine = termine;
+        this.termine = this.sortTermine(termine);
         this.loadingTermine=false;
       });
+  }
+
+  sortTermine(termine: Termin[]): Termin[] {
+    return termine.sort((t1, t2) => {
+      if (t1.uhrzeitAktuell > t2.uhrzeitAktuell) {
+        return 1;
+      } else if (t1.uhrzeitAktuell < t2.uhrzeitAktuell) {
+        return -1;
+      }
+      return 0;
+    });
   }
 
   changeOeffentlich(termin: Termin) {
