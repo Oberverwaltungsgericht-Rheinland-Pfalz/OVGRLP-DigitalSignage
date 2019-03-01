@@ -4,7 +4,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
 import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
-import { Termin, Objekt } from '@ds-suite/model';
+
+//import { Termin, Objekt } from '@ds-suite/model';
+import { Termin, Objekt, TerminStatus } from '@ds-suite/model';
 import { isNullOrUndefined } from 'util';
 
 @Component({
