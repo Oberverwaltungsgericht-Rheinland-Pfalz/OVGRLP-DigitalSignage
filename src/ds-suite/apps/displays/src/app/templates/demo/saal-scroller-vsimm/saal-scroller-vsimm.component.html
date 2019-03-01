@@ -1,13 +1,15 @@
 <div *ngIf="display" id="ds-display" fxLayout="column">
 
-  <div id="ds-head-title" fxLayout="row">
-    <div fxFlex="75" class="ds-head-title-left">
-      {{ display.title }}
+  <div id="ds-head">
+    <div id="ds-head-title" fxLayout="row">
+      <div fxFlex="75" class="ds-head-title-left">
+        {{ display.title }}
+      </div>
+      <div fxFlex class="ds-head-title-right" fxLayout="column"></div>
     </div>
-    <div fxFlex class="ds-head-title-right" fxLayout="column"></div>
-  </div>
-  <div class="ds-head-title-date">
-    {{ datum | date: 'd. MMMM yyyy' }} - {{ datum | date: 'H:mm' }} Uhr
+    <div class="ds-head-title-date">
+      {{ datum | date: 'd. MMMM yyyy' }} - {{ datum | date: 'H:mm' }} Uhr
+    </div>
   </div>
 
   <div id="ds-main" fxFlex fxLayout="column">
@@ -26,135 +28,205 @@
         </div>
         
         <div *ngIf="termine.length && aktiverTermin">
-          <div class="ds-termin" fxFlex="grow" fxLayout="column">
-
-            <!-- b:: Kopfdaten des Termins -->
+          <!-- b:: Aktueller Termin -->
+          <div id="aktivarea" *ngIf="aktiverTermin">
+            <!-- b:: Aktueller Termin: Kopfdaten des Termins -->
             <div fxLayout="row" *ngIf="aktiverTermin.oeffentlich == 'x'" class="olg-layout-line">
-              <div fxFlex="15"><h3>{{aktiverTermin.uhrzeitAktuell}} Uhr</h3></div>
-              <div fxFlex="35"><h3>{{aktiverTermin.art | capitalize}}</h3></div>
+                <div fxFlex="20"><h3>Jetzt</h3></div>
+                <div fxFlex="35"><h3>{{aktiverTermin.art | capitalize}}</h3></div>
+                <div fxFlex="45" class="ds-text-right"><br /></div>
+              </div>
+              <div fxLayout="row" *ngIf="aktiverTermin.oeffentlich == 'nein'" class="row-nichtoeffentlich">
+                <div fxFlex="20"><h3>Jetzt</h3></div>
+                <div fxFlex="35"><h3>{{aktiverTermin.art | capitalize}}</h3></div>
+                <div fxFlex="45"><h3>Nicht öffentliche Sitzung</h3></div>
+              </div>
+              <div fxLayout="row" *ngIf="aktiverTermin.oeffentlich == 'ja'" class="row-oeffentlich">
+                <div fxFlex="20"><h3>Jetzt</h3></div>
+                <div fxFlex="35"><h3>{{aktiverTermin.art | capitalize}}</h3></div>
+                <div fxFlex="45"><h3>Öffentliche Sitzung</h3></div>
+              </div>
+  
+              <div fxLayout="row" class="olg-layout-line">
+                <div fxFlex="20"><h3>{{aktiverTermin.az}}</h3></div>
+                <div fxFlex="35"><h3>{{aktiverTermin.gericht}}</h3></div>
+                <div fxFlex="45">
+                  <div *ngIf="aktiverTermin.besetzung != ''">
+                    <div *ngFor="let richter of aktiverTermin.besetzung; last as r">
+                      {{ richter | capitalize }}<span *ngIf="!r">,<br /></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- e:: Aktueller Termin: Kopfdaten des Termins -->
+
+              <!-- b:: Aktueller Termin: Termindetails Sonstige Verfahren -->
+              <div *ngIf="aktiverTermin.bemerkung1 != 'VSIMM' && aktiverTermin.oeffentlich == 'ja'">
+                <div fxLayout="row" *ngIf="aktiverTermin.parteienAktivKurz != ''" class="olg-layout-noline">
+                  <div fxFlex="45">
+                    <div style="font-weight:bold; margin-bottom: 8px;">
+                        <span *ngFor="let aktiv of aktiverTermin.parteienAktiv | slice:0:3; last as a">
+                        {{aktiv}}<span *ngIf="!a">,<br /></span>
+                        </span>
+                        <span *ngIf="aktiverTermin.parteienAktiv.length > 3">u.a.</span>
+                    </div>
+                    <div>
+                        <span *ngFor="let bevAktiv of aktiverTermin.prozBevAktiv | slice:0:3; last as ba">
+                            {{bevAktiv}}<span *ngIf="!ba">,<br /></span>
+                            </span>
+                        <span *ngIf="aktiverTermin.prozBevAktiv.length > 3">u.a.</span>
+                    </div>
+                  </div>
+                  <div fxFlex="10" style="text-align: center;"><div>gegen</div><div>&nbsp;</div></div>
+                  <div fxFlex="45">
+                    <div style="font-weight:bold; margin-bottom: 8px;">
+                        <span *ngFor="let passiv of aktiverTermin.parteienPassiv | slice:0:3; last as p">
+                            {{passiv}}<span *ngIf="!p">,<br /></span>
+                            </span>
+                        <span *ngIf="aktiverTermin.parteienPassiv.length > 3">u.a.</span>
+                    </div>
+                    <div>
+                        <span *ngFor="let bevPassiv of aktiverTermin.prozBevPassiv | slice:0:3; last as bp">
+                            {{bevPassiv}}<span *ngIf="!bp">,<br /></span>
+                            </span>
+                        <span *ngIf="aktiverTermin.prozBevPassiv.length > 3">u.a.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- e:: Aktueller Termin: Termindetails Sonstige Verfahren -->
+
+              <!-- b:: Aktueller Termin: Termindetails VSIMM -->
+            <div *ngIf="aktiverTermin.bemerkung1 == 'VSIMM'">
+                <div fxLayout="row" *ngIf="aktiverTermin.parteienAktivKurz != ''" class="olg-layout-noline">
+                  <!-- b:: VSIMM Termininformationen -->
+                  <div fxFlex="55">
+                    <div style="font-weight:bold; margin-bottom: 8px;">
+                      <span *ngFor="let aktiv of aktiverTermin.parteienAktiv | slice:0:3; last as a">
+                        {{aktiv}}<span *ngIf="!a">,<br /></span>
+                      </span>
+                      <span *ngIf="aktiverTermin.parteienAktiv.length > 3">u.a.</span>
+                    </div>
+                    <div>
+                      <span *ngFor="let bevAktiv of aktiverTermin.prozBevAktiv | slice:0:3; last as ba">
+                        {{bevAktiv}}<span *ngIf="!ba">,<br /></span>
+                      </span>
+                      <span *ngIf="aktiverTermin.prozBevAktiv.length > 3">u.a.</span>
+                    </div>
+                    <div style="margin: 1em 0; font-style: italic;">gegen</div>
+                    <div>
+                      <div style="font-weight:bold; margin-bottom: 8px;">
+                        <span *ngFor="let passiv of aktiverTermin.parteienPassiv | slice:0:3; last as p">
+                          {{passiv}}<span *ngIf="!p">,<br /></span>
+                        </span>
+                        <span *ngIf="aktiverTermin.parteienPassiv.length > 3">u.a.</span>
+                      </div>
+                      <div>
+                        <span *ngFor="let bevPassiv of aktiverTermin.prozBevPassiv | slice:0:3; last as bp">
+                          {{bevPassiv}}<span *ngIf="!bp">,<br /></span>
+                        </span>
+                        <span *ngIf="aktiverTermin.prozBevPassiv.length > 3">u.a.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- b:: Objekte -->
+                  <div fxFlex="45">
+                    <div class="objekteRahmen" *ngIf="aktiverTermin.objekte.length > 0">
+                    <h4 style="padding-bottom: 12px;">&nbsp;Versteigerungsobjekte:</h4>
+                    <div class="objekte">
+                      <div id="scrollareaObjects" #dsObjectsContainer>                  
+                        <div class="einzelobjekt" *ngFor="let objekt of objects" [@objektAnimation]="ScrollingObjectsActive ? 'in' : ''"  #dsObjectsChild>
+                          {{ objekt.objektart }}, {{ objekt.gemarkung }}<span *ngIf="objekt.groesse">, {{ objekt.groesse | number }} qm</span>
+                          <span *ngIf="objekt.wirtschaftsart"><br />{{ objekt.wirtschaftsart }}</span>
+                          <span *ngIf="objekt.anschrift">&nbsp;-&nbsp;{{ objekt.anschrift }}</span>
+                          <span *ngIf="objekt.objekt"><br />{{ objekt.objekt }}</span>
+                          <span *ngIf="objekt.grundbuchamt"><br />{{ objekt.grundbuchamt }}</span>
+                          <span *ngIf="objekt.zusatz">&nbsp;&nbsp;|&nbsp;&nbsp;{{ objekt.zusatz }}</span>
+                          <span *ngIf="objekt.eigentumsart">&nbsp;&nbsp;|&nbsp;&nbsp;{{ objekt.eigentumsart }}</span>
+                          <span *ngIf="objekt.nutzungsrecht"><br />{{ objekt.nutzungsrecht }}</span>
+                          <span *ngIf="objekt.eigentumsanteil">&nbsp;(Anteil: {{ objekt.eigentumsanteil }})</span>
+                          <span *ngIf="objekt.schiffsregisterart"><br />{{ objekt.schiffsregisterart }}</span>
+                          <span *ngIf="objekt.schiffsname">&nbsp;&nbsp;|&nbsp;&nbsp;{{ objekt.schiffsname }}</span>
+                          <span *ngIf="objekt.verkehrswert"><br />{{ objekt.verkehrswert | currency: '€' }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  <!-- e:: Objekte -->
+                  <!-- e:: Aktueller Termin: VSIMM Termininformationen -->
+                </div>
+              </div>
+              <!-- e:: Termindetails VSIMM -->
+          </div>
+          <!-- e:: Aktueller Termin -->
+
+          <!-- b:: Terminsvorschau -->
+          <div id="scrollarea">
+            
+          <!-- b:: Nächster Termin -->
+          <div class="ds-termin">
+            <div fxLayout="row" *ngIf="naechsterTerminVSIMM.oeffentlich == 'x'" class="olg-layout-line" style="padding-top: 12px;">
+              <div fxFlex="15"><h3>{{naechsterTerminVSIMM.uhrzeitAktuell}} Uhr</h3></div>
+              <div fxFlex="35"><h3>{{naechsterTerminVSIMM.art | capitalize}}</h3></div>
               <div fxFlex="50" class="ds-text-right"><br /></div>
             </div>
-            <div fxLayout="row" *ngIf="aktiverTermin.oeffentlich == 'nein'" class="row-nichtoeffentlich">
-              <div fxFlex="15"><h3>{{aktiverTermin.uhrzeitAktuell}} Uhr</h3></div>
-              <div fxFlex="35"><h3>{{aktiverTermin.art | capitalize}}</h3></div>
+            <div fxLayout="row" *ngIf="naechsterTerminVSIMM.oeffentlich == 'nein'" class="preview-nichtoeffentlich" style="padding-top: 12px;">
+              <div fxFlex="15"><h3>{{naechsterTerminVSIMM.uhrzeitAktuell}} Uhr</h3></div>
+              <div fxFlex="35"><h3>{{naechsterTerminVSIMM.art | capitalize}}</h3></div>
               <div fxFlex="50"><h3>Nicht öffentliche Sitzung</h3></div>
             </div>
-            <div fxLayout="row" *ngIf="aktiverTermin.oeffentlich == 'ja'" class="row-oeffentlich">
-              <div fxFlex="15"><h3>{{aktiverTermin.uhrzeitAktuell}} Uhr</h3></div>
-              <div fxFlex="35"><h3>{{aktiverTermin.art | capitalize}}</h3></div>
+            <div fxLayout="row" *ngIf="naechsterTerminVSIMM.oeffentlich == 'ja'" class="preview-oeffentlich" style="padding-top: 12px;">
+              <div fxFlex="15"><h3>{{naechsterTerminVSIMM.uhrzeitAktuell}} Uhr</h3></div>
+              <div fxFlex="35"><h3>{{naechsterTerminVSIMM.art | capitalize}}</h3></div>
               <div fxFlex="50"><h3>Öffentliche Sitzung</h3></div>
             </div>
-
             <div fxLayout="row" class="olg-layout-line">
-              <div fxFlex="15"><h2>{{aktiverTermin.az}}</h2></div>
-              <div fxFlex="35"><h2>{{aktiverTermin.gericht}}</h2></div>
+              <div fxFlex="15"><h3>{{naechsterTerminVSIMM.az}}</h3></div>
+              <div fxFlex="35"><h3>{{naechsterTerminVSIMM.gericht}}</h3></div>
               <div fxFlex="50">
-                <div *ngIf="aktiverTermin.besetzung != ''">
-                  <div *ngFor="let richter of aktiverTermin.besetzung; last as r">
+                <div *ngIf="naechsterTerminVSIMM.besetzung != ''">
+                  <div *ngFor="let richter of naechsterTerminVSIMM.besetzung; last as r">
                     {{ richter | capitalize }}<span *ngIf="!r">,<br /></span>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- e:: Kopfdaten des Termins -->
-
-            <!-- b:: Termindetails Sonstige Verfahren -->
-            <div *ngIf="aktiverTermin.bemerkung1 != 'VSIMM' && aktiverTermin.oeffentlich == 'ja'">
-              <div fxLayout="row" *ngIf="aktiverTermin.parteienAktivKurz != ''" class="olg-layout-noline">
-                <div fxFlex="45">
-                  <div style="font-weight:bold; margin-bottom: 8px;">
-                      <span *ngFor="let aktiv of aktiverTermin.parteienAktiv | slice:0:3; last as a">
-                      {{aktiv}}<span *ngIf="!a">,<br /></span>
-                      </span>
-                      <span *ngIf="aktiverTermin.parteienAktiv.length > 3">u.a.</span>
-                  </div>
-                  <div>
-                      <span *ngFor="let bevAktiv of aktiverTermin.prozBevAktiv | slice:0:3; last as ba">
-                          {{bevAktiv}}<span *ngIf="!ba">,<br /></span>
-                          </span>
-                      <span *ngIf="aktiverTermin.prozBevAktiv.length > 3">u.a.</span>
-                  </div>
-                </div>
-                <div fxFlex="10" style="text-align: center;"><div>gegen</div><div>&nbsp;</div></div>
-                <div fxFlex="45">
-                  <div style="font-weight:bold; margin-bottom: 8px;">
-                      <span *ngFor="let passiv of aktiverTermin.parteienPassiv | slice:0:3; last as p">
-                          {{passiv}}<span *ngIf="!p">,<br /></span>
-                          </span>
-                      <span *ngIf="aktiverTermin.parteienPassiv.length > 3">u.a.</span>
-                  </div>
-                  <div>
-                      <span *ngFor="let bevPassiv of aktiverTermin.prozBevPassiv | slice:0:3; last as bp">
-                          {{bevPassiv}}<span *ngIf="!bp">,<br /></span>
-                          </span>
-                      <span *ngIf="aktiverTermin.prozBevPassiv.length > 3">u.a.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- e:: Termindetails Sonstige Verfahren -->
-
-            <!-- b:: Termindetails VSIMM -->
-            <div *ngIf="aktiverTermin.bemerkung1 == 'VSIMM'">
-              <div fxLayout="row" *ngIf="aktiverTermin.parteienAktivKurz != ''" class="olg-layout-noline">
-                <div fxFlex="45">
-                  <div style="font-weight:bold; margin-bottom: 8px;">
-                      <span *ngFor="let aktiv of aktiverTermin.parteienAktiv | slice:0:3; last as a">
-                      {{aktiv}}<span *ngIf="!a">,<br /></span>
-                      </span>
-                      <span *ngIf="aktiverTermin.parteienAktiv.length > 3">u.a.</span>
-                  </div>
-                  <div>
-                      <span *ngFor="let bevAktiv of aktiverTermin.prozBevAktiv | slice:0:3; last as ba">
-                          {{bevAktiv}}<span *ngIf="!ba">,<br /></span>
-                          </span>
-                      <span *ngIf="aktiverTermin.prozBevAktiv.length > 3">u.a.</span>
-                  </div>
-                </div>
-                <div fxFlex="10" style="text-align: center;"><div>gegen</div><div>&nbsp;</div></div>
-                <div fxFlex="45">
-                  <div style="font-weight:bold; margin-bottom: 8px; text-align: right;">
-                      <span *ngFor="let passiv of aktiverTermin.parteienPassiv | slice:0:3; last as p">
-                          {{passiv}}<span *ngIf="!p">,<br /></span>
-                          </span>
-                      <span *ngIf="aktiverTermin.parteienPassiv.length > 3">u.a.</span>
-                  </div>
-                  <div style="text-align: right;">
-                      <span *ngFor="let bevPassiv of aktiverTermin.prozBevPassiv | slice:0:3; last as bp">
-                          {{bevPassiv}}<span *ngIf="!bp">,<br /></span>
-                          </span>
-                      <span *ngIf="aktiverTermin.prozBevPassiv.length > 3">u.a.</span>
-                  </div>
-                </div>
-              </div>
-              <!-- b:: Objekte -->
-              <div *ngIf="aktiverTermin.objekte.length > 0">
-                <div><h3>Versteigerungsobjekte:</h3></div>
-              </div>
-              <div id="scrollarea" #dsObjectsContainer>                  
-
-                  <div class="einzelobjekt" *ngFor="let objekt of objects" [@terminAnimation]="ScrollingObjectsActive ? 'in' : ''"  #dsObjectsChild>
-                    {{ objekt.objektart }}, {{ objekt.gemarkung }}
-                    <br />{{ objekt.wirtschaftsart }}
-                    <br />{{ objekt.anschrift }}
-                    <br />{{ objekt.objekt }}
-                    <br />{{ objekt.groesse | number }} qm
-                    <br />{{ objekt.grundbuchamt }}
-                    <br />{{ objekt.zusatz }}
-                    <br />{{ objekt.eigentumsart }}
-                    <br />{{ objekt.nutzungsrecht }}
-                    <br />{{ objekt.eigentumsanteil }}
-                    <br />{{ objekt.schiffsregisterart }}
-                    <br />{{ objekt.schiffsname }}
-                    <br />{{ objekt.verkehrswert | currency: '€' }}
-                   </div>
-
-              </div>
-              <!-- e:: Objekte -->
-            </div>
-            <!-- e:: Termindetails VSIMM -->
-          
           </div>
+          <!-- e:: Nächster Termin -->
+          <!-- b:: Übernächster Termin -->
+          <div class="ds-termin">
+            <div fxLayout="row" *ngIf="uebernaechsterTerminVSIMM.oeffentlich == 'x'" class="olg-layout-line" style="padding-top: 12px;">
+              <div fxFlex="15"><h3>{{uebernaechsterTerminVSIMM.uhrzeitAktuell}} Uhr</h3></div>
+              <div fxFlex="35"><h3>{{uebernaechsterTerminVSIMM.art | capitalize}}</h3></div>
+              <div fxFlex="50" class="ds-text-right"><br /></div>
+            </div>
+            <div fxLayout="row" *ngIf="uebernaechsterTerminVSIMM.oeffentlich == 'nein'" class="preview-nichtoeffentlich" style="padding-top: 12px;">
+              <div fxFlex="15"><h3>{{uebernaechsterTerminVSIMM.uhrzeitAktuell}} Uhr</h3></div>
+              <div fxFlex="35"><h3>{{uebernaechsterTerminVSIMM.art | capitalize}}</h3></div>
+              <div fxFlex="50"><h3>Nicht öffentliche Sitzung</h3></div>
+            </div>
+            <div fxLayout="row" *ngIf="uebernaechsterTerminVSIMM.oeffentlich == 'ja'" class="preview-oeffentlich" style="padding-top: 12px;">
+              <div fxFlex="15"><h3>{{uebernaechsterTerminVSIMM.uhrzeitAktuell}} Uhr</h3></div>
+              <div fxFlex="35"><h3>{{uebernaechsterTerminVSIMM.art | capitalize}}</h3></div>
+              <div fxFlex="50"><h3>Öffentliche Sitzung</h3></div>
+            </div>
+            <div fxLayout="row" class="olg-layout-line">
+              <div fxFlex="15"><h3>{{uebernaechsterTerminVSIMM.az}}</h3></div>
+              <div fxFlex="35"><h3>{{uebernaechsterTerminVSIMM.gericht}}</h3></div>
+              <div fxFlex="50">
+                <div *ngIf="uebernaechsterTerminVSIMM.besetzung != ''">
+                  <div *ngFor="let richter of uebernaechsterTerminVSIMM.besetzung; last as r">
+                    {{ richter | capitalize }}<span *ngIf="!r">,<br /></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- e:: Übernächster Termin -->
+          </div>
+          <!-- e:: Terminsvorschau -->
+
         </div>
 
     </div>
