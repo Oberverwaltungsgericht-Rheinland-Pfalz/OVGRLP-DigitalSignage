@@ -47,6 +47,9 @@ export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
   private ScrollIntervallTimer: any;
   private ScrollIntervallSub: Subscription;
   private lastActiveTerminID: number = -1;
+  
+  naechsterTerminVSIMM: Termin;
+  uebernaechsterTerminVSIMM: Termin;
 
   objects: Objekt[] = [];
   objectsCount: number = 0;
@@ -102,6 +105,12 @@ export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
     this.lastActiveTerminID = -1;
     if (!isNullOrUndefined(this.aktiverTermin))
       this.lastActiveTerminID = this.aktiverTermin.id;
+
+    if(!isNullOrUndefined(this.termineOffen)) {
+      this.naechsterTerminVSIMM = this.termineOffen.length>1 ? this.termineOffen[1] : null;
+      this.uebernaechsterTerminVSIMM = this.termineOffen.length>2 ? this.termineOffen[2] : null;
+    }
+    
   }
 
   loadObjects() {

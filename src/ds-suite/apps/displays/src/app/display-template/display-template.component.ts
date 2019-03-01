@@ -30,8 +30,6 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
   activeTermineCount = 0;
   activeTermineIndex = 0;
   naechsterTermin: Termin;
-  naechsterTerminVSIMM: Termin;
-  uebernaechsterTerminVSIMM: Termin;
   termine: Termin[] = [];
   termineOffen: Termin[] = [];
   termineCount = 0;
@@ -65,8 +63,6 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
           termin => !(termin.status === 'Abgeschlossen' || termin.status === 'Aufgehoben')
         );
         this.naechsterTermin = this.aktiverTermin ? null : this.termineOffen[0];
-        this.naechsterTerminVSIMM = this.termineOffen[1];
-        this.uebernaechsterTerminVSIMM = this.termineOffen[2];
         this.scrollMode = this.isScrollMode();
   
         if (this.scrollMode)
