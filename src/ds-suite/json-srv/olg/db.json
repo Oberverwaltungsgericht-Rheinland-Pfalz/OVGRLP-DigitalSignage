@@ -34,7 +34,7 @@
     },
     {
       "id": 2,
-		  "az": "7 Ca 906/17", 
+		  "az": "7 Ca 906/17.02", 
 		  "lfdnr": 2,
 		  "kammer": 6,
 		  "sitzungssaal": "Geschäftsstellenzimmer 208",
@@ -72,7 +72,7 @@
       "uhrzeitPlan": "13:00",
       "uhrzeitAktuell": "13:00",
       "status": "",
-      "oeffentlich": "nein",
+      "oeffentlich": "ja",
       "art": "mündliche Verhandlung",
       "gegenstand": "Rundfunkbeitrags",
       "bemerkung1": "",
@@ -151,7 +151,7 @@
       "oeffentlich": "ja",
       "art": "mündliche Verhandlung",
       "gegenstand": "Rundfunkbeitrags",
-      "bemerkung1": "STRAF",
+      "bemerkung1": "",
       "bemerkung2": "",
       "parteienAktiv": [
         "Peter Peterson\r"
@@ -856,7 +856,25 @@
       "description": null,
       "notes": null,
       "dummy": false
+    },
+    {
+      "id": 37,
+      "name": "VSIMM-Scroller",
+      "title": "VSIMM-Termine",
+      "template": "demo/demo-saal-scroller-vsimm-demo",
+      "styles": "",
+      "filter": "",
+      "group": "Testanzeigen",
+      "controlUrl": "",
+      "netAddress": "",
+      "wolIpAddress": "",
+      "wolMacAddress": "",
+      "wolUdpPort": 9,
+      "description": null,
+      "notes": null,
+      "dummy": false
     }
+
   ],
   "displaysStatus": [
     {
