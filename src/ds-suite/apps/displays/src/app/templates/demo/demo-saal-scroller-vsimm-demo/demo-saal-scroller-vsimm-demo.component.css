@@ -1,0 +1,122 @@
+#ds-display {
+  height: 1024px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.ds-head {
+  height: 154px;
+}
+#ds-head-title {
+  padding: 0 3%;
+  background-color: #fff;
+  color: #333;
+}
+.ds-head-title-left {
+  padding: 1% 0;
+  font-size: 4vw;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+.ds-head-title-right {
+  padding: 1% 0;
+  text-align: right;
+  font-size: 1.8vw;
+  font-weight: bold;
+  background: url("/assets/img/logo-demo.png") no-repeat;
+  background-size: contain;
+  background-position: top right;
+}
+.ds-head-title-date {
+  border-top: 2px solid #fff;
+  border-bottom: 1px solid #000;
+  padding: 0.3% 3%;
+  margin-bottom: 1%;
+  color: #fff;
+  font-weight: bold;
+  background-color: #333;
+  text-align: right;
+  -webkit-box-shadow: 0 3px 30px 0 #000;
+  box-shadow: 0 3px 20px 0 #000;
+}
+
+#ds-main {
+  height: 850px;
+  padding: 0 2%;
+  background: url("/assets/img/rlp_wappen_600x735.png") no-repeat;
+  background-size: auto 66%;
+  background-position: 50% 25%; 
+}
+#scrollarea {
+  position: relative;
+  padding: 0;
+  height: 850px;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
+  overflow: hidden;
+}
+.abdecker {
+  position: absolute;
+  bottom: 0;
+  width: 1225px;
+  height: 99px;
+  background-image: url("/assets/img/abdecker.png");
+  background-repeat: repeat-x;
+  background-position: bottom left;
+}
+.ds-termin {
+  height: 675px;
+  padding: 0 10px;
+  margin: 15px 0 0 0;
+}
+
+.olgstyle {
+  margin: 50px 0;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+.olg-layout-line {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+.olg-layout-noline {
+  padding: 40px 0 20px 0;
+}
+
+.row-nichtoeffentlich {
+  padding: 0.5%;
+  background-color: #871d33;
+  color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.row-oeffentlich {
+  padding: 0.5%;
+  background-color: #3d7417;
+  color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.noItems {
+  font-weight: bold; 
+  font-size: 150%;
+  text-align: center;
+}
+.einzelobjekt, .einzelobjektUa {
+  box-shadow: inset 0px 0px 9px 2px rgba(168,168,168,0.75);
+  border-radius: 3px;
+  margin: 1% 1% 0 0;
+  padding: 9px;
+}
+.einzelobjektUa {
+  text-align: center; 
+  top: 100%;
+}
+.einzelobjektDetailsHeader {
+  font-size: 80%;
+  font-weight: 500;
+}
+.einzelobjektDetails {
+  font-size: 80%;
+}
