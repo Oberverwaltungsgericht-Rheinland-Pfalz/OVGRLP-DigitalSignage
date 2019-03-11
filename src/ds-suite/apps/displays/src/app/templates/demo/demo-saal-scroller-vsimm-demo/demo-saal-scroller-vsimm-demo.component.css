@@ -67,11 +67,15 @@
   background-position: bottom left;
 }
 .ds-termin {
-  height: 675px;
+  height: 425px;
   padding: 0 10px;
   margin: 15px 0 0 0;
 }
-
+.ds-termin-vsimm {
+  height: 835px;
+  padding: 0 10px;
+  margin: 15px 0 0 0;
+}
 .olgstyle {
   margin: 50px 0;
   border: 0;
@@ -103,7 +107,7 @@
   font-size: 150%;
   text-align: center;
 }
-.einzelobjekt, .einzelobjektUa {
+.einzelobjekt {
   box-shadow: inset 0px 0px 9px 2px rgba(168,168,168,0.75);
   border-radius: 3px;
   margin: 1% 1% 0 0;
@@ -112,6 +116,8 @@
 .einzelobjektUa {
   text-align: center; 
   top: 100%;
+  margin: 1% 1% 0 0;
+  padding: 9px;
 }
 .einzelobjektDetailsHeader {
   font-size: 80%;
