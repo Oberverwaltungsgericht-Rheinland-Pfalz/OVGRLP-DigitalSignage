@@ -28,6 +28,7 @@ import { isNullOrUndefined } from 'util';
     ])
   ]
 })
+
 export class SaalScrollerVsimmComponentDemo extends DisplayTemplateComponent {
   public ScrollingObjectsActive: boolean;
   private ScrollIntervallObjects: number;

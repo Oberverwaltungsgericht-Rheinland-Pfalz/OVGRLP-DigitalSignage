@@ -89,6 +89,12 @@
 .olg-layout-noline {
   padding: 40px 0 20px 0;
 }
+.notice-line {
+  color: #fff;
+  padding: 0.5%;
+  font-weight: 600;
+  background-color: #0f2136;
+}
 
 .row-nichtoeffentlich {
   padding: 0.5%;
