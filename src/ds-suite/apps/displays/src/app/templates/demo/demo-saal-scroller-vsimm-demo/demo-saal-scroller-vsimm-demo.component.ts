@@ -101,6 +101,38 @@ export class SaalScrollerVsimmComponentDemo extends DisplayTemplateComponent {
     
   }
 
+  GetComposedObjects(termin: Termin): Objekt[] {
+    var objects: Objekt[] = termin.objekte.map(x => Object.assign({}, x));    // deep copy der Objekte
+    var compObjects: Objekt[] = [];
+    var delimiter:string = "<br>"
+
+    objects.forEach(obj=> {
+      
+      // Umbrücke durch HTML Umbrüche ersetzen (in HTML kann der Text als Innerhtml mit der safehtml-Pipe genutzt werden) 
+      if (!isNullOrUndefined(obj.wirtschaftsart)) {
+        obj.wirtschaftsart=obj.wirtschaftsart.replace("\\n",delimiter);
+      }
+
+      // gibt es bereits ein Objekt mit dem blatt...
+      var ind=compObjects.findIndex(o=>o.blatt==obj.blatt)
+      if (ind>=0) {
+        // ... wenn ja muss die Wirtschaftsart mit einem Umbruch dran gehangen werden
+        var wirtsch = obj.wirtschaftsart;
+        if (!isNullOrUndefined(compObjects[ind].wirtschaftsart)) {
+          wirtsch=compObjects[ind].wirtschaftsart.concat(delimiter,wirtsch);
+        }
+        compObjects[ind].wirtschaftsart=wirtsch;
+      }
+      else {
+        // ... wenn nicht muss das komplette Objekt aufgenommen werden
+        compObjects.push(obj);
+      }
+
+    })
+    
+    return compObjects;
+  }
+
   loadObjects() {
     var objects: Objekt[] = [];
     if (!isNullOrUndefined(this.aktiverTermin) && !isNullOrUndefined(this.aktiverTermin.objekte))

@@ -144,10 +144,9 @@
               <div *ngIf="termin.oeffentlich == 'ja'" style="margin-top:10px">
                 <div><strong>Versteigerungsobjekte:</strong></div>
                     <div fxLayout="row wrap">
-                        <div fxFlex="32" class="einzelobjekt" *ngFor="let objekt of termin.objekte | slice:0:8">
+                        <div fxFlex="32" class="einzelobjekt" *ngFor="let objekt of GetComposedObjects(termin) | slice:0:8">
                           <div class="einzelobjektDetailsHeader">{{ objekt.objektart }}, {{ objekt.gemarkung }}</div>
-                          <div class="einzelobjektDetails" *ngIf="objekt.wirtschaftsart">{{ objekt.wirtschaftsart.split('\\')[0] }}</div>
-                          <div class="einzelobjektDetails" *ngIf="objekt.wirtschaftsart">{{ objekt.wirtschaftsart.split('\\n')[1] }}</div>
+                          <div class="einzelobjektDetails" *ngIf="objekt.wirtschaftsart" [innerHtml]="objekt.wirtschaftsart | safeHtml"></div>
                           <div class="einzelobjektDetails" *ngIf="objekt.verkehrswert">Verkehrswert: {{ objekt.verkehrswert | currency: '€' }}</div>
                         </div>
                         <div fxFlex="32" class="einzelobjektUa" *ngIf="termin.objekte.length > 8"><br />u. a.</div>
