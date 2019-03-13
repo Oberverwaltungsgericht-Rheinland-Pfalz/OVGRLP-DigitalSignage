@@ -142,15 +142,18 @@
               <!-- e:: Termindetails -->
               <!-- b:: Termindetails VSIMM Verfahren -->
               <div *ngIf="termin.oeffentlich == 'ja'" style="margin-top:10px">
-                <div><strong>Versteigerungsobjekte:</strong></div>
-                    <div fxLayout="row wrap">
-                        <div fxFlex="32" class="einzelobjekt" *ngFor="let objekt of GetComposedObjects(termin) | slice:0:8">
-                          <div class="einzelobjektDetailsHeader">{{ objekt.objektart }}, {{ objekt.gemarkung }}</div>
-                          <div class="einzelobjektDetails" *ngIf="objekt.wirtschaftsart" [innerHtml]="objekt.wirtschaftsart | safeHtml"></div>
-                          <div class="einzelobjektDetails" *ngIf="objekt.verkehrswert">Verkehrswert: {{ objekt.verkehrswert | currency: '€' }}</div>
-                        </div>
-                        <div fxFlex="32" class="einzelobjektUa" *ngIf="termin.objekte.length > 8"><br />u. a.</div>
-                    </div>
+                <p><strong>Versteigerungsobjekte:</strong></p>
+                <table cellpadding="6px" cellspacing="0" width="100%">
+                  <tr *ngFor="let objekt of GetComposedObjects(termin) | slice:0:8">
+                    <td valign="top"><div class="einzelobjektDetailsHeader">{{ objekt.objektart }}<span *ngIf="objekt.gemarkung">, {{ objekt.gemarkung }}</span></div></td>
+                    <td valign="top"><div class="einzelobjektDetails" *ngIf="objekt.wirtschaftsart" [innerHtml]="objekt.wirtschaftsart | safeHtml"></div></td>
+                    <td valign="top"><div class="einzelobjektDetails" *ngIf="objekt.verkehrswert">Verkehrswert: {{ objekt.verkehrswert | currency: '€' }}</div></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" style="background-color: #fff;"><div class="einzelobjektDetails" *ngIf="termin.objekte.length > 8"><i>&mdash; weitere Versteigerungsobjekte vorhanden &mdash;</i></div></td>
+                  </tr>
+                </table>
+                
               </div>
               <!-- e:: Termindetails VSIMM Verfahren -->
           </div>

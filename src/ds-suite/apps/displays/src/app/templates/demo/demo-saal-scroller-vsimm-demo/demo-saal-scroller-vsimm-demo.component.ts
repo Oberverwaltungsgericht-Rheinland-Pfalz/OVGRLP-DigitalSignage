@@ -48,41 +48,12 @@ export class SaalScrollerVsimmComponentDemo extends DisplayTemplateComponent {
   ngOnInit() {
     this.updateInterval=6000;
     super.ngOnInit();
-    this.initializeObjectScrolling();
+    
   }
 
-  initializeObjectScrolling() {
-    this.ScrollIntervallObjects = 1850;
-    this.ScrollIntervallTimer = Observable.timer(1850, this.ScrollIntervallObjects);
-    this.ScrollIntervallSub = this.ScrollIntervallTimer.subscribe((t: any) => {
-      if (this.objects.length <=1 ||
-        (!this.ScrollingObjectsActive)) {
-        this.loadObjects();
-      } else {
-        if (this.ScrollingObjectsActive)
-          this.objects.shift();
-      }
-    });
-  }
-
-  isScrollingObjectsActive(): boolean {
-    if (this.dsObjectsContainer && this.dsObjectsChildren) {
-      const containerHeight = this.dsObjectsContainer.nativeElement.offsetHeight;
-      var childrenHeight = 0;
-
-      this.dsObjectsChildren.forEach(element => {
-        childrenHeight += element.nativeElement.offsetHeight;
-      });
-
-      return containerHeight < childrenHeight;
-    } else {
-      return false;
-    }
-  }
 
   termineLoaded() {
     super.termineLoaded();
-    this.ScrollingObjectsActive = this.isScrollingObjectsActive();
     
     // wenn sich der Termin ändert, müssen die Objekte neu geladen werden
     if (isNullOrUndefined(this.aktiverTermin) || this.lastActiveTerminID != this.aktiverTermin.id) {
@@ -105,12 +76,13 @@ export class SaalScrollerVsimmComponentDemo extends DisplayTemplateComponent {
     var objects: Objekt[] = termin.objekte.map(x => Object.assign({}, x));    // deep copy der Objekte
     var compObjects: Objekt[] = [];
     var delimiter:string = "<br>"
+    var delimiter2:string = ", "
 
     objects.forEach(obj=> {
       
       // Umbrücke durch HTML Umbrüche ersetzen (in HTML kann der Text als Innerhtml mit der safehtml-Pipe genutzt werden) 
       if (!isNullOrUndefined(obj.wirtschaftsart)) {
-        obj.wirtschaftsart=obj.wirtschaftsart.replace("\\n",delimiter);
+        obj.wirtschaftsart=obj.wirtschaftsart.replace("\\n",delimiter2);
       }
 
       // gibt es bereits ein Objekt mit dem blatt...
