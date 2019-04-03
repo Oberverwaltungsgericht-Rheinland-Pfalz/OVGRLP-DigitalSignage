@@ -48,7 +48,6 @@ export class SaalScrollerVsimmComponentDemo extends DisplayTemplateComponent {
   ngOnInit() {
     this.updateInterval=6000;
     super.ngOnInit();
-    
   }
 
 
@@ -94,6 +93,11 @@ export class SaalScrollerVsimmComponentDemo extends DisplayTemplateComponent {
           wirtsch=compObjects[ind].wirtschaftsart.concat(delimiter,wirtsch);
         }
         compObjects[ind].wirtschaftsart=wirtsch;
+        var flurstueck = obj.flur;
+        if (!isNullOrUndefined(compObjects[ind].flur)) {
+          flurstueck=compObjects[ind].flur.concat(delimiter,flurstueck);
+        }
+        compObjects[ind].flur=flurstueck;
       }
       else {
         // ... wenn nicht muss das komplette Objekt aufgenommen werden
