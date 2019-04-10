@@ -26,7 +26,6 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
 export class NjzKhFoyerComponent extends DisplayTemplateComponent { 
   ngOnInit() {
     //this.updateInterval = 1000;
-
     super.ngOnInit();
   }
 }

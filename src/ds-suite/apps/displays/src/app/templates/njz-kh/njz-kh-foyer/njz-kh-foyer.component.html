@@ -5,9 +5,11 @@
       {{ display.title }}
     </div>
     <div fxFlex class="ds-head-title-right" fxLayout="column">
-      <div fxFlex>{{ datum | date: 'd. MMMM yyyy' }}</div>
-      <div fxFlex>{{ datum | date: 'H:mm' }} Uhr</div>
+      
     </div>
+  </div>
+  <div class="ds-head-title-date">
+    {{ datum | date: 'd. MMMM yyyy' }} - {{ datum | date: 'H:mm' }} Uhr
   </div>
 
   <div id="ds-main" fxFlex fxLayout="column" #dsTermineContainer>
