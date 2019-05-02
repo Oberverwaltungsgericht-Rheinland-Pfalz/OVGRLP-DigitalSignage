@@ -5,9 +5,9 @@ import { Termin, Display } from '@ds-suite/model';
 import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
 
 @Component({
-  selector: 'app-foyer-var-trier',
-  templateUrl: './foyer-var-trier.component.html',
-  styleUrls: ['./foyer-var-trier.component.css'],
+  selector: 'app-foyer-trier',
+  templateUrl: './foyer-trier.component.html',
+  styleUrls: ['./foyer-trier.component.css'],
 
   animations: [
     trigger('terminAnimation', [
@@ -24,9 +24,9 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
     ])
   ]
 })
-export class JzTrFoyerVarTrierComponent extends DisplayTemplateComponent { 
+export class JzTrFoyerComponent extends DisplayTemplateComponent { 
   ngOnInit() {
-    this.updateInterval = 4000;
+    this.updateInterval = 5000;
 
     super.ngOnInit();
   }
