@@ -46,18 +46,13 @@
   box-shadow: 0 3px 20px 0 #000;
 }
 
-#ds-main-overview {
-  padding: 0 2%;
-  background: url("/assets/img/rlp_wappen_600x735.png") no-repeat;
-  background-size: auto 66%;
-  background-position: 50% 25%; 
-}
-
 #ds-main {
   padding: 0 2%;
   background: url("/assets/img/rlp_wappen_600x735.png") no-repeat;
-  background-size: auto 66%;
-  background-position: 50% 25%; 
+  background-size: auto auto;
+  background-position: 50% 15%; 
+  height: auto;
+  overflow: hidden;
 }
 
 .ds-overview-termin {
