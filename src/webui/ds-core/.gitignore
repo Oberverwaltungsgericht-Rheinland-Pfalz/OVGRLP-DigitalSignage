@@ -1,9 +1,0 @@
-dist/
-node_modules/
-out-tsc/
-debug.log
-npm-debug.log
-src/**/*.js
-!src/demo/systemjs.config.js
-!src/demo/systemjs.config.lib.js
-*.js.map
