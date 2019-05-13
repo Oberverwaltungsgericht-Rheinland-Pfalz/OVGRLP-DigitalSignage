@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DateFormatPipe } from 'angular2-moment';
+import { DateFormatPipe } from 'ngx-moment';
 
 import { CodemirrorComponent } from '@ctrl/ngx-codemirror';
 import { YesNoDialogComponent } from '@ds-suite/ui';
@@ -269,12 +269,10 @@ export class SondermeldungenComponent implements OnInit {
 
 formatDate(datetime:any,format:string ='DD.MM.YYYY HH:mm') {
   var rval:any = datetime;
-  console.log("formatDate:",datetime); 
   if (null!=datetime) {
     var df = new DateFormatPipe();
     rval=df.transform(datetime, format); 
   }
-  console.log("formatDate1:",rval); 
   return rval
  }
 

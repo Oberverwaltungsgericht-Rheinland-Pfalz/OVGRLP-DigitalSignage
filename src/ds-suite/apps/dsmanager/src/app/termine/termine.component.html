@@ -8,16 +8,15 @@
                 <input id="tabStatus" type="checkbox">
                 <label for="tabStatus">Status</label>
                 <ul class="nav-list">
-                    <div *ngFor="let status of GetStatusValues(true); let index = index;">
-                        <clr-checkbox
-                        [clrInline]="true"
-                        [name]="'sel_status_' + index"  
-                                [id]="'sel_status_' + index"
-                                [(clrChecked)]="selStatus[index]"
-                                (clrCheckedChange)="changeSelection()">
-                                {{status}}
-                        </clr-checkbox>
-                    </div>
+                    <clr-checkbox-wrapper *ngFor="let status of GetStatusValues(true); let index = index;">
+                        <input type="checkbox" 
+                            clrCheckbox
+                            [id]="'sel_status_' + index"
+                            [name]="'sel_status_' + index"  
+                            [(ngModel)]="selStatus[index]"
+                            (change)="changeSelection()" />
+                        <label style="padding-left: 25px!important;">{{status}}</label>
+                    </clr-checkbox-wrapper>
                 </ul>
             </section>
             <!--Selektion nach Gericht-->
@@ -25,16 +24,15 @@
                 <input id="tabGericht" type="checkbox">
                 <label for="tabGericht">Gericht</label>
                 <ul class="nav-list">
-                    <div *ngFor="let gericht of GetGerichtValues(); let index = index;">
-                        <clr-checkbox
-                        [clrInline]="true"
-                        [name]="'sel_gericht_' + index"  
-                                [id]="'sel_gericht_' + index"
-                                [(clrChecked)]="selGericht[index]"
-                                (clrCheckedChange)="changeSelection()">
-                                {{gericht}}
-                        </clr-checkbox>
-                    </div>
+                    <clr-checkbox-wrapper *ngFor="let gericht of GetGerichtValues(); let index = index;">
+                        <input type="checkbox" 
+                            clrCheckbox
+                            [id]="'sel_gericht_' + index"
+                            [name]="'sel_gericht_' + index"   
+                            [(ngModel)]="selGericht[index]"
+                            (change)="changeSelection()" />
+                        <label style="padding-left: 25px!important;">{{gericht}}</label>
+                    </clr-checkbox-wrapper>
                 </ul>
             </section>
             <!--Selektion nach Saal-->
@@ -42,16 +40,15 @@
                 <input id="tabSaal" type="checkbox">
                 <label for="tabSaal">Saal</label>
                 <ul class="nav-list">
-                    <div *ngFor="let saal of GetSaalValues(); let index = index;">
-                        <clr-checkbox
-                            [clrInline]="true"
-                            [name]="'sel_saal_' + index"  
+                    <clr-checkbox-wrapper *ngFor="let saal of GetSaalValues(); let index = index;">
+                        <input type="checkbox" 
+                            clrCheckbox
                             [id]="'sel_saal_' + index"
-                            [(clrChecked)]="selSaal[index]"
-                            (clrCheckedChange)="changeSelection()">
-                            {{saal}}
-                        </clr-checkbox>
-                    </div>
+                            [name]="'sel_saal_' + index"
+                            [(ngModel)]="selSaal[index]"
+                            (change)="changeSelection()" />
+                        <label style="padding-left: 25px!important;">{{saal}}</label>
+                    </clr-checkbox-wrapper>
                 </ul>
             </section>
         </section>
