@@ -269,12 +269,10 @@ export class SondermeldungenComponent implements OnInit {
 
 formatDate(datetime:any,format:string ='DD.MM.YYYY HH:mm') {
   var rval:any = datetime;
-  console.log("formatDate:",datetime); 
   if (null!=datetime) {
     var df = new DateFormatPipe();
     rval=df.transform(datetime, format); 
   }
-  console.log("formatDate1:",rval); 
   return rval
  }
 
