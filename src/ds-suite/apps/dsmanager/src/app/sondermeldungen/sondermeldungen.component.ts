@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DateFormatPipe } from 'angular2-moment';
+import { DateFormatPipe } from 'ngx-moment';
 
 import { CodemirrorComponent } from '@ctrl/ngx-codemirror';
 import { YesNoDialogComponent } from '@ds-suite/ui';
