@@ -147,16 +147,16 @@
                                             <label for="content">Displays</label>
                                         </div>
                                         <div fxFlex style="display:flex;flex-wrap:wrap;overflow: auto;">
-                                                <div *ngFor="let display of displays; let index = index;" style="margin-right: 16px;">
-                                                    <clr-checkbox
-                                                    [clrInline]="true"
-                                                    [name]="'sel_displ_' + index"  
-                                                            [id]="'sel_displ_' + index"
-                                                            [(clrChecked)]="currentDisplaysChecked[index]">
-                                                            {{display.title}} 
-                                                    </clr-checkbox>
-                                                </div>
-                                            
+                                            <clr-checkbox-container style="margin-top:unset;margin-left:2px" clrInline>
+                                                <clr-checkbox-wrapper *ngFor="let display of displays; let index = index;">
+                                                    <input type="checkbox" 
+                                                        clrCheckbox
+                                                        [id]="'sel_displ_' + index"
+                                                        [name]="'sel_displ_' + index"  
+                                                        [(ngModel)]="currentDisplaysChecked[index]" />
+                                                    <label>{{display.title}}</label>
+                                                </clr-checkbox-wrapper>
+                                            </clr-checkbox-container>
                                         </div>
                                     </div>
                                     <div fxFlex="30px" style="text-align: right;">
