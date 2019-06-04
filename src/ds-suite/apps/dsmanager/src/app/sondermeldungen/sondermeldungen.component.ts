@@ -275,6 +275,10 @@ formatDate(datetime:any,format:string ='DD.MM.YYYY HH:mm') {
   }
   return rval
  }
+ 
+ openPreview(){
+   window.open(window.location.href, "displayPreview", "width="+window.screen.availWidth+", height="+window.screen.availHeight)
+ }
 
 }
 
