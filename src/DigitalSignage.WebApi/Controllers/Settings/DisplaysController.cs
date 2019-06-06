@@ -124,7 +124,7 @@ namespace DigitalSignage.WebApi.Controllers.Settings
 
     [Route("{name}/activenotes")]
     [ResponseType(typeof(IEnumerable<Note>))]
-    public async Task<IHttpActionResult> GetActiveNotes(string name)
+    public async Task<IHttpActionResult> GetActiveNotes(string name, DateTime? timestamp)
     {
       var display = await context.Displays
         .Include(d => d.NotesAssignments.Select(na => na.Note))
@@ -134,17 +134,20 @@ namespace DigitalSignage.WebApi.Controllers.Settings
       if (display == null)
         return NotFound();
 
-      return Ok(display.NotesAssignments.Where(na => IsActiveNoteAssignment(na)).Select(na => na.Note));
+      if (!timestamp.HasValue)
+        timestamp = DateTime.Now;
+      
+      return Ok(display.NotesAssignments.Where(na => IsActiveNoteAssignment(na, timestamp)).Select(na => na.Note));
     }
 
-    private static bool IsActiveNoteAssignment(NoteAssignment noteAssignment)
+    private static bool IsActiveNoteAssignment(NoteAssignment noteAssignment, DateTime dateTime)
     {
       bool erval = true;
 
-      if (noteAssignment.Start.HasValue && noteAssignment.Start.Value > DateTime.Now)
+      if (noteAssignment.Start.HasValue && noteAssignment.Start.Value > dateTime)
         erval = false;
 
-      if (noteAssignment.End.HasValue && noteAssignment.End.Value < DateTime.Now)
+      if (noteAssignment.End.HasValue && noteAssignment.End.Value < dateTime)
         erval = false;
 
       return erval;

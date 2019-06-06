@@ -68,7 +68,7 @@
                             </div>
                             <span class="clr-subtext help-text-margin">Steuerung, ob der Inhalt trotz aktivier Termine angezeigt werden soll</span>
                         </div>
-						<button class="btn btn-info-outline" (click)="openPreview">Vorschau</button>						
+						<button hidden class="btn btn-info-outline" (click)="openPreview">Vorschau</button> <!--Vorschau erfolgt über Saalzuweisung-->				
                     </div>
                 </div>
 
@@ -97,6 +97,7 @@
                                     <clr-dg-cell class="ds-note-assignment-column-uhrzeit-von">{{ ass.StartForDisplay }}</clr-dg-cell>
                                     <clr-dg-cell class="ds-note-assignment-column-uhrzeit-bis">{{ ass.EndForDisplay }}</clr-dg-cell>
                                     <clr-dg-cell class="ds-note-assignment-column-kommentar">{{ ass.Comment }}</clr-dg-cell>
+                                    <clr-dg-cell class="ds-note-assignment-column-preview"><clr-icon shape="eye" class="is-solid" (click)="openPreview(ass.displayPcName, ass.Start)"></clr-icon></clr-dg-cell>
                                 </clr-dg-row>
                             </clr-datagrid>
                             <div *ngIf="currentDisplayNoteAssignment==null" style="text-align: right;">

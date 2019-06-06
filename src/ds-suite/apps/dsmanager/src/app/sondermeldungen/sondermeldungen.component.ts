@@ -66,6 +66,9 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   initActivatedDisplays(){
+    // HACK: dieser Einzeiler würde die restlichen Zeilen ersetzen:
+    // this.currentDisplaysChecked = this.displays.map((e, idx) => !!~this.currentDisplayNoteAssignment.DisplayNames.findIndex(bez=> bez === this.displays[idx].title))
+
     var displaysChecked: boolean[] = [] ;
     var i:number;
     var active:boolean;
@@ -163,7 +166,7 @@ export class SondermeldungenComponent implements OnInit {
     var i:number;
     for (i=0; i<this.currentDisplaysChecked.length; i++) {
       if (this.currentDisplaysChecked[i]==true) {
-        var displayId=this.displays[i].id;
+        let displayId=this.displays[i].id;
         this.currentNote.entityAspect.entityManager.createEntity("NoteAssignment",{
           DisplayId: displayId, 
           Comment: this.currentDisplayNoteAssignment.Comment,
@@ -211,53 +214,54 @@ export class SondermeldungenComponent implements OnInit {
   loadCurrentNoteDisplayAssignments() {
     var ass: NotesAssignments[] = null;
     var displayAss: NoteDisplayAssignment[] = [];
-    
+
     if (null!=this.currentNote) {
       ass=this.currentNote.NotesAssignments;
       ass.forEach(a =>{
-        var ind = displayAss.findIndex(d=> 
-          this.formatDate(d.Start) == this.formatDate(a.Start) && 
-          this.formatDate(d.End) == this.formatDate(a.End) && 
+        let ind = displayAss.findIndex(d=>
+          this.formatDate(d.Start) == this.formatDate(a.Start) &&
+          this.formatDate(d.End) == this.formatDate(a.End) &&
           d.Comment == a.Comment
           );
-        var displayIndex=this.displays.findIndex(d=>d.id==a.DisplayId);
+        const displayIndex=this.displays.findIndex(d=>d.id==a.DisplayId);
         if (ind>=0) {
           displayAss[ind].Id.push(a.Id);
           displayAss[ind].DisplayId.push(a.DisplayId);
           displayAss[ind].DisplayNames.push(this.displays[displayIndex].title);
         }
         else {
-          var dsa: NoteDisplayAssignment ={
+          const dsa: NoteDisplayAssignment ={
             Id: [a.Id],
             DisplayId: [a.DisplayId],
             DisplayNames: [this.displays[displayIndex].title],
-            Start: a.Start, 
-            StartForDisplay: this.formatDate(a.Start), 
-            End: a.End, 
-            EndForDisplay: this.formatDate(a.End), 
+            DisplayPcName: this.displays[displayIndex].name,
+            Start: a.Start,
+            StartForDisplay: this.formatDate(a.Start),
+            End: a.End,
+            EndForDisplay: this.formatDate(a.End),
             Comment: a.Comment
           };
           displayAss.push(dsa)
         }
       });
     }
-    
+
     this.currentDisplayNoteAssignments= displayAss;
   }
 
   OnDeleteResult(result:boolean) {
-    var assignmentIds: number[] = [];
+    const assignmentIds: number[] = [];
     if (result) {
-      
+
       //
       this.currentNote.NotesAssignments.forEach(a =>{
        assignmentIds.push(a.Id);
       })
       assignmentIds.forEach(id=>{
-       var ind=this.currentNote.NotesAssignments.findIndex(a=> a.Id==id);
+       const ind=this.currentNote.NotesAssignments.findIndex(a=> a.Id===id);
        this.currentNote.NotesAssignments[ind].entityAspect.setDeleted();
       });
-      
+
       //this.noteService.saveNotesByBreeze().then(() => {
         this.noteService.deleteNoteByBreeze(this.currentNote).then(() => {
           this.currentNote=null;
@@ -268,16 +272,16 @@ export class SondermeldungenComponent implements OnInit {
   }
 
 formatDate(datetime:any,format:string ='DD.MM.YYYY HH:mm') {
-  var rval:any = datetime;
+  let rval:any = datetime;
   if (null!=datetime) {
-    var df = new DateFormatPipe();
-    rval=df.transform(datetime, format); 
+    const df = new DateFormatPipe();
+    rval=df.transform(datetime, format);
   }
   return rval
  }
- 
- openPreview(){
-   window.open(window.location.href, "displayPreview", "width="+window.screen.availWidth+", height="+window.screen.availHeight)
+
+ openPreview(displayName:string, timestamp: string){
+   window.open(`${window.location.origin}/displays/#/${displayName}?timestamp=${timestamp}`, "displayPreview", `width=${window.screen.availWidth}, height=${window.screen.availHeight}`)
  }
 
 }
@@ -296,6 +300,7 @@ interface NoteDisplayAssignment {
   Id: number[];
   DisplayId: number [];
   DisplayNames: string[];
+  DisplayPcName: string;
   Start: any;
   StartForDisplay: any;
   End: any;
