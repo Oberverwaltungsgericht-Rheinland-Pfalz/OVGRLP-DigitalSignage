@@ -96,6 +96,7 @@ export class SondermeldungenComponent implements OnInit {
       Id: [],
       DisplayId: [],
       DisplayNames: [],
+      DisplayPcName:'',
       Start: null,
       StartForDisplay: null,
       End: null,
@@ -140,7 +141,7 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   saveAssignmentClick(){
-    
+
     //!\TODO: Grafische Info anzeigen
     if (this.currentDisplaysChecked.filter(d => d==true).length==0) {
       return;
@@ -168,7 +169,7 @@ export class SondermeldungenComponent implements OnInit {
       if (this.currentDisplaysChecked[i]==true) {
         let displayId=this.displays[i].id;
         this.currentNote.entityAspect.entityManager.createEntity("NoteAssignment",{
-          DisplayId: displayId, 
+          DisplayId: displayId,
           Comment: this.currentDisplayNoteAssignment.Comment,
           Start: this.currentDisplayNoteAssignment.Start,
           End: this.currentDisplayNoteAssignment.End,
@@ -281,7 +282,7 @@ formatDate(datetime:any,format:string ='DD.MM.YYYY HH:mm') {
  }
 
  openPreview(displayName:string, timestamp: string){
-   window.open(`${window.location.origin}/displays/#/${displayName}?timestamp=${timestamp}`, "displayPreview", `width=${window.screen.availWidth}, height=${window.screen.availHeight}`)
+    window.open(`${window.location.origin}/displays/#/${displayName}?timestamp=${timestamp}`, "displayPreview", `width=${window.screen.availWidth}, height=${window.screen.availHeight}`)
  }
 
 }
