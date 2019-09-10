@@ -214,17 +214,17 @@ export class SondermeldungenComponent implements OnInit {
 
   loadCurrentNoteDisplayAssignments() {
     var ass: NotesAssignments[] = null;
-    var displayAss: NoteDisplayAssignment[] = [];
+    let displayAss: NoteDisplayAssignment[] = [];
 
     if (null!=this.currentNote) {
       ass=this.currentNote.NotesAssignments;
       ass.forEach(a =>{
-        let ind = displayAss.findIndex(d=>
-          this.formatDate(d.Start) == this.formatDate(a.Start) &&
-          this.formatDate(d.End) == this.formatDate(a.End) &&
-          d.Comment == a.Comment
+        const ind = displayAss.findIndex(d=>
+          this.formatDate(d.Start) === this.formatDate(a.Start) &&
+          this.formatDate(d.End) === this.formatDate(a.End) &&
+          d.Comment === a.Comment
           );
-        const displayIndex=this.displays.findIndex(d=>d.id==a.DisplayId);
+        const displayIndex=this.displays.findIndex(d=>d.id===a.DisplayId);
         if (ind>=0) {
           displayAss[ind].Id.push(a.Id);
           displayAss[ind].DisplayId.push(a.DisplayId);
@@ -281,8 +281,9 @@ formatDate(datetime:any,format:string ='DD.MM.YYYY HH:mm') {
   return rval
  }
 
- openPreview(displayName:string, timestamp: string){
-    window.open(`${window.location.origin}/displays/#/${displayName}?timestamp=${timestamp}`, "displayPreview", `width=${window.screen.availWidth}, height=${window.screen.availHeight}`)
+ openPreview(displayName:string, timestamp: Date){
+//  window.open(`${window.location.origin}/displays/#/${displayName}?timestamp=${timestamp}`, "displayPreview", `width=${window.screen.availWidth}, height=${window.screen.availHeight}`)
+  window.open(`http://localhost:4201/#/${displayName}?timestamp=${timestamp.toISOString()}`, "displayPreview", `width=${window.screen.availWidth}, height=${window.screen.availHeight}`)
  }
 
 }
