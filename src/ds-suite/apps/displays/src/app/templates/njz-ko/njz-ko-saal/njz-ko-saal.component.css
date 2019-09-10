@@ -58,6 +58,7 @@
 
 #ds-main-overview {
   padding: 10px;
+  height: calc(100vh - 80px);
 }
 
 .ds-overview-termin-completed {
