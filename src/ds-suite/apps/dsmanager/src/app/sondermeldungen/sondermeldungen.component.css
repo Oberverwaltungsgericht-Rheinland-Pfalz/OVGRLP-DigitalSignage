@@ -20,6 +20,11 @@ div.card.besetzung-card-meldung {
     width: calc(50% - 6px);
     margin-top: 0;
     min-width: 500px;
+    height: fit-content;
+}
+
+:host ::ng-deep .CodeMirror.CodeMirror-wrap {
+    height: 100% !important;
 }
 
 div.card.besetzung-card-zuordnung {
