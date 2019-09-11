@@ -4,8 +4,8 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
 import { TerminFunctions } from '../shared/termin.functions';
 import { Termin } from '@ds-suite/model';
 
-const MAX_TERMINE = 9;
-const MAX_FINISHED = 3;
+const MAX_TERMINE = 6;
+const MAX_FINISHED = 2;
 
 @Component({
   selector: 'app-edvgt-stele',
