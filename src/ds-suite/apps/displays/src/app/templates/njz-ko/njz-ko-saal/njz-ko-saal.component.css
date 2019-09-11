@@ -46,10 +46,6 @@
   text-align: center;
 }
 
-.ds-anzeige-termine {
-  height: calc(100vh - 80px);
-}
-
 #ds-main-details {
   padding:10px;
   background: url('/assets/img/rlp_wappen_500x613.png') center no-repeat;
@@ -82,6 +78,10 @@
 .ds-overview-termin-notpublic {
   color: #af0101;
   font-weight: bold;
+}
+
+.ds-box {
+  overflow: hidden;
 }
 
 .ds-box-content {
