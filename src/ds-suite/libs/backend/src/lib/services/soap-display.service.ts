@@ -42,7 +42,7 @@ export class SoapDisplayService implements DisplayService {
   }
 
   getDisplayNotes(name: string): Observable<Note[]> {
-    const urlString = window.location.href
+    const urlString = window.location.href.replace('#','')
     const url = new URL(urlString)
     const timestamp = url.searchParams.get("timestamp") || new Date().toISOString()
 

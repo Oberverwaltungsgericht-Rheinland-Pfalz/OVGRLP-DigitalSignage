@@ -52,6 +52,7 @@
                                 [options]="{
                                     lineNumbers: true,
                                     lineWrapping: true,
+                                    scrollbarStyle: null,
                                     mode: 'text/html'}">
                             </ngx-codemirror>
                             <!--textarea class="clr-textarea clr-textarea-full-size" id="content" [(ngModel)]="currentNote.Content" name="content"></textarea-->
@@ -84,6 +85,7 @@
                         <div fxFlex="calc(100% - 280px)">
                             <clr-datagrid #DataGridTermine style="height: 95%">
                                 <clr-dg-column class="ds-note-assignment-column-edit"></clr-dg-column>
+                                <clr-dg-column class="ds-note-assignment-column-edit"></clr-dg-column>
                                 <clr-dg-column class="ds-note-assignment-column-displays">Display</clr-dg-column>
                                 <clr-dg-column class="ds-note-assignment-column-uhrzeit-von">Start</clr-dg-column>
                                 <clr-dg-column class="ds-note-assignment-column-uhrzeit-bis">Ende</clr-dg-column>
@@ -91,12 +93,12 @@
 
                                 <clr-dg-placeholder>Es sind keine Zuordnungen vorhanden</clr-dg-placeholder>
                                 <clr-dg-row *clrDgItems="let ass of currentDisplayNoteAssignments; let i = index">
+                                    <clr-dg-cell class="ds-note-assignment-column-preview"><clr-icon shape="eye" class="is-solid" (click)="openPreview(ass.DisplayPcName, ass.Start)"></clr-icon></clr-dg-cell>
                                     <clr-dg-cell class="ds-note-assignment-column-edit"><clr-icon shape="pencil" class="is-solid" (click)="editAssignmentClick(ass)"></clr-icon></clr-dg-cell>
                                     <clr-dg-cell class="ds-note-assignment-column-displays">{{ ass.DisplayNames }}</clr-dg-cell>
                                     <clr-dg-cell class="ds-note-assignment-column-uhrzeit-von">{{ ass.StartForDisplay }}</clr-dg-cell>
                                     <clr-dg-cell class="ds-note-assignment-column-uhrzeit-bis">{{ ass.EndForDisplay }}</clr-dg-cell>
                                     <clr-dg-cell class="ds-note-assignment-column-kommentar">{{ ass.Comment }}</clr-dg-cell>
-                                    <clr-dg-cell class="ds-note-assignment-column-preview"><clr-icon shape="eye" class="is-solid" (click)="openPreview(ass.DisplayPcName, ass.Start)"></clr-icon></clr-dg-cell>
                                 </clr-dg-row>
                             </clr-datagrid>
                             <div *ngIf="currentDisplayNoteAssignment==null" style="text-align: right;">
