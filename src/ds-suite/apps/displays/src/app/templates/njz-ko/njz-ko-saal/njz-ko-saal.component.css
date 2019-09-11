@@ -5,6 +5,7 @@
   padding: 0px;
   font-size: 18px;
   z-index: 1;
+  display: block !important;
 }
 
 #ds-head-status {
