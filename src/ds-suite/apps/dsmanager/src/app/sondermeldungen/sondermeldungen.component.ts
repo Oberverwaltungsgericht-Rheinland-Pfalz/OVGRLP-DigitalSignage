@@ -283,6 +283,7 @@ formatDate(datetime:any,format:string ='DD.MM.YYYY HH:mm') {
 
  openPreview(displayName:string, timestamp: Date){
    let openLink = ''
+   timestamp = timestamp || new Date()
   if(window.location.origin.indexOf('localhost') !== -1)
      openLink = `http://localhost:4201/#/${displayName}?timestamp=${timestamp.toISOString()}`
     else
