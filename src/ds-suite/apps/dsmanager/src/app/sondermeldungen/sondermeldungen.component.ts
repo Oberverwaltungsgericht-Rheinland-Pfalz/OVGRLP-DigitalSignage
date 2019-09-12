@@ -69,9 +69,9 @@ export class SondermeldungenComponent implements OnInit {
     // HACK: dieser Einzeiler würde die restlichen Zeilen ersetzen:
     // this.currentDisplaysChecked = this.displays.map((e, idx) => !!~this.currentDisplayNoteAssignment.DisplayNames.findIndex(bez=> bez === this.displays[idx].title))
 
-    var displaysChecked: boolean[] = [] ;
-    var i:number;
-    var active:boolean;
+    let displaysChecked: boolean[] = [] ;
+    let i:number;
+    let active:boolean;
 
     for (i=0; i<this.displays.length; i++) {
       active=false;
@@ -92,7 +92,7 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   addNewAssignmentClick() {
-    var ass: NoteDisplayAssignment = {
+    let ass: NoteDisplayAssignment = {
       Id: [],
       DisplayId: [],
       DisplayNames: [],
@@ -119,7 +119,7 @@ export class SondermeldungenComponent implements OnInit {
   // breeze wandelt intern die Zeitzonen zwischen Server und Client um und speichert in der Datenbank im UTC-Format
   // Da dies an anderer Stelle (bspw. bei Displays) nicht geschieht, wird hier die Umwandlung umgangen
   parseChangedDatetimesForBreeze(){
-    var i:number;
+    let i:number;
     for (i=0; i<this.currentNote.NotesAssignments.length; i++) {
       if (this.currentNote.NotesAssignments[i].entityAspect.entityState.isUnchanged()==false) {
         this.currentNote.NotesAssignments[i].Start=this.AddTimeZoneToTime(this.currentNote.NotesAssignments[i].Start)
@@ -128,11 +128,11 @@ export class SondermeldungenComponent implements OnInit {
     }
   }
   AddTimeZoneToTime(source: any) {
-    var rval:any = source;
+    let rval:any = source;
 
     if (null!=rval) {
       rval=new Date(Date.parse(rval));
-      var offsetMin = rval.getTimezoneOffset()*-1;
+      const offsetMin = rval.getTimezoneOffset()*-1;
       rval.setMinutes(rval.getMinutes() + offsetMin)
       rval=new Date(Date.parse(rval));
     }
@@ -143,7 +143,7 @@ export class SondermeldungenComponent implements OnInit {
   saveAssignmentClick(){
 
     //!\TODO: Grafische Info anzeigen
-    if (this.currentDisplaysChecked.filter(d => d==true).length==0) {
+    if (this.currentDisplaysChecked.filter(d => d===true).length===0) {
       return;
     }
 
@@ -164,10 +164,10 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   saveCurrentAssignment() {
-    var i:number;
+    let i:number;
     for (i=0; i<this.currentDisplaysChecked.length; i++) {
-      if (this.currentDisplaysChecked[i]==true) {
-        let displayId=this.displays[i].id;
+      if (this.currentDisplaysChecked[i]===true) {
+        const displayId=this.displays[i].id;
         this.currentNote.entityAspect.entityManager.createEntity("NoteAssignment",{
           DisplayId: displayId,
           Comment: this.currentDisplayNoteAssignment.Comment,
@@ -182,7 +182,7 @@ export class SondermeldungenComponent implements OnInit {
 
   setCodeMirrorSize() {
     // geht bestimmt besser - aber vorerst lauffähig
-    var foo = new Promise<void>(resolve => {
+    const foo = new Promise<void>(resolve => {
       setTimeout(resolve, 100);
     }).then(() => {
       this.codemirrorEditor.codeMirror.setSize("100%","calc(100% - 16px)")
@@ -191,9 +191,9 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   deleteCurrentAssignment() {
-    var i:number;
+    let i:number;
     for (i=0; i<this.currentDisplayNoteAssignment.Id.length; i++) {
-      var index=this.currentNote.NotesAssignments.findIndex(a=> a.Id==this.currentDisplayNoteAssignment.Id[i])
+      const index=this.currentNote.NotesAssignments.findIndex(a=> a.Id===this.currentDisplayNoteAssignment.Id[i])
       this.currentNote.NotesAssignments[index].entityAspect.setDeleted();
     }
   }
@@ -213,8 +213,8 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   loadCurrentNoteDisplayAssignments() {
-    var ass: NotesAssignments[] = null;
-    let displayAss: NoteDisplayAssignment[] = [];
+    let ass: NotesAssignments[] = null;
+    const displayAss: NoteDisplayAssignment[] = [];
 
     if (null!=this.currentNote) {
       ass=this.currentNote.NotesAssignments;
@@ -282,10 +282,14 @@ formatDate(datetime:any,format:string ='DD.MM.YYYY HH:mm') {
  }
 
  openPreview(displayName:string, timestamp: Date){
-//  window.open(`${window.location.origin}/displays/#/${displayName}?timestamp=${timestamp}`, "displayPreview", `width=${window.screen.availWidth}, height=${window.screen.availHeight}`)
-  window.open(`http://localhost:4201/#/${displayName}?timestamp=${timestamp.toISOString()}`, "displayPreview", `width=${window.screen.availWidth}, height=${window.screen.availHeight}`)
- }
+   let openLink = ''
+  if(!!window.location.origin.indexOf('localhost:4201'))
+     openLink = `http://localhost:4201/#/${displayName}?timestamp=${timestamp.toISOString()}`
+    else
+     openLink = `${window.location.origin}/displays/#/${displayName}?timestamp=${timestamp.toISOString()}`
 
+    window.open(openLink, "displayPreview", `width=${window.screen.availWidth}, height=${window.screen.availHeight}`)
+ }
 }
 
 interface NotesAssignments {
