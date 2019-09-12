@@ -69,13 +69,13 @@ export class SondermeldungenComponent implements OnInit {
     // HACK: dieser Einzeiler würde die restlichen Zeilen ersetzen:
     // this.currentDisplaysChecked = this.displays.map((e, idx) => !!~this.currentDisplayNoteAssignment.DisplayNames.findIndex(bez=> bez === this.displays[idx].title))
 
-    let displaysChecked: boolean[] = [] ;
+    const displaysChecked: boolean[] = [] ;
     let i:number;
     let active:boolean;
 
     for (i=0; i<this.displays.length; i++) {
       active=false;
-      if (this.currentDisplayNoteAssignment.DisplayNames.findIndex(bez=> bez==this.displays[i].title)>=0){
+      if (this.currentDisplayNoteAssignment.DisplayNames.findIndex(bez=> bez===this.displays[i].title)>=0){
         active=true;
       }
       displaysChecked.push(active);
@@ -92,7 +92,7 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   addNewAssignmentClick() {
-    let ass: NoteDisplayAssignment = {
+    const ass: NoteDisplayAssignment = {
       Id: [],
       DisplayId: [],
       DisplayNames: [],
@@ -121,7 +121,7 @@ export class SondermeldungenComponent implements OnInit {
   parseChangedDatetimesForBreeze(){
     let i:number;
     for (i=0; i<this.currentNote.NotesAssignments.length; i++) {
-      if (this.currentNote.NotesAssignments[i].entityAspect.entityState.isUnchanged()==false) {
+      if (this.currentNote.NotesAssignments[i].entityAspect.entityState.isUnchanged()===false) {
         this.currentNote.NotesAssignments[i].Start=this.AddTimeZoneToTime(this.currentNote.NotesAssignments[i].Start)
         this.currentNote.NotesAssignments[i].End=this.AddTimeZoneToTime(this.currentNote.NotesAssignments[i].End)
       }
@@ -283,7 +283,7 @@ formatDate(datetime:any,format:string ='DD.MM.YYYY HH:mm') {
 
  openPreview(displayName:string, timestamp: Date){
    let openLink = ''
-  if(!!window.location.origin.indexOf('localhost:4201'))
+  if(window.location.origin.indexOf('localhost') !== -1)
      openLink = `http://localhost:4201/#/${displayName}?timestamp=${timestamp.toISOString()}`
     else
      openLink = `${window.location.origin}/displays/#/${displayName}?timestamp=${timestamp.toISOString()}`
