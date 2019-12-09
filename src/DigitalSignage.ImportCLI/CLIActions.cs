@@ -82,6 +82,21 @@ namespace DigitalSignage.ImportCLI
             }
             catch (IOException ex)
             { Service.LoggingHelper.Trace(ex, false, OvgRlp.Libs.Logging.LogEventLevel.Warning); }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+              foreach (var eve in ex.EntityValidationErrors)
+              {
+                Service.LoggingHelper.Trace(
+                  string.Format("Fehler bei Validierung der Tabelle \"{0}\" (state \"{1}\"):", eve.Entry.Entity.GetType().Name, eve.Entry.State),
+                  OvgRlp.Libs.Logging.LogEventLevel.Error);
+                foreach (var ve in eve.ValidationErrors)
+                {
+                  Service.LoggingHelper.Trace(
+                  string.Format("- Feld \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage),
+                  OvgRlp.Libs.Logging.LogEventLevel.Error);
+                }
+              }
+            }
             catch (Exception ex)
             { Service.LoggingHelper.Trace(ex); }
           }
