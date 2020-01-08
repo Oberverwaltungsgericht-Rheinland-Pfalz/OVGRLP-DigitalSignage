@@ -26,8 +26,7 @@ export class SoapDisplayService implements DisplayService {
 
   getDisplay(name: string): Observable<Display> {
     return this.http.get<Display>(`${this.config.webApiUrl}/settings/displays/${name}`).map(resp => {
-      //HACK: das geht sicherlich besser
-      if (resp instanceof Array) {
+      if (Array.isArray(resp)) {
         return resp[0];
       } else {
         return resp;
@@ -37,14 +36,17 @@ export class SoapDisplayService implements DisplayService {
 
   getDisplayDto(name: string): Observable<DisplayDto> {
     return this.http.get<DisplayDto>(`${this.config.webApiUrl}/settings/displays/${name}/DisplayEx`).map(resp => {
-      //HACK: das geht sicherlich besser
-      if (resp instanceof Array) {return resp[0];} 
+      if (Array.isArray(resp)) {return resp[0];}
       else { return resp; }
     });
   }
 
   getDisplayNotes(name: string): Observable<Note[]> {
-    return this.http.get<Note[]>(`${this.config.webApiUrl}/settings/displays/${name}/activenotes`);
+    const urlString = window.location.href.replace('#','')
+    const url = new URL(urlString)
+    const timestamp = url.searchParams.get("timestamp") || new Date().toISOString()
+
+    return this.http.get<Note[]>(`${this.config.webApiUrl}/settings/displays/${name}/activenotes?timestamp=${timestamp}`);
   }
 
   getDisplayStatus(display: Display): Observable<DisplayStatus> {

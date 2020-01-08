@@ -5,6 +5,7 @@
   padding: 0px;
   font-size: 18px;
   z-index: 1;
+  display: block !important;
 }
 
 #ds-head-status {
@@ -48,16 +49,18 @@
 #ds-main-details {
   padding:10px;
   background: url('/assets/img/rlp_wappen_500x613.png') center no-repeat;
+  height: calc(100vh - 80px);
 }
 
 #ds-main-details > div {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.6);
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
   padding: 10px;
 }
 
 #ds-main-overview {
   padding: 10px;
+  height: calc(100vh - 80px);
 }
 
 .ds-overview-termin-completed {
@@ -76,6 +79,10 @@
 .ds-overview-termin-notpublic {
   color: #af0101;
   font-weight: bold;
+}
+
+.ds-box {
+  overflow: hidden;
 }
 
 .ds-box-content {
