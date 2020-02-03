@@ -38,12 +38,17 @@
         <div fxLayout="row">
           <div fxFlex="10"><br /></div>
           <div fxFlex>
-            {{ termin.parteienAktivKurz }} <span style="font-size: 150%;">./.</span> {{ termin.parteienPassivKurz }}
+            <div [ngSwitch]="termin.bemerkung2">
+              <div *ngSwitchCase="'STRAF'"><span *ngIf="termin.oeffentlich == 'ja'">{{ termin.parteienAktivKurz }}</span><span *ngIf="termin.oeffentlich == 'nein'"><br /></span></div>
+              <div *ngSwitchCase="'ZIV'"><span *ngIf="termin.oeffentlich == 'ja'">{{ termin.parteienAktivKurz }} ./. {{ termin.parteienPassivKurz }}</span><span *ngIf="termin.oeffentlich == 'nein'"><br /></span></div>
+              <div *ngSwitchCase="'FAM'"><span *ngIf="termin.oeffentlich == 'ja'">{{ termin.parteienAktivKurz }} ./. {{ termin.parteienPassivKurz }}</span><span *ngIf="termin.oeffentlich == 'nein'"><br /></span></div>
+              <div *ngSwitchCase="''"><span *ngIf="termin.oeffentlich == 'ja'">{{ termin.parteienAktivKurz }} ./. {{ termin.parteienPassivKurz }}</span><span *ngIf="termin.oeffentlich == 'nein'"><br /></span></div>
+              <div *ngSwitchCase="'VSIMM'">{{ termin.gegenstand }}</div>
+              <div *ngSwitchDefault><span *ngIf="termin.oeffentlich == 'ja'">{{ termin.parteienAktivKurz }} ./. {{ termin.parteienPassivKurz }}</span><span *ngIf="termin.oeffentlich == 'nein'"><br /></span></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
