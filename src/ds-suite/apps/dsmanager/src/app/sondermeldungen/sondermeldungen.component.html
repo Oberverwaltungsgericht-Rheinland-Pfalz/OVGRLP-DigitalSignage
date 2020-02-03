@@ -2,11 +2,11 @@
     <div class="content-container">
     <nav class="sidenav">
         <section class="sidenav-content">
-          
+
             <ul class="nav-list">
                 <div *ngFor="let note of notes; let index = index;">
-                    <button class="btn btn-link btn-sm btn-notes" 
-                      [name]="'sel_gericht_' + index"  
+                    <button class="btn btn-link btn-sm btn-notes"
+                      [name]="'sel_gericht_' + index"
                       [id]="'sel_gericht_' + index"
                       (click)="noteClick(note)">
                       {{note.Name}}
@@ -20,17 +20,17 @@
             <clr-icon shape="plus"></clr-icon>
             neu hinzufügen
           </button>
-        </nav>  
+        </nav>
 
     <div class="content-area" *ngIf="currentNote!=null">
-      
+
       <div class="edit-note-area">
           <div class="card besetzung-card-meldung">
               <div class="card-block multiple-list-header">
                       <span>Meldung</span>
               </div>
               <div class="card-block card-block-content">
-                   
+
                 <div fxLayout="column" fxFlexFill>
                     <div fxFlex="40px">
                         <div fxLayout="row" fxFlexFill>
@@ -47,11 +47,12 @@
                             <label for="content">Html Code</label>
                         </div>
                         <div fxFlex>
-                            <ngx-codemirror #codemirrorEditor   
-                            [(ngModel)]="currentNote.Content" 
+                            <ngx-codemirror #codemirrorEditor
+                            [(ngModel)]="currentNote.Content"
                                 [options]="{
                                     lineNumbers: true,
                                     lineWrapping: true,
+                                    scrollbarStyle: null,
                                     mode: 'text/html'}">
                             </ngx-codemirror>
                             <!--textarea class="clr-textarea clr-textarea-full-size" id="content" [(ngModel)]="currentNote.Content" name="content"></textarea-->
@@ -67,13 +68,13 @@
                                 <label for="forced"></label>
                             </div>
                             <span class="clr-subtext help-text-margin">Steuerung, ob der Inhalt trotz aktivier Termine angezeigt werden soll</span>
-                        </div>                            
+                        </div>
                     </div>
                 </div>
 
               </div>
           </div>
-  
+
           <div class="card besetzung-card-zuordnung">
               <div class="card-block multiple-list-header">
                   <span>Zuordnungen</span>
@@ -84,13 +85,15 @@
                         <div fxFlex="calc(100% - 280px)">
                             <clr-datagrid #DataGridTermine style="height: 95%">
                                 <clr-dg-column class="ds-note-assignment-column-edit"></clr-dg-column>
+                                <clr-dg-column class="ds-note-assignment-column-edit"></clr-dg-column>
                                 <clr-dg-column class="ds-note-assignment-column-displays">Display</clr-dg-column>
                                 <clr-dg-column class="ds-note-assignment-column-uhrzeit-von">Start</clr-dg-column>
                                 <clr-dg-column class="ds-note-assignment-column-uhrzeit-bis">Ende</clr-dg-column>
                                 <clr-dg-column class="ds-note-assignment-column-kommentar">Kommentar</clr-dg-column>
-                            
+
                                 <clr-dg-placeholder>Es sind keine Zuordnungen vorhanden</clr-dg-placeholder>
                                 <clr-dg-row *clrDgItems="let ass of currentDisplayNoteAssignments; let i = index">
+                                    <clr-dg-cell class="ds-note-assignment-column-preview"><clr-icon shape="eye" class="is-solid" (click)="openPreview(ass.DisplayPcName, ass.Start)"></clr-icon></clr-dg-cell>
                                     <clr-dg-cell class="ds-note-assignment-column-edit"><clr-icon shape="pencil" class="is-solid" (click)="editAssignmentClick(ass)"></clr-icon></clr-dg-cell>
                                     <clr-dg-cell class="ds-note-assignment-column-displays">{{ ass.DisplayNames }}</clr-dg-cell>
                                     <clr-dg-cell class="ds-note-assignment-column-uhrzeit-von">{{ ass.StartForDisplay }}</clr-dg-cell>
@@ -119,7 +122,7 @@
                                             <div fxFlex>
                                                 <input type="text" id="comment" [(ngModel)]="currentDisplayNoteAssignment.Comment" name="comment" class="full-width" >
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                     <div fxFlex="40px">
@@ -147,16 +150,16 @@
                                             <label for="content">Displays</label>
                                         </div>
                                         <div fxFlex style="display:flex;flex-wrap:wrap;overflow: auto;">
-                                                <div *ngFor="let display of displays; let index = index;" style="margin-right: 16px;">
-                                                    <clr-checkbox
-                                                    [clrInline]="true"
-                                                    [name]="'sel_displ_' + index"  
-                                                            [id]="'sel_displ_' + index"
-                                                            [(clrChecked)]="currentDisplaysChecked[index]">
-                                                            {{display.title}} 
-                                                    </clr-checkbox>
-                                                </div>
-                                            
+                                            <clr-checkbox-container style="margin-top:unset;margin-left:2px" clrInline>
+                                                <clr-checkbox-wrapper *ngFor="let display of displays; let index = index;">
+                                                    <input type="checkbox"
+                                                        clrCheckbox
+                                                        [id]="'sel_displ_' + index"
+                                                        [name]="'sel_displ_' + index"
+                                                        [(ngModel)]="currentDisplaysChecked[index]" />
+                                                    <label>{{display.title}}</label>
+                                                </clr-checkbox-wrapper>
+                                            </clr-checkbox-container>
                                         </div>
                                     </div>
                                     <div fxFlex="30px" style="text-align: right;">
@@ -168,10 +171,10 @@
                                             </button>
                                         <button (click)="cancelAssignmentClick()" class="btn btn-sm btn-link" type="button">
                                             <clr-icon shape="times"></clr-icon>
-                                            </button>    
+                                            </button>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -179,8 +182,8 @@
               </div>
           </div>
       </div>
-      
-      
+
+
       <div class="edit-note-footer">
           <button (click)="saveClick()" class="btn btn-sm btn-link" type="button">
               <clr-icon shape="floppy"></clr-icon>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DateFormatPipe } from 'angular2-moment';
+import { DateFormatPipe } from 'ngx-moment';
 
 import { CodemirrorComponent } from '@ctrl/ngx-codemirror';
 import { YesNoDialogComponent } from '@ds-suite/ui';
@@ -66,13 +66,16 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   initActivatedDisplays(){
-    var displaysChecked: boolean[] = [] ;
-    var i:number;
-    var active:boolean;
+    // HACK: dieser Einzeiler würde die restlichen Zeilen ersetzen:
+    // this.currentDisplaysChecked = this.displays.map((e, idx) => !!~this.currentDisplayNoteAssignment.DisplayNames.findIndex(bez=> bez === this.displays[idx].title))
+
+    const displaysChecked: boolean[] = [] ;
+    let i:number;
+    let active:boolean;
 
     for (i=0; i<this.displays.length; i++) {
       active=false;
-      if (this.currentDisplayNoteAssignment.DisplayNames.findIndex(bez=> bez==this.displays[i].title)>=0){
+      if (this.currentDisplayNoteAssignment.DisplayNames.findIndex(bez=> bez===this.displays[i].title)>=0){
         active=true;
       }
       displaysChecked.push(active);
@@ -89,10 +92,11 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   addNewAssignmentClick() {
-    var ass: NoteDisplayAssignment = {
+    const ass: NoteDisplayAssignment = {
       Id: [],
       DisplayId: [],
       DisplayNames: [],
+      DisplayPcName:'',
       Start: null,
       StartForDisplay: null,
       End: null,
@@ -115,20 +119,20 @@ export class SondermeldungenComponent implements OnInit {
   // breeze wandelt intern die Zeitzonen zwischen Server und Client um und speichert in der Datenbank im UTC-Format
   // Da dies an anderer Stelle (bspw. bei Displays) nicht geschieht, wird hier die Umwandlung umgangen
   parseChangedDatetimesForBreeze(){
-    var i:number;
+    let i:number;
     for (i=0; i<this.currentNote.NotesAssignments.length; i++) {
-      if (this.currentNote.NotesAssignments[i].entityAspect.entityState.isUnchanged()==false) {
+      if (this.currentNote.NotesAssignments[i].entityAspect.entityState.isUnchanged()===false) {
         this.currentNote.NotesAssignments[i].Start=this.AddTimeZoneToTime(this.currentNote.NotesAssignments[i].Start)
         this.currentNote.NotesAssignments[i].End=this.AddTimeZoneToTime(this.currentNote.NotesAssignments[i].End)
       }
     }
   }
   AddTimeZoneToTime(source: any) {
-    var rval:any = source;
+    let rval:any = source;
 
     if (null!=rval) {
       rval=new Date(Date.parse(rval));
-      var offsetMin = rval.getTimezoneOffset()*-1;
+      const offsetMin = rval.getTimezoneOffset()*-1;
       rval.setMinutes(rval.getMinutes() + offsetMin)
       rval=new Date(Date.parse(rval));
     }
@@ -137,9 +141,9 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   saveAssignmentClick(){
-    
+
     //!\TODO: Grafische Info anzeigen
-    if (this.currentDisplaysChecked.filter(d => d==true).length==0) {
+    if (this.currentDisplaysChecked.filter(d => d===true).length===0) {
       return;
     }
 
@@ -160,12 +164,12 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   saveCurrentAssignment() {
-    var i:number;
+    let i:number;
     for (i=0; i<this.currentDisplaysChecked.length; i++) {
-      if (this.currentDisplaysChecked[i]==true) {
-        var displayId=this.displays[i].id;
+      if (this.currentDisplaysChecked[i]===true) {
+        const displayId=this.displays[i].id;
         this.currentNote.entityAspect.entityManager.createEntity("NoteAssignment",{
-          DisplayId: displayId, 
+          DisplayId: displayId,
           Comment: this.currentDisplayNoteAssignment.Comment,
           Start: this.currentDisplayNoteAssignment.Start,
           End: this.currentDisplayNoteAssignment.End,
@@ -178,7 +182,7 @@ export class SondermeldungenComponent implements OnInit {
 
   setCodeMirrorSize() {
     // geht bestimmt besser - aber vorerst lauffähig
-    var foo = new Promise<void>(resolve => {
+    const foo = new Promise<void>(resolve => {
       setTimeout(resolve, 100);
     }).then(() => {
       this.codemirrorEditor.codeMirror.setSize("100%","calc(100% - 16px)")
@@ -187,9 +191,9 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   deleteCurrentAssignment() {
-    var i:number;
+    let i:number;
     for (i=0; i<this.currentDisplayNoteAssignment.Id.length; i++) {
-      var index=this.currentNote.NotesAssignments.findIndex(a=> a.Id==this.currentDisplayNoteAssignment.Id[i])
+      const index=this.currentNote.NotesAssignments.findIndex(a=> a.Id===this.currentDisplayNoteAssignment.Id[i])
       this.currentNote.NotesAssignments[index].entityAspect.setDeleted();
     }
   }
@@ -209,55 +213,56 @@ export class SondermeldungenComponent implements OnInit {
   }
 
   loadCurrentNoteDisplayAssignments() {
-    var ass: NotesAssignments[] = null;
-    var displayAss: NoteDisplayAssignment[] = [];
-    
+    let ass: NotesAssignments[] = null;
+    const displayAss: NoteDisplayAssignment[] = [];
+
     if (null!=this.currentNote) {
       ass=this.currentNote.NotesAssignments;
       ass.forEach(a =>{
-        var ind = displayAss.findIndex(d=> 
-          this.formatDate(d.Start) == this.formatDate(a.Start) && 
-          this.formatDate(d.End) == this.formatDate(a.End) && 
-          d.Comment == a.Comment
+        const ind = displayAss.findIndex(d=>
+          this.formatDate(d.Start) === this.formatDate(a.Start) &&
+          this.formatDate(d.End) === this.formatDate(a.End) &&
+          d.Comment === a.Comment
           );
-        var displayIndex=this.displays.findIndex(d=>d.id==a.DisplayId);
+        const displayIndex=this.displays.findIndex(d=>d.id===a.DisplayId);
         if (ind>=0) {
           displayAss[ind].Id.push(a.Id);
           displayAss[ind].DisplayId.push(a.DisplayId);
           displayAss[ind].DisplayNames.push(this.displays[displayIndex].title);
         }
         else {
-          var dsa: NoteDisplayAssignment ={
+          const dsa: NoteDisplayAssignment ={
             Id: [a.Id],
             DisplayId: [a.DisplayId],
             DisplayNames: [this.displays[displayIndex].title],
-            Start: a.Start, 
-            StartForDisplay: this.formatDate(a.Start), 
-            End: a.End, 
-            EndForDisplay: this.formatDate(a.End), 
+            DisplayPcName: this.displays[displayIndex].name,
+            Start: a.Start,
+            StartForDisplay: this.formatDate(a.Start),
+            End: a.End,
+            EndForDisplay: this.formatDate(a.End),
             Comment: a.Comment
           };
           displayAss.push(dsa)
         }
       });
     }
-    
+
     this.currentDisplayNoteAssignments= displayAss;
   }
 
   OnDeleteResult(result:boolean) {
-    var assignmentIds: number[] = [];
+    const assignmentIds: number[] = [];
     if (result) {
-      
+
       //
       this.currentNote.NotesAssignments.forEach(a =>{
        assignmentIds.push(a.Id);
       })
       assignmentIds.forEach(id=>{
-       var ind=this.currentNote.NotesAssignments.findIndex(a=> a.Id==id);
+       const ind=this.currentNote.NotesAssignments.findIndex(a=> a.Id===id);
        this.currentNote.NotesAssignments[ind].entityAspect.setDeleted();
       });
-      
+
       //this.noteService.saveNotesByBreeze().then(() => {
         this.noteService.deleteNoteByBreeze(this.currentNote).then(() => {
           this.currentNote=null;
@@ -268,16 +273,24 @@ export class SondermeldungenComponent implements OnInit {
   }
 
 formatDate(datetime:any,format:string ='DD.MM.YYYY HH:mm') {
-  var rval:any = datetime;
-  console.log("formatDate:",datetime); 
+  let rval:any = datetime;
   if (null!=datetime) {
-    var df = new DateFormatPipe();
-    rval=df.transform(datetime, format); 
+    const df = new DateFormatPipe();
+    rval=df.transform(datetime, format);
   }
-  console.log("formatDate1:",rval); 
   return rval
  }
 
+ openPreview(displayName:string, timestamp: Date){
+   let openLink = ''
+   timestamp = timestamp || new Date()
+  if(window.location.origin.indexOf('localhost') !== -1)
+     openLink = `http://localhost:4201/#/${displayName}?timestamp=${timestamp.toISOString()}`
+    else
+     openLink = `${window.location.origin}/displays/#/${displayName}?timestamp=${timestamp.toISOString()}`
+
+    window.open(openLink, "displayPreview", `width=${window.screen.availWidth}, height=${window.screen.availHeight}`)
+ }
 }
 
 interface NotesAssignments {
@@ -294,6 +307,7 @@ interface NoteDisplayAssignment {
   Id: number[];
   DisplayId: number [];
   DisplayNames: string[];
+  DisplayPcName: string;
   Start: any;
   StartForDisplay: any;
   End: any;

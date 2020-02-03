@@ -1,21 +1,20 @@
 
 .ds-termin-column-uhrzeit {
-  min-width: 2.5rem;
-  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
 }
 
 .ds-termin-column-az {
   min-width: 130px;
-  
-}
-
-.ds-termin-column-partei {
+  max-width: 130px;
 }
 
 .ds-termin-column-oeffentlich {
-  min-width: 3rem;
+  min-width: 75px;
+  max-width: 75px;
 }
 
 .ds-termin-column-status {
-  min-width: 130px;
+  min-width: 120px;
+  max-width: 120px;
 }

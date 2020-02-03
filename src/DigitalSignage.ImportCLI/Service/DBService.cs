@@ -268,8 +268,8 @@ namespace DigitalSignage.ImportCLI.Service
       verfahren.Besetzung = DetermineBesetzung(verf);
 
       //Aktivpartei und Prozessbevollmächtigte Aktivpartei
-      verfahren.ParteienAktiv = DetermineAktivParteien(verf); ;
-      verfahren.ProzBevAktiv = DetermineAktivProzBev(verf); ;
+      verfahren.ParteienAktiv = DetermineAktivParteien(verf);
+      verfahren.ProzBevAktiv = DetermineAktivProzBev(verf);
 
       //Passivpartei und Prozessbevollmächtigte Passivpartei
       verfahren.ParteienPassiv = DeterminePassivParteien(verf);
