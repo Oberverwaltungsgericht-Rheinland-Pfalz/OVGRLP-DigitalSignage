@@ -6,6 +6,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { PfolgFoyerComponent } from './pfolg-foyer/pfolg-foyer.component';
 import { PfolgSaalVorschauRechtsComponent } from './pfolg-saal-vorschau-rechts/pfolg-saal-vorschau-rechts.component';
 import { PfolgSaalVorschauRechtsGrauComponent } from './pfolg-saal-vorschau-rechts-grau/pfolg-saal-vorschau-rechts-grau.component';
+import { PfolgPforteComponent } from './pfolg-pforte/pfolg-pforte.component';
 
 import { DsCommonModule } from '../../ds-common/ds-common.module';
 import { CoreModule } from '@ds-suite/core';
@@ -13,7 +14,8 @@ import { CoreModule } from '@ds-suite/core';
 const routes: Routes = [
   { path: "pfolg-foyer", component: PfolgFoyerComponent },
   { path: "pfolg-saal-vorschau-rechts", component: PfolgSaalVorschauRechtsComponent },
-  { path: "pfolg-saal-vorschau-rechts-grau", component: PfolgSaalVorschauRechtsGrauComponent }
+  { path: "pfolg-saal-vorschau-rechts-grau", component: PfolgSaalVorschauRechtsGrauComponent },
+  { path: "pfolg-pforte", component: PfolgPforteComponent }
 ];
 
 @NgModule({
@@ -27,7 +29,8 @@ const routes: Routes = [
   declarations: [
     PfolgFoyerComponent,
     PfolgSaalVorschauRechtsComponent,
-    PfolgSaalVorschauRechtsGrauComponent
+    PfolgSaalVorschauRechtsGrauComponent,
+    PfolgPforteComponent
   ]
 })
 export class PfolgModule { }

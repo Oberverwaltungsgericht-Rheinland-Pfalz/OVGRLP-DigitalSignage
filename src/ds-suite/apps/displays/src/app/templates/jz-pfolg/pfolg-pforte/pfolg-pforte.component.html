@@ -1,0 +1,50 @@
+<div *ngIf="display" id="ds-display" fxLayout="column">
+
+  <div id="ds-head-title" fxLayout="row">
+    <div fxFlex="75" class="ds-head-title-left">
+      {{ display.title }}
+    </div>
+    <div fxFlex class="ds-head-title-right" fxLayout="column">
+    </div>
+  </div>
+  <div class="ds-head-title-date">
+    {{ datum | date: 'd. MMMM yyyy' }} - {{ datum | date: 'H:mm' }} Uhr
+  </div>
+
+  <div id="ds-main"  #dsTermineContainer style="display: flex; flex-wrap: wrap; align-items: stretch;">
+    <div style="width: 33%; margin-top: 1em;" *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
+      <!--div class="ds-overview-termin"-->
+        <!--div fxLayout="row"-->
+          <div style="font-size: 0.9em; line-height: 1.4em;">
+            <strong>{{ termin.uhrzeitAktuell }} Uhr, Az: {{ termin.az }}</strong><br />
+            <span *ngIf="termin.oeffentlich == 'nein'" class="olg-layout-nichtoeffentlich">
+              nicht  öffentlich
+            </span>
+            <span *ngIf="termin.oeffentlich == 'ja'" class="olg-layout-oeffentlich">
+              öffentlich
+            </span>
+            &nbsp;-&nbsp;{{ termin.sitzungssaal }}
+            <br />
+            <div style="position: relative; overflow: hidden;" *ngFor="let aktiv of termin.parteienAktiv; last as a">
+              <div class="switch"><input id="partAktiv{{termin.id}}" type="checkbox"><span class="slider round"></span></div>
+              <label for="partAktiv{{termin.id}}" style="padding-left: 30px;">{{aktiv.substr(0,25)}}</label><span *ngIf="aktiv.length > 25">...</span><span *ngIf="!a"><br /></span>
+            </div>
+            <div style="position: relative; overflow: hidden;" *ngFor="let bevAktiv of termin.prozBevAktiv; last as ba">
+              <div class="switch"><input id="partBevAktiv{{termin.id}}" type="checkbox"><span class="slider round"></span></div>
+              <label for="partBevAktiv{{termin.id}}"  style="padding-left: 30px;">{{bevAktiv.substr(0,25)}}</label><span *ngIf="bevAktiv.length > 25">...</span><span *ngIf="!ba"><br /></span>
+            </div>
+            <div style="position: relative; overflow: hidden;" *ngFor="let passiv of termin.parteienPassiv; last as p">
+              <div class="switch"><input id="partPassiv{{termin.id}}" type="checkbox"><span class="slider round"></span></div>
+              <label for="partPassiv{{termin.id}}"  style="padding-left: 30px;">{{passiv.substr(0,25)}}</label><span *ngIf="passiv.length > 25">...</span><span *ngIf="!p"><br /></span>
+            </div>
+            <div style="position: relative; overflow: hidden;" *ngFor="let bevPassiv of termin.prozBevPassiv; last as bp">
+              <div class="switch"><input id="partBevPassiv{{termin.id}}" type="checkbox"><span class="slider round"></span></div>
+              <label for="partBevPassiv{{termin.id}}"  style="padding-left: 30px;">{{bevPassiv.substr(0,25)}}</label><span *ngIf="bevPassiv.length > 25">...</span><span *ngIf="!bp"><br /></span>
+            </div>
+          </div>
+        <!--div-->
+      <!--div-->
+    </div>
+  </div>
+
+</div>
