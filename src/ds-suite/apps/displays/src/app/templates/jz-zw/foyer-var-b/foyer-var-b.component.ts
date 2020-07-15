@@ -26,7 +26,7 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
 })
 export class JZZWFoyerVarBComponent extends DisplayTemplateComponent { 
   ngOnInit() {
-    //this.updateInterval = 1000;
+    this.updateInterval = 5000;
 
     super.ngOnInit();
   }

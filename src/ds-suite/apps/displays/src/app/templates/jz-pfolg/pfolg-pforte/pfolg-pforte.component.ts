@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations';
 
-import { Termin, Display } from '@ds-suite/model';
 import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
+
+import { Termin, Display } from '@ds-suite/model';
 
 @Component({
   selector: 'app-pfolg-pforte',

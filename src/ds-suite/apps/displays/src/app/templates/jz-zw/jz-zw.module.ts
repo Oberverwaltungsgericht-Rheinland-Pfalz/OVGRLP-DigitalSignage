@@ -9,6 +9,7 @@ import { JZZWSaalVarAComponent } from './saal-var-a/saal-var-a.component';
 import { JZZWSaalVarBComponent } from './saal-var-b/saal-var-b.component';
 import { JZZWSaalVarRechtsComponent } from './saal-var-weitere-rechts/saal-var-weitere-rechts.component';
 import { JZZWSaalVarUntenComponent } from './saal-var-weitere-unten/saal-var-weitere-unten.component';
+import { JZZWSitzungssaalComponent } from './sitzungssaal/sitzungssaal.component';
 
 import { DsCommonModule } from '../../ds-common/ds-common.module';
 import { CoreModule } from '@ds-suite/core';
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: "jzzw-saal-variante-a", component: JZZWSaalVarAComponent },
   { path: "jzzw-saal-variante-b", component: JZZWSaalVarBComponent },
   { path: "jzzw-saal-variante-weitere-rechts", component: JZZWSaalVarRechtsComponent },
-  { path: "jzzw-saal-variante-weitere-unten", component: JZZWSaalVarUntenComponent }
+  { path: "jzzw-saal-variante-weitere-unten", component: JZZWSaalVarUntenComponent },
+  { path: "jzzw-sitzungssaal", component: JZZWSitzungssaalComponent }
 ];
 
 @NgModule({
@@ -36,7 +38,8 @@ const routes: Routes = [
     JZZWSaalVarAComponent,
     JZZWSaalVarBComponent,
     JZZWSaalVarRechtsComponent,
-    JZZWSaalVarUntenComponent
+    JZZWSaalVarUntenComponent,
+    JZZWSitzungssaalComponent
   ]
 })
 export class JzZwModule { }

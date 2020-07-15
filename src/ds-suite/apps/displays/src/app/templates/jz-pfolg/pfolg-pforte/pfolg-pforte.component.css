@@ -46,18 +46,11 @@
 
 #ds-main-overview {
   padding: 0 2%;
-  /*
-  background: url("/assets/img/rlp_wappen_600x735.png") no-repeat;
-  background-size: auto 66%;
-  background-position: 50% 25%; 
-  */
 }
 
 #ds-main {
   padding: 0 2%;
-  background: url("/assets/img/rlp_wappen_600x735.png") no-repeat;
-  background-size: auto 25%;
-  background-position: 99% 97%; 
+  overflow-y: scroll;
 }
 
 .ds-overview-termin {
@@ -132,3 +125,8 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 } 
+
+input[type="checkbox"].gone {
+  width: 18px;
+  height: 18px;
+}

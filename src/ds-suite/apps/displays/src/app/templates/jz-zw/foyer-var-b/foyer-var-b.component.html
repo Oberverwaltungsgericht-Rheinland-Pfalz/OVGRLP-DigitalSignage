@@ -14,15 +14,15 @@
 
   <div id="ds-main" fxFlex fxLayout="column" #dsTermineContainer>
     <div *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
-      <div class="ds-overview-termin" fxLayout="row">
-        <div fxFlex="10">
-          <strong>{{ termin.uhrzeitAktuell }} Uhr</strong>
-        </div>
-        <div fxFlex="25">
-          <div>
+      <div class="ds-overview-termin">
+        <div fxLayout="row">
+          <div fxFlex="10">
+            <strong>{{ termin.uhrzeitAktuell }} Uhr</strong>
+          </div>
+          <div fxFlex="25">
             <strong>{{ termin.az }}</strong>
           </div>
-          <div>
+          <div fxFlex="30" class="olg-layout-saal">
             <span *ngIf="termin.oeffentlich == 'nein'" class="olg-layout-nichtoeffentlich">
               Nicht öffentliche Sitzung
             </span>
@@ -30,12 +30,23 @@
               Öffentliche Sitzung
             </span>
           </div>
+          <div style="text-align: right;" fxFlex>
+            {{ termin.sitzungssaal }}
+          </div>
+          
         </div>
-        <div fxFlex>
-          {{ termin.parteienAktivKurz }} <br />./. {{ termin.parteienPassivKurz }}
-        </div>
-        <div fxFlex="15" class="olg-layout-saal">
-          {{ termin.sitzungssaal }}
+        <div fxLayout="row">
+          <div fxFlex="10"><br /></div>
+          <div fxFlex>
+            <div [ngSwitch]="termin.bemerkung2">
+              <div *ngSwitchCase="'STRAF'"><span *ngIf="termin.oeffentlich == 'ja'">{{ termin.parteienAktivKurz }}</span><span *ngIf="termin.oeffentlich == 'nein'"><br /></span></div>
+              <div *ngSwitchCase="'ZIV'"><span *ngIf="termin.oeffentlich == 'ja'">{{ termin.parteienAktivKurz }} ./. {{ termin.parteienPassivKurz }}</span><span *ngIf="termin.oeffentlich == 'nein'"><br /></span></div>
+              <div *ngSwitchCase="'FAM'"><span *ngIf="termin.oeffentlich == 'ja'">{{ termin.parteienAktivKurz }} ./. {{ termin.parteienPassivKurz }}</span><span *ngIf="termin.oeffentlich == 'nein'"><br /></span></div>
+              <div *ngSwitchCase="''"><span *ngIf="termin.oeffentlich == 'ja'">{{ termin.parteienAktivKurz }} ./. {{ termin.parteienPassivKurz }}</span><span *ngIf="termin.oeffentlich == 'nein'"><br /></span></div>
+              <div *ngSwitchCase="'VSIMM'">{{ termin.gegenstand }}</div>
+              <div *ngSwitchDefault><span *ngIf="termin.oeffentlich == 'ja'">{{ termin.parteienAktivKurz }} ./. {{ termin.parteienPassivKurz }}</span><span *ngIf="termin.oeffentlich == 'nein'"><br /></span></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

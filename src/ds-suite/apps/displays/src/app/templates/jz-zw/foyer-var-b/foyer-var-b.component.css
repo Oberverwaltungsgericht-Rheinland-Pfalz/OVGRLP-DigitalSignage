@@ -11,8 +11,6 @@
 
 #ds-head-title {
   padding: 0 3%;
-  /*background-color: #8e8e8e;
-  background-image: linear-gradient(to right, #8e8e8e 0%, white 50%);*/
   background-color: #fff;
   color: #333;
 }
@@ -74,4 +72,4 @@
 .olg-layout-oeffentlich {
 	font-weight: bold; color: #3d7417;
 }
-.olg-layout-saal { text-align: right; }
+.olg-layout-saal { text-align: left; }

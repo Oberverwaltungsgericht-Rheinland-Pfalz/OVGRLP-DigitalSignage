@@ -8,42 +8,62 @@
     </div>
   </div>
   <div class="ds-head-title-date">
-    {{ datum | date: 'd. MMMM yyyy' }} - {{ datum | date: 'H:mm' }} Uhr
+    {{ datum | date: 'd. MMMM yyyy' }}
   </div>
 
-  <div id="ds-main"  #dsTermineContainer style="display: flex; flex-wrap: wrap; align-items: stretch;">
-    <div style="width: 33%; margin-top: 1em;" *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
-      <!--div class="ds-overview-termin"-->
-        <!--div fxLayout="row"-->
-          <div style="font-size: 0.9em; line-height: 1.4em;">
-            <strong>{{ termin.uhrzeitAktuell }} Uhr, Az: {{ termin.az }}</strong><br />
-            <span *ngIf="termin.oeffentlich == 'nein'" class="olg-layout-nichtoeffentlich">
-              nicht  öffentlich
-            </span>
-            <span *ngIf="termin.oeffentlich == 'ja'" class="olg-layout-oeffentlich">
-              öffentlich
-            </span>
-            &nbsp;-&nbsp;{{ termin.sitzungssaal }}
-            <br />
-            <div style="position: relative; overflow: hidden;" *ngFor="let aktiv of termin.parteienAktiv; last as a">
-              <div class="switch"><input id="partAktiv{{termin.id}}" type="checkbox"><span class="slider round"></span></div>
-              <label for="partAktiv{{termin.id}}" style="padding-left: 30px;">{{aktiv.substr(0,25)}}</label><span *ngIf="aktiv.length > 25">...</span><span *ngIf="!a"><br /></span>
-            </div>
-            <div style="position: relative; overflow: hidden;" *ngFor="let bevAktiv of termin.prozBevAktiv; last as ba">
-              <div class="switch"><input id="partBevAktiv{{termin.id}}" type="checkbox"><span class="slider round"></span></div>
-              <label for="partBevAktiv{{termin.id}}"  style="padding-left: 30px;">{{bevAktiv.substr(0,25)}}</label><span *ngIf="bevAktiv.length > 25">...</span><span *ngIf="!ba"><br /></span>
-            </div>
-            <div style="position: relative; overflow: hidden;" *ngFor="let passiv of termin.parteienPassiv; last as p">
-              <div class="switch"><input id="partPassiv{{termin.id}}" type="checkbox"><span class="slider round"></span></div>
-              <label for="partPassiv{{termin.id}}"  style="padding-left: 30px;">{{passiv.substr(0,25)}}</label><span *ngIf="passiv.length > 25">...</span><span *ngIf="!p"><br /></span>
-            </div>
-            <div style="position: relative; overflow: hidden;" *ngFor="let bevPassiv of termin.prozBevPassiv; last as bp">
-              <div class="switch"><input id="partBevPassiv{{termin.id}}" type="checkbox"><span class="slider round"></span></div>
-              <label for="partBevPassiv{{termin.id}}"  style="padding-left: 30px;">{{bevPassiv.substr(0,25)}}</label><span *ngIf="bevPassiv.length > 25">...</span><span *ngIf="!bp"><br /></span>
-            </div>
-          </div>
-        <!--div-->
-      <!--div-->
+  <div id="ds-main" #dsTermineContainer style="display: flex; flex-wrap: wrap; align-items: stretch;">
+    <div style="width: 50%; margin-top: 1em;" *ngFor="let termin of termine" #dsTermineChild>
+      <div style="font-size: 0.9em; line-height: 1.4em;">
+        <strong>{{ termin.uhrzeitAktuell }} Uhr, Az: {{ termin.az }}</strong><br />
+        <strong><i>{{ termin.gegenstand }}</i></strong><br />
+        <span *ngIf="termin.oeffentlich == 'nein'" class="olg-layout-nichtoeffentlich">
+          nicht  öffentlich
+        </span>
+        <span *ngIf="termin.oeffentlich == 'ja'" class="olg-layout-oeffentlich">
+          öffentlich
+        </span>
+        &nbsp;-&nbsp;<input type="text" value="{{ termin.sitzungssaal }}" style="font-weight: 700; border: #fff; padding: 0; margin: 0; font-size: 0.9em;" />
+        <br />
+        <div style="position: relative; overflow: hidden;" *ngFor="let aktiv of termin.parteienAktiv; let i = index; last as a">
+          <div class="switch"><input id="partAktiv{{termin.id}}{{i}}" type="checkbox"><span class="slider round"></span></div>
+          <label for="partAktiv{{termin.id}}{{i}}" style="padding-left: 30px;">{{aktiv.substr(0,40)}}</label><span *ngIf="aktiv.length > 40">...</span><span *ngIf="!a"><br /></span>
+        </div>
+        <div style="position: relative; overflow: hidden;" *ngFor="let bevAktiv of termin.prozBevAktiv; let i = index; last as ba">
+          <div class="switch"><input id="partBevAktiv{{termin.id}}{{i}}" type="checkbox"><span class="slider round"></span></div>
+          <label for="partBevAktiv{{termin.id}}{{i}}"  style="padding-left: 30px;">RA {{bevAktiv.substr(0,40)}}</label><span *ngIf="bevAktiv.length > 40">...</span><span *ngIf="!ba"><br /></span>
+        </div>
+        <div style="position: relative; overflow: hidden;" *ngFor="let passiv of termin.parteienPassiv; let i = index; last as p">
+          <div class="switch"><input id="partPassiv{{termin.id}}{{i}}" type="checkbox"><span class="slider round"></span></div>
+          <label for="partPassiv{{termin.id}}{{i}}"  style="padding-left: 30px;">{{passiv.substr(0,40)}}</label><span *ngIf="passiv.length > 40">...</span><span *ngIf="!p"><br /></span>
+        </div>
+        <div style="position: relative; overflow: hidden;" *ngFor="let bevPassiv of termin.prozBevPassiv; let i = index; last as bp">
+          <div class="switch"><input id="partBevPassiv{{termin.id}}{{i}}" type="checkbox"><span class="slider round"></span></div>
+          <label for="partBevPassiv{{termin.id}}{{i}}"  style="padding-left: 30px;">RA {{bevPassiv.substr(0,40)}}</label><span *ngIf="bevPassiv.length > 40">...</span><span *ngIf="!bp"><br /></span>
+        </div>
+        <div>---</div>
+        <div style="position: relative; overflow: hidden;" *ngFor="let beigeladen of termin.parteienBeigeladen; let i = index; last as beige">
+          <div class="switch"><input id="partBeigeladen{{termin.id}}{{i}}" type="checkbox"><span class="slider round"></span></div>
+          <label for="partBeigeladen{{termin.id}}{{i}}"  style="padding-left: 30px;">{{beigeladen.substr(0,40)}}</label><span *ngIf="beigeladen.length > 40">...</span><span *ngIf="!beige"><br /></span>
+        </div>
+        <div style="position: relative; overflow: hidden;" *ngFor="let bevBeigeladen of termin.prozBevBeigeladen; let i = index; last as bevbeige">
+          <div class="switch"><input id="partBevBeigeladen{{termin.id}}{{i}}" type="checkbox"><span class="slider round"></span></div>
+          <label for="partBevBeigeladen{{termin.id}}{{i}}"  style="padding-left: 30px;">{{bevBeigeladen.substr(0,40)}}</label><span *ngIf="bevBeigeladen.length > 40">...</span><span *ngIf="!bevbeige"><br /></span>
+        </div>
+        <div style="position: relative; overflow: hidden;" *ngFor="let zeugen of termin.parteienZeugen; let i = index; last as zeug">
+          <div class="switch"><input id="partZeugen{{termin.id}}{{i}}" type="checkbox"><span class="slider round"></span></div>
+          <label for="partZeugen{{termin.id}}{{i}}"  style="padding-left: 30px;">{{zeugen.substr(0,40)}}</label><span *ngIf="zeugen.length > 40">...</span><span *ngIf="!zeug"><br /></span>
+        </div>
+        <div style="position: relative; overflow: hidden;" *ngFor="let beteiligt of termin.parteienBeteiligt; let i = index; last as bet">
+          <div class="switch"><input id="partBeteiligt{{termin.id}}{{i}}" type="checkbox"><span class="slider round"></span></div>
+          <label for="partBeteiligt{{termin.id}}{{i}}"  style="padding-left: 30px;">{{beteiligt.substr(0,40)}}</label><span *ngIf="beteiligt.length > 40">...</span><span *ngIf="!bet"><br /></span>
+        </div>
+        <div *ngIf="termin.parteienSv.length > 3">---</div>
+        <div style="position: relative; overflow: hidden;" *ngFor="let sachver of termin.parteienSv; let i = index; last as sv">
+          <div class="switch"><input id="partSachver{{termin.id}}{{i}}" type="checkbox"><span class="slider round"></span></div>
+          <label for="partSachver{{termin.id}}{{i}}"  style="padding-left: 30px;">SV {{sachver.substr(0,40)}}</label><span *ngIf="sachver.length > 40">...</span><span *ngIf="!sv"><br /></span>
+        </div>
+        <textarea rows="3" cols="50"></textarea>
+      </div>
     </div>
   </div>
 
