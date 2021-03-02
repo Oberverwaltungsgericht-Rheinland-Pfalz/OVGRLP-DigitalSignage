@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/filter';
+import { filter } from 'rxjs/operators';
 
 import { Alert, AlertType } from '@ds-suite/model';
 
@@ -30,7 +30,7 @@ export class AlertService {
 
     // subscribe to alerts
     getAlert(alertId?: string): Observable<any> {
-        return this.subject.asObservable().filter((x: Alert) => x && x.alertId === alertId);
+        return this.subject.asObservable().pipe(filter((x: Alert) => x && x.alertId === alertId));
     }
 
     // convenience methods
