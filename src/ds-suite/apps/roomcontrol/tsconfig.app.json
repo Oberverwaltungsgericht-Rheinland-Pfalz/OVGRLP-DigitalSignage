@@ -1,9 +1,8 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc/apps/roomcontrol",
-    "module": "es2015"
-  },
+    "outDir": "../../dist/out-tsc/apps/roomcontrol"
+},
   "include": [
     "**/*.ts"
   ],
