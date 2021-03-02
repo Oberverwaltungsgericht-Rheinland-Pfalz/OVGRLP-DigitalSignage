@@ -63,6 +63,7 @@
     "@types/jasmine": "^2.8.17",
     "@types/jasminewd2": "^2.0.8",
     "@types/node": "^12.11.1",
+    "@webcomponents/custom-elements": "^1.0.0",
     "codelyzer": "^5.1.2",
     "concurrently": "~3.5.1",
     "jasmine-core": "~2.99.1",
