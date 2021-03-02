@@ -39,9 +39,10 @@ const routes: Routes = [
     FlexLayoutModule,
     NxModule.forRoot(),
     RouterModule.forRoot(routes, {
-      useHash: true,
-      initialNavigation: "enabled"
-    }),
+    useHash: true,
+    initialNavigation: "enabled",
+    relativeLinkResolution: 'legacy'
+}),
     ClarityModule,
     BackendModule,
     DsCommonModule,
