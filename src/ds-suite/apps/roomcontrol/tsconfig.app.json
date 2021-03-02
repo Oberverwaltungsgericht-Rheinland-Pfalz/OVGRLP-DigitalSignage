@@ -3,10 +3,11 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/apps/roomcontrol"
 },
-  "include": [
-    "**/*.ts"
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
   ],
-  "exclude": [
-    "**/*.spec.ts"
+  "include": [
+    "**/*.d.ts"
   ]
 }

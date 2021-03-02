@@ -15,7 +15,7 @@ import { filter } from 'rxjs/operators/filter';
   styleUrls: ['./display-template.component.css']
 })
 export class DisplayTemplateComponent implements OnInit, OnDestroy {
-  @ViewChild('dsTermineContainer', { static: false }) dsTermineContainer: ElementRef;
+  @ViewChild('dsTermineContainer') dsTermineContainer: ElementRef;
   @ViewChildren('dsTermineChild') dsTermineChildren: QueryList<ElementRef>;
 
   private updateTimer: any;

@@ -20,7 +20,7 @@ export class SondermeldungenComponent implements OnInit {
   public currentDisplaysChecked: boolean[] = [] ;
 
   @ViewChild(YesNoDialogComponent, { static: true }) yesNoDialog: YesNoDialogComponent;
-  @ViewChild('codemirrorEditor', { static: false }) codemirrorEditor: CodemirrorComponent;
+  @ViewChild('codemirrorEditor') codemirrorEditor: CodemirrorComponent;
 
   _currentNote: any = null;
   set currentNote (currentNote: any){
