@@ -18,8 +18,8 @@ export class DisplaysComponent implements OnInit {
   basicPermission: BasicPermissions;
   public isLoading: boolean = false;
 
-  @ViewChild(DisplayDialogComponent) modal: DisplayDialogComponent;
-  @ViewChild(ObjectPropertiesDialogComponent) modalProperties: ObjectPropertiesDialogComponent;
+  @ViewChild(DisplayDialogComponent, { static: true }) modal: DisplayDialogComponent;
+  @ViewChild(ObjectPropertiesDialogComponent, { static: true }) modalProperties: ObjectPropertiesDialogComponent;
 
   constructor(private displayService: DisplayService,
     private terminService: TerminService,

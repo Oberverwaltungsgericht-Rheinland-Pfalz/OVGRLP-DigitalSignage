@@ -25,8 +25,8 @@ export class TermineComponent implements OnInit {
   public selGericht: boolean[] = [];
   public selSaal: boolean[] = [];
   private routedSaal: string = "";
-  @ViewChild('DataGridTermine') DataGridTermine: ClrDatagrid;
-  @ViewChild(TerminDialogComponent) terminDialog: TerminDialogComponent;
+  @ViewChild('DataGridTermine', { static: true }) DataGridTermine: ClrDatagrid;
+  @ViewChild(TerminDialogComponent, { static: true }) terminDialog: TerminDialogComponent;
 
   constructor(private terminService: TerminService,
     private permissionService: PermissionService,

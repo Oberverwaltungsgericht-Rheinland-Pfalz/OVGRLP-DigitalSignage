@@ -11,7 +11,7 @@ import { YesNoDialogComponent } from '@ds-suite/ui';
 })
 export class TerminDialogComponent implements OnInit {
   @Output() dataChanged = new EventEmitter<void>();
-  @ViewChild(YesNoDialogComponent) yesNoDialog: YesNoDialogComponent;
+  @ViewChild(YesNoDialogComponent, { static: true }) yesNoDialog: YesNoDialogComponent;
   public termin: any;
   public stammdaten: Stammdaten[];
   public show: boolean = false;

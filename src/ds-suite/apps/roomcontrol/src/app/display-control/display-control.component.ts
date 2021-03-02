@@ -19,7 +19,7 @@ export class DisplayControlComponent implements OnInit, AfterViewInit {
   public ImageHeight: string = null;
   private resizer: Resizer;
   
-  @ViewChild(DisplayDialogComponent) modal: DisplayDialogComponent;
+  @ViewChild(DisplayDialogComponent, { static: true }) modal: DisplayDialogComponent;
 
   @Input()
   set sizeToScreenHeigt(sizeToScreenHeigt: boolean) {

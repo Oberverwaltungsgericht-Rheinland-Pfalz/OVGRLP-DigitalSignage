@@ -40,7 +40,7 @@ export class NjzKhSaalScrollerComponent extends DisplayTemplateComponent {
   objects: Objekt[] = [];
   objectsCount: number = 0;
 
-  @ViewChild('dsObjectsContainer') dsObjectsContainer: ElementRef;
+  @ViewChild('dsObjectsContainer', { static: false }) dsObjectsContainer: ElementRef;
   @ViewChildren('dsObjectsChild') dsObjectsChildren: QueryList<ElementRef>;
 
   ngOnInit() {

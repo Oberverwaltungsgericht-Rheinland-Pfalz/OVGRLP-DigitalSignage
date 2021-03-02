@@ -18,7 +18,7 @@ import { ClrDatagrid } from '@clr/angular';
 export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   private updateTimer: any;
   private updateSub: Subscription;
-  @ViewChild('DataGridTermine') DataGridTermine: ClrDatagrid;
+  @ViewChild('DataGridTermine', { static: true }) DataGridTermine: ClrDatagrid;
   loadingTermine: boolean = true;
   _displayName: string;
   termine: Termin[];
