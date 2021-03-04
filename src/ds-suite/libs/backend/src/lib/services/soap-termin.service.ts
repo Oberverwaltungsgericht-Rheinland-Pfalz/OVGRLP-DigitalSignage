@@ -6,8 +6,6 @@ import { Display, Termin, AppConfig } from '@ds-suite/model';
 import { TerminService, ConfigService } from '@ds-suite/core';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
 
 const headers = new HttpHeaders()
   .set("Content-Type", "application/json");

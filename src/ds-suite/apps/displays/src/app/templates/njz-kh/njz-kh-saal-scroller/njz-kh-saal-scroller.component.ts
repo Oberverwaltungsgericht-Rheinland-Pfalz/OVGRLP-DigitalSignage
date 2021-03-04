@@ -5,8 +5,11 @@ import { Observable } from 'rxjs/Observable';
 
 import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
 
-import { Termin, Objekt, TerminStatus } from '@ds-suite/model';
-import { isNullOrUndefined } from 'util';
+import { Termin, Objekt } from '@ds-suite/model';
+
+function isNullOrUndefined (value) {
+  return value === undefined || value === null
+}
 
 @Component({
   selector: 'app-njz-kh-saal-scroller',

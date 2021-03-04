@@ -7,8 +7,10 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
 
 //import { Termin, Objekt } from '@ds-suite/model';
 import { Termin, Objekt, TerminStatus } from '@ds-suite/model';
-import { isNullOrUndefined } from 'util';
 
+function isNullOrUndefined (value) {
+  return value === undefined || value === null
+}
 @Component({
   selector: 'app-saal-scroller-vsimm',
   templateUrl: './saal-scroller-vsimm.component.html',

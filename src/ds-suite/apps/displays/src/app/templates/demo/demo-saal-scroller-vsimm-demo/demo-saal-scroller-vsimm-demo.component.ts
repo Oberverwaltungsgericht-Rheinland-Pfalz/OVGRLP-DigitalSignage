@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild, ViewChildren, ElementRef, QueryList  } from '@angular/core';
 import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
 
 import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
 
-//import { Termin, Objekt } from '@ds-suite/model';
 import { Termin, Objekt, TerminStatus } from '@ds-suite/model';
-import { isNullOrUndefined } from 'util';
 
+function isNullOrUndefined (value) {
+  return value === undefined || value === null
+}
 @Component({
   selector: 'app-saal-scroller-vsimm-demo',
   templateUrl: './demo-saal-scroller-vsimm-demo.component.html',

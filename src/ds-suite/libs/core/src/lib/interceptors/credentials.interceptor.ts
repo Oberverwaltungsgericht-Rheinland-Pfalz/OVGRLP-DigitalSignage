@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse, HttpErrorResponse }  from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
+import { tap } from 'rxjs/operators';
 
 import { AppConfig } from '@ds-suite/model';
 import { ConfigService } from '../config.service';
@@ -27,12 +27,12 @@ export class CredentialsInterceptor implements HttpInterceptor {
                 withCredentials: true
             });
         }
-        return next.handle(req).do((event: HttpEvent<any>) => {}, (err: any) => {
+        return next.handle(req).pipe(tap((event: HttpEvent<any>) => {}, (err: any) => {
             if (err instanceof HttpErrorResponse) {
                 if(err.status==403) {
                     this.alertService.error("Zugriff nicht erlaubt: " + err.statusText)
                 }                
             }
-        });
+        }));
     }
 }

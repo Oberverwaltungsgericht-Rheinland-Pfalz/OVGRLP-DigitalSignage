@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-
+import { map } from 'rxjs/operators';
 import { DisplayService, ConfigService } from '@ds-suite/core';
 import { Display, DisplayDto, DisplayStatus, AppConfig, Note } from '@ds-suite/model';
 
@@ -25,20 +23,20 @@ export class SoapDisplayService implements DisplayService {
   }
 
   getDisplay(name: string): Observable<Display> {
-    return this.http.get<Display>(`${this.config.webApiUrl}/settings/displays/${name}`).map(resp => {
+    return this.http.get<Display>(`${this.config.webApiUrl}/settings/displays/${name}`).pipe(map(resp => {
       if (Array.isArray(resp)) {
         return resp[0];
       } else {
         return resp;
       }
-    });
+    }));
   }
 
   getDisplayDto(name: string): Observable<DisplayDto> {
-    return this.http.get<DisplayDto>(`${this.config.webApiUrl}/settings/displays/${name}/DisplayEx`).map(resp => {
+    return this.http.get<DisplayDto>(`${this.config.webApiUrl}/settings/displays/${name}/DisplayEx`).pipe(map(resp => {
       if (Array.isArray(resp)) {return resp[0];}
       else { return resp; }
-    });
+    }));
   }
 
   getDisplayNotes(name: string): Observable<Note[]> {
