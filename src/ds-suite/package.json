@@ -29,7 +29,8 @@
     "@angular/platform-browser": "^11.2.3",
     "@angular/platform-browser-dynamic": "^11.2.3",
     "@angular/router": "^11.2.3",
-    "@clr/angular": "^5.0.2",
+    "@cds/core": "^5.0.0",
+    "@clr/angular": "^5.0.3",
     "@clr/core": "^3.0.0",
     "@clr/icons": "^5.0.2",
     "@clr/ui": "^5.0.2",
@@ -50,8 +51,7 @@
     "rxjs-compat": "6.0.0",
     "tslib": "^2.1.0 || ^1.9.0",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.10.2",
-    "@cds/core": "^5.0.0"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.2",

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { EntityManager, EntityQuery } from 'breeze-client';
 
-import { Display, Termin, AppConfig } from '@ds-suite/model';
+import { Termin, AppConfig } from '@ds-suite/model';
 import { TerminService, ConfigService } from '@ds-suite/core';
 
 import { Observable } from 'rxjs/Observable';
