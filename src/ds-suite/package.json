@@ -34,7 +34,7 @@
     "@clr/core": "^3.0.0",
     "@clr/icons": "^5.0.2",
     "@clr/ui": "^5.0.2",
-    "@ctrl/ngx-codemirror": "^2.2.1",
+    "@ctrl/ngx-codemirror": "^4.1.0",
     "@ngrx/effects": "^11.0.1",
     "@ngrx/router-store": "11.0.1",
     "@ngrx/store": "11.0.1",
