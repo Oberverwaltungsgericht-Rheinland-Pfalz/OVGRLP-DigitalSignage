@@ -35,6 +35,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "breeze-client" 
+           ],
             "aot": true,
             "outputPath": "dist/apps/displays",
             "index": "apps/displays/src/index.html",
@@ -158,6 +161,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+                "breeze-client" 
+             ],
             "aot": true,
             "outputPath": "dist/apps/roomcontrol",
             "index": "apps/roomcontrol/src/index.html",
@@ -394,6 +400,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+                "breeze-client",
+                "@ctrl/ngx-codemirror"
+            ],
             "aot": true,
             "outputPath": "dist/apps/dsmanager",
             "index": "apps/dsmanager/src/index.html",
