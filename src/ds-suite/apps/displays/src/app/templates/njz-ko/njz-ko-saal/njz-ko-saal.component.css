@@ -48,7 +48,7 @@
 
 #ds-main-details {
   padding:10px;
-  background: url('/assets/img/rlp_wappen_500x613.png') center no-repeat;
+  background: url('^assets/img/rlp_wappen_500x613.png') center no-repeat;
   height: calc(100vh - 80px);
 }
 

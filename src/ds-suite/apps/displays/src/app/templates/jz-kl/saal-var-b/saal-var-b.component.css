@@ -26,7 +26,7 @@
   text-align: right;
   font-size: 1.8vw;
   font-weight: bold;
-  background: url("/assets/img/logo-justiz-kaiserslautern.png") no-repeat;
+  background: url("^assets/img/logo-justiz-kaiserslautern.png") no-repeat;
   background-size: contain;
   background-position: top right;
 }
@@ -45,9 +45,9 @@
 
 #ds-main {
   padding: 0 2%;
-  background: url("/assets/img/rlp_wappen_600x735.png") no-repeat;
+  background: url("^assets/img/rlp_wappen_600x735.png") no-repeat;
   background-size: auto 66%;
-  background-position: 50% 25%; 
+  background-position: 50% 25%;
 }
 
 #scrollarea {
@@ -91,7 +91,7 @@
   border-bottom: 1px solid #ddd;
 }
 .noItems {
-  font-weight: bold; 
+  font-weight: bold;
   font-size: 150%;
   text-align: center;
 }

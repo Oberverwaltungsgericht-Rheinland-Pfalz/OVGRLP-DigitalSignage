@@ -24,7 +24,7 @@
   text-align: right;
   font-size: 1.8vw;
   font-weight: bold;
-  background: url("/assets/img/logo-justiz-pfolg.png") no-repeat;
+  background: url("^assets/img/logo-justiz-pfolg.png") no-repeat;
   background-size: contain;
   background-position: top right;
 }
@@ -49,9 +49,9 @@
   border-radius: 12px;
   box-shadow: 0 1px 10px #333;
   margin: 1% 3% 1% 0;
-  background: url("/assets/img/rlp_wappen_600x735.png") no-repeat;
+  background: url("^assets/img/rlp_wappen_600x735.png") no-repeat;
   background-size: auto 66%;
-  background-position: 50% 75%;  
+  background-position: 50% 75%;
 }
 .top-nichtoeffentlich {
   padding: 2% 5%;
@@ -183,7 +183,7 @@
 .notActiveItem, .activeItem {
   padding: 0.3em 0.5em;
   margin: 0;
-  font-size: 85%;  
+  font-size: 85%;
 }
 .notActiveItemAgo {
   padding: 1em 0.5em;
@@ -196,7 +196,7 @@
   color: #ccc;
 }
 .notActiveItem {
-  font-style: normal; 
+  font-style: normal;
 }
 .activeItem {
   padding: 1em 0.5em;

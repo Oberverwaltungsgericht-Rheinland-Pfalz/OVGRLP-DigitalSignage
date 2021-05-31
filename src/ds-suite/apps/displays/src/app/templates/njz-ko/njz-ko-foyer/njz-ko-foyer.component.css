@@ -38,11 +38,11 @@
 
 #ds-main-overview {
   padding: 10px;
-  background: url("/assets/img/rlp_wappen_600x735.png") center no-repeat;
+  background: url("^assets/img/rlp_wappen_600x735.png") center no-repeat;
 }
 
 #ds-main {
-  background: url("/assets/img/rlp_wappen_600x735.png") center no-repeat;
+  background: url("^assets/img/rlp_wappen_600x735.png") center no-repeat;
   height: 960px;
 }
 
