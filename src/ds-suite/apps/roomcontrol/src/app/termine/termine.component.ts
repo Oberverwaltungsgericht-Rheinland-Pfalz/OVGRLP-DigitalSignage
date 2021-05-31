@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
+import { timer } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/timer';
@@ -62,7 +62,7 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
       termin.oeffentlich = 'nein';
     else
       termin.oeffentlich = 'ja';
-      
+
     this.terminService.saveTermin(termin).subscribe(val => { },
       err => {
         console.error(err);
@@ -87,7 +87,7 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.updateTimer = Observable.timer(5000, 10000);
+    this.updateTimer = timer(5000, 10000);
     this.updateSub = this.updateTimer.subscribe((t: any) => {
       this.loadTermine();
     });

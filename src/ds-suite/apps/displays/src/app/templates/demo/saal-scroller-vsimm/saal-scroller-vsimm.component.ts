@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewChildren, ElementRef, QueryList  } from '@angular/core';
 import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+import { timer } from 'rxjs';
 
 import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
 
@@ -22,7 +22,7 @@ function isNullOrUndefined (value) {
         animate(
           '2s ease-out',
           keyframes([
-            style({ opacity: 0, offset: 0.3, 'padding-top': 0 }), 
+            style({ opacity: 0, offset: 0.3, 'padding-top': 0 }),
             style({ height: 0, offset: 1 })
           ])
         )
@@ -34,7 +34,7 @@ function isNullOrUndefined (value) {
         animate(
           '1.9s linear',
           keyframes([
-            style({ 'margin-top': '0', offset: 0 }), 
+            style({ 'margin-top': '0', offset: 0 }),
             style({ 'margin-top': '-236px', opacity: 0.7, offset: 0.95 }),
             style({ opacity: 0, 'margin-top': '0', height: '0', offset: 1 }),
           ])
@@ -49,7 +49,7 @@ export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
   private ScrollIntervallTimer: any;
   private ScrollIntervallSub: Subscription;
   private lastActiveTerminID: number = -1;
-  
+
   naechsterTerminVSIMM: Termin;
   uebernaechsterTerminVSIMM: Termin;
 
@@ -67,7 +67,7 @@ export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
 
   initializeObjectScrolling() {
     this.ScrollIntervallObjects = 1850;
-    this.ScrollIntervallTimer = Observable.timer(1850, this.ScrollIntervallObjects);
+    this.ScrollIntervallTimer = timer(1850, this.ScrollIntervallObjects);
     this.ScrollIntervallSub = this.ScrollIntervallTimer.subscribe((t: any) => {
       if (this.objects.length <=1 ||
         (!this.ScrollingObjectsActive)) {
@@ -97,13 +97,13 @@ export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
   termineLoaded() {
     super.termineLoaded();
     this.ScrollingObjectsActive = this.isScrollingObjectsActive();
-    
+
     // wenn sich der Termin ändert, müssen die Objekte neu geladen werden
     if (isNullOrUndefined(this.aktiverTermin) || this.lastActiveTerminID != this.aktiverTermin.id) {
       this.objects= [];
       this.loadObjects();
     }
-    
+
     this.lastActiveTerminID = -1;
     if (!isNullOrUndefined(this.aktiverTermin))
       this.lastActiveTerminID = this.aktiverTermin.id;
@@ -112,14 +112,14 @@ export class SaalScrollerVsimmComponent extends DisplayTemplateComponent {
       this.naechsterTerminVSIMM = this.termineOffen.length>1 ? this.termineOffen[1] : null;
       this.uebernaechsterTerminVSIMM = this.termineOffen.length>2 ? this.termineOffen[2] : null;
     }
-    
+
   }
 
   loadObjects() {
     var objects: Objekt[] = [];
     if (!isNullOrUndefined(this.aktiverTermin) && !isNullOrUndefined(this.aktiverTermin.objekte))
       objects=this.aktiverTermin.objekte;
-      
+
     if (this.ScrollingObjectsActive)
       this.objects = this.objects.concat(objects);
     else

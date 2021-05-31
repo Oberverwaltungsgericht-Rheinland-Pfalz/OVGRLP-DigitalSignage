@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
+import { timer } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/timer';
@@ -46,7 +46,7 @@ export class DisplayComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.updateTimer = Observable.timer(5000, 60000);
+    this.updateTimer = timer(5000, 60000);
     this.updateSub = this.updateTimer.subscribe((t: any) => {
       this.loadDisplay();
     });

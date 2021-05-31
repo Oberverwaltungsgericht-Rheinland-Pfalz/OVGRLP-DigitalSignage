@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, ViewChild, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { timer } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Termin, TerminStatus, Display } from '@ds-suite/model';
@@ -8,6 +8,7 @@ import { TerminService } from '@ds-suite/core';
 
 import 'rxjs/add/operator/switchMap';
 import { filter } from 'rxjs/operators/filter';
+
 
 @Component({
   selector: 'app-display-template',
@@ -44,27 +45,27 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
 
       this.terminService.getTermine(this.display.name).subscribe(result => {
         let tmpTermine: Termin[] = result;
-  
+
         tmpTermine = this.filterTermine(tmpTermine);
         tmpTermine = this.sortTermine(tmpTermine);
         this.termineCount = tmpTermine.length;
-        
+
         this.activeTermine = this.findActiveTermine(tmpTermine);
         this.activeTermineCount = this.activeTermine.length;
         this.activeTermineIndex++;
         if ((this.activeTermineIndex) > this.activeTermineCount)
           this.activeTermineIndex=1;
-        
+
         this.aktiverTermin = this.findFirstActiveTermin(tmpTermine);
-        if (this.SwitchMultipleActiveTermine) 
+        if (this.SwitchMultipleActiveTermine)
           this.aktiverTermin = this.activeTermine[this.activeTermineIndex-1];
-        
+
         this.termineOffen = tmpTermine.filter(
           termin => !(termin.status === 'Abgeschlossen' || termin.status === 'Aufgehoben')
         );
         this.naechsterTermin = this.aktiverTermin ? null : this.termineOffen[0];
         this.scrollMode = this.isScrollMode();
-  
+
         if (this.scrollMode)
           this.termine = this.termine.concat(tmpTermine);
         else
@@ -117,7 +118,7 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.updateTimer = Observable.timer(2000, this.updateInterval);
+    this.updateTimer = timer(2000, this.updateInterval);
     this.updateSub = this.updateTimer.subscribe((t: any) => {
       this.datum = new Date();
       if (this.termine.length === 0 ||
@@ -139,16 +140,16 @@ export class DisplayTemplateComponent implements OnInit, OnDestroy {
       var termineUnfinished = termineTmp.filter(t => t.status != TerminStatus.abgeschlossen && t.status != TerminStatus.aufgehoben);
 
       if(termineFinished.length > minFinished) {
-        
+
         // grundsätzlich nur noch die minimale Anzahl der erledigten Termine anzeigen,
         // wenn insgesamt mehr Termine vorhanden sind, als darstellbar sind
         var clearCount: number = termineFinished.length - minFinished;
-        
-        // Wenn jedoch möglich, die darstellbaren Termine wieder mit den erledigten füllen 
+
+        // Wenn jedoch möglich, die darstellbaren Termine wieder mit den erledigten füllen
         // (mehr als die minimale Anzahl von Terminen)
-        if ((termineFinished.length - clearCount + termineUnfinished.length)<maxTermine) 
+        if ((termineFinished.length - clearCount + termineUnfinished.length)<maxTermine)
           clearCount = (termineFinished.length + termineUnfinished.length - (maxTermine))
-        
+
         // ggf. erledigte Termine rausfiltern
         if (clearCount > 0)
           termineFinished.splice(0, clearCount);
