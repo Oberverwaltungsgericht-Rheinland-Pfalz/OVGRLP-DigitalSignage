@@ -62,7 +62,7 @@ export class TerminComponent implements OnInit {
 
   AnzeigeBemerkung1() {
     let hasBemerkung1 = this.termin.bemerkung1!=null
-    let showBemerkung1 = this.termin.gericht !== "Verwaltungsgericht Trier"
+    let showBemerkung1 = (this.termin.gericht !== "Verwaltungsgericht Trier" && !this.termin.gericht.includes('rbeitsgericht'))
     return ( hasBemerkung1 && showBemerkung1 && this.termin.bemerkung1.trim()!="");
   }
 
