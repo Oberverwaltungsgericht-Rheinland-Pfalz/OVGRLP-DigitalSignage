@@ -32,6 +32,12 @@ export class NjzKoFoyerComponent extends DisplayTemplateComponent {
     super.ngOnInit();
   }
 
+  // auch Termine ohne mündliche Verhandlung anzeigen
+  // daher Methode überschreiben und einfach alle Termine zurück geben
+  filterTermine(termine: Termin[]): Termin[] {
+    return termine;
+  }
+
   isFlughafenanzeige(): boolean {
     return this.display.title === 'Neues Justizzentrum Koblenz';
   }

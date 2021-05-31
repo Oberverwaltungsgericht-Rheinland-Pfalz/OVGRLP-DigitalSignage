@@ -19,7 +19,10 @@
     <div *ngFor="let termin of termine" [@terminAnimation]="scrollMode ? 'in' : ''" #dsTermineChild>
       <div class="ds-overview-termin" fxLayout="row">
         <div fxFlex="10">
-          <strong>{{ termin.uhrzeitAktuell }} Uhr</strong>
+          <strong>
+            {{ termin.uhrzeitAktuell }}
+            <span  *ngIf="termin.uhrzeitAktuell!='omV'"> Uhr</span>
+          </strong>
         </div>
         <div fxFlex="25">
           <div>
