@@ -63,8 +63,9 @@ export class TerminComponent implements OnInit {
   AnzeigeBemerkung1() {
     let hasBemerkung1 = this.termin.bemerkung1!=null
     let showBemerkung1 = (this.termin.gericht !== "Verwaltungsgericht Trier" && !this.termin.gericht.includes('rbeitsgericht'))
-    return ( hasBemerkung1 && showBemerkung1 && this.termin.bemerkung1.trim()!="");
+    let showBemerkung2 = this.termin.gericht !== "Verwaltungsgericht Koblenz"
+    return ( hasBemerkung1 && showBemerkung1 && showBemerkung2 && this.termin.bemerkung1.trim()!="");
   }
-
+  
   ngOnInit() {}
 }
