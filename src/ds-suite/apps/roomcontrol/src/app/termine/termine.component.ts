@@ -9,6 +9,8 @@ import { Termin } from '@ds-suite/model';
 import { TerminStatus } from '@ds-suite/model';
 import { TerminService } from '@ds-suite/core';
 import { ClrDatagrid } from '@clr/angular';
+import { JsonConfigService } from '@ds-suite/backend/src';
+import { AppConfigRoomcontrol } from '@ds-suite/model/src/lib/app-config';
 
 @Component({
   selector: 'app-termine',
@@ -22,13 +24,16 @@ export class TermineComponent implements OnInit, OnDestroy, AfterViewInit {
   loadingTermine: boolean = true;
   _displayName: string;
   termine: Termin[];
+  showBesetzung: boolean = false;
 
   GetStatausValues() : Array<string> {
     return Object.values(TerminStatus)
 }
 
   constructor(
-    private terminService: TerminService) {
+    private terminService: TerminService, private jsonConfigService: JsonConfigService) {
+      let config = jsonConfigService.getConfig() as  AppConfigRoomcontrol
+      this.showBesetzung = Boolean(config.showBesetzung)
   }
 
   @Input()
