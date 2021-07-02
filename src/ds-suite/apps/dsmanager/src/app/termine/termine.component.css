@@ -9,6 +9,9 @@
 .sidenav-content {
     height:100%;
 }
+.sidenav-content label{
+    margin: 0;
+}
 
 .sidenav .nav-group label {
     padding: 0 0 0 0!important;
@@ -16,6 +19,7 @@
 
 .sidenav .nav-group .nav-list{
     padding: 0 0 0 .5rem!important;
+    margin: 0;
 }
 
 .datagrid-host {

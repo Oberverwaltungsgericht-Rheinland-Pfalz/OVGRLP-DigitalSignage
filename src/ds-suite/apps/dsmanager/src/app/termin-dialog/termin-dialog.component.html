@@ -7,7 +7,7 @@
                 <label for="ger_1">Zuordnung</label>
                 <div class="clr-control-container">
                     <div class="clr-input-wrapper imput-right-margin">
-                        <div class="select">
+                        <div class="select clr-select-wrapper">
                             <select id="ger_1" name="gericht" [(ngModel)]="termin.StammdatenId">
                                 <option *ngFor="let gericht of stammdaten" [value]="gericht.stammdatenId">{{ gericht.gerichtsname }}</option>
                             </select>
@@ -17,7 +17,7 @@
                 </div>
                 <div class="clr-control-container">
                     <div class="clr-input-wrapper imput-right-margin">
-                        <input type="text" id="ger_2"  [(ngModel)]="termin.Kammer"  name="kammer" size="10">
+                        <input type="text" id="ger_2"  [(ngModel)]="termin.Kammer"  name="kammer" class="clr-input " size="10">
                     </div>
                     <span class="clr-subtext help-text-margin">Spruchkörper</span>
                 </div>
@@ -27,19 +27,19 @@
               <label for="orga_1">Organisatorisches</label>
               <div class="clr-control-container">
                   <div class="clr-input-wrapper imput-right-margin">
-                      <input type="text" id="orga_1"  [(ngModel)]="termin.Sitzungssaal"  name="sitzungssaal" size="45">
+                      <input type="text" id="orga_1"  [(ngModel)]="termin.Sitzungssaal"  name="sitzungssaal" class="clr-input " size="45">
                   </div>
                   <span class="clr-subtext help-text-margin">Raum</span>
               </div>
               <div class="clr-control-container">
                   <div class="clr-input-wrapper  imput-right-margin">
-                      <input type="time" id="orga_2" [(ngModel)]="termin.UhrzeitPlan" name="UhrzeitPlan" size="35">
+                      <input type="time" id="orga_2" [(ngModel)]="termin.UhrzeitPlan" name="UhrzeitPlan" class="clr-input " size="35">
                   </div>
                   <span class="clr-subtext help-text-margin">Uhrzeit (Plan)</span>
               </div>
               <div class="clr-control-container">
                   <div class="clr-input-wrapper"  imput-right-margin>
-                      <input type="time" id="orga_3" [(ngModel)]="termin.UhrzeitAktuell" name="uhrzeitAktuell" size="35">
+                      <input type="time" id="orga_3" [(ngModel)]="termin.UhrzeitAktuell" name="uhrzeitAktuell" class="clr-input " size="35">
                   </div>
                   <span class="clr-subtext help-text-margin">Uhrzeit (Aktuell)</span>
               </div>
@@ -49,19 +49,19 @@
                 <label for="Verf_1">Verfahrensdaten</label>
                 <div class="clr-control-container">
                     <div class="clr-input-wrapper imput-right-margin">
-                        <input type="text" id="Verf_1" [(ngModel)]="termin.Az" name="az" size="20">
+                        <input type="text" id="Verf_1" [(ngModel)]="termin.Az" name="az" class="clr-input" size="20">
                     </div>
                     <span class="clr-subtext help-text-margin">Aktenzeichen</span>
                 </div>
                 <div class="clr-control-container">
                     <div class="clr-input-wrapper  imput-right-margin">
-                        <input type="text" id="Verf_2" [(ngModel)]="termin.Gegenstand" name="gegenstand" size="55">
+                        <input type="text" id="Verf_2" [(ngModel)]="termin.Gegenstand" name="gegenstand" class="clr-input" size="55">
                     </div>
                     <span class="clr-subtext help-text-margin">Gegenstand</span>
                 </div>
                 <div class="clr-control-container">
                     <div class="clr-input-wrapper  imput-right-margin">
-                        <input type="text" id="Verf_3" [(ngModel)]="termin.Art" name="art" size="27">
+                        <input type="text" id="Verf_3" [(ngModel)]="termin.Art" name="art" class="clr-input" size="27">
                     </div>
                     <span class="clr-subtext help-text-margin">Art</span>
                 </div>
@@ -71,7 +71,7 @@
                   <label for="Sitz_1">Sitzungsdaten</label>
                   <div class="clr-control-container">
                       <div class="clr-input-wrapper imput-right-margin">
-                          <div class="select">
+                          <div class="select clr-select-wrapper">
                             <select id="Sitz_1" name="status" [(ngModel)]="termin.Status">
                               <option *ngFor="let status of GetStatausValues()" [value]="status">{{ status }}</option>
                             </select>
@@ -82,7 +82,7 @@
                   <div class="clr-control-container">
                       <div class="clr-input-wrapper  imput-right-margin">
                         <div class="toggle-switch">
-                            <input type="checkbox" id="Sitz_2" [checked]="termin.Oeffentlich | yesnoBoolean" (change)="changeOeffentlich(termin)" name="oeffentlich" size="20">
+                            <input clrToggle type="checkbox" id="Sitz_2" [checked]="termin.Oeffentlich | yesnoBoolean" (change)="changeOeffentlich(termin)" name="oeffentlich" class="clr-input" size="20">
                             <label for="Sitz_2"></label>
                         </div> 
                       </div>
@@ -96,8 +96,8 @@
                       <div class="card-block">
                           <ul class="list-unstyled">
                               <li *ngFor="let besetzung of termin.Besetzung; let i = index">
-                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.Besetzung,besetzung)"></clr-icon>
-                                <input type="text" [id]="'bes_' + i" [(ngModel)]="besetzung.Richter" [name]="'besetzung_' + i" class="multiple-list-imput">
+                                <button class="btn btn-link"><clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.Besetzung,besetzung)"></clr-icon></button>                                
+                                <input type="text" [id]="'bes_' + i" [(ngModel)]="besetzung.Richter" [name]="'besetzung_' + i" class="clr-input multiple-list-imput">
                               </li>
                           </ul>
                       </div>
@@ -115,22 +115,24 @@
                       <div class="card-block">
                           <ul class="list-unstyled">
                               <li *ngFor="let parteienAktiv of termin.ParteienAktiv; let i = index">
-                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienAktiv,parteienAktiv)"></clr-icon>
-                                <input type="text" [id]="'parAkt_' + i" [(ngModel)]="parteienAktiv.Partei" [name]="'parteienAktiv_' + i" class="multiple-list-imput">
+                                <button class="btn btn-link"><clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienAktiv,parteienAktiv)"></clr-icon></button>
+                                <input type="text" [id]="'parAkt_' + i" [(ngModel)]="parteienAktiv.Partei" [name]="'parteienAktiv_' + i" class="clr-input multiple-list-imput">
                               </li>
                           </ul>
                       </div>
                   </div>
                   <div class="card besetzung-card-even">
                       <div class="card-block multiple-list-header">
-                              <span>Passivparteien</span>
-                              <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.ParteienPassiv,'ParteienPassiv')"></clr-icon>
+                        <span>Passivparteien</span>
+                        <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.ParteienPassiv,'ParteienPassiv')"></clr-icon>
                       </div>
                       <div class="card-block">
                           <ul class="list-unstyled">
                               <li *ngFor="let parteienPassiv of termin.ParteienPassiv; let i = index">
-                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienPassiv,parteienPassiv)"></clr-icon>
-                                <input type="text" [id]="'parPass_' + i" [(ngModel)]="parteienPassiv.Partei" [name]="'parteienPassiv_' + i" class="multiple-list-imput">
+                                <button class="btn btn-link">
+                                    <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienPassiv,parteienPassiv)"></clr-icon>
+                                </button>
+                                <input type="text" [id]="'parPass_' + i" [(ngModel)]="parteienPassiv.Partei" [name]="'parteienPassiv_' + i" class="clr-input multiple-list-imput">
                               </li>
                           </ul>
                       </div>
@@ -138,14 +140,14 @@
 
                   <div class="card besetzung-card-odd">
                       <div class="card-block multiple-list-header">
-                              <span>Prozessbevollmächtigte Aktivpartei</span>
-                              <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.ProzBevAktiv,'ProzBevAktiv')"></clr-icon>
+                        <span>Prozessbevollmächtigte Aktivpartei</span>
+                        <clr-icon shape="plus" class="multiple-list-header-img" (click)="addItemClick(termin.ProzBevAktiv,'ProzBevAktiv')"></clr-icon>
                       </div>
                       <div class="card-block">
                           <ul class="list-unstyled">
                               <li *ngFor="let prozBevAktiv of termin.ProzBevAktiv; let i = index">
-                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ProzBevAktiv,prozBevAktiv)"></clr-icon>
-                                <input type="text" [id]="'prozBevAkt_' + i" [(ngModel)]="prozBevAktiv.PB" [name]="'prozBevAktiv_' + i" class="multiple-list-imput">
+                                <button class="btn btn-link"><clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ProzBevAktiv,prozBevAktiv)"></clr-icon></button>
+                                <input type="text" [id]="'prozBevAkt_' + i" [(ngModel)]="prozBevAktiv.PB" [name]="'prozBevAktiv_' + i" class="clr-input multiple-list-imput">
                               </li>
                           </ul>
                       </div>
@@ -158,8 +160,10 @@
                       <div class="card-block">
                           <ul class="list-unstyled">
                               <li *ngFor="let prozBevPassiv of termin.ProzBevPassiv; let i = index">
-                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ProzBevPassiv,prozBevPassiv)"></clr-icon>
-                                <input type="text" [id]="'prozBevPass_' + i" [(ngModel)]="prozBevPassiv.PB" [name]="'prozBevPassiv_' + i" class="multiple-list-imput">
+                                <button class="btn btn-link">
+                                    <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ProzBevPassiv,prozBevPassiv)"></clr-icon>
+                                </button>
+                                <input type="text" [id]="'prozBevPass_' + i" [(ngModel)]="prozBevPassiv.PB" [name]="'prozBevPassiv_' + i" class="clr-input multiple-list-imput">
                               </li>
                           </ul>
                       </div>
@@ -173,8 +177,10 @@
                       <div class="card-block">
                           <ul class="list-unstyled">
                               <li *ngFor="let parteienBeigeladen of termin.ParteienBeigeladen; let i = index">
-                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienBeigeladen,parteienBeigeladen)"></clr-icon>
-                                <input type="text" [id]="'beig_' + i" [(ngModel)]="parteienBeigeladen.Partei" [name]="'parteienBeigeladen_' + i" class="multiple-list-imput">
+                                <button class="btn btn-link">
+                                    <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienBeigeladen,parteienBeigeladen)"></clr-icon>
+                                </button>
+                                <input type="text" [id]="'beig_' + i" [(ngModel)]="parteienBeigeladen.Partei" [name]="'parteienBeigeladen_' + i" class="clr-input multiple-list-imput">
                               </li>
                           </ul>
                       </div>
@@ -187,8 +193,10 @@
                       <div class="card-block">
                           <ul class="list-unstyled">
                               <li *ngFor="let parteienZeugen of termin.ParteienZeugen; let i = index">
-                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienZeugen,parteienZeugen)"></clr-icon>
-                                <input type="text" [id]="'zeug_' + i" [(ngModel)]="parteienZeugen.Partei" [name]="'parteienZeugen_' + i" class="multiple-list-imput">
+                                <button class="btn btn-link">
+                                    <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienZeugen,parteienZeugen)"></clr-icon>
+                                </button>
+                                <input type="text" [id]="'zeug_' + i" [(ngModel)]="parteienZeugen.Partei" [name]="'parteienZeugen_' + i" class="clr-input multiple-list-imput">
                               </li>
                           </ul>
                       </div>
@@ -202,8 +210,10 @@
                       <div class="card-block">
                           <ul class="list-unstyled">
                               <li *ngFor="let prozBevBeigeladen of termin.ProzBevBeigeladen; let i = index">
-                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ProzBevBeigeladen,prozBevBeigeladen)"></clr-icon>
-                                <input type="text" [id]="'prozBevBeig_' + i" [(ngModel)]="prozBevBeigeladen.PB" [name]="'prozBevBeigeladen_' + i" class="multiple-list-imput">
+                                <button class="btn btn-link">
+                                    <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ProzBevBeigeladen,prozBevBeigeladen)"></clr-icon>
+                                </button>
+                                <input type="text" [id]="'prozBevBeig_' + i" [(ngModel)]="prozBevBeigeladen.PB" [name]="'prozBevBeigeladen_' + i" class="clr-input multiple-list-imput">
                               </li>
                           </ul>
                       </div>
@@ -216,8 +226,10 @@
                       <div class="card-block">
                           <ul class="list-unstyled">
                               <li *ngFor="let parteienSv of termin.ParteienSV; let i = index">
-                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienSV,parteienSv)"></clr-icon>
-                                <input type="text" [id]="'sachv_' + i" [(ngModel)]="parteienSv.Partei" [name]="'parteienSv_' + i" class="multiple-list-imput">
+                                <button class="btn btn-link">
+                                    <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienSV,parteienSv)"></clr-icon>
+                                </button>
+                                <input type="text" [id]="'sachv_' + i" [(ngModel)]="parteienSv.Partei" [name]="'parteienSv_' + i" class="clr-input multiple-list-imput">
                               </li>
                           </ul>
                       </div>
@@ -231,8 +243,10 @@
                         <div class="card-block">
                             <ul class="list-unstyled">
                                 <li *ngFor="let parteienBeteiligt of termin.ParteienBeteiligt; let i = index">
-                                <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienBeteiligt,parteienBeteiligt)"></clr-icon>
-                                <input type="text" [id]="'parteienBeteiligt_' + i" [(ngModel)]="parteienBeteiligt.Partei" [name]="'parteienBeteiligt_' + i" class="multiple-list-imput">
+                                    <button class="btn btn-link">
+                                        <clr-icon shape="trash" class="multiple-list-content-img" (click)="deleteItemClick(termin.ParteienBeteiligt,parteienBeteiligt)"></clr-icon>
+                                    </button>
+                                    <input type="text" [id]="'parteienBeteiligt_' + i" [(ngModel)]="parteienBeteiligt.Partei" [name]="'parteienBeteiligt_' + i" class="clr-input multiple-list-imput">
                                 </li>
                             </ul>
                         </div>

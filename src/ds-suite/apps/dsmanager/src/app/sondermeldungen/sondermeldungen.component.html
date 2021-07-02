@@ -38,7 +38,7 @@
                                 <label for="name">Name</label>
                             </div>
                             <div fxFlex>
-                                <input type="text" id="name" [(ngModel)]="currentNote.Name" name="name" class="full-width">
+                                <input type="text" id="name" [(ngModel)]="currentNote.Name" name="name" class="clr-input full-width">
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                         </div>
                         <div fxFlex>
                             <div class="toggle-switch">
-                                <input type="checkbox" id="forced" [(ngModel)]="currentNote.Forced" name="forced" size="20">
+                                <input clrToggle type="checkbox" id="forced" [(ngModel)]="currentNote.Forced" name="forced" size="20">
                                 <label for="forced"></label>
                             </div>
                             <span class="clr-subtext help-text-margin">Steuerung, ob der Inhalt trotz aktivier Termine angezeigt werden soll</span>
@@ -120,7 +120,7 @@
                                                 <label for="comment">Kommentar</label>
                                             </div>
                                             <div fxFlex>
-                                                <input type="text" id="comment" [(ngModel)]="currentDisplayNoteAssignment.Comment" name="comment" class="full-width" >
+                                                <input type="text" id="comment" [(ngModel)]="currentDisplayNoteAssignment.Comment" name="comment" class="clr-input full-width" >
                                             </div>
 
                                         </div>
@@ -131,7 +131,7 @@
                                                 <label for="start">Start</label>
                                             </div>
                                             <div fxFlex>
-                                                <input type="datetime-local" id="start" [(ngModel)]="currentDisplayNoteAssignment.Start" name="start" size="25px">
+                                                <input type="datetime-local" id="start" [(ngModel)]="currentDisplayNoteAssignment.Start" name="start" class="clr-input" size="25px">
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@
                                                     <label for="end">Ende</label>
                                                 </div>
                                                 <div fxFlex>
-                                                    <input type="datetime-local" id="end" [(ngModel)]="currentDisplayNoteAssignment.End" name="end">
+                                                    <input type="datetime-local" id="end" [(ngModel)]="currentDisplayNoteAssignment.End" name="end" class="clr-input">
                                                 </div>
                                             </div>
                                         </div>
@@ -152,7 +152,7 @@
                                         <div fxFlex style="display:flex;flex-wrap:wrap;overflow: auto;">
                                             <clr-checkbox-container style="margin-top:unset;margin-left:2px" clrInline>
                                                 <clr-checkbox-wrapper *ngFor="let display of displays; let index = index;">
-                                                    <input type="checkbox"
+                                                    <input type="checkbox" clrToggle
                                                         clrCheckbox
                                                         [id]="'sel_displ_' + index"
                                                         [name]="'sel_displ_' + index"
