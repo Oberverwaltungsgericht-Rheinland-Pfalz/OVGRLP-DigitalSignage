@@ -236,6 +236,20 @@ namespace DigitalSignage.ImportCLI.Service
             continue;
           beteiligt.Add(new ParteienBeteiligt { Partei = bet.TrimEnd() });
         }
+
+        if (null != verf.Beteiligt.ProzBev)
+        {
+          foreach (var prozbev in verf.Beteiligt.ProzBev)
+          {
+            if (prozbev.Contains("Proz.-Bev.:"))
+            {
+              beteiligt.Add(new ParteienBeteiligt { Partei = prozbev.TrimEnd() });
+            } else
+            {
+              beteiligt.Add(new ParteienBeteiligt { Partei = "Proz.-Bev.: " + prozbev.TrimEnd() });
+            }
+          }
+        }
       }
 
       return beteiligt;
