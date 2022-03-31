@@ -1,8 +1,11 @@
 <div class="main-container">
     <div class="content-container">
-    <nav class="sidenav">
+    <nav class="sidenav" [class.minimize]="minimizeSidebar">
         <section class="sidenav-content">
-
+            <div style="padding:0 .5rem;">
+                <clr-icon *ngIf="!minimizeSidebar" (click)="minimizeSidebar = true" shape="minus-circle"></clr-icon>
+                <clr-icon *ngIf="minimizeSidebar" (click)="minimizeSidebar= false" shape="plus-circle"></clr-icon>
+            </div>
             <ul class="nav-list">
                 <div *ngFor="let note of notes; let index = index;">
                     <button class="btn btn-link btn-sm btn-notes"
@@ -23,7 +26,20 @@
         </nav>
 
     <div class="content-area" *ngIf="currentNote!=null">
-
+        <div class="edit-note-footer">
+            <button (click)="saveClick()" class="btn btn-sm btn-link" type="button">
+                <clr-icon shape="floppy"></clr-icon>
+                Speichern
+              </button>
+            <button (click)="deleteClick()" class="btn btn-sm btn-link" type="button">
+                <clr-icon shape="trash"></clr-icon>
+                Löschen
+              </button>
+            <button (click)="cancelClick()" class="btn btn-sm btn-link" type="button">
+                <clr-icon shape="times"></clr-icon>
+                Abbrechen
+              </button>
+        </div>
       <div class="edit-note-area">
           <div class="card besetzung-card-meldung">
               <div class="card-block multiple-list-header">
@@ -75,9 +91,11 @@
               </div>
           </div>
 
-          <div class="card besetzung-card-zuordnung">
+          <div class="card besetzung-card-zuordnung" [class.minimize]="minimizeZuordnung">
               <div class="card-block multiple-list-header">
-                  <span>Zuordnungen</span>
+                  <clr-icon *ngIf="!minimizeZuordnung" (click)="minimizeZuordnung = true" shape="minus-circle"></clr-icon>
+                  <clr-icon *ngIf="minimizeZuordnung" (click)="minimizeZuordnung = false" shape="plus-circle"></clr-icon>
+                  <span>&ensp;Zuordnungen</span>
               </div>
               <div class="card-block  card-block-content">
 
@@ -184,20 +202,7 @@
       </div>
 
 
-      <div class="edit-note-footer">
-          <button (click)="saveClick()" class="btn btn-sm btn-link" type="button">
-              <clr-icon shape="floppy"></clr-icon>
-              Speichern
-            </button>
-          <button (click)="deleteClick()" class="btn btn-sm btn-link" type="button">
-              <clr-icon shape="trash"></clr-icon>
-              Löschen
-            </button>
-          <button (click)="cancelClick()" class="btn btn-sm btn-link" type="button">
-              <clr-icon shape="times"></clr-icon>
-              Abbrechen
-            </button>
-      </div>
+
 
     </div>
 

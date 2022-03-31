@@ -5,6 +5,10 @@
     min-width: 220px;
     width: 220px; 
 }
+.sidenav.minimize {
+    width: 50px;
+    min-width: 50px;
+}
 .sidenav-content {
     height:100%;
 }
@@ -17,7 +21,7 @@
 
 div.card.besetzung-card-meldung {
     margin-right: 6px!important;
-    width: calc(50% - 6px);
+    /*width: calc(50% - 6px);*/
     margin-top: 0;
     min-width: 500px;
     height: fit-content;
@@ -32,6 +36,18 @@ div.card.besetzung-card-zuordnung {
     margin-top: 0;
     min-width: 500px;
     
+}
+div.besetzung-card-zuordnung.minimize {
+    width: 50px;
+    min-width: 50px;
+    overflow: hidden;
+    margin-right: 0.5em;
+}
+div.besetzung-card-zuordnung.minimize .card-block span{
+    writing-mode: vertical-rl;
+}
+div.besetzung-card-zuordnung.minimize .card-block-content {
+    visibility: hidden;
 }
 
 div.card-block-content {
@@ -55,8 +71,8 @@ div.card-block-content {
 
 .edit-note-footer {
     display: flex;
-    justify-content: flex-end;
-    padding: 14px 0 0 0;
+    justify-content: flex-start;
+    padding: 0 0 14px 0;
 }
 
 .ds-note-assignment-column-edit, .ds-note-assignment-column-preview {
