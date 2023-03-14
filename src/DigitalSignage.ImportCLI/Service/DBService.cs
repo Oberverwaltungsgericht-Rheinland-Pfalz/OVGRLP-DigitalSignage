@@ -232,9 +232,14 @@ namespace DigitalSignage.ImportCLI.Service
       {
         foreach (var bet in verf.Beteiligt.Parteien)
         {
-          if (bet.TrimEnd() == "Beteiligte:")
+          if (bet.ToLower().TrimEnd() == "beteiligte:" || bet.ToLower().TrimEnd() == "beteiligt:")
             continue;
           beteiligt.Add(new ParteienBeteiligt { Partei = bet.TrimEnd() });
+        }
+        foreach (var prozBev in verf.Beteiligt.ProzBev)
+        {
+          // die Prozessbevollmächtigten werden von Eureka-Export alle mit dem Präfix "Proz.-Bev.: " übergeben, daher werden diese erstmal als Beteiligte mit angezeigt #145
+          beteiligt.Add(new ParteienBeteiligt { Partei = prozBev.TrimEnd() });
         }
       }
 
