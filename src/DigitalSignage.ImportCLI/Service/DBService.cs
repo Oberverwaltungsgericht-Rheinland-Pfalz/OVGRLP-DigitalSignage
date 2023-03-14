@@ -269,6 +269,13 @@ namespace DigitalSignage.ImportCLI.Service
       verfahren.Bemerkung1 = verf.Bemerkung1.TrimEnd();
       verfahren.Bemerkung2 = verf.Bemerkung2.TrimEnd();
 
+      // Passivparteien sollen grundsätzlich eingelesen werden aufgrund eines Fehlers im Eureka-Saalanzeigenexport, wo die Beteiligten
+      // zusätzlich nochmal als Passivpartei eingelesen werden (Mantis #4493), sollen die PP erstmal bei Personalvertretungssachen
+      // ausgenommen werden! - Lt. Frau Baum gibt es dort keine PP!
+      bool passivParteienEinlesen = true;
+      if (verfahren.Az.Contains(".OVG") && (verfahren.Kammer == 4 || verfahren.Kammer == 5))
+        passivParteienEinlesen = false;
+
       //Besetzung
       verfahren.Besetzung = DetermineBesetzung(verf);
 
@@ -277,8 +284,11 @@ namespace DigitalSignage.ImportCLI.Service
       verfahren.ProzBevAktiv = DetermineAktivProzBev(verf);
 
       //Passivpartei und Prozessbevollmächtigte Passivpartei
-      verfahren.ParteienPassiv = DeterminePassivParteien(verf);
-      verfahren.ProzBevPassiv = DeterminePassivProzBev(verf);
+      if (passivParteienEinlesen)
+      {
+        verfahren.ParteienPassiv = DeterminePassivParteien(verf);
+        verfahren.ProzBevPassiv = DeterminePassivProzBev(verf);
+      }
 
       // Beigeladene
       verfahren.ParteienBeigeladen = DetermineBeigeladeneParteien(verf);
