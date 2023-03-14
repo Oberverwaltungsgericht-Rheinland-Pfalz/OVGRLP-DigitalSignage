@@ -649,6 +649,8 @@ public partial class TerminsaushangVerfahrenBeteiligt
 
   private string[] parteienField;
 
+  private string[] prozBevField;
+
   /// <remarks/>
   [System.Xml.Serialization.XmlArrayItemAttribute("Partei", IsNullable = false)]
   public string[] Parteien
@@ -660,6 +662,19 @@ public partial class TerminsaushangVerfahrenBeteiligt
     set
     {
       this.parteienField = value;
+    }
+  }
+
+  [System.Xml.Serialization.XmlArrayItemAttribute("PB", IsNullable = false)]
+  public string[] ProzBev
+  {
+    get
+    {
+      return this.prozBevField;
+    }
+    set
+    {
+      this.prozBevField = value;
     }
   }
 }
