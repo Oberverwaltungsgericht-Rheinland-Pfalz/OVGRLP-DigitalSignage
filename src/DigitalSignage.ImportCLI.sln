@@ -14,23 +14,32 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		localtemp_toxml|Any CPU = localtemp_toxml|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4D6CBBB6-8B18-4D1E-9E62-170F77D344AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D6CBBB6-8B18-4D1E-9E62-170F77D344AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D6CBBB6-8B18-4D1E-9E62-170F77D344AB}.localtemp_toxml|Any CPU.ActiveCfg = test|Any CPU
+		{4D6CBBB6-8B18-4D1E-9E62-170F77D344AB}.localtemp_toxml|Any CPU.Build.0 = test|Any CPU
 		{4D6CBBB6-8B18-4D1E-9E62-170F77D344AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D6CBBB6-8B18-4D1E-9E62-170F77D344AB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.localtemp_toxml|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.localtemp_toxml|Any CPU.Build.0 = Debug|Any CPU
 		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16441E33-CC5B-4DDD-A543-89C637BB2243}.localtemp_toxml|Any CPU.ActiveCfg = test|Any CPU
+		{16441E33-CC5B-4DDD-A543-89C637BB2243}.localtemp_toxml|Any CPU.Build.0 = test|Any CPU
 		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C262D314-DAE4-453B-9614-89B6602828D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C262D314-DAE4-453B-9614-89B6602828D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C262D314-DAE4-453B-9614-89B6602828D1}.localtemp_toxml|Any CPU.ActiveCfg = test|Any CPU
+		{C262D314-DAE4-453B-9614-89B6602828D1}.localtemp_toxml|Any CPU.Build.0 = test|Any CPU
 		{C262D314-DAE4-453B-9614-89B6602828D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C262D314-DAE4-453B-9614-89B6602828D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
