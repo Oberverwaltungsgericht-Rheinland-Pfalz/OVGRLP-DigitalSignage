@@ -131,6 +131,13 @@
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
+                          <xs:element name="ProzBev">
+                            <xs:complexType>
+                              <xs:sequence minOccurs="0">
+                                <xs:element maxOccurs="unbounded" name="PB" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
