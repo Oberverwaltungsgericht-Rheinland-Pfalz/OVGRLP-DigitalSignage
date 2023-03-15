@@ -1,4 +1,5 @@
 {
-   "webApiUrl": "http://Server:8082/webapi/v2/",
-  "useWindowsAuthentication": true
+  "webApiUrl": "http://Server:8082/webapi/v2/",
+  "useWindowsAuthentication": true,
+  "showBesetzung": true
 }

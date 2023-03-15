@@ -18,3 +18,11 @@
   min-width: 120px;
   max-width: 120px;
 }
+
+.ds-termin-column-status .clr-form-control{
+  margin: 0; 
+}
+
+.ds-termin-column-status select{
+  width: 100%;
+}

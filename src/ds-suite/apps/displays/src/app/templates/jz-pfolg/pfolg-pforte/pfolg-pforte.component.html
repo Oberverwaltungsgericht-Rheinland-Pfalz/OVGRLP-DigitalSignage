@@ -59,7 +59,7 @@
         </div>
         <div *ngIf="termin.parteienSv.length > 3">---</div>
         <div style="position: relative; overflow: hidden;" *ngFor="let sachver of termin.parteienSv; let i = index; last as sv">
-          <div class="switch"><input id="partSachver{{termin.id}}{{i}}" type="checkbox"><span class="slider round"></span></div>
+          <div class="switch"><input id="partSachver{{termin.id}}{{i}}" clrCheckbox type="checkbox"><span class="slider round"></span></div>
           <label for="partSachver{{termin.id}}{{i}}"  style="padding-left: 30px;">SV {{sachver.substr(0,40)}}</label><span *ngIf="sachver.length > 40">...</span><span *ngIf="!sv"><br /></span>
         </div>
         <textarea rows="3" cols="50"></textarea>

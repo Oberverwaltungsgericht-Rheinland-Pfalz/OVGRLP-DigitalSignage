@@ -5,7 +5,7 @@
 
             <!--Selektion nach Status-->
             <section class="nav-group">
-                <input id="tabStatus" type="checkbox">
+                <input id="tabStatus" type="checkbox" clrCheckbox>
                 <label for="tabStatus">Status</label>
                 <ul class="nav-list">
                     <clr-checkbox-wrapper *ngFor="let status of GetStatusValues(true); let index = index;">
@@ -21,7 +21,7 @@
             </section>
             <!--Selektion nach Gericht-->
             <section class="nav-group">
-                <input id="tabGericht" type="checkbox">
+                <input id="tabGericht" type="checkbox" clrCheckbox>
                 <label for="tabGericht">Gericht</label>
                 <ul class="nav-list">
                     <clr-checkbox-wrapper *ngFor="let gericht of GetGerichtValues(); let index = index;">
@@ -37,7 +37,7 @@
             </section>
             <!--Selektion nach Saal-->
             <section class="nav-group">
-                <input id="tabSaal" type="checkbox">
+                <input id="tabSaal" type="checkbox" clrCheckbox>
                 <label for="tabSaal">Saal</label>
                 <ul class="nav-list">
                     <clr-checkbox-wrapper *ngFor="let saal of GetSaalValues(); let index = index;">
@@ -89,7 +89,7 @@
             <clr-dg-cell class="ds-termin-column-partei">{{ termin.parteienPassivKurz }}</clr-dg-cell>
             <clr-dg-cell class="ds-termin-column-oeffentlich">
             <div class="toggle-switch">
-                <input [id]="'chk_oeff_' + i" type="checkbox" [checked]="termin.oeffentlich | yesnoBoolean" disabled>
+                <input [id]="'chk_oeff_' + i" clrToggle type="checkbox" [checked]="termin.oeffentlich | yesnoBoolean" disabled>
                 <label [for]="'chk_oeff_' + i"></label>
             </div>
             </clr-dg-cell>

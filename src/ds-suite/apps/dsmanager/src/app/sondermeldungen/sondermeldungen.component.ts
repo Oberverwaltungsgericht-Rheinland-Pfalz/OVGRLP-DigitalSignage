@@ -18,6 +18,8 @@ export class SondermeldungenComponent implements OnInit {
   public currentDisplayNoteAssignments: NoteDisplayAssignment[] = [];
   public currentDisplayNoteAssignment: NoteDisplayAssignment = null;
   public currentDisplaysChecked: boolean[] = [] ;
+  public minimizeSidebar: boolean = false;
+  public minimizeZuordnung: boolean = false;
 
   @ViewChild(YesNoDialogComponent, { static: true }) yesNoDialog: YesNoDialogComponent;
   @ViewChild('codemirrorEditor') codemirrorEditor: CodemirrorComponent;
