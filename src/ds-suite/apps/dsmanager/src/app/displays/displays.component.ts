@@ -1,12 +1,12 @@
 // SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core'
+import { Router } from '@angular/router'
 
-import { Termin, BasicPermissions, Restriction } from '@ds-suite/model';
-import { TerminService, DisplayService, PermissionService } from '@ds-suite/core';
-import { DisplayDto, DisplayStatus, Display } from '@ds-suite/model';
-import { DisplayDialogComponent, ObjectPropertiesDialogComponent } from '@ds-suite/ui';
+import { Termin, BasicPermissions, Restriction, DisplayDto, DisplayStatus, Display } from '@ds-suite/model'
+import { TerminService, DisplayService, PermissionService } from '@ds-suite/core'
+
+import { DisplayDialogComponent, ObjectPropertiesDialogComponent } from '@ds-suite/ui'
 
 @Component({
   selector: 'displays',
@@ -14,148 +14,147 @@ import { DisplayDialogComponent, ObjectPropertiesDialogComponent } from '@ds-sui
   styleUrls: ['./displays.component.css']
 })
 export class DisplaysComponent implements OnInit {
-  displayDto: DisplayDto[];
-  termine: Termin[];
-  displayGroups: string[];
-  basicPermission: BasicPermissions;
-  public isLoading: boolean = false;
+  displayDto: DisplayDto[]
+  termine: Termin[]
+  displayGroups: string[]
+  basicPermission: BasicPermissions
+  public isLoading: boolean = false
 
-  @ViewChild(DisplayDialogComponent, { static: true }) modal: DisplayDialogComponent;
-  @ViewChild(ObjectPropertiesDialogComponent, { static: true }) modalProperties: ObjectPropertiesDialogComponent;
+  @ViewChild(DisplayDialogComponent, { static: true }) modal: DisplayDialogComponent
+  @ViewChild(ObjectPropertiesDialogComponent, { static: true }) modalProperties: ObjectPropertiesDialogComponent
 
-  constructor(private displayService: DisplayService,
-    private terminService: TerminService,
-    private permissionService: PermissionService,
-    private router: Router) { 
+  constructor (private readonly displayService: DisplayService,
+    private readonly terminService: TerminService,
+    private readonly permissionService: PermissionService,
+    private readonly router: Router) {
   }
 
-  getDisplays() {
+  getDisplays () {
     this.displayService.getDisplaysDto()
       .subscribe(
         displays => {
           this.displayDto = displays.sort((d1, d2) => d1.title > d2.title ? 1 : -1)
-          this.DetermineDisplayGroups(this.displayDto);
+          this.DetermineDisplayGroups(this.displayDto)
         },
         err => {
-          console.error("Displays konnten nicht geladen werden: ",err);
+          console.error('Displays konnten nicht geladen werden: ', err)
         },
-        ()=> this.isLoading = false);
+        () => this.isLoading = false)
   }
 
-  GetDisplaysFromGroup(group: string): DisplayDto[] {
-    return this.displayDto.filter(t => t.group == group);
+  GetDisplaysFromGroup (group: string): DisplayDto[] {
+    return this.displayDto.filter(t => t.group == group)
   }
 
-  DetermineDisplayGroups(displays: DisplayDto[]): void {
-    this.displayGroups = Array.from(new Set(displays.map(t => t.group)));
+  DetermineDisplayGroups (displays: DisplayDto[]): void {
+    this.displayGroups = Array.from(new Set(displays.map(t => t.group)))
   }
 
-  loadBasicPermissions() {
-    this.basicPermission = {allowDisplays:true};
+  loadBasicPermissions () {
+    this.basicPermission = { allowDisplays: true }
     this.permissionService.getBasicPermissions()
       .subscribe(perm => {
-        this.basicPermission = perm;
-        if (this.basicPermission.allowTermine>=1) {
-          this.loadTermine();
+        this.basicPermission = perm
+        if (this.basicPermission.allowTermine >= 1) {
+          this.loadTermine()
         }
       },
       err => {
-        console.error("Berechtigungen konnten nicht geladen werden: ",err);
-      });
+        console.error('Berechtigungen konnten nicht geladen werden: ', err)
+      })
   }
 
-  loadTermine() {
+  loadTermine () {
     this.terminService.getAllTermine()
       .subscribe(termine => {
-        this.termine = termine;
+        this.termine = termine
       },
       err => {
-        console.error("Termine konnten nicht geladen werden: ",err);
-      });
+        console.error('Termine konnten nicht geladen werden: ', err)
+      })
   }
 
-  ngOnInit() {
-    this.isLoading = true;
-    this.loadBasicPermissions();
-    this.getDisplays();
+  ngOnInit () {
+    this.isLoading = true
+    this.loadBasicPermissions()
+    this.getDisplays()
   }
 
-  openDisplayProperties(display: Display) {
+  openDisplayProperties (display: Display) {
     if (BasicPermissions.isAdmin(this.basicPermission)) {
-      this.modalProperties.open(display,"Display-Infos")
-    }    
+      this.modalProperties.open(display, 'Display-Infos')
+    }
   }
 
-  AnzeigeTermineClick(display: DisplayDto) {
-    this.router.navigate(['/termine', display.title]);
+  AnzeigeTermineClick (display: DisplayDto) {
+    this.router.navigate(['/termine', display.title])
   }
 
-  updateGroupClick(group: string){
-    var disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
+  updateGroupClick (group: string) {
+    const disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
     disp.forEach(display => {
-      this. updateDisplayClick(display);
-    });
+      this.updateDisplayClick(display)
+    })
   }
 
-  updateDisplayClick(display: DisplayDto){
+  updateDisplayClick (display: DisplayDto) {
     this.displayService.getDisplayDto(display.name)
       .subscribe(
         disp => {
-          var index=this.displayDto.findIndex(t => t.name == display.name)
-          this.displayDto[index]=disp
+          const index = this.displayDto.findIndex(t => t.name == display.name)
+          this.displayDto[index] = disp
         },
         err => {
-          console.error("Display " + display.name + " konnte nicht aktualisiert werden: ",err);
-        });
+          console.error('Display ' + display.name + ' konnte nicht aktualisiert werden: ', err)
+        })
   }
 
-  startGroupClick(group: string){
-    var disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
+  startGroupClick (group: string) {
+    const disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
     disp.forEach(display => {
-      this. startDisplayClick(display);
-    });
+      this.startDisplayClick(display)
+    })
   }
 
-  startDisplayClick(display: DisplayDto) {
+  startDisplayClick (display: DisplayDto) {
     this.displayService.startDisplay(display)
       .subscribe(response => { },
         err => {
-          console.error("Display " + display.name + " konnte nicht gestartet werden: ",err);
-        });
+          console.error('Display ' + display.name + ' konnte nicht gestartet werden: ', err)
+        })
   }
 
-  restartGroupClick(group: string){
-    var disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
+  restartGroupClick (group: string) {
+    const disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
     disp.forEach(display => {
-      this. restartDisplayClick(display);
-    });
+      this.restartDisplayClick(display)
+    })
   }
 
-  restartDisplayClick(display: DisplayDto) {
+  restartDisplayClick (display: DisplayDto) {
     this.displayService.restartDisplay(display)
       .subscribe(response => { },
         err => {
-          console.error("Display " + display.name + " konnte nicht neu gestartet werden: ",err);
-        });
+          console.error('Display ' + display.name + ' konnte nicht neu gestartet werden: ', err)
+        })
   }
 
-  stopGroupClick(group: string){
-    var disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
+  stopGroupClick (group: string) {
+    const disp: DisplayDto[] = this.GetDisplaysFromGroup(group)
     disp.forEach(display => {
-      this. stopDisplayClick(display);
-    });
+      this.stopDisplayClick(display)
+    })
   }
 
-  stopDisplayClick(display: DisplayDto) {
+  stopDisplayClick (display: DisplayDto) {
     this.displayService.stopDisplay(display)
       .subscribe(response => { },
         err => {
-          console.error("Display " + display.name + " konnte nicht heruntergefahren werden: ",err);
-        });
+          console.error('Display ' + display.name + ' konnte nicht heruntergefahren werden: ', err)
+        })
   }
 
-  TermineExist(display: DisplayDto) {
-    return this.termine!=undefined && this.termine.find(t=> t.sitzungssaal==display.title || t.gericht==display.title )
+  TermineExist (display: DisplayDto) {
+    return this.termine != undefined && this.termine.find(t => t.sitzungssaal == display.title || t.gericht == display.title)
   }
-
 }

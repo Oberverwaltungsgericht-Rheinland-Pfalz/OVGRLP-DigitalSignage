@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations';
+import { Component, OnInit } from '@angular/core'
+import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations'
 
-import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
+import { DisplayTemplateComponent } from '../../../display-template/display-template.component'
 
 @Component({
   selector: 'app-saal-var-weitere-unten',
@@ -16,7 +16,7 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
         animate(
           '2s ease-out',
           keyframes([
-            style({ opacity: 0, offset: 0.3 }), 
+            style({ opacity: 0, offset: 0.3 }),
             style({ 'min-width': '0px', margin: 0, offset: 1 })
           ])
         )
@@ -25,5 +25,5 @@ import { DisplayTemplateComponent } from '../../../display-template/display-temp
   ]
 })
 export class JZZWSaalVarUntenComponent extends DisplayTemplateComponent {
-  public updateInterval = 6000;
+  public updateInterval = 6000
 }

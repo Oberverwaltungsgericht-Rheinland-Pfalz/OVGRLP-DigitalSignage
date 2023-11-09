@@ -1,11 +1,11 @@
 // SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations';
+import { Component, OnInit } from '@angular/core'
+import { trigger, state, style, animate, transition, stagger, query, keyframes } from '@angular/animations'
 
-import { DisplayTemplateComponent } from '../../../display-template/display-template.component';
+import { DisplayTemplateComponent } from '../../../display-template/display-template.component'
 
-import { Termin, Display } from '@ds-suite/model';
+import { Termin, Display } from '@ds-suite/model'
 
 @Component({
   selector: 'app-pfolg-pforte',
@@ -19,7 +19,7 @@ import { Termin, Display } from '@ds-suite/model';
         animate(
           '2s ease-out',
           keyframes([
-            style({ opacity: 0, offset: 0.3, 'padding-top': 0 }), 
+            style({ opacity: 0, offset: 0.3, 'padding-top': 0 }),
             style({ height: 0, offset: 1 })
           ])
         )
@@ -27,10 +27,10 @@ import { Termin, Display } from '@ds-suite/model';
     ])
   ]
 })
-export class PfolgPforteComponent extends DisplayTemplateComponent { 
-  ngOnInit() {
-    this.updateInterval = 43200000;
+export class PfolgPforteComponent extends DisplayTemplateComponent {
+  ngOnInit () {
+    this.updateInterval = 43200000
 
-    super.ngOnInit();
+    super.ngOnInit()
   }
 }

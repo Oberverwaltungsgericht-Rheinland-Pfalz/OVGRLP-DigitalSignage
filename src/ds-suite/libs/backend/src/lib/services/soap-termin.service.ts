@@ -1,77 +1,76 @@
 // SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
-import { EntityManager, EntityQuery } from 'breeze-client';
+import { Injectable } from '@angular/core'
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http'
+import { EntityManager, EntityQuery } from 'breeze-client'
 
-import { Termin, AppConfig } from '@ds-suite/model';
-import { TerminService, ConfigService } from '@ds-suite/core';
+import { Termin, AppConfig } from '@ds-suite/model'
+import { TerminService, ConfigService } from '@ds-suite/core'
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable'
 
 const headers = new HttpHeaders()
-  .set("Content-Type", "application/json");
+  .set('Content-Type', 'application/json')
 
 @Injectable()
 export class SoapTerminService implements TerminService {
-  private config: AppConfig;
-  public breezeEntityManager: EntityManager;
+  private readonly config: AppConfig
+  public breezeEntityManager: EntityManager
 
-  constructor(private http: HttpClient, private configService: ConfigService) {
-    this.config = this.configService.getConfig();
-    var BreezeserviceName = this.config.webApiUrl + '/breeze/EurekaDaten'
-    this.breezeEntityManager = new EntityManager(BreezeserviceName);
-}
-
-  getAllTermine(): Observable<Termin[]> {
-    return this.http.get<Termin[]>(`${this.config.webApiUrl}/daten/verfahren`);
+  constructor (private readonly http: HttpClient, private readonly configService: ConfigService) {
+    this.config = this.configService.getConfig()
+    const BreezeserviceName = this.config.webApiUrl + '/breeze/EurekaDaten'
+    this.breezeEntityManager = new EntityManager(BreezeserviceName)
   }
 
-  getTermine(displayName: string): Observable<Termin[]> {
-    return this.http.get<Termin[]>(`${this.config.webApiUrl}/settings/displays/${displayName}/termine`);
+  getAllTermine (): Observable<Termin[]> {
+    return this.http.get<Termin[]>(`${this.config.webApiUrl}/daten/verfahren`)
   }
 
-  saveTermin(termin: Termin): Observable<Termin> {
+  getTermine (displayName: string): Observable<Termin[]> {
+    return this.http.get<Termin[]>(`${this.config.webApiUrl}/settings/displays/${displayName}/termine`)
+  }
+
+  saveTermin (termin: Termin): Observable<Termin> {
     return this.http.put<Termin>(`${this.config.webApiUrl}/daten/verfahren/${termin.id}`, termin, { headers })
   }
 
-  getTerminByBreeze(id: number) : Promise<any> {
-    var query = EntityQuery
+  async getTerminByBreeze (id: number): Promise<any> {
+    const query = EntityQuery
       .from('Verfahren')
       .where('VerfahrensId', '==', id)
-      .expand('Stammdaten, Besetzung, ParteienAktiv, ProzBevAktiv, ParteienPassiv, ProzBevPassiv, ParteienBeigeladen, ProzBevBeigeladen, ParteienZeugen, ParteienSV, ParteienBeteiligt, Objekte');
+      .expand('Stammdaten, Besetzung, ParteienAktiv, ProzBevAktiv, ParteienPassiv, ProzBevPassiv, ParteienBeigeladen, ProzBevBeigeladen, ParteienZeugen, ParteienSV, ParteienBeteiligt, Objekte')
 
-    var promise = this.breezeEntityManager.executeQuery(query)
-      .then(res => { 
-        return res.results[0];   //!\TODO: geht bestimmt besser
+    const promise = this.breezeEntityManager.executeQuery(query)
+      .then(res => {
+        return res.results[0] //! \TODO: geht bestimmt besser
       })
-      .catch((error) => {
-          console.log(error);
-          return Promise.reject(error);
-      });
+      .catch(async (error) => {
+        console.log(error)
+        return await Promise.reject(error)
+      })
 
-    return promise;
+    return promise
   }
 
-  saveTerminByBreeze(termin:any) : Promise<void> {
+  async saveTerminByBreeze (termin: any): Promise<void> {
     return this.breezeEntityManager.saveChanges()
-    .then(res => { 
-      console.log("Daten wurden gespeichert:",res);
-    })
-    .catch((err) => {
-      console.error("Fehler beim Speichern eines Termins:",err);
-    });
+      .then(res => {
+        console.log('Daten wurden gespeichert:', res)
+      })
+      .catch((err) => {
+        console.error('Fehler beim Speichern eines Termins:', err)
+      })
   }
 
-  deleteTerminByBreeze(termin:any) : Promise<void> {
-    termin.entityAspect.setDeleted();
+  async deleteTerminByBreeze (termin: any): Promise<void> {
+    termin.entityAspect.setDeleted()
     return this.breezeEntityManager.saveChanges()
-    .then(res => { 
-      console.log("Termin wurde gelöscht:",res);
-    })
-    .catch((err) => {
-      console.error("Fehler beim Löschen eines Termins:",err);
-    });
+      .then(res => {
+        console.log('Termin wurde gelöscht:', res)
+      })
+      .catch((err) => {
+        console.error('Fehler beim Löschen eines Termins:', err)
+      })
   }
-
 }

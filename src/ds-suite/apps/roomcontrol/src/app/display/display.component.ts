@@ -1,59 +1,59 @@
 // SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-import { Component, OnInit, AfterViewInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core'
+import { ActivatedRoute, Params } from '@angular/router'
 
-import { timer } from 'rxjs';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/observable/timer';
+import { timer } from 'rxjs'
+import { Subscription } from 'rxjs/Subscription'
+import 'rxjs/add/operator/switchMap'
+import 'rxjs/add/observable/timer'
 
-import { Display, Termin } from "@ds-suite/model";
-import { DisplayService, TerminService } from "@ds-suite/core";
+import { Display, Termin } from '@ds-suite/model'
+import { DisplayService, TerminService } from '@ds-suite/core'
 
 @Component({
-  selector: "app-display",
-  templateUrl: "./display.component.html",
-  styleUrls: ["./display.component.css"]
+  selector: 'app-display',
+  templateUrl: './display.component.html',
+  styleUrls: ['./display.component.css']
 })
 export class DisplayComponent implements OnInit, OnDestroy, AfterViewInit {
-  private updateTimer: any;
-  private updateSub: Subscription;
-  compact: boolean = true;
-  display: Display;
-  termine: Termin[] = [];
+  private updateTimer: any
+  private updateSub: Subscription
+  compact: boolean = true
+  display: Display
+  termine: Termin[] = []
 
-  constructor(
-    private displayService: DisplayService,
-    private terminService: TerminService,
-    private route: ActivatedRoute
+  constructor (
+    private readonly displayService: DisplayService,
+    private readonly terminService: TerminService,
+    private readonly route: ActivatedRoute
   ) { }
 
-  loadDisplay() {
+  loadDisplay () {
     this.route.params
-      .switchMap((params: Params) =>  {
-        if (params["representation"] != undefined) {
-          this.compact=(params["representation"]!="tab" && params["representation"]!="true")
+      .switchMap((params: Params) => {
+        if (params.representation != undefined) {
+          this.compact = (params.representation != 'tab' && params.representation != 'true')
         }
-        return this.displayService.getDisplay(params["name"])
+        return this.displayService.getDisplay(params.name)
       })
       .subscribe(display => {
-        this.display = display;
-      });
+        this.display = display
+      })
   }
 
-  ngOnInit() {
-    this.loadDisplay();
+  ngOnInit () {
+    this.loadDisplay()
   }
 
-  ngAfterViewInit(): void {
-    this.updateTimer = timer(5000, 60000);
+  ngAfterViewInit (): void {
+    this.updateTimer = timer(5000, 60000)
     this.updateSub = this.updateTimer.subscribe((t: any) => {
-      this.loadDisplay();
-    });
+      this.loadDisplay()
+    })
   }
 
-  ngOnDestroy() {
-    this.updateSub.unsubscribe();
+  ngOnDestroy () {
+    this.updateSub.unsubscribe()
   }
 }

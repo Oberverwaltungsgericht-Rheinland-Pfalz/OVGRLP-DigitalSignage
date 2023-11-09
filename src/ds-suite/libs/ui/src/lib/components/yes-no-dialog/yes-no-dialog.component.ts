@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-import { Component,  EventEmitter, OnInit, Input, Output  } from '@angular/core';
-import { fadeSlide } from '@clr/angular';
+import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core'
+import { fadeSlide } from '@clr/angular'
 
 @Component({
   selector: 'yes-no-dialog',
@@ -9,23 +9,22 @@ import { fadeSlide } from '@clr/angular';
   styleUrls: ['./yes-no-dialog.component.css']
 })
 export class YesNoDialogComponent implements OnInit {
-  @Input() title: string;
-  @Input() message: string;
-  @Output() result = new EventEmitter<boolean>();
-  public show: boolean = false;
+  @Input() title: string
+  @Input() message: string
+  @Output() result = new EventEmitter<boolean>()
+  public show: boolean = false
 
-  constructor() { }
+  constructor () { }
 
-  open() {
-    this.show = true;
+  open () {
+    this.show = true
   }
 
-  ngOnInit() {
+  ngOnInit () {
   }
 
-  close(result:boolean) {
-    this.result.emit(result);
-    this.show=false;
+  close (result: boolean) {
+    this.result.emit(result)
+    this.show = false
   }
-
 }

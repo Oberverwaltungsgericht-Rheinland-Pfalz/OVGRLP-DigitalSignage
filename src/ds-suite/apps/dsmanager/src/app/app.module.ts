@@ -1,54 +1,53 @@
 // SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-import { NgModule,LOCALE_ID } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { Routes, RouterModule } from "@angular/router";
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { NgModule, LOCALE_ID } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { Routes, RouterModule } from '@angular/router'
+import { FlexLayoutModule } from '@angular/flex-layout'
+import { FormsModule } from '@angular/forms'
 
-import { ClarityModule } from "@clr/angular";
-import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+import { ClarityModule } from '@clr/angular'
+import { CodemirrorModule } from '@ctrl/ngx-codemirror'
 
-import { registerLocaleData } from "@angular/common";
-import localeDe from "@angular/common/locales/de";
+import { registerLocaleData } from '@angular/common'
+import localeDe from '@angular/common/locales/de'
 
-import { NxModule } from '@nrwl/nx';
+import { NxModule } from '@nrwl/nx'
 
-import { CoreModule } from '@ds-suite/core';
-import { BackendModule } from "@ds-suite/backend";
-import { UiModule } from '@ds-suite/ui';
+import { CoreModule } from '@ds-suite/core'
+import { BackendModule } from '@ds-suite/backend'
+import { UiModule } from '@ds-suite/ui'
 
-import { AppComponent } from './app.component';
-import { DsCommonModule } from './ds-common/ds-common.module';
-import { DisplaysComponent } from './displays/displays.component';
-import { TermineComponent } from './termine/termine.component';
-import { TerminDialogComponent } from './termin-dialog/termin-dialog.component';
-import { SondermeldungenComponent } from './sondermeldungen/sondermeldungen.component';
+import { AppComponent } from './app.component'
+import { DsCommonModule } from './ds-common/ds-common.module'
+import { DisplaysComponent } from './displays/displays.component'
+import { TermineComponent } from './termine/termine.component'
+import { TerminDialogComponent } from './termin-dialog/termin-dialog.component'
+import { SondermeldungenComponent } from './sondermeldungen/sondermeldungen.component'
 
-
-registerLocaleData(localeDe);
+registerLocaleData(localeDe)
 
 const routes: Routes = [
-  { path: "", component: DisplaysComponent },
-  { path: "termine", component: TermineComponent },
+  { path: '', component: DisplaysComponent },
+  { path: 'termine', component: TermineComponent },
   { path: 'termine/:saal', component: TermineComponent },
-  { path: "sondermeldungen", component: SondermeldungenComponent }
-];
+  { path: 'sondermeldungen', component: SondermeldungenComponent }
+]
 
 @NgModule({
   declarations: [AppComponent, DisplaysComponent, TermineComponent, TerminDialogComponent, SondermeldungenComponent],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     FlexLayoutModule,
     NxModule.forRoot(),
     RouterModule.forRoot(routes, {
-    useHash: true,
-    initialNavigation: "enabled",
-    relativeLinkResolution: 'legacy'
-}),
+      useHash: true,
+      initialNavigation: 'enabled',
+      relativeLinkResolution: 'legacy'
+    }),
     ClarityModule,
     CodemirrorModule,
     BackendModule,
@@ -59,9 +58,9 @@ const routes: Routes = [
   providers: [
     {
       provide: LOCALE_ID,
-      useValue: "de"
+      useValue: 'de'
     }
   ],
-  bootstrap: [AppComponent]  
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

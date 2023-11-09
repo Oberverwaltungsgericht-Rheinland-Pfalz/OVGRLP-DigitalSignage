@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 
-import { Termin } from '@ds-suite/model';
-import { TerminFunctions } from '../shared/termin.functions';
+import { Termin } from '@ds-suite/model'
+import { TerminFunctions } from '../shared/termin.functions'
 
 @Component({
   selector: 'app-termin',
@@ -11,63 +11,63 @@ import { TerminFunctions } from '../shared/termin.functions';
   styleUrls: ['./termin.component.css']
 })
 export class TerminComponent implements OnInit {
-  public termFunc = TerminFunctions;
+  public termFunc = TerminFunctions
 
-  constructor() {}
+  constructor () {}
 
-  @Input() termin: Termin;
-  @Input() footerText: string;
+  @Input() termin: Termin
+  @Input() footerText: string
 
-  IstOeffentlich() {
-    return this.termin.oeffentlich === 'ja';
+  IstOeffentlich () {
+    return this.termin.oeffentlich === 'ja'
   }
 
-  IstAktiv() {
-    return this.termin.status === 'Läuft';
+  IstAktiv () {
+    return this.termin.status === 'Läuft'
   }
 
-  AktivExists() {
-    return (this.termin.parteienAktiv.length > 0 || this.termin.prozBevAktiv.length > 0);
+  AktivExists () {
+    return (this.termin.parteienAktiv.length > 0 || this.termin.prozBevAktiv.length > 0)
   }
 
-  BesetzungExists() {
-    return this.termin.besetzung.length > 0 ;
+  BesetzungExists () {
+    return this.termin.besetzung.length > 0
   }
 
-  PassivExists() {
-    return (this.termin.parteienPassiv.length > 0 || this.termin.prozBevPassiv.length > 0) ;
+  PassivExists () {
+    return (this.termin.parteienPassiv.length > 0 || this.termin.prozBevPassiv.length > 0)
   }
 
-  AktivOrPassivExists() {
-    return (this.AktivExists() || this.PassivExists()) ;
+  AktivOrPassivExists () {
+    return (this.AktivExists() || this.PassivExists())
   }
 
-  BeigeladenExists() {
-    return this.termin.parteienBeigeladen.length > 0 ;
+  BeigeladenExists () {
+    return this.termin.parteienBeigeladen.length > 0
   }
 
-  ZeugenOrSachvExists() {
-    return (this.termin.parteienZeugen.length + this.termin.parteienSv.length) > 0 ;
+  ZeugenOrSachvExists () {
+    return (this.termin.parteienZeugen.length + this.termin.parteienSv.length) > 0
   }
 
-  BeteiligteExists() {
-    return this.termin.parteienBeteiligt.length > 0 ;
+  BeteiligteExists () {
+    return this.termin.parteienBeteiligt.length > 0
   }
 
-  PersonalVertr() {
+  PersonalVertr () {
     return this.termFunc.IstPersonalvertretung(this.termin)
   }
 
-  GegenstandExists() {
-    return (this.termin.gegenstand!=null && this.termin.gegenstand.trim()!="") ;
+  GegenstandExists () {
+    return (this.termin.gegenstand != null && this.termin.gegenstand.trim() != '')
   }
 
-  AnzeigeBemerkung1() {
-    let hasBemerkung1 = this.termin.bemerkung1!=null
-    let showBemerkung1 = (this.termin.gericht !== "Verwaltungsgericht Trier" && !this.termin.gericht.includes('rbeitsgericht'))
-    let showBemerkung2 = this.termin.gericht !== "Verwaltungsgericht Koblenz"
-    return ( hasBemerkung1 && showBemerkung1 && showBemerkung2 && this.termin.bemerkung1.trim()!="");
+  AnzeigeBemerkung1 () {
+    const hasBemerkung1 = this.termin.bemerkung1 != null
+    const showBemerkung1 = (this.termin.gericht !== 'Verwaltungsgericht Trier' && !this.termin.gericht.includes('rbeitsgericht'))
+    const showBemerkung2 = this.termin.gericht !== 'Verwaltungsgericht Koblenz'
+    return (hasBemerkung1 && showBemerkung1 && showBemerkung2 && this.termin.bemerkung1.trim() != '')
   }
-  
-  ngOnInit() {}
+
+  ngOnInit () {}
 }

@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 const { version: appVersion } = require('../../package.app.json')
 
 @Component({
@@ -9,11 +9,11 @@ const { version: appVersion } = require('../../package.app.json')
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  appVersion: string = "";
+  appVersion: string = ''
 
-  constructor() {}
+  constructor () {}
 
-  ngOnInit() {
-    this.appVersion = appVersion;
+  ngOnInit () {
+    this.appVersion = appVersion
   }
 }

@@ -1,10 +1,10 @@
 // SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-import { Component, OnInit } from '@angular/core';
-const { version: appVersion } = require('../../package.app.json');
+import { Component, OnInit } from '@angular/core'
 
-import { BasicPermissions } from '@ds-suite/model';
-import { PermissionService } from '@ds-suite/core';
+import { BasicPermissions } from '@ds-suite/model'
+import { PermissionService } from '@ds-suite/core'
+const { version: appVersion } = require('../../package.app.json')
 
 @Component({
   selector: 'app-root',
@@ -12,24 +12,24 @@ import { PermissionService } from '@ds-suite/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  appVersion: string = "";
-  basicPermission: BasicPermissions;
+  appVersion: string = ''
+  basicPermission: BasicPermissions
 
-  constructor(private permissionService: PermissionService) {}
+  constructor (private readonly permissionService: PermissionService) {}
 
-  loadBasicPermissions() {
-    this.basicPermission = {allowDisplays:true};
+  loadBasicPermissions () {
+    this.basicPermission = { allowDisplays: true }
     this.permissionService.getBasicPermissions()
       .subscribe(perm => {
-        this.basicPermission = perm;
+        this.basicPermission = perm
       },
       err => {
-        console.error("Berechtigungen konnten nicht geladen werden: ",err);
-      });
+        console.error('Berechtigungen konnten nicht geladen werden: ', err)
+      })
   }
 
-  ngOnInit() {
-    this.loadBasicPermissions();
-    this.appVersion = appVersion;
+  ngOnInit () {
+    this.loadBasicPermissions()
+    this.appVersion = appVersion
   }
 }
