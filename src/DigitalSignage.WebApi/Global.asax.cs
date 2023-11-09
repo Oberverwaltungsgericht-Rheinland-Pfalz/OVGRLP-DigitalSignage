@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
+// SPDX-License-Identifier: EUPL-1.2
+using AutoMapper;
 using DigitalSignage.WebApi.Services;
 using System;
 using System.Web.Http;

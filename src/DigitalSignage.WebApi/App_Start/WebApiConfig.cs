@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
+// SPDX-License-Identifier: EUPL-1.2
+using Newtonsoft.Json.Serialization;
 using System.Web.Http;
 using System.Web.Http.Cors;
 

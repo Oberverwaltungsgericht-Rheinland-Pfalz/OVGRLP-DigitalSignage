@@ -1,4 +1,6 @@
-﻿using Owin;
+﻿// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
+// SPDX-License-Identifier: EUPL-1.2
+using Owin;
 using System.Web.Http;
 using Microsoft.Owin.StaticFiles;
 using Microsoft.Owin.FileSystems;

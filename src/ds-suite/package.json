@@ -1,6 +1,6 @@
 {
   "name": "ds-suite",
-  "license": "MIT",
+  "license": "EUPL-1.2",
   "scripts": {
     "build:displays": "ng build --project displays --prod --aot --base-href /displays/ && jszip-cli add --force --output dist/displays.zip dist/apps/displays",
     "build:dsmanager": "ng build --project dsmanager --prod --aot --base-href /dsmanager/ && jszip-cli add --force --output dist/dsmanager.zip dist/apps/dsmanager",

@@ -1,4 +1,6 @@
-﻿using Breeze.ContextProvider;
+﻿// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
+// SPDX-License-Identifier: EUPL-1.2
+using Breeze.ContextProvider;
 using Breeze.ContextProvider.EF6;
 using Breeze.WebApi2;
 using DigitalSignage.Data;

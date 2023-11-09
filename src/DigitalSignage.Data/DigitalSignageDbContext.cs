@@ -1,4 +1,6 @@
-﻿using DigitalSignage.Infrastructure.Models.EurekaFach;
+﻿// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
+// SPDX-License-Identifier: EUPL-1.2
+using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.Infrastructure.Models.Settings;
 using System.Data.Entity;
 using System.Diagnostics;
