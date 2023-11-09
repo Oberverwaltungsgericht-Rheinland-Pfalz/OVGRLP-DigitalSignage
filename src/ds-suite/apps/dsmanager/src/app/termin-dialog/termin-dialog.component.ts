@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
+// SPDX-License-Identifier: EUPL-1.2
 import { Component,  EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 import { Termin, TerminStatus, Stammdaten } from '@ds-suite/model';

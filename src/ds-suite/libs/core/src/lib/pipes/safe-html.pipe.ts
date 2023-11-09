@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
+// SPDX-License-Identifier: EUPL-1.2
 import { Pipe, PipeTransform } from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
 
