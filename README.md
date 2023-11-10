@@ -18,11 +18,42 @@ Die täglichen Termine werden automatisch aus Eureka-Fach exportiert.
 
 Darstellung der verschiedenen Systeme des Systems anhand deren Geschäftsfunktion.
 
-![DS_Uebersicht.jpg](Documentation/DS_Uebersicht.jpg)
+![DS_Uebersicht.jpg](Documentation/DS_Übersicht.png)
 
 Technische Sicht des Systems.
 
 ![Gesamtsystem.png](Documentation/Gesamtsystem.png)
+
+## Einzelne Software Komponenten
+
+<details><summary>Display Control - Monitor-Anwendung</summary><p>
+Anwendung welche auf jedem einzelnen Monitor installiert ist zwecks Kontrolle</p></details>
+
+<details><summary>ImportCLI - Server Job</summary><p>
+Anwendung welche die Termine aus Eureka in die Datenbank importiert</p></details>
+
+<details><summary>WebApi - Webserver Anwendung</summary><p>
+Zentraler Webservice zur Übertragung aller Termine, Sondermeldung und weiterer Daten an die Anzeigen.</p></details>
+
+<details><summary>Displays - Browser App</summary><p>
+Übersicht der Anzeigen mit möglicher Darstellung in Vollbild. Diese Anwendung wird auch auf jedem Monitor dargestellt.</p></details>
+
+<details><summary>DSManager - Browser App</summary><p>
+Verwaltung der Zustände der Anzeigen in Gruppen gegliedert. Filterbare Übersicht über alle täglichen Verhandlungen. Management zur Auflistung, Erstellung, Bearbeitung, Löschung und Terminierung der Sonderanzeigen. Mit HTML-Editor und Vorschaufunktion.</p></details>
+
+<details><summary>RoomControl - Browser App</summary><p>
+Hier können Sitzung gestartet, beendet und als Nicht-öffentlich markiert werden. Monitor können an- sowie ausgeschaltet werden. Es wird eine Vorschau der ausgewählten Anzeige dargestellt.</p></details>
+
+## Konfiguration
+
+Die folgenden Konfigurationsdateien müssen mit Ihren eigenen Daten erstellt werden und sind daher nicht Teil der Quellcodeverwaltung. 
+
+* DisplayControl: `App.config`
+* Import:CLI: `App.config`
+* WebApi: `Web.config`
+* displays: `src/assets/config.json`
+* DSManager: `src/assets/config.json`
+* RoomControl: `src/assets/config.json`
 
 # Dev
 
