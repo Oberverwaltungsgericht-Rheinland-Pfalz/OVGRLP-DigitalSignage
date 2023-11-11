@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.ImportCLI", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.Infrastructure", "DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj", "{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.Data", "DigitalSignage.Data\DigitalSignage.Data.csproj", "{16441E33-CC5B-4DDD-A543-89C637BB2243}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.Data", "DigitalSignage.Data\DigitalSignage.Data.csproj", "{16441E33-CC5B-4DDD-A543-89C637BB2243}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.ImportCLI.NUnitTests", "DigitalSignage.ImportCLI.NUnitTests\DigitalSignage.ImportCLI.NUnitTests.csproj", "{C262D314-DAE4-453B-9614-89B6602828D1}"
 EndProject

@@ -1,114 +1,49 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{16441E33-CC5B-4DDD-A543-89C637BB2243}</ProjectGuid>
+    <TargetFramework>net8.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DigitalSignage.Data</RootNamespace>
-    <AssemblyName>DigitalSignage.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyTitle>DigitalSignage.Data</AssemblyTitle>
+    <Company>Ministerium der Justiz</Company>
+    <Product>DigitalSignage.Data</Product>
+    <Copyright>Copyright © Ministerium der Justiz 2016</Copyright>
+    <FileVersion>2.10.0.2311</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'test|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\test\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="DigitalSignageDbContext.cs" />
-    <Compile Include="Migrations\201501230805160_FirstRelease.cs" />
-    <Compile Include="Migrations\201501230805160_FirstRelease.Designer.cs">
+    <Compile Update="Migrations\201501230805160_FirstRelease.Designer.cs">
       <DependentUpon>201501230805160_FirstRelease.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509180714072_NotesAdded.cs" />
-    <Compile Include="Migrations\201509180714072_NotesAdded.Designer.cs">
+    <Compile Update="Migrations\201509180714072_NotesAdded.Designer.cs">
       <DependentUpon>201509180714072_NotesAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201511240920302_DisplayDummyAdded.cs" />
-    <Compile Include="Migrations\201511240920302_DisplayDummyAdded.Designer.cs">
+    <Compile Update="Migrations\201511240920302_DisplayDummyAdded.Designer.cs">
       <DependentUpon>201511240920302_DisplayDummyAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608252031275_SitzungssaalNrAdded.cs" />
-    <Compile Include="Migrations\201608252031275_SitzungssaalNrAdded.Designer.cs">
+    <Compile Update="Migrations\201608252031275_SitzungssaalNrAdded.Designer.cs">
       <DependentUpon>201608252031275_SitzungssaalNrAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804120909294_VerfahrenInt64.cs" />
-    <Compile Include="Migrations\201804120909294_VerfahrenInt64.Designer.cs">
+    <Compile Update="Migrations\201804120909294_VerfahrenInt64.Designer.cs">
       <DependentUpon>201804120909294_VerfahrenInt64.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808081053405_2-5-0-1832_NoteAssignmentsAdded.cs" />
-    <Compile Include="Migrations\201808081053405_2-5-0-1832_NoteAssignmentsAdded.Designer.cs">
+    <Compile Update="Migrations\201808081053405_2-5-0-1832_NoteAssignmentsAdded.Designer.cs">
       <DependentUpon>201808081053405_2-5-0-1832_NoteAssignmentsAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809140556179_2-6-0-1837_ChangeDisplayIDName.cs" />
-    <Compile Include="Migrations\201809140556179_2-6-0-1837_ChangeDisplayIDName.Designer.cs">
+    <Compile Update="Migrations\201809140556179_2-6-0-1837_ChangeDisplayIDName.Designer.cs">
       <DependentUpon>201809140556179_2-6-0-1837_ChangeDisplayIDName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809270719557_2-7-0-1839_PermissionsAdded.cs" />
-    <Compile Include="Migrations\201809270719557_2-7-0-1839_PermissionsAdded.Designer.cs">
+    <Compile Update="Migrations\201809270719557_2-7-0-1839_PermissionsAdded.Designer.cs">
       <DependentUpon>201809270719557_2-7-0-1839_PermissionsAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901231214380_2-9-0-1904_ObjekteAndBeteiligteAdded.cs" />
-    <Compile Include="Migrations\201901231214380_2-9-0-1904_ObjekteAndBeteiligteAdded.Designer.cs">
+    <Compile Update="Migrations\201901231214380_2-9-0-1904_ObjekteAndBeteiligteAdded.Designer.cs">
       <DependentUpon>201901231214380_2-9-0-1904_ObjekteAndBeteiligteAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj">
-      <Project>{4f0dd9ef-4bac-4954-ba53-ad52541e14e3}</Project>
-      <Name>DigitalSignage.Infrastructure</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Migrations\2-0-0_Full.sql">
@@ -146,48 +81,38 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501230805160_FirstRelease.resx">
+    <EmbeddedResource Update="Migrations\201501230805160_FirstRelease.resx">
       <DependentUpon>201501230805160_FirstRelease.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509180714072_NotesAdded.resx">
+    <EmbeddedResource Update="Migrations\201509180714072_NotesAdded.resx">
       <DependentUpon>201509180714072_NotesAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511240920302_DisplayDummyAdded.resx">
+    <EmbeddedResource Update="Migrations\201511240920302_DisplayDummyAdded.resx">
       <DependentUpon>201511240920302_DisplayDummyAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608252031275_SitzungssaalNrAdded.resx">
+    <EmbeddedResource Update="Migrations\201608252031275_SitzungssaalNrAdded.resx">
       <DependentUpon>201608252031275_SitzungssaalNrAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804120909294_VerfahrenInt64.resx">
+    <EmbeddedResource Update="Migrations\201804120909294_VerfahrenInt64.resx">
       <DependentUpon>201804120909294_VerfahrenInt64.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808081053405_2-5-0-1832_NoteAssignmentsAdded.resx">
+    <EmbeddedResource Update="Migrations\201808081053405_2-5-0-1832_NoteAssignmentsAdded.resx">
       <DependentUpon>201808081053405_2-5-0-1832_NoteAssignmentsAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809140556179_2-6-0-1837_ChangeDisplayIDName.resx">
+    <EmbeddedResource Update="Migrations\201809140556179_2-6-0-1837_ChangeDisplayIDName.resx">
       <DependentUpon>201809140556179_2-6-0-1837_ChangeDisplayIDName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809270719557_2-7-0-1839_PermissionsAdded.resx">
+    <EmbeddedResource Update="Migrations\201809270719557_2-7-0-1839_PermissionsAdded.resx">
       <DependentUpon>201809270719557_2-7-0-1839_PermissionsAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901231214380_2-9-0-1904_ObjekteAndBeteiligteAdded.resx">
+    <EmbeddedResource Update="Migrations\201901231214380_2-9-0-1904_ObjekteAndBeteiligteAdded.resx">
       <DependentUpon>201901231214380_2-9-0-1904_ObjekteAndBeteiligteAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
-  </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+  </ItemGroup>
 </Project>
