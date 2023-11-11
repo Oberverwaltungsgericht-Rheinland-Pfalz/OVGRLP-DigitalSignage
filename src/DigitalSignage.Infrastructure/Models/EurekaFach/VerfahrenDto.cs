@@ -1,12 +1,10 @@
 ﻿// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-using System;
-using System.Collections.Generic;
 
-namespace DigitalSignage.Infrastructure.Models.EurekaFach
+namespace DigitalSignage.Infrastructure.Models.EurekaFach;
+
+public class VerfahrenDto
 {
-  public class VerfahrenDto
-  {
     public Int64 Id { get; set; }
     public string Az { get; set; }
     public byte Lfdnr { get; set; }
@@ -37,5 +35,4 @@ namespace DigitalSignage.Infrastructure.Models.EurekaFach
     public ICollection<string> Besetzung { get; set; }
     public ICollection<string> ParteienBeteiligt { get; set; }
     public virtual ICollection<Objekte> Objekte { get; set; }
-  }
 }
