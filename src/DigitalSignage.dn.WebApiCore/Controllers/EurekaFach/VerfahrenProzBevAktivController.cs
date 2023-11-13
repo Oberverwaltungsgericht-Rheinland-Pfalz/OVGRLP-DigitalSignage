@@ -3,20 +3,26 @@
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigitalSignage.WebApi.Controllers.EurekaFach
 {
     [Route("daten/verfahren/{verfid}/prozbevaktiv")]
-    public class VerfahrenProzBevAktivController : Controller
+    public class VerfahrenProzBevAktivController : ControllerBase
     {
-        private readonly DigitalSignageDbContext context = new DigitalSignageDbContext();
+        private readonly DigitalSignageDbContext _context;
+
+        public VerfahrenProzBevAktivController(DigitalSignageDbContext context)
+        {
+            _context = context;
+        }
+
 
         [Route("")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProzBevAktiv>>> GetAllProzBevAktivByVerfahren(Int64 verfid)
         {
-            var verfahren = await context.Verfahren.FindAsync(verfid);
+            var verfahren = await _context.Verfahren.FindAsync(verfid);
 
             if (verfahren == null)
             {
@@ -25,7 +31,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                await context.Entry(verfahren).Collection(v => v.ProzBevAktiv).LoadAsync();
+                await _context.Entry(verfahren).Collection(v => v.ProzBevAktiv).LoadAsync();
             }
             catch (Exception ex)
             {
@@ -39,7 +45,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpGet]
         public async Task<ActionResult<ProzBevAktiv>> GetProzBevAktiv(Int64 verfid, int id)
         {
-            var prozBevAktiv = await context.ProzBevAktiv.FindAsync(id);
+            var prozBevAktiv = await _context.ProzBevAktiv.FindAsync(id);
 
             if (prozBevAktiv == null)
             {
@@ -65,8 +71,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.Entry(prozBevAktiv).State = EntityState.Modified;
-                await context.SaveChangesAsync();
+                _context.Entry(prozBevAktiv).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -85,7 +91,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
                 return BadRequest(ModelState);
             }
 
-            var verfahren = await context.Verfahren.FindAsync(verfid);
+            var verfahren = await _context.Verfahren.FindAsync(verfid);
 
             if (verfahren == null)
             {
@@ -94,9 +100,9 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                await context.Entry(verfahren).Collection(v => v.ProzBevAktiv).LoadAsync();
+                await _context.Entry(verfahren).Collection(v => v.ProzBevAktiv).LoadAsync();
                 verfahren.ProzBevAktiv.Add(prozBevAktiv);
-                await context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -110,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpDelete]
         public async Task<ActionResult<ProzBevAktiv>> DeleteProzBevAktiv(Int64 verfid, int id)
         {
-            var prozBevAktiv = await context.ProzBevAktiv.FindAsync(id);
+            var prozBevAktiv = await _context.ProzBevAktiv.FindAsync(id);
 
             if (prozBevAktiv == null)
             {
@@ -119,8 +125,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.ProzBevAktiv.Remove(prozBevAktiv);
-                await context.SaveChangesAsync();
+                _context.ProzBevAktiv.Remove(prozBevAktiv);
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {

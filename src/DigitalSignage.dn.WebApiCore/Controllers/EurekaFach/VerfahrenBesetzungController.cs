@@ -3,20 +3,26 @@
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace DigitalSignage.WebApi.Controllers.EurekaFach
 {
     [Route("daten/verfahren/{verfid}/besetzung")]
-    public class VerfahrenBesetzungController : Controller
+    public class VerfahrenBesetzungController : ControllerBase
     {
-        private readonly DigitalSignageDbContext context = new DigitalSignageDbContext();
+        private readonly DigitalSignageDbContext _context;
+
+        public VerfahrenBesetzungController(DigitalSignageDbContext context)
+        {
+            _context = context;
+        }
 
         [Route("")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Besetzung>>> GetAllBesetzungByVerfahren(Int64 verfid)
         {
-            var verfahren = await context.Verfahren.FindAsync(verfid);
+            var verfahren = await _context.Verfahren.FindAsync(verfid);
 
             if (verfahren == null)
             {
@@ -25,7 +31,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                await context.Entry(verfahren).Collection(v => v.Besetzung).LoadAsync();
+                await _context.Entry(verfahren).Collection(v => v.Besetzung).LoadAsync();
             }
             catch (Exception ex)
             {
@@ -39,7 +45,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpGet]
         public async Task<ActionResult<Besetzung>> GetBesetzung(Int64 verfid, int id)
         {
-            var besetzung = await context.Besetzung.FindAsync(id);
+            var besetzung = await _context.Besetzung.FindAsync(id);
 
             if (besetzung == null)
             {
@@ -65,8 +71,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.Entry(besetzung).State = EntityState.Modified;
-                await context.SaveChangesAsync();
+                _context.Entry(besetzung).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -85,7 +91,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
                 return BadRequest(ModelState);
             }
 
-            var verfahren = await context.Verfahren.FindAsync(verfid);
+            var verfahren = await _context.Verfahren.FindAsync(verfid);
 
             if (verfahren == null)
             {
@@ -94,9 +100,9 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                await context.Entry(verfahren).Collection(v => v.Besetzung).LoadAsync();
+                await _context.Entry(verfahren).Collection(v => v.Besetzung).LoadAsync();
                 verfahren.Besetzung.Add(besetzung);
-                await context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -110,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpDelete]
         public async Task<ActionResult<Besetzung>> DeleteBesetzung(Int64 verfid, int id)
         {
-            var besetzung = await context.Besetzung.FindAsync(id);
+            var besetzung = await _context.Besetzung.FindAsync(id);
 
             if (besetzung == null)
             {
@@ -119,8 +125,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.Besetzung.Remove(besetzung);
-                await context.SaveChangesAsync();
+                _context.Besetzung.Remove(besetzung);
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {

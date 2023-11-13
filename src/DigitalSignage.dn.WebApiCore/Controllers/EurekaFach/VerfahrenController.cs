@@ -3,15 +3,21 @@
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DigitalSignage.WebApi.Controllers.EurekaFach
 {
     [Route("daten/verfahren")]
-    public class VerfahrenController : Controller
+    public class VerfahrenController : ControllerBase
     {
-        private readonly DigitalSignageDbContext context = new DigitalSignageDbContext();
+        private readonly DigitalSignageDbContext _context;
+
+        public VerfahrenController(DigitalSignageDbContext context)
+        {
+            _context = context;
+        }
+
 
         [Route("")]
         [HttpGet]
@@ -19,7 +25,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         {
             List<VerfahrenDto> dtos = new List<VerfahrenDto>();
 
-            context.Verfahren
+            _context.Verfahren
                 .Include(v => v.Stammdaten)
                 .Include(v => v.ParteienAktiv)
                 .Include(v => v.ParteienPassiv)
@@ -45,19 +51,19 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpGet]
         public async Task<ActionResult<VerfahrenDto>> GetVerfahren(Int64 id)
         {
-            var verfahren = await context.Verfahren.FindAsync(id);
-            await context.Entry(verfahren).Reference(v => v.Stammdaten).LoadAsync();
-            await context.Entry(verfahren).Collection(v => v.ParteienAktiv).LoadAsync();
-            await context.Entry(verfahren).Collection(v => v.ParteienPassiv).LoadAsync();
-            await context.Entry(verfahren).Collection(v => v.Besetzung).LoadAsync();
-            await context.Entry(verfahren).Collection(v => v.ProzBevAktiv).LoadAsync();
-            await context.Entry(verfahren).Collection(v => v.ProzBevPassiv).LoadAsync();
-            await context.Entry(verfahren).Collection(v => v.ParteienBeigeladen).LoadAsync();
-            await context.Entry(verfahren).Collection(v => v.ProzBevBeigeladen).LoadAsync();
-            await context.Entry(verfahren).Collection(v => v.ParteienZeugen).LoadAsync();
-            await context.Entry(verfahren).Collection(v => v.ParteienSV).LoadAsync();
-            await context.Entry(verfahren).Collection(v => v.ParteienBeteiligt).LoadAsync();
-            await context.Entry(verfahren).Collection(v => v.Objekte).LoadAsync();
+            var verfahren = await _context.Verfahren.FindAsync(id);
+            await _context.Entry(verfahren).Reference(v => v.Stammdaten).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ParteienAktiv).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ParteienPassiv).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.Besetzung).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ProzBevAktiv).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ProzBevPassiv).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ParteienBeigeladen).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ProzBevBeigeladen).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ParteienZeugen).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ParteienSV).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ParteienBeteiligt).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.Objekte).LoadAsync();
 
             if (verfahren == null)
             {
@@ -85,8 +91,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
             {
                 var verfahren = dto.GetVerfahrenFromDto();
 
-                context.Entry(verfahren).State = EntityState.Modified;
-                await context.SaveChangesAsync();
+                _context.Entry(verfahren).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -110,8 +116,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.Verfahren.Add(verfahren);
-                await context.SaveChangesAsync();
+                _context.Verfahren.Add(verfahren);
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -128,15 +134,15 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpDelete]
         public async Task<ActionResult<Verfahren>> DeleteVerfahren(Int64 id)
         {
-            var verfahren = await context.Verfahren.FindAsync(id);
+            var verfahren = await _context.Verfahren.FindAsync(id);
 
             if (verfahren == null)
             {
                 return NotFound();
             }
 
-            context.Verfahren.Remove(verfahren);
-            await context.SaveChangesAsync();
+            _context.Verfahren.Remove(verfahren);
+            await _context.SaveChangesAsync();
 
             return Ok(verfahren);
         }

@@ -3,20 +3,26 @@
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigitalSignage.WebApi.Controllers.EurekaFach
 {
     [Route("daten/verfahren/{verfid}/parteienpassiv")]
-    public class VerfahrenParteienPassivController : Controller
+    public class VerfahrenParteienPassivController : ControllerBase
     {
-        private readonly DigitalSignageDbContext context = new DigitalSignageDbContext();
+        private readonly DigitalSignageDbContext _context;
+
+        public VerfahrenParteienPassivController(DigitalSignageDbContext context)
+        {
+            _context = context;
+        }
+
 
         [Route("")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ParteienPassiv>>> GetAllParteienPassivByVerfahren(Int64 verfid)
         {
-            var verfahren = await context.Verfahren.FindAsync(verfid);
+            var verfahren = await _context.Verfahren.FindAsync(verfid);
 
             if (verfahren == null)
             {
@@ -25,7 +31,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                await context.Entry(verfahren).Collection(v => v.ParteienPassiv).LoadAsync();
+                await _context.Entry(verfahren).Collection(v => v.ParteienPassiv).LoadAsync();
             }
             catch (Exception ex)
             {
@@ -39,7 +45,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpGet]
         public async Task<ActionResult<ParteienPassiv>> GetParteienPassiv(Int64 verfid, int id)
         {
-            var parteienPassiv = await context.ParteienPassiv.FindAsync(id);
+            var parteienPassiv = await _context.ParteienPassiv.FindAsync(id);
 
             if (parteienPassiv == null)
             {
@@ -65,8 +71,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.Entry(parteienPassiv).State = EntityState.Modified;
-                await context.SaveChangesAsync();
+                _context.Entry(parteienPassiv).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -85,7 +91,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
                 return BadRequest(ModelState);
             }
 
-            var verfahren = await context.Verfahren.FindAsync(verfid);
+            var verfahren = await _context.Verfahren.FindAsync(verfid);
 
             if (verfahren == null)
             {
@@ -94,9 +100,9 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                await context.Entry(verfahren).Collection(v => v.ParteienPassiv).LoadAsync();
+                await _context.Entry(verfahren).Collection(v => v.ParteienPassiv).LoadAsync();
                 verfahren.ParteienPassiv.Add(parteienPassiv);
-                await context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -110,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpDelete]
         public async Task<ActionResult<ParteienPassiv>> DeleteParteienPassiv(Int64 verfid, int id)
         {
-            var parteienPassiv = await context.ParteienPassiv.FindAsync(id);
+            var parteienPassiv = await _context.ParteienPassiv.FindAsync(id);
 
             if (parteienPassiv == null)
             {
@@ -119,8 +125,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.ParteienPassiv.Remove(parteienPassiv);
-                await context.SaveChangesAsync();
+                _context.ParteienPassiv.Remove(parteienPassiv);
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {

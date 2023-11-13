@@ -3,20 +3,25 @@
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigitalSignage.WebApi.Controllers.EurekaFach;
 
 [Route("daten/verfahren/{verfid}/prozbevpassiv")]
-public class VerfahrenProzBevPassivController : Controller
+public class VerfahrenProzBevPassivController : ControllerBase
 {
-    private readonly DigitalSignageDbContext context = new DigitalSignageDbContext();
+    private readonly DigitalSignageDbContext _context;
+
+    public VerfahrenProzBevPassivController(DigitalSignageDbContext context)
+    {
+        _context = context;
+    }
 
     [Route("")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ProzBevPassiv>>> GetAllProzBevPassivByVerfahren(Int64 verfid)
     {
-        var verfahren = await context.Verfahren.FindAsync(verfid);
+        var verfahren = await _context.Verfahren.FindAsync(verfid);
 
         if (verfahren == null)
         {
@@ -25,7 +30,7 @@ public class VerfahrenProzBevPassivController : Controller
 
         try
         {
-            await context.Entry(verfahren).Collection(v => v.ProzBevPassiv).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ProzBevPassiv).LoadAsync();
         }
         catch (Exception ex)
         {
@@ -39,7 +44,7 @@ public class VerfahrenProzBevPassivController : Controller
     [HttpGet]
     public async Task<ActionResult<ProzBevPassiv>> GetProzBevPassiv(Int64 verfid, int id)
     {
-        var prozBevPassiv = await context.ProzBevPassiv.FindAsync(id);
+        var prozBevPassiv = await _context.ProzBevPassiv.FindAsync(id);
 
         if (prozBevPassiv == null)
         {
@@ -65,8 +70,8 @@ public class VerfahrenProzBevPassivController : Controller
 
         try
         {
-            context.Entry(prozBevPassiv).State = EntityState.Modified;
-            await context.SaveChangesAsync();
+            _context.Entry(prozBevPassiv).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
         catch (Exception ex)
         {
@@ -85,7 +90,7 @@ public class VerfahrenProzBevPassivController : Controller
             return BadRequest(ModelState);
         }
 
-        var verfahren = await context.Verfahren.FindAsync(verfid);
+        var verfahren = await _context.Verfahren.FindAsync(verfid);
 
         if (verfahren == null)
         {
@@ -94,9 +99,9 @@ public class VerfahrenProzBevPassivController : Controller
 
         try
         {
-            await context.Entry(verfahren).Collection(v => v.ProzBevPassiv).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ProzBevPassiv).LoadAsync();
             verfahren.ProzBevPassiv.Add(prozBevPassiv);
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
         catch (Exception ex)
         {
@@ -110,7 +115,7 @@ public class VerfahrenProzBevPassivController : Controller
     [HttpDelete]
     public async Task<ActionResult<ProzBevPassiv>> DeleteProzBevPassiv(Int64 verfid, int id)
     {
-        var prozBevPassiv = await context.ProzBevPassiv.FindAsync(id);
+        var prozBevPassiv = await _context.ProzBevPassiv.FindAsync(id);
 
         if (prozBevPassiv == null)
         {
@@ -119,8 +124,8 @@ public class VerfahrenProzBevPassivController : Controller
 
         try
         {
-            context.ProzBevPassiv.Remove(prozBevPassiv);
-            await context.SaveChangesAsync();
+            _context.ProzBevPassiv.Remove(prozBevPassiv);
+            await _context.SaveChangesAsync();
         }
         catch (Exception ex)
         {

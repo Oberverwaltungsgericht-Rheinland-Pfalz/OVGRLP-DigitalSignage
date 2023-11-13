@@ -1,7 +1,9 @@
+// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
+// SPDX-License-Identifier: EUPL-1.2
 
 using DigitalSignage.dn.WebApiCore;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSystemWebAdapters();
 builder.Services.AddHttpForwarder();
 
@@ -15,10 +17,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-new Startup().AddDependencyInjection(app).ConfigureServices(app);
+new Startup(builder, app).AddDependencyInjection().ConfigureServices();
 
+app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseDefaultFiles(); //UseStaticFiles();
 
 app.UseRouting();
 app.UseAuthorization();

@@ -3,21 +3,26 @@
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
-using System.Net;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigitalSignage.WebApi.Controllers.EurekaFach
 {
     [Route("daten/verfahren/{verfid}/parteiensv")]
-    public class VerfahrenParteienSVController : Controller
+    public class VerfahrenParteienSVController : ControllerBase
     {
-        private readonly DigitalSignageDbContext context = new DigitalSignageDbContext();
+        private readonly DigitalSignageDbContext _context;
+
+        public VerfahrenParteienSVController(DigitalSignageDbContext context)
+        {
+            _context = context;
+        }
+
 
         [Route("")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ParteienSV>>> GetAllParteienSVByVerfahren(Int64 verfid)
         {
-            var verfahren = await context.Verfahren.FindAsync(verfid);
+            var verfahren = await _context.Verfahren.FindAsync(verfid);
 
             if (verfahren == null)
             {
@@ -26,7 +31,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                await context.Entry(verfahren).Collection(v => v.ParteienSV).LoadAsync();
+                await _context.Entry(verfahren).Collection(v => v.ParteienSV).LoadAsync();
             }
             catch (Exception ex)
             {
@@ -40,7 +45,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpGet]
         public async Task<ActionResult<ParteienSV>> GetParteienSV(Int64 verfid, int id)
         {
-            var parteienSV = await context.ParteienSV.FindAsync(id);
+            var parteienSV = await _context.ParteienSV.FindAsync(id);
 
             if (parteienSV == null)
             {
@@ -66,8 +71,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.Entry(parteienSV).State = EntityState.Modified;
-                await context.SaveChangesAsync();
+                _context.Entry(parteienSV).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -86,7 +91,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
                 return BadRequest(ModelState);
             }
 
-            var verfahren = await context.Verfahren.FindAsync(verfid);
+            var verfahren = await _context.Verfahren.FindAsync(verfid);
 
             if (verfahren == null)
             {
@@ -95,9 +100,9 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                await context.Entry(verfahren).Collection(v => v.ParteienSV).LoadAsync();
+                await _context.Entry(verfahren).Collection(v => v.ParteienSV).LoadAsync();
                 verfahren.ParteienSV.Add(parteienSV);
-                await context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -111,7 +116,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpDelete]
         public async Task<ActionResult<ParteienSV>> DeleteParteienSV(Int64 verfid, int id)
         {
-            var parteienSV = await context.ParteienSV.FindAsync(id);
+            var parteienSV = await _context.ParteienSV.FindAsync(id);
 
             if (parteienSV == null)
             {
@@ -120,8 +125,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.ParteienSV.Remove(parteienSV);
-                await context.SaveChangesAsync();
+                _context.ParteienSV.Remove(parteienSV);
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {

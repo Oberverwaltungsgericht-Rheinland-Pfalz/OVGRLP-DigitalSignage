@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34302.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.Infrastructure", "DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj", "{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.WebApi", "DigitalSignage.WebApi\DigitalSignage.WebApi.csproj", "{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.Data", "DigitalSignage.Data\DigitalSignage.Data.csproj", "{16441E33-CC5B-4DDD-A543-89C637BB2243}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.dn.WebApiCore", "DigitalSignage.dn.WebApiCore\DigitalSignage.dn.WebApiCore.csproj", "{286B0047-4E5D-442B-85AA-41B5C930ECE4}"
@@ -25,10 +23,6 @@ Global
 		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1C0892C-8403-4CED-86F7-FD6C2BEDDB77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Release|Any CPU.ActiveCfg = Release|Any CPU

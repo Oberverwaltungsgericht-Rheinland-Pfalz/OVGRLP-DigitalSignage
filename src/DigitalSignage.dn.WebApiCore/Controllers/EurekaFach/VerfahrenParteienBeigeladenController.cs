@@ -3,20 +3,26 @@
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigitalSignage.WebApi.Controllers.EurekaFach;
 
 [Route("daten/verfahren/{verfid}/parteienbeigeladen")]
-public class VerfahrenParteienBeigeladenController : Controller
+public class VerfahrenParteienBeigeladenController : ControllerBase
 {
-    private readonly DigitalSignageDbContext context = new DigitalSignageDbContext();
+    private readonly DigitalSignageDbContext _context;
+
+    public VerfahrenParteienBeigeladenController(DigitalSignageDbContext context)
+    {
+        _context = context;
+    }
+
 
     [Route("")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ParteienBeigeladen>>> GetAllParteienBeigeladenByVerfahren(Int64 verfid)
     {
-        var verfahren = await context.Verfahren.FindAsync(verfid);
+        var verfahren = await _context.Verfahren.FindAsync(verfid);
 
         if (verfahren == null)
         {
@@ -25,7 +31,7 @@ public class VerfahrenParteienBeigeladenController : Controller
 
         try
         {
-            await context.Entry(verfahren).Collection(v => v.ParteienBeigeladen).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ParteienBeigeladen).LoadAsync();
         }
         catch (Exception ex)
         {
@@ -39,7 +45,7 @@ public class VerfahrenParteienBeigeladenController : Controller
     [HttpGet]
     public async Task<ActionResult<ParteienBeigeladen>> GetParteienBeigeladen(Int64 verfid, int id)
     {
-        var parteienBeigeladen = await context.ParteienBeigeladen.FindAsync(id);
+        var parteienBeigeladen = await _context.ParteienBeigeladen.FindAsync(id);
 
         if (parteienBeigeladen == null)
         {
@@ -65,8 +71,8 @@ public class VerfahrenParteienBeigeladenController : Controller
 
         try
         {
-            context.Entry(parteienBeigeladen).State = EntityState.Modified;
-            await context.SaveChangesAsync();
+            _context.Entry(parteienBeigeladen).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
         catch (Exception ex)
         {
@@ -85,7 +91,7 @@ public class VerfahrenParteienBeigeladenController : Controller
             return BadRequest(ModelState);
         }
 
-        var verfahren = await context.Verfahren.FindAsync(verfid);
+        var verfahren = await _context.Verfahren.FindAsync(verfid);
 
         if (verfahren == null)
         {
@@ -94,9 +100,9 @@ public class VerfahrenParteienBeigeladenController : Controller
 
         try
         {
-            await context.Entry(verfahren).Collection(v => v.ParteienBeigeladen).LoadAsync();
+            await _context.Entry(verfahren).Collection(v => v.ParteienBeigeladen).LoadAsync();
             verfahren.ParteienBeigeladen.Add(parteienBeigeladen);
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
         catch (Exception ex)
         {
@@ -110,7 +116,7 @@ public class VerfahrenParteienBeigeladenController : Controller
     [HttpDelete]
     public async Task<ActionResult<ParteienBeigeladen>> DeleteParteienBeigeladen(Int64 verfid, int id)
     {
-        var parteienBeigeladen = await context.ParteienBeigeladen.FindAsync(id);
+        var parteienBeigeladen = await _context.ParteienBeigeladen.FindAsync(id);
 
         if (parteienBeigeladen == null)
         {
@@ -119,8 +125,8 @@ public class VerfahrenParteienBeigeladenController : Controller
 
         try
         {
-            context.ParteienBeigeladen.Remove(parteienBeigeladen);
-            await context.SaveChangesAsync();
+            _context.ParteienBeigeladen.Remove(parteienBeigeladen);
+            await _context.SaveChangesAsync();
         }
         catch (Exception ex)
         {

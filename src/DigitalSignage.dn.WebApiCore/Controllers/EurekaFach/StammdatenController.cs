@@ -3,28 +3,32 @@
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DigitalSignage.WebApi.Controllers.EurekaFach
 {
     [Route("daten/stammdaten")]
-    public class StammdatenController : Controller
+    public class StammdatenController : ControllerBase
     {
-        private readonly DigitalSignageDbContext context = new DigitalSignageDbContext();
+        private readonly DigitalSignageDbContext _context;
+
+        public StammdatenController(DigitalSignageDbContext context) {
+            _context = context;
+        }
 
         [Route("")]
         [HttpGet]
         public IEnumerable<Stammdaten> GetAllStammdaten()
         {
-            return context.Stammdaten;
+            return _context.Stammdaten;
         }
 
         [Route("{id}", Name = "GetStammdatenById")]
         [HttpGet]
         public async Task<ActionResult<Stammdaten>> GetStammdaten(int id)
         {
-            var stammdaten = await context.Stammdaten.FindAsync(id);
+            var stammdaten = await _context.Stammdaten.FindAsync(id);
 
             if (stammdaten == null)
             {
@@ -50,8 +54,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.Entry(stammdaten).State = EntityState.Modified;
-                await context.SaveChangesAsync();
+                _context.Entry(stammdaten).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -73,8 +77,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.Stammdaten.Add(stammdaten);
-                await context.SaveChangesAsync();
+                _context.Stammdaten.Add(stammdaten);
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -89,15 +93,15 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpDelete]
         public async Task<ActionResult<Stammdaten>> DeleteStammdaten(int id)
         {
-            var stammdaten = await context.Stammdaten.FindAsync(id);
+            var stammdaten = await _context.Stammdaten.FindAsync(id);
 
             if (stammdaten == null)
             {
                 return NotFound();
             }
 
-            context.Stammdaten.Remove(stammdaten);
-            await context.SaveChangesAsync();
+            _context.Stammdaten.Remove(stammdaten);
+            await _context.SaveChangesAsync();
 
             return Ok(stammdaten);
         }

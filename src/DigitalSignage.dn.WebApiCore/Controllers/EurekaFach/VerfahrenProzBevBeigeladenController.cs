@@ -3,20 +3,25 @@
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigitalSignage.WebApi.Controllers.EurekaFach
 {
     [Route("daten/verfahren/{verfid}/prozbevbeigeladen")]
-    public class VerfahrenProzBevBeigeladenController : Controller
+    public class VerfahrenProzBevBeigeladenController : ControllerBase
     {
-        private readonly DigitalSignageDbContext context = new DigitalSignageDbContext();
+        private readonly DigitalSignageDbContext _context;
+
+        public VerfahrenProzBevBeigeladenController(DigitalSignageDbContext context)
+        {
+            _context = context;
+        }
 
         [Route("")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProzBevBeigeladen>>> GetAllProzBevBeigeladenByVerfahren(Int64 verfid)
         {
-            var verfahren = await context.Verfahren.FindAsync(verfid);
+            var verfahren = await _context.Verfahren.FindAsync(verfid);
 
             if (verfahren == null)
             {
@@ -25,7 +30,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                await context.Entry(verfahren).Collection(v => v.ProzBevBeigeladen).LoadAsync();
+                await _context.Entry(verfahren).Collection(v => v.ProzBevBeigeladen).LoadAsync();
             }
             catch (Exception ex)
             {
@@ -39,7 +44,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpGet]
         public async Task<ActionResult<ProzBevBeigeladen>> GetProzBevBeigeladen(Int64 verfid, int id)
         {
-            var prozBevBeigeladen = await context.ProzBevBeigeladen.FindAsync(id);
+            var prozBevBeigeladen = await _context.ProzBevBeigeladen.FindAsync(id);
 
             if (prozBevBeigeladen == null)
             {
@@ -65,8 +70,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.Entry(prozBevBeigeladen).State = EntityState.Modified;
-                await context.SaveChangesAsync();
+                _context.Entry(prozBevBeigeladen).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -85,7 +90,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
                 return BadRequest(ModelState);
             }
 
-            var verfahren = await context.Verfahren.FindAsync(verfid);
+            var verfahren = await _context.Verfahren.FindAsync(verfid);
 
             if (verfahren == null)
             {
@@ -94,9 +99,9 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                await context.Entry(verfahren).Collection(v => v.ProzBevBeigeladen).LoadAsync();
+                await _context.Entry(verfahren).Collection(v => v.ProzBevBeigeladen).LoadAsync();
                 verfahren.ProzBevBeigeladen.Add(prozBevBeigeladen);
-                await context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -110,7 +115,7 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         [HttpDelete]
         public async Task<ActionResult<ProzBevBeigeladen>> DeleteProzBevBeigeladen(Int64 verfid, int id)
         {
-            var prozBevBeigeladen = await context.ProzBevBeigeladen.FindAsync(id);
+            var prozBevBeigeladen = await _context.ProzBevBeigeladen.FindAsync(id);
 
             if (prozBevBeigeladen == null)
             {
@@ -119,8 +124,8 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
 
             try
             {
-                context.ProzBevBeigeladen.Remove(prozBevBeigeladen);
-                await context.SaveChangesAsync();
+                _context.ProzBevBeigeladen.Remove(prozBevBeigeladen);
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
