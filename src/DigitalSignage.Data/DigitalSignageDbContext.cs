@@ -2,24 +2,35 @@
 // SPDX-License-Identifier: EUPL-1.2
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.Infrastructure.Models.Settings;
-using System.Data.Entity;
-using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigitalSignage.Data;
 
 public class DigitalSignageDbContext : DbContext
 {
-public DigitalSignageDbContext() : this("DigitalSignageDbConnectionString")
-{ }
+    private readonly string _connectionString;
 
-public DigitalSignageDbContext(string nameOrConnectionString)
-    : base(nameOrConnectionString)
-{
-  this.Database.Log = s => Debug.WriteLine(s);
-  this.Configuration.LazyLoadingEnabled = false;
-}
+    public DigitalSignageDbContext() : this("DigitalSignageDbConnectionString") { }
+    public DigitalSignageDbContext(DbContextOptions<DigitalSignageDbContext> options) : base(options) { }
 
-protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    public DigitalSignageDbContext(string nameOrConnectionString) : base()
+    { 
+      this._connectionString = nameOrConnectionString;
+      // this.Database.Log = s => Debug.WriteLine(s);
+      // this.Configuration.LazyLoadingEnabled = false;
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (_connectionString != null)
+            optionsBuilder
+                .UseLazyLoadingProxies(false)
+                .UseSqlServer(_connectionString);
+        else
+            optionsBuilder.UseLazyLoadingProxies();
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
   #region Basics
 
@@ -34,7 +45,7 @@ protected override void OnModelCreating(DbModelBuilder modelBuilder)
   modelBuilder.Entity<Stammdaten>().ToTable("Stammdaten").HasKey(s => s.StammdatenId);
   modelBuilder.Entity<Stammdaten>().Property(s => s.Gerichtsname).IsRequired().HasMaxLength(255);
   modelBuilder.Entity<Stammdaten>().Property(s => s.Datum).IsRequired().HasMaxLength(255);
-  modelBuilder.Entity<Stammdaten>().HasMany<Verfahren>(s => s.Verfahren).WithRequired(v => v.Stammdaten).HasForeignKey(v => v.StammdatenId);
+  modelBuilder.Entity<Stammdaten>().HasMany<Verfahren>(s => s.Verfahren).WithOne(v => v.Stammdaten).IsRequired().HasForeignKey(v => v.StammdatenId);
 
   #endregion Stammdaten
 
@@ -53,17 +64,17 @@ protected override void OnModelCreating(DbModelBuilder modelBuilder)
   modelBuilder.Entity<Verfahren>().Property(v => v.Bemerkung1).HasMaxLength(255);
   modelBuilder.Entity<Verfahren>().Property(v => v.Bemerkung2).HasMaxLength(255);
   modelBuilder.Entity<Verfahren>().Property(v => v.Art).IsRequired().HasMaxLength(255);
-  modelBuilder.Entity<Verfahren>().HasMany<Besetzung>(v => v.Besetzung).WithRequired().HasForeignKey(b => b.VerfahrensId);
-  modelBuilder.Entity<Verfahren>().HasMany<ParteienAktiv>(v => v.ParteienAktiv).WithRequired().HasForeignKey(p => p.VerfahrensId);
-  modelBuilder.Entity<Verfahren>().HasMany<ParteienPassiv>(v => v.ParteienPassiv).WithRequired().HasForeignKey(p => p.VerfahrensId);
-  modelBuilder.Entity<Verfahren>().HasMany<ParteienBeigeladen>(v => v.ParteienBeigeladen).WithRequired().HasForeignKey(p => p.VerfahrensId);
-  modelBuilder.Entity<Verfahren>().HasMany<ParteienSV>(v => v.ParteienSV).WithRequired().HasForeignKey(p => p.VerfahrensId);
-  modelBuilder.Entity<Verfahren>().HasMany<ParteienZeugen>(v => v.ParteienZeugen).WithRequired().HasForeignKey(p => p.VerfahrensId);
-  modelBuilder.Entity<Verfahren>().HasMany<ProzBevAktiv>(v => v.ProzBevAktiv).WithRequired().HasForeignKey(p => p.VerfahrensId);
-  modelBuilder.Entity<Verfahren>().HasMany<ProzBevPassiv>(v => v.ProzBevPassiv).WithRequired().HasForeignKey(p => p.VerfahrensId);
-  modelBuilder.Entity<Verfahren>().HasMany<ProzBevBeigeladen>(v => v.ProzBevBeigeladen).WithRequired().HasForeignKey(p => p.VerfahrensId);
-  modelBuilder.Entity<Verfahren>().HasMany<ParteienBeteiligt>(v => v.ParteienBeteiligt).WithRequired().HasForeignKey(p => p.VerfahrensId);
-  modelBuilder.Entity<Verfahren>().HasMany<Objekte>(v => v.Objekte).WithRequired().HasForeignKey(o => o.VerfahrensId);
+  modelBuilder.Entity<Verfahren>().HasMany<Besetzung>(v => v.Besetzung).WithOne().HasForeignKey(b => b.VerfahrensId);
+  modelBuilder.Entity<Verfahren>().HasMany<ParteienAktiv>(v => v.ParteienAktiv).WithOne().HasForeignKey(p => p.VerfahrensId);
+  modelBuilder.Entity<Verfahren>().HasMany<ParteienPassiv>(v => v.ParteienPassiv).WithOne().HasForeignKey(p => p.VerfahrensId);
+  modelBuilder.Entity<Verfahren>().HasMany<ParteienBeigeladen>(v => v.ParteienBeigeladen).WithOne().HasForeignKey(p => p.VerfahrensId);
+  modelBuilder.Entity<Verfahren>().HasMany<ParteienSV>(v => v.ParteienSV).WithOne().HasForeignKey(p => p.VerfahrensId);
+  modelBuilder.Entity<Verfahren>().HasMany<ParteienZeugen>(v => v.ParteienZeugen).WithOne().HasForeignKey(p => p.VerfahrensId);
+  modelBuilder.Entity<Verfahren>().HasMany<ProzBevAktiv>(v => v.ProzBevAktiv).WithOne().HasForeignKey(p => p.VerfahrensId);
+  modelBuilder.Entity<Verfahren>().HasMany<ProzBevPassiv>(v => v.ProzBevPassiv).WithOne().HasForeignKey(p => p.VerfahrensId);
+  modelBuilder.Entity<Verfahren>().HasMany<ProzBevBeigeladen>(v => v.ProzBevBeigeladen).WithOne().HasForeignKey(p => p.VerfahrensId);
+  modelBuilder.Entity<Verfahren>().HasMany<ParteienBeteiligt>(v => v.ParteienBeteiligt).WithOne().HasForeignKey(p => p.VerfahrensId);
+  modelBuilder.Entity<Verfahren>().HasMany<Objekte>(v => v.Objekte).WithOne().HasForeignKey(o => o.VerfahrensId);
 
   #endregion Verfahren
 
