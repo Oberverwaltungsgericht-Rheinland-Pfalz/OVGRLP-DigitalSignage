@@ -1,0 +1,16 @@
+{
+  "name": "DigitalSignage.DisplayControl.WebUI",
+  "version": "0.0.0",
+  "authors": [
+    "Tobias Grotheer <tobias.grotheer@ovg.mjv.rlp.de>"
+  ],
+  "license": "EUPL-1.2",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.1",
+    "angular-material": "~0.10.0"
+  },
+  "resolutions": {
+    "angular": "1.6.3"
+  }
+}
