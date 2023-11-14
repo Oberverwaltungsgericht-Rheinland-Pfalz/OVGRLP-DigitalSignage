@@ -24,6 +24,7 @@ public class WindowsOperatingSystem : IOperatingSystem
 
     //vncserver -localhost no -geometry 1024x768 -depth 24
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Plattformkompatibilität überprüfen", Justification = "<Ausstehend>")]
     public async Task Screenshot(HttpContext context)
     {
         try

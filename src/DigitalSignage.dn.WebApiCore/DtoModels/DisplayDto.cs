@@ -9,7 +9,7 @@ namespace DigitalSignage.dn.WebApiCore.DtoModels;
 public class DisplayDto : Display
 {
     public DisplayStatus Status;
-    public string ScreenshotUrl;
+    public string ScreenshotUrl ="";
 
      public static DisplayDto FromDisplay(Display display)
     {

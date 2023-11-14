@@ -29,5 +29,6 @@ IOperatingSystem DetectOS()
         throw new NotImplementedException("MacOS ist zurzeit nicht implementiert!");
 
     // Für den Fall, dass das Betriebssystem nicht gefunden werden kann
-    return null;
+    Console.Error.WriteLine("Unbekanntes Betriebssystem. Unterstützt werden nur Windows und Linux");
+    throw new NotImplementedException("MacOS ist zurzeit nicht implementiert!");
 }

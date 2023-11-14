@@ -13,7 +13,7 @@ public class PermissionService
     private WindowsIdentity UserIdentity
     { get; set; }
 
-    private List<string> _securityMembers;
+    private List<string>? _securityMembers = null;
 
     public List<string> SecurityMembers
     {
@@ -23,16 +23,16 @@ public class PermissionService
             {
                 this._securityMembers = new List<string>();
                 this._securityMembers.Add(this.UserIdentity.Name);
-                foreach (var group in this.UserIdentity.Groups)
-                {
-                    this._securityMembers.Add(group.Translate(typeof(NTAccount)).ToString());
-                }
+
+                if(this.UserIdentity.Groups != null)
+                    foreach (var group in this.UserIdentity.Groups)
+                        this._securityMembers.Add(group.Translate(typeof(NTAccount)).ToString());        
             }
             return this._securityMembers;
         }
     }
 
-    private List<Permission> _permissions;
+    private List<Permission>? _permissions = null;
 
     public List<Permission> Permissions
     {

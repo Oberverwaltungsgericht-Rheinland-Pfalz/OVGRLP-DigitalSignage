@@ -52,6 +52,9 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
         public async Task<ActionResult<VerfahrenDto>> GetVerfahren(Int64 id)
         {
             var verfahren = await _context.Verfahren.FindAsync(id);
+            if (verfahren == null)
+                return NotFound();
+
             await _context.Entry(verfahren).Reference(v => v.Stammdaten).LoadAsync();
             await _context.Entry(verfahren).Collection(v => v.ParteienAktiv).LoadAsync();
             await _context.Entry(verfahren).Collection(v => v.ParteienPassiv).LoadAsync();
@@ -64,11 +67,6 @@ namespace DigitalSignage.WebApi.Controllers.EurekaFach
             await _context.Entry(verfahren).Collection(v => v.ParteienSV).LoadAsync();
             await _context.Entry(verfahren).Collection(v => v.ParteienBeteiligt).LoadAsync();
             await _context.Entry(verfahren).Collection(v => v.Objekte).LoadAsync();
-
-            if (verfahren == null)
-            {
-                return NotFound();
-            }
 
             return Ok(new VerfahrenDto(verfahren));
         }

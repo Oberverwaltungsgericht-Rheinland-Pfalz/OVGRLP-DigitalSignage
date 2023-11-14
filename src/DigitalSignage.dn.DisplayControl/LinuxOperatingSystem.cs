@@ -34,6 +34,7 @@ internal class LinuxOperatingSystem : IOperatingSystem
         }
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Plattformkompatibilität überprüfen", Justification = "<Ausstehend>")]
     public async Task Screenshot(HttpContext context)
     {
         try
