@@ -10,6 +10,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Oberverwaltungsgericht-Rheinland-Pfalz/OVGRLP-DigitalSignage</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

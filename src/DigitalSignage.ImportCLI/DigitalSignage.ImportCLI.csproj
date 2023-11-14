@@ -30,6 +30,9 @@
     <ProjectReference Include="..\DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Breeze.Core" Version="7.1.0" />
+    <PackageReference Include="Breeze.Persistence" Version="7.1.0" />
+    <PackageReference Include="Breeze.Persistence.EFCore" Version="7.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
     <PackageReference Include="NDesk.Options" Version="0.2.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
@@ -55,15 +58,10 @@
     <PackageReference Include="System.Text.Json" Version="8.0.0-rc.2.23479.6" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Azure.Core" Version="1.36.0" />
-    <PackageReference Include="Azure.Identity" Version="1.10.3" />
-    <PackageReference Include="Breeze.Server.ContextProvider" Version="2.0.3" />
-    <PackageReference Include="Breeze.Server.ContextProvider.EF6" Version="2.0.3" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.57.0" />
     <PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" Version="4.57.0" />
     <PackageReference Include="Microsoft.IdentityModel.Abstractions" Version="7.0.3" />
-    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.0.3" />
     <PackageReference Include="Microsoft.IdentityModel.Logging" Version="7.0.3" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="7.0.3" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="7.0.3" />

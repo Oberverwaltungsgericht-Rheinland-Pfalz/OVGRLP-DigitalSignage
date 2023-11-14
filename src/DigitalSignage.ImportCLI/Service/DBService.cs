@@ -1,6 +1,5 @@
 ﻿// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-using Breeze.ContextProvider.EF6;
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using System.Linq;
@@ -31,13 +30,13 @@ public class DBService
 
     public void AddData(Terminsaushang data)
     {
-        var contextProvider = new EfContextProvider(this.NameOrConnectionString);
+        var contextProvider = new DigitalSignageDbContext(this.NameOrConnectionString);
 
         //Kopfdaten
         var st = new DigitalSignage.Infrastructure.Models.EurekaFach.Stammdaten();
         st.Datum = data.Stammdaten.Datum;
         st.Gerichtsname = data.Stammdaten.Gerichtsname.TrimEnd();
-        contextProvider.Context.Stammdaten.Add(st);
+        contextProvider.Stammdaten.Add(st);
 
         //alle Verfahren aufnehmen
         foreach (TerminsaushangVerfahren verf in data.Terminiert)
@@ -47,18 +46,18 @@ public class DBService
             // Aufnahme der Verfahrensdaten
             v.StammdatenId = st.StammdatenId;
             AddVerfahrensdaten(v, verf);
-            contextProvider.Context.Verfahren.Add(v);
+            contextProvider.Verfahren.Add(v);
         }
 
-        contextProvider.Context.SaveChanges();
+        contextProvider.SaveChanges();
     }
 
     public void UpdateData(Terminsaushang data)
     {
-        var contextProvider = new EfContextProvider(this.NameOrConnectionString);
+        var contextProvider = new DigitalSignageDbContext(this.NameOrConnectionString);
 
         // StammdatenID ahand Gericht und Datum finden
-        var st = contextProvider.Context.Stammdaten.Where(s => s.Datum == data.Stammdaten.Datum && s.Gerichtsname == data.Stammdaten.Gerichtsname).ToList();
+        var st = contextProvider.Stammdaten.Where(s => s.Datum == data.Stammdaten.Datum && s.Gerichtsname == data.Stammdaten.Gerichtsname).ToList();
         if (null == st || st.Count == 0)
             throw new Exception(string.Format("Stammdaten '{0}' vom {1} konnten nicht gefunden werden", data.Stammdaten.Gerichtsname, data.Stammdaten.Datum));
         if (st.Count > 1)
@@ -67,13 +66,13 @@ public class DBService
 
         foreach (TerminsaushangVerfahren verf in data.Terminiert)
         {
-            var ver = contextProvider.Context.Verfahren.Where(v => v.StammdatenId == StammdatenID && v.Az == verf.Az).ToList();
+            var ver = contextProvider.Verfahren.Where(v => v.StammdatenId == StammdatenID && v.Az == verf.Az).ToList();
             if (null == ver || ver.Count == 0)
             {
                 var v = new Verfahren();
                 v.StammdatenId = StammdatenID;
                 AddVerfahrensdaten(v, verf);
-                contextProvider.Context.Verfahren.Add(v);
+                contextProvider.Verfahren.Add(v);
             }
             else
             {
@@ -85,7 +84,7 @@ public class DBService
             }
         }
 
-        contextProvider.Context.SaveChanges();
+        contextProvider.SaveChanges();
     }
 
     private List<ParteienAktiv> DetermineAktivParteien(TerminsaushangVerfahren verf)
@@ -304,57 +303,42 @@ public class DBService
         verfahren.ParteienBeteiligt = DetermineBeteiligte(verf);
     }
 
-    private void DeleteVerfahrensParteien(EfContextProvider contextProvider, Verfahren verfahren)
+    private void DeleteVerfahrensParteien(DigitalSignageDbContext contextProvider, Verfahren verfahren)
     {
-        var aktivPartei = contextProvider.Context.ParteienAktiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+        var aktivPartei = contextProvider.ParteienAktiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
         foreach (var p in aktivPartei)
-            contextProvider.Context.ParteienAktiv.Remove(p);
+            contextProvider.ParteienAktiv.Remove(p);
 
-        var aktivProzBev = contextProvider.Context.ProzBevAktiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+        var aktivProzBev = contextProvider.ProzBevAktiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
         foreach (var p in aktivProzBev)
-            contextProvider.Context.ProzBevAktiv.Remove(p);
+            contextProvider.ProzBevAktiv.Remove(p);
 
-        var passivPartei = contextProvider.Context.ParteienPassiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+        var passivPartei = contextProvider.ParteienPassiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
         foreach (var p in passivPartei)
-            contextProvider.Context.ParteienPassiv.Remove(p);
+            contextProvider.ParteienPassiv.Remove(p);
 
-        var passivProzBev = contextProvider.Context.ProzBevPassiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+        var passivProzBev = contextProvider.ProzBevPassiv.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
         foreach (var p in passivProzBev)
-            contextProvider.Context.ProzBevPassiv.Remove(p);
+            contextProvider.ProzBevPassiv.Remove(p);
 
-        var beigeladenPartei = contextProvider.Context.ParteienBeigeladen.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+        var beigeladenPartei = contextProvider.ParteienBeigeladen.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
         foreach (var p in beigeladenPartei)
-            contextProvider.Context.ParteienBeigeladen.Remove(p);
+            contextProvider.ParteienBeigeladen.Remove(p);
 
-        var beigeladenProzBev = contextProvider.Context.ProzBevBeigeladen.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+        var beigeladenProzBev = contextProvider.ProzBevBeigeladen.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
         foreach (var p in beigeladenProzBev)
-            contextProvider.Context.ProzBevBeigeladen.Remove(p);
+            contextProvider.ProzBevBeigeladen.Remove(p);
 
-        var svPartei = contextProvider.Context.ParteienSV.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+        var svPartei = contextProvider.ParteienSV.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
         foreach (var p in svPartei)
-            contextProvider.Context.ParteienSV.Remove(p);
+            contextProvider.ParteienSV.Remove(p);
 
-        var zPartei = contextProvider.Context.ParteienZeugen.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+        var zPartei = contextProvider.ParteienZeugen.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
         foreach (var p in zPartei)
-            contextProvider.Context.ParteienZeugen.Remove(p);
+            contextProvider.ParteienZeugen.Remove(p);
 
-        var besetzung = contextProvider.Context.Besetzung.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
+        var besetzung = contextProvider.Besetzung.Where(p => p.VerfahrensId == verfahren.VerfahrensId).ToList();
         foreach (var p in besetzung)
-            contextProvider.Context.Besetzung.Remove(p);
-    }
-}
-
-public class EfContextProvider : EFContextProvider<DigitalSignageDbContext>
-{
-    private string NameOrConnectionString;
-
-    public EfContextProvider(string nameOrConnectionString) : base()
-    {
-        this.NameOrConnectionString = nameOrConnectionString;
-    }
-
-    protected override DigitalSignageDbContext CreateContext()
-    {
-        return new DigitalSignageDbContext(NameOrConnectionString);
+            contextProvider.Besetzung.Remove(p);
     }
 }
