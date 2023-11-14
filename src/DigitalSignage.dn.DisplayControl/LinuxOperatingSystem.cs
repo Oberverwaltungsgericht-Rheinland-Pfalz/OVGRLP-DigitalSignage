@@ -1,55 +1,37 @@
 ﻿// SPDX-FileCopyrightText: © 2023 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-using Microsoft.AspNetCore.Http.HttpResults;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Text;
 
 namespace DigitalSignage.dn.DisplayControl;
 
 internal class LinuxOperatingSystem : IOperatingSystem
 {
-    public async Task<Ok<string>> Restart()
+    public IResult Restart()
     {
-        var startInfo = new ProcessStartInfo
+        try
         {
-            FileName = @"/bin/bash",
-            Arguments = @"echo Benutzer1 | sudo -S reboot",
-            CreateNoWindow = true,
-            RedirectStandardOutput = true,
-            UseShellExecute = false
-        };
-
-        using (var process = new Process { StartInfo = startInfo })
-        {
-            process.Start();
-            string result = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
+            var result = "echo Benutzer1 | sudo -S reboot".Bash();
             return TypedResults.Ok(result);
         }
-        // "echo Benutzer1 | sudo -S reboot".Bash();
+        catch (Exception ex)
+        {
+            return TypedResults.Conflict(ex.Message);
+        }
     }
 
-    public async Task<Ok<string>> Shutdown()
+    public IResult Shutdown()
     {
-        var startInfo = new ProcessStartInfo
+        try
         {
-            FileName = @"/bin/bash",
-            Arguments = @"echo Benutzer1 | sudo -S shutdown",
-            CreateNoWindow = true,
-            RedirectStandardOutput = true,
-            UseShellExecute = false
-        };
-
-        using (var process = new Process { StartInfo = startInfo })
-        {
-            process.Start();
-            string result = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
+            var result = "echo Benutzer1 | sudo -S shutdown".Bash();
             return TypedResults.Ok(result);
         }
-
-        // "echo Benutzer1 | sudo -S shutdown".Bash();
+        catch (Exception ex)
+        {
+            return TypedResults.Conflict(ex.Message);
+        }
     }
 
     public async Task Screenshot(HttpContext context)
@@ -62,12 +44,12 @@ internal class LinuxOperatingSystem : IOperatingSystem
             int width = Convert.ToInt32(screenDimensionsSplit[0]);
             int height = Convert.ToInt32(screenDimensionsSplit[1]);
 
-            Bitmap screenshot = new Bitmap(width, height, PixelFormat.Format32bppArgb);
+            using Bitmap screenshot = new Bitmap(width, height, PixelFormat.Format32bppArgb);
 
             using var capturedGraphic = Graphics.FromImage(screenshot);
             capturedGraphic.CopyFromScreen(0, 0, 0, 0, screenshot.Size, CopyPixelOperation.SourceCopy);
 
-            MemoryStream memStream = new MemoryStream();
+            using MemoryStream memStream = new MemoryStream();
             screenshot.Save(memStream, ImageFormat.Jpeg);
 
             memStream.Position = 0;
@@ -76,12 +58,16 @@ internal class LinuxOperatingSystem : IOperatingSystem
             context.Response.ContentType = "image/jpeg";
             await context.Response.Body.WriteAsync(byteArray, 0, byteArray.Length);
         }
-        catch
+        catch (Exception ex)
         {
             context.Response.ContentType = "image/jpeg";
-            await context.Response.Body.WriteAsync(null, 0, 0);
-            throw new Exception("Konnte keinen Screenshot aufnehmen!");
+            context.Response.StatusCode = 500;
+
+            await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes("Fehlerbei Screenshot Aufnahme " + ex.Message), 0, 0);
+        }
+        finally
+        {
+            await context.Response.CompleteAsync();
         }
     }
-}
 }
