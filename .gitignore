@@ -7,6 +7,9 @@
 *.userosscache
 *.sln.docstates
 
+DigitalSignage.dn.DisplayControl/appsettings.json
+DigitalSignage.dn.DisplayControl/wwwroot/components/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

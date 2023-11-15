@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34302.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.Infrastructure", "DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj", "{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.Data", "DigitalSignage.Data\DigitalSignage.Data.csproj", "{16441E33-CC5B-4DDD-A543-89C637BB2243}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.dn.WebApiCore", "DigitalSignage.dn.WebApiCore\DigitalSignage.dn.WebApiCore.csproj", "{286B0047-4E5D-442B-85AA-41B5C930ECE4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.ImportCLI", "DigitalSignage.ImportCLI\DigitalSignage.ImportCLI.csproj", "{FEE1022C-5EE2-4782-9EB8-AD0D76F5025C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.ImportCLI.NUnitTests", "DigitalSignage.ImportCLI.NUnitTests\DigitalSignage.ImportCLI.NUnitTests.csproj", "{EEEC94FE-BCBA-4248-8732-69E5BDABB6ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.dn.DisplayControl", "DigitalSignage.dn.DisplayControl\DigitalSignage.dn.DisplayControl.csproj", "{EE233FF3-C4A9-47F3-BCD7-AD812AB61460}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F0DD9EF-4BAC-4954-BA53-AD52541E14E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16441E33-CC5B-4DDD-A543-89C637BB2243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{286B0047-4E5D-442B-85AA-41B5C930ECE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{286B0047-4E5D-442B-85AA-41B5C930ECE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{286B0047-4E5D-442B-85AA-41B5C930ECE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{286B0047-4E5D-442B-85AA-41B5C930ECE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE1022C-5EE2-4782-9EB8-AD0D76F5025C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE1022C-5EE2-4782-9EB8-AD0D76F5025C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE1022C-5EE2-4782-9EB8-AD0D76F5025C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE1022C-5EE2-4782-9EB8-AD0D76F5025C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEEC94FE-BCBA-4248-8732-69E5BDABB6ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEEC94FE-BCBA-4248-8732-69E5BDABB6ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEEC94FE-BCBA-4248-8732-69E5BDABB6ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEEC94FE-BCBA-4248-8732-69E5BDABB6ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE233FF3-C4A9-47F3-BCD7-AD812AB61460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE233FF3-C4A9-47F3-BCD7-AD812AB61460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE233FF3-C4A9-47F3-BCD7-AD812AB61460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE233FF3-C4A9-47F3-BCD7-AD812AB61460}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {771F7DE6-D26F-4E16-8E16-9E304AE3C244}
+	EndGlobalSection
+EndGlobal
