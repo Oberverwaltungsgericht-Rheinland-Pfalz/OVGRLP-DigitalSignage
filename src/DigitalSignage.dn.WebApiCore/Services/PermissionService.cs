@@ -39,10 +39,8 @@ public class PermissionService
         get
         {
             if (null == this._permissions)
-            {
-                using (var db = new DigitalSignageDbContext())
-                { this._permissions = db.Permissions.ToList(); }
-            }
+                this._permissions = _context.Permissions.ToList();
+            
             return this._permissions;
         }
     }
@@ -71,8 +69,8 @@ public class PermissionService
                 {
                     if (!methods.Contains(httpMethod))
                         httpMethod = "GET";
-                    PropertyInfo field = perm[i].GetType().GetProperty(httpMethod);
-                    allowed = (bool)field.GetValue(perm[i]);
+                    PropertyInfo? field = perm[i].GetType().GetProperty(httpMethod);
+                    allowed = (bool) (field?.GetValue(perm[i]) ?? false);
                 }
             }
         }

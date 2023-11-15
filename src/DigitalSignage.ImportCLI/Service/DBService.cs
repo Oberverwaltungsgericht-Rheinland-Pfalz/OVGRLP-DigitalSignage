@@ -18,14 +18,11 @@ public class DBService
 
     public void DeleteAll()
     {
-        using (var db = new DigitalSignageDbContext(this.NameOrConnectionString))
-        {
+        using var db = new DigitalSignageDbContext(this.NameOrConnectionString);
             foreach (Stammdaten st in db.Stammdaten.ToArray())
-            {
                 db.Stammdaten.Remove(st);
-            }
+
             db.SaveChanges();
-        }
     }
 
     public void AddData(Terminsaushang data)
