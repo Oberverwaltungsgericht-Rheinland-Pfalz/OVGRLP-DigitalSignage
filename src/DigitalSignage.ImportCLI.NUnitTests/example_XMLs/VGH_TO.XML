@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Terminsaushang>
+  <Stammdaten>
+    <Gerichtsname>Verfassungsgerichtshof Rheinland-Pfalz</Gerichtsname>
+    <Datum>23.01.2018</Datum>
+  </Stammdaten>
+  <Terminiert>
+    <Verfahren>
+      <Lfdnr>1</Lfdnr>
+      <Kammer>1</Kammer>
+      <Sitzungssaal>Sitzungssaal E009</Sitzungssaal>
+      <Uhrzeit>10:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>VGH A 01/01</Az>
+      <Gegenstand>§ 72 Abs. 1 und 2 der Geschäftsordnung des Landtags Rheinland-Pfalz vom 31. Mai 2017</Gegenstand>
+      <Bemerkung1>
+      </Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Präsident des Verfassungsgerichtshofs</Richter>
+        <Richter>Vizepräsidentin des Oberverwaltungsgerichts</Richter>
+        <Richter>Präsident des Finanzgerichts</Richter>
+        <Richter>Präsidentin des Oberlandesgerichts</Richter>
+        <Richter>Ehrenrat Dr. Sost</Richter>
+        <Richter>Rechtsanwältin Dr. Schlau</Richter>
+        <Richter>Univ.-Professor Dr. Müllersen</Richter>
+        <Richter>Kreisverwaltungsdirektorin Hammer</Richter>
+        <Richter>Univ.-Professor Dr. Rotor</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>der Fraktion der alternativen Wähler
+</Partei>
+        </Parteien>
+        <ProzBev>Michael Muster
+          <PB>Proz.-Bev.: Michael Muster
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>das Land Rheinland-Pfalz vertreten durch den Landtag Rheinland-Pfalz
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+  </Terminiert>
+</Terminsaushang>

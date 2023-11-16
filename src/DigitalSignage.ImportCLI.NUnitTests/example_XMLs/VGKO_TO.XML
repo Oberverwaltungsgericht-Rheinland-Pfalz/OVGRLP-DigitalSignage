@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Terminsaushang>
+  <Stammdaten>
+    <Gerichtsname>Verwaltungsgericht Koblenz</Gerichtsname>
+    <Datum>23.01.2018</Datum>
+  </Stammdaten>
+  <Terminiert>
+    <Verfahren>
+      <Lfdnr>1</Lfdnr>
+      <Kammer>1</Kammer>
+      <Sitzungssaal>Sitzungssaal A021</Sitzungssaal>
+      <Uhrzeit>09:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>9 A 321/23.KO</Az>
+      <Gegenstand>Kommunalrechts</Gegenstand>
+      <Bemerkung1>
+      </Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Verwaltungsgericht Dr. Eicher</Richter>
+        <Richter>Richter am Verwaltungsgericht Putz</Richter>
+        <Richter>Richterin David</Richter>
+        <Richter>ehrenamtliche Richterin Maler Karl</Richter>
+        <Richter>ehrenamtliche Richterin Geschäftsführerin King</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Johannes Peter Müller</Partei>
+        </Parteien>
+        <ProzBev />
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Ortsgemeinde Rengsdorf vertreten durch den Bürgermeister der Verbandsgemeinde Rengsdorf-Waldbreitbach</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwälte Jeromin &amp; Kerkmann</PB>
+        </ProzBev>
+      </PassivPartei>
+	  <Beigeladen>
+		<Parteien>
+		  <Partei>1. ABCERT AG</Partei>
+		  <Partei>2. Helmut Grün</Partei>
+		  <Partei>3. Erika Grün</Partei>
+		</Parteien>
+		<ProzBev>
+		  <PB>Proz.-Bev.:	zu 3: Rechtsanwälte Jeromin &amp; Kerkmann</PB>
+		</ProzBev>
+	  </Beigeladen>
+	  <SV>
+	    <Parteien>
+		  <Partei>1. Edith Hof</Partei>
+		  <Uhrzeit>09:00</Uhrzeit>
+		  <Partei>2. Willibald Hof</Partei>
+		  <Uhrzeit>09:00</Uhrzeit>
+		</Parteien>
+	  </SV>
+	  <Zeugen>
+	    <Parteien>
+		  <Partei>1. Hessel GmbH vertreten durch die Geschäftsführer</Partei>
+		  <Uhrzeit>09:00</Uhrzeit>
+		  <Partei>2. Astrid Hessel</Partei>
+		  <Uhrzeit>09:00</Uhrzeit>
+		</Parteien>
+	  </Zeugen>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>2</Lfdnr>
+      <Kammer>1</Kammer>
+      <Sitzungssaal>Sitzungssaal A021</Sitzungssaal>
+      <Uhrzeit>09:45</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>1 A 123/23.KO</Az>
+      <Gegenstand>Wasserrechts</Gegenstand>
+      <Bemerkung1>
+      </Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Verwaltungsgericht Dr. Eicher</Richter>
+        <Richter>Richter am Verwaltungsgericht Putz</Richter>
+        <Richter>Richterin David</Richter>
+        <Richter>ehrenamtliche Richterin Maler Karl</Richter>
+        <Richter>ehrenamtliche Richterin Geschäftsführerin King</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Hans Müller Dorfstraße 10, 56067 Koblenz vertreten durch seine Betreuerin Anja Müller</Partei>
+		  <Partei>2. Hans Müller Dorfstraße 10, 56067 Koblenz vertreten durch seine Betreuerin Anja Müller</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwalt Hans Mustername</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Verbandsgemeinde Bad Ems vertreten durch den Bürgermeister</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwälte Dr. Martini, Mogg, Vogt PartGmbB</PB>
+	      <PB>Proz.-Bev.: Rechtsanwälte Dr. Martini2, Mogg, Vogt PartGmbB</PB>
+        </ProzBev>
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>3</Lfdnr>
+      <Kammer>1</Kammer>
+      <Sitzungssaal>Sitzungssaal A021</Sitzungssaal>
+      <Uhrzeit>10:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>1 K 759/17.KO</Az>
+      <Gegenstand>Kommunalverfassungsrechts</Gegenstand>
+      <Bemerkung1>
+      </Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Verwaltungsgericht Dr. Eicher</Richter>
+        <Richter>Richter am Verwaltungsgericht Putz</Richter>
+        <Richter>Richterin David</Richter>
+        <Richter>ehrenamtliche Richterin Maler Karl</Richter>
+        <Richter>ehrenamtliche Richterin Geschäftsführerin King</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>1. SPD-Kreistagsfraktion des Rhein-Hunsrück-Kreises vertreten durch den Fraktionsvorsitzenden Michael Mustermann</Partei>
+          <Partei>2. Fraktion der Freien Wähler Rhein-Hunsrück e.V. im Kreistrag vertreten durch den Fraktionsvorsitzenden Stefan Mustermann</Partei>
+          <Partei>3. FDP-Kreistagsfraktion des Rhein-Hunsrück-Kreises vertreten durch den FraktionsvorsitzendenThomas Mustermann</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: zu 1-3: Kunz Rechtsanwälte</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Landrat des Landkreis Dr. Micheal Müller</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+  </Terminiert>
+</Terminsaushang>

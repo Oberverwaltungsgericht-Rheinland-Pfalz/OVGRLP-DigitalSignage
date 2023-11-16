@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Terminsaushang>
+  <Stammdaten>
+    <Gerichtsname>Verwaltungsgericht Koblenz</Gerichtsname>
+    <Datum>23.01.2018</Datum>
+  </Stammdaten>
+  <Terminiert>
+    <Verfahren>
+      <Lfdnr>1</Lfdnr>
+      <Kammer>1</Kammer>
+      <Sitzungssaal>Sitzungssaal A021</Sitzungssaal>
+      <Uhrzeit>09:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>1 K 123/23.KO</Az>
+      <Gegenstand>Kommunalrechts</Gegenstand>
+      <Bemerkung1>
+      </Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Verwaltungsgericht Dr. Eicher</Richter>
+		<Richter>Richter am Verwaltungsgericht Dr. Eicher</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Josef Peter Mustermann</Partei>
+		  <Partei>Josef Peter Mustermann</Partei>
+        </Parteien>
+        <ProzBev />
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Ortsgemeinde Rengsdorf vertreten durch den Bürgermeister der Verbandsgemeinde Rengsdorf-Waldbreitbach</Partei>
+		  <Partei>Ortsgemeinde Rengsdorf vertreten durch den Bürgermeister der Verbandsgemeinde Rengsdorf-Waldbreitbach</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwälte Jeromin &amp; Kerkmann</PB>
+		  <PB>Proz.-Bev.: Rechtsanwälte Jeromin &amp; Kerkmann</PB>
+        </ProzBev>
+      </PassivPartei>
+	  <Beigeladen>
+        <Parteien>
+          <Partei>1. ABCERT AG</Partei>
+		  <Partei>1. ABCERT AG</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.:	zu 3: Rechtsanwälte Jeromin &amp; Kerkmann</PB>
+		  <PB>Proz.-Bev.:	zu 3: Rechtsanwälte Jeromin &amp; Kerkmann</PB>
+        </ProzBev>
+      </Beigeladen>
+      <SV>
+        <Parteien>
+          <Partei>1. Edith Hof</Partei>
+		  <Partei>1. Edith Hof</Partei>
+        </Parteien>
+      </SV>
+      <Zeugen>
+        <Parteien>
+          <Partei>1. Hessel GmbH vertreten durch die Geschäftsführer</Partei>
+		  <Partei>1. Hessel GmbH vertreten durch die Geschäftsführer</Partei>
+        </Parteien>
+      </Zeugen>
+	  <Beteiligt>
+        <Parteien>
+          <Partei>Frau Musterfrau</Partei>
+          <Partei>Herr Mustermann</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: zu 1: Rechtsanwälte Mustermann</PB>
+        </ProzBev>
+      </Beteiligt>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>2</Lfdnr>
+      <Kammer>1</Kammer>
+      <Sitzungssaal>Sitzungssaal A021</Sitzungssaal>
+      <Uhrzeit>09:45</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>1 K 456/17.KO</Az>
+      <Gegenstand>Wasserrechts</Gegenstand>
+      <Bemerkung1>
+      </Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Verwaltungsgericht Dr. Eicher</Richter>
+		<Richter>Richter am Verwaltungsgericht Dr. Eicher</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Hans-Werner Schlag Arenberger Straße 10, 56130 Bad Ems vertreten durch seine Betreuerin Anja Schlag</Partei>
+		  <Partei>Hans-Werner Schlag Arenberger Straße 10, 56130 Bad Ems vertreten durch seine Betreuerin Anja Schlag</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwalt Hans-Jürgen Mustermann</PB>
+		  <PB>Proz.-Bev.: Rechtsanwalt Hans-Jürgen Mustermann</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Verbandsgemeinde Bad Ems vertreten durch den Bürgermeister</Partei>
+		  <Partei>Verbandsgemeinde Bad Ems vertreten durch den Bürgermeister</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwälte Dr. Martini, Mogg, Vogt PartGmbB</PB>
+		  <PB>Proz.-Bev.: Rechtsanwälte Dr. Martini, Mogg, Vogt PartGmbB</PB>
+        </ProzBev>
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>3</Lfdnr>
+      <Kammer>1</Kammer>
+      <Sitzungssaal>Sitzungssaal A021</Sitzungssaal>
+      <Uhrzeit>10:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>1 K 123/23.KO</Az>
+      <Gegenstand>Kommunalverfassungsrechts</Gegenstand>
+      <Bemerkung1>
+      </Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Verwaltungsgericht Dr. Eicher</Richter>
+		<Richter>Richter am Verwaltungsgericht Dr. Eicher</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>1. SPD-Kreistagsfraktion des Rhein-Hunsrück-Kreises vertreten durch den Fraktionsvorsitzenden Michael Muster</Partei>
+		  <Partei>1. SPD-Kreistagsfraktion des Rhein-Hunsrück-Kreises vertreten durch den Fraktionsvorsitzenden Michael Muster</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: zu 1-3: Kunz Rechtsanwälte</PB>
+		  <PB>Proz.-Bev.: zu 1-3: Kunz Rechtsanwälte</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Landrat des Rhein-Hunsrück-Kreises Dr. Michael Mustersen</Partei>
+		  <Partei>Landrat des Rhein-Hunsrück-Kreises Dr. Michael Mustersen</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+  </Terminiert>
+</Terminsaushang>

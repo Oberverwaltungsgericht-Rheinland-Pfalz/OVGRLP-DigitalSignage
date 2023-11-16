@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\test\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyTitle>DigitalSignage.ImportCLI.NUnitTests</AssemblyTitle>
+    <Product>DigitalSignage.ImportCLI.NUnitTests</Product>
+    <Copyright>Copyright ©  2018</Copyright>
+    <AssemblyVersion>1.7.0.2311</AssemblyVersion>
+    <FileVersion>1.7.0.2311</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalSignage.Data\DigitalSignage.Data.csproj" />
+    <ProjectReference Include="..\DigitalSignage.ImportCLI\DigitalSignage.ImportCLI.csproj" />
+    <ProjectReference Include="..\DigitalSignage.Infrastructure\DigitalSignage.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+  </ItemGroup>
+</Project>
