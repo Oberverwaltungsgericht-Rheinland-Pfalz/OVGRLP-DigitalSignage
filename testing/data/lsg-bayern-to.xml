@@ -1,0 +1,854 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Terminsaushang>
+  <Stammdaten>
+    <Gerichtsname>Sozialgericht Musterstadt</Gerichtsname>
+    <Datum>24.12.2016</Datum>
+  </Stammdaten>
+  <Terminiert>
+    <Verfahren>
+      <Lfdnr>1</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal 1, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>08:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>S 5 AS 123/14</Az>
+      <Gegenstand>Angelegenheiten nach dem SGB II</Gegenstand>
+      <Bemerkung1>AS 
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin am Sozialgericht Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Michael Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: RAe Schmidt und Kollegen, Dingolfing
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Jobcenter Lkrs. Dingolfing-Landau
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>2</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal 1, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>09:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>S 5 AS 122/14</Az>
+      <Gegenstand>Angelegenheiten nach dem SGB II</Gegenstand>
+      <Bemerkung1>AS 
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin am Sozialgericht Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Christian Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: RAin Schmidt, Landshut
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Jobcenter Lkrs. Dingolfing-Landau
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>3</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal 1, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>09:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>S 5 AS 131/14</Az>
+      <Gegenstand>Angelegenheiten nach dem SGB II</Gegenstand>
+      <Bemerkung1>AS 
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin am Sozialgericht Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Erich Ströbel
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Jobcenter Lkrs. Regen, vertr.d.d. Geschäftsführer, Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>4</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal 1, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>10:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>S 5 AS 121/14</Az>
+      <Gegenstand>Angelegenheiten nach dem SGB II</Gegenstand>
+      <Bemerkung1>AS 
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin am Sozialgericht Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Guido Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwälte Schmidt, Müller, Schmitt
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Jobcenter Lkrs. Regen, vertr.d.d. Geschäftsführer, Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Beigeladen>
+        <Parteien>
+          <Partei>LRA Regen, Sozialhilfeverwaltung
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </Beigeladen>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>1</Lfdnr>
+      <Kammer>3</Kammer>
+      <Sitzungssaal>Sitzungssaal 2, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>2</SitzungssaalNr>
+      <Uhrzeit>10:15</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung und Beweisaufnahme</Art>
+      <Az>S 3 SB 111/15</Az>
+      <Gegenstand>Verfahren zur Feststellung der Behinderung nach SGB IX (Schwerbehindertenrecht)</Gegenstand>
+      <Bemerkung1>SB 
+Dr. Schmitt, Dr. Müller, Dr. Schmidt 
+</Bemerkung1>
+      <Bemerkung2>Untersuchungstermin 8.00 Uhr, p.E.</Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Sozialgericht Prof. univ. asoc. Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt-Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Thomas Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Bezirksgeschäftsführer Franz Schmidt u.a., VdK
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Freistaat Bayern, vertr. d.d. ZBFS
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <SV>
+        <Parteien>
+          <Partei>Dr. Sebastian Schmidt
+</Partei>
+        </Parteien>
+      </SV>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>5</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal 1, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>10:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>S 5 AS 333/14</Az>
+      <Gegenstand>Angelegenheiten nach dem SGB II</Gegenstand>
+      <Bemerkung1>AS 
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin am Sozialgericht Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Thomas Höhn
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: RAin Schmidt, Deggendorf
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Jobcenter Deggendorf, vertr.d.d. Geschäftsführer
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>2</Lfdnr>
+      <Kammer>3</Kammer>
+      <Sitzungssaal>Sitzungssaal 2, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>2</SitzungssaalNr>
+      <Uhrzeit>10:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung und Beweisaufnahme</Art>
+      <Az>S 3 SB 222/15</Az>
+      <Gegenstand>Verfahren zur Feststellung der Behinderung nach SGB IX (Schwerbehindertenrecht)</Gegenstand>
+      <Bemerkung1>SB 
+Dr. Schmitt, Dr. Schmidt, Dr. Müller 
+</Bemerkung1>
+      <Bemerkung2>Untersuchungstermin 8.00 Uhr, p.E.</Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Sozialgericht Prof. univ. asoc. Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt-Schmitt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Elli Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Bezirksgeschäftsführer Franz Herrmann u.a., VdK
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Freistaat Bayern, vertr. d.d. ZBFS
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <SV>
+        <Parteien>
+          <Partei>Dr. Schmidt, Grafenau
+</Partei>
+        </Parteien>
+      </SV>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>3</Lfdnr>
+      <Kammer>3</Kammer>
+      <Sitzungssaal>Sitzungssaal 2, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>2</SitzungssaalNr>
+      <Uhrzeit>10:45</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung und Beweisaufnahme</Art>
+      <Az>S 3 SB 331/15</Az>
+      <Gegenstand>Verfahren zur Feststellung der Behinderung nach SGB IX (Schwerbehindertenrecht)</Gegenstand>
+      <Bemerkung1>SB 
+Dr. Schmidt, Dr. Müller, Dr. Schmitt
+</Bemerkung1>
+      <Bemerkung2>Untersuchungstermin 8.15 Uhr, p.E.</Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Sozialgericht Prof. univ. asoc. Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt-Schmitt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Jenny Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Freistaat Bayern, vertr. d.d. ZBFS
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <SV>
+        <Parteien>
+          <Partei>Dr. Thomas Schmidt
+</Partei>
+        </Parteien>
+      </SV>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>6</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal 1, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>11:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>S 5 AS 212/14</Az>
+      <Gegenstand>Angelegenheiten nach dem SGB II</Gegenstand>
+      <Bemerkung1>AS 
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin am Sozialgericht Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Peter Schmidt jun.
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: RAin Schmidt, Deggendorf
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Jobcenter Müllerhausen, vertr.d.d. Geschäftsführer
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>7</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal 1, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>11:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>S 5 AS 313/15</Az>
+      <Gegenstand>Angelegenheiten nach dem SGB II</Gegenstand>
+      <Bemerkung1>AS 
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin am Sozialgericht Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Peter Schmidt jun.
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: RAin Schmidt, Deggendorf
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Jobcenter Müllerhausen, vertr.d.d. Geschäftsführer
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>4</Lfdnr>
+      <Kammer>3</Kammer>
+      <Sitzungssaal>Sitzungssaal 2, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>2</SitzungssaalNr>
+      <Uhrzeit>11:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung und Beweisaufnahme</Art>
+      <Az>S 3 SB 321/14</Az>
+      <Gegenstand>Verfahren zur Feststellung der Behinderung nach SGB IX (Schwerbehindertenrecht)</Gegenstand>
+      <Bemerkung1>SB 
+Dr. Schmidt, Dr. Müller, Dr. Schmitt 
+</Bemerkung1>
+      <Bemerkung2>Untersuchungstermin 9.00 Uhr, p.E.</Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Sozialgericht Prof. univ. asoc. Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt-Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Petra Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Bezirksgeschäftsführer Michael Schmidt u.a., Ua
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Freistaat Bayern, vertr. d.d. ZBFS
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <SV>
+        <Parteien>
+          <Partei>Dr. Michael Schmidt
+</Partei>
+        </Parteien>
+      </SV>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>5</Lfdnr>
+      <Kammer>3</Kammer>
+      <Sitzungssaal>Sitzungssaal 2, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>2</SitzungssaalNr>
+      <Uhrzeit>11:15</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung und Beweisaufnahme</Art>
+      <Az>S 3 SB 312/15</Az>
+      <Gegenstand>Verfahren zur Feststellung der Behinderung nach SGB IX (Schwerbehindertenrecht)</Gegenstand>
+      <Bemerkung1>SB 
+Dr. Schmidt, Dr. Müller, Dr. Schmitt 
+</Bemerkung1>
+      <Bemerkung2>Untersuchungstermin 9.00 Uhr, p.E.</Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Sozialgericht Prof. univ. asoc. Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt-Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Elisabeth Grund
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwälte Schmidt, Schweiger und Kollegen, Landshut
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Freistaat Bayern, vertr. d.d. ZBFS
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <SV>
+        <Parteien>
+          <Partei>Dr. Schmidt, Grafenau
+</Partei>
+        </Parteien>
+      </SV>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>6</Lfdnr>
+      <Kammer>3</Kammer>
+      <Sitzungssaal>Sitzungssaal 2, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>2</SitzungssaalNr>
+      <Uhrzeit>11:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung und Beweisaufnahme</Art>
+      <Az>S 3 SB 212/15</Az>
+      <Gegenstand>Verfahren zur Feststellung der Behinderung nach SGB IX (Schwerbehindertenrecht)</Gegenstand>
+      <Bemerkung1>SB 
+Dr. Schmidt, Dr. Müüller, Dr. Schmitt 
+</Bemerkung1>
+      <Bemerkung2>Untersuchungstermin 9.15 Uhr, p.E.</Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Sozialgericht Prof. univ. asoc. Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt-Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Gustav Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Bezirksgeschäftsführer Franz Schmidt u.a., VdK
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Freistaat Bayern, vertr. d.d. ZBFS
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <SV>
+        <Parteien>
+          <Partei>Dr. Thomas Schmidt
+</Partei>
+        </Parteien>
+      </SV>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>8</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal 1, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>11:40</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>S 5 AS 200/14</Az>
+      <Gegenstand>Angelegenheiten nach dem SGB II</Gegenstand>
+      <Bemerkung1>AS 
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin am Sozialgericht Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Johanna Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwältin Schmidt, Vechta
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Jobcenter Deggendorf, vertr.d.d. Geschäftsführer
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>9</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal 1, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>11:40</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>S 5 AS 210/15 FdV</Az>
+      <Gegenstand>Angelegenheiten nach dem SGB II</Gegenstand>
+      <Bemerkung1>AS 
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin am Sozialgericht Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>1. Johanna Schmidt
+</Partei>
+          <Partei>2. Chiara Schmidt vertreten durch Johanna Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: zu 1-2: Rechtsanwältin Schmidt, München
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Jobcenter Deggendorf, vertr.d.d. Geschäftsführer
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>10</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal 1, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>12:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>Termin zur Beratung</Art>
+      <Az>S 5 AS 292/14</Az>
+      <Gegenstand>Angelegenheiten nach dem SGB II</Gegenstand>
+      <Bemerkung1>AS 
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin am Sozialgericht Schmidt</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>1. Franz Schmidt
+</Partei>
+          <Partei>2. Bathie Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: zu 1-2: Rechtsanwalt Schmidt, Müller, Schmitt und Partner
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Jobcenter Landkreis Kelheim, vertr.d.d. Geschäftsf.
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>7</Lfdnr>
+      <Kammer>3</Kammer>
+      <Sitzungssaal>Sitzungssaal 2, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>2</SitzungssaalNr>
+      <Uhrzeit>12:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung und Beweisaufnahme</Art>
+      <Az>S 3 SB 128/14</Az>
+      <Gegenstand>Verfahren zur Feststellung der Behinderung nach SGB IX (Schwerbehindertenrecht)</Gegenstand>
+      <Bemerkung1>SB 
+Dr. Schmidt, Dr. Müller, Dr. Schmitt 
+</Bemerkung1>
+      <Bemerkung2>Untersuchungstermin 10.00 Uhr, p.E.</Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Sozialgericht Prof. univ. asoc. Müller</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt-Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Klaus Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: RA Schmidt, Regensburg
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Freistaat Bayern, vertr. d.d. ZBFS
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <SV>
+        <Parteien>
+          <Partei>Dr. Schmidt, Grafenau
+</Partei>
+        </Parteien>
+      </SV>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>8</Lfdnr>
+      <Kammer>3</Kammer>
+      <Sitzungssaal>Sitzungssaal 2, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>2</SitzungssaalNr>
+      <Uhrzeit>12:15</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung und Beweisaufnahme</Art>
+      <Az>S 3 SB 828/14</Az>
+      <Gegenstand>Verfahren zur Feststellung der Behinderung nach SGB IX (Schwerbehindertenrecht)</Gegenstand>
+      <Bemerkung1>SB 
+Dr. Schmidt, Dr. Müller, Dr. Schmitt 
+</Bemerkung1>
+      <Bemerkung2>Untersuchungstermin 10.15 Uhr, p.E.</Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Sozialgericht Prof. univ. asoc. Müller</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt-Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Wolfgang Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Bezirksgeschäftsführer Franz Schmidt u.a., VdK
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Freistaat Bayern, vertr. d.d. ZBFS
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <SV>
+        <Parteien>
+          <Partei>Dr. Thomas Schmidt
+</Partei>
+        </Parteien>
+      </SV>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>9</Lfdnr>
+      <Kammer>3</Kammer>
+      <Sitzungssaal>Sitzungssaal 2, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>2</SitzungssaalNr>
+      <Uhrzeit>12:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung und Beweisaufnahme</Art>
+      <Az>S 3 SB 888/14</Az>
+      <Gegenstand>Verfahren zur Feststellung der Behinderung nach SGB IX (Schwerbehindertenrecht)</Gegenstand>
+      <Bemerkung1>SB 
+Dr. Schmidt, Dr. Müller, Dr. Schmitt 
+</Bemerkung1>
+      <Bemerkung2>Untersuchungstermin 11.00 Uhr, p.E.</Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Sozialgericht Prof. univ. asoc. Müller</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt-Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Alois Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: RAe Schmidt, Gotthardt
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Freistaat Bayern, vertr. d.d. ZBFS
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <SV>
+        <Parteien>
+          <Partei>Dr. Schmidt, Grafenau
+</Partei>
+        </Parteien>
+      </SV>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>10</Lfdnr>
+      <Kammer>3</Kammer>
+      <Sitzungssaal>Sitzungssaal 2, Erdgeschoss,</Sitzungssaal>
+      <SitzungssaalNr>2</SitzungssaalNr>
+      <Uhrzeit>12:45</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung und Beweisaufnahme</Art>
+      <Az>S 3 SB 898/15</Az>
+      <Gegenstand>Verfahren zur Feststellung der Behinderung nach SGB IX (Schwerbehindertenrecht)</Gegenstand>
+      <Bemerkung1>SB 
+Dr. Schmidt, Dr. Müller, Dr. Schmitt 
+</Bemerkung1>
+      <Bemerkung2>Untersuchungstermin 11.15 Uhr, p.E.</Bemerkung2>
+      <Besetzung>
+        <Richter>Richter am Sozialgericht Prof. univ. asoc. Müller</Richter>
+        <Richter>ehrenamtlicher Richter Schmidt</Richter>
+        <Richter>ehrenamtliche Richterin Schmidt-Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Michael Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Bezirksgeschäftsführer Franz Herrmann u.a., VdK
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Freistaat Bayern, vertr. d.d. ZBFS
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <SV>
+        <Parteien>
+          <Partei>Dr. Thomas Schmidt
+</Partei>
+        </Parteien>
+      </SV>
+    </Verfahren>
+  </Terminiert>
+</Terminsaushang>

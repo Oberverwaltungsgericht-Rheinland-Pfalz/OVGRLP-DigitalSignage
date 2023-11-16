@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Terminsaushang>
+  <Stammdaten>
+    <Gerichtsname>Verwaltungsgericht Mainz</Gerichtsname>
+    <Datum>15.01.2019</Datum>
+  </Stammdaten>
+  <Terminiert>
+    <Verfahren>
+      <Lfdnr>1</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal 92</Sitzungssaal>
+      <Uhrzeit>10:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>5 K 668/18.MZ</Az>
+      <Gegenstand>Mitbestimmung</Gegenstand>
+      <Bemerkung1>zwei ERI geladen/zwei  Zusagen</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Vorsitzende Richterin am Verwaltungsgericht Lang</Richter>
+        <Richter>ehrenamtlicher Richter Stadtverwaltungsrat Kurz</Richter>
+        <Richter>ehrenamtliche Richterin Oberamtsanwältin Mittel</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Personalrates der JVA Frankenthal vertreten durch den Vorsitzenden Herrn Jörg Jokisch
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien />
+        <ProzBev />
+      </PassivPartei>
+      <Beteiligt>
+        <Parteien>
+          <Partei>Beteiligte:
+</Partei>
+          <Partei>Hildegunde Gunter Leiterin der JVA Frankenthal
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </Beteiligt>
+    </Verfahren>
+  </Terminiert>
+</Terminsaushang>

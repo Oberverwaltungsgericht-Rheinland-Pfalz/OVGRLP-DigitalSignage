@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Terminsaushang>
+  <Stammdaten>
+    <Gerichtsname>Verwaltungsgericht Trier</Gerichtsname>
+    <Datum>10.08.2017</Datum>
+  </Stammdaten>
+  <Terminiert>
+    <Verfahren>
+      <Lfdnr>1</Lfdnr>
+      <Kammer>6</Kammer>
+      <Sitzungssaal>Sitzungssaal III</Sitzungssaal>
+      <SitzungssaalNr>5</SitzungssaalNr>
+      <Uhrzeit>09:45</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>6 K 9128/16.TR</Az>
+      <Gegenstand>Asylrechts</Gegenstand>
+      <Bemerkung1>BE Dr. Müller (Afghanistan, dari)
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin Dr. Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>1. Fazlahmad LAMA
+</Partei>
+          <Partei>2. Suheyla LAMO
+</Partei>
+          <Partei>3. Kindes Mahsa LAMA vertreten durch die Eltern Fazlahmad,LAMA und Suheyla,LAMO
+</Partei>
+          <Partei>4. Kindes Mohsen LAMA vertreten durch die Eltern Fazlahmad,FAYANDI und Suheyla, LAMO
+</Partei>
+          <Partei>5. Kindes Eileen LAMA vertreten durch die Eltern Fazlahmad,LAMA und Suheyla,LAMO
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: zu 1-5: Rechtsanwalt Amin Schmidt
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Dolmetscher>
+        <Parteien>
+          <Partei>Ali Schmidt
+</Partei>
+        </Parteien>
+      </Dolmetscher>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>1</Lfdnr>
+      <Kammer>2</Kammer>
+      <Sitzungssaal>Sitzungssaal I</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>10:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>2 K 6233/16.TR</Az>
+      <Gegenstand>Flüchtlingsrechts</Gegenstand>
+      <Bemerkung1>ER Schmidt Asyl</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Vorsitzender Richter am Verwaltungsgericht Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>1. Ibraim Schmidt
+</Partei>
+          <Partei>2. Nazmija Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: zu 1-2: Rechtsanwalt Volkmar Schmidt
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Dolmetscher>
+        <Parteien>
+          <Partei>Sakir Schmidt
+</Partei>
+        </Parteien>
+      </Dolmetscher>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>2</Lfdnr>
+      <Kammer>2</Kammer>
+      <Sitzungssaal>Sitzungssaal I</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>10:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>2 K 4319/16.TR</Az>
+      <Gegenstand>Asylrechts</Gegenstand>
+      <Bemerkung1>ER Schmidt Asyl</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Vorsitzender Richter am Verwaltungsgericht Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Leila Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwalt Paul Schmidt
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Dolmetscher>
+        <Parteien>
+          <Partei>Sakir Schmidt
+</Partei>
+        </Parteien>
+      </Dolmetscher>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>2</Lfdnr>
+      <Kammer>6</Kammer>
+      <Sitzungssaal>Sitzungssaal III</Sitzungssaal>
+      <SitzungssaalNr>5</SitzungssaalNr>
+      <Uhrzeit>10:45</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>6 K 6712/16.TR</Az>
+      <Gegenstand>Flüchtlingsrechts</Gegenstand>
+      <Bemerkung1>BE Dr. Müller (Afghanistan, dari)
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin Dr. Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Shahzamin Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwältin Shaba Schmidt
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Dolmetscher>
+        <Parteien>
+          <Partei>Ali Schmidt
+</Partei>
+        </Parteien>
+      </Dolmetscher>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>3</Lfdnr>
+      <Kammer>2</Kammer>
+      <Sitzungssaal>Sitzungssaal I</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>11:15</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>2 K 5204/16.TR</Az>
+      <Gegenstand>Asylrechts</Gegenstand>
+      <Bemerkung1>ER Schmidt Asyl</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Vorsitzender Richter am Verwaltungsgericht Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Azbije Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwälte Schmidt und Müller
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Dolmetscher>
+        <Parteien>
+          <Partei>Sakir Schmidt
+</Partei>
+        </Parteien>
+      </Dolmetscher>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>4</Lfdnr>
+      <Kammer>2</Kammer>
+      <Sitzungssaal>Sitzungssaal I</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>12:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>2 K 8925/16.TR</Az>
+      <Gegenstand>Asylrechts</Gegenstand>
+      <Bemerkung1>ER Schmidt Asyl</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Vorsitzender Richter am Verwaltungsgericht Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Bajram Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Dolmetscher>
+        <Parteien>
+          <Partei>Sakir Schmidt
+</Partei>
+        </Parteien>
+      </Dolmetscher>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>3</Lfdnr>
+      <Kammer>6</Kammer>
+      <Sitzungssaal>Sitzungssaal III</Sitzungssaal>
+      <SitzungssaalNr>5</SitzungssaalNr>
+      <Uhrzeit>13:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>6 K 10885/16.TR</Az>
+      <Gegenstand>Flüchtlingsrechts</Gegenstand>
+      <Bemerkung1>BE Dr. Müller (Afghanistan, dari)
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin Dr. Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Faramaz Schmidt alias Schmidt, Faramarz
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwälte Schmidt &amp; Schmidt
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Dolmetscher>
+        <Parteien>
+          <Partei>Ali Schmidt
+</Partei>
+        </Parteien>
+      </Dolmetscher>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>4</Lfdnr>
+      <Kammer>6</Kammer>
+      <Sitzungssaal>Sitzungssaal III</Sitzungssaal>
+      <SitzungssaalNr>5</SitzungssaalNr>
+      <Uhrzeit>13:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>6 K 10090/16.TR</Az>
+      <Gegenstand>Flüchtlingsrechts</Gegenstand>
+      <Bemerkung1>BE Dr. Müller (Afghanistan, dari)
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin Dr. Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>1. Abdul Khalil FARQUE
+</Partei>
+          <Partei>2. Mina FARQUE
+</Partei>
+          <Partei>3. Abdul Basir FARQUE
+</Partei>
+          <Partei>4. Abdul Hai FARQUE alias FARQUE, Hai
+</Partei>
+          <Partei>5. Nadja FARQUE
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: zu 1-5: Rechtsanwälte Schmidt &amp; Schmidt
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Dolmetscher>
+        <Parteien>
+          <Partei>Ali Schmidt
+</Partei>
+        </Parteien>
+      </Dolmetscher>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>5</Lfdnr>
+      <Kammer>6</Kammer>
+      <Sitzungssaal>Sitzungssaal III</Sitzungssaal>
+      <SitzungssaalNr>5</SitzungssaalNr>
+      <Uhrzeit>14:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>6 K 11364/16.TR</Az>
+      <Gegenstand>Flüchtlingsrechts</Gegenstand>
+      <Bemerkung1>BE Dr. Müller
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin Dr. Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>1. Abdul Tawab MUSTAFA
+</Partei>
+          <Partei>2. Milab MUSTAFA
+</Partei>
+          <Partei>3. Kindes Abolfazi MUSTAFA vertreten durch die Eltern Abdul Tawab und Milab MUSTAFA
+</Partei>
+          <Partei>4. Kindes Ali MUSTAFA vertreten durch die Eltern Abdul Tawab und Milab MUSTAFA
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: zu 1-4: Rechtsanwälte Schmidt &amp; Schmidt
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Dolmetscher>
+        <Parteien>
+          <Partei>Ali Schmidt
+</Partei>
+        </Parteien>
+      </Dolmetscher>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>1</Lfdnr>
+      <Kammer>1</Kammer>
+      <Sitzungssaal>Sitzungssaal II</Sitzungssaal>
+      <SitzungssaalNr>2</SitzungssaalNr>
+      <Uhrzeit>14:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>Termin zur Erörterung der Sach- und Rechtslage</Art>
+      <Az>1 N 9563/17.TR</Az>
+      <Gegenstand>Tierschutzes
+hier: Vollstreckung aus einem Vergleich</Gegenstand>
+      <Bemerkung1>Dr. Schmidt (E R Ö R T E R U N G  ! ! !)</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Vorsitzender Richter am Verwaltungsgericht Dr. Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Landkreis Trier-Saarburg vertreten durch den Landrat
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Ralf Schmidt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwälte Müller-Schmidt &amp; Kollegen
+</PB>
+        </ProzBev>
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>6</Lfdnr>
+      <Kammer>6</Kammer>
+      <Sitzungssaal>Sitzungssaal III</Sitzungssaal>
+      <SitzungssaalNr>5</SitzungssaalNr>
+      <Uhrzeit>15:00</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>6 K 9535/17.TR</Az>
+      <Gegenstand>Flüchtlingsrechts</Gegenstand>
+      <Bemerkung1>BE Dr. Müller (Afghanistan, dari)
+</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Richterin Dr. Müller</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Fateme NAFAR
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwälte Schmidt &amp; Müller
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Dolmetscher>
+        <Parteien>
+          <Partei>Ali Schmidt
+</Partei>
+        </Parteien>
+      </Dolmetscher>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>5</Lfdnr>
+      <Kammer>2</Kammer>
+      <Sitzungssaal>Sitzungssaal I</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>omV</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>
+      </Art>
+      <Az>2 K 2552/16.TR</Az>
+      <Gegenstand>Verbots der Abschiebung</Gegenstand>
+      <Bemerkung1>ER Schmidt Asyl</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Vorsitzender Richter am Verwaltungsgericht Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Sabine KRASO ,co Jugendstrafanstalt
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: Rechtsanwalt Thomas Schmidt
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+      <Dolmetscher>
+        <Parteien>
+          <Partei>Sakir Schmidt
+</Partei>
+        </Parteien>
+      </Dolmetscher>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>6</Lfdnr>
+      <Kammer>2</Kammer>
+      <Sitzungssaal>Sitzungssaal I</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>omV</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>
+      </Art>
+      <Az>2 K 4496/16.TR</Az>
+      <Gegenstand>Asylrechts</Gegenstand>
+      <Bemerkung1>ER Schmidt Asyl</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Vorsitzender Richter am Verwaltungsgericht Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>1. Dejan DAFOR
+</Partei>
+          <Partei>2. Kindes Miljana DAFOR vertreten durch den Vater Dejan DAFOR
+</Partei>
+          <Partei>3. Kindes Valentina DAFOR vertreten durch den Vater Dejan DAFOR
+</Partei>
+          <Partei>4. Kindes Denis DAFOR vertreten durch den Vater Dejan DAFOR
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: zu 1-4: MMK Rechtsanwälte
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>7</Lfdnr>
+      <Kammer>2</Kammer>
+      <Sitzungssaal>Sitzungssaal I</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>omV</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>
+      </Art>
+      <Az>2 K 5972/16.TR</Az>
+      <Gegenstand>Asylrechts</Gegenstand>
+      <Bemerkung1>ER Schmidt Asyl</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Vorsitzender Richter am Verwaltungsgericht Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Kindes Benjamin VELI vertreten durch die Eltern Michael VELI und Fite NEFA
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+    <Verfahren>
+      <Lfdnr>8</Lfdnr>
+      <Kammer>2</Kammer>
+      <Sitzungssaal>Sitzungssaal I</Sitzungssaal>
+      <SitzungssaalNr>1</SitzungssaalNr>
+      <Uhrzeit>omV</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>
+      </Art>
+      <Az>2 K 6143/16.TR</Az>
+      <Gegenstand>Asylrechts</Gegenstand>
+      <Bemerkung1>ER Schmidt Asyl</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Vorsitzender Richter am Verwaltungsgericht Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>1. Zano SANDRA
+</Partei>
+          <Partei>2. Almer SANDRAA
+</Partei>
+          <Partei>3. Kindes Almer SANDRA vertreten durch die Eltern Zani SANDRA und Almer SANDRAA
+</Partei>
+          <Partei>4. Kindes Isak SANDRA vertreten durch die Eltern Zani SANDRA und Almer SANDRAA
+</Partei>
+          <Partei>5. Kindes Djavit SANDRA vertreten durch die Eltern Zani SANDRA und Almer SANDRAA
+</Partei>
+          <Partei>6. Kindes Timotej SANDRA vertreten durch die Eltern Zani SANDRA und Almer SANDRAA
+</Partei>
+        </Parteien>
+        <ProzBev>
+          <PB>Proz.-Bev.: zu 1-6: Rechtsanwälte Justizrat Schmidt &amp; Müller
+</PB>
+        </ProzBev>
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien>
+          <Partei>Bundesrepublik Deutschland vertreten durch den Leiter des Bundesamtes für Migration und Flüchtlinge,,- Außenstelle Trier -
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </PassivPartei>
+    </Verfahren>
+  </Terminiert>
+</Terminsaushang>

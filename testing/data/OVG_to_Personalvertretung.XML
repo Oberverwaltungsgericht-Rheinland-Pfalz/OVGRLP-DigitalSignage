@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Terminsaushang>
+  <Stammdaten>
+    <Gerichtsname>Oberverwaltungsgericht Rheinland-Pfalz</Gerichtsname>
+    <Datum>15.01.2019</Datum>
+  </Stammdaten>
+  <Terminiert>
+    <Verfahren>
+      <Lfdnr>1</Lfdnr>
+      <Kammer>5</Kammer>
+      <Sitzungssaal>Sitzungssaal E009</Sitzungssaal>
+      <Uhrzeit>10:30</Uhrzeit>
+      <Status>
+      </Status>
+      <Oeffentlich>ja</Oeffentlich>
+      <Art>mündliche Verhandlung</Art>
+      <Az>5 K 4711/18.OVG</Az>
+      <Gegenstand>Mitbestimmung</Gegenstand>
+      <Bemerkung1>zwei ERI geladen/zwei  Zusagen</Bemerkung1>
+      <Bemerkung2>
+      </Bemerkung2>
+      <Besetzung>
+        <Richter>Vorsitzende Richterin am Oberverwaltungsgericht Muster</Richter>
+        <Richter>ehrenamtlicher Richter Müller </Richter>
+        <Richter>ehrenamtliche Richterin Oberamtsanwältin Schmidt</Richter>
+      </Besetzung>
+      <AktivPartei>
+        <Parteien>
+          <Partei>Personalrates der JVA Frankenthal vertreten durch den Vorsitzenden Herrn Jörg Schneider
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </AktivPartei>
+      <PassivPartei>
+        <Parteien />
+        <ProzBev />
+      </PassivPartei>
+      <Beteiligt>
+        <Parteien>
+          <Partei>Beteiligte:
+</Partei>
+          <Partei>Gundolf Gunter Leiter der JVA Frankenthal
+</Partei>
+        </Parteien>
+        <ProzBev />
+      </Beteiligt>
+    </Verfahren>
+  </Terminiert>
+</Terminsaushang>
