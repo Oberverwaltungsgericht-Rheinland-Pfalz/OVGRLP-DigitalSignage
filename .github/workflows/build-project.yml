@@ -2,7 +2,7 @@ name: build C# projects
 on: [push]
 jobs:
   setup-dotnet:
-    name: setup c# projects
+    name: setup and build windows
     runs-on: windows-latest
 
     env:
@@ -18,8 +18,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore src\DigitalSignageAll.sln
 
-    - name: Build
-      run: dotnet build src/DigitalSignage.dn.WebApiCore
+    - run: dotnet build src/DigitalSignage.dn.WebApiCore
     - run: dotnet build src/DigitalSignage.dn.DisplayControl
     - run: dotnet build src/DigitalSignage.ImportCLI
     - run: dotnet build src/DigitalSignage.ImportCLI.NUnitTests
@@ -27,16 +26,14 @@ jobs:
 #    - name: Test
 #      run: dotnet test --no-build src/DigitalSignage.ImportCLI.NUnitTests/DigitalSignage.ImportCLI.NUnitTests.csproj
 
-    - name: Create Build Directory
-      run: mkdir src\publish
-    - name: setup-msbuild all projects
-      uses: microsoft/setup-msbuild@v1.1
-      with:
-        msbuild-architecture: "x64"
-    - run: msbuild src\DigitalSignageAll.sln
-   
+#    - name: setup-msbuild all projects
+#      uses: microsoft/setup-msbuild@v1.1
+#      with:
+#        msbuild-architecture: "x64"
+#    - run: msbuild src\DigitalSignageAll.sln
+
     - name: Build publish files for WebAPI-Server
-      run: dotnet publish src\DigitalSignage.dn.WebApiCore -c Release --output ./src/DigitalSignage.dn.WebApiCore/publish
+      run: dotnet publish src\DigitalSignage.dn.WebApiCore -c Release --os win -r x64 --output ./src/DigitalSignage.dn.WebApiCore/publish
     - name: 'Upload WebAPI-Server Artifact'
       uses: actions/upload-artifact@v3
       with:
@@ -45,8 +42,8 @@ jobs:
         retention-days: 30
 
     - name: Build publish files for DisplayControl
-      run: dotnet publish src\DigitalSignage.dn.DisplayControl -c Release --output ./src/DigitalSignage.dn.DisplayControl/publish
-    - name: 'Upload RESTImporter Artifact'
+      run: dotnet publish src\DigitalSignage.dn.DisplayControl -a win-x64 --self-contained true -c Release --output ./src/DigitalSignage.dn.DisplayControl/publish
+    - name: 'Upload DisplayControl Artifact'
       uses: actions/upload-artifact@v3
       with:
         name: DisplayControl
@@ -54,10 +51,140 @@ jobs:
         retention-days: 30
           
     - name: Build publish files for ImportCLI
-      run: dotnet publish src\DigitalSignage.ImportCLI -c Release --output ./src/DigitalSignage.ImportCLI/publish
+      run: dotnet publish src\DigitalSignage.ImportCLI -a win-x64 -c Release --output ./src/DigitalSignage.ImportCLI/publish
     - name: 'Upload ImportCLI Artifact'
       uses: actions/upload-artifact@v3
       with:
         name: ImportCLI
         path: ./src/DigitalSignage.ImportCLI/publish
         retention-days: 30
+
+  dependencies-WebApps:
+    name: setup and build web apps
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 16.x
+
+      - name: install dependencies 
+        working-directory: ./src/ds-suite
+        run: npm ci
+
+      - uses: actions/cache/save@v3
+        id: save-deps
+        with:
+          path: ./*
+          key: wa${{ github.sha }}
+
+  build-dsmanager:
+    needs: dependencies-WebApps
+    name: build display-manager
+    runs-on: ubuntu-latest  
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 16.x
+      - uses: actions/cache/restore@v3
+        id: load-deps
+        with:
+          path: ./*
+          key: wa${{ github.sha }}
+  
+      - name: build display-manager
+        working-directory: ./src/ds-suite
+        run: npm run build:displays
+
+      - name: 'Upload web app artifacts'
+        uses: actions/upload-artifact@v3
+        with:
+          name: ds-manager
+          path: ./src/ds-suite/dist/*.zip
+          retention-days: 30
+
+  build-displays:
+    needs: dependencies-WebApps
+    name: build displays
+    runs-on: ubuntu-latest  
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 16.x
+      - uses: actions/cache/restore@v3
+        id: load-deps
+        with:
+          path: ./*
+          key: wa${{ github.sha }}
+      - name: build displays
+        working-directory: ./src/ds-suite
+        run: npm run build:dsmanager
+
+      - name: 'Upload web app artifacts'
+        uses: actions/upload-artifact@v3
+        with:
+          name: displays
+          path: ./src/ds-suite/dist/*.zip
+          retention-days: 30
+
+  build-roomcontrol:
+    needs: dependencies-WebApps
+    name: build roomcontrol
+    runs-on: ubuntu-latest  
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 16.x
+      - uses: actions/cache/restore@v3
+        id: load-deps
+        with:
+          path: ./*
+          key: wa${{ github.sha }}
+      - name: build roomcontrol
+        working-directory: ./src/ds-suite
+        run: npm run build:roomcontrol
+        
+      - name: 'Upload web app artifacts'
+        uses: actions/upload-artifact@v3
+        with:
+          name: roomcontrol
+          path: ./src/ds-suite/dist/*.zip
+          retention-days: 30
+
+# #the project is targetting windows
+#  build-displayControl-linux:
+#    needs: setup-dotnet
+#    name: build displayControl app for linux
+#    runs-on: ubuntu-latest
+#    steps:
+#    - uses: actions/checkout@v3
+#    - name: Setup .NET
+#      uses: actions/setup-dotnet@v3
+#      with:
+#        dotnet-version: 8.0.x
+#        
+#    - name: Restore dependencies
+#      run: dotnet restore ./src/DigitalSignageAll.sln
+#
+#    - name: Build
+#      uses: actions/setup-dotnet@v3
+#      with:
+#        dotnet-version: 8.0.x
+#    - run:  dotnet build ./src/DigitalSignage.dn.DisplayControl/DigitalSignage.dn.DisplayControl.csproj
+#
+#    - name: Build publish files for DisplayControl
+#      run: dotnet publish ./src/DigitalSignage.dn.DisplayControl -c Release --output ./src/DigitalSignage.dn.DisplayControl/publish
+#    - name: 'Upload DisplayControl-linux Artifact'
+#      uses: actions/upload-artifact@v3
+#      with:
+#        name: DisplayControl-ubuntu
+#        path: ./src/DigitalSignage.dn.DisplayControl/publish
+#        retention-days: 30
