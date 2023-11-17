@@ -33,7 +33,7 @@ jobs:
 #    - run: msbuild src\DigitalSignageAll.sln
 
     - name: Build publish files for WebAPI-Server
-      run: dotnet publish src\DigitalSignage.dn.WebApiCore -c Release --os win -r x64 --output ./src/DigitalSignage.dn.WebApiCore/publish
+      run: dotnet publish src\DigitalSignage.dn.WebApiCore -c Release --os win --output ./src/DigitalSignage.dn.WebApiCore/publish
     - name: 'Upload WebAPI-Server Artifact'
       uses: actions/upload-artifact@v3
       with:
@@ -42,7 +42,7 @@ jobs:
         retention-days: 30
 
     - name: Build publish files for DisplayControl
-      run: dotnet publish src\DigitalSignage.dn.DisplayControl -a win-x64 --self-contained true -c Release --output ./src/DigitalSignage.dn.DisplayControl/publish
+      run: dotnet publish src\DigitalSignage.dn.DisplayControl --self-contained true -c Release --output ./src/DigitalSignage.dn.DisplayControl/publish
     - name: 'Upload DisplayControl Artifact'
       uses: actions/upload-artifact@v3
       with:
@@ -51,7 +51,7 @@ jobs:
         retention-days: 30
           
     - name: Build publish files for ImportCLI
-      run: dotnet publish src\DigitalSignage.ImportCLI -a win-x64 -c Release --output ./src/DigitalSignage.ImportCLI/publish
+      run: dotnet publish src\DigitalSignage.ImportCLI -c Release --output ./src/DigitalSignage.ImportCLI/publish
     - name: 'Upload ImportCLI Artifact'
       uses: actions/upload-artifact@v3
       with:
@@ -66,7 +66,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js environment
-        uses: actions/setup-node@v3.4.1
+        uses: actions/setup-node@v4
         with:
           node-version: 16.x
 
@@ -87,7 +87,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js environment
-        uses: actions/setup-node@v3.4.1
+        uses: actions/setup-node@v4
         with:
           node-version: 16.x
       - uses: actions/cache/restore@v3
@@ -114,7 +114,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js environment
-        uses: actions/setup-node@v3.4.1
+        uses: actions/setup-node@v4
         with:
           node-version: 16.x
       - uses: actions/cache/restore@v3
@@ -140,7 +140,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js environment
-        uses: actions/setup-node@v3.4.1
+        uses: actions/setup-node@v4
         with:
           node-version: 16.x
       - uses: actions/cache/restore@v3
