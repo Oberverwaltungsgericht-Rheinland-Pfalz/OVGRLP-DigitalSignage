@@ -1,0 +1,63 @@
+name: build C# projects
+on: [push]
+jobs:
+  setup-dotnet:
+    name: setup c# projects
+    runs-on: windows-latest
+
+    env:
+      Solution_Name: src\DigitalSignageAll.sln 
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore src\DigitalSignageAll.sln
+
+    - name: Build
+      run: dotnet build src/DigitalSignage.dn.WebApiCore
+    - run: dotnet build src/DigitalSignage.dn.DisplayControl
+    - run: dotnet build src/DigitalSignage.ImportCLI
+    - run: dotnet build src/DigitalSignage.ImportCLI.NUnitTests
+
+#    - name: Test
+#      run: dotnet test --no-build src/DigitalSignage.ImportCLI.NUnitTests/DigitalSignage.ImportCLI.NUnitTests.csproj
+
+    - name: Create Build Directory
+      run: mkdir src\publish
+    - name: setup-msbuild all projects
+      uses: microsoft/setup-msbuild@v1.1
+      with:
+        msbuild-architecture: "x64"
+    - run: msbuild src\DigitalSignageAll.sln
+   
+    - name: Build publish files for WebAPI-Server
+      run: dotnet publish src\DigitalSignage.dn.WebApiCore -c Release --output ./src/DigitalSignage.dn.WebApiCore/publish
+    - name: 'Upload WebAPI-Server Artifact'
+      uses: actions/upload-artifact@v3
+      with:
+        name: WebAPI-Server
+        path: ./src/DigitalSignage.dn.WebApiCore/publish
+        retention-days: 30
+
+    - name: Build publish files for DisplayControl
+      run: dotnet publish src\DigitalSignage.dn.DisplayControl -c Release --output ./src/DigitalSignage.dn.DisplayControl/publish
+    - name: 'Upload RESTImporter Artifact'
+      uses: actions/upload-artifact@v3
+      with:
+        name: DisplayControl
+        path: ./src/DigitalSignage.dn.DisplayControl/publish
+        retention-days: 30
+          
+    - name: Build publish files for ImportCLI
+      run: dotnet publish src\DigitalSignage.ImportCLI -c Release --output ./src/DigitalSignage.ImportCLI/publish
+    - name: 'Upload ImportCLI Artifact'
+      uses: actions/upload-artifact@v3
+      with:
+        name: ImportCLI
+        path: ./src/DigitalSignage.ImportCLI/publish
+        retention-days: 30
