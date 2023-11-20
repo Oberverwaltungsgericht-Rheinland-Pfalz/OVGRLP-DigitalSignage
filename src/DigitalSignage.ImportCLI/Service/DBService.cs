@@ -9,16 +9,22 @@ namespace DigitalSignage.ImportCLI.Service;
 public class DBService
 {
     public string NameOrConnectionString;
+    private readonly DigitalSignageDbContext _context = null;
     public List<string> Warnings = new List<string>();
 
     public DBService(string nameOrConnectionString)
     {
         this.NameOrConnectionString = nameOrConnectionString;
     }
+    
+    public DBService(DigitalSignageDbContext context)
+    {
+        _context = context;
+    }
 
     public void DeleteAll()
     {
-        using var db = new DigitalSignageDbContext(this.NameOrConnectionString);
+        using var db = _context ?? new DigitalSignageDbContext(this.NameOrConnectionString);
             foreach (Stammdaten st in db.Stammdaten.ToArray())
                 db.Stammdaten.Remove(st);
 
@@ -27,7 +33,7 @@ public class DBService
 
     public void AddData(Terminsaushang data)
     {
-        var contextProvider = new DigitalSignageDbContext(this.NameOrConnectionString);
+        var contextProvider = _context ?? new DigitalSignageDbContext(this.NameOrConnectionString);
 
         //Kopfdaten
         var st = new DigitalSignage.Infrastructure.Models.EurekaFach.Stammdaten();
@@ -51,7 +57,7 @@ public class DBService
 
     public void UpdateData(Terminsaushang data)
     {
-        var contextProvider = new DigitalSignageDbContext(this.NameOrConnectionString);
+        var contextProvider = _context ?? new DigitalSignageDbContext(this.NameOrConnectionString);
 
         // StammdatenID ahand Gericht und Datum finden
         var st = contextProvider.Stammdaten.Where(s => s.Datum == data.Stammdaten.Datum && s.Gerichtsname == data.Stammdaten.Gerichtsname).ToList();

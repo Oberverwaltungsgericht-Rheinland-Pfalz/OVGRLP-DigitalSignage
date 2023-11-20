@@ -13,18 +13,10 @@ public class TestBase
     protected const string CONNECTION_NAME_LABOR = "DSKoblenzLabor";
     protected const string CONNECTION_STRING_LABOR = @"Server=SERVER\EUREKAFACH; Database=DigitalSignage_Labor; Integrated Security=True";
     protected const string CONNECTION_STRING_PROD = @"Server=SERVER\EUREKAFACH; Database=DigitalSignage; Integrated Security=True";
-    protected const string EXAMPLE_XML1 = @"C:\dev\repos\digitalsignage\src\DigitalSignage.ImportCLI.NUnitTests\example_XMLs\OVG_TO.XML";
-    protected const string EXAMPLE_XML2 = @"C:\dev\repos\digitalsignage\src\DigitalSignage.ImportCLI.NUnitTests\example_XMLs\VGH_TO.XML";
-    protected const string EXAMPLE_XML3 = @"C:\dev\repos\digitalsignage\src\DigitalSignage.ImportCLI.NUnitTests\example_XMLs\VGKO_TO.XML";
-    protected const string EXAMPLE_XML4 = @"C:\dev\repos\digitalsignage\src\DigitalSignage.ImportCLI.NUnitTests\example_XMLs\ARG_TO.XML";
-    protected const string EXAMPLE_XML5 = @"C:\dev\repos\digitalsignage\src\DigitalSignage.ImportCLI.NUnitTests\example_XMLs\SOG_TO.XML";
-    protected const string EXAMPLE_UPDATE_XML = @"C:\dev\repos\digitalsignage\src\DigitalSignage.ImportCLI.NUnitTests\example_XMLs\ARG_TO_Update.XML";
-
-    [OneTimeSetUp]
-    public void SetUp()
-    { }
-
-    [OneTimeTearDown]
-    public void TearDown()
-    { }
+    protected const string EXAMPLE_XML1 = @"example_XMLs\OVG_TO.XML";
+    protected const string EXAMPLE_XML2 = @"example_XMLs\VGH_TO.XML";
+    protected const string EXAMPLE_XML3 = @"example_XMLs\VGKO_TO.XML";
+    protected const string EXAMPLE_XML4 = @"example_XMLs\ARG_TO.XML";
+    protected const string EXAMPLE_XML5 = @"example_XMLs\SOG_TO.XML";
+    protected const string EXAMPLE_UPDATE_XML = @"example_XMLs\ARG_TO_Update.XML";
 }

@@ -3,6 +3,7 @@
 
 global using System.Collections.Generic;
 global using System.IO;
+using DigitalSignage.Data;
 using DigitalSignage.ImportCLI.Logging;
 using DigitalSignage.ImportCLI.Service;
 
@@ -42,7 +43,7 @@ public class CLIActions
         }
     }
 
-    public void ExecuteActions()
+    public void ExecuteActions(DigitalSignageDbContext context = null)
     {
         if (WritingInformationToUser)
             return;
@@ -52,7 +53,12 @@ public class CLIActions
         ValidateActions();
 
         Service.LoggingHelper.Trace("ausgewahlte Datenbank: " + this.NameOrConnectionString);
-        var db = new Service.DBService(this.NameOrConnectionString);
+
+        DBService db;
+        if (context != null)
+            db = new DBService(context);
+        else
+            db = new DBService(this.NameOrConnectionString);
 
         //ggf. zuerst die Datenbank löschen
         if (this.ClearDatabase)
@@ -72,6 +78,7 @@ public class CLIActions
                     Service.LoggingHelper.Trace("Daten werden hinzugefügt: " + inputFile);
                     try
                     {
+                        var fp = Path.GetFullPath(inputFile);
                         if (!File.Exists(inputFile))
                             throw new IOException("=> Die Datei konnte nicht geöffnet werden.");
 

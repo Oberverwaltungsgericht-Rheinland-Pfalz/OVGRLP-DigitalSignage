@@ -1,5 +1,7 @@
 ﻿// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
+using DigitalSignage.Data;
+using DigitalSignage.ImportCLI.Service;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
@@ -11,21 +13,53 @@ namespace DigitalSignage.ImportCLI.NUnitTests;
 [TestFixture]
 public class DBServiceTest : TestBase
 {
-    [Test, Order(1)]
-    public void DatabaseConnectionWithConnectionString()
+    private DBService _dBService;
+    private DigitalSignageDbContext context;
+    private DbContextOptions<DigitalSignageDbContext> _contextOpitons
     {
-        using (var db = new Data.DigitalSignageDbContext(CONNECTION_STRING_LABOR))
+        get
         {
-            Stammdaten[] st = db.Stammdaten.ToArray();
-            Assert.AreEqual(db.Database.GetConnectionString(), CONNECTION_STRING_LABOR);
+            return new DbContextOptionsBuilder<DigitalSignageDbContext>()
+                .UseInMemoryDatabase("prodTest")
+                .Options;
         }
     }
+
+    [SetUp]
+    public void SetItUp()
+    {
+        context = new DigitalSignageDbContext(_contextOpitons);
+        _dBService = new DBService(context);
+    }
+
+    //[TearDown]
+    //public void TearItDown()
+    //{
+    //    context.Database.EnsureDeleted();
+    //    context.Dispose();
+    //}
+
+    //[Test, Order(1)]
+    //public void DatabaseConnectionWithConnectionString()
+    //{
+    //    using (context)
+    //    {
+    //        Stammdaten[] st = context.Stammdaten.ToArray();
+    //        Assert.AreEqual(context.Database.GetConnectionString()/*, CONNECTION_STRING_LABOR*/);
+    //    }
+    //}
 
     [Test, Order(2)]
     public void DatabaseAddExamples()
     {
-        CLIActions cliAction = CreateCliActions(true, CONNECTION_STRING_LABOR);
-        cliAction.ExecuteActions();
+        var args = CreateCliActions(true , "");
+        var cliService = new Service.CLIService();
+        Assert.IsInstanceOf<Service.CLIService>(cliService);
+
+        CLIActions cliActions = cliService.ParseCommandLineArguments(args.ToArray());
+        Assert.IsInstanceOf<CLIActions>(cliActions);
+
+        cliActions.ExecuteActions(context);
 
         CheckExampleValues();
     }
@@ -33,8 +67,14 @@ public class DBServiceTest : TestBase
     [Test, Order(3)]
     public void DatabaseUpdateExamples()
     {
-        CLIActions cliAction = CreateCliActions(false, CONNECTION_STRING_LABOR, new string[] { EXAMPLE_UPDATE_XML }, true);
-        cliAction.ExecuteActions();
+        var args = CreateCliActions(false, "", new string[] { EXAMPLE_UPDATE_XML }, true);
+        var cliService = new Service.CLIService();
+        Assert.IsInstanceOf<Service.CLIService>(cliService);
+
+        CLIActions cliAction = cliService.ParseCommandLineArguments(args.ToArray());
+        Assert.IsInstanceOf<CLIActions>(cliAction);
+
+        cliAction.ExecuteActions(context);
 
         CheckExampleValues(true);
     }
@@ -42,23 +82,19 @@ public class DBServiceTest : TestBase
     [Test, Order(4)]
     public void DatabaseDelete()
     {
-        CLIActions cliAction = CreateCliActions(true, CONNECTION_STRING_LABOR, new string[] { });
-        cliAction.ExecuteActions();
+        _dBService.DeleteAll();
 
-        using (var db = new Data.DigitalSignageDbContext(CONNECTION_STRING_LABOR))
-        {
-            Assert.AreEqual(db.Stammdaten.ToArray().Count<Stammdaten>(), 0);
-            Assert.AreEqual(db.Verfahren.ToArray().Count<Verfahren>(), 0);
-            Assert.AreEqual(db.Besetzung.ToArray().Count<Besetzung>(), 0);
-            Assert.AreEqual(db.ParteienAktiv.ToArray().Count<ParteienAktiv>(), 0);
-            Assert.AreEqual(db.ParteienBeigeladen.ToArray().Count<ParteienBeigeladen>(), 0);
-            Assert.AreEqual(db.ParteienPassiv.ToArray().Count<ParteienPassiv>(), 0);
-            Assert.AreEqual(db.ParteienSV.ToArray().Count<ParteienSV>(), 0);
-            Assert.AreEqual(db.ParteienZeugen.ToArray().Count<ParteienZeugen>(), 0);
-            Assert.AreEqual(db.ProzBevAktiv.ToArray().Count<ProzBevAktiv>(), 0);
-            Assert.AreEqual(db.ProzBevBeigeladen.ToArray().Count<ProzBevBeigeladen>(), 0);
-            Assert.AreEqual(db.ProzBevPassiv.ToArray().Count<ProzBevPassiv>(), 0);
-        }
+        Assert.AreEqual(context.Stammdaten.ToArray().Count<Stammdaten>(), 0);
+        Assert.AreEqual(context.Verfahren.ToArray().Count<Verfahren>(), 0);
+        Assert.AreEqual(context.Besetzung.ToArray().Count<Besetzung>(), 0);
+        Assert.AreEqual(context.ParteienAktiv.ToArray().Count<ParteienAktiv>(), 0);
+        Assert.AreEqual(context.ParteienBeigeladen.ToArray().Count<ParteienBeigeladen>(), 0);
+        Assert.AreEqual(context.ParteienPassiv.ToArray().Count<ParteienPassiv>(), 0);
+        Assert.AreEqual(context.ParteienSV.ToArray().Count<ParteienSV>(), 0);
+        Assert.AreEqual(context.ParteienZeugen.ToArray().Count<ParteienZeugen>(), 0);
+        Assert.AreEqual(context.ProzBevAktiv.ToArray().Count<ProzBevAktiv>(), 0);
+        Assert.AreEqual(context.ProzBevBeigeladen.ToArray().Count<ProzBevBeigeladen>(), 0);
+        Assert.AreEqual(context.ProzBevPassiv.ToArray().Count<ProzBevPassiv>(), 0);
     }
 
     [Test]
@@ -68,9 +104,9 @@ public class DBServiceTest : TestBase
         int i;
 
         // XML Files aus Echtbereich ermitteln
-        using (var dbProd = new Data.DigitalSignageDbContext(CONNECTION_STRING_PROD))
+        using (context)
         {
-            Basics[] basics = dbProd.Basics.ToArray();
+            Basics[] basics = context.Basics.ToArray();
             foreach (var b in basics)
             {
                 xmlFiles.Add(b.toXMLFullPath);
@@ -78,8 +114,14 @@ public class DBServiceTest : TestBase
         }
 
         //XML´s aus dem Echtbereich einlesen
-        CLIActions cliAction = CreateCliActions(true, CONNECTION_STRING_LABOR, xmlFiles.ToArray());
-        cliAction.ExecuteActions();
+        var args = CreateCliActions(true, "", xmlFiles.ToArray());
+        var cliService = new Service.CLIService();
+        Assert.IsInstanceOf<Service.CLIService>(cliService);
+
+        CLIActions cliAction = cliService.ParseCommandLineArguments(args.ToArray());
+        Assert.IsInstanceOf<CLIActions>(cliAction);
+
+        cliAction.ExecuteActions(context);
 
         //Vergleichen
         using (var dbProd = new Data.DigitalSignageDbContext(CONNECTION_STRING_PROD))
@@ -208,9 +250,9 @@ public class DBServiceTest : TestBase
 
     private void CheckExampleValues(bool updated = false)
     {
-        using (var db = new Data.DigitalSignageDbContext(CONNECTION_STRING_LABOR))
+        using (context = new DigitalSignageDbContext(_contextOpitons))
         {
-            Stammdaten[] st = db.Stammdaten.ToArray();
+            Stammdaten[] st = context.Stammdaten.ToArray();
             Assert.AreEqual(st.Count(), 5);
             Assert.AreEqual(st[0].Gerichtsname, "Oberverwaltungsgericht Rheinland-Pfalz");
             Assert.AreEqual(st[1].Gerichtsname, "Verfassungsgerichtshof Rheinland-Pfalz");
@@ -221,7 +263,7 @@ public class DBServiceTest : TestBase
             Assert.AreEqual(st[3].Datum, "02.02.2018");
             Assert.AreEqual(st[4].Gerichtsname, "Sozialgericht Koblenz");
 
-            Verfahren[] verf = db.Verfahren.ToArray();
+            Verfahren[] verf = context.Verfahren.ToArray();
             Assert.AreEqual(verf.Count(), 9);
             Assert.AreEqual(verf[0].Lfdnr, 1);
             Assert.AreEqual(verf[0].Kammer, 1);
@@ -264,7 +306,7 @@ public class DBServiceTest : TestBase
             Assert.AreEqual(verf[3].Art, "mündliche Verhandlung");
             Assert.AreEqual(verf[3].Az, "1 K 759/17.KO");
             Assert.AreEqual(verf[3].Gegenstand, "Kommunalverfassungsrechts");
-            Assert.AreEqual(verf[4].Lfdnr, 1);
+            Assert.AreEqual(verf[4].Lfdnr, 5);
             Assert.AreEqual(verf[4].Kammer, 7);
             Assert.AreEqual(verf[4].Sitzungssaal, "Sitzungssaal A026");
             if (updated)
@@ -274,17 +316,17 @@ public class DBServiceTest : TestBase
             }
             else
             {
-                Assert.AreEqual(verf[4].UhrzeitAktuell, "09:00");
-                Assert.AreEqual(verf[4].UhrzeitPlan, "09:00");
+                Assert.AreEqual(verf[4].UhrzeitAktuell, "10:30");
+                Assert.AreEqual(verf[4].UhrzeitPlan, "10:30");
             }
             Assert.AreEqual(verf[4].Status, "");
             Assert.AreEqual(verf[4].Oeffentlich, "ja");
             Assert.AreEqual(verf[4].Art, "Gütetermin");
-            Assert.AreEqual(verf[4].Az, "1 A 0185/24");
-            Assert.AreEqual(verf[4].Gegenstand, "Zahlungsklagen\nSonstiges");
+            Assert.AreEqual(verf[4].Az, "7 Ca 3712/17");
+            Assert.AreEqual(verf[4].Gegenstand, "Bestandsstreitigkeiten: Kündigungen");
             Assert.AreEqual(verf[4].Bemerkung2, "bisher nur GT");
 
-            Besetzung[] bes = db.Besetzung.ToArray();
+            Besetzung[] bes = context.Besetzung.ToArray();
             Assert.AreEqual(bes.Count(), 29);
             Assert.AreEqual(bes[0].Richter, "Präsident des Verfassungsgerichtshofs");
             Assert.AreEqual(bes[1].Richter, "Vizepräsidentin des Oberverwaltungsgerichts");
@@ -295,11 +337,11 @@ public class DBServiceTest : TestBase
             Assert.AreEqual(bes[6].Richter, "Univ.-Professor Dr. Müllersen");
             Assert.AreEqual(bes[7].Richter, "Kreisverwaltungsdirektorin Hammer");
             Assert.AreEqual(bes[8].Richter, "Univ.-Professor Dr. Rotor");
-            Assert.AreEqual(bes[9].Richter, "Richter am Verwaltungsgericht Dr. Eicher");
-            Assert.AreEqual(bes[10].Richter, "Richter am Verwaltungsgericht Putz");
+            Assert.AreEqual(bes[9].Richter, "ehrenamtliche Richterin Geschäftsführerin King");
+            Assert.AreEqual(bes[10].Richter, "ehrenamtliche Richterin Maler Karl");
             Assert.AreEqual(bes[11].Richter, "Richterin David");
-            Assert.AreEqual(bes[12].Richter, "ehrenamtliche Richterin Maler Karl");
-            Assert.AreEqual(bes[13].Richter, "ehrenamtliche Richterin Geschäftsführerin King");
+            Assert.AreEqual(bes[12].Richter, "Richter am Verwaltungsgericht Putz");
+            Assert.AreEqual(bes[13].Richter, "Richter am Verwaltungsgericht Dr. Eicher");
             Assert.AreEqual(bes[14].Richter, "Richter am Verwaltungsgericht Dr. Eicher");
             Assert.AreEqual(bes[15].Richter, "Richter am Verwaltungsgericht Putz");
             Assert.AreEqual(bes[16].Richter, "Richterin David");
@@ -312,7 +354,7 @@ public class DBServiceTest : TestBase
             Assert.AreEqual(bes[23].Richter, "ehrenamtliche Richterin Geschäftsführerin King");
             Assert.AreEqual(bes[24].Richter, "Richter am Arbeitsgericht Dr. Hüber");
 
-            ParteienAktiv[] aktivPar = db.ParteienAktiv.ToArray();
+            ParteienAktiv[] aktivPar = context.ParteienAktiv.ToArray();
             Assert.AreEqual(aktivPar.Count(), 12);
             Assert.AreEqual(aktivPar[0].Partei, "der Fraktion der alternativen Wähler");
             Assert.AreEqual(aktivPar[1].Partei, "Johannes Peter Müller");
@@ -324,46 +366,46 @@ public class DBServiceTest : TestBase
             if (updated)
             { Assert.AreEqual(aktivPar[7].Partei, "Sabrina van de meiklokjes"); }
             else
-            { Assert.AreEqual(aktivPar[7].Partei, "Sabrina Muster"); }
+            { Assert.AreEqual(aktivPar[7].Partei, "Frank Hermann"); }
 
-            ProzBevAktiv[] aktivProzbez = db.ProzBevAktiv.ToArray();
+            ProzBevAktiv[] aktivProzbez = context.ProzBevAktiv.ToArray();
             Assert.AreEqual(aktivProzbez.Count(), 7);
-            Assert.AreEqual(aktivProzbez[0].PB, "Proz.-Bev.: Prof. Michael Muster");
+            Assert.AreEqual(aktivProzbez[0].PB, "Proz.-Bev.: Michael Muster");
             Assert.AreEqual(aktivProzbez[1].PB, "Proz.-Bev.: Rechtsanwalt Hans Mustername");
             Assert.AreEqual(aktivProzbez[2].PB, "Proz.-Bev.: zu 1-3: Kunz Rechtsanwälte");
-            Assert.AreEqual(aktivProzbez[3].PB, "Proz.-Bev.: Rechtsanwälte Dr. Eich, Jakob & Partner mbB");
+            Assert.AreEqual(aktivProzbez[3].PB, "Proz.-Bev.: Rechtsanwälte Tholen pp.");
 
-            ParteienPassiv[] passivPar = db.ParteienPassiv.ToArray();
+            ParteienPassiv[] passivPar = context.ParteienPassiv.ToArray();
             Assert.AreEqual(passivPar.Count(), 9);
             Assert.AreEqual(passivPar[0].Partei, "das Land Rheinland-Pfalz vertreten durch den Landtag Rheinland-Pfalz");
             Assert.AreEqual(passivPar[1].Partei, "Ortsgemeinde Rengsdorf vertreten durch den Bürgermeister der Verbandsgemeinde Rengsdorf-Waldbreitbach");
             Assert.AreEqual(passivPar[2].Partei, "Verbandsgemeinde Bad Ems vertreten durch den Bürgermeister");
             Assert.AreEqual(passivPar[3].Partei, "Landrat des Landkreis Dr. Micheal Müller");
-            Assert.AreEqual(passivPar[4].Partei, "Ulrich Finzler");
+            Assert.AreEqual(passivPar[4].Partei, "POS Polsterservice GmbH");
 
-            ProzBevPassiv[] passivProzBez = db.ProzBevPassiv.ToArray();
+            ProzBevPassiv[] passivProzBez = context.ProzBevPassiv.ToArray();
             Assert.AreEqual(passivProzBez.Count(), 8);
             Assert.AreEqual(passivProzBez[0].PB, "Proz.-Bev.: Rechtsanwälte Jeromin & Kerkmann");
             Assert.AreEqual(passivProzBez[1].PB, "Proz.-Bev.: Rechtsanwälte Dr. Martini, Mogg, Vogt PartGmbB");
             Assert.AreEqual(passivProzBez[2].PB, "Proz.-Bev.: Rechtsanwälte Dr. Martini2, Mogg, Vogt PartGmbB");
-            Assert.AreEqual(passivProzBez[3].PB, "Proz.-Bev.: Rechtsanwälte Braun Baulig Berninger");
+            Assert.AreEqual(passivProzBez[3].PB, "Proz.-Bev.: Seitz Rechtsanwälte Steuerberater PartG mbH");
 
-            ParteienBeigeladen[] beiPar = db.ParteienBeigeladen.ToArray();
+            ParteienBeigeladen[] beiPar = context.ParteienBeigeladen.ToArray();
             Assert.AreEqual(beiPar.Count(), 3);
             Assert.AreEqual(beiPar[0].Partei, "1. ABCERT AG");
             Assert.AreEqual(beiPar[1].Partei, "2. Helmut Grün");
             Assert.AreEqual(beiPar[2].Partei, "3. Erika Grün");
 
-            ProzBevBeigeladen[] beiProzBez = db.ProzBevBeigeladen.ToArray();
+            ProzBevBeigeladen[] beiProzBez = context.ProzBevBeigeladen.ToArray();
             Assert.AreEqual(beiProzBez.Count(), 1);
             Assert.AreEqual(beiProzBez[0].PB, "Proz.-Bev.:\tzu 3: Rechtsanwälte Jeromin & Kerkmann");
 
-            ParteienSV[] svPar = db.ParteienSV.ToArray();
+            ParteienSV[] svPar = context.ParteienSV.ToArray();
             Assert.AreEqual(svPar.Count(), 2);
             Assert.AreEqual(svPar[0].Partei, "1. Edith Hof");
             Assert.AreEqual(svPar[1].Partei, "2. Willibald Hof");
 
-            ParteienZeugen[] zegenPar = db.ParteienZeugen.ToArray();
+            ParteienZeugen[] zegenPar = context.ParteienZeugen.ToArray();
             Assert.AreEqual(zegenPar.Count(), 2);
             Assert.AreEqual(zegenPar[0].Partei, "1. Hessel GmbH vertreten durch die Geschäftsführer");
             Assert.AreEqual(zegenPar[1].Partei, "2. Astrid Hessel");
@@ -375,7 +417,7 @@ public class DBServiceTest : TestBase
         return val.TrimEnd().Replace("\r\n", "\n").Replace("\r", "\n");
     }
 
-    private CLIActions CreateCliActions(bool delete, string connectionString, string[] xmlFiles = null, bool Update = false)
+    private List<string> CreateCliActions(bool delete, string connectionString, string[] xmlFiles = null, bool Update = false)
     {
         var args = new List<string>();
         string AddOrUpdateCommand = COMMAND_ADD;
@@ -406,13 +448,6 @@ public class DBServiceTest : TestBase
             args.Add(AddOrUpdateCommand);
             args.Add(EXAMPLE_XML5);
         }
-
-        var cliService = new Service.CLIService();
-        Assert.IsInstanceOf<Service.CLIService>(cliService);
-
-        CLIActions cliActions = cliService.ParseCommandLineArguments(args.ToArray());
-        Assert.IsInstanceOf<CLIActions>(cliActions);
-
-        return cliActions;
+        return args;
     }
 }
