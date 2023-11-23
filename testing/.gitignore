@@ -1,1 +1,3 @@
 Serenity-scripts/target/
+target/
+node_modules
