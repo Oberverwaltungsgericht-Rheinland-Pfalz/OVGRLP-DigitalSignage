@@ -1,1 +1,5 @@
 Serenity-scripts/target/
+target/
+node_modules
+
+settings_labor.json

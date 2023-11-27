@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "web-integration"
+		}
+	],
+	"settings": {
+		"files.autoSave": "onFocusChange",
+		"workbench.tree.indent": 12
+	}
+}
