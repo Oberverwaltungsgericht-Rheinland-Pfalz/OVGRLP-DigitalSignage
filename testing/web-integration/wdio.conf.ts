@@ -2,7 +2,7 @@ import type { WebdriverIOConfig } from '@serenity-js/webdriverio';
 
 // Run tests in headless mode on CI and non-headless otherwise
 // Set to true/false to override
-const headless = true //Boolean(process.env.CI);
+const headless = true // Boolean(process.env.CI);
 
 export const config: WebdriverIOConfig = {
 
@@ -114,7 +114,7 @@ export const config: WebdriverIOConfig = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'error',
 
     //
     // Set specific log levels per logger
@@ -192,8 +192,15 @@ export const config: WebdriverIOConfig = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+        
+    // do here things that needs to be executed before the tests start
+      //  if (process.env.NODE_ENV && process.env.NODE_ENV.includes('testlab')) {
+            var settings = require('./settings_labor.json')
+            delete process.env.https_proxy
+            delete process.env.http_proxy
+        //}
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.

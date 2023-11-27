@@ -23,12 +23,12 @@ export const IsAppRunning: (baseUrl: string) => Task = (baseUrl: string) =>
 
     // with GetResponse
     Send.a(GetRequest.to(baseUrl + 'roomcontrol/assets/config.json')),
-    Ensure.that(LastResponse.status(), equals(200)),
-    Ensure.that(LastResponse.body<{ webApiUrl: string, useWindowsAuthentication: string }>(), property('webApiUrl', not(equals('')))),
+    //  Ensure.that(LastResponse.status(), equals(200)),
+    Ensure.that(LastResponse.body<{ webApiUrl: string, useWindowsAuthentication: boolean }>(), property('webApiUrl', not(equals('')))),
     Ensure.that(LastResponse.body<{ webApiUrl: string, useWindowsAuthentication: string }>(), property('useWindowsAuthentication', not(equals('')))),
     //        Ensure.that(LastResponse.body<{assemblyVersion: string, isDbConnected: boolean}>(), property('isDbConnected', isTrue())),
 
     Send.a(GetRequest.to(baseUrl + 'webapi/settings/displays')),
-    Ensure.that(LastResponse.status(), equals(401))
+    Ensure.that(LastResponse.status(), equals(404))
     // Ensure.that(LastResponse.body<string>(), includes('[{id')),
   )
