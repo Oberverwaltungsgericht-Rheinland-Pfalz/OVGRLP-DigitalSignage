@@ -1,5 +1,7 @@
 name: build C# projects
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 jobs:
   setup-dotnet:
     name: setup and build windows
