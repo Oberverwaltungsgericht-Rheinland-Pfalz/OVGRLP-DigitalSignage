@@ -1,0 +1,1801 @@
+openapi: 3.0.3
+info:
+  title: Swagger DigitalSignage - OpenAPI 3.0
+  description: |-
+    Hier könnte Ihre Werbung stehen!
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+servers:
+  - url: https://database.service/api/v3
+tags:
+  - name: Display
+    description: Endpoints for managing Displays
+  - name: Person
+    description: Endpoints for managing Persons
+  - name: Department
+    description: Endpoints for managing Departments
+  - name: Room
+    description: Endpoints for managing Rooms
+  - name: Event
+    description: Endpoints for managing Events
+  - name: EventChange
+    description: Endpoints for managing EventChanges
+  - name: Version
+    description: Endpoints for managing Versions
+  - name: Template
+    description: Endpoints for managing Templates
+  - name: Group
+    description: Endpoints for managing Groups
+  - name: Filter
+    description: Endpoints for managing Filters
+  - name: Schedule
+    description: Endpoints for managing Schedules
+paths:
+  /display:
+    put:
+      tags:
+        - Display
+      summary: Update an existing Display
+      description: Update an existing Display by Id
+      operationId: updateDisplay
+      requestBody:
+        description: Update an existent Display in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Display'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Display'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Display not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Display
+      summary: Add a new Display to the Database
+      description: Add a new Display to the Database
+      operationId: addDisplay
+      requestBody:
+        description: Create a new Display in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Display'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Display'          
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - Display
+      summary: Get all Displays
+      description: Returns a list of Displays
+      operationId: getDisplays
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Display'
+  /display/{displayId}:
+    get:
+      tags:
+        - Display
+      summary: Find Display by ID
+      description: Returns a single Display
+      operationId: getDisplayById
+      parameters:
+        - name: displayId
+          in: path
+          description: ID of Display to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Display'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Display not found
+    post:
+      tags:
+        - Display
+      summary: Updates a Display in the Database with form data
+      description: ''
+      operationId: updateDisplayWithForm
+      parameters:
+        - name: displayId
+          in: path
+          description: ID of Display that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Update the Display in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Display'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Display'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Display
+      summary: Deletes a Display
+      description: delete a Display
+      operationId: deleteDisplay
+      parameters:
+        - name: displayId
+          in: path
+          description: Display id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Display not found
+          
+
+  /person:
+    put:
+      tags:
+        - Person
+      summary: Update an existing Person
+      description: Update an existing Person by Id
+      operationId: updatePerson
+      requestBody:
+        description: Update an existent Person in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Person not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Person
+      summary: Add a new Person to the Database
+      description: Add a new Person to the Database
+      operationId: addPerson
+      requestBody:
+        description: Create a new Person in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'          
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - Person
+      summary: Get all Persons
+      description: Returns a list of Persons
+      operationId: getPersons
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+  /person/{personId}:
+    get:
+      tags:
+        - Person
+      summary: Find Person by ID
+      description: Returns a single Person
+      operationId: getPersonById
+      parameters:
+        - name: personId
+          in: path
+          description: ID of Person to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Person not found
+    post:
+      tags:
+        - Person
+      summary: Updates a Person in the Database with form data
+      description: ''
+      operationId: updatePersonWithForm
+      parameters:
+        - name: personId
+          in: path
+          description: ID of Person that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Update the Person in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Person
+      summary: Deletes a Person
+      description: delete a Person
+      operationId: deletePerson
+      parameters:
+        - name: personId
+          in: path
+          description: Person id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Person not found
+          
+
+  /department:
+    put:
+      tags:
+        - Department
+      summary: Update an existing Department
+      description: Update an existing Department by Id
+      operationId: updateDepartment
+      requestBody:
+        description: Update an existent Department in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Department not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Department
+      summary: Add a new Department to the Database
+      description: Add a new Department to the Database
+      operationId: addDepartment
+      requestBody:
+        description: Create a new Department in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'          
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - Department
+      summary: Get all Departments
+      description: Returns a list of Departments
+      operationId: getDepartments
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Department'
+  /department/{departmentId}:
+    get:
+      tags:
+        - Department
+      summary: Find Department by ID
+      description: Returns a single Department
+      operationId: getDepartmentById
+      parameters:
+        - name: departmentId
+          in: path
+          description: ID of Department to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Department not found
+    post:
+      tags:
+        - Department
+      summary: Updates a Department in the Database with form data
+      description: ''
+      operationId: updateDepartmentWithForm
+      parameters:
+        - name: departmentId
+          in: path
+          description: ID of Department that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Update the Department in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Department
+      summary: Deletes a Department
+      description: delete a Department
+      operationId: deleteDepartment
+      parameters:
+        - name: departmentId
+          in: path
+          description: Department id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Department not found
+          
+
+  /room:
+    put:
+      tags:
+        - Room
+      summary: Update an existing Room
+      description: Update an existing Room by Id
+      operationId: updateRoom
+      requestBody:
+        description: Update an existent Room in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Room'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Room not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Room
+      summary: Add a new Room to the Database
+      description: Add a new Room to the Database
+      operationId: addRoom
+      requestBody:
+        description: Create a new Room in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Room'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'          
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - Room
+      summary: Get all Rooms
+      description: Returns a list of Rooms
+      operationId: getRooms
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Room'
+  /room/{roomId}:
+    get:
+      tags:
+        - Room
+      summary: Find Room by ID
+      description: Returns a single Room
+      operationId: getRoomById
+      parameters:
+        - name: roomId
+          in: path
+          description: ID of Room to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Room not found
+    post:
+      tags:
+        - Room
+      summary: Updates a Room in the Database with form data
+      description: ''
+      operationId: updateRoomWithForm
+      parameters:
+        - name: roomId
+          in: path
+          description: ID of Room that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Update the Room in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Room'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Room
+      summary: Deletes a Room
+      description: delete a Room
+      operationId: deleteRoom
+      parameters:
+        - name: roomId
+          in: path
+          description: Room id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Room not found
+          
+
+  /event:
+    put:
+      tags:
+        - Event
+      summary: Update an existing Event
+      description: Update an existing Event by Id
+      operationId: updateEvent
+      requestBody:
+        description: Update an existent Event in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Event not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Event
+      summary: Add a new Event to the Database
+      description: Add a new Event to the Database
+      operationId: addEvent
+      requestBody:
+        description: Create a new Event in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'          
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - Event
+      summary: Get all Events
+      description: Returns a list of Events
+      operationId: getEvents
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+  /event/{eventId}:
+    get:
+      tags:
+        - Event
+      summary: Find Event by ID
+      description: Returns a single Event
+      operationId: getEventById
+      parameters:
+        - name: eventId
+          in: path
+          description: ID of Event to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Event not found
+    post:
+      tags:
+        - Event
+      summary: Updates a Event in the Database with form data
+      description: ''
+      operationId: updateEventWithForm
+      parameters:
+        - name: eventId
+          in: path
+          description: ID of Event that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Update the Event in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Event
+      summary: Deletes a Event
+      description: delete a Event
+      operationId: deleteEvent
+      parameters:
+        - name: eventId
+          in: path
+          description: Event id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Event not found
+          
+
+  /eventchange:
+    put:
+      tags:
+        - EventChange
+      summary: Update an existing EventChange
+      description: Update an existing EventChange by Id
+      operationId: updateEventChange
+      requestBody:
+        description: Update an existent EventChange in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventChange'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventChange'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: EventChange not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - EventChange
+      summary: Add a new EventChange to the Database
+      description: Add a new EventChange to the Database
+      operationId: addEventChange
+      requestBody:
+        description: Create a new EventChange in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventChange'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventChange'          
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - EventChange
+      summary: Get all EventChanges
+      description: Returns a list of EventChanges
+      operationId: getEventChanges
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventChange'
+  /eventchange/{eventChangeId}:
+    get:
+      tags:
+        - EventChange
+      summary: Find EventChange by ID
+      description: Returns a single EventChange
+      operationId: getEventChangeById
+      parameters:
+        - name: eventChangeId
+          in: path
+          description: ID of EventChange to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventChange'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: EventChange not found
+    post:
+      tags:
+        - EventChange
+      summary: Updates a EventChange in the Database with form data
+      description: ''
+      operationId: updateEventChangeWithForm
+      parameters:
+        - name: eventChangeId
+          in: path
+          description: ID of EventChange that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Update the EventChange in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventChange'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventChange'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - EventChange
+      summary: Deletes a EventChange
+      description: delete a EventChange
+      operationId: deleteEventChange
+      parameters:
+        - name: eventChangeId
+          in: path
+          description: EventChange id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: EventChange not found
+          
+        
+  /version:
+    put:
+      tags:
+        - Version
+      summary: Update an existing Version
+      description: Update an existing Version by Id
+      operationId: updateVersion
+      requestBody:
+        description: Update an existent Version in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientVersion'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientVersion'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Version not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Version
+      summary: Add a new Version to the Database
+      description: Add a new Version to the Database
+      operationId: addVersion
+      requestBody:
+        description: Create a new Version in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientVersion'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientVersion'          
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - Version
+      summary: Get all Versions
+      description: Returns a list of Versions
+      operationId: getVersions
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientVersion'
+  /version/{versionId}:
+    get:
+      tags:
+        - Version
+      summary: Find Version by ID
+      description: Returns a single Version
+      operationId: getVersionById
+      parameters:
+        - name: versionId
+          in: path
+          description: ID of Version to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientVersion'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Version not found
+    post:
+      tags:
+        - Version
+      summary: Updates a Version in the Database with form data
+      description: ''
+      operationId: updateVersionWithForm
+      parameters:
+        - name: versionId
+          in: path
+          description: ID of Version that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Update the Version in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientVersion'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientVersion'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Version
+      summary: Deletes a Version
+      description: delete a Version
+      operationId: deleteVersion
+      parameters:
+        - name: versionId
+          in: path
+          description: Version id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Version not found
+
+
+  /template:
+    put:
+      tags:
+        - Template
+      summary: Update an existing Template
+      description: Update an existing Template by Id
+      operationId: updateTemplate
+      requestBody:
+        description: Update an existent Template in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Template not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Template
+      summary: Add a new Template to the Database
+      description: Add a new Template to the Database
+      operationId: addTemplate
+      requestBody:
+        description: Create a new Template in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'          
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - Template
+      summary: Get all Templates
+      description: Returns a list of Templates
+      operationId: getTemplates
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+  /template/{templateId}:
+    get:
+      tags:
+        - Template
+      summary: Find Template by ID
+      description: Returns a single Template
+      operationId: getTemplateById
+      parameters:
+        - name: templateId
+          in: path
+          description: ID of Template to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Template not found
+    post:
+      tags:
+        - Template
+      summary: Updates a Template in the Database with form data
+      description: ''
+      operationId: updateTemplateWithForm
+      parameters:
+        - name: templateId
+          in: path
+          description: ID of Template that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Update the Template in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Template
+      summary: Deletes a Template
+      description: delete a Template
+      operationId: deleteTemplate
+      parameters:
+        - name: templateId
+          in: path
+          description: Template id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Template not found
+          
+          
+  /group:
+    put:
+      tags:
+        - Group
+      summary: Update an existing Group
+      description: Update an existing Group by Id
+      operationId: updateGroup
+      requestBody:
+        description: Update an existent Group in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Group not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Group
+      summary: Add a new Group to the Database
+      description: Add a new Group to the Database
+      operationId: addGroup
+      requestBody:
+        description: Create a new Group in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'          
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - Group
+      summary: Get all Groups
+      description: Returns a list of Groups
+      operationId: getGroups
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+  /group/{groupId}:
+    get:
+      tags:
+        - Group
+      summary: Find Group by ID
+      description: Returns a single Group
+      operationId: getGroupById
+      parameters:
+        - name: groupId
+          in: path
+          description: ID of Group to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Group not found
+    post:
+      tags:
+        - Group
+      summary: Updates a Group in the Database with form data
+      description: ''
+      operationId: updateGroupWithForm
+      parameters:
+        - name: groupId
+          in: path
+          description: ID of Group that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Update the Group in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Group
+      summary: Deletes a Group
+      description: delete a Group
+      operationId: deleteGroup
+      parameters:
+        - name: groupId
+          in: path
+          description: Group id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Group not found
+          
+          
+  /filter:
+    put:
+      tags:
+        - Filter
+      summary: Update an existing Filter
+      description: Update an existing Filter by Id
+      operationId: updateFilter
+      requestBody:
+        description: Update an existent Filter in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Filter'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Filter not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Filter
+      summary: Add a new Filter to the Database
+      description: Add a new Filter to the Database
+      operationId: addFilter
+      requestBody:
+        description: Create a new Filter in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Filter'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter'          
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - Filter
+      summary: Get all Filters
+      description: Returns a list of Filters
+      operationId: getFilters
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Filter'
+  /filter/{filterId}:
+    get:
+      tags:
+        - Filter
+      summary: Find Filter by ID
+      description: Returns a single Filter
+      operationId: getFilterById
+      parameters:
+        - name: filterId
+          in: path
+          description: ID of Filter to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Filter not found
+    post:
+      tags:
+        - Filter
+      summary: Updates a Filter in the Database with form data
+      description: ''
+      operationId: updateFilterWithForm
+      parameters:
+        - name: filterId
+          in: path
+          description: ID of Filter that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Update the Filter in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Filter'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Filter
+      summary: Deletes a Filter
+      description: delete a Filter
+      operationId: deleteFilter
+      parameters:
+        - name: filterId
+          in: path
+          description: Filter id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Filter not found
+          
+          
+  /schedule:
+    put:
+      tags:
+        - Schedule
+      summary: Update an existing Schedule
+      description: Update an existing Schedule by Id
+      operationId: updateSchedule
+      requestBody:
+        description: Update an existent Schedule in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Schedule not found
+        '405':
+          description: Validation exception
+    post:
+      tags:
+        - Schedule
+      summary: Add a new Schedule to the Database
+      description: Add a new Schedule to the Database
+      operationId: addSchedule
+      requestBody:
+        description: Create a new Schedule in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'          
+        '405':
+          description: Invalid input
+    get:
+      tags:
+        - Display
+      summary: Get all Schedules
+      description: Returns a list of Schedules
+      operationId: getSchedules
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Schedule'
+  /schedule/{scheduleId}:
+    get:
+      tags:
+        - Schedule
+      summary: Find Schedule by ID
+      description: Returns a single Schedule
+      operationId: getScheduleById
+      parameters:
+        - name: scheduleId
+          in: path
+          description: ID of Schedule to return
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Schedule not found
+    post:
+      tags:
+        - Schedule
+      summary: Updates a Schedule in the Database with form data
+      description: ''
+      operationId: updateScheduleWithForm
+      parameters:
+        - name: scheduleId
+          in: path
+          description: ID of Schedule that needs to be updated
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Update the Schedule in the Database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - Schedule
+      summary: Deletes a Schedule
+      description: delete a Schedule
+      operationId: deleteSchedule
+      parameters:
+        - name: scheduleId
+          in: path
+          description: Schedule id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Schedule not found
+          
+
+components:
+  schemas:
+    Schedule:
+      required:
+        - Name
+        - Action
+      type: object
+      properties:
+        ID:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          example: Schedule 1
+        TriggerOnTime:
+          type: string
+          format: date-time
+        TriggerOnCustom:
+          type: string
+          example: enter custom data here
+        TriggerRepitition:
+          type: string
+          example: enter custom data here
+        Action:
+          type: string
+          example: enter custom data here
+    Person:
+      required:
+        - Description
+        - Type
+      type: object
+      properties:
+        ID:
+          type: string
+          format: uuid
+        Description:
+          type: string
+          example: Hans Wurst
+        Type:
+          type: string
+          example: Defendee
+    Department:
+      required:
+        - Name
+      type: object
+      properties:
+        ID:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          example: Department 1
+    Room:
+      required:
+        - Name
+        - RoomNumber
+      type: object
+      properties:
+        ID:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          example: Room 1
+        RoomNumber:
+          type: string
+          example: A001
+    EventChange:
+      $ref: '#/components/schemas/Event'
+    Event:
+      required:
+        - TimestampFrom
+        - TimestampTo
+        - Public
+        - FileId
+        - Type
+        - Subject
+        - Status
+        - Department
+        - Room
+      type: object
+      properties:
+        ID:
+          type: string
+          format: uuid
+        Order:
+          type: number
+        Chamber:
+          type: number
+        TimestampFrom:
+          type: string
+          format: date-time
+        TimestampTo:
+          type: string
+          format: date-time
+        Public:
+          type: boolean
+        FileId:
+          type: string
+        Type:
+          type: string
+        Subject:
+          type: string
+        Department:
+          $ref: '#/components/schemas/Department'
+        Room:
+          $ref: '#/components/schemas/Room'
+        Persons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+    ClientVersion:
+      required:
+        - Version
+      type: object
+      properties:
+        ID:
+          type: string
+          format: uuid
+        Version:
+          type: string
+          example: 1.0.0.0
+        Data:
+          type: string
+          example: enter byte data here
+        Path:
+          type: string
+          example: path to file
+    Template:
+      required:
+        - Name
+      type: object
+      properties:
+        ID:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          example: Template 1
+        Html:
+          type: string
+          example: enter html string here
+        Css:
+          type: string
+          example: enter css string here
+    Group:
+      required:
+        - Name
+        - Hidden
+      type: object
+      properties:
+        ID:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          example: Group 1
+        Hidden:
+          type: boolean
+        Template:
+          $ref: '#/components/schemas/Template'
+        Filter:
+          $ref: '#/components/schemas/Filter'
+    Filter:
+      required:
+        - Name
+      type: object
+      properties:
+        ID:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          example: Filter 1
+        Data:
+          type: string
+          example: enter json string here
+    Display:
+      required:
+        - Name
+        - MAC
+        - IP
+        - Dummy
+        - Status
+      type: object
+      properties:
+        ID:
+          type: string
+          format: uuid
+        Name:
+          type: string
+          example: Display 1
+        MAC:
+          type: string
+          example: '00:00:00:00:00:00'
+        IP:
+          type: string
+          example: '0.0.0.0'
+        PublicKey:
+          type: string
+        Dummy:
+          type: boolean
+          example: false
+        Status:
+          type: string
+          enum:
+            - created
+            - registered
+            - online
+            - offline
+            - disabled
+        Template:
+          $ref: '#/components/schemas/Template'
+        Group:
+          $ref: '#/components/schemas/Group'
+        Filter:
+          $ref: '#/components/schemas/Filter'
+  requestBodies:
+    Display:
+      description: Display object that needs to be added to the Database
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Display'
