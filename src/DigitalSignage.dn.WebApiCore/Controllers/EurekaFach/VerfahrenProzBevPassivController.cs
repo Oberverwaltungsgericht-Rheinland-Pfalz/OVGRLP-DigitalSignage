@@ -2,11 +2,13 @@
 // SPDX-License-Identifier: EUPL-1.2
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DigitalSignage.WebApi.Controllers.EurekaFach;
 
+[Authorize]
 [Route("daten/verfahren/{verfid}/prozbevpassiv")]
 public class VerfahrenProzBevPassivController : ControllerBase
 {

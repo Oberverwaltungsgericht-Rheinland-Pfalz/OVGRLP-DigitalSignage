@@ -2,138 +2,139 @@
 // SPDX-License-Identifier: EUPL-1.2
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DigitalSignage.WebApi.Controllers.EurekaFach
+namespace DigitalSignage.WebApi.Controllers.EurekaFach;
+
+[Authorize]
+[Route("daten/verfahren/{verfid}/parteienpassiv")]
+public class VerfahrenParteienPassivController : ControllerBase
 {
-    [Route("daten/verfahren/{verfid}/parteienpassiv")]
-    public class VerfahrenParteienPassivController : ControllerBase
+    private readonly DigitalSignageDbContext _context;
+
+    public VerfahrenParteienPassivController(DigitalSignageDbContext context)
     {
-        private readonly DigitalSignageDbContext _context;
+        _context = context;
+    }
 
-        public VerfahrenParteienPassivController(DigitalSignageDbContext context)
+
+    [Route("")]
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ParteienPassiv>>> GetAllParteienPassivByVerfahren(Int64 verfid)
+    {
+        var verfahren = await _context.Verfahren.FindAsync(verfid);
+
+        if (verfahren == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-
-        [Route("")]
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ParteienPassiv>>> GetAllParteienPassivByVerfahren(Int64 verfid)
+        try
         {
-            var verfahren = await _context.Verfahren.FindAsync(verfid);
-
-            if (verfahren == null)
-            {
-                return NotFound();
-            }
-
-            try
-            {
-                await _context.Entry(verfahren).Collection(v => v.ParteienPassiv).LoadAsync();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            }
-
-            return Ok(verfahren.ParteienPassiv);
+            await _context.Entry(verfahren).Collection(v => v.ParteienPassiv).LoadAsync();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
         }
 
-        [Route("{id}", Name = "GetParteienPassivById")]
-        [HttpGet]
-        public async Task<ActionResult<ParteienPassiv>> GetParteienPassiv(Int64 verfid, int id)
+        return Ok(verfahren.ParteienPassiv);
+    }
+
+    [Route("{id}", Name = "GetParteienPassivById")]
+    [HttpGet]
+    public async Task<ActionResult<ParteienPassiv>> GetParteienPassiv(Int64 verfid, int id)
+    {
+        var parteienPassiv = await _context.ParteienPassiv.FindAsync(id);
+
+        if (parteienPassiv == null)
         {
-            var parteienPassiv = await _context.ParteienPassiv.FindAsync(id);
-
-            if (parteienPassiv == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(parteienPassiv);
+            return NotFound();
         }
 
-        [Route("{id}")]
-        [HttpPut]
-        public async Task<ActionResult> PutParteienPassiv(Int64 verfid, int id, ParteienPassiv parteienPassiv)
+        return Ok(parteienPassiv);
+    }
+
+    [Route("{id}")]
+    [HttpPut]
+    public async Task<ActionResult> PutParteienPassiv(Int64 verfid, int id, ParteienPassiv parteienPassiv)
+    {
+        if (!ModelState.IsValid)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != parteienPassiv.ParteiId)
-            {
-                return BadRequest();
-            }
-
-            try
-            {
-                _context.Entry(parteienPassiv).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            }
-
-            return NoContent();
+            return BadRequest(ModelState);
         }
 
-        [Route("")]
-        [HttpPost]
-        public async Task<ActionResult<ParteienPassiv>> PostParteienPassiv(Int64 verfid, ParteienPassiv parteienPassiv)
+        if (id != parteienPassiv.ParteiId)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var verfahren = await _context.Verfahren.FindAsync(verfid);
-
-            if (verfahren == null)
-            {
-                return NotFound();
-            }
-
-            try
-            {
-                await _context.Entry(verfahren).Collection(v => v.ParteienPassiv).LoadAsync();
-                verfahren.ParteienPassiv.Add(parteienPassiv);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            }
-
-            return CreatedAtRoute("GetParteienPassivById", new { id = parteienPassiv.ParteiId }, parteienPassiv);
+            return BadRequest();
         }
 
-        [Route("{id}")]
-        [HttpDelete]
-        public async Task<ActionResult<ParteienPassiv>> DeleteParteienPassiv(Int64 verfid, int id)
+        try
         {
-            var parteienPassiv = await _context.ParteienPassiv.FindAsync(id);
-
-            if (parteienPassiv == null)
-            {
-                return NotFound();
-            }
-
-            try
-            {
-                _context.ParteienPassiv.Remove(parteienPassiv);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            }
-
-            return Ok(parteienPassiv);
+            _context.Entry(parteienPassiv).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
+        }
+
+        return NoContent();
+    }
+
+    [Route("")]
+    [HttpPost]
+    public async Task<ActionResult<ParteienPassiv>> PostParteienPassiv(Int64 verfid, ParteienPassiv parteienPassiv)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var verfahren = await _context.Verfahren.FindAsync(verfid);
+
+        if (verfahren == null)
+        {
+            return NotFound();
+        }
+
+        try
+        {
+            await _context.Entry(verfahren).Collection(v => v.ParteienPassiv).LoadAsync();
+            verfahren.ParteienPassiv.Add(parteienPassiv);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
+        }
+
+        return CreatedAtRoute("GetParteienPassivById", new { id = parteienPassiv.ParteiId }, parteienPassiv);
+    }
+
+    [Route("{id}")]
+    [HttpDelete]
+    public async Task<ActionResult<ParteienPassiv>> DeleteParteienPassiv(Int64 verfid, int id)
+    {
+        var parteienPassiv = await _context.ParteienPassiv.FindAsync(id);
+
+        if (parteienPassiv == null)
+        {
+            return NotFound();
+        }
+
+        try
+        {
+            _context.ParteienPassiv.Remove(parteienPassiv);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
+        }
+
+        return Ok(parteienPassiv);
     }
 }

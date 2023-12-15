@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: EUPL-1.2
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace DigitalSignage.ImportCLI.Service;
@@ -18,8 +19,9 @@ public class DBService
 
     public void DeleteAll()
     {
-        using var db = new DigitalSignageDbContext(this.NameOrConnectionString);
-            foreach (Stammdaten st in db.Stammdaten.ToArray())
+        var contextOpitons = new DbContextOptionsBuilder<DigitalSignageDbContext>().UseSqlServer(this.NameOrConnectionString).Options;
+        using var db = new DigitalSignageDbContext(contextOpitons);
+        foreach (Stammdaten st in db.Stammdaten.ToArray())
                 db.Stammdaten.Remove(st);
 
             db.SaveChanges();
@@ -27,7 +29,8 @@ public class DBService
 
     public void AddData(Terminsaushang data)
     {
-        var contextProvider = new DigitalSignageDbContext(this.NameOrConnectionString);
+        var contextOpitons = new DbContextOptionsBuilder<DigitalSignageDbContext>().UseSqlServer(this.NameOrConnectionString).Options;
+        var contextProvider = new DigitalSignageDbContext(contextOpitons);
 
         //Kopfdaten
         var st = new DigitalSignage.Infrastructure.Models.EurekaFach.Stammdaten();
@@ -51,7 +54,8 @@ public class DBService
 
     public void UpdateData(Terminsaushang data)
     {
-        var contextProvider = new DigitalSignageDbContext(this.NameOrConnectionString);
+        var contextOpitons = new DbContextOptionsBuilder<DigitalSignageDbContext>().UseSqlServer(this.NameOrConnectionString).Options;
+        var contextProvider = new DigitalSignageDbContext(contextOpitons);
 
         // StammdatenID ahand Gericht und Datum finden
         var st = contextProvider.Stammdaten.Where(s => s.Datum == data.Stammdaten.Datum && s.Gerichtsname == data.Stammdaten.Gerichtsname).ToList();

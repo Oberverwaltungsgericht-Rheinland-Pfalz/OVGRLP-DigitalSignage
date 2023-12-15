@@ -5,12 +5,14 @@ using DigitalSignage.dn.WebApiCore.DtoModels;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.Infrastructure.Models.Settings;
 using DigitalSignage.WebApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DigitalSignage.WebApi.Controllers.Settings;
 
+[Authorize]
 [Route("settings/displays")]
 public class DisplaysController : ControllerBase
 {

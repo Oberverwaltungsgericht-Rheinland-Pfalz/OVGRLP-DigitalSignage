@@ -5,6 +5,7 @@ using DigitalSignage.dn.WebApiCore.DtoModels;
 using DigitalSignage.dn.WebApiCore.Services;
 using DigitalSignage.WebApi.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Negotiate;
 
 namespace DigitalSignage.dn.WebApiCore;
 
@@ -12,12 +13,12 @@ public class Startup
 {
     WebApplicationBuilder _builder;
     IServiceCollection _services;
-    WebApplication _app;
-    public Startup(WebApplicationBuilder builder, WebApplication app)
+    IWebHostEnvironment _environment;
+    public Startup(WebApplicationBuilder builder)
     {
         _services = builder.Services;
-        _app = app;
         _builder = builder;
+        _environment = builder.Environment;
     }
 
     public Startup AddDependencyInjection()
@@ -25,7 +26,7 @@ public class Startup
         _services.AddDbContext<DigitalSignageDbContext>(options =>
         {
             options.UseSqlServer(
-              _builder.Configuration["ConnectionString"],
+              _builder.Configuration.GetConnectionString("EfContext"),
               sqlServerOptions => sqlServerOptions.CommandTimeout(120));   
         });
 
@@ -34,12 +35,31 @@ public class Startup
 
         _services.AddSingleton(new Configuration(_builder.Configuration.GetValue<bool>("checkPermissions")));
 
+        _services.AddHealthChecks();
+        _services.AddSwaggerGen();
+
+        _services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+           .AddNegotiate();
+
+        _services.AddAuthorization(options =>
+        {
+            options.FallbackPolicy = options.DefaultPolicy;
+        });
         return this;
     }
 
-    public Startup ConfigureServices() {
+    public Startup ConfigureServices(WebApplication app) {
+        
+        app.UseHealthChecks("/health");
 
-        _app.UseCors(options =>
+        if (_environment.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DigitalSignage.WebApiCore v1"));
+        }
+
+        app.UseCors(options =>
         {
             options
             .AllowAnyMethod()

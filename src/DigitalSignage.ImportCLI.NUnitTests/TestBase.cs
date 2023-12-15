@@ -1,5 +1,7 @@
 ﻿// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
+using DigitalSignage.Data;
+using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 
 namespace DigitalSignage.ImportCLI;
@@ -19,6 +21,10 @@ public class TestBase
     protected const string EXAMPLE_XML4 = @"C:\dev\repos\digitalsignage\src\DigitalSignage.ImportCLI.NUnitTests\example_XMLs\ARG_TO.XML";
     protected const string EXAMPLE_XML5 = @"C:\dev\repos\digitalsignage\src\DigitalSignage.ImportCLI.NUnitTests\example_XMLs\SOG_TO.XML";
     protected const string EXAMPLE_UPDATE_XML = @"C:\dev\repos\digitalsignage\src\DigitalSignage.ImportCLI.NUnitTests\example_XMLs\ARG_TO_Update.XML";
+    protected DbContextOptions<DigitalSignageDbContext> dbContextOptions(string connectionString)
+        => new DbContextOptionsBuilder<DigitalSignageDbContext>()
+        .UseSqlServer(connectionString,
+              sqlServerOptions => sqlServerOptions.CommandTimeout(120)).Options;
 
     [OneTimeSetUp]
     public void SetUp()

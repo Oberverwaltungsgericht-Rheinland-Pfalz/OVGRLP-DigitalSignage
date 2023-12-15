@@ -2,137 +2,138 @@
 // SPDX-License-Identifier: EUPL-1.2
 using DigitalSignage.Data;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DigitalSignage.WebApi.Controllers.EurekaFach
+namespace DigitalSignage.WebApi.Controllers.EurekaFach;
+
+[Authorize]
+[Route("daten/verfahren/{verfid}/prozbevbeigeladen")]
+public class VerfahrenProzBevBeigeladenController : ControllerBase
 {
-    [Route("daten/verfahren/{verfid}/prozbevbeigeladen")]
-    public class VerfahrenProzBevBeigeladenController : ControllerBase
+    private readonly DigitalSignageDbContext _context;
+
+    public VerfahrenProzBevBeigeladenController(DigitalSignageDbContext context)
     {
-        private readonly DigitalSignageDbContext _context;
+        _context = context;
+    }
 
-        public VerfahrenProzBevBeigeladenController(DigitalSignageDbContext context)
+    [Route("")]
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ProzBevBeigeladen>>> GetAllProzBevBeigeladenByVerfahren(Int64 verfid)
+    {
+        var verfahren = await _context.Verfahren.FindAsync(verfid);
+
+        if (verfahren == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        [Route("")]
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProzBevBeigeladen>>> GetAllProzBevBeigeladenByVerfahren(Int64 verfid)
+        try
         {
-            var verfahren = await _context.Verfahren.FindAsync(verfid);
-
-            if (verfahren == null)
-            {
-                return NotFound();
-            }
-
-            try
-            {
-                await _context.Entry(verfahren).Collection(v => v.ProzBevBeigeladen).LoadAsync();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            }
-
-            return Ok(verfahren.ProzBevBeigeladen);
+            await _context.Entry(verfahren).Collection(v => v.ProzBevBeigeladen).LoadAsync();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
         }
 
-        [Route("{id}", Name = "GetProzBevBeigeladenById")]
-        [HttpGet]
-        public async Task<ActionResult<ProzBevBeigeladen>> GetProzBevBeigeladen(Int64 verfid, int id)
+        return Ok(verfahren.ProzBevBeigeladen);
+    }
+
+    [Route("{id}", Name = "GetProzBevBeigeladenById")]
+    [HttpGet]
+    public async Task<ActionResult<ProzBevBeigeladen>> GetProzBevBeigeladen(Int64 verfid, int id)
+    {
+        var prozBevBeigeladen = await _context.ProzBevBeigeladen.FindAsync(id);
+
+        if (prozBevBeigeladen == null)
         {
-            var prozBevBeigeladen = await _context.ProzBevBeigeladen.FindAsync(id);
-
-            if (prozBevBeigeladen == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(prozBevBeigeladen);
+            return NotFound();
         }
 
-        [Route("{id}")]
-        [HttpPut]
-        public async Task<ActionResult> PutProzBevBeigeladen(Int64 verfid, int id, ProzBevBeigeladen prozBevBeigeladen)
+        return Ok(prozBevBeigeladen);
+    }
+
+    [Route("{id}")]
+    [HttpPut]
+    public async Task<ActionResult> PutProzBevBeigeladen(Int64 verfid, int id, ProzBevBeigeladen prozBevBeigeladen)
+    {
+        if (!ModelState.IsValid)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != prozBevBeigeladen.ProzBevId)
-            {
-                return BadRequest();
-            }
-
-            try
-            {
-                _context.Entry(prozBevBeigeladen).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            }
-
-            return NoContent();
+            return BadRequest(ModelState);
         }
 
-        [Route("")]
-        [HttpPost]
-        public async Task<ActionResult<ProzBevBeigeladen>> PostProzBevBeigeladen(Int64 verfid, ProzBevBeigeladen prozBevBeigeladen)
+        if (id != prozBevBeigeladen.ProzBevId)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var verfahren = await _context.Verfahren.FindAsync(verfid);
-
-            if (verfahren == null)
-            {
-                return NotFound();
-            }
-
-            try
-            {
-                await _context.Entry(verfahren).Collection(v => v.ProzBevBeigeladen).LoadAsync();
-                verfahren.ProzBevBeigeladen.Add(prozBevBeigeladen);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            }
-
-            return CreatedAtRoute("GetProzBevBeigeladenById", new { id = prozBevBeigeladen.ProzBevId }, prozBevBeigeladen);
+            return BadRequest();
         }
 
-        [Route("{id}")]
-        [HttpDelete]
-        public async Task<ActionResult<ProzBevBeigeladen>> DeleteProzBevBeigeladen(Int64 verfid, int id)
+        try
         {
-            var prozBevBeigeladen = await _context.ProzBevBeigeladen.FindAsync(id);
-
-            if (prozBevBeigeladen == null)
-            {
-                return NotFound();
-            }
-
-            try
-            {
-                _context.ProzBevBeigeladen.Remove(prozBevBeigeladen);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
-            }
-
-            return Ok(prozBevBeigeladen);
+            _context.Entry(prozBevBeigeladen).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
+        }
+
+        return NoContent();
+    }
+
+    [Route("")]
+    [HttpPost]
+    public async Task<ActionResult<ProzBevBeigeladen>> PostProzBevBeigeladen(Int64 verfid, ProzBevBeigeladen prozBevBeigeladen)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var verfahren = await _context.Verfahren.FindAsync(verfid);
+
+        if (verfahren == null)
+        {
+            return NotFound();
+        }
+
+        try
+        {
+            await _context.Entry(verfahren).Collection(v => v.ProzBevBeigeladen).LoadAsync();
+            verfahren.ProzBevBeigeladen.Add(prozBevBeigeladen);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
+        }
+
+        return CreatedAtRoute("GetProzBevBeigeladenById", new { id = prozBevBeigeladen.ProzBevId }, prozBevBeigeladen);
+    }
+
+    [Route("{id}")]
+    [HttpDelete]
+    public async Task<ActionResult<ProzBevBeigeladen>> DeleteProzBevBeigeladen(Int64 verfid, int id)
+    {
+        var prozBevBeigeladen = await _context.ProzBevBeigeladen.FindAsync(id);
+
+        if (prozBevBeigeladen == null)
+        {
+            return NotFound();
+        }
+
+        try
+        {
+            _context.ProzBevBeigeladen.Remove(prozBevBeigeladen);
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex);
+        }
+
+        return Ok(prozBevBeigeladen);
     }
 }

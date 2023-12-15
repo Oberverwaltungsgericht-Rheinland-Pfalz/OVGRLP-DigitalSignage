@@ -23,6 +23,6 @@ public class Display
     public string WolMacAddress { get; set; }
     public int WolUdpPort { get; set; }
     public string Description { get; set; }
-    public ICollection<NoteAssignment> NotesAssignments { get; set; }
+    public virtual ICollection<NoteAssignment> NotesAssignments { get; set; }
     public bool Dummy { get; set; }
 }

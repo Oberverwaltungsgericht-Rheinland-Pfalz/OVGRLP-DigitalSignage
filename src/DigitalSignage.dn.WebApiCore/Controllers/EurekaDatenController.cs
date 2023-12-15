@@ -6,12 +6,14 @@ using DigitalSignage.dn.WebApiCore.Services;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using DigitalSignage.Infrastructure.Models.Settings;
 using DigitalSignage.WebApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 
 namespace DigitalSignage.WebApi.Controllers;
 
+[Authorize]
 [BreezeQueryFilter]
 [Route("breeze/[controller]/[action]")]
 public class EurekaDatenController : ControllerBase

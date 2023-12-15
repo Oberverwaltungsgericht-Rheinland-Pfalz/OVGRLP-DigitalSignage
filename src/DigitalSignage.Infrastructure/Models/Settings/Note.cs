@@ -20,5 +20,5 @@ public class Note
     [Required]
     public bool Forced { get; set; }
 
-    public ICollection<NoteAssignment> NotesAssignments { get; set; }
+    public virtual ICollection<NoteAssignment> NotesAssignments { get; set; }
 }

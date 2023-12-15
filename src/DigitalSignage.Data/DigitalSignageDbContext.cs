@@ -8,18 +8,10 @@ namespace DigitalSignage.Data;
 
 public class DigitalSignageDbContext : DbContext
 {
-    private readonly string _connectionString;
 
-    public DigitalSignageDbContext() : this("DigitalSignageDbConnectionString") { }
     public DigitalSignageDbContext(DbContextOptions<DigitalSignageDbContext> options) : base(options) { }
 
-    public DigitalSignageDbContext(string nameOrConnectionString) : base()
-    { 
-      this._connectionString = nameOrConnectionString;
-      // this.Database.Log = s => Debug.WriteLine(s);
-      // this.Configuration.LazyLoadingEnabled = false;
-    }
-
+    /*
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (_connectionString != null)
@@ -29,7 +21,7 @@ public class DigitalSignageDbContext : DbContext
         else
             optionsBuilder.UseLazyLoadingProxies();
     }
-
+    */
     protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
   #region Basics
