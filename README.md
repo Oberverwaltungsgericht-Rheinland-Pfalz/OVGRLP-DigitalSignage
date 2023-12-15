@@ -44,6 +44,10 @@ Verwaltung der Zustände der Anzeigen in Gruppen gegliedert. Filterbare Übersic
 <details><summary>RoomControl - Browser App</summary><p>
 Hier können Sitzung gestartet, beendet und als Nicht-öffentlich markiert werden. Monitor können an- sowie ausgeschaltet werden. Es wird eine Vorschau der ausgewählten Anzeige dargestellt.</p></details>
 
+## Installation
+
+Eine entsprechende Installationsanleitung findet sich [hier](Documentation/installation.png)
+
 ## Konfiguration
 
 Die folgenden Konfigurationsdateien müssen mit Ihren eigenen Daten erstellt werden und sind daher nicht Teil der Quellcodeverwaltung. 

@@ -4,17 +4,18 @@ using DigitalSignage.dn.DisplayControl;
 using System.Runtime.InteropServices;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHealthChecks();
 var app = builder.Build();
 
 IOperatingSystem os = DetectOS();
 
 app.UseFileServer();
 
-app.MapGet("/api/shutdown", () => os.Shutdown);
-app.MapGet("/api/restart", () => os.Restart);
-app.MapGet("/api/screenshot", (HttpContext context) => os.Screenshot);
+app.MapGet("/api/shutdown", os.Shutdown);
+app.MapGet("/api/restart", os.Restart);
+app.MapGet("/api/screenshot", (HttpContext context) => os.Screenshot(context));
 
-app.UseHealthChecks("/health");
+app.UseHealthChecks("/api/health");
 app.Run();
 
 IOperatingSystem DetectOS()

@@ -13,13 +13,13 @@ public class WindowsOperatingSystem : IOperatingSystem
     public IResult Restart()
     {
         Process.Start("shutdown", "/r /t 3");
-        return TypedResults.Ok("");
+        return Results.Ok();
     }
 
     public IResult Shutdown()
     {
         var process = Process.Start("shutdown", "/s /t 3");
-        return TypedResults.Ok("");
+        return Results.Ok("");
     }
 
     //vncserver -localhost no -geometry 1024x768 -depth 24
