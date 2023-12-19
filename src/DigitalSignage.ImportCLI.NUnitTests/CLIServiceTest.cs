@@ -6,7 +6,7 @@ using NUnit.Framework.Legacy;
 namespace DigitalSignage.ImportCLI.NUnitTests;
 
 [TestFixture]
-public class CLIServiceTest : TestBase
+public class CLIServiceTest 
 {
     [Test]
     public void CommandLineParserReturnCLIAction()
@@ -14,7 +14,7 @@ public class CLIServiceTest : TestBase
         var cliService = new Service.CLIService();
         ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
 
-        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { COMMAND_ADD, EXAMPLE_XML1 }, false);
+        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { TestSets.COMMAND_ADD, TestSets.EXAMPLE_XML1 }, false);
         ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
     }
 
@@ -24,7 +24,7 @@ public class CLIServiceTest : TestBase
         var cliService = new Service.CLIService();
         ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
 
-        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { COMMAND_DELETE }, false);
+        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { TestSets.COMMAND_DELETE }, false);
         ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
 
         ClassicAssert.IsTrue(cliActions.ClearDatabase);
@@ -36,7 +36,7 @@ public class CLIServiceTest : TestBase
         var cliService = new Service.CLIService();
         ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
 
-        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { COMMAND_ADD, EXAMPLE_XML1 }, false);
+        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { TestSets.COMMAND_ADD, TestSets.EXAMPLE_XML1 }, false);
         ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
 
         ClassicAssert.IsFalse(cliActions.ClearDatabase);
@@ -48,10 +48,10 @@ public class CLIServiceTest : TestBase
         var cliService = new Service.CLIService();
         ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
 
-        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { COMMAND_CONNECTION, CONNECTION_NAME_LABOR }, false);
+        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { TestSets.COMMAND_CONNECTION, TestSets.CONNECTION_NAME_LABOR }, false);
         ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
 
-        ClassicAssert.AreEqual(cliActions.NameOrConnectionString, CONNECTION_NAME_LABOR);
+        ClassicAssert.AreEqual(cliActions.NameOrConnectionString, TestSets.CONNECTION_NAME_LABOR);
     }
 
     [Test]
@@ -60,10 +60,10 @@ public class CLIServiceTest : TestBase
         var cliService = new Service.CLIService();
         ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
 
-        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { COMMAND_CONNECTION, CONNECTION_STRING_LABOR }, false);
+        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { TestSets.COMMAND_CONNECTION, TestSets.CONNECTION_STRING_LABOR }, false);
         ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
 
-        ClassicAssert.AreEqual(cliActions.NameOrConnectionString, CONNECTION_STRING_LABOR);
+        ClassicAssert.AreEqual(cliActions.NameOrConnectionString, TestSets.CONNECTION_STRING_LABOR);
     }
 
     [Test]
@@ -72,11 +72,11 @@ public class CLIServiceTest : TestBase
         var cliService = new Service.CLIService();
         ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
 
-        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { COMMAND_ADD, EXAMPLE_XML1 }, false);
+        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { TestSets.COMMAND_ADD, TestSets.EXAMPLE_XML1 }, false);
         ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
 
         ClassicAssert.AreEqual(cliActions.InputFiles.Count, 1);
-        ClassicAssert.AreEqual(cliActions.InputFiles[0].ToString(), EXAMPLE_XML1);
+        ClassicAssert.AreEqual(cliActions.InputFiles[0].ToString(), TestSets.EXAMPLE_XML1);
     }
 
     [Test]
@@ -85,24 +85,24 @@ public class CLIServiceTest : TestBase
         var cliService = new Service.CLIService();
         ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
 
-        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { COMMAND_ADD, "\"" + EXAMPLE_XML1 + "\"", COMMAND_ADD, "\"" + EXAMPLE_XML2 + "\"" }, false);
+        CLIActions cliActions = cliService.ParseCommandLineArguments(new string[] { TestSets.COMMAND_ADD, "\"" + TestSets.EXAMPLE_XML1 + "\"", TestSets.COMMAND_ADD, "\"" + TestSets.EXAMPLE_XML2 + "\"" }, false);
         ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
 
         ClassicAssert.AreEqual(cliActions.InputFiles.Count, 2);
-        ClassicAssert.AreEqual(cliActions.InputFiles[0].ToString(), EXAMPLE_XML1);
-        ClassicAssert.AreEqual(cliActions.InputFiles[1].ToString(), EXAMPLE_XML2);
+        ClassicAssert.AreEqual(cliActions.InputFiles[0].ToString(), TestSets.EXAMPLE_XML1);
+        ClassicAssert.AreEqual(cliActions.InputFiles[1].ToString(), TestSets.EXAMPLE_XML2);
     }
 
     [Test]
     public void CommandLineParserConnectionAndDeleteAndFiveXML()
     {
-        string[] args = { COMMAND_CONNECTION, CONNECTION_NAME_LABOR,
-                    COMMAND_ADD, EXAMPLE_XML1,
-                    COMMAND_ADD, EXAMPLE_XML2,
-                    COMMAND_DELETE,
-                    COMMAND_ADD, EXAMPLE_XML3,
-                    COMMAND_ADD, EXAMPLE_XML4,
-                    COMMAND_ADD, EXAMPLE_XML5};
+        string[] args = { TestSets.COMMAND_CONNECTION, TestSets.CONNECTION_NAME_LABOR,
+                    TestSets.COMMAND_ADD, TestSets.EXAMPLE_XML1,
+                    TestSets.COMMAND_ADD, TestSets.EXAMPLE_XML2,
+                    TestSets.COMMAND_DELETE,
+                    TestSets.COMMAND_ADD, TestSets.EXAMPLE_XML3,
+                    TestSets.COMMAND_ADD, TestSets.EXAMPLE_XML4,
+                    TestSets.COMMAND_ADD, TestSets.EXAMPLE_XML5};
 
         var cliService = new Service.CLIService();
         ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
@@ -111,19 +111,19 @@ public class CLIServiceTest : TestBase
         ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
 
         ClassicAssert.IsTrue(cliActions.ClearDatabase);
-        ClassicAssert.AreEqual(cliActions.NameOrConnectionString, CONNECTION_NAME_LABOR);
+        ClassicAssert.AreEqual(cliActions.NameOrConnectionString, TestSets.CONNECTION_NAME_LABOR);
         ClassicAssert.AreEqual(cliActions.InputFiles.Count, 5);
     }
 
     [Test]
     public void CommandLineParserConnectionStringAndFiveXMLWithQuote()
     {
-        string[] args = { COMMAND_ADD, "\""+EXAMPLE_XML1+"\"",
-                    COMMAND_ADD, "\""+EXAMPLE_XML2+"\"",
-                    COMMAND_CONNECTION, CONNECTION_STRING_LABOR,
-                    COMMAND_ADD, "\""+EXAMPLE_XML3+"\"",
-                    COMMAND_ADD, "\""+EXAMPLE_XML4+"\"",
-                    COMMAND_ADD, "\""+EXAMPLE_XML5+"\""};
+        string[] args = { TestSets.COMMAND_ADD, "\""+TestSets.EXAMPLE_XML1+"\"",
+                    TestSets.COMMAND_ADD, "\""+TestSets.EXAMPLE_XML2+"\"",
+                    TestSets.COMMAND_CONNECTION, TestSets.CONNECTION_STRING_LABOR,
+                    TestSets.COMMAND_ADD, "\""+TestSets.EXAMPLE_XML3+"\"",
+                    TestSets.COMMAND_ADD, "\""+TestSets.EXAMPLE_XML4+"\"",
+                    TestSets.COMMAND_ADD, "\""+TestSets.EXAMPLE_XML5+"\""};
 
         var cliService = new Service.CLIService();
         ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
@@ -132,7 +132,7 @@ public class CLIServiceTest : TestBase
         ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
 
         ClassicAssert.IsFalse(cliActions.ClearDatabase);
-        ClassicAssert.AreEqual(cliActions.NameOrConnectionString, CONNECTION_STRING_LABOR);
+        ClassicAssert.AreEqual(cliActions.NameOrConnectionString, TestSets.CONNECTION_STRING_LABOR);
         ClassicAssert.AreEqual(cliActions.InputFiles.Count, 5);
     }
 }

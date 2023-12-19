@@ -13,7 +13,7 @@ internal class Program
         try
         {
             CLIActions cliActions = cliService.ParseCommandLineArguments(args);
-            if (null != cliActions)
+            if (cliActions != null)
                 cliActions.ExecuteActions();
         }
         catch (Exception ex)

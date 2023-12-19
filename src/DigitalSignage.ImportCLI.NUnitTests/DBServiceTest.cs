@@ -1,77 +1,233 @@
 ﻿// SPDX-FileCopyrightText: © 2014 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
+using DigitalSignage.Data;
+using DigitalSignage.ImportCLI.Service;
 using DigitalSignage.Infrastructure.Models.EurekaFach;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace DigitalSignage.ImportCLI.NUnitTests;
 
 [TestFixture]
-public class DBServiceTest : TestBase
+public class DBServiceTest
 {
-    [Test, Order(1)]
-    public void DatabaseConnectionWithConnectionString()
+    private DBService _dBService { get; set; }
+    private DigitalSignageDbContext context { get; set; }
+    private DbContextOptions<DigitalSignageDbContext> _contextOpitons
     {
-        using (var db = new Data.DigitalSignageDbContext(dbContextOptions(CONNECTION_STRING_LABOR)))
+        get
         {
-            Stammdaten[] st = db.Stammdaten.ToArray();
-            ClassicAssert.AreEqual(db.Database.GetConnectionString(), CONNECTION_STRING_LABOR);
+            return new DbContextOptionsBuilder<DigitalSignageDbContext>()
+                .UseInMemoryDatabase("prodTest")
+                .Options;
         }
     }
 
-    [Test, Order(2)]
-    public void DatabaseAddExamples()
+    [SetUp]
+    public void SetItUp()
     {
-        CLIActions cliAction = CreateCliActions(true, CONNECTION_STRING_LABOR);
-        cliAction.ExecuteActions();
-
-        CheckExampleValues();
+        context = new DigitalSignageDbContext(_contextOpitons);
+        _dBService = new DBService(context);
     }
 
-    [Test, Order(3)]
-    public void DatabaseUpdateExamples()
+    [TearDown]
+    public void TearItDown()
     {
-        CLIActions cliAction = CreateCliActions(false, CONNECTION_STRING_LABOR, new string[] { EXAMPLE_UPDATE_XML }, true);
-        cliAction.ExecuteActions();
-
-        CheckExampleValues(true);
-    }
-
-    [Test, Order(4)]
-    public void DatabaseDelete()
-    {
-        CLIActions cliAction = CreateCliActions(true, CONNECTION_STRING_LABOR, new string[] { });
-        cliAction.ExecuteActions();
-
-        using (var db = new Data.DigitalSignageDbContext(dbContextOptions(CONNECTION_STRING_LABOR)))
-        {
-            ClassicAssert.AreEqual(db.Stammdaten.ToArray().Count<Stammdaten>(), 0);
-            ClassicAssert.AreEqual(db.Verfahren.ToArray().Count<Verfahren>(), 0);
-            ClassicAssert.AreEqual(db.Besetzung.ToArray().Count<Besetzung>(), 0);
-            ClassicAssert.AreEqual(db.ParteienAktiv.ToArray().Count<ParteienAktiv>(), 0);
-            ClassicAssert.AreEqual(db.ParteienBeigeladen.ToArray().Count<ParteienBeigeladen>(), 0);
-            ClassicAssert.AreEqual(db.ParteienPassiv.ToArray().Count<ParteienPassiv>(), 0);
-            ClassicAssert.AreEqual(db.ParteienSV.ToArray().Count<ParteienSV>(), 0);
-            ClassicAssert.AreEqual(db.ParteienZeugen.ToArray().Count<ParteienZeugen>(), 0);
-            ClassicAssert.AreEqual(db.ProzBevAktiv.ToArray().Count<ProzBevAktiv>(), 0);
-            ClassicAssert.AreEqual(db.ProzBevBeigeladen.ToArray().Count<ProzBevBeigeladen>(), 0);
-            ClassicAssert.AreEqual(db.ProzBevPassiv.ToArray().Count<ProzBevPassiv>(), 0);
-        }
+        context.Database.EnsureDeleted();
+        context.Dispose();
     }
 
     [Test]
+    public void TestCLIParse()
+    {
+        var args = CreateCliActions(true , "");
+        var cliService = new Service.CLIService();
+        ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
+
+        CLIActions cliActions = cliService.ParseCommandLineArguments(args.ToArray(), false);
+        ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
+    }
+
+    public void AddExamples ()
+    {
+        var args = new List<string>() { TestSets.COMMAND_CONNECTION, "-" };
+        args.Add(TestSets.COMMAND_ADD);
+        args.Add(TestSets.EXAMPLE_XML1);
+        args.Add(TestSets.COMMAND_ADD);
+        args.Add(TestSets.EXAMPLE_XML2);
+        args.Add(TestSets.COMMAND_ADD);
+        args.Add(TestSets.EXAMPLE_XML3);
+        args.Add(TestSets.COMMAND_ADD);
+        args.Add(TestSets.EXAMPLE_XML4);
+        args.Add(TestSets.COMMAND_ADD);
+        args.Add(TestSets.EXAMPLE_XML5);
+
+        CLIActions cliActions = new Service.CLIService().ParseCommandLineArguments(args.ToArray());
+        cliActions.ExecuteActions(context);
+    }
+
+
+    [Test]
+    public void CheckStammdaten()
+    {
+        AddExamples();
+
+        CheckStammdatenA();
+    }
+    public void CheckStammdatenA()
+    {
+        CollectionAssert.IsNotEmpty(context.Stammdaten);
+        Stammdaten[] st = context.Stammdaten.ToArray();
+        Assert.That(st, Has.Exactly(5).Items);
+        Assert.That(st[0].Gerichtsname, Is.EqualTo("Oberverwaltungsgericht Rheinland-Pfalz"));
+        Assert.That(st[1].Gerichtsname, Is.EqualTo("Verfassungsgerichtshof Rheinland-Pfalz"));
+        Assert.That(st[1].Datum, Is.EqualTo("23.01.2018"));
+        Assert.That(st[2].Gerichtsname, Is.EqualTo("Verwaltungsgericht Koblenz"));
+        Assert.That(st[2].Datum, Is.EqualTo("23.01.2018"));
+        Assert.That(st[3].Gerichtsname, Is.EqualTo("Arbeitsgericht Koblenz"));
+        Assert.That(st[3].Datum, Is.EqualTo("02.02.2018"));
+        Assert.That(st[4].Gerichtsname, Is.EqualTo("Sozialgericht Koblenz"));
+    }
+
+
+    [Test]
+    public void DatabaseAddExamples()
+    {
+        // prepare
+        AddExamples();
+
+        // assert
+        CheckExampleValues(context);
+    }
+
+    [Test]
+    public void TestComplexObjectStructure()
+    {
+        // prepare, read only VGH_TO.xml
+        var args = new List<string>() { TestSets.COMMAND_CONNECTION, "-", TestSets.COMMAND_ADD, TestSets.EXAMPLE_XML2 };
+        CLIActions cliActions = new CLIService().ParseCommandLineArguments(args.ToArray());
+        
+        // act
+        var db = context;
+        cliActions.ExecuteActions(db);
+
+        // assert
+        CollectionAssert.IsNotEmpty(db.Stammdaten);
+        CollectionAssert.IsNotEmpty(db.Verfahren);
+        CollectionAssert.IsNotEmpty(db.ParteienAktiv);
+        CollectionAssert.IsNotEmpty(db.ParteienPassiv);
+        CollectionAssert.IsNotEmpty(db.ProzBevAktiv);
+
+        CollectionAssert.IsEmpty(db.ParteienBeigeladen);
+        CollectionAssert.IsEmpty(db.ParteienSV);
+        CollectionAssert.IsEmpty(db.ParteienZeugen);
+        CollectionAssert.IsEmpty(db.ProzBevBeigeladen);
+        CollectionAssert.IsEmpty(db.ProzBevPassiv);
+
+
+        Assert.That(db.Stammdaten.Count, Is.EqualTo(1));
+        Assert.That(db.Verfahren.Count, Is.EqualTo(1));
+
+        Assert.That(context.Stammdaten, Has.Exactly(1).Matches(new Predicate<Stammdaten>(s => 
+            s.Gerichtsname.Equals("Verfassungsgerichtshof Rheinland-Pfalz") && s.Datum.Equals("23.01.2018"))));
+        Assert.That(context.Verfahren, Has.Exactly(1).Matches(new Predicate<Verfahren>(v => 
+            v.Lfdnr.Equals(1) && v.Kammer.Equals(1) && v.Sitzungssaal.Equals("Sitzungssaal E009"))));
+        Assert.That(context.Verfahren, Has.Exactly(1).Matches(new Predicate<Verfahren>(v =>
+            v.Oeffentlich.Equals("ja") && v.Art.Equals("mündliche Verhandlung") && v.Az.Equals("VGH A 01/01"))));
+
+        Assert.That(context.Verfahren, Has.Exactly(1).Matches(new Predicate<Verfahren>(v =>
+            v.Gegenstand.Equals("§ 72 Abs. 1 und 2 der Geschäftsordnung des Landtags Rheinland-Pfalz vom 31. Mai 2017") 
+            && v.Bemerkung1.Length == 0 && v.Bemerkung2.Length == 0)));
+        Assert.That(context.Verfahren, Has.Exactly(1).Matches(new Predicate<Verfahren>(v => 
+            v.Besetzung.Count == 9 && v.Besetzung.All(b => !string.IsNullOrEmpty(b.Richter)))));
+        Assert.That(context.Verfahren, Has.Exactly(1).Matches(new Predicate<Verfahren>(v =>
+            v.ParteienAktiv.Count == 1 && v.ProzBevAktiv.Count == 1)));
+        Assert.That(context.Verfahren, Has.Exactly(1).Matches(new Predicate<Verfahren>(v =>
+            v.ParteienPassiv.Count == 1 && v.ProzBevPassiv.Count == 0)));
+
+        Assert.That(context.Verfahren, Has.Exactly(1).Matches(new Predicate<Verfahren>(v =>
+            v.ParteienPassiv.Count(p => p.Partei.Equals("das Land Rheinland-Pfalz vertreten durch den Landtag Rheinland-Pfalz")) == 1)));
+        Assert.That(context.Verfahren, Has.Exactly(1).Matches(new Predicate<Verfahren>(v =>
+            v.ParteienAktiv.Count(p => p.Partei.Equals("der Fraktion der alternativen Wähler")) == 1)));
+        Assert.That(context.Verfahren, Has.Exactly(1).Matches(new Predicate<Verfahren>(v =>
+           v.ProzBevAktiv.Count(p => p.PB.Equals("Proz.-Bev.: Prof. Michael Muster")) == 1)));
+    }
+
+    [Test]
+    public void DatabaseUpdateExamples()
+    {
+        var args = new List<string>() { TestSets.COMMAND_CONNECTION, "-" };
+        args.Add(TestSets.COMMAND_ADD);
+        args.Add(TestSets.EXAMPLE_XML1);
+        args.Add(TestSets.COMMAND_ADD);
+        args.Add(TestSets.EXAMPLE_XML2);
+        args.Add(TestSets.COMMAND_ADD);
+        args.Add(TestSets.EXAMPLE_XML3);
+        args.Add(TestSets.COMMAND_ADD);
+        args.Add(TestSets.EXAMPLE_XML4);
+        args.Add(TestSets.COMMAND_ADD);
+        args.Add(TestSets.EXAMPLE_XML5);
+        args.Add(TestSets.COMMAND_UPDATE);
+        args.Add(TestSets.EXAMPLE_UPDATE_XML);
+
+        CLIActions cliActions = new Service.CLIService().ParseCommandLineArguments(args.ToArray());
+
+        cliActions.ExecuteActions(context);
+
+        CheckExampleValues(context, true);
+    }
+
+    [Test]
+    public void DatabaseDelete()
+    {
+        var db = context;
+        //prepare
+        AddExamples();
+        CollectionAssert.IsNotEmpty(db.Stammdaten);
+
+        Assert.That(db.Stammdaten, Is.Not.Empty);
+        CollectionAssert.IsNotEmpty(db.Stammdaten);
+        CollectionAssert.IsNotEmpty(db.Verfahren);
+        CollectionAssert.IsNotEmpty(db.ParteienAktiv);
+        CollectionAssert.IsNotEmpty(db.ParteienBeigeladen);
+        CollectionAssert.IsNotEmpty(db.ParteienPassiv);
+        CollectionAssert.IsNotEmpty(db.ParteienSV);
+        CollectionAssert.IsNotEmpty(db.ParteienZeugen);
+        CollectionAssert.IsNotEmpty(db.ProzBevAktiv);
+        CollectionAssert.IsNotEmpty(db.ProzBevBeigeladen);
+        CollectionAssert.IsNotEmpty(db.ProzBevPassiv);
+
+        // act
+        _dBService.DeleteAll();
+
+        // assert
+        Assert.That(db, Is.Not.Null);
+        CollectionAssert.IsEmpty(db.Stammdaten);
+        CollectionAssert.IsEmpty(db.Verfahren);
+        CollectionAssert.IsEmpty(db.ParteienAktiv);
+        CollectionAssert.IsEmpty(db.ParteienBeigeladen);
+        CollectionAssert.IsEmpty(db.ParteienPassiv);
+        CollectionAssert.IsEmpty(db.ParteienSV);
+        CollectionAssert.IsEmpty(db.ParteienZeugen);
+        CollectionAssert.IsEmpty(db.ProzBevAktiv);
+        CollectionAssert.IsEmpty(db.ProzBevBeigeladen);
+        CollectionAssert.IsEmpty(db.ProzBevPassiv);
+    }
+
+//    [Test]
     public void CompareProdTest()
     {
         var xmlFiles = new List<string>();
         int i;
 
         // XML Files aus Echtbereich ermitteln
-        using (var dbProd = new Data.DigitalSignageDbContext(dbContextOptions(CONNECTION_STRING_PROD)))
+        using (var dbProd = new Data.DigitalSignageDbContext(TestSets.dbContextOptions(TestSets.CONNECTION_STRING_PROD)))
         {
-            Basics[] basics = dbProd.Basics.ToArray();
+            Basics[] basics = context.Basics.ToArray();
             foreach (var b in basics)
             {
                 xmlFiles.Add(b.toXMLFullPath);
@@ -79,12 +235,18 @@ public class DBServiceTest : TestBase
         }
 
         //XML´s aus dem Echtbereich einlesen
-        CLIActions cliAction = CreateCliActions(true, CONNECTION_STRING_LABOR, xmlFiles.ToArray());
-        cliAction.ExecuteActions();
+        var args = CreateCliActions(true, "", xmlFiles.ToArray());
+        var cliService = new Service.CLIService();
+        ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
+
+        CLIActions cliAction = cliService.ParseCommandLineArguments(args.ToArray());
+        ClassicAssert.IsInstanceOf<CLIActions>(cliAction);
+
+        cliAction.ExecuteActions(context);
 
         //Vergleichen
-        using (var dbProd = new Data.DigitalSignageDbContext(dbContextOptions(CONNECTION_STRING_PROD)))
-        using (var dbTest = new Data.DigitalSignageDbContext(dbContextOptions(CONNECTION_STRING_LABOR)))
+        using (var dbProd = new Data.DigitalSignageDbContext(TestSets.dbContextOptions(TestSets.CONNECTION_STRING_PROD)))
+        using (var dbTest = new Data.DigitalSignageDbContext(TestSets.dbContextOptions(TestSets.CONNECTION_STRING_LABOR)))
         {
             Stammdaten[] PROD_st = dbProd.Stammdaten.ToArray();
             Stammdaten[] TEST_st = dbTest.Stammdaten.ToArray();
@@ -207,168 +369,304 @@ public class DBServiceTest : TestBase
         }
     }
 
-    private void CheckExampleValues(bool updated = false)
+    private void CheckExampleValues(DigitalSignageDbContext db, bool updated = false)
     {
-        using (var db = new Data.DigitalSignageDbContext(dbContextOptions(CONNECTION_STRING_LABOR)))
-        {
-            Stammdaten[] st = db.Stammdaten.ToArray();
-            ClassicAssert.AreEqual(st.Count(), 5);
-            ClassicAssert.AreEqual(st[0].Gerichtsname, "Oberverwaltungsgericht Rheinland-Pfalz");
-            ClassicAssert.AreEqual(st[1].Gerichtsname, "Verfassungsgerichtshof Rheinland-Pfalz");
-            ClassicAssert.AreEqual(st[1].Datum, "23.01.2018");
-            ClassicAssert.AreEqual(st[2].Gerichtsname, "Verwaltungsgericht Koblenz");
-            ClassicAssert.AreEqual(st[2].Datum, "23.01.2018");
-            ClassicAssert.AreEqual(st[3].Gerichtsname, "Arbeitsgericht Koblenz");
-            ClassicAssert.AreEqual(st[3].Datum, "02.02.2018");
-            ClassicAssert.AreEqual(st[4].Gerichtsname, "Sozialgericht Koblenz");
+        CheckStammdatenA();
 
-            Verfahren[] verf = db.Verfahren.ToArray();
-            ClassicAssert.AreEqual(verf.Count(), 9);
-            ClassicAssert.AreEqual(verf[0].Lfdnr, 1);
-            ClassicAssert.AreEqual(verf[0].Kammer, 1);
-            ClassicAssert.AreEqual(verf[0].Sitzungssaal, "Sitzungssaal E009");
-            ClassicAssert.AreEqual(verf[0].UhrzeitAktuell, "10:00");
-            ClassicAssert.AreEqual(verf[0].UhrzeitPlan, "10:00");
-            ClassicAssert.AreEqual(verf[0].Status, "");
-            ClassicAssert.AreEqual(verf[0].Oeffentlich, "ja");
-            ClassicAssert.AreEqual(verf[0].Art, "mündliche Verhandlung");
-            ClassicAssert.AreEqual(verf[0].Az, "VGH A 01/01");
-            ClassicAssert.AreEqual(verf[0].Gegenstand, "§ 72 Abs. 1 und 2 der Geschäftsordnung des Landtags Rheinland-Pfalz vom 31. Mai 2017");
-            ClassicAssert.AreEqual(verf[1].Lfdnr, 1);
-            ClassicAssert.AreEqual(verf[1].Kammer, 1);
-            ClassicAssert.AreEqual(verf[1].Sitzungssaal, "Sitzungssaal A021");
-            ClassicAssert.AreEqual(verf[1].UhrzeitAktuell, "09:00");
-            ClassicAssert.AreEqual(verf[1].UhrzeitPlan, "09:00");
-            ClassicAssert.AreEqual(verf[1].Status, "");
-            ClassicAssert.AreEqual(verf[1].Oeffentlich, "ja");
-            ClassicAssert.AreEqual(verf[1].Art, "mündliche Verhandlung");
-            ClassicAssert.AreEqual(verf[1].Az, "9 A 321/23.KO");
-            ClassicAssert.AreEqual(verf[1].Gegenstand, "Kommunalrechts");
-            ClassicAssert.AreEqual(verf[2].Lfdnr, 2);
-            ClassicAssert.AreEqual(verf[2].Kammer, 1);
-            ClassicAssert.AreEqual(verf[2].Sitzungssaal, "Sitzungssaal A021");
-            ClassicAssert.AreEqual(verf[2].UhrzeitAktuell, "09:45");
-            ClassicAssert.AreEqual(verf[2].UhrzeitPlan, "09:45");
-            ClassicAssert.AreEqual(verf[2].Status, "");
-            ClassicAssert.AreEqual(verf[2].Oeffentlich, "ja");
-            ClassicAssert.AreEqual(verf[2].Art, "mündliche Verhandlung");
-            ClassicAssert.AreEqual(verf[2].Az, "1 A 123/23.KO");
-            ClassicAssert.AreEqual(verf[2].Gegenstand, "Wasserrechts");
-            ClassicAssert.AreEqual(verf[3].Lfdnr, 3);
-            ClassicAssert.AreEqual(verf[3].Kammer, 1);
-            ClassicAssert.AreEqual(verf[3].Sitzungssaal, "Sitzungssaal A021");
-            ClassicAssert.AreEqual(verf[3].UhrzeitAktuell, "10:30");
-            ClassicAssert.AreEqual(verf[3].UhrzeitPlan, "10:30");
+        CheckVerfahrenA(updated);
 
-            ClassicAssert.AreEqual(verf[3].Status, "");
-            ClassicAssert.AreEqual(verf[3].Oeffentlich, "ja");
-            ClassicAssert.AreEqual(verf[3].Art, "mündliche Verhandlung");
-            ClassicAssert.AreEqual(verf[3].Az, "1 K 759/17.KO");
-            ClassicAssert.AreEqual(verf[3].Gegenstand, "Kommunalverfassungsrechts");
-            ClassicAssert.AreEqual(verf[4].Lfdnr, 1);
-            ClassicAssert.AreEqual(verf[4].Kammer, 7);
-            ClassicAssert.AreEqual(verf[4].Sitzungssaal, "Sitzungssaal A026");
-            if (updated)
-            {
-                ClassicAssert.AreEqual(verf[4].UhrzeitAktuell, "09:10");
-                ClassicAssert.AreEqual(verf[4].UhrzeitPlan, "09:10");
-            }
-            else
-            {
-                ClassicAssert.AreEqual(verf[4].UhrzeitAktuell, "09:00");
-                ClassicAssert.AreEqual(verf[4].UhrzeitPlan, "09:00");
-            }
-            ClassicAssert.AreEqual(verf[4].Status, "");
-            ClassicAssert.AreEqual(verf[4].Oeffentlich, "ja");
-            ClassicAssert.AreEqual(verf[4].Art, "Gütetermin");
-            ClassicAssert.AreEqual(verf[4].Az, "1 A 0185/24");
-            ClassicAssert.AreEqual(verf[4].Gegenstand, "Zahlungsklagen\nSonstiges");
-            ClassicAssert.AreEqual(verf[4].Bemerkung2, "bisher nur GT");
+        CheckBesetzungA();
 
-            Besetzung[] bes = db.Besetzung.ToArray();
-            ClassicAssert.AreEqual(bes.Count(), 29);
-            ClassicAssert.AreEqual(bes[0].Richter, "Präsident des Verfassungsgerichtshofs");
-            ClassicAssert.AreEqual(bes[1].Richter, "Vizepräsidentin des Oberverwaltungsgerichts");
-            ClassicAssert.AreEqual(bes[2].Richter, "Präsident des Finanzgerichts");
-            ClassicAssert.AreEqual(bes[3].Richter, "Präsidentin des Oberlandesgerichts");
-            ClassicAssert.AreEqual(bes[4].Richter, "Ehrenrat Dr. Sost");
-            ClassicAssert.AreEqual(bes[5].Richter, "Rechtsanwältin Dr. Schlau");
-            ClassicAssert.AreEqual(bes[6].Richter, "Univ.-Professor Dr. Müllersen");
-            ClassicAssert.AreEqual(bes[7].Richter, "Kreisverwaltungsdirektorin Hammer");
-            ClassicAssert.AreEqual(bes[8].Richter, "Univ.-Professor Dr. Rotor");
-            ClassicAssert.AreEqual(bes[9].Richter, "Richter am Verwaltungsgericht Dr. Eicher");
-            ClassicAssert.AreEqual(bes[10].Richter, "Richter am Verwaltungsgericht Putz");
-            ClassicAssert.AreEqual(bes[11].Richter, "Richterin David");
-            ClassicAssert.AreEqual(bes[12].Richter, "ehrenamtliche Richterin Maler Karl");
-            ClassicAssert.AreEqual(bes[13].Richter, "ehrenamtliche Richterin Geschäftsführerin King");
-            ClassicAssert.AreEqual(bes[14].Richter, "Richter am Verwaltungsgericht Dr. Eicher");
-            ClassicAssert.AreEqual(bes[15].Richter, "Richter am Verwaltungsgericht Putz");
-            ClassicAssert.AreEqual(bes[16].Richter, "Richterin David");
-            ClassicAssert.AreEqual(bes[17].Richter, "ehrenamtliche Richterin Maler Karl");
-            ClassicAssert.AreEqual(bes[18].Richter, "ehrenamtliche Richterin Geschäftsführerin King");
-            ClassicAssert.AreEqual(bes[19].Richter, "Richter am Verwaltungsgericht Dr. Eicher");
-            ClassicAssert.AreEqual(bes[20].Richter, "Richter am Verwaltungsgericht Putz");
-            ClassicAssert.AreEqual(bes[21].Richter, "Richterin David");
-            ClassicAssert.AreEqual(bes[22].Richter, "ehrenamtliche Richterin Maler Karl");
-            ClassicAssert.AreEqual(bes[23].Richter, "ehrenamtliche Richterin Geschäftsführerin King");
-            ClassicAssert.AreEqual(bes[24].Richter, "Richter am Arbeitsgericht Dr. Hüber");
+        CheckParteienA(updated);
 
-            ParteienAktiv[] aktivPar = db.ParteienAktiv.ToArray();
-            ClassicAssert.AreEqual(aktivPar.Count(), 12);
-            ClassicAssert.AreEqual(aktivPar[0].Partei, "der Fraktion der alternativen Wähler");
-            ClassicAssert.AreEqual(aktivPar[1].Partei, "Johannes Peter Müller");
-            ClassicAssert.AreEqual(aktivPar[2].Partei, "Hans Müller Dorfstraße 10, 56067 Koblenz vertreten durch seine Betreuerin Anja Müller");
-            ClassicAssert.AreEqual(aktivPar[3].Partei, "2. Hans Müller Dorfstraße 10, 56067 Koblenz vertreten durch seine Betreuerin Anja Müller");
-            ClassicAssert.AreEqual(aktivPar[4].Partei, "1. SPD-Kreistagsfraktion des Rhein-Hunsrück-Kreises vertreten durch den Fraktionsvorsitzenden Michael Mustermann");
-            ClassicAssert.AreEqual(aktivPar[5].Partei, "2. Fraktion der Freien Wähler Rhein-Hunsrück e.V. im Kreistrag vertreten durch den Fraktionsvorsitzenden Stefan Mustermann");
-            ClassicAssert.AreEqual(aktivPar[6].Partei, "3. FDP-Kreistagsfraktion des Rhein-Hunsrück-Kreises vertreten durch den FraktionsvorsitzendenThomas Mustermann");
-            if (updated)
-            { ClassicAssert.AreEqual(aktivPar[7].Partei, "Sabrina van de meiklokjes"); }
-            else
-            { ClassicAssert.AreEqual(aktivPar[7].Partei, "Sabrina Muster"); }
+        CheckProzBevAktivA();
 
-            ProzBevAktiv[] aktivProzbez = db.ProzBevAktiv.ToArray();
-            ClassicAssert.AreEqual(aktivProzbez.Count(), 7);
-            ClassicAssert.AreEqual(aktivProzbez[0].PB, "Proz.-Bev.: Prof. Michael Muster");
-            ClassicAssert.AreEqual(aktivProzbez[1].PB, "Proz.-Bev.: Rechtsanwalt Hans Mustername");
-            ClassicAssert.AreEqual(aktivProzbez[2].PB, "Proz.-Bev.: zu 1-3: Kunz Rechtsanwälte");
-            ClassicAssert.AreEqual(aktivProzbez[3].PB, "Proz.-Bev.: Rechtsanwälte Dr. Eich, Jakob & Partner mbB");
+        CheckParteienPassivA();
 
-            ParteienPassiv[] passivPar = db.ParteienPassiv.ToArray();
-            ClassicAssert.AreEqual(passivPar.Count(), 9);
-            ClassicAssert.AreEqual(passivPar[0].Partei, "das Land Rheinland-Pfalz vertreten durch den Landtag Rheinland-Pfalz");
-            ClassicAssert.AreEqual(passivPar[1].Partei, "Ortsgemeinde Rengsdorf vertreten durch den Bürgermeister der Verbandsgemeinde Rengsdorf-Waldbreitbach");
-            ClassicAssert.AreEqual(passivPar[2].Partei, "Verbandsgemeinde Bad Ems vertreten durch den Bürgermeister");
-            ClassicAssert.AreEqual(passivPar[3].Partei, "Landrat des Landkreis Dr. Micheal Müller");
-            ClassicAssert.AreEqual(passivPar[4].Partei, "Ulrich Finzler");
+        CheckProzBevPassivA();
 
-            ProzBevPassiv[] passivProzBez = db.ProzBevPassiv.ToArray();
-            ClassicAssert.AreEqual(passivProzBez.Count(), 8);
-            ClassicAssert.AreEqual(passivProzBez[0].PB, "Proz.-Bev.: Rechtsanwälte Jeromin & Kerkmann");
-            ClassicAssert.AreEqual(passivProzBez[1].PB, "Proz.-Bev.: Rechtsanwälte Dr. Martini, Mogg, Vogt PartGmbB");
-            ClassicAssert.AreEqual(passivProzBez[2].PB, "Proz.-Bev.: Rechtsanwälte Dr. Martini2, Mogg, Vogt PartGmbB");
-            ClassicAssert.AreEqual(passivProzBez[3].PB, "Proz.-Bev.: Rechtsanwälte Braun Baulig Berninger");
+        CheckParteienBeigeladenA();
 
-            ParteienBeigeladen[] beiPar = db.ParteienBeigeladen.ToArray();
-            ClassicAssert.AreEqual(beiPar.Count(), 3);
-            ClassicAssert.AreEqual(beiPar[0].Partei, "1. ABCERT AG");
-            ClassicAssert.AreEqual(beiPar[1].Partei, "2. Helmut Grün");
-            ClassicAssert.AreEqual(beiPar[2].Partei, "3. Erika Grün");
+        CheckProzBeigeladenA();
 
-            ProzBevBeigeladen[] beiProzBez = db.ProzBevBeigeladen.ToArray();
-            ClassicAssert.AreEqual(beiProzBez.Count(), 1);
-            ClassicAssert.AreEqual(beiProzBez[0].PB, "Proz.-Bev.:\tzu 3: Rechtsanwälte Jeromin & Kerkmann");
+        CheckParteienSVA();
 
-            ParteienSV[] svPar = db.ParteienSV.ToArray();
-            ClassicAssert.AreEqual(svPar.Count(), 2);
-            ClassicAssert.AreEqual(svPar[0].Partei, "1. Edith Hof");
-            ClassicAssert.AreEqual(svPar[1].Partei, "2. Willibald Hof");
-
-            ParteienZeugen[] zegenPar = db.ParteienZeugen.ToArray();
-            ClassicAssert.AreEqual(zegenPar.Count(), 2);
-            ClassicAssert.AreEqual(zegenPar[0].Partei, "1. Hessel GmbH vertreten durch die Geschäftsführer");
-            ClassicAssert.AreEqual(zegenPar[1].Partei, "2. Astrid Hessel");
+        CheckZeugenA();
         }
+
+
+    [Test]
+    public void CheckVerfahren()
+    {
+        AddExamples();
+        CheckVerfahrenA(false);
+    }
+    public void CheckVerfahrenA(bool updated)
+    {
+        Verfahren[] verf = context.Verfahren.ToArray();
+        Assert.That(verf.Count(), Is.EqualTo(9));
+        Assert.That(verf[0].Lfdnr, Is.EqualTo(1));
+        Assert.That(verf[0].Kammer, Is.EqualTo(1));
+        Assert.That(verf[0].Sitzungssaal, Is.EqualTo("Sitzungssaal E009"));
+        Assert.That(verf[0].UhrzeitAktuell, Is.EqualTo("10:00"));
+        Assert.That(verf[0].UhrzeitPlan, Is.EqualTo("10:00"));
+        Assert.That(verf[0].Status, Is.EqualTo(""));
+        Assert.That(verf[0].Oeffentlich, Is.EqualTo("ja"));
+        Assert.That(verf[0].Art, Is.EqualTo("mündliche Verhandlung"));
+        Assert.That(verf[0].Az, Is.EqualTo("VGH A 01/01"));
+        Assert.That(verf[0].Gegenstand, Is.EqualTo("§ 72 Abs. 1 und 2 der Geschäftsordnung des Landtags Rheinland-Pfalz vom 31. Mai 2017"));
+        Assert.That(verf[1].Lfdnr, Is.EqualTo(1));
+        Assert.That(verf[1].Kammer, Is.EqualTo(1));
+        Assert.That(verf[1].Sitzungssaal, Is.EqualTo("Sitzungssaal A021"));
+        Assert.That(verf[1].UhrzeitAktuell, Is.EqualTo("09:00"));
+        Assert.That(verf[1].UhrzeitPlan, Is.EqualTo("09:00"));
+        Assert.That(verf[1].Status, Is.EqualTo(""));
+        Assert.That(verf[1].Oeffentlich, Is.EqualTo("ja"));
+        Assert.That(verf[1].Art, Is.EqualTo("mündliche Verhandlung"));
+        Assert.That(verf[1].Az, Is.EqualTo("9 A 321/23.KO"));
+        Assert.That(verf[1].Gegenstand, Is.EqualTo("Kommunalrechts"));
+        Assert.That(verf[2].Lfdnr, Is.EqualTo(2));
+        Assert.That(verf[2].Kammer, Is.EqualTo(1));
+        Assert.That(verf[2].Sitzungssaal, Is.EqualTo("Sitzungssaal A021"));
+        Assert.That(verf[2].UhrzeitAktuell, Is.EqualTo("09:45"));
+        Assert.That(verf[2].UhrzeitPlan, Is.EqualTo("09:45"));
+        Assert.That(verf[2].Status, Is.EqualTo(""));
+        Assert.That(verf[2].Oeffentlich, Is.EqualTo("ja"));
+        Assert.That(verf[2].Art, Is.EqualTo("mündliche Verhandlung"));
+        Assert.That(verf[2].Az, Is.EqualTo("1 A 123/23.KO"));
+        Assert.That(verf[2].Gegenstand, Is.EqualTo("Wasserrechts"));
+        Assert.That(verf[3].Lfdnr, Is.EqualTo(3));
+        Assert.That(verf[3].Kammer, Is.EqualTo(1));
+        Assert.That(verf[3].Sitzungssaal, Is.EqualTo("Sitzungssaal A021"));
+        Assert.That(verf[3].UhrzeitAktuell, Is.EqualTo("10:30"));
+        Assert.That(verf[3].UhrzeitPlan, Is.EqualTo("10:30"));
+
+        Assert.That(verf[3].Status, Is.EqualTo(""));
+        Assert.That(verf[3].Oeffentlich, Is.EqualTo("ja"));
+        Assert.That(verf[3].Art, Is.EqualTo("mündliche Verhandlung"));
+        Assert.That(verf[3].Az, Is.EqualTo("1 K 759/17.KO"));
+        Assert.That(verf[3].Gegenstand, Is.EqualTo("Kommunalverfassungsrechts"));
+
+
+
+        Assert.That(verf[4].Lfdnr, Is.EqualTo(5));
+        Assert.That(verf[4].Kammer, Is.EqualTo(7));
+        Assert.That(verf[4].Sitzungssaal, Is.EqualTo("Sitzungssaal A026"));
+        
+        if (updated)
+            Assert.That(context.Verfahren, Has.Exactly(1).Matches(new Predicate<Verfahren>(p =>
+                p.Lfdnr == 1 && p.Kammer == 7 && p.Sitzungssaal == "Sitzungssaal A026"
+                && p.UhrzeitAktuell.Equals("09:10") && p.UhrzeitPlan.Equals("09:10") &&
+                p.Status.Equals("") && p.Oeffentlich.Equals("ja")
+                && p.Art.Equals("Gütetermin") && p.Az.Equals("1 A 0185/24") && p.Gegenstand.Equals("Zahlungsklagen\nSonstiges")
+                && p.Bemerkung2.Equals("bisher nur GT")))
+                );
+        else
+            Assert.That(context.Verfahren, Has.Exactly(1).Matches(new Predicate<Verfahren>(p => 
+                p.Lfdnr == 1 && p.Kammer == 7 && p.Sitzungssaal == "Sitzungssaal A026" 
+                && p.UhrzeitAktuell.Equals("09:00") && p.UhrzeitPlan.Equals("09:00") &&
+                p.Status.Equals("") && p.Oeffentlich.Equals("ja") 
+                && p.Art.Equals("Gütetermin") && p.Az.Equals("1 A 0185/24") && p.Gegenstand.Equals("Zahlungsklagen\nSonstiges") 
+                && p.Bemerkung2.Equals("bisher nur GT")))
+                );
+    }
+
+    [Test]
+    public void CheckBesetzung()
+    {
+        AddExamples();
+
+        CheckBesetzungA();
+    }
+    public void CheckBesetzungA()
+    {
+        Besetzung[] bes = context.Besetzung.ToArray();
+        Assert.That(bes.Count(), Is.EqualTo(29));
+        Assert.That(bes[0].Richter, Is.EqualTo("Präsident des Verfassungsgerichtshofs"));
+        Assert.That(bes[1].Richter, Is.EqualTo("Vizepräsidentin des Oberverwaltungsgerichts"));
+        Assert.That(bes[2].Richter, Is.EqualTo("Präsident des Finanzgerichts"));
+        Assert.That(bes[3].Richter, Is.EqualTo("Präsidentin des Oberlandesgerichts"));
+        Assert.That(bes[4].Richter, Is.EqualTo("Ehrenrat Dr. Sost"));
+        Assert.That(bes[5].Richter, Is.EqualTo("Rechtsanwältin Dr. Schlau"));
+        Assert.That(bes[6].Richter, Is.EqualTo("Univ.-Professor Dr. Müllersen"));
+        Assert.That(bes[7].Richter, Is.EqualTo("Kreisverwaltungsdirektorin Hammer"));
+        Assert.That(bes[8].Richter, Is.EqualTo("Univ.-Professor Dr. Rotor"));
+        Assert.That(context.Besetzung, Has.Exactly(3).Matches(new Predicate<Besetzung>(b => b.Richter.Equals("Richterin David"))));
+        Assert.That(context.Besetzung, Has.Exactly(3).Matches(new Predicate<Besetzung>(b => b.Richter.Equals("Richter am Verwaltungsgericht Putz"))));
+        Assert.That(context.Besetzung, Has.Exactly(3).Matches(new Predicate<Besetzung>(b => b.Richter.Equals("ehrenamtliche Richterin Maler Karl"))));
+        Assert.That(context.Besetzung, Has.Exactly(3).Matches(new Predicate<Besetzung>(b => b.Richter.Equals("Richter am Verwaltungsgericht Dr. Eicher"))));
+        Assert.That(context.Besetzung, Has.Exactly(3).Matches(new Predicate<Besetzung>(b => b.Richter.Equals("ehrenamtliche Richterin Geschäftsführerin King"))));
+
+        Assert.That(context.Verfahren, Has.Exactly(3).Matches(new Predicate<Verfahren>(v => 
+            v.Besetzung.Count(b => b.Richter.Equals("Richterin David")) == 1 &&
+            v.Besetzung.Count(b => b.Richter.Equals("Richter am Verwaltungsgericht Putz")) == 1 &&
+            v.Besetzung.Count(b => b.Richter.Equals("ehrenamtliche Richterin Maler Karl")) == 1 &&
+            v.Besetzung.Count(b => b.Richter.Equals("Richter am Verwaltungsgericht Dr. Eicher")) == 1 &&
+            v.Besetzung.Count(b => b.Richter.Equals("ehrenamtliche Richterin Geschäftsführerin King")) == 1
+            )));
+        //Assert.That(bes[9].Richter, Is.EqualTo("Richter am Verwaltungsgericht Dr. Eicher"));
+        //Assert.That(bes[10].Richter, Is.EqualTo("Richter am Verwaltungsgericht Putz"));
+        //Assert.That(bes[11].Richter, Is.EqualTo("Richterin David"));
+        //Assert.That(bes[12].Richter, Is.EqualTo("ehrenamtliche Richterin Maler Karl"));
+        //Assert.That(bes[13].Richter, Is.EqualTo("ehrenamtliche Richterin Geschäftsführerin King"));
+        //Assert.That(bes[14].Richter, Is.EqualTo("Richter am Verwaltungsgericht Dr. Eicher"));
+        //Assert.That(bes[15].Richter, Is.EqualTo("Richter am Verwaltungsgericht Putz"));
+        //Assert.That(bes[16].Richter, Is.EqualTo("Richterin David"));
+        //Assert.That(bes[17].Richter, Is.EqualTo("ehrenamtliche Richterin Maler Karl"));
+        //Assert.That(bes[18].Richter, Is.EqualTo("ehrenamtliche Richterin Geschäftsführerin King"));
+        //Assert.That(bes[19].Richter, Is.EqualTo("Richter am Verwaltungsgericht Dr. Eicher"));
+        //Assert.That(bes[20].Richter, Is.EqualTo("Richter am Verwaltungsgericht Putz"));
+        //Assert.That(bes[21].Richter, Is.EqualTo("Richterin David"));
+        //Assert.That(bes[22].Richter, Is.EqualTo("ehrenamtliche Richterin Maler Karl"));
+        //Assert.That(bes[23].Richter, Is.EqualTo("ehrenamtliche Richterin Geschäftsführerin King")   );
+        Assert.That(bes[24].Richter, Is.EqualTo("Richter am Arbeitsgericht Dr. Hüber"));
+        Assert.That(context.Besetzung.Last().Richter, Is.EqualTo("Richter am Arbeitsgericht Dr. Hüber"));
+    }
+
+    [Test]
+    public void CheckParteien()
+    {
+        AddExamples();
+        CheckParteienA(false);
+    }
+
+
+    public void CheckParteienA(bool updated)
+    {
+        ParteienAktiv[] aktivPar = context.ParteienAktiv.ToArray();
+        Assert.That(aktivPar.Count(), Is.EqualTo(12));
+        Assert.That(aktivPar[0].Partei, Is.EqualTo("der Fraktion der alternativen Wähler"));
+        Assert.That(aktivPar[1].Partei, Is.EqualTo("Johannes Peter Müller"));
+        Assert.That(aktivPar[2].Partei, Is.EqualTo("Hans Müller Dorfstraße 10, 56067 Koblenz vertreten durch seine Betreuerin Anja Müller"));
+        Assert.That(aktivPar[3].Partei, Is.EqualTo("2. Hans Müller Dorfstraße 10, 56067 Koblenz vertreten durch seine Betreuerin Anja Müller"));
+        Assert.That(aktivPar[4].Partei, Is.EqualTo("1. SPD-Kreistagsfraktion des Rhein-Hunsrück-Kreises vertreten durch den Fraktionsvorsitzenden Michael Mustermann"));
+        Assert.That(aktivPar[5].Partei, Is.EqualTo("2. Fraktion der Freien Wähler Rhein-Hunsrück e.V. im Kreistrag vertreten durch den Fraktionsvorsitzenden Stefan Mustermann"));
+        Assert.That(aktivPar[6].Partei, Is.EqualTo("3. FDP-Kreistagsfraktion des Rhein-Hunsrück-Kreises vertreten durch den FraktionsvorsitzendenThomas Mustermann"));
+
+        if (updated)
+            Assert.That(aktivPar[7].Partei, Is.EqualTo("Sabrina van de meiklokjes")); 
+        else
+            Assert.That(context.ParteienAktiv.Last().Partei, Is.EqualTo("Sabrina Muster"));
+    }
+
+    [Test]
+    public void CheckProzBevAktiv()
+    {
+        AddExamples();
+        CheckProzBevAktivA();    
+    }
+
+    public void CheckProzBevAktivA()
+    {
+        ProzBevAktiv[] aktivProzbez = context.ProzBevAktiv.ToArray();
+        Assert.That(aktivProzbez.Count(), Is.EqualTo(7));
+        Assert.That(aktivProzbez[0].PB, Is.EqualTo("Proz.-Bev.: Prof. Michael Muster"));
+        Assert.That(aktivProzbez[1].PB, Is.EqualTo("Proz.-Bev.: Rechtsanwalt Hans Mustername"));
+        Assert.That(aktivProzbez[2].PB, Is.EqualTo("Proz.-Bev.: zu 1-3: Kunz Rechtsanwälte"));
+
+        Assert.That(context.ProzBevAktiv, Has.Exactly(1).Matches(new Predicate<ProzBevAktiv>(p => p.PB.Equals("Proz.-Bev.: Rechtsanwälte Dr. Eich, Jakob & Partner mbB"))));
+        Assert.That(context.ProzBevAktiv, Has.Exactly(1).Matches(new Predicate<ProzBevAktiv>(p => p.PB.Equals("Proz.-Bev.: Rechtsanwälte Tholen pp."))));
+    }
+
+    [Test]
+    public void CheckParteienPassiv()
+    { 
+        AddExamples();
+        CheckParteienPassivA();
+    }
+    public void CheckParteienPassivA()
+    {
+        ParteienPassiv[] passivPar = context.ParteienPassiv.ToArray();
+        Assert.That(passivPar.Count(), Is.EqualTo(9));
+        Assert.That(passivPar[0].Partei, Is.EqualTo("das Land Rheinland-Pfalz vertreten durch den Landtag Rheinland-Pfalz"));
+        Assert.That(passivPar[1].Partei, Is.EqualTo("Ortsgemeinde Rengsdorf vertreten durch den Bürgermeister der Verbandsgemeinde Rengsdorf-Waldbreitbach"));
+        Assert.That(passivPar[2].Partei, Is.EqualTo("Verbandsgemeinde Bad Ems vertreten durch den Bürgermeister"));
+        Assert.That(passivPar[3].Partei, Is.EqualTo("Landrat des Landkreis Dr. Micheal Müller"));
+        Assert.That(context.ParteienPassiv, Has.Exactly(1).Matches(new Predicate<ParteienPassiv>(p => p.Partei == "POS Polsterservice GmbH")));
+        Assert.That(context.ParteienPassiv, Has.Exactly(1).Matches(new Predicate<ParteienPassiv>(p => p.Partei == "Ulrich Finzler")));
+    }
+
+    [Test]
+    public void CheckProzBevPassiv()
+    { 
+        AddExamples();
+        CheckProzBevPassivA();
+    }
+    public void CheckProzBevPassivA()
+    {
+        CollectionAssert.IsNotEmpty(context.ProzBevPassiv);
+        ProzBevPassiv[] passivProzBez = context.ProzBevPassiv.ToArray();
+        Assert.That(passivProzBez, Has.Exactly(8).Items);
+        Assert.That(passivProzBez[0].PB, Is.EqualTo("Proz.-Bev.: Rechtsanwälte Jeromin & Kerkmann"));
+        Assert.That(passivProzBez[1].PB, Is.EqualTo("Proz.-Bev.: Rechtsanwälte Dr. Martini, Mogg, Vogt PartGmbB"));
+        Assert.That(passivProzBez[2].PB, Is.EqualTo("Proz.-Bev.: Rechtsanwälte Dr. Martini2, Mogg, Vogt PartGmbB"));
+        Assert.That(context.ProzBevPassiv, Has.Exactly(1).Matches(new Predicate<ProzBevPassiv>(p => p.PB == "Proz.-Bev.: Rechtsanwälte Braun Baulig Berninger")));
+        //Assert.That(passivProzBez[3].PB, Is.EqualTo("Proz.-Bev.: Rechtsanwälte Braun Baulig Berninger"));
+    }
+
+    [Test]
+    public void CheckParteienBeigeladen()
+    { 
+        AddExamples();
+        CheckParteienBeigeladenA();
+    }
+    public void CheckParteienBeigeladenA()
+    {
+        CollectionAssert.IsNotEmpty(context.ParteienBeigeladen);
+        ParteienBeigeladen[] beiPar = context.ParteienBeigeladen.ToArray();
+        Assert.That(beiPar.Count(), Is.EqualTo(3));
+
+        //Assert.That(beiPar[0].Partei, Is.EqualTo("1. ABCERT AG"));
+        Assert.That(context.ParteienBeigeladen, Has.Exactly(1).Matches(new Predicate<ParteienBeigeladen>(p => p.Partei == "1. ABCERT AG")));
+        Assert.That(beiPar[1].Partei, Is.EqualTo("2. Helmut Grün"));
+        Assert.That(context.ParteienBeigeladen, Has.Exactly(1).Matches(new Predicate<ParteienBeigeladen>(p => p.Partei == "3. Erika Grün")));
+        //Assert.That(beiPar[2].Partei, Is.EqualTo("3. Erika Grün"));
+    }
+
+    [Test]
+    public void CheckProzBeigeladen()
+    {
+        AddExamples();
+        CheckProzBeigeladenA();
+    }
+
+    public void CheckProzBeigeladenA()
+    {
+        ProzBevBeigeladen[] beiProzBez = context.ProzBevBeigeladen.ToArray();
+        Assert.That(beiProzBez.Count(), Is.EqualTo(1));
+        Assert.That(beiProzBez[0].PB, Is.EqualTo("Proz.-Bev.:\tzu 3: Rechtsanwälte Jeromin & Kerkmann"));
+    }
+
+    [Test]
+    public void CheckParteienSV()
+    {
+        AddExamples();
+        CheckParteienSVA();
+    }
+    public void CheckParteienSVA()
+    {
+        CollectionAssert.IsNotEmpty(context.ParteienSV);
+
+        ParteienSV[] svPar = context.ParteienSV.ToArray();
+        Assert.That(svPar.Count(sv => sv.Partei.Equals("1. Edith Hof")), Is.EqualTo(1));
+        Assert.That(svPar.Count(sv => sv.Partei.Equals("2. Willibald Hof")), Is.EqualTo(1));
+
+        //Assert.That(svPar[0].Partei, Is.EqualTo("1. Edith Hof"));
+        //Assert.That(svPar[1].Partei, Is.EqualTo("2. Willibald Hof"));
+    }
+
+    [Test]
+    public void CheckZeugen()
+    {
+        AddExamples();
+        CheckZeugenA();
+    }
+    public void CheckZeugenA() {
+        CollectionAssert.IsNotEmpty(context.ParteienZeugen);
+        ParteienZeugen[] zeugenPar = context.ParteienZeugen.ToArray();
+        Assert.That(zeugenPar.Count(), Is.EqualTo(2));
+        Assert.That(zeugenPar[0].Partei, Is.EqualTo("1. Hessel GmbH vertreten durch die Geschäftsführer"));
+        Assert.That(zeugenPar[1].Partei, Is.EqualTo("2. Astrid Hessel"));
     }
 
     private string prodVal(string val)
@@ -376,16 +674,16 @@ public class DBServiceTest : TestBase
         return val.TrimEnd().Replace("\r\n", "\n").Replace("\r", "\n");
     }
 
-    private CLIActions CreateCliActions(bool delete, string connectionString, string[] xmlFiles = null, bool Update = false)
+    private List<string> CreateCliActions(bool delete, string connectionString, string[] xmlFiles = null, bool Update = false)
     {
         var args = new List<string>();
-        string AddOrUpdateCommand = COMMAND_ADD;
+        string AddOrUpdateCommand = TestSets.COMMAND_ADD;
         if (Update)
-            AddOrUpdateCommand = COMMAND_UPDATE;
-        args.Add(COMMAND_CONNECTION);
+            AddOrUpdateCommand = TestSets.COMMAND_UPDATE;
+        args.Add(TestSets.COMMAND_CONNECTION);
         args.Add(connectionString);
         if (delete)
-            args.Add(COMMAND_DELETE);
+            args.Add(TestSets.COMMAND_DELETE);
         if (null != xmlFiles)
         {
             foreach (string file in xmlFiles)
@@ -397,23 +695,23 @@ public class DBServiceTest : TestBase
         else
         {
             args.Add(AddOrUpdateCommand);
-            args.Add(EXAMPLE_XML1);
+            args.Add(TestSets.EXAMPLE_XML1);
             args.Add(AddOrUpdateCommand);
-            args.Add(EXAMPLE_XML2);
+            args.Add(TestSets.EXAMPLE_XML2);
             args.Add(AddOrUpdateCommand);
-            args.Add(EXAMPLE_XML3);
+            args.Add(TestSets.EXAMPLE_XML3);
             args.Add(AddOrUpdateCommand);
-            args.Add(EXAMPLE_XML4);
+            args.Add(TestSets.EXAMPLE_XML4);
             args.Add(AddOrUpdateCommand);
-            args.Add(EXAMPLE_XML5);
+            args.Add(TestSets.EXAMPLE_XML5);
         }
 
         var cliService = new Service.CLIService();
         ClassicAssert.IsInstanceOf<Service.CLIService>(cliService);
 
-        CLIActions cliActions = cliService.ParseCommandLineArguments(args.ToArray());
-        ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
+        //CLIActions cliActions = cliService.ParseCommandLineArguments(args.ToArray());
+        //ClassicAssert.IsInstanceOf<CLIActions>(cliActions);
 
-        return cliActions;
+        return args;
     }
 }

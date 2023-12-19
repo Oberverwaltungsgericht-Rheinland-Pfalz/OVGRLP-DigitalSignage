@@ -36,7 +36,7 @@ public class XMLHelper
     }
 
     // bei ungültigen XML-Dateien (bspw. Anhänge mit § oder & im Dateinamen)
-    // Versuchen deise über UTF8 encoding dennoch zu laden
+    // Versuchen diese über UTF8-Encoding dennoch zu laden
     private static T DeserializeEnvelopeFromBrokenXml<T>(string sourceFile, XmlSerializer xs)
     {
         if (!string.IsNullOrEmpty(sourceFile) && File.Exists(sourceFile))

@@ -9,34 +9,38 @@ namespace DigitalSignage.ImportCLI.Service;
 
 public class DBService
 {
-    public string NameOrConnectionString;
+    public string NameOrConnectionString { get; set; }
+    private readonly DigitalSignageDbContext _context = null;
     public List<string> Warnings = new List<string>();
-
+    
     public DBService(string nameOrConnectionString)
     {
         this.NameOrConnectionString = nameOrConnectionString;
+        var contextOpitons = new DbContextOptionsBuilder<DigitalSignageDbContext>().UseSqlServer(this.NameOrConnectionString).Options;
+        _context = new DigitalSignageDbContext(contextOpitons);
+
+    }
+
+    public DBService(DigitalSignageDbContext context)
+    {
+        _context = context;
     }
 
     public void DeleteAll()
     {
-        var contextOpitons = new DbContextOptionsBuilder<DigitalSignageDbContext>().UseSqlServer(this.NameOrConnectionString).Options;
-        using var db = new DigitalSignageDbContext(contextOpitons);
-        foreach (Stammdaten st in db.Stammdaten.ToArray())
-                db.Stammdaten.Remove(st);
+        foreach(Stammdaten st in _context.Stammdaten.ToArray())
+          _context.Stammdaten.Remove(st);
 
-            db.SaveChanges();
+        _context.SaveChanges();
     }
 
     public void AddData(Terminsaushang data)
     {
-        var contextOpitons = new DbContextOptionsBuilder<DigitalSignageDbContext>().UseSqlServer(this.NameOrConnectionString).Options;
-        var contextProvider = new DigitalSignageDbContext(contextOpitons);
-
         //Kopfdaten
         var st = new DigitalSignage.Infrastructure.Models.EurekaFach.Stammdaten();
         st.Datum = data.Stammdaten.Datum;
         st.Gerichtsname = data.Stammdaten.Gerichtsname.TrimEnd();
-        contextProvider.Stammdaten.Add(st);
+        _context.Stammdaten.Add(st);
 
         //alle Verfahren aufnehmen
         foreach (TerminsaushangVerfahren verf in data.Terminiert)
@@ -46,19 +50,16 @@ public class DBService
             // Aufnahme der Verfahrensdaten
             v.StammdatenId = st.StammdatenId;
             AddVerfahrensdaten(v, verf);
-            contextProvider.Verfahren.Add(v);
+            _context.Verfahren.Add(v);
         }
 
-        contextProvider.SaveChanges();
+        _context.SaveChanges();
     }
 
     public void UpdateData(Terminsaushang data)
     {
-        var contextOpitons = new DbContextOptionsBuilder<DigitalSignageDbContext>().UseSqlServer(this.NameOrConnectionString).Options;
-        var contextProvider = new DigitalSignageDbContext(contextOpitons);
-
         // StammdatenID ahand Gericht und Datum finden
-        var st = contextProvider.Stammdaten.Where(s => s.Datum == data.Stammdaten.Datum && s.Gerichtsname == data.Stammdaten.Gerichtsname).ToList();
+        var st = _context.Stammdaten.Where(s => s.Datum == data.Stammdaten.Datum && s.Gerichtsname == data.Stammdaten.Gerichtsname).ToList();
         if (null == st || st.Count == 0)
             throw new Exception(string.Format("Stammdaten '{0}' vom {1} konnten nicht gefunden werden", data.Stammdaten.Gerichtsname, data.Stammdaten.Datum));
         if (st.Count > 1)
@@ -67,147 +68,97 @@ public class DBService
 
         foreach (TerminsaushangVerfahren verf in data.Terminiert)
         {
-            var ver = contextProvider.Verfahren.Where(v => v.StammdatenId == StammdatenID && v.Az == verf.Az).ToList();
+            var ver = _context.Verfahren.Where(v => v.StammdatenId == StammdatenID && v.Az == verf.Az).ToList();
             if (null == ver || ver.Count == 0)
             {
                 var v = new Verfahren();
                 v.StammdatenId = StammdatenID;
                 AddVerfahrensdaten(v, verf);
-                contextProvider.Verfahren.Add(v);
+                _context.Verfahren.Add(v);
             }
             else
             {
                 if (ver.Count > 1)
                     throw new Exception(string.Format("Zu dem Verfahren '{0}' konnte kein eindeutiger Datensatz ermittelt werden", verf.Az));
                 Int64 VerfahrenID = ver[0].VerfahrensId;
-                DeleteVerfahrensParteien(contextProvider, ver[0]);
+                DeleteVerfahrensParteien(_context, ver[0]);
                 AddVerfahrensdaten(ver[0], verf);
             }
         }
 
-        contextProvider.SaveChanges();
+        _context.SaveChanges();
     }
 
     private List<ParteienAktiv> DetermineAktivParteien(TerminsaushangVerfahren verf)
     {
         var aktivPartei = new List<ParteienAktiv>();
-        if (null != verf.AktivPartei)
-        {
-            if (null != verf.AktivPartei.Parteien)
-            {
-                foreach (string par in verf.AktivPartei.Parteien)
-                {
-                    aktivPartei.Add(new ParteienAktiv { Partei = par.TrimEnd() });
-                }
-            }
-        }
+        foreach (string par in (verf.AktivPartei?.Parteien ?? Enumerable.Empty<string>()))
+            aktivPartei.Add(new ParteienAktiv { Partei = par.TrimEnd() });
+        
         return aktivPartei;
     }
 
     private List<ProzBevAktiv> DetermineAktivProzBev(TerminsaushangVerfahren verf)
     {
         var aktivProzBev = new List<ProzBevAktiv>();
-        if (null != verf.AktivPartei)
-        {
-            if (null != verf.AktivPartei.ProzBev && null != verf.AktivPartei.ProzBev.PB)
-            {
-                foreach (string pro in verf.AktivPartei.ProzBev.PB)
-                {
-                    aktivProzBev.Add(new ProzBevAktiv { PB = pro.TrimEnd() });
-                }
-            }
-        }
+        foreach (string pro in (verf.AktivPartei?.ProzBev?.PB ?? Enumerable.Empty<string>()))
+            aktivProzBev.Add(new ProzBevAktiv { PB = pro.TrimEnd() });
+
         return aktivProzBev;
     }
 
     private List<ParteienPassiv> DeterminePassivParteien(TerminsaushangVerfahren verf)
     {
         var passivPartei = new List<ParteienPassiv>();
-        if (null != verf.PassivPartei)
-        {
-            if (null != verf.PassivPartei.Parteien)
-            {
-                foreach (string par in verf.PassivPartei.Parteien)
-                {
-                    passivPartei.Add(new ParteienPassiv { Partei = par.TrimEnd() });
-                }
-            }
-        }
+        foreach (string par in verf.PassivPartei?.Parteien ?? Enumerable.Empty<string>())
+            passivPartei.Add(new ParteienPassiv { Partei = par.TrimEnd() });
+
         return passivPartei;
     }
 
     private List<ProzBevPassiv> DeterminePassivProzBev(TerminsaushangVerfahren verf)
     {
         var passivProzBev = new List<ProzBevPassiv>();
-        if (null != verf.PassivPartei)
-        {
-            if (null != verf.PassivPartei.ProzBev && null != verf.PassivPartei.ProzBev.PB)
-            {
-                foreach (string pro in verf.PassivPartei.ProzBev.PB)
-                {
-                    passivProzBev.Add(new ProzBevPassiv { PB = pro.TrimEnd() });
-                }
-            }
-        }
+        foreach (string pro in verf.PassivPartei?.ProzBev?.PB ?? Enumerable.Empty<string>())
+            passivProzBev.Add(new ProzBevPassiv { PB = pro.TrimEnd() });
+
         return passivProzBev;
     }
 
     private List<ParteienBeigeladen> DetermineBeigeladeneParteien(TerminsaushangVerfahren verf)
     {
         var beigeladenPartei = new List<ParteienBeigeladen>();
-        if (null != verf.Beigeladen)
-        {
-            if (null != verf.Beigeladen.Parteien)
-            {
-                foreach (string par in verf.Beigeladen.Parteien)
-                {
-                    beigeladenPartei.Add(new ParteienBeigeladen { Partei = par.TrimEnd() });
-                }
-            }
-        }
+        foreach (string par in verf.Beigeladen?.Parteien ?? Enumerable.Empty<string>())
+            beigeladenPartei.Add(new ParteienBeigeladen { Partei = par.TrimEnd() });
+
         return beigeladenPartei;
     }
 
     private List<ProzBevBeigeladen> DetermineBeigeladeneProzBev(TerminsaushangVerfahren verf)
     {
         var beigeladenProzBev = new List<ProzBevBeigeladen>();
-        if (null != verf.Beigeladen)
-        {
-            if (null != verf.Beigeladen.ProzBev)
-            {
-                foreach (string pro in verf.Beigeladen.ProzBev)
-                {
-                    beigeladenProzBev.Add(new ProzBevBeigeladen { PB = pro.TrimEnd() });
-                }
-            }
-        }
+        foreach (string pro in verf.Beigeladen?.ProzBev ?? Enumerable.Empty<string>())
+            beigeladenProzBev.Add(new ProzBevBeigeladen { PB = pro.TrimEnd() });
+
         return beigeladenProzBev;
     }
 
     private List<ParteienSV> DetermineSachverstaendige(TerminsaushangVerfahren verf)
     {
-        var svPartei = new List<ParteienSV>();
-        if (null != verf.SV)
-        {
-            foreach (string par in verf.SV.Parteien)
-            {
-                svPartei.Add(new ParteienSV { Partei = par.TrimEnd() });
-            }
-        }
-
-        return svPartei;
+        return verf.SV
+            ?.Parteien
+            ?.Select(par => 
+                new ParteienSV { Partei = par.TrimEnd() }
+            )
+            .ToList() 
+            ?? new List<ParteienSV>();
     }
 
     private List<ParteienZeugen> DetermineZeugen(TerminsaushangVerfahren verf)
     {
         var zPartei = new List<ParteienZeugen>();
-        if (null != verf.Zeugen)
-        {
-            foreach (var zeu in verf.Zeugen.Parteien)
-            {
-                zPartei.Add(new ParteienZeugen { Partei = zeu });
-            }
-        }
+        foreach (var zeu in verf.Zeugen?.Parteien ?? Enumerable.Empty<string>())
+            zPartei.Add(new ParteienZeugen { Partei = zeu });
 
         return zPartei;
     }
@@ -215,33 +166,25 @@ public class DBService
     private List<Besetzung> DetermineBesetzung(TerminsaushangVerfahren verf)
     {
         var besetzung = new List<Besetzung>();
-        if (null != verf.Besetzung)
-        {
-            foreach (string bes in verf.Besetzung)
-            {
-                besetzung.Add(new Besetzung { Richter = bes.TrimEnd() });
-            }
-        }
+        foreach (string bes in verf.Besetzung ?? Enumerable.Empty<string>())
+            besetzung.Add(new Besetzung { Richter = bes.TrimEnd() });
+
         return besetzung;
     }
 
     private List<ParteienBeteiligt> DetermineBeteiligte(TerminsaushangVerfahren verf)
     {
         var beteiligt = new List<ParteienBeteiligt>();
-        if (null != verf.Beteiligt)
+        foreach (var bet in verf.Beteiligt?.Parteien ?? Enumerable.Empty<string>())
         {
-            foreach (var bet in verf.Beteiligt.Parteien)
-            {
-                if (bet.ToLower().TrimEnd() == "beteiligte:" || bet.ToLower().TrimEnd() == "beteiligt:")
-                    continue;
-                beteiligt.Add(new ParteienBeteiligt { Partei = bet.TrimEnd() });
-            }
-            foreach (var prozBev in verf.Beteiligt.ProzBev)
-            {
-                // die Prozessbevollmächtigten werden von Eureka-Export alle mit dem Präfix "Proz.-Bev.: " übergeben, daher werden diese erstmal als Beteiligte mit angezeigt #145
-                beteiligt.Add(new ParteienBeteiligt { Partei = prozBev.TrimEnd() });
-            }
+            if (bet.ToLower().TrimEnd() == "beteiligte:" || bet.ToLower().TrimEnd() == "beteiligt:")
+                continue;
+            beteiligt.Add(new ParteienBeteiligt { Partei = bet.TrimEnd() });
         }
+        
+        // die Prozessbevollmächtigten werden von Eureka-Export alle mit dem Präfix "Proz.-Bev.: " übergeben, daher werden diese erstmal als Beteiligte mit angezeigt #145
+        foreach (var prozBev in verf.Beteiligt?.ProzBev ?? Enumerable.Empty<string>())
+            beteiligt.Add(new ParteienBeteiligt { Partei = prozBev.TrimEnd() });   
 
         return beteiligt;
     }

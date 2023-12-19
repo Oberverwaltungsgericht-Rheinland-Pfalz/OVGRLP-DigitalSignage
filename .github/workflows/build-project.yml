@@ -25,8 +25,8 @@ jobs:
     - run: dotnet build src/DigitalSignage.ImportCLI
     - run: dotnet build src/DigitalSignage.ImportCLI.NUnitTests
 
-#    - name: Test
-#      run: dotnet test --no-build src/DigitalSignage.ImportCLI.NUnitTests/DigitalSignage.ImportCLI.NUnitTests.csproj
+    - name: Test
+      run: dotnet test --no-build src/DigitalSignage.ImportCLI.NUnitTests/DigitalSignage.ImportCLI.NUnitTests.csproj
 
 #    - name: setup-msbuild all projects
 #      uses: microsoft/setup-msbuild@v1.1
