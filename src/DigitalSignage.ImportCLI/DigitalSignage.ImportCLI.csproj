@@ -9,8 +9,8 @@
     <AssemblyTitle>DigitalSignage.ImportCLI</AssemblyTitle>
     <Product>DigitalSignage.ImportCLI</Product>
     <Copyright>Copyright ©  2018</Copyright>
-    <AssemblyVersion>1.7.0.2311</AssemblyVersion>
-    <FileVersion>1.7.0.2311</FileVersion>
+    <AssemblyVersion>1.8.0.2403</AssemblyVersion>
+    <FileVersion>1.8.0.2403</FileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'test|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>

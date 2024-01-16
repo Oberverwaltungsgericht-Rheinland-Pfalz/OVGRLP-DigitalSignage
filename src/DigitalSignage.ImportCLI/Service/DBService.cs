@@ -41,6 +41,7 @@ public class DBService
         st.Datum = data.Stammdaten.Datum;
         st.Gerichtsname = data.Stammdaten.Gerichtsname.TrimEnd();
         _context.Stammdaten.Add(st);
+        _context.SaveChanges();
 
         //alle Verfahren aufnehmen
         foreach (TerminsaushangVerfahren verf in data.Terminiert)
