@@ -1,7 +1,11 @@
 name: build C# projects
 on:
   push:
+    paths-ignore:
+    - 'README.md'
+    - 'Documentation/**'
   workflow_dispatch:
+
 jobs:
   setup-dotnet:
     name: setup and build windows
@@ -25,6 +29,26 @@ jobs:
     - run: dotnet build src/DigitalSignage.ImportCLI
     - run: dotnet build src/DigitalSignage.ImportCLI.NUnitTests
 
+    - uses: actions/cache/save@v3
+      id: save-compiles
+      with:
+        path: ./src/*
+        key: csharp${{ github.sha }}
+
+  test-csharp:
+    needs: setup-dotnet
+    name: run ImportCli tests
+    runs-on: windows-latest
+    steps:  
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - uses: actions/cache/restore@v3
+      id: load-deps
+      with:
+        path: ./src/*
+        key: csharp${{ github.sha }}
+
     - name: Test
       run: dotnet test --no-build src/DigitalSignage.ImportCLI.NUnitTests/DigitalSignage.ImportCLI.NUnitTests.csproj
 
@@ -33,6 +57,20 @@ jobs:
 #      with:
 #        msbuild-architecture: "x64"
 #    - run: msbuild src\DigitalSignageAll.sln
+
+  build-webapi:
+    needs: setup-dotnet
+    name: build WebAPI Server
+    runs-on: windows-latest
+    steps:
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - uses: actions/cache/restore@v3
+      id: load-deps
+      with:
+        path: ./src/*
+        key: csharp${{ github.sha }}
 
     - name: Build publish files for WebAPI-Server
       run: dotnet publish src\DigitalSignage.dn.WebApiCore -c Release --os win --output ./src/DigitalSignage.dn.WebApiCore/publish
@@ -43,6 +81,20 @@ jobs:
         path: ./src/DigitalSignage.dn.WebApiCore/publish
         retention-days: 30
 
+  build-Display-Control:
+    needs: setup-dotnet
+    name: build DisplayControl service
+    runs-on: windows-latest
+    steps:
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - uses: actions/cache/restore@v3
+      id: load-deps
+      with:
+        path: ./src/*
+        key: csharp${{ github.sha }}
+
     - name: Build publish files for DisplayControl
       run: dotnet publish src\DigitalSignage.dn.DisplayControl --self-contained true -c Release --output ./src/DigitalSignage.dn.DisplayControl/publish
     - name: 'Upload DisplayControl Artifact'
@@ -51,7 +103,21 @@ jobs:
         name: DisplayControl
         path: ./src/DigitalSignage.dn.DisplayControl/publish
         retention-days: 30
-          
+
+  build-ImportCLI:
+    needs: setup-dotnet
+    name: build ImportCLI service
+    runs-on: windows-latest
+    steps:
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - uses: actions/cache/restore@v3
+      id: load-deps
+      with:
+        path: ./src/*
+        key: csharp${{ github.sha }}
+
     - name: Build publish files for ImportCLI
       run: dotnet publish src\DigitalSignage.ImportCLI -c Release --output ./src/DigitalSignage.ImportCLI/publish
     - name: 'Upload ImportCLI Artifact'
@@ -79,7 +145,7 @@ jobs:
       - uses: actions/cache/save@v3
         id: save-deps
         with:
-          path: ./*
+          path: ./src/ds-suite/*
           key: wa${{ github.sha }}
 
   build-dsmanager:
@@ -95,7 +161,7 @@ jobs:
       - uses: actions/cache/restore@v3
         id: load-deps
         with:
-          path: ./*
+          path: ./src/ds-suite/*
           key: wa${{ github.sha }}
   
       - name: build display-manager
@@ -122,7 +188,7 @@ jobs:
       - uses: actions/cache/restore@v3
         id: load-deps
         with:
-          path: ./*
+          path: ./src/ds-suite/*
           key: wa${{ github.sha }}
       - name: build displays
         working-directory: ./src/ds-suite
@@ -148,7 +214,7 @@ jobs:
       - uses: actions/cache/restore@v3
         id: load-deps
         with:
-          path: ./*
+          path: ./src/ds-suite/*
           key: wa${{ github.sha }}
       - name: build roomcontrol
         working-directory: ./src/ds-suite
