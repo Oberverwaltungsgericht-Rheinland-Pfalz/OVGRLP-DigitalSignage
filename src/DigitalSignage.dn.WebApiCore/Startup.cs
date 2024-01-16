@@ -6,7 +6,7 @@ using DigitalSignage.dn.WebApiCore.Services;
 using DigitalSignage.WebApi.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Negotiate;
-using System.Data.Entity;
+using Serilog;
 
 namespace DigitalSignage.dn.WebApiCore;
 
@@ -22,8 +22,11 @@ public class Startup
         _environment = builder.Environment;
     }
 
-    public Startup AddDependencyInjection()
+    public void AddDependencyInjection()
     {
+        // Add services to the container.
+        _services.AddControllers();
+
         _services.AddDbContext<DigitalSignageDbContext>(options =>
         {
             options.UseSqlServer(
@@ -47,16 +50,17 @@ public class Startup
         {
             options.FallbackPolicy = options.DefaultPolicy;
         });
-        return this;
     }
 
-    public Startup ConfigureServices(WebApplication app) {
+    public void ConfigureServices(WebApplication app) {
         
         app.UseHealthChecks("/health");
 
+        if (_environment.IsDevelopment() || _builder.Configuration["ShowExceptionPage"] == "true")    
+          app.UseDeveloperExceptionPage();
+
         if (_environment.IsDevelopment())
         {
-            app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DigitalSignage.WebApiCore v1"));
         }
@@ -68,6 +72,20 @@ public class Startup
             .AllowAnyHeader()
             .WithOrigins("http://localhost:4200", "http://localhost:4201", "http://localhost:4202", "http://localhost:4203");
         });
-        return this;
+
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseDefaultFiles(); //UseStaticFiles();
+
+        app.UseSerilogRequestLogging();
+        app.UseRouting();
+        app.UseAuthorization();
+        app.UseSystemWebAdapters();
+
+        app.MapDefaultControllerRoute();
     }
 }
