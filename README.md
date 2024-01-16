@@ -41,8 +41,11 @@ Zentraler Webservice zur Übertragung aller Termine, Sondermeldung und weiterer 
 <details><summary>DSManager - Browser App</summary><p>
 Verwaltung der Zustände der Anzeigen in Gruppen gegliedert. Filterbare Übersicht über alle täglichen Verhandlungen. Management zur Auflistung, Erstellung, Bearbeitung, Löschung und Terminierung der Sonderanzeigen. Mit HTML-Editor und Vorschaufunktion.</p></details>
 
-<details><summary>RoomControl - Browser App</summary><p>
-Hier können Sitzung gestartet, beendet und als Nicht-öffentlich markiert werden. Monitor können an- sowie ausgeschaltet werden. Es wird eine Vorschau der ausgewählten Anzeige dargestellt.</p></details>
+<details><summary>RoomControl (Saalsteuerung) - Browser App</summary><p>
+Hier können Sitzung gestartet, beendet und als Nicht-öffentlich markiert werden. Monitor können an- sowie ausgeschaltet werden. Es wird eine Vorschau der ausgewählten Anzeige dargestellt.
+</p></details>
+
+![Roomcontrol Screenshot](Documentation/Roomcontrol.jpg)
 
 ## Installation
 

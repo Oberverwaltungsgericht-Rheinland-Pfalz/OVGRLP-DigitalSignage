@@ -96,7 +96,7 @@ jobs:
         key: csharp${{ github.sha }}
 
     - name: Build publish files for DisplayControl
-      run: dotnet publish src\DigitalSignage.dn.DisplayControl --self-contained true -c Release --output ./src/DigitalSignage.dn.DisplayControl/publish
+      run: dotnet publish src\DigitalSignage.dn.DisplayControl -c Release --output ./src/DigitalSignage.dn.DisplayControl/publish
     - name: 'Upload DisplayControl Artifact'
       uses: actions/upload-artifact@v3
       with:

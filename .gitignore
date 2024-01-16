@@ -9,6 +9,7 @@
 
 DigitalSignage.dn.DisplayControl/appsettings.json
 DigitalSignage.dn.DisplayControl/wwwroot/components/
+src/DigitalSignage.dn.WebApiCore/logs/
   
 # Build results
 [Dd]ebug/
