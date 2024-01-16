@@ -36,6 +36,7 @@ public class PermissionsController : ControllerBase
     public IEnumerable<string> GetCurrentUserMembers()
     {
         var perm = new BasicPermissions();
+        if (HttpContext?.User?.Identity == null) throw new ArgumentNullException("User is not authenticated");
         WindowsIdentity wid = (WindowsIdentity) HttpContext.User.Identity;     //new WindowsIdentity(HttpContext.Current.User.Identity.Name);
         var ps = new PermissionService(wid, _context);
 
@@ -48,6 +49,7 @@ public class PermissionsController : ControllerBase
     {
         var perm = new BasicPermissions();
         // WindowsIdentity wid = HttpContext.Current.Request.LogonUserIdentity;     //new WindowsIdentity(HttpContext.Current.User.Identity.Name);
+        if (HttpContext?.User?.Identity == null) throw new ArgumentNullException("User is not authenticated");
         WindowsIdentity wid = (WindowsIdentity)HttpContext.User.Identity;
         var ps = new PermissionService(wid, _context);
 
@@ -87,7 +89,7 @@ public class PermissionsController : ControllerBase
     [HttpGet]
     public ActionResult<bool> GetPermission(string urlPath)
     {
-        string name = GetUPNUserFormat(User.Identity.Name);
+        string name = GetUPNUserFormat(User.Identity?.Name ?? "");
         var wid = new WindowsIdentity(name);
         return Ok(PermissionService.CheckPermissionForIdentity(wid, _context, urlPath, "GET"));
     }
@@ -96,7 +98,7 @@ public class PermissionsController : ControllerBase
     [HttpGet]
     public ActionResult PutPermission(string urlPath)
     {
-        string name = GetUPNUserFormat(User.Identity.Name);
+        string name = GetUPNUserFormat(User.Identity?.Name ?? "");
         var wid = new WindowsIdentity(name);
         return Ok(PermissionService.CheckPermissionForIdentity(wid, _context, urlPath, "PUT"));
     }
@@ -105,7 +107,7 @@ public class PermissionsController : ControllerBase
     [HttpGet]
     public ActionResult PostPermission(string urlPath)
     {
-        string name = GetUPNUserFormat(User.Identity.Name);
+        string name = GetUPNUserFormat(User.Identity?.Name ?? "");
         var wid = new WindowsIdentity(name);
         return Ok(PermissionService.CheckPermissionForIdentity(wid, _context, urlPath, "POST"));
     }
@@ -114,7 +116,7 @@ public class PermissionsController : ControllerBase
     [HttpGet]
     public ActionResult DeletePermission(string urlPath)
     {
-        string name = GetUPNUserFormat(User.Identity.Name);
+        string name = GetUPNUserFormat(User.Identity?.Name ?? "");
         var wid = new WindowsIdentity(name);
         return Ok(PermissionService.CheckPermissionForIdentity(wid, _context, urlPath, "DELETE"));
     }
