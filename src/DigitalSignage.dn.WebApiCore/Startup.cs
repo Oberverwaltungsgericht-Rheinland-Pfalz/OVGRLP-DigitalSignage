@@ -6,6 +6,7 @@ using DigitalSignage.dn.WebApiCore.Services;
 using DigitalSignage.WebApi.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Negotiate;
+using System.Data.Entity;
 
 namespace DigitalSignage.dn.WebApiCore;
 
@@ -35,7 +36,8 @@ public class Startup
 
         _services.AddSingleton(new Configuration(_builder.Configuration.GetValue<bool>("checkPermissions")));
 
-        _services.AddHealthChecks();
+        _services.AddHealthChecks().AddDbContextCheck<DigitalSignageDbContext>("ef");
+
         _services.AddSwaggerGen();
 
         _services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
