@@ -9,6 +9,8 @@
     "test:report": "serenity-bdd run",
     "lint": "ts-standard -fix"
   },
+  "author": "Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de> (https://ovg.justiz.rlp.de)",
+  "license": "EUPL-1.2",
   "engines": {
     "node": "^18.12 || ^20"
   },
