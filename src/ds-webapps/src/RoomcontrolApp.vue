@@ -1,15 +1,23 @@
-<script setup lang="ts">
+<script lang="ts">
 // SPDX-FileCopyrightText: © 2019 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
-import { inject } from 'vue'
+import { defineComponent, inject } from 'vue'
 import RcHome from '../roomcontrol/components/RcHome.vue'
 
-const appVersion = inject<string>('app-version')
+export default defineComponent({
+  setup() {
+    const appVersion = inject<string>('app-version')
+    return {
+      appVersion
+    }
+  },
+  components:{RcHome}
+})
 </script>
 
 <template>
 <div class="main-container">
-  <alert></alert>
+  <!--<alert></alert>-->
   <div class="alert alert-app-level">
     Version {{appVersion}}
   </div>

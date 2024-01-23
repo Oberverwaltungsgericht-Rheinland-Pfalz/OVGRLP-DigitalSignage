@@ -1,20 +1,27 @@
 <script setup lang="ts">
+  import {ref} from 'vue'
+  import DisplaysApp from './DisplaysApp.vue'
+  import DsManagerApp from './DsManagerApp.vue'
+  import RoomcontrolApp from './RoomcontrolApp.vue'
+  const show = ref('rc')
 </script>
 
 <template>
   <nav>
-    <router-link :to="'/roomcontrol'">
+    <button @click="show='rc'">
       <h5>Roomcontrol</h5>
-    </router-link>
-    <router-link :to="'/dsmanager'">
-      <h5>DS-Manager</h5>
-    </router-link>
-    <router-link :to="'/displays'">
+    </button>
+    <button @click="show='dm'">
+      <h5>Display-Manager</h5>
+    </button>
+    <button @click="show='ds'">
       <h5>Displays</h5>
-    </router-link>
+    </button>
   </nav>
-  
-  <router-view/>
+
+  <roomcontrol-app v-if="show==='rc'"/>
+  <ds-manager-app v-else-if="show==='dm'"/>
+  <displays-app v-else-if="show==='ds'"/>
 </template>
 
 <style lang="stylus" scoped>
