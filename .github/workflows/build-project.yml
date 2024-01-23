@@ -128,6 +128,30 @@ jobs:
         path: ./src/DigitalSignage.ImportCLI/publish
         retention-days: 30
 
+  build-DataAPI:
+    needs: setup-dotnet
+    name: build DataAPI Server
+    runs-on: windows-latest
+    steps:
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - uses: actions/cache/restore@v3
+      id: load-deps
+      with:
+        path: ./src/*
+        key: csharp${{ github.sha }}
+
+    - run: dotnet build src/DigitalSignage.DataAPI
+    - name: Build publish files for DataAPI-Server
+      run: dotnet publish src\DigitalSignage.DataAPI -c Release -a x64 --os win --output ./src/DigitalSignage.DataAPI/publish
+    - name: 'Upload DataAPI-Server Artifact'
+      uses: actions/upload-artifact@v3
+      with:
+        name: DataAPI-Server
+        path: ./src/DigitalSignage.DataAPI/publish
+        retention-days: 30
+
   dependencies-WebApps:
     name: setup and build web apps
     runs-on: ubuntu-latest
