@@ -32,7 +32,7 @@ jobs:
         path: ./src/*
         key: csharp${{ github.sha }}
 
-  test-csharp:
+  test-importCli:
     needs: setup-dotnet
     name: run ImportCli tests
     runs-on: windows-latest
@@ -49,6 +49,23 @@ jobs:
     - run: dotnet build src/DigitalSignage.ImportCLI.NUnitTests
     - name: Test
       run: dotnet test --no-build src/DigitalSignage.ImportCLI.NUnitTests/DigitalSignage.ImportCLI.NUnitTests.csproj
+
+  csharp-unittests:
+    needs: setup-dotnet
+    name: run unit tests
+    runs-on: windows-latest
+    steps:  
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - uses: actions/cache/restore@v3
+      id: load-deps
+      with:
+        path: ./src/*
+        key: csharp${{ github.sha }}
+
+    - name: Test
+      run: dotnet test src/DigitalSignage.UnitTests/DigitalSignage.UnitTests.csproj
 
 #    - name: setup-msbuild all projects
 #      uses: microsoft/setup-msbuild@v1.1

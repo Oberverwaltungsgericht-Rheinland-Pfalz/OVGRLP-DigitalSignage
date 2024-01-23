@@ -12,7 +12,7 @@ namespace DigitalSignage.DataAPI;
 
 using DbC = ApplicationDbContext;
 
-public class Program
+public partial class Program
 {
     public static void Main(string[] args)
     {

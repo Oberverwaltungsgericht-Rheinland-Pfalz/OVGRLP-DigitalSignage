@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.Services", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalSignage.DataAPI", "DigitalSignage.DataAPI\DigitalSignage.DataAPI.csproj", "{49186F8C-2969-4295-A28D-14C241D53B14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignage.UnitTests", "DigitalSignage.UnitTests\DigitalSignage.UnitTests.csproj", "{FE514124-069B-4D7E-AC3D-0392E39ABA15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{49186F8C-2969-4295-A28D-14C241D53B14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49186F8C-2969-4295-A28D-14C241D53B14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49186F8C-2969-4295-A28D-14C241D53B14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE514124-069B-4D7E-AC3D-0392E39ABA15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE514124-069B-4D7E-AC3D-0392E39ABA15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE514124-069B-4D7E-AC3D-0392E39ABA15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE514124-069B-4D7E-AC3D-0392E39ABA15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
