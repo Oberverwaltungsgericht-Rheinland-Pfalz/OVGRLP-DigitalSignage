@@ -54,6 +54,7 @@ public class TestClientVersionAPI
         var content = JsonConvert.DeserializeObject<List<object>>(actual);
 
         // Assert
+        response.EnsureSuccessStatusCode();
         content.Should().NotBeNull();
         content.Should().HaveCount(1);
         actual.Should().Contain(versionData);

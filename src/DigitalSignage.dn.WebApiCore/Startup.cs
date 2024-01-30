@@ -27,12 +27,16 @@ public class Startup
         // Add services to the container.
         _services.AddControllers();
 
-        _services.AddDbContext<DigitalSignageDbContext>(options =>
-        {
+        if( _environment.IsDevelopment() )
+            _services.AddDbContext<DigitalSignageDbContext>(options 
+                => options.UseInMemoryDatabase("DigitalSignage"));
+        else 
+          _services.AddDbContext<DigitalSignageDbContext>(options =>
+          {
             options.UseSqlServer(
               _builder.Configuration.GetConnectionString("EfContext"),
               sqlServerOptions => sqlServerOptions.CommandTimeout(120));   
-        });
+          });
 
         _services.AddScoped<DisplayManagementService>();
         _services.AddScoped<DigitalSignagePersistenceManager>();
@@ -43,13 +47,7 @@ public class Startup
 
         _services.AddSwaggerGen();
 
-        _services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-           .AddNegotiate();
 
-        _services.AddAuthorization(options =>
-        {
-            options.FallbackPolicy = options.DefaultPolicy;
-        });
     }
 
     public void ConfigureServices(WebApplication app) {
