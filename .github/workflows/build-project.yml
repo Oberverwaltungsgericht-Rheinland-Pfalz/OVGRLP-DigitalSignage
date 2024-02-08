@@ -208,7 +208,7 @@ jobs:
   
       - name: build display-manager
         working-directory: ./src/ds-suite
-        run: npm run build:displays
+        run: npm run build:dsmanager
 
       - name: 'Upload web app artifacts'
         uses: actions/upload-artifact@v3
@@ -234,7 +234,7 @@ jobs:
           key: wa${{ github.sha }}
       - name: build displays
         working-directory: ./src/ds-suite
-        run: npm run build:dsmanager
+        run: npm run build:displays
 
       - name: 'Upload web app artifacts'
         uses: actions/upload-artifact@v3

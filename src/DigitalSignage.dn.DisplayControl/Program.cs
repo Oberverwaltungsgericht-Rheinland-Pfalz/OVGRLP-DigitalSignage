@@ -15,7 +15,7 @@ app.MapGet("/api/shutdown", os.Shutdown);
 app.MapGet("/api/restart", os.Restart);
 app.MapGet("/api/screenshot", (HttpContext context) => os.Screenshot(context));
 
-app.UseHealthChecks("/api/health");
+app.UseHealthChecks("/health");
 app.Run();
 
 IOperatingSystem DetectOS()
