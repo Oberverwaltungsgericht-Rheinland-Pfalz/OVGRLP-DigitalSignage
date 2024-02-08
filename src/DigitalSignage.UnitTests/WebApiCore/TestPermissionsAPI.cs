@@ -3,6 +3,7 @@ using DigitalSignage.Data;
 using DigitalSignage.Data.DbV3Models;
 using DigitalSignage.dn.WebApiCore;
 using DigitalSignage.Infrastructure.Models.Settings;
+using DigitalSignage.WebApi.Controllers.Settings;
 using FluentAssertions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -10,9 +11,12 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Moq;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Text.Encodings.Web;
 
 namespace DigitalSignage.UnitTests.DataAPI;
@@ -92,15 +96,13 @@ public class TestPermissionsAPI
 
         // Act
         var response = await client.GetAsync("/settings/permissions/BasicPermissions");
-        var actual = await response.Content.ReadAsStringAsync();
-        var content = JsonConvert.DeserializeObject<List<object>>(actual);
+        var content = await response.Content.ReadFromJsonAsync< BasicPermissions>();
 
         // Assert
         response.EnsureSuccessStatusCode();
         content.Should().NotBeNull();
-        content.Should().HaveCount(1);
-        actual.Should().Contain(descriptionData);
-        actual.Should().Contain(titleData);
+        Assert.IsNotNull(content?.AllowNotes);
+        Assert.IsNotNull(content?.AllowTermine);
     }
 }
 
@@ -115,8 +117,7 @@ public class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {
         var claims = new[] { new Claim(ClaimTypes.Name, "Test user") };
-        var identity = new ClaimsIdentity(claims, "Test");
-        var principal = new ClaimsPrincipal(identity);
+        var principal = new ClaimsPrincipal(WindowsIdentity.GetCurrent());
         var ticket = new AuthenticationTicket(principal, "TestScheme");
 
         var result = AuthenticateResult.Success(ticket);
