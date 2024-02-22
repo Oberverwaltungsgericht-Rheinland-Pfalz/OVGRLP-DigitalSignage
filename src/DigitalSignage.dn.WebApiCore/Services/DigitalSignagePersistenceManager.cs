@@ -3,10 +3,9 @@
 using Breeze.Persistence.EFCore;
 using DigitalSignage.Data;
 
-namespace DigitalSignage.dn.WebApiCore.Services
+namespace DigitalSignage.dn.WebApiCore.Services;
+
+public class DigitalSignagePersistenceManager : EFPersistenceManager<DigitalSignageDbContext>
 {
-    public class DigitalSignagePersistenceManager : EFPersistenceManager<DigitalSignageDbContext>
-    {
-        public DigitalSignagePersistenceManager(DigitalSignageDbContext dbContext): base(dbContext) { }
-    }
+    public DigitalSignagePersistenceManager(DigitalSignageDbContext dbContext): base(dbContext) { }
 }

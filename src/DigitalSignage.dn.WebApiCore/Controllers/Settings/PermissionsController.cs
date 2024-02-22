@@ -82,7 +82,7 @@ public class PermissionsController : ControllerBase
             perm.AllowTermine = Restriction.write;
         }
 
-        return Ok(perm);
+        return perm;
     }
 
     [Route("GetPermission")]
