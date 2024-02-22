@@ -47,24 +47,22 @@ wendig
 * Alternativ zum Hostnamen können wir diese auch über einen bestimmten Port freigeben, dieser muss aber dann in der Firewall freigegeben werden. Wir nehmen hier einmal exemplarisch den Port 8082.
 * Direkt in dem Pfad c:\wwwroot\Digitalsignage erzeugen wir einen Unterordner "WebApi", wo wir die Programmdateien inkl. web.config einfügen. Im IIS müssen wir diesen Unterordner als Anwendung konvertieren. <br> ![Anwendung konvertieren](inst_AnwKonv.png)
 
-## Konfiguration der Web.config
+## Konfiguration der appsettings.json
 
-### Windows Authentificaton
+In der appsettings.json muss die Windows-Authentication aktiviert werden
 
-In der web.config muss für die Windows-Authentication im Knoten <system.webServer> folgende Zeilen eingefügt werden
-
-```xml
-<security>
-  <authentication>
-    <anonymousAuthentication enabled="false" userName="" />
-    <windowsAuthentication enabled="true"></windowsAuthentication>
-  </authentication>
-</security>
+```json
+    <system.webServer>
+    	<security>
+         <authentication>
+            <anonymousAuthentication enabled="false" />
+            <windowsAuthentication enabled="true" />
+         </authentication>
+      </security>
 ```
 
-### DB Connection hinterlegen
 
-In der appsettings.json der WebApi muss im Attribut `ConnectionStrings.EfContext` die Verbindungszeichenfolge hinterlegt sein. Der \ zwischen dem Server und der Datenbank, in der Schreibeweise `Server=Server\\Database` muss mit \\\ escaped sein.
+In der appsettings.json der WebApi muss im Attribut `ConnectionStrings.EfContext` die Verbindungszeichenfolge zum Datenbankserver hinterlegt sein. Der \ zwischen dem Server und der Datenbank, in der Schreibeweise `Server=Server\\Database` muss mit \\\ escaped sein.
 
 ```json
 "ConnectionStrings": {
@@ -112,3 +110,20 @@ Diese Anwendung wird als Task gestartet. Die Konfigurationsparameter werden übe
 ` DSImportCLI.exe -a TO.xml -c "Server=(localdb)\MSSQLlocalDB;Database=testdatenbank;Integrated Security=true;" -d`
 
   ![CLI Argumente ImportCLI](ImportCLI-Argumente.png)
+
+
+# Display Control 
+Installation eines zusätzlichen Monitors in der digitalen Saalanzeige
+
+* Gerät anschließen und hochfahren
+* 1_SetupNetwork.ps1 als Administrator ausführen
+* Parameter wie IP, Gerätename etc. eingeben (Achtung: Hier muss zwei mal die Zugangsdaten von ovgvg\admin eingegeben werden!)
+* Gerät neu starten als admin
+* 2_Update.ps1 ausführen
+* Parameter wie Saalanzeigenbenutzer etc. eingeben
+* Gerät startet als Saalanzeigenbenutzer neu
+* 3_User.ps1 als Benutzer ohne Adminrechte ausführen
+* Fertig!
+
+Bei Schritt 2 kann es zu einem Fehler beim Beitreten der Domäne kommen. Sollte dies passieren, kann Schritt 4 nicht erfolgen.
+In dem Fall muss erneut mit dem lokalen Admin ein Beitritt in die Domäne Manuell durchgeführt werden.
