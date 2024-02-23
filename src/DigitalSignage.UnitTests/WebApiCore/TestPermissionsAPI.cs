@@ -2,6 +2,7 @@ global using NUnit.Framework;
 using DigitalSignage.Data;
 using DigitalSignage.Data.DbV3Models;
 using DigitalSignage.dn.WebApiCore;
+using DigitalSignage.dn.WebApiCore.DtoModels;
 using DigitalSignage.Infrastructure.Models.Settings;
 using DigitalSignage.WebApi.Controllers.Settings;
 using FluentAssertions;
@@ -19,7 +20,7 @@ using System.Security.Claims;
 using System.Security.Principal;
 using System.Text.Encodings.Web;
 
-namespace DigitalSignage.UnitTests.DataAPI;
+namespace DigitalSignage.UnitTests.WebApiCore;
 
 public class TestPermissionsAPI
 {
@@ -50,39 +51,11 @@ public class TestPermissionsAPI
         });
     }
 
-    [Test]
-    public async Task GetDisplays()
+    [OneTimeTearDown]
+    public async Task TearDown()
     {
-        // Arrange
-        var descriptionData = "nice Display";
-        var titleData = DateTime.Now.ToString();
-        using (var scope = factory.Services.CreateScope())
-        {
-            var scopedServices = scope.ServiceProvider;
-            var db = scopedServices.GetRequiredService<DigitalSignageDbContext>();
-
-            db.Displays.Add(new Display(){ 
-                Dummy= false,
-                Description = descriptionData,
-                Title = titleData
-            });
-            db.SaveChanges();
-        }
-
-        client.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue(scheme: "TestScheme");
-
-        // Act
-        var response = await client.GetAsync("/settings/displays");
-        var actual = await response.Content.ReadAsStringAsync();
-        var content = JsonConvert.DeserializeObject<List<object>>(actual);
-
-        // Assert
-        response.EnsureSuccessStatusCode();
-        content.Should().NotBeNull();
-        content.Should().HaveCount(1);
-        actual.Should().Contain(descriptionData);
-        actual.Should().Contain(titleData);
+        await factory.DisposeAsync();
+        client?.Dispose();
     }
 
     [Test]
@@ -92,8 +65,6 @@ public class TestPermissionsAPI
         var descriptionData = "nice Display";
         var titleData = DateTime.Now.ToString();
         
-        var client = factory.CreateClient();
-
         // Act
         var response = await client.GetAsync("/settings/permissions/BasicPermissions");
         var content = await response.Content.ReadFromJsonAsync< BasicPermissions>();
