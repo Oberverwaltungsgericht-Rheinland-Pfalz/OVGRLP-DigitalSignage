@@ -21,7 +21,7 @@ public class DisplaysUTests
     DigitalSignageDbContext context;
     DisplayManagementService disManagementService;
     string displayName = "myNewDisplay";
-    Display firstDisplay;
+    Display? firstDisplay;
 
     [SetUp]
     public void SetUp()
