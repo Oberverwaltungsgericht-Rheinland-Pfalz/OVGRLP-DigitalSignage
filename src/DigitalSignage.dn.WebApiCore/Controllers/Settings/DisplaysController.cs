@@ -14,6 +14,7 @@ namespace DigitalSignage.WebApi.Controllers.Settings;
 
 [Authorize]
 [Route("settings/displays")]
+[ApiController]
 public class DisplaysController : ControllerBase
 {
     private readonly DigitalSignageDbContext _context;
@@ -100,25 +101,35 @@ public class DisplaysController : ControllerBase
 
         List<VerfahrenDto> dtos = new List<VerfahrenDto>();
 
-        _context.Verfahren
-            .FromSql<Verfahren>($"SELECT * FROM Verfahren {(!string.IsNullOrEmpty(display.Filter) ? $" WHERE {display.Filter}" : "")}")
-            .ToList()
-            .ForEach(v =>
-                {
-                    _context.Entry(v).Reference("Stammdaten").Load();
-                    _context.Entry(v).Collection("ParteienAktiv").Load();
-                    _context.Entry(v).Collection("ParteienPassiv").Load();
-                    _context.Entry(v).Collection("Besetzung").Load();
-                    _context.Entry(v).Collection("ProzBevAktiv").Load();
-                    _context.Entry(v).Collection("ProzBevPassiv").Load();
-                    _context.Entry(v).Collection("ParteienBeigeladen").Load();
-                    _context.Entry(v).Collection("ProzBevBeigeladen").Load();
-                    _context.Entry(v).Collection("ParteienZeugen").Load();
-                    _context.Entry(v).Collection("ParteienSV").Load();
-                    _context.Entry(v).Collection("ParteienBeteiligt").Load();
-                    _context.Entry(v).Collection("Objekte").Load();
-                    dtos.Add(new VerfahrenDto(v));
-                }
+        List<Verfahren> verfahrenList;
+        
+        if(display.Filter is null or "")
+        {
+            verfahrenList = _context.Verfahren.ToList();
+        }
+        else
+        {
+            verfahrenList = _context.Verfahren
+                .FromSql<Verfahren>($"SELECT * FROM Verfahren WHERE {display.Filter}")
+                .ToList();
+        }
+
+        verfahrenList.ForEach(v =>
+            {
+                _context.Entry(v).Reference("Stammdaten").Load();
+                _context.Entry(v).Collection("ParteienAktiv").Load();
+                _context.Entry(v).Collection("ParteienPassiv").Load();
+                _context.Entry(v).Collection("Besetzung").Load();
+                _context.Entry(v).Collection("ProzBevAktiv").Load();
+                _context.Entry(v).Collection("ProzBevPassiv").Load();
+                _context.Entry(v).Collection("ParteienBeigeladen").Load();
+                _context.Entry(v).Collection("ProzBevBeigeladen").Load();
+                _context.Entry(v).Collection("ParteienZeugen").Load();
+                _context.Entry(v).Collection("ParteienSV").Load();
+                _context.Entry(v).Collection("ParteienBeteiligt").Load();
+                _context.Entry(v).Collection("Objekte").Load();
+                dtos.Add(new VerfahrenDto(v));
+            }
         );
 
         return Ok(dtos);
@@ -130,35 +141,38 @@ public class DisplaysController : ControllerBase
     {
         DateTime validTimestamp = timestamp.GetValueOrDefault(DateTime.Now);
         var display = await _context.Displays
-          .Include(d => d.NotesAssignments.Select(na => na.Note))
-          .FirstAsync(
-            d => d.Name == name);
+          .Include(d => d.NotesAssignments)
+          .ThenInclude(n => n.Note)
+          .FirstAsync( d => d.Name == name);
 
         if (display == null)
             return NotFound();
 
-        return Ok(display.NotesAssignments.Where(na => IsActiveNoteAssignment(na, validTimestamp)).Select(na => na.Note));
+        bool IsActiveNoteAssignment(NoteAssignment noteAssignment, DateTime dateTime)
+        {
+            bool erval = true;
+
+            if (noteAssignment.Start.HasValue && noteAssignment.Start.Value > dateTime)
+                erval = false;
+
+            if (noteAssignment.End.HasValue && noteAssignment.End.Value < dateTime)
+                erval = false;
+
+            return erval;
+        }
+        var result = display.NotesAssignments.Where(na => IsActiveNoteAssignment(na, validTimestamp)).Select(na => na.Note);
+
+        return Ok(result);
     }
 
-    private static bool IsActiveNoteAssignment(NoteAssignment noteAssignment, DateTime dateTime)
-    {
-        bool erval = true;
-
-        if (noteAssignment.Start.HasValue && noteAssignment.Start.Value > dateTime)
-            erval = false;
-
-        if (noteAssignment.End.HasValue && noteAssignment.End.Value < dateTime)
-            erval = false;
-
-        return erval;
-    }
 
     [Route("{name}/status")]
     [HttpGet]
     public async Task<ActionResult<DisplayStatus>> GetStatusForDisplay(string name)
     {
-        var display = await _context.Displays.FirstAsync(
-          d => d.Name == name);
+        var display = await _context
+            .Displays
+            .FirstAsync(d => d.Name == name);
 
         if (display == null)
             return NotFound();

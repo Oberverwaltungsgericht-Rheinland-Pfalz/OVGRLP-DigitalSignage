@@ -48,13 +48,13 @@ public class PermissionsController : ControllerBase
     public ActionResult<BasicPermissions> GetBasicPermissions()
     {
         var perm = new BasicPermissions();
-        // WindowsIdentity wid = HttpContext.Current.Request.LogonUserIdentity;     //new WindowsIdentity(HttpContext.Current.User.Identity.Name);
-        if (HttpContext?.User?.Identity == null) throw new ArgumentNullException("User is not authenticated");
-        WindowsIdentity wid = (WindowsIdentity)HttpContext.User.Identity;
-        var ps = new PermissionService(wid, _context);
-
         if (_configuration.CheckPermission)
         {
+            // WindowsIdentity wid = HttpContext.Current.Request.LogonUserIdentity;     //new WindowsIdentity(HttpContext.Current.User.Identity.Name);
+            if (HttpContext?.User?.Identity == null) throw new ArgumentNullException("User is not authenticated");
+            WindowsIdentity wid = (WindowsIdentity)HttpContext.User.Identity;
+            var ps = new PermissionService(wid, _context);
+
             perm.AllowDisplays = ps.checkPermission("settings/displays", "GET");
             perm.AllowDisplaysControl = (ps.checkPermission("settings/displays", "GET") && ps.checkPermission("settings/displays/*/start", "GET"));
 
@@ -82,7 +82,7 @@ public class PermissionsController : ControllerBase
             perm.AllowTermine = Restriction.write;
         }
 
-        return Ok(perm);
+        return perm;
     }
 
     [Route("GetPermission")]
@@ -132,14 +132,3 @@ public class PermissionsController : ControllerBase
         return name;
     }
 }
-
-public class BasicPermissions
-{
-    public bool AllowDisplays;
-    public bool AllowDisplaysControl;
-    public Restriction AllowTermine;
-    public Restriction AllowNotes;
-}
-
-public enum Restriction
-{ forbidden = 0, read = 1, write = 2 };

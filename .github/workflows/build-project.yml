@@ -32,7 +32,7 @@ jobs:
         path: ./src/*
         key: csharp${{ github.sha }}
 
-  test-csharp:
+  test-importCli:
     needs: setup-dotnet
     name: run ImportCli tests
     runs-on: windows-latest
@@ -49,6 +49,23 @@ jobs:
     - run: dotnet build src/DigitalSignage.ImportCLI.NUnitTests
     - name: Test
       run: dotnet test --no-build src/DigitalSignage.ImportCLI.NUnitTests/DigitalSignage.ImportCLI.NUnitTests.csproj
+
+  csharp-unittests:
+    needs: setup-dotnet
+    name: run unit tests
+    runs-on: windows-latest
+    steps:  
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - uses: actions/cache/restore@v3
+      id: load-deps
+      with:
+        path: ./src/*
+        key: csharp${{ github.sha }}
+
+    - name: Test
+      run: dotnet test src/DigitalSignage.UnitTests/DigitalSignage.UnitTests.csproj
 
 #    - name: setup-msbuild all projects
 #      uses: microsoft/setup-msbuild@v1.1
@@ -128,6 +145,30 @@ jobs:
         path: ./src/DigitalSignage.ImportCLI/publish
         retention-days: 30
 
+  build-DataAPI:
+    needs: setup-dotnet
+    name: build DataAPI Server
+    runs-on: windows-latest
+    steps:
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - uses: actions/cache/restore@v3
+      id: load-deps
+      with:
+        path: ./src/*
+        key: csharp${{ github.sha }}
+
+    - run: dotnet build src/DigitalSignage.DataAPI
+    - name: Build publish files for DataAPI-Server
+      run: dotnet publish src\DigitalSignage.DataAPI -c Release -a x64 --os win --output ./src/DigitalSignage.DataAPI/publish
+    - name: 'Upload DataAPI-Server Artifact'
+      uses: actions/upload-artifact@v3
+      with:
+        name: DataAPI-Server
+        path: ./src/DigitalSignage.DataAPI/publish
+        retention-days: 30
+
   dependencies-WebApps:
     name: setup and build web apps
     runs-on: ubuntu-latest
@@ -167,7 +208,7 @@ jobs:
   
       - name: build display-manager
         working-directory: ./src/ds-suite
-        run: npm run build:displays
+        run: npm run build:dsmanager
 
       - name: 'Upload web app artifacts'
         uses: actions/upload-artifact@v3
@@ -193,7 +234,7 @@ jobs:
           key: wa${{ github.sha }}
       - name: build displays
         working-directory: ./src/ds-suite
-        run: npm run build:dsmanager
+        run: npm run build:displays
 
       - name: 'Upload web app artifacts'
         uses: actions/upload-artifact@v3
