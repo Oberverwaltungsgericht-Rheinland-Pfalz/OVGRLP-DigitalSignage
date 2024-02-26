@@ -11,7 +11,6 @@ public partial class Program
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
         builder.Services.AddSystemWebAdapters();
-        // builder.Services.AddHttpForwarder();
 
         builder.Host
             .UseSerilog((context, services, configuration) =>

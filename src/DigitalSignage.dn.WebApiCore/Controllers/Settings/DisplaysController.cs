@@ -109,8 +109,9 @@ public class DisplaysController : ControllerBase
         }
         else
         {
+            string sql = $"SELECT * FROM Verfahren WHERE {display.Filter}";
             verfahrenList = _context.Verfahren
-                .FromSql<Verfahren>($"SELECT * FROM Verfahren WHERE {display.Filter}")
+                .FromSqlRaw<Verfahren>(sql)
                 .ToList();
         }
 
