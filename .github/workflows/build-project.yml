@@ -178,7 +178,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 16.x
 
       - name: install dependencies 
         working-directory: ./src/ds-suite
@@ -199,7 +199,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 16.x
       - uses: actions/cache/restore@v3
         id: load-deps
         with:
@@ -226,7 +226,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 16.x
       - uses: actions/cache/restore@v3
         id: load-deps
         with:
@@ -252,7 +252,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 16.x
       - uses: actions/cache/restore@v3
         id: load-deps
         with:

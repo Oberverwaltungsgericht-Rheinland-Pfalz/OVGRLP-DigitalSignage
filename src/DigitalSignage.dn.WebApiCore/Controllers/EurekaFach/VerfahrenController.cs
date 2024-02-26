@@ -75,7 +75,7 @@ public class VerfahrenController : ControllerBase
 
     [Route("{id}")]
     [HttpPut]
-    public async Task<ActionResult> PutVerfahren(Int64 id, VerfahrenDto dto)
+    public async Task<ActionResult> PutVerfahren([FromRoute] Int64 id, [FromBody] VerfahrenDto dto)
     {
         if (!ModelState.IsValid)
         {
@@ -105,7 +105,7 @@ public class VerfahrenController : ControllerBase
 
     [Route("")]
     [HttpPost]
-    public async Task<ActionResult<VerfahrenDto>> PostVerfahren(VerfahrenDto dto)
+    public async Task<ActionResult<VerfahrenDto>> PostVerfahren([FromBody] VerfahrenDto dto)
     {
         if (!ModelState.IsValid)
         {
