@@ -36,7 +36,7 @@ export default  defineComponent({
   <div v-if="displays.length === 0">Keine Anzeigen vorhanden</div>
   <button v-show="!displaySelected" v-for="display of displays" :key="'dis'+display.id" 
     @click="displaySelected = display">
-    <span class="material-icons">monitor</span>
+    <span class="material-icons">monitor</span>&ensp;
     <a>{{ display.title }}</a>
     <div>
       
@@ -58,4 +58,7 @@ li span.material-icons
   vertical-align middle
 h3 > button
   margin 0
+.container > button
+  margin-left 0.25rem
+  margin-right 0.25rem
 </style>
