@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: EUPL-1.2
 import { defineComponent, PropType } from 'vue'
 import Termin from '../models/Termin'
-import axios from 'axios';
+import { VerfahrenService } from '../apis/WebApiCore'
 
 export default  defineComponent({
   props: {
@@ -23,7 +23,7 @@ export default  defineComponent({
       await this.changeStatus(termin)
     },
     async changeStatus(termin: Termin){
-      await axios.put(`/daten/verfahren/${termin.id}`, termin)
+      await VerfahrenService.putDatenVerfahren(termin.id, termin)
       this.$emit('refresh')
     }
   }

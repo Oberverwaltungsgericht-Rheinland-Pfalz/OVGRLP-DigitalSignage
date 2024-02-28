@@ -1,12 +1,11 @@
 <script setup lang="ts">
 // SPDX-FileCopyrightText: © 2019 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>, Reiner Bamberger <4329883+reinerBa@users.noreply.github.com>
 // SPDX-License-Identifier: EUPL-1.2
-import axios from 'axios'
 import Display from '../models/Display'
-import { PropType, onBeforeUnmount, ref } from 'vue'
-import Termin from '../models/Termin'
+import { PropType, onBeforeUnmount, ref, getCurrentInstance } from 'vue'
 import RcDisplay from './RcDisplay.vue'
 import RcTermine from './RcTermine.vue'
+import { DisplaysService, VerfahrenDto } from '../apis/WebApiCore'
 
 const props = defineProps({
   display: {
@@ -15,12 +14,15 @@ const props = defineProps({
   }
 })
 
-const termine = ref([] as Termin[])
+const termine = ref([] as VerfahrenDto[])
 
 function GetTermine(): void {
-  axios.get<Termin[]>(`/settings/displays/${props.display.name}/termine`).then(res => {
-    if(JSON.stringify(termine.value) !== JSON.stringify(res.data))
-      termine.value.splice(0, Infinity, ...res.data) 
+  DisplaysService.getSettingsDisplaysTermine(props.display.name).then(data => {
+    if (JSON.stringify(termine.value) === JSON.stringify(data))
+      return
+
+    termine.value.splice(0, Infinity, ...data) 
+    getCurrentInstance()?.proxy?.$forceUpdate()
   })
 }
 

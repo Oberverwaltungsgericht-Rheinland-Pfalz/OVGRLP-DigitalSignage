@@ -1,9 +1,10 @@
 <script lang="ts">
 // SPDX-FileCopyrightText: © 2019 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
+import DisplayStatus from '../components/DisplayStatus.vue'
+import { DisplaysService } from '../apis/WebApiCore'
 import { defineComponent, PropType } from 'vue'
 import Display from '../models/Display'
-import DisplayStatus from '../components/DisplayStatus.vue'
 import axios from 'axios'
 
 let statusIntervalId: number
@@ -26,16 +27,14 @@ export default  defineComponent({
           displayStatus: 0
         };
     },
-    data() {
-        return {
+    data() { return {
             compact: false,
-        };
-    },
+      }},
     methods: {
       openModal() { },
       loadStatus(){
-        axios.get<number>(`/settings/displays/${this.display.name}/status`).then((res)=>{
-          this.displayStatus  = res.data
+        DisplaysService.getSettingsDisplaysStatus(this.display.name).then(status => {
+          this.displayStatus = status
           this.$forceUpdate()
         })
       },
@@ -45,17 +44,21 @@ export default  defineComponent({
           this.$forceUpdate()
         })
       },
-      async startClick() { },
-      async updateClick() { },
-      async shutdownClick() { },
-      async restartClick() { }
+      async startClick() { 
+        await DisplaysService.getSettingsDisplaysStart(this.display.name)
+      },
+      async shutdownClick() { 
+        await DisplaysService.getSettingsDisplaysStop(this.display.name)
+      },
+      async restartClick() {
+        await DisplaysService.getSettingsDisplaysRestart(this.display.name)
+       }
     },
     async mounted() {
       statusIntervalId = setInterval(this.loadStatus, 1e4)
       this.loadStatus()
       
-      const response = await axios.get<string>(`/settings/displays/${this.display.name}/ScreenshotUrl`)
-      this.screenshotUrl = response.data ||''
+      this.screenshotUrl = await DisplaysService.getSettingsDisplaysScreenshotUrl(this.display.name)
 
       screenshotIntervalId = setInterval(this.loadScreenshot, 1e4)
       this.loadScreenshot()
@@ -77,9 +80,12 @@ export default  defineComponent({
     <DisplayStatus :status="displayStatus" :description="display.description" class="display-status"/>
   </div>
   <footer>
-    <button v-if="displayStatus === 0" class="pseudo"><span class="material-icons">play</span> Anschalten</button>
-    <button v-if="displayStatus > 0" class="pseudo"><span class="material-icons">power_settings_new</span> Ausschalten</button>
-    <button v-if="displayStatus > 0" class="pseudo"><span class="material-icons">replay</span> Neu starten</button>
+    <button v-if="displayStatus === 0" @click="startClick" class="pseudo">
+      <span class="material-icons">play</span> Anschalten</button>
+    <button v-if="displayStatus > 0" @click="shutdownClick" class="pseudo">
+      <span class="material-icons">power_settings_new</span> Ausschalten</button>
+    <button v-if="displayStatus > 0" @click="restartClick" class="pseudo">
+      <span class="material-icons">replay</span> Neu starten</button>
   </footer>
 </article>
 <!--

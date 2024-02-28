@@ -2,9 +2,8 @@
 // SPDX-FileCopyrightText: © 2019 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>, Reiner Bamberger <4329883+reinerBa@users.noreply.github.com>
 // SPDX-License-Identifier: EUPL-1.2
 import { defineComponent } from 'vue'
-import Display from '../models/Display'
-import axios from 'axios'
 import RcDisplayDetails from './RcDisplayDetails.vue'
+import { DisplaysService, Display } from '../apis/WebApiCore'
 
 export default  defineComponent({
   components: {RcDisplayDetails},
@@ -16,9 +15,8 @@ export default  defineComponent({
   },
   methods: {
     async GetDisplays(): Promise<void> {
-      const url = window.location.origin + '/settings/displays'
-      var res = await axios.get<Display[]>(url)
-      this.displays.splice(0, Infinity,...res.data)
+      const data = await DisplaysService.getSettingsDisplays()
+      this.displays.splice(0, Infinity,...data)
     }
   },
   async mounted() {
