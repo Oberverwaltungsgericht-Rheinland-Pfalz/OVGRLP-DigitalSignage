@@ -2,9 +2,8 @@
 // SPDX-FileCopyrightText: © 2019 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
 import DisplayStatus from '../components/DisplayStatus.vue'
-import { DisplaysService } from '../apis/WebApiCore'
+import { Display, DisplaysService } from '../apis/WebApiCore'
 import { defineComponent, PropType } from 'vue'
-import Display from '../models/Display'
 import axios from 'axios'
 
 let statusIntervalId: number
@@ -33,7 +32,7 @@ export default  defineComponent({
     methods: {
       openModal() { },
       loadStatus(){
-        DisplaysService.getSettingsDisplaysStatus(this.display.name).then(status => {
+        DisplaysService.getSettingsDisplaysStatus(this.display.name??'').then(status => {
           this.displayStatus = status
           this.$forceUpdate()
         })
@@ -45,20 +44,20 @@ export default  defineComponent({
         })
       },
       async startClick() { 
-        await DisplaysService.getSettingsDisplaysStart(this.display.name)
+        await DisplaysService.getSettingsDisplaysStart(this.display.name??'')
       },
       async shutdownClick() { 
-        await DisplaysService.getSettingsDisplaysStop(this.display.name)
+        await DisplaysService.getSettingsDisplaysStop(this.display.name??'')
       },
       async restartClick() {
-        await DisplaysService.getSettingsDisplaysRestart(this.display.name)
+        await DisplaysService.getSettingsDisplaysRestart(this.display.name??'')
        }
     },
     async mounted() {
       statusIntervalId = setInterval(this.loadStatus, 1e4)
       this.loadStatus()
       
-      this.screenshotUrl = await DisplaysService.getSettingsDisplaysScreenshotUrl(this.display.name)
+      this.screenshotUrl = await DisplaysService.getSettingsDisplaysScreenshotUrl(this.display.name??'')
 
       screenshotIntervalId = setInterval(this.loadScreenshot, 1e4)
       this.loadScreenshot()
@@ -77,7 +76,7 @@ export default  defineComponent({
   </header>
   <div>
     <img v-if="screenshot" :src="screenshot" @click="openModal()" class="screenshot">
-    <DisplayStatus :status="displayStatus" :description="display.description" class="display-status"/>
+    <DisplayStatus :status="displayStatus" :description="display.description??''" class="display-status"/>
   </div>
   <footer>
     <button v-if="displayStatus === 0" @click="startClick" class="pseudo">

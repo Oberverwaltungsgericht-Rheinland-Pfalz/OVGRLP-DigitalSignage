@@ -15,9 +15,9 @@ jobs:
       Solution_Name: src\DigitalSignageAll.sln 
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
         
@@ -26,7 +26,7 @@ jobs:
     - run: dotnet build src/DigitalSignage.Data
     - run: dotnet build src/DigitalSignage.Infrastructure
 
-    - uses: actions/cache/save@v3
+    - uses: actions/cache/save@v4
       id: save-compiles
       with:
         path: ./src/*
@@ -37,10 +37,10 @@ jobs:
     name: run ImportCli tests
     runs-on: windows-latest
     steps:  
-    - uses: actions/setup-dotnet@v3
+    - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - uses: actions/cache/restore@v3
+    - uses: actions/cache/restore@v4
       id: load-deps
       with:
         path: ./src/*
@@ -55,10 +55,10 @@ jobs:
     name: run unit tests
     runs-on: windows-latest
     steps:  
-    - uses: actions/setup-dotnet@v3
+    - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - uses: actions/cache/restore@v3
+    - uses: actions/cache/restore@v4
       id: load-deps
       with:
         path: ./src/*
@@ -78,10 +78,10 @@ jobs:
     name: build WebAPI Server
     runs-on: windows-latest
     steps:
-    - uses: actions/setup-dotnet@v3
+    - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - uses: actions/cache/restore@v3
+    - uses: actions/cache/restore@v4
       id: load-deps
       with:
         path: ./src/*
@@ -91,7 +91,7 @@ jobs:
     - name: Build publish files for WebAPI-Server
       run: dotnet publish src\DigitalSignage.dn.WebApiCore -c Release -a x64 --os win --output ./src/DigitalSignage.dn.WebApiCore/publish
     - name: 'Upload WebAPI-Server Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: WebAPI-Server
         path: ./src/DigitalSignage.dn.WebApiCore/publish
@@ -102,10 +102,10 @@ jobs:
     name: build DisplayControl service
     runs-on: windows-latest
     steps:
-    - uses: actions/setup-dotnet@v3
+    - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - uses: actions/cache/restore@v3
+    - uses: actions/cache/restore@v4
       id: load-deps
       with:
         path: ./src/*
@@ -115,7 +115,7 @@ jobs:
     - name: Build publish files for DisplayControl
       run: dotnet publish src\DigitalSignage.dn.DisplayControl -c Release --output ./src/DigitalSignage.dn.DisplayControl/publish
     - name: 'Upload DisplayControl Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: DisplayControl
         path: ./src/DigitalSignage.dn.DisplayControl/publish
@@ -126,10 +126,10 @@ jobs:
     name: build ImportCLI service
     runs-on: windows-latest
     steps:
-    - uses: actions/setup-dotnet@v3
+    - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - uses: actions/cache/restore@v3
+    - uses: actions/cache/restore@v4
       id: load-deps
       with:
         path: ./src/*
@@ -139,7 +139,7 @@ jobs:
     - name: Build publish files for ImportCLI
       run: dotnet publish src\DigitalSignage.ImportCLI -c Release -a x64 --os win --output ./src/DigitalSignage.ImportCLI/publish
     - name: 'Upload ImportCLI Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ImportCLI
         path: ./src/DigitalSignage.ImportCLI/publish
@@ -150,10 +150,10 @@ jobs:
     name: build DataAPI Server
     runs-on: windows-latest
     steps:
-    - uses: actions/setup-dotnet@v3
+    - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - uses: actions/cache/restore@v3
+    - uses: actions/cache/restore@v4
       id: load-deps
       with:
         path: ./src/*
@@ -163,7 +163,7 @@ jobs:
     - name: Build publish files for DataAPI-Server
       run: dotnet publish src\DigitalSignage.DataAPI -c Release -a x64 --os win --output ./src/DigitalSignage.DataAPI/publish
     - name: 'Upload DataAPI-Server Artifact'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: DataAPI-Server
         path: ./src/DigitalSignage.DataAPI/publish
@@ -174,7 +174,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
@@ -184,7 +184,7 @@ jobs:
         working-directory: ./src/ds-suite
         run: npm ci
 
-      - uses: actions/cache/save@v3
+      - uses: actions/cache/save@v4
         id: save-deps
         with:
           path: ./src/ds-suite/*
@@ -195,12 +195,12 @@ jobs:
     name: build display-manager
     runs-on: ubuntu-latest  
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
           node-version: 16.x
-      - uses: actions/cache/restore@v3
+      - uses: actions/cache/restore@v4
         id: load-deps
         with:
           path: ./src/ds-suite/*
@@ -211,7 +211,7 @@ jobs:
         run: npm run build:dsmanager
 
       - name: 'Upload web app artifacts'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ds-manager
           path: ./src/ds-suite/dist/*.zip
@@ -222,12 +222,12 @@ jobs:
     name: build displays
     runs-on: ubuntu-latest  
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
           node-version: 16.x
-      - uses: actions/cache/restore@v3
+      - uses: actions/cache/restore@v4
         id: load-deps
         with:
           path: ./src/ds-suite/*
@@ -237,7 +237,7 @@ jobs:
         run: npm run build:displays
 
       - name: 'Upload web app artifacts'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: displays
           path: ./src/ds-suite/dist/*.zip
@@ -248,12 +248,12 @@ jobs:
     name: build roomcontrol
     runs-on: ubuntu-latest  
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
           node-version: 16.x
-      - uses: actions/cache/restore@v3
+      - uses: actions/cache/restore@v4
         id: load-deps
         with:
           path: ./src/ds-suite/*
@@ -263,21 +263,46 @@ jobs:
         run: npm run build:roomcontrol
         
       - name: 'Upload web app artifacts'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: roomcontrol
           path: ./src/ds-suite/dist/*.zip
           retention-days: 30
 
+
+  build-ds-webapps:
+    name: build all new webapps
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      - name: install dependencies 
+        working-directory: ./src/ds-webapps
+        run: npm ci
+
+      - name: build all
+        working-directory: ./src/ds-webapps
+        run: npm run build
+        
+      - name: 'Upload web app artifacts'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ds-webapps
+          path: ./src/ds-webapps/dist/
+          retention-days: 7
+    
 # #the project is targetting windows
 #  build-displayControl-linux:
 #    needs: setup-dotnet
 #    name: build displayControl app for linux
 #    runs-on: ubuntu-latest
 #    steps:
-#    - uses: actions/checkout@v3
+#    - uses: actions/checkout@v4
 #    - name: Setup .NET
-#      uses: actions/setup-dotnet@v3
+#      uses: actions/setup-dotnet@v4
 #      with:
 #        dotnet-version: 8.0.x
 #        
@@ -285,7 +310,7 @@ jobs:
 #      run: dotnet restore ./src/DigitalSignageAll.sln
 #
 #    - name: Build
-#      uses: actions/setup-dotnet@v3
+#      uses: actions/setup-dotnet@v4
 #      with:
 #        dotnet-version: 8.0.x
 #    - run:  dotnet build ./src/DigitalSignage.dn.DisplayControl/DigitalSignage.dn.DisplayControl.csproj
@@ -293,7 +318,7 @@ jobs:
 #    - name: Build publish files for DisplayControl
 #      run: dotnet publish ./src/DigitalSignage.dn.DisplayControl -c Release --output ./src/DigitalSignage.dn.DisplayControl/publish
 #    - name: 'Upload DisplayControl-linux Artifact'
-#      uses: actions/upload-artifact@v3
+#      uses: actions/upload-artifact@v4
 #      with:
 #        name: DisplayControl-ubuntu
 #        path: ./src/DigitalSignage.dn.DisplayControl/publish

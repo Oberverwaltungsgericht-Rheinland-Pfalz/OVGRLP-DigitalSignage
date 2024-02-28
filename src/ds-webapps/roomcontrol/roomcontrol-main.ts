@@ -4,6 +4,7 @@ import sharedMain from '../src/shared-main'
 import '../src/style.styl'
 
 const app = createApp(App)
-sharedMain(app)
 
-app.mount('#app')
+sharedMain(app).then(() => {
+  app.mount('#app')
+})

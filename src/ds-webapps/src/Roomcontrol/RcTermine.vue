@@ -2,18 +2,17 @@
 // SPDX-FileCopyrightText: © 2019 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>, Reiner Bamberger <4329883+reinerBa@users.noreply.github.com>
 // SPDX-License-Identifier: EUPL-1.2
 import { defineComponent, PropType } from 'vue'
-import Termin from '../models/Termin'
-import { VerfahrenService } from '../apis/WebApiCore'
+import { VerfahrenDto, VerfahrenService } from '../apis/WebApiCore'
 
 export default  defineComponent({
   props: {
     termine: {
-      type: Object as PropType<Termin[]>,
+      type: Object as PropType<VerfahrenDto[]>,
       required: true
     }
   },
   methods: {
-    async changePublic(termin: Termin, newFlag: boolean){
+    async changePublic(termin: VerfahrenDto, newFlag: boolean){
 
       if(newFlag)
         termin.oeffentlich = 'ja'
@@ -22,8 +21,8 @@ export default  defineComponent({
 
       await this.changeStatus(termin)
     },
-    async changeStatus(termin: Termin){
-      await VerfahrenService.putDatenVerfahren(termin.id, termin)
+    async changeStatus(termin: VerfahrenDto){
+      await VerfahrenService.putDatenVerfahren(termin.id ??0, termin)
       this.$emit('refresh')
     }
   }
@@ -49,7 +48,7 @@ export default  defineComponent({
       <td>{{ t.az }}</td>
       <td>{{ t.parteienAktivKurz }}</td>
       <td>{{ t.parteienPassivKurz }}</td>
-      <td>{{ t.besetzung.join(', ') }}</td>
+      <td>{{ t.besetzung!.join(', ') }}</td>
       <td>
         <button v-if="t.oeffentlich == 'ja'" @click="changePublic(t, false)" class="material-icons pseudo toggle_on">toggle_on</button>
         <button v-else @click="changePublic(t, true)" class="material-icons pseudo">toggle_off</button>

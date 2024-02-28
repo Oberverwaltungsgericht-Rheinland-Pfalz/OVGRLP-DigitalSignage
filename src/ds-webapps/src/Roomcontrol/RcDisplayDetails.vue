@@ -1,11 +1,10 @@
 <script setup lang="ts">
 // SPDX-FileCopyrightText: © 2019 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>, Reiner Bamberger <4329883+reinerBa@users.noreply.github.com>
 // SPDX-License-Identifier: EUPL-1.2
-import Display from '../models/Display'
 import { PropType, onBeforeUnmount, ref, getCurrentInstance } from 'vue'
 import RcDisplay from './RcDisplay.vue'
 import RcTermine from './RcTermine.vue'
-import { DisplaysService, VerfahrenDto } from '../apis/WebApiCore'
+import { DisplaysService, VerfahrenDto, Display } from '../apis/WebApiCore'
 
 const props = defineProps({
   display: {
@@ -17,7 +16,7 @@ const props = defineProps({
 const termine = ref([] as VerfahrenDto[])
 
 function GetTermine(): void {
-  DisplaysService.getSettingsDisplaysTermine(props.display.name).then(data => {
+  DisplaysService.getSettingsDisplaysTermine(props.display.name??'').then(data => {
     if (JSON.stringify(termine.value) === JSON.stringify(data))
       return
 
