@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: © 2019 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>
 // SPDX-License-Identifier: EUPL-1.2
 import { defineComponent } from 'vue'
-import Display from '../../src/models/Display'
-import DisplayStatus from '../../src/components/DisplayStatus.vue'
+import Display from '../models/Display'
+import DisplayStatus from '../components/DisplayStatus.vue'
 
 export default  defineComponent({
   components: {DisplayStatus},
@@ -49,3 +49,11 @@ export default  defineComponent({
 
 <app-display-dialog></app-display-dialog>
 </template>
+
+<style lang="stylus" scoped>
+.img-middle-proportion
+  margin-left auto
+  margin-right auto
+  width auto
+</style>
+

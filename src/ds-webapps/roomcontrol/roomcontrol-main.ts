@@ -1,14 +1,9 @@
 import { createApp } from 'vue'
-import App from '../src/RoomcontrolApp.vue'
-
-// @ts-expect-error
-const version: string = __VERSION__ ?? ''
-// @ts-expect-error
-const buildDate: string = __BUILDDATE__ ?? ''
-console.log('OVGRLP Digitalsignage WebUI v' + version + ', erstellt am ' + (buildDate))
+import App from '../src/Roomcontrol/RoomcontrolApp.vue'
+import sharedMain from '../src/shared-main'
+import '../src/style.styl'
 
 const app = createApp(App)
-app.provide<string>('app-version', version)
-app.provide<string>('build-date', buildDate)
+sharedMain(app)
 
 app.mount('#app')

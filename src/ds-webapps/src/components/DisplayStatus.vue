@@ -3,26 +3,27 @@
 // SPDX-License-Identifier: EUPL-1.2
 import { defineComponent } from 'vue'
 
-export default  defineComponent({
+export default defineComponent({
   props:{
     status: {type: Number/*Object as PropType<DisplayStatus>*/, required: true},
     description: {type: String, required: true}
   },
   computed: {
     DisplayStatusToString(): string {
-    let rval: string = ''
+      console.log(this.status)
+    let rval: string = 'Status: '
     switch (this.status) {
       case -1:
-        rval = 'unbekannt'
+        rval += 'unbekannt'
         break
       case 2:
-        rval = 'aktiv'
+        rval += 'aktiv'
         break
       case 1:
-        rval = 'angeschaltet'
+        rval += 'angeschaltet'
         break
       case 0:
-        rval = 'ausgeschaltet'
+        rval += 'ausgeschaltet'
     }
     return rval
   }

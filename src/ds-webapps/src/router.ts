@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: © 2019 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>, Reiner Bamberger <4329883+reinerBa@users.noreply.github.com>
 // SPDX-License-Identifier: EUPL-1.2
 import { createRouter, createWebHistory } from 'vue-router'
-import Roomcontrol from './RoomcontrolApp.vue'
+import Roomcontrol from './Roomcontrol/RoomcontrolApp.vue'
 import DsManager from './DsManagerApp.vue'
 import Displays from './DisplaysApp.vue'
 

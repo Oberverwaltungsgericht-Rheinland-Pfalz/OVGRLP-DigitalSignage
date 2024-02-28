@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import fs from 'fs'
 import { resolve } from 'path'
 import pack from './package.json'
+import mocksimple from 'vite-plugin-mock-simple'
+import mockRoutes from './mock-routes'
 
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   const version: string = pack.version
@@ -20,7 +22,10 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       },
     },
   base: './',
-  plugins: [vue()],
+  plugins: [
+    vue(), 
+    mocksimple([...mockRoutes])
+  ],
   define: {
     __VERSION__: '"' + version + '"',
     __BUILDDATE__: '"' + buildDate + '"',

@@ -2,7 +2,7 @@
   import {ref} from 'vue'
   import DisplaysApp from './DisplaysApp.vue'
   import DsManagerApp from './DsManagerApp.vue'
-  import RoomcontrolApp from './RoomcontrolApp.vue'
+  import RoomcontrolApp from './Roomcontrol/RoomcontrolApp.vue'
   const show = ref('rc')
 </script>
 
