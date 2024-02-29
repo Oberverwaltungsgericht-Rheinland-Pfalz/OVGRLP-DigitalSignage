@@ -62,7 +62,7 @@ const routes: MockHandler[] = [
   {
     pattern: '/settings/displays/*/ScreenshotUrl',
     handle: (req, res) => {
-      res.end('http://localhost:5173/api/screenshot')
+      res.end('http://localhost:5173/api/screenshot.jpg')
     }  
   },
   {
@@ -77,7 +77,7 @@ const routes: MockHandler[] = [
     method: 'GET',
     handle: (req, res) => {
         res.setHeader('Content-Type', 'application/json')
-        res.end(JSON.stringify(1))
+        res.end(JSON.stringify(Math.floor(Math.random()*2)))
     }     
   },
   {
@@ -99,8 +99,8 @@ const routes: MockHandler[] = [
         "filter": null,
         "group": "NJZ Foyer",
         "controlUrl": null,
-        "netAddress": "10.10.10.255",
-        "wolIpAddress": "10.10.10.255",
+        "netAddress": "127.0.0.1",
+        "wolIpAddress": "127.0.0.1",
         "wolMacAddress": "00-00-00-00-00-00",
         "wolUdpPort": 9,
         "description": "",

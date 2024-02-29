@@ -17,10 +17,24 @@ export default  defineComponent({
     async GetDisplays(): Promise<void> {
       const data = await DisplaysService.getSettingsDisplays()
       this.displays.splice(0, Infinity,...data)
+    },
+    setDisplay(dis: Display) {
+      this.displaySelected = dis
+      location.hash ='/'+ dis.name || ''
+    },
+    unsetDisplay(){
+      this.displaySelected = null
+      location.hash = ''
     }
   },
   async mounted() {
     await this.GetDisplays()
+    
+    const lastName = location.hash.replace(/#|\//g, '')
+    if(lastName){
+      const lastDisplay = this.displays.find(e => e.name === lastName)
+      if(lastDisplay) this.displaySelected = lastDisplay
+    }      
   }
   })
 </script>
@@ -30,17 +44,20 @@ export default  defineComponent({
 
   <h3 v-if="!displaySelected">Anzeigen:</h3>
   <h3 v-else>
-    <button @click="displaySelected = null" class="material-icons pseudo">arrow_back</button>
+    <button @click="unsetDisplay" class="material-icons pseudo">arrow_back</button>
     <span>{{ displaySelected.name }}</span>&ensp;
   </h3>
+
   <div v-if="displays.length === 0">Keine Anzeigen vorhanden</div>
   <button v-show="!displaySelected" v-for="display of displays" :key="'dis'+display.id" 
-    @click="displaySelected = display">
+    @click="setDisplay(display)">
     <span class="material-icons">monitor</span>&ensp;
     <a>{{ display.title }}</a>
-    <div>
-      
-    </div>
+    &ensp;
+    <span class="material-icons" 
+      :title="`Name: ${display.name}\nGruppe: ${display.group
+      }\nTemplate: ${display.template}\nFilter: ${display.filter ?? 'keiner'}`">info
+      </span>
   </button>
 </div>
 

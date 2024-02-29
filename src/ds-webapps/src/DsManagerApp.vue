@@ -1,26 +1,30 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import Navbar, { navType } from './components/Navbar.vue';
+
+const navigationPoints: navType[] = [
+{
+  name: 'Displays', 
+  icon: 'monitor'
+},
+{
+  name: 'Termine', 
+  icon: 'calendar_month'
+},
+{
+  name: 'Sondermeldungen', 
+  icon: 'announcement'
+}]
+const nav = ref(navigationPoints)
 </script>
 
 <template>
-  <div>Ds-Manager
-    <a href="https://vitejs.dev" target="_blank">
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-    </a>
-  </div>
+  <Navbar app-name="DS-Manager" 
+    :on-goto="()=>{}" 
+    :nav="nav"/>
+  <div class="space"></div>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+<style lang="stylus" scoped>
+
 </style>

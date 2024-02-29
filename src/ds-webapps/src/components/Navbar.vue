@@ -1,9 +1,25 @@
 <script lang="ts">
 // SPDX-FileCopyrightText: © 2019 Oberverwaltungsgericht Rheinland-Pfalz <poststelle@ovg.jm.rlp.de>, Reiner Bamberger <4329883+reinerBa@users.noreply.github.com>
 // SPDX-License-Identifier: EUPL-1.2
-import { defineComponent, inject } from 'vue'
+import { PropType, defineComponent, inject } from 'vue'
+
+export interface navType {
+  name: string
+  icon: string
+}
 
 export default  defineComponent({
+  props:{
+    appName:{
+      type: String,
+      required: true
+    },
+    nav:{
+      type: Object as PropType<navType[]>,
+      required: true
+    }
+  },
+  emits: ['goto'],
   setup() {
     const appVersion = inject<string>('app-version')
     return {
@@ -15,9 +31,13 @@ export default  defineComponent({
 
 <template> 
 <nav class="demo">
-  <div class="app">Roomcontrol <span class="version">v {{appVersion}}</span></div>
+  <div class="app">{{appName}} <span class="version">v {{appVersion}}</span></div>
   <a href="#" class="brand">    
-    <button class="pseudo"><span class="material-icons">monitor</span> Saalsteuerung</button>
+    <button v-for="(navButton, idx) of nav" :key="'nav'+idx" 
+      @click="$emit('goto', navButton.name)" 
+      class="pseudo">
+      <span class="material-icons">{{ navButton.icon }}</span> {{navButton.name}}
+    </button>
   </a>
   
 

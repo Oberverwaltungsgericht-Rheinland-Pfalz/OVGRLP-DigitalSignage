@@ -15,7 +15,7 @@ export default async function(app: App<Element>): Promise<void> {
   app.provide<string>('app-version', version)
   app.provide<string>('build-date', buildDate)
 
-  await axios.get<AppSettings>('appsettings.json?#').then(response => {
+  await axios.get<AppSettings>('appsettings.json?a=0#').then(response => {
     const appsettings = response.data
     app.provide<AppSettings>('settings', appsettings)
 

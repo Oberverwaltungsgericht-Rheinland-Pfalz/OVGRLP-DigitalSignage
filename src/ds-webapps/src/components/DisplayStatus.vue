@@ -10,7 +10,6 @@ export default defineComponent({
   },
   computed: {
     DisplayStatusToString(): string {
-      console.log(this.status)
     let rval: string = 'Status: '
     switch (this.status) {
       case -1:

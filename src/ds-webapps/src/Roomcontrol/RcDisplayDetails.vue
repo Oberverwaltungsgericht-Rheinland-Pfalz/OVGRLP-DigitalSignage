@@ -75,6 +75,6 @@ export default  defineComponent({
 #grid
   display grid
   padding 0 1em
-  grid-template-columns auto 350px
+  grid-template-columns auto 400px
   gap 0 1em
 </style>

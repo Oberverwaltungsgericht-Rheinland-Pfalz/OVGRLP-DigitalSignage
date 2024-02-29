@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar.vue'
 </script>
 
 <template>
-  <Navbar />
+  <Navbar app-name="Roomcontrol" :on-goto="()=>{}" :nav="[{name: 'Saalsteuerung', icon: 'monitor'}]"/>
   <div class="space"></div>
   <RcHome />
 </template>
