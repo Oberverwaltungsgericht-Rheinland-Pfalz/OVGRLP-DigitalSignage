@@ -23,7 +23,7 @@ watch(showModal, async (newVal)=>{
   <input id="modal_1" type="checkbox" v-model="showModal" checked/>
   <label for="modal_1" class="overlay"></label>
   <article>
-    <header>{{ showModal }}
+    <header>
       <slot name="header"></slot>
       <label for="modal_1" class="close">&times;</label>
     </header>

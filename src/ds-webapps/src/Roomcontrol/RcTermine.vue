@@ -42,6 +42,9 @@ export default  defineComponent({
       <th>Status</th>
     </tr>
   </thead>
+  <tbody v-if="termine.length == 0">
+    <tr><td colspan="7">Es sind keine Termine vorhanden</td></tr>
+  </tbody>
   <tbody>
     <tr v-for="(t, idx) in termine" :key="'tdetail'+idx">
       <td>{{ t.uhrzeitAktuell }}</td>

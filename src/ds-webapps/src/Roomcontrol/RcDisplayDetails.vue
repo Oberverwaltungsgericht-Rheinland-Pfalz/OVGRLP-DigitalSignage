@@ -31,37 +31,6 @@ GetTermine()
 onBeforeUnmount(()=>{
   clearInterval(intervalId)
 })
-
-/*import { defineComponent, PropType, ref } from 'vue'
-import RcDisplay from './RcDisplay.vue'
-import RcTermine from './RcTermine.vue'
-import Display from '../models/Display'
-import axios from 'axios'
-import Termin from '../models/Termin'
-
-export default  defineComponent({
-  components: { RcDisplay, RcTermine },
-  props:{
-    display: {
-      type: Object as PropType<Display>,
-      required: true
-    }
-  },
-  async setup() {
-    const termine = ref([] as Termin[])
-
-    async function GetTermine(){
-      var res = await axios.get<Termin[]>('')
-      termine.value.splice(0, Infinity, ...res.data)
-    }
-    setInterval(GetTermine, 1e4)
-    await GetTermine()
-
-    return{
-      termine
-    }
-  }
-  })*/
 </script>
 
 <template>
@@ -77,4 +46,14 @@ export default  defineComponent({
   padding 0 1em
   grid-template-columns auto 400px
   gap 0 1em
+
+@media screen and (max-width: 1048px)
+  #grid
+    display flow
+
+    table
+      width 100%  
+    .card
+      margin-top 1.5rem
+
 </style>

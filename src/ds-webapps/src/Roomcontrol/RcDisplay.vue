@@ -41,6 +41,8 @@ export default  defineComponent({
         })
       },
       loadScreenshot(){
+        if(this.displayStatus === 0) return
+
         const tmp = this.screenshotUrl 
         this.screenshotUrl = ''
         this.$nextTick(()=> {
@@ -103,30 +105,6 @@ export default  defineComponent({
     </template>
   </ModalSimple>
 </article>
-<!--
-<clr-tabs v-if="!compact">
-  <clr-tab>
-    <button clrTabLink>Termine</button>
-    <clr-tab-content *clrIfActive>
-      <app-termine v-if="display" [displayName]="display.name"></app-termine>
-    </clr-tab-content>
-  </clr-tab>
-  <clr-tab>
-    <button clrTabLink>Anzeige</button>
-    <clr-tab-content *clrIfActive>
-      <app-display-control class="display-control" v-if="display" [display]="display" [sizeToScreenHeigt]="true"></app-display-control>
-    </clr-tab-content>
-  </clr-tab>
-</clr-tabs>
-
-<div fxLayout="row" fxLayout.lt-md="column" v-if="compact">
-  <div fxFlex="78%" fxFlex.gt-md="65%">
-    <app-termine v-if="display" [displayName]="display.name"></app-termine>
-  </div>
-  <div fxFlex="22%" fxFlex.gt-md="35%" class="display-control">
-    <app-display-control v-if="display" [display]="display"></app-display-control>
-  </div>
-</div>-->
 </template>
 
 <style lang="stylus" scoped>
