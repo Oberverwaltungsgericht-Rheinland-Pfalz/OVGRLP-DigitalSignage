@@ -47,6 +47,47 @@ const terminMock: Termin = {
 
 const routes: MockHandler[] = [
   {
+    pattern: '/settings/displays/DisplaysEx',
+    jsonBody: [
+      {
+          "status": 0,
+          "screenshotUrl": "http://127.0.0.1:8000/api/screenshot?123",
+          "id": 1,
+          "name": "Anzeige 1",
+          "title": "Sitzungssaal E2",
+          "template": "njz/saal",
+          "styles": null,
+          "filter": "",
+          "group": "NJZ Säle",
+          "controlUrl": "http://127.0.0.1:8000",
+          "netAddress": "127.0.0.1",
+          "wolIpAddress": "255.255.255.255",
+          "wolMacAddress": "00-90-11-02-AB-23",
+          "wolUdpPort": 1,
+          "description": "",
+          "notesAssignments": [],
+          "dummy": false
+      },{
+        "status": 0,
+        "screenshotUrl": "http://127.0.0.1:8001/api/screenshot?123",
+        "id": 2,
+        "name": "Anzeige 5",
+        "title": "Sitzungssaal E3",
+        "template": "njz/saal",
+        "styles": null,
+        "filter": "",
+        "group": "NJZ Tafeln",
+        "controlUrl": "http://http://127.0.0.1:9001",
+        "netAddress": "127.0.0.1",
+        "wolIpAddress": "255.255.255.255",
+        "wolMacAddress": "00-00-11-02-13-92",
+        "wolUdpPort": 2,
+        "description": "",
+        "notesAssignments": [],
+        "dummy": false
+    },]
+  },
+  {
     pattern: '/daten/verfahren/{termin_id}',
     method: 'PUT',
     handle: (req, res) => {

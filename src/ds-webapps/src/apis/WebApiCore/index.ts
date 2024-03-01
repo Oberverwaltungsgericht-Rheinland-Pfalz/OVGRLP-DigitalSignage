@@ -11,6 +11,7 @@ export type { BasicPermissions } from './models/BasicPermissions';
 export type { Besetzung } from './models/Besetzung';
 export type { Display } from './models/Display';
 export type { DisplayDto } from './models/DisplayDto';
+export type { DisplayExDto } from './models/DisplayExDto';
 export { DisplayStatus } from './models/DisplayStatus';
 export type { JToken } from './models/JToken';
 export type { Note } from './models/Note';

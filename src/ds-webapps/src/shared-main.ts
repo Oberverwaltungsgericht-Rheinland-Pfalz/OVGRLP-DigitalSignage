@@ -4,6 +4,7 @@ import 'picnic/picnic.min.css'
 import { OpenAPI } from './apis/WebApiCore'
 import 'material-icons/iconfont/material-icons.css'
 import { AppSettings } from './models/AppSettings'
+import './style.styl'
 
 export default async function (app: App<Element>): Promise<void> {
   // @ts-expect-error

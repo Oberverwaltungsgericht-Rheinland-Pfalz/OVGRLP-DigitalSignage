@@ -43,7 +43,7 @@ export default  defineComponent({
     </tr>
   </thead>
   <tbody v-if="termine.length == 0">
-    <tr><td colspan="7">Es sind keine Termine vorhanden</td></tr>
+    <tr><td id="no-dates" colspan="7">Es sind keine Termine vorhanden</td></tr>
   </tbody>
   <tbody>
     <tr v-for="(t, idx) in termine" :key="'tdetail'+idx">
@@ -96,4 +96,8 @@ table
   min-width 3rem
 .toggle_on
   color rgb(90, 162, 32)
+#no-dates
+  text-align center
+  padding 2rem
+  font-size 1.5rem
 </style>

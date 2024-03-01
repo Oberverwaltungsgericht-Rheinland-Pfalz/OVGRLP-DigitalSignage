@@ -66,4 +66,7 @@ nav
     background-color #0072a3
     width 100%
     font-size .8rem
+  .brand *
+    font-weight normal
+
 </style>

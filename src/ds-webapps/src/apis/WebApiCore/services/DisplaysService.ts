@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { Display } from '../models/Display';
 import type { DisplayDto } from '../models/DisplayDto';
+import type { DisplayExDto } from '../models/DisplayExDto';
 import type { DisplayStatus } from '../models/DisplayStatus';
 import type { Note } from '../models/Note';
 import type { VerfahrenDto } from '../models/VerfahrenDto';
@@ -12,10 +13,10 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class DisplaysService {
     /**
-     * @returns Display Success
+     * @returns DisplayDto Success
      * @throws ApiError
      */
-    public static getSettingsDisplays(): CancelablePromise<Array<Display>> {
+    public static getSettingsDisplays(): CancelablePromise<Array<DisplayDto>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/settings/displays',
@@ -37,10 +38,10 @@ export class DisplaysService {
         });
     }
     /**
-     * @returns DisplayDto Success
+     * @returns DisplayExDto Success
      * @throws ApiError
      */
-    public static getSettingsDisplaysDisplaysEx(): CancelablePromise<Array<DisplayDto>> {
+    public static getSettingsDisplaysDisplaysEx(): CancelablePromise<Array<DisplayExDto>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/settings/displays/DisplaysEx',
@@ -48,12 +49,12 @@ export class DisplaysService {
     }
     /**
      * @param name
-     * @returns any Success
+     * @returns DisplayDto Success
      * @throws ApiError
      */
     public static getDisplay(
         name: string,
-    ): CancelablePromise<any> {
+    ): CancelablePromise<DisplayDto> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/settings/displays/{name}',
@@ -100,12 +101,12 @@ export class DisplaysService {
     }
     /**
      * @param name
-     * @returns DisplayDto Success
+     * @returns DisplayExDto Success
      * @throws ApiError
      */
     public static getDisplayEx(
         name: string,
-    ): CancelablePromise<DisplayDto> {
+    ): CancelablePromise<DisplayExDto> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/settings/displays/{name}/DisplayEx',

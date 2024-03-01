@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Navbar, { navType } from './components/Navbar.vue';
+import Navbar, { navType } from '../components/Navbar.vue';
 
 const navigationPoints: navType[] = [
 {

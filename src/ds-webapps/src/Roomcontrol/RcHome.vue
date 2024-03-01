@@ -83,6 +83,7 @@ h3 > button
   margin-right 0.25rem
 #display-list
   display list-item
+  list-style-type none
   button
     min-width 30rem
     padding 1rem

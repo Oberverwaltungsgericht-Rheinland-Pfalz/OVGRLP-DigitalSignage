@@ -2,8 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { DisplayStatus } from './DisplayStatus';
 import type { NoteAssignment } from './NoteAssignment';
-export type DisplayDto = {
+export type DisplayExDto = {
     id: number;
     name: string;
     title: string;
@@ -19,5 +20,7 @@ export type DisplayDto = {
     description: string;
     notesAssignments: Array<NoteAssignment>;
     dummy: boolean;
+    status: DisplayStatus;
+    screenshotUrl: string;
 };
 

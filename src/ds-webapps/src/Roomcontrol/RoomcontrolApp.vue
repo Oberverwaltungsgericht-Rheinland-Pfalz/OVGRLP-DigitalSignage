@@ -12,7 +12,5 @@ import Navbar from '../components/Navbar.vue'
 </template>
 
 <style lang="stylus">
-.space
-  height 5rem
 
 </style>
