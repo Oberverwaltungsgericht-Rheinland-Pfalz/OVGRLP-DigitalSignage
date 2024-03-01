@@ -28,20 +28,21 @@ public class DisplaysController : ControllerBase
 
     [Route("")]
     [HttpGet]
-    public IEnumerable<Display> GetAllDisplays()
+    public IEnumerable<DisplayDto> GetAllDisplays()
     {
-        return _context.Displays.Where(d => d.Dummy == false);
+        var displays = _context.Displays.Where(d => d.Dummy == false);
+        return displays.Select(d => DisplayDto.FromDisplay(d)).ToList();
     }
 
     [Route("DisplaysEx")]
     [HttpGet]
-    public IEnumerable<DisplayDto> GetAllDisplaysEx()
+    public IEnumerable<DisplayExDto> GetAllDisplaysEx()
     {
         List<Display> displays = _context.Displays.Where(d => d.Dummy == false).ToList();
-        List<DisplayDto> displaysEx = new List<DisplayDto>();
+        List<DisplayExDto> displaysEx = new List<DisplayExDto>();
         foreach (Display disp in displays)
         {
-            displaysEx.Add(DisplayDto.FromDisplay(disp, _displayManagementService));
+            displaysEx.Add(DisplayExDto.FromDisplay(disp, _displayManagementService));
         }
 
         return displaysEx;
@@ -49,7 +50,7 @@ public class DisplaysController : ControllerBase
 
     [Route("{name}", Name = "GetDisplay")]
     [HttpGet]
-    public async Task<ActionResult> GetDisplay(string name)
+    public async Task<ActionResult<DisplayDto>> GetDisplay(string name)
     {
         var display = await _context.Displays
           .FirstAsync(
@@ -58,7 +59,7 @@ public class DisplaysController : ControllerBase
         if (display == null)
             return NotFound();
 
-        var displayDto = new
+        var displayDto = new DisplayDto()
         {
             Id = display.Id,
             Description = display.Description,
@@ -67,7 +68,8 @@ public class DisplaysController : ControllerBase
             Template = display.Template,
             Styles = display.Styles,
             ControlUrl = display.ControlUrl,
-            Group = display.Group
+            Group = display.Group,
+            WolIpAddress = "", WolMacAddress = "", NetAddress = ""
         };
 
         return Ok(displayDto);
@@ -75,7 +77,7 @@ public class DisplaysController : ControllerBase
 
     [Route("{name}/DisplayEx", Name = "GetDisplayEx")]
     [HttpGet]
-    public async Task<ActionResult<DisplayDto>> GetDisplayEx(string name)
+    public async Task<ActionResult<DisplayExDto>> GetDisplayEx(string name)
     {
         var display = await _context.Displays
           .FirstAsync(
@@ -84,9 +86,9 @@ public class DisplaysController : ControllerBase
         if (display == null)
             return NotFound();
 
-        DisplayDto displayDto = DisplayDto.FromDisplay(display, _displayManagementService);
+        var displayExDto = DisplayExDto.FromDisplay(display, _displayManagementService);
 
-        return Ok(displayDto);
+        return Ok(displayExDto);
     }
 
     [Route("{name}/termine")]
