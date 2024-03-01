@@ -1,4 +1,5 @@
 import { MockHandler } from "vite-plugin-mock-simple"
+// @ts-ignore
 import Termin from './src/models/Termin'
 
 const terminMock: Termin = {

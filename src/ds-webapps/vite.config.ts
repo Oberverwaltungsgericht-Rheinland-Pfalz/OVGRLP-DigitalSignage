@@ -1,10 +1,10 @@
 import { UserConfigExport, ConfigEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import fs from 'fs'
-import { resolve } from 'path'
 import pack from './package.json'
 import mocksimple from 'vite-plugin-mock-simple'
 import mockRoutes from './mock-routes'
+// @ts-expect-error
+import { resolve } from 'path'
 
 // @ts-expect-error
 const dirname = __dirname

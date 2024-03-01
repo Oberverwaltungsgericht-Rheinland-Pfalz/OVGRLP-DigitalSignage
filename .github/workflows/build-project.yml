@@ -86,14 +86,18 @@ jobs:
       with:
         path: ./src/*
         key: csharp${{ github.sha }}
-
+    - uses: kzrnm/get-net-sdk-project-versions-action@v2
+      id: get-version-wa
+      with:
+        proj-path: ./src/DigitalSignage.dn.WebApiCore/DigitalSignage.dn.WebApiCore.csproj 
+  
     - run: dotnet build src/DigitalSignage.dn.WebApiCore
     - name: Build publish files for WebAPI-Server
       run: dotnet publish src\DigitalSignage.dn.WebApiCore -c Release -a x64 --os win --output ./src/DigitalSignage.dn.WebApiCore/publish
     - name: 'Upload WebAPI-Server Artifact'
       uses: actions/upload-artifact@v4
       with:
-        name: WebAPI-Server
+        name: WebAPI-Server@${{steps.get-version-wa.outputs.version}}
         path: ./src/DigitalSignage.dn.WebApiCore/publish
         retention-days: 30
 
@@ -110,6 +114,10 @@ jobs:
       with:
         path: ./src/*
         key: csharp${{ github.sha }}
+    - uses: kzrnm/get-net-sdk-project-versions-action@v2
+      id: get-version-dc
+      with:
+        proj-path: ./src/DigitalSignage.dn.DisplayControl/DigitalSignage.dn.DisplayControl.csproj  
 
     - run: dotnet build src/DigitalSignage.dn.DisplayControl
     - name: Build publish files for DisplayControl
@@ -117,7 +125,7 @@ jobs:
     - name: 'Upload DisplayControl Artifact'
       uses: actions/upload-artifact@v4
       with:
-        name: DisplayControl
+        name: DisplayControl@${{steps.get-version-dc.outputs.version}}
         path: ./src/DigitalSignage.dn.DisplayControl/publish
         retention-days: 30
 
@@ -134,6 +142,10 @@ jobs:
       with:
         path: ./src/*
         key: csharp${{ github.sha }}
+    - uses: kzrnm/get-net-sdk-project-versions-action@v2
+      id: get-version-imp
+      with:
+        proj-path: ./src/DigitalSignage.ImportCLI/DigitalSignage.ImportCLI.csproj 
 
     - run: dotnet build src/DigitalSignage.ImportCLI
     - name: Build publish files for ImportCLI
@@ -141,7 +153,7 @@ jobs:
     - name: 'Upload ImportCLI Artifact'
       uses: actions/upload-artifact@v4
       with:
-        name: ImportCLI
+        name: ImportCLI@${{steps.get-version-imp.outputs.version}}
         path: ./src/DigitalSignage.ImportCLI/publish
         retention-days: 30
 
@@ -158,6 +170,10 @@ jobs:
       with:
         path: ./src/*
         key: csharp${{ github.sha }}
+    - uses: kzrnm/get-net-sdk-project-versions-action@v2
+      id: get-version-dapi
+      with:
+        proj-path: ./src/DigitalSignage.DataAPI/DigitalSignage.DataAPI.csproj 
 
     - run: dotnet build src/DigitalSignage.DataAPI
     - name: Build publish files for DataAPI-Server
@@ -165,11 +181,11 @@ jobs:
     - name: 'Upload DataAPI-Server Artifact'
       uses: actions/upload-artifact@v4
       with:
-        name: DataAPI-Server
+        name: DataAPI-Server@${{steps.get-version-dapi.outputs.version}}
         path: ./src/DigitalSignage.DataAPI/publish
         retention-days: 30
 
-  dependencies-WebApps:
+  dependencies-dssuite:
     name: setup and build web apps
     runs-on: ubuntu-latest
     
@@ -191,7 +207,7 @@ jobs:
           key: wa${{ github.sha }}
 
   build-dsmanager:
-    needs: dependencies-WebApps
+    needs: dependencies-dssuite
     name: build display-manager
     runs-on: ubuntu-latest  
     steps:
@@ -218,7 +234,7 @@ jobs:
           retention-days: 30
 
   build-displays:
-    needs: dependencies-WebApps
+    needs: dependencies-dssuite
     name: build displays
     runs-on: ubuntu-latest  
     steps:
@@ -244,7 +260,7 @@ jobs:
           retention-days: 30
 
   build-roomcontrol:
-    needs: dependencies-WebApps
+    needs: dependencies-dssuite
     name: build roomcontrol
     runs-on: ubuntu-latest  
     steps:
@@ -283,6 +299,12 @@ jobs:
         working-directory: ./src/ds-webapps
         run: npm ci
 
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: ./src/ds-webapps
+
       - name: build all
         working-directory: ./src/ds-webapps
         run: npm run build
@@ -290,7 +312,7 @@ jobs:
       - name: 'Upload web app artifacts'
         uses: actions/upload-artifact@v4
         with:
-          name: ds-webapps
+          name: ds-webapps@${{ steps.package-version.outputs.current-version}}
           path: ./src/ds-webapps/dist/
           retention-days: 7
     

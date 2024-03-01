@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageLicenseExpression>EUPL-1.2</PackageLicenseExpression>
     <AssemblyVersion>3.1.2.0</AssemblyVersion>
+	<Version>3.1.2-24095</Version>
     <RepositoryUrl>https://github.com/Oberverwaltungsgericht-Rheinland-Pfalz/OVGRLP-DigitalSignage</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>

@@ -9,9 +9,15 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <AssemblyTitle>DigitalSignage.ImportCLI</AssemblyTitle>
     <Product>DigitalSignage.ImportCLI</Product>
-    <Copyright>Copyright ©  2018</Copyright>
     <AssemblyVersion>1.8.0.2403</AssemblyVersion>
-    <FileVersion>1.8.0.2403</FileVersion>
+    <FileVersion></FileVersion>
+	<Copyright>Oberverwaltungsgericht Rheinland-Pfalz 2023</Copyright>
+    <PackageLicenseExpression>EUPL-1.2</PackageLicenseExpression>
+    <Title>OVGVG.DigitalSignage.DisplayControl</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Oberverwaltungsgericht-Rheinland-Pfalz/OVGRLP-DigitalSignage</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>1.8.0.2403</Version>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'test|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>

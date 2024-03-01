@@ -5,6 +5,10 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
+	<Copyright>Oberverwaltungsgericht Rheinland-Pfalz 2023</Copyright>
+    <PackageLicenseExpression>EUPL-1.2</PackageLicenseExpression>
+    <Title>OVGVG.DigitalSignage.Data.API</Title>
+    <Version>0.1.0-24095</Version>
   </PropertyGroup>
 
   <ItemGroup>
