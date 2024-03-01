@@ -4,6 +4,6 @@ import sharedMain from '../src/shared-main'
 
 const app = createApp(App)
 
-sharedMain(app).then(() => {
+void sharedMain(app).then(() => {
   app.mount('#app')
 })

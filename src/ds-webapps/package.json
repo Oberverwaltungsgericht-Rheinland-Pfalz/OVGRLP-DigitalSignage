@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "generate-api": "node src/apis/GenerateApi"
+    "generate-api": "node src/apis/GenerateApi",
+    "lint": "ts-standard --fix"
   },
   "dependencies": {
     "axios": "^1.6.5",
@@ -24,9 +25,15 @@
     "picnic": "^7.1.0",
     "stylus": "^0.62.0",
     "ts-standard": "^12.0.2",
-    "typescript": "^5.2.2",
+    "typescript": "^5.1.6",
     "vite": "^5.0.8",
     "vite-plugin-mock-simple": "^1.0.3",
     "vue-tsc": "^1.8.25"
+  },
+  "ts-standard": {
+    "ignore": [
+      "dist",
+      "src/apis/WebApiCore/*.*"
+    ]
   }
 }

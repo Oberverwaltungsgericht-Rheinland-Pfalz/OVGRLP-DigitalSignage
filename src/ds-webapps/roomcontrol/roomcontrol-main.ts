@@ -5,6 +5,6 @@ import '../src/style.styl'
 
 const app = createApp(App)
 
-sharedMain(app).then(() => {
+void sharedMain(app).then(() => {
   app.mount('#app')
 })

@@ -19,7 +19,6 @@ export default async function (app: App<Element>): Promise<void> {
     const appsettings = response.data
     app.provide<AppSettings>('settings', appsettings)
 
-    if (appsettings.webApiUrl)
-      OpenAPI.BASE = appsettings.webApiUrl
+    if (appsettings.webApiUrl.length > 0) OpenAPI.BASE = appsettings.webApiUrl
   })
 }

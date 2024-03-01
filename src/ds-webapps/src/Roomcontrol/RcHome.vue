@@ -16,6 +16,7 @@ export default  defineComponent({
   methods: {
     async GetDisplays(): Promise<void> {
       const data = await DisplaysService.getSettingsDisplays()
+      data.sort((a, b) => (a.title??'') > (b.title??'') ? 1 : -1)
       this.displays.splice(0, Infinity,...data)
     },
     setDisplay(dis: Display) {
@@ -49,6 +50,7 @@ export default  defineComponent({
   </h3>
 
   <div v-if="displays.length === 0">Keine Anzeigen vorhanden</div>
+  <div id="display-list">
   <button v-show="!displaySelected" v-for="display of displays" :key="'dis'+display.id" 
     @click="setDisplay(display)">
     <span class="material-icons">monitor</span>&ensp;
@@ -59,6 +61,7 @@ export default  defineComponent({
       }\nTemplate: ${display.template}\nFilter: ${display.filter ?? 'keiner'}`">info
       </span>
   </button>
+  </div>
 </div>
 
 <RcDisplayDetails v-if="displaySelected" :display="displaySelected"/>
@@ -78,4 +81,10 @@ h3 > button
 .container > button
   margin-left 0.25rem
   margin-right 0.25rem
+#display-list
+  display list-item
+  button
+    min-width 30rem
+    padding 1rem
+    margin 1rem
 </style>
