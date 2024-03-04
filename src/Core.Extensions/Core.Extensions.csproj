@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Company>Oberverwaltungsgericht Rheinland-Pfalz</Company>
+    <Authors>Pascal Bendler</Authors>
+    <AssemblyVersion>1.0.24093</AssemblyVersion>
+    <FileVersion>1.0.24093</FileVersion>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Terminsaushang>
+	<Stammdaten>
+		<Gerichtsname>Testgericht</Gerichtsname>
+		<Datum>01.01.2024</Datum>
+	</Stammdaten>
+	<Terminiert>
+		<Verfahren>
+			<Lfdnr>1</Lfdnr>
+			<Kammer>1</Kammer>
+			<Sitzungssaal>Test 001</Sitzungssaal>
+			<Uhrzeit>09:00</Uhrzeit>
+			<Status>
+			</Status>
+			<Oeffentlich>ja</Oeffentlich>
+			<Art>mündliche Verhandlung</Art>
+			<Az>1 A 123/23.TE</Az>
+			<Gegenstand>Gegenstand</Gegenstand>
+			<Bemerkung1>Kommentar 1</Bemerkung1>
+			<Bemerkung2>Kommentar 2</Bemerkung2>
+			<Besetzung>
+				<Richter>Richter am Testgericht Dr. Testrichter 1</Richter>
+				<Richter>Richter am Testgericht Dr. Testrichter 2</Richter>
+			</Besetzung>
+			<AktivPartei>
+				<Parteien>
+					<Partei>Josef Peter Mustermann</Partei>
+					<Partei>Josef Maria Mustermann</Partei>
+				</Parteien>
+				<ProzBev>
+					<PB>Proz.-Bev.: Rechtsanwalt Test</PB>
+				</ProzBev>
+			</AktivPartei>
+			<PassivPartei>
+				<Parteien>
+					<Partei>Ortsgemeinde Musterstadt vertreten durch den Bürgermeister der Verbandsgemeinde Musterstadt</Partei>
+				</Parteien>
+				<ProzBev>
+					<PB>Proz.-Bev.: Rechtsanwälte TestTest</PB>
+				</ProzBev>
+			</PassivPartei>
+			<Beigeladen>
+				<Parteien>
+					<Partei>1. ABC AG</Partei>
+					<Partei>2. DEF AG</Partei>
+				</Parteien>
+				<ProzBev>
+					<PB>Proz.-Bev.:	zu 1: Rechtsanwälte Test</PB>
+					<PB>Proz.-Bev.:	zu 2: Rechtsanwälte TestTest</PB>
+				</ProzBev>
+			</Beigeladen>
+			<SV>
+				<Parteien>
+					<Partei>1. SV Test</Partei>
+					<Partei>2. SV Mustermann</Partei>
+				</Parteien>
+			</SV>
+			<Zeugen>
+				<Parteien>
+					<Partei>1. Hessel GmbH vertreten durch die Geschäftsführer</Partei>
+					<Partei>2. Test GmbH vertreten durch die Geschäftsführer</Partei>
+				</Parteien>
+			</Zeugen>
+			<Beteiligt>
+				<Parteien>
+					<Partei>Frau Musterfrau</Partei>
+					<Partei>Herr Mustermann</Partei>
+				</Parteien>
+				<ProzBev>
+					<PB>Proz.-Bev.: zu 1: Rechtsanwälte Mustermann</PB>
+				</ProzBev>
+			</Beteiligt>
+			<Dolmetscher>
+				<Parteien>
+					<Partei>Testdolmetscher</Partei>
+					<Partei>Musterdolmetscher</Partei>
+				</Parteien>
+			</Dolmetscher>
+		</Verfahren>
+		<Verfahren>
+			<Lfdnr>1</Lfdnr>
+			<Kammer>1</Kammer>
+			<Sitzungssaal>Test 002</Sitzungssaal>
+			<Uhrzeit>09:00</Uhrzeit>
+			<Status>
+			</Status>
+			<Oeffentlich>ja</Oeffentlich>
+			<Art>mündliche Verhandlung</Art>
+			<Az>1 A 123/23.TE</Az>
+			<Gegenstand>Gegenstand</Gegenstand>
+			<Bemerkung1>Kommentar 1</Bemerkung1>
+			<Bemerkung2>Kommentar 2</Bemerkung2>
+			<Besetzung>
+				<Richter>Richter am Testgericht Dr. Testrichter 1</Richter>
+				<Richter>Richter am Testgericht Dr. Testrichter 2</Richter>
+			</Besetzung>
+			<AktivPartei>
+				<Parteien>
+					<Partei>Josef Peter Mustermann</Partei>
+					<Partei>Josef Maria Mustermann</Partei>
+				</Parteien>
+				<ProzBev>
+					<PB>Proz.-Bev.: Rechtsanwalt Test</PB>
+				</ProzBev>
+			</AktivPartei>
+			<PassivPartei>
+				<Parteien>
+					<Partei>Ortsgemeinde Musterstadt vertreten durch den Bürgermeister der Verbandsgemeinde Musterstadt</Partei>
+				</Parteien>
+				<ProzBev>
+					<PB>Proz.-Bev.: Rechtsanwälte TestTest</PB>
+				</ProzBev>
+			</PassivPartei>
+			<Beigeladen>
+				<Parteien>
+					<Partei>1. ABC AG</Partei>
+					<Partei>2. DEF AG</Partei>
+				</Parteien>
+				<ProzBev>
+					<PB>Proz.-Bev.:	zu 1: Rechtsanwälte Test</PB>
+					<PB>Proz.-Bev.:	zu 2: Rechtsanwälte TestTest</PB>
+				</ProzBev>
+			</Beigeladen>
+			<SV>
+				<Parteien>
+					<Partei>1. SV Test</Partei>
+					<Partei>2. SV Mustermann</Partei>
+				</Parteien>
+			</SV>
+			<Zeugen>
+				<Parteien>
+					<Partei>1. Hessel GmbH vertreten durch die Geschäftsführer</Partei>
+					<Partei>2. Test GmbH vertreten durch die Geschäftsführer</Partei>
+				</Parteien>
+			</Zeugen>
+			<Beteiligt>
+				<Parteien>
+					<Partei>Frau Musterfrau</Partei>
+					<Partei>Herr Mustermann</Partei>
+				</Parteien>
+				<ProzBev>
+					<PB>Proz.-Bev.: zu 1: Rechtsanwälte Mustermann</PB>
+				</ProzBev>
+			</Beteiligt>
+			<Dolmetscher>
+				<Parteien>
+					<Partei>Testdolmetscher</Partei>
+					<Partei>Musterdolmetscher</Partei>
+				</Parteien>
+			</Dolmetscher>
+		</Verfahren>
+	</Terminiert>
+</Terminsaushang>

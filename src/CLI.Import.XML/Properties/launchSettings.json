@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CLI.Import.XML": {
+      "commandName": "Project",
+      "commandLineArgs": "-t -f .\\Data\\Test.xml"
+    }
+  }
+}
