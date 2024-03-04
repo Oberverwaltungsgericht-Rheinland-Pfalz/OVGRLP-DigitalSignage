@@ -46,6 +46,14 @@ const terminMock: Termin = {
 }
 
 const routes: MockHandler[] = [
+  // dsmanager
+  {
+    pattern: '/daten/verfahren',
+    jsonBody: [
+      terminMock
+    ]
+  },
+  // roomcontrol
   {
     pattern: '/settings/displays/DisplaysEx',
     jsonBody: [

@@ -3,7 +3,7 @@
   import DisplaysApp from './DisplaysApp.vue'
   import DsManagerApp from './DsManagerC/DsManagerApp.vue'
   import RoomcontrolApp from './Roomcontrol/RoomcontrolApp.vue'
-  const show = ref('rc')
+  const show = ref('dm')
 </script>
 
 <template>

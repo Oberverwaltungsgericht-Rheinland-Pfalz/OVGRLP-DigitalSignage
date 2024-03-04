@@ -1,28 +1,32 @@
-<script setup lang="ts">
-import { ref } from 'vue';
-import Navbar, { navType } from '../components/Navbar.vue'
-import { useRouter } from 'vue-router'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import Navbar from '../components/Navbar.vue'
 
-const navigationPoints: navType[] = [
-{
-  name: 'Displays', 
-  icon: 'monitor'
-},
-{
-  name: 'Termine', 
-  icon: 'calendar_month'
-},
-{
-  name: 'Sondermeldungen', 
-  icon: 'announcement'
-}]
-const nav = ref(navigationPoints)
 
-function Goto(path: string){
-  debugger
-  useRouter().push({name: path})
-}
-
+export default defineComponent({
+  components: {Navbar},
+  data(){return{
+    nav: [
+      {
+        name: 'Displays', 
+        icon: 'monitor'
+      },
+      {
+        name: 'Verfahren', 
+        icon: 'calendar_month'
+      },
+      {
+        name: 'Sondermeldungen', 
+        icon: 'announcement'
+      }]
+  }},
+  methods:{
+    Goto(path: string) {
+      console.log(path)
+      this.$router.push({name: path})
+    }
+  }
+})
 </script>
 
 <template>
